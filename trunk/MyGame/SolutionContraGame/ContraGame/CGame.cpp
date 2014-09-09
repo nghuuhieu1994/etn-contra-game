@@ -174,12 +174,6 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->m_GameTime->InitGameTime();
 	this->m_fps = 0;
 
-	/*this->sprite = new CSpriteDx9(new D3DXVECTOR3(200, 200, 0),"resources/background1.png",0xFFFFFFFF, 1, 1, 1);*/
-	//this->sprite->LoadContent(m_lpDirect3DDevice);
-	/*this->Mario = new CSpriteDx9(new D3DXVECTOR3(64, 64, 0), "resources/simon.png", 0xFFFFFFFF, 8, 3, 24);*/
-	//this->Mario->LoadContent(m_lpDirect3DDevice);
-	/*this->Mario->getAnimation()->setStartFrame(0);
-	this->Mario->getAnimation()->setEndFrame(2);*/
 
 	this->sprite = new CSpriteDx9();
 	this->sprite->InitializeSpriteData(60, 66, 8, 3, 24);
@@ -192,7 +186,6 @@ void CGame::Run()
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
 
-	//	int _fps = 0;
 
 	while(!CGlobal::IsExit)
 	{
@@ -207,6 +200,7 @@ void CGame::Run()
 		{
 			m_GameTime->UpdateGameTime();
 			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
+
 			if( m_fps > 1000 / 60)
 			{
 				/*if((int)m_GameTime->getElapsedGameTime().getMilliseconds()%2 == 0)
@@ -217,15 +211,22 @@ void CGame::Run()
 				{
 					m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET,D3DCOLOR_XRGB( 255, 255, 255), 1.0f, 0); 
 				}*/
+
+				CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
+
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
+					/* Begin Render some fucking peep in Game*/
+
 					sprite->UpdateAnimation(m_GameTime, 100);
 					
 					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
 					
+					/* End render*/
+
 					m_lpSpriteDirect3DHandle->End();
 
 					m_lpDirect3DDevice->EndScene();
@@ -241,6 +242,7 @@ void CGame::Exit()
 {
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
+	SAFE_DELETE(m_GameTime);
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

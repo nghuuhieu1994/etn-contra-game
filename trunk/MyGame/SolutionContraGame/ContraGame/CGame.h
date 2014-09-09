@@ -37,8 +37,6 @@ protected:
 	//sprite use for testing
 	CSpriteDx9*			sprite;
 	// Sprite Mario Demo
-	CSpriteDx9*			Mario;
-	// GameTime in Game
 	
 	// fps in Game
 	float					m_fps;
