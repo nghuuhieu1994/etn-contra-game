@@ -81,6 +81,9 @@
     <ClInclude Include="SpriteEffect.h">
       <Filter>Header Files\Graphics\CSprite</Filter>
     </ClInclude>
+    <ClInclude Include="CInputDx9.h">
+      <Filter>Header Files\CGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CGame.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="SpriteEffect.cpp">
       <Filter>Source Files\Graphics\CSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputDx9.cpp">
+      <Filter>Source Files\CGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
