@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\CGame">
+      <UniqueIdentifier>{7d88e595-1f49-4baa-a0e1-91e109c5f1f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CGame">
+      <UniqueIdentifier>{eb4248ac-315e-45b2-87e9-a5638d90ed16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CGlobal">
+      <UniqueIdentifier>{cf72b52e-5d64-4349-82a0-53b5d4eedf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CGlobal">
+      <UniqueIdentifier>{00ba8c65-5f43-47bb-af0a-5ffeb6aab204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CGameLog">
+      <UniqueIdentifier>{5a5bd9ec-b386-4592-8dfe-a2f12df8d009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CGameLog">
+      <UniqueIdentifier>{b2f4fa46-e0f2-4fa9-ac38-89b4d60e467e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{a70689d0-488c-4689-acd5-8706d2ca984b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{47f82f4b-128c-42ae-bc59-5808bd524ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\CSprite">
+      <UniqueIdentifier>{c5aa13ec-776f-42c7-886c-b7a6dc3f5f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\CSprite">
+      <UniqueIdentifier>{ec7579bd-4490-4810-814d-e7385a5086b2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGame.h">
+      <Filter>Header Files\CGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameTimeDx9.h">
+      <Filter>Header Files\CGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeSpanDx9.h">
+      <Filter>Header Files\CGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobal.h">
+      <Filter>Header Files\CGlobal</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLog.h">
+      <Filter>Header Files\CGameLog</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorDx9.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleDx9.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureDx9.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CSurfaceDx9.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimationDx9.h">
+      <Filter>Header Files\Graphics\CSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpriteDx9.h">
+      <Filter>Header Files\Graphics\CSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteEffect.h">
+      <Filter>Header Files\Graphics\CSprite</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Source Files\CGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameTimeDx9.cpp">
+      <Filter>Source Files\CGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeSpan.cpp">
+      <Filter>Source Files\CGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CGlobal.cpp">
+      <Filter>Source Files\CGlobal</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLog.cpp">
+      <Filter>Source Files\CGameLog</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleDx9.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureDx9.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CSurfaceDx9.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimationDx9.cpp">
+      <Filter>Source Files\Graphics\CSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpriteDx9.cpp">
+      <Filter>Source Files\Graphics\CSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteEffect.cpp">
+      <Filter>Source Files\Graphics\CSprite</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
