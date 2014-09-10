@@ -6,10 +6,16 @@
 #define			FRAME_RATE	60
 #define			GAMETITLE	"Tran Danh"
 	
+typedef enum eSoundID
+{
+	BROKEN
+};
+
 class CGlobal
 {
 public:
 	static bool IsWindowMode;
 	static bool IsExit;
+	static bool IsMute;
 };
 #endif
