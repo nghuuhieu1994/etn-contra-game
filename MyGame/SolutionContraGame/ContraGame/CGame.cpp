@@ -174,6 +174,9 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->m_GameTime->InitGameTime();
 	this->m_fps = 0;
 
+	m_Input.InitializeInput();
+	m_Input.InitializeMouseDevice(m_handleWindow);
+	m_Input.InitializeKeyBoardDevice(m_handleWindow);
 
 	this->sprite = new CSpriteDx9();
 	this->sprite->InitializeSpriteData(60, 66, 8, 3, 24);
@@ -212,7 +215,7 @@ void CGame::Run()
 					m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET,D3DCOLOR_XRGB( 255, 255, 255), 1.0f, 0); 
 				}*/
 
-				CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
+				//CGameLog::GetInstance("secons per frame GAME")->SaveFloatNumber(m_fps);
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
 				if(m_lpDirect3DDevice->BeginScene())
@@ -226,6 +229,16 @@ void CGame::Run()
 					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
 					
 					/* End render*/
+					m_Input.UpdateKeyBoard();
+					if(m_Input.IsKeyRelease(DIK_SPACE))
+					{
+						char szBuff[1024];
+						va_list arg;
+						va_start(arg, "AAA\n");
+						_vsnprintf(szBuff, sizeof(szBuff), "AAA\n", arg);
+						va_end(arg);
+						OutputDebugString(szBuff);
+					}
 
 					m_lpSpriteDirect3DHandle->End();
 

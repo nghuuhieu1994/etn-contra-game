@@ -102,13 +102,14 @@ bool CInputDx9::IsMouseLeftClick()
 
 void CInputDx9::UpdateKeyBoard()
 {
+	memcpy(m_previousBuffer, m_currentBuffer, 256);
 	m_lpKeyBoardDevice->Acquire(); // Acquire device
-	m_lpKeyBoardDevice->GetDeviceState(sizeof(m_keyBoardBuffer), (LPVOID)&m_keyBoardBuffer);
+	m_lpKeyBoardDevice->GetDeviceState(sizeof(m_currentBuffer), (LPVOID)&m_currentBuffer);
 }
 
 bool CInputDx9::IsKeyDown(int keyCode)
 {
-	if (m_keyBoardBuffer[keyCode] & 0x00000080)
+	if (m_currentBuffer[keyCode] & 0x00000080)
 	{
 		return true;
 	}
@@ -117,7 +118,7 @@ bool CInputDx9::IsKeyDown(int keyCode)
 
 bool CInputDx9::IsKeyUp(int keyCode)
 {
-	if (m_keyBoardBuffer[keyCode] & 0x00000080)
+	if (m_currentBuffer[keyCode] & 0x00000080)
 	{
 		return false;
 	}
@@ -126,36 +127,22 @@ bool CInputDx9::IsKeyUp(int keyCode)
 
 bool CInputDx9::IsKeyPress(int keyCode)
 {
-	if (IsKeyDown(keyCode))
+	if(
+		(m_currentBuffer[keyCode] & 0x00000080) &&
+		!(m_previousBuffer[keyCode] & 0x00000080))
 	{
-		if (keyCode != m_currentKeyDown)
-		{
-			m_currentKeyDown = keyCode;
-			return true;
-		}
-		return false;
-	}
-	else
-	{
-		m_currentKeyDown = 0;
+		return true;
 	}
 	return false;
 }
 
 bool CInputDx9::IsKeyRelease(int keyCode)
 {
-	if (IsKeyUp(keyCode))
+	if(
+		!(m_currentBuffer[keyCode] & 0x00000080) &&
+		(m_previousBuffer[keyCode]	& 0x00000080))
 	{
-		if (keyCode != m_currentKeyDown)
-		{
-			m_currentKeyDown = keyCode;
-			return true;
-		}
-		return false;
-	}
-	else
-	{
-		m_currentKeyDown = 0;
+		return true;
 	}
 	return false;
 }
