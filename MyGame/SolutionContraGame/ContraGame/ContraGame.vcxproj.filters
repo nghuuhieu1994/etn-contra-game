@@ -2,103 +2,103 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="EntryPoint.cpp" />
-    <ClCompile Include="CAnimationDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CGameLog.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CGameTimeDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="CGlobal.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CInputDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CSpriteDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CSurfaceDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CTextureDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="CTimeSpan.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="DSutil.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundBuffer.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundMangerDx9.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteEffect.cpp">
-      <Filter>SourceFile\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
       <Filter>SourceFile\FrameWork</Filter>
     </ClCompile>
     <ClCompile Include="CGame.cpp">
       <Filter>SourceFile\ContraGame</Filter>
     </ClCompile>
+    <ClCompile Include="CSpriteDx9.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CSurfaceDx9.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureDx9.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="DSutil.cpp">
+      <Filter>SourceFile\FrameWork\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBuffer.cpp">
+      <Filter>SourceFile\FrameWork\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMangerDx9.cpp">
+      <Filter>SourceFile\FrameWork\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLog.cpp">
+      <Filter>SourceFile\FrameWork\GameLog</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimationDx9.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteEffect.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputDx9.cpp">
+      <Filter>SourceFile\FrameWork\InputHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameTimeDx9.cpp">
+      <Filter>SourceFile\FrameWork\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeSpan.cpp">
+      <Filter>SourceFile\FrameWork\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>SourceFile\FrameWork\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleDx9.cpp">
+      <Filter>SourceFile\FrameWork\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CAnimationDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CGameLog.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CGameTimeDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="CGlobal.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CInputDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CSpriteDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CSurfaceDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CTextureDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="CTimeSpanDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="DSutil.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteEffect.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundMangerDx9.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundBuffer.h">
-      <Filter>HeaderFile\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleDx9.h">
       <Filter>HeaderFile\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="CGame.h">
       <Filter>HeaderFile\ContraGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpriteDx9.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CSurfaceDx9.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureDx9.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBuffer.h">
+      <Filter>HeaderFile\FrameWork\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMangerDx9.h">
+      <Filter>HeaderFile\FrameWork\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="DSutil.h">
+      <Filter>HeaderFile\FrameWork\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLog.h">
+      <Filter>HeaderFile\FrameWork\GameLog</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimationDx9.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteEffect.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CInputDx9.h">
+      <Filter>HeaderFile\FrameWork\InputHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeSpanDx9.h">
+      <Filter>HeaderFile\FrameWork\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameTimeDx9.h">
+      <Filter>HeaderFile\FrameWork\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorDx9.h">
+      <Filter>HeaderFile\FrameWork\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleDx9.h">
+      <Filter>HeaderFile\FrameWork\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +119,42 @@
     </Filter>
     <Filter Include="SourceFile\ContraGame">
       <UniqueIdentifier>{e89e98fe-9470-4e07-a7d1-940fcc890e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\Graphics">
+      <UniqueIdentifier>{97f8a5b2-8f8a-4038-acef-877b11dc7dcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\Graphics">
+      <UniqueIdentifier>{4e294a07-2e03-4273-84f0-1fc5639b8a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\Sounds">
+      <UniqueIdentifier>{f7c4e660-257b-48e2-8d0b-b6c262593fab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\Sounds">
+      <UniqueIdentifier>{88587a8e-7884-4ed2-9c47-85cce88ecaf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\GameLog">
+      <UniqueIdentifier>{8b963cba-e0bc-4210-8f63-1c3654cb86ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\GameLog">
+      <UniqueIdentifier>{b4e3320b-9ecc-4550-9f7a-6df5ac111518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\InputHandle">
+      <UniqueIdentifier>{eb7a6e79-7960-423a-98be-458eb3e98168}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\InputHandle">
+      <UniqueIdentifier>{5610f37a-5cf5-45f0-b3dc-2ef73041a773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\GameTime">
+      <UniqueIdentifier>{35ab2703-f944-44ac-8406-d3abf621a617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\GameTime">
+      <UniqueIdentifier>{0098237f-ac55-4f93-9cc0-f74b8936c59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\Math">
+      <UniqueIdentifier>{1a6bdb8d-87eb-4649-b825-a37ae00ca60d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\Math">
+      <UniqueIdentifier>{2068a128-5ab3-416e-8091-b591c8ec5883}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
