@@ -3,7 +3,7 @@
 #include <dinput.h>
 #include <d3d9.h>
 #include <d3dx9.h>
-#include "GameLog.h"
+#include "CGameLog.h"
 
 
 class CInputDx9
@@ -19,7 +19,9 @@ class CInputDx9
 
 	D3DXVECTOR2				m_cursorLocation;
 
-	char					m_keyBoardBuffer[256];
+	char					m_currentBuffer[256];
+
+	char					m_previousBuffer[256];
 
 	int						m_lastKeyDown;
 
@@ -42,6 +44,8 @@ public:
 	bool IsKeyUp(int keyCode);
 
 	bool IsKeyPress(int keyCode);
+
+	bool IsKeyRelease(int keyCode);
 
 	bool IsMouseRightClick();
 
