@@ -2,11 +2,14 @@
 #define __CGAME_H__
 
 #include <d3d9.h>
+#include <dsound.h>
 #include <iostream>
 #include "CGlobal.h"
+
 #include "CSpriteDx9.h"
 #include "CGameTimeDx9.h"
 #include "SpriteEffect.h"
+#include "SoundMangerDx9.h"
 #include "CInputDx9.h"
 
 using namespace std;
@@ -26,6 +29,10 @@ protected:
 	LPDIRECT3DDEVICE9	m_lpDirect3DDevice;
 	//Pointer of Microsft Direct3D Sprite Interface, have a bunch of method to process sprite
 	LPD3DXSPRITE		m_lpSpriteDirect3DHandle;
+	// Pointer of Ms Direct Sound
+	LPDIRECTSOUND8		m_lpDirectSound;
+
+	// GameTime in Game
 	CGameTimeDx9*		m_GameTime;
 	CInputDx9			m_Input;
 	//Initialize Window Of Game
@@ -35,6 +42,9 @@ protected:
 	bool				InitializeDirect3DEnvironment ();
 	bool				InitializeDirect3DDevice (bool isWindowed);
 	bool				InitializDirect3DSpriteHandle ();
+
+	// Initialize DirectSound
+	bool				InitializeDirectSound();
 	//sprite use for testing
 	CSpriteDx9*			sprite;
 	// Sprite Mario Demo
