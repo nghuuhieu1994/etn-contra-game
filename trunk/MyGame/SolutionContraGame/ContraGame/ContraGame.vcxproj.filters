@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Graphics\CSprite">
       <UniqueIdentifier>{ec7579bd-4490-4810-814d-e7385a5086b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Sounds">
+      <UniqueIdentifier>{4d14d1e6-52dd-4922-9a0d-15dc6e22f5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sounds">
+      <UniqueIdentifier>{8b30e734-88ef-4bc6-89bb-c15b8b82dbc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGame.h">
@@ -81,9 +87,21 @@
     <ClInclude Include="SpriteEffect.h">
       <Filter>Header Files\Graphics\CSprite</Filter>
     </ClInclude>
+<<<<<<< .mine
+    <ClInclude Include="SoundBuffer.h">
+      <Filter>Header Files\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="DSutil.h">
+      <Filter>Header Files\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMangerDx9.h">
+      <Filter>Header Files\Sounds</Filter>
+    </ClInclude>
+=======
     <ClInclude Include="CInputDx9.h">
       <Filter>Header Files\CGame</Filter>
     </ClInclude>
+>>>>>>> .r6
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CGame.cpp">
@@ -125,8 +143,20 @@
     <ClCompile Include="SpriteEffect.cpp">
       <Filter>Source Files\Graphics\CSprite</Filter>
     </ClCompile>
+<<<<<<< .mine
+    <ClCompile Include="SoundBuffer.cpp">
+      <Filter>Source Files\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="DSutil.cpp">
+      <Filter>Source Files\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMangerDx9.cpp">
+      <Filter>Source Files\Sounds</Filter>
+    </ClCompile>
+=======
     <ClCompile Include="CInputDx9.cpp">
       <Filter>Source Files\CGame</Filter>
     </ClCompile>
+>>>>>>> .r6
   </ItemGroup>
 </Project>

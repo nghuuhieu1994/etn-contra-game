@@ -163,16 +163,36 @@ bool CGame::InitializDirect3DSpriteHandle()
 	return true;
 }
 
+bool CGame::InitializeDirectSound()
+{
+	HRESULT hr;
+	hr = DirectSoundCreate8(NULL, &m_lpDirectSound, NULL);
+	if(FAILED(hr))
+	{
+		CGameLog::GetInstance("CGame")->SaveError("Can't Create Direct Sound!");
+		return false;
+	}
+	hr = m_lpDirectSound->SetCooperativeLevel(this->m_handleWindow, DSSCL_PRIORITY);
+	if(FAILED(hr))
+	{
+		CGameLog::GetInstance("CGame")->SaveError("Can't Set Cooperative Level DSound!");
+		return false;
+	}
+	return true;
+}
+
 bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 {
 	this->InitializeHandleWindow(hInstance);
 	this->InitializeDirect3DEnvironment();
 	this->InitializeDirect3DDevice(isWindowed);
 	this->InitializDirect3DSpriteHandle();
-	
+	this->InitializeDirectSound();
 	this->m_GameTime = new CGameTimeDx9();
 	this->m_GameTime->InitGameTime();
 	this->m_fps = 0;
+
+	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 
 	m_Input.InitializeInput();
 	m_Input.InitializeMouseDevice(m_handleWindow);
@@ -215,7 +235,9 @@ void CGame::Run()
 					m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET,D3DCOLOR_XRGB( 255, 255, 255), 1.0f, 0); 
 				}*/
 
+				//CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
 				//CGameLog::GetInstance("secons per frame GAME")->SaveFloatNumber(m_fps);
+
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
 				if(m_lpDirect3DDevice->BeginScene())
@@ -225,11 +247,12 @@ void CGame::Run()
 					/* Begin Render some fucking peep in Game*/
 
 					sprite->UpdateAnimation(m_GameTime, 100);
-					
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Repeat();
 					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
 					
 					/* End render*/
 					m_Input.UpdateKeyBoard();
+
 					if(m_Input.IsKeyRelease(DIK_SPACE))
 					{
 						char szBuff[1024];
