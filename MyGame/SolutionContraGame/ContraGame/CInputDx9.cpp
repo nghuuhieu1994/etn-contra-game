@@ -90,14 +90,24 @@ void CInputDx9::InitializeMouseDevice(HWND handleWindow)
 	}
 }
 
-bool CInputDx9::IsMouseRightClick()
+bool CInputDx9::IsMouseRightDown()
 {
 	return ((m_mouseState.rgbButtons[1] & 0x80)!=0);
 }
 
-bool CInputDx9::IsMouseLeftClick()
+bool CInputDx9::IsMouseLeftDown()
 {
 	return ((m_mouseState.rgbButtons[0] & 0x80)!=0);
+}
+
+bool CInputDx9::IsMouseRightPress()
+{
+	return (((m_previousMouseState.rgbButtons[1] & 0x80) == 0) && ((m_mouseState.rgbButtons[1] & 0x80) != 0));
+}
+
+bool CInputDx9::IsMouseLeftPress()
+{
+	return (((m_previousMouseState.rgbButtons[0] & 0x80) == 0) && ((m_mouseState.rgbButtons[0] & 0x80) != 0));
 }
 
 void CInputDx9::UpdateKeyBoard()
@@ -149,6 +159,7 @@ bool CInputDx9::IsKeyRelease(int keyCode)
 
 void CInputDx9::UpdateMouse()
 {
+	memcpy(m_previousMouseState.rgbButtons, m_mouseState.rgbButtons, 8);
 	ZeroMemory(&m_mouseState, sizeof(m_mouseState));
 	HRESULT result = m_lpMouseDevice->GetDeviceState(sizeof(DIMOUSESTATE2), (LPVOID)&m_mouseState);
 

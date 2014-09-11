@@ -223,7 +223,7 @@ void CGame::Run()
 		{
 			m_GameTime->UpdateGameTime();
 			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
-
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
 			if( m_fps > 1000 / 60)
 			{
 				/*if((int)m_GameTime->getElapsedGameTime().getMilliseconds()%2 == 0)
@@ -247,13 +247,13 @@ void CGame::Run()
 					/* Begin Render some fucking peep in Game*/
 
 					sprite->UpdateAnimation(m_GameTime, 100);
-					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Repeat();
+					
 					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
 					
 					/* End render*/
 					m_Input.UpdateKeyBoard();
-
-					if(m_Input.IsKeyRelease(DIK_SPACE))
+					m_Input.UpdateMouse();
+					if(m_Input.IsMouseLeftPress())
 					{
 						char szBuff[1024];
 						va_list arg;
