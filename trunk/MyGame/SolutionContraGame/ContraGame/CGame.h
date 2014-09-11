@@ -34,6 +34,7 @@ protected:
 
 	// GameTime in Game
 	CGameTimeDx9*		m_GameTime;
+
 	CInputDx9			m_Input;
 	//Initialize Window Of Game
 	bool				InitializeHandleWindow (HINSTANCE);
@@ -45,10 +46,13 @@ protected:
 
 	// Initialize DirectSound
 	bool				InitializeDirectSound();
+
 	//sprite use for testing
+
 	CSpriteDx9*			sprite;
-	// Sprite Mario Demo
-	
+
+
+
 	// fps in Game
 	float					m_fps;
 	// fps string

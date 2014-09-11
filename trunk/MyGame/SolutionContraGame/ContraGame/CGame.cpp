@@ -46,7 +46,6 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 		return false;
 	}
 
-	//sprintf(fps, "%f", m_fps);
 
 	m_handleWindow = CreateWindow(
 		"CGame",
@@ -198,9 +197,6 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	m_Input.InitializeMouseDevice(m_handleWindow);
 	m_Input.InitializeKeyBoardDevice(m_handleWindow);
 
-	this->sprite = new CSpriteDx9();
-	this->sprite->InitializeSpriteData(60, 66, 8, 3, 24);
-	this->sprite->LoadTexture(m_lpDirect3DDevice, "resources\\simon.png");
 	return true;
 }
 
@@ -226,18 +222,19 @@ void CGame::Run()
 			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
 			if( m_fps > 1000 / 60)
 			{
-				/*if((int)m_GameTime->getElapsedGameTime().getMilliseconds()%2 == 0)
+				/*
+				if((int)m_GameTime->getElapsedGameTime().getMilliseconds()%2 == 0)
 				{
 					m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
 				}
 				else
 				{
 					m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET,D3DCOLOR_XRGB( 255, 255, 255), 1.0f, 0); 
-				}*/
+				}
 
-				//CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
-				//CGameLog::GetInstance("secons per frame GAME")->SaveFloatNumber(m_fps);
-
+				CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
+				CGameLog::GetInstance("secons per frame GAME")->SaveFloatNumber(m_fps);
+				*/
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
 				if(m_lpDirect3DDevice->BeginScene())
@@ -246,14 +243,23 @@ void CGame::Run()
 
 					/* Begin Render some fucking peep in Game*/
 
+<<<<<<< .mine
+=======
 					sprite->UpdateAnimation(m_GameTime, 100);
 					
 					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
+>>>>>>> .r11
 					
 					/* End render*/
+
 					m_Input.UpdateKeyBoard();
+<<<<<<< .mine
+
+					if(m_Input.IsKeyPress(DIK_SPACE))
+=======
 					m_Input.UpdateMouse();
 					if(m_Input.IsMouseLeftPress())
+>>>>>>> .r11
 					{
 						char szBuff[1024];
 						va_list arg;

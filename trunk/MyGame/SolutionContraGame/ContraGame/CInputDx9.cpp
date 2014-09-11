@@ -69,7 +69,7 @@ void CInputDx9::InitializeMouseDevice(HWND handleWindow)
 
 	ZeroMemory(&m_mouseState, sizeof(m_mouseState));
 
-	result=m_lpMouseDevice->SetDataFormat(&c_dfDIMouse2);
+	result = m_lpMouseDevice->SetDataFormat(&c_dfDIMouse2);
 
 	if(result != DI_OK)
 	{
@@ -181,5 +181,7 @@ D3DXVECTOR2 CInputDx9::GetCursorLocation()
 
 CInputDx9::~CInputDx9()
 {
-
+	SAFE_RELEASE(m_lpDirectInput);
+	SAFE_RELEASE(m_lpKeyBoardDevice);
+	SAFE_RELEASE(m_lpMouseDevice);
 }

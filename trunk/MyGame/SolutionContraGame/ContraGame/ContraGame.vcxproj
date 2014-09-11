@@ -82,10 +82,12 @@
     <ClInclude Include="CTextureDx9.h" />
     <ClInclude Include="CTimeSpanDx9.h" />
     <ClInclude Include="DSutil.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="RectangleDx9.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
     <ClInclude Include="SpriteEffect.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="VectorDx9.h" />
   </ItemGroup>
   <ItemGroup>
@@ -102,10 +104,12 @@
     <ClCompile Include="CTimeSpan.cpp" />
     <ClCompile Include="DSutil.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="RectangleDx9.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
     <ClCompile Include="SpriteEffect.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
