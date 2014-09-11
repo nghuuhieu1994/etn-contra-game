@@ -1,6 +1,7 @@
 #include "CSpriteDx9.h"
 #include "CGameLog.h"
 
+/*
 CSpriteDx9::CSpriteDx9()
 {
 
@@ -48,8 +49,8 @@ void CSpriteDx9::LoadTexture(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName)
 
 CSpriteDx9::CSpriteDx9(const CSpriteDx9* otherSprite)
 {
-	/*this->m_Texture = new CTextureDx9(otherSprite->m_Texture);
-	this->m_MyAnimation = new CAnimationDx9(otherSprite->m_MyAnimation);*/
+	this->m_Texture = new CTextureDx9(otherSprite->m_Texture);
+	this->m_MyAnimation = new CAnimationDx9(otherSprite->m_MyAnimation);
 }
 
 void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
@@ -108,3 +109,5 @@ void CSpriteDx9::Render(LPD3DXSPRITE spriteBatch, D3DXVECTOR3* location, void(*s
 		location,
 		AlphaValue);
 }
+*/
+

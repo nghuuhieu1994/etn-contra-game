@@ -12,6 +12,7 @@ using namespace std;
 class CSpriteDx9
 {
 private:
+	/*
 	vector<RECT> m_listSourceRectangle;
 	//Direct3D texture
 	//CTextureDx9*		m_texture;
@@ -52,6 +53,10 @@ public:
 	//---------------------------------------------------
 	void Render(LPD3DXSPRITE _SpriteBatch, D3DXVECTOR3* _Location);
 	void Render(LPD3DXSPRITE spriteBatch, D3DXVECTOR3* location, void(*spriteEffect)(D3DXMATRIX*, RECT* frameRect));
+	*/
+
+public:
+
 };
 
 

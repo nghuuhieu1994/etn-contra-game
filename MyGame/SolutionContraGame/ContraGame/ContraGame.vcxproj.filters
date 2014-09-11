@@ -50,6 +50,12 @@
     <ClCompile Include="RectangleDx9.cpp">
       <Filter>SourceFile\FrameWork\Math</Filter>
     </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>SourceFile\FrameWork\GameStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>SourceFile\FrameWork\GameStateManager</Filter>
+    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>SourceFile\FrameWork\Camera</Filter>
     </ClCompile>
@@ -102,6 +108,12 @@
     </ClInclude>
     <ClInclude Include="RectangleDx9.h">
       <Filter>HeaderFile\FrameWork\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>HeaderFile\Camera</Filter>
@@ -161,6 +173,12 @@
     </Filter>
     <Filter Include="SourceFile\FrameWork\Math">
       <UniqueIdentifier>{2068a128-5ab3-416e-8091-b591c8ec5883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\GameStateManager">
+      <UniqueIdentifier>{bde3dc41-62e6-455e-9972-86d57b8e3d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\GameStateManager">
+      <UniqueIdentifier>{7e6910a0-71ea-4829-a82d-9e42b0fb62ed}</UniqueIdentifier>
     </Filter>
     <Filter Include="SourceFile\FrameWork\Camera">
       <UniqueIdentifier>{97b8709b-dce2-48b5-bec2-344f564f1a17}</UniqueIdentifier>
