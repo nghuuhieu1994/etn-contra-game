@@ -17,6 +17,8 @@ class CInputDx9
 
 	DIMOUSESTATE2			m_mouseState;
 
+	DIMOUSESTATE2			m_previousMouseState;
+
 	D3DXVECTOR2				m_cursorLocation;
 
 	char					m_currentBuffer[256];
@@ -47,9 +49,13 @@ public:
 
 	bool IsKeyRelease(int keyCode);
 
-	bool IsMouseRightClick();
+	bool IsMouseRightDown();
 
-	bool IsMouseLeftClick();
+	bool IsMouseLeftDown();
+
+	bool IsMouseRightPress();
+
+	bool IsMouseLeftPress();
 
 	~CInputDx9();
 };

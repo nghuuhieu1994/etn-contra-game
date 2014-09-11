@@ -70,6 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CAnimationDx9.h" />
     <ClInclude Include="CGame.h" />
     <ClInclude Include="CGameLog.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="VectorDx9.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CAnimationDx9.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="CGameLog.cpp" />
