@@ -12,52 +12,36 @@ using namespace std;
 class CSpriteDx9
 {
 private:
-	/*
-	vector<RECT> m_listSourceRectangle;
-	//Direct3D texture
-	//CTextureDx9*		m_texture;
+	// Hold the texture to render
+	CTextureDx9*		m_MyTexture;
+	// Hold the action animation
+	CAnimationDx9*		m_MyAnimation;
+	// Num colum in a row of this sheet image
+	int					m_ColFrame;
+	// Num row in a colum of this sheer image
+	int					m_RowFrame;
+	// Total frame in this sheet image
+	int					m_TotalFrame;
 
-	LPDIRECT3DTEXTURE9	m_lpDTexture;
-	
-	//Save info of texture
-	D3DXIMAGE_INFO		m_Info;
+	// SourceRect
+	RECT*				m_SourceRectangle;
+	// Center of this Texture / image
+	D3DXVECTOR3*		m_Center;
+	// Position to render
+	D3DXVECTOR3*		m_Position;
+	// Color must be 0xFFFFFFFF
+	D3DXCOLOR			m_Color;
 
-	// Hold the animation action
-	CAnimationDx9*		m_animation;
-
-	// Total frame in this sheet Image
-	int					m_totalFrameOfSprite;
-
-	int					m_alphaRender;
-	int					m_alphaOffsetPerFrame;
 public:
 	CSpriteDx9();
-	CSpriteDx9(D3DXVECTOR3* Position, LPCSTR fileName, D3DCOLOR  color, int ColFrame, int RowFrame, int TotalFrame);
 	CSpriteDx9(const CSpriteDx9* otherSprite);
-	//---------------------------------------------------
-	/// @desciption: use this function to get data of sprite(frameWidth, frameHeight...)
-	/// @param frameWidth: width of 1 frame
-	/// @param frameHeight: height of 1 frame
-	/// @param sheetColumn: Column of texture
-	/// @param sheetRow: Row of texture
-	/// @param totalFrameOfSprite: total frame of entire texture
-	//---------------------------------------------------
-	void InitializeSpriteData(int frameWidth, int frameHeight, int sheetColumn, int sheetRow, int totalFrameOfSprite);
+	CSpriteDx9(const CSpriteDx9& otherSprite);
+	CSpriteDx9(D3DXVECTOR3* Position, D3DCOLOR  color, int ColFrame, int RowFrame, int TotalFrame);
 	void UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
-	void LoadTexture(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName);
-	void Effect(LPD3DXSPRITE spriteBatch, D3DXVECTOR3* center, D3DXVECTOR3* location);
-	//void Render(LPDIRECT3DDEVICE9 _lpDirectDevice, LPD3DXSPRITE _lpDSprite);
-	CAnimationDx9* getAnimation();
-	//---------------------------------------------------
-	/// This function contains blablabla...
-	//---------------------------------------------------
-	void Render(LPD3DXSPRITE _SpriteBatch, D3DXVECTOR3* _Location);
-	void Render(LPD3DXSPRITE spriteBatch, D3DXVECTOR3* location, void(*spriteEffect)(D3DXMATRIX*, RECT* frameRect));
-	*/
-
-public:
-
+	void LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName);
+	void Render(LPDIRECT3DDEVICE9 _lpDirectDevice, LPD3DXSPRITE _lpDSpriteHandler);
+	void Render(LPDIRECT3DDEVICE9 _lpDirectDevice, LPD3DXSPRITE _lpDSPriteHandler, SpriteEffect spriteEffect, float angleRotate, float depth);
+	void Release();
 };
-
 
 #endif

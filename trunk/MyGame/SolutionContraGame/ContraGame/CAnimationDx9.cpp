@@ -57,6 +57,19 @@ void CAnimationDx9::nextFrame()
 	}
 }
 
+RECT* CAnimationDx9::getSourceRectangle()
+{
+	return m_Rect;
+}
+
+void CAnimationDx9::setSourceRectangle(const RECT* Rect)
+{
+	m_Rect->bottom = Rect->bottom;
+	m_Rect->left = Rect->left;
+	m_Rect->right = Rect->right;
+	m_Rect->top = Rect->top;
+}
+
 void CAnimationDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
 {
 	m_LocalTime += gameTime->getElapsedGameTime().getMilliseconds();

@@ -1,6 +1,47 @@
 #include "CSpriteDx9.h"
 #include "CGameLog.h"
 
+CSpriteDx9::CSpriteDx9()
+{
+	m_MyTexture = NULL;
+	m_MyAnimation = NULL;
+	m_SourceRectangle = NULL;
+	m_Center = NULL;
+	m_Position = NULL;
+}
+
+CSpriteDx9::CSpriteDx9(D3DXVECTOR3* position, D3DCOLOR color, int ColFrame, int RowFrame, int TotalFrame)
+{
+	this->m_Position = position;
+	this->m_Color = color;
+	this->m_Color = ColFrame;
+	this->m_RowFrame = RowFrame;
+	this->m_TotalFrame = TotalFrame;
+}
+
+CSpriteDx9::CSpriteDx9(const CSpriteDx9* otherSprite)
+{
+
+}
+
+void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice,  LPCSTR fileName)
+{
+	this->m_MyTexture->LoadTextureFromFile(_lpDirectDevice, fileName);
+	int Width	= this->m_MyTexture->getINFO().Width / this->m_ColFrame;
+	int Height	= this->m_MyTexture->getINFO().Height / this->m_RowFrame;
+	this->m_MyAnimation = new CAnimationDx9(Width, Height, this->m_TotalFrame, this->m_ColFrame, this->m_RowFrame);
+}
+
+void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
+{
+	this->m_MyAnimation->UpdateAnimation(gameTime, timeAnimation);
+}
+
+
+
+
+
+
 /*
 CSpriteDx9::CSpriteDx9()
 {
@@ -110,4 +151,5 @@ void CSpriteDx9::Render(LPD3DXSPRITE spriteBatch, D3DXVECTOR3* location, void(*s
 		AlphaValue);
 }
 */
+
 
