@@ -1,32 +1,36 @@
-[Date: 12-09-2014 / Time: 12:24:13]
+[Date: 13-09-2014 / Time: 01:18:28]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 12-09-2014 / Time: 12:24:30]
+[Date: 13-09-2014 / Time: 01:18:28]
+Current Working Module: CTextureDx9
+Error : Can't get Image info frome file
+
+[Date: 13-09-2014 / Time: 01:18:53]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 12-09-2014 / Time: 12:24:52]
+[Date: 13-09-2014 / Time: 01:18:53]
+Current Working Module: CTextureDx9
+Error : Can't get Image info frome file
+
+[Date: 13-09-2014 / Time: 01:18:58]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 12-09-2014 / Time: 12:25:06]
+[Date: 13-09-2014 / Time: 01:18:58]
+Current Working Module: CTextureDx9
+Error : Can't get Image info frome file
+
+[Date: 13-09-2014 / Time: 01:19:41]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 12-09-2014 / Time: 12:25:39]
-Current Working Module: EntryPoint
-Info : Testing Game
+[Date: 13-09-2014 / Time: 01:19:41]
+Current Working Module: LoadWaveToBuffer
+Info : Can't Create Sound Buffer
 
-[Date: 12-09-2014 / Time: 12:34:05]
-Current Working Module: EntryPoint
-Info : Testing Game
-
-[Date: 12-09-2014 / Time: 12:34:50]
-Current Working Module: EntryPoint
-Info : Testing Game
-
-[Date: 12-09-2014 / Time: 13:45:29]
+[Date: 13-09-2014 / Time: 01:23:01]
 Current Working Module: EntryPoint
 Info : Testing Game
 

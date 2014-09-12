@@ -11,6 +11,8 @@
 #include "SpriteEffect.h"
 #include "SoundMangerDx9.h"
 #include "CInputDx9.h"
+#include "CTextureDx9.h"
+#include "CSurfaceDx9.h"
 
 using namespace std;
 
@@ -49,9 +51,6 @@ protected:
 
 	//sprite use for testing
 
-	CSpriteDx9*			sprite;
-
-
 
 	// fps in Game
 	float					m_fps;
@@ -74,7 +73,7 @@ public:
 	/// @return new instance of CGame
 	/// @warning hInstance can't be NULL
 	//---------------------------------------------------
-	CGame (HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode, int frameRate);
+	CGame (HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode);
 	
 	//---------------------------------------------------
 	/// @description Initialize CGame instance
