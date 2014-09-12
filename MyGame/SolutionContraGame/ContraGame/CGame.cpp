@@ -2,16 +2,16 @@
 #include "CGameLog.h"
 #include <d3dtypes.h>
 #include <stdlib.h>
+#include <d3d9types.h>
 CGame::CGame() : 
 	m_handleWindow(NULL), 
 	m_lpDirect3D(NULL), 
 	m_lpDirect3DDevice(NULL), 
 	m_lpSpriteDirect3DHandle(NULL)
 {
-	
 }
 
-CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode, int frameRate)
+CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
 {
 
 }
@@ -197,6 +197,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	m_Input.InitializeMouseDevice(m_handleWindow);
 	m_Input.InitializeKeyBoardDevice(m_handleWindow);
 
+
 	return true;
 }
 
@@ -246,7 +247,6 @@ void CGame::Run()
 
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
-
 					m_lpDirect3DDevice->EndScene();
 				}
 				m_lpDirect3DDevice->Present( 0, 0, 0, 0);
