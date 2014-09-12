@@ -151,10 +151,10 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 bool CGame::InitializDirect3DSpriteHandle()
 {
 	D3DXCreateSprite(m_lpDirect3DDevice, &m_lpSpriteDirect3DHandle);
-	bool isSpriteCreated;
-	isSpriteCreated = !FAILED(m_lpSpriteDirect3DHandle);
+	HRESULT hr;
+	hr = !FAILED(m_lpSpriteDirect3DHandle);
 
-	if(!isSpriteCreated)
+	if(!hr)
 	{
 		CGameLog::GetInstance("CGame")->SaveError("Can't create Direct3D Sprite Handle");
 		return false;
@@ -218,57 +218,33 @@ void CGame::Run()
 		else
 		{
 			m_GameTime->UpdateGameTime();
+
 			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
-			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
 			if( m_fps > 1000 / 60)
 			{
-				/*
-				if((int)m_GameTime->getElapsedGameTime().getMilliseconds()%2 == 0)
+
+				m_Input.UpdateKeyBoard();
+				m_Input.UpdateMouse();
+					
+				if(m_Input.IsMouseLeftPress())
 				{
-					m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
-				}
-				else
-				{
-					m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET,D3DCOLOR_XRGB( 255, 255, 255), 1.0f, 0); 
+					char szBuff[1024];
+					va_list arg;
+					va_start(arg, "chuot trai\n");
+					_vsnprintf(szBuff, sizeof(szBuff), "chuot trai\n", arg);
+					va_end(arg);
+					OutputDebugString(szBuff);
 				}
 
-				CGameLog::GetInstance("FPS GAME")->SaveFloatNumber(m_fps);
-				CGameLog::GetInstance("secons per frame GAME")->SaveFloatNumber(m_fps);
-				*/
-
+				// render Game
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
+
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
-
 					/* Begin Render some fucking peep in Game*/
 
-<<<<<<< .mine
-=======
-					sprite->UpdateAnimation(m_GameTime, 100);
-					
-					sprite->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0), SpriteEffect::None);
->>>>>>> .r11
-					
 					/* End render*/
-
-					m_Input.UpdateKeyBoard();
-<<<<<<< .mine
-
-					if(m_Input.IsKeyPress(DIK_SPACE))
-=======
-					m_Input.UpdateMouse();
-					if(m_Input.IsMouseLeftPress())
->>>>>>> .r11
-					{
-						char szBuff[1024];
-						va_list arg;
-						va_start(arg, "AAA\n");
-						_vsnprintf(szBuff, sizeof(szBuff), "AAA\n", arg);
-						va_end(arg);
-						OutputDebugString(szBuff);
-					}
-
 					m_lpSpriteDirect3DHandle->End();
 
 					m_lpDirect3DDevice->EndScene();

@@ -5,10 +5,8 @@
 class CAnimationDx9
 {
 private:
-
+	// total frame in sheet
 	int		m_TotalFrame;
-	// Time to render next frame
-	//int		m_TimeNextFrame;
 	// Local time to make animation
 	float		m_LocalTime;
 	// Rect using for render an frame
@@ -17,7 +15,6 @@ private:
 	int		curFrame;
 	// index start frame
 	int		startFrame;
-
 	// index end Frame
 	int		endFrame;
 public:
@@ -27,6 +24,8 @@ public:
 	void setStartFrame(int startframe);
 	void setEndFrame(int endFrame);
 	int GetCurrentFrameIndex();
+	RECT* getSourceRectangle();
+	void setSourceRectangle(const RECT* Rect);
 	void nextFrame();
 	void UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
 	~CAnimationDx9();

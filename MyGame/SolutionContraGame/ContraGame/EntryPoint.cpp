@@ -11,7 +11,7 @@ int WINAPI WinMain(
 	CGameLog::GetInstance("EntryPoint")->SaveInfo("Testing Game");
 
 	CGame* Run = new CGame();
-	Run->Initialize(hInstance, true);
+	Run->Initialize(hInstance, false);
 	Run->Run();
 	Run->Exit();
 	
