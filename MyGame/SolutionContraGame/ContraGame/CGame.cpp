@@ -1,14 +1,14 @@
 #include "CGame.h"
 #include "CGameLog.h"
-#include <d3dtypes.h>
-#include <stdlib.h>
-#include <d3d9types.h>
+
 CGame::CGame() : 
 	m_handleWindow(NULL), 
 	m_lpDirect3D(NULL), 
 	m_lpDirect3DDevice(NULL), 
 	m_lpSpriteDirect3DHandle(NULL)
 {
+	texture = new CSpriteDx9();
+	angle = 0.0;
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
@@ -187,16 +187,19 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->InitializeDirect3DDevice(isWindowed);
 	this->InitializDirect3DSpriteHandle();
 	this->InitializeDirectSound();
+	// GameTime
 	this->m_GameTime = new CGameTimeDx9();
 	this->m_GameTime->InitGameTime();
+	// spf
 	this->m_fps = 0;
-
+	// init all sounds
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
-
+	// init all input
 	m_Input.InitializeInput();
 	m_Input.InitializeMouseDevice(m_handleWindow);
 	m_Input.InitializeKeyBoardDevice(m_handleWindow);
 
+	texture->LoadContent(m_lpDirect3DDevice, "resources\\Q.png", 1, 1, 1);
 
 	return true;
 }
@@ -244,7 +247,8 @@ void CGame::Run()
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 					/* Begin Render some fucking peep in Game*/
-
+					angle += 0.01;
+					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(400, 200, 0), angle, eSpriteEffect::Vertically, new D3DXVECTOR2(1.5f, 1.5f));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
@@ -252,7 +256,7 @@ void CGame::Run()
 				m_lpDirect3DDevice->Present( 0, 0, 0, 0);
 				m_fps = 0;
 			}
-		}		
+		}
 	}
 }
 

@@ -1,5 +1,4 @@
 #include "CGame.h"
-#include <d3d9.h>
 #include "CGameLog.h"
 
 int WINAPI WinMain(
