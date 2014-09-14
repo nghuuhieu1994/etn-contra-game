@@ -1,36 +1,476 @@
-[Date: 13-09-2014 / Time: 01:18:28]
+[Date: 14-09-2014 / Time: 12:57:15]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 13-09-2014 / Time: 01:18:28]
+[Date: 14-09-2014 / Time: 13:00:11]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:00:11]
 Current Working Module: CTextureDx9
-Error : Can't get Image info frome file
+Error : can't load texture from file
 
-[Date: 13-09-2014 / Time: 01:18:53]
+[Date: 14-09-2014 / Time: 13:01:51]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 13-09-2014 / Time: 01:18:53]
-Current Working Module: CTextureDx9
-Error : Can't get Image info frome file
-
-[Date: 13-09-2014 / Time: 01:18:58]
+[Date: 14-09-2014 / Time: 13:02:09]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 13-09-2014 / Time: 01:18:58]
-Current Working Module: CTextureDx9
-Error : Can't get Image info frome file
-
-[Date: 13-09-2014 / Time: 01:19:41]
+[Date: 14-09-2014 / Time: 13:02:28]
 Current Working Module: EntryPoint
 Info : Testing Game
 
-[Date: 13-09-2014 / Time: 01:19:41]
-Current Working Module: LoadWaveToBuffer
-Info : Can't Create Sound Buffer
+[Date: 14-09-2014 / Time: 13:02:35]
+Current Working Module: EntryPoint
+Info : Testing Game
 
-[Date: 13-09-2014 / Time: 01:23:01]
+[Date: 14-09-2014 / Time: 13:02:48]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:03:09]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:03:37]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:03:47]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:04:44]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:30:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:31:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:32:08]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:32:29]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:32:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:33:22]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:35:32]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:36:32]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:36:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:37:17]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:37:27]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:37:36]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:37:56]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:38:03]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:38:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:39:28]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:39:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:39:55]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:40:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:40:45]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:41:07]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:41:28]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:42:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:42:48]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:42:55]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:43:38]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:43:50]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:44:05]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:49:19]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:49:26]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:49:35]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:50:19]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:50:33]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:50:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:51:44]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:51:52]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:53:18]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:53:29]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:54:55]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:55:04]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:55:04]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Date: 14-09-2014 / Time: 13:55:04]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Date: 14-09-2014 / Time: 13:55:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:56:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:56:09]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:57:12]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:57:39]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 13:59:29]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:00:03]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:00:34]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:00:56]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:03:04]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:05:16]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:05:35]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:05:47]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:06:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:06:10]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:06:35]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:06:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:07:09]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:07:18]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:07:27]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:07:40]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:07:59]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:08:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:08:23]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:08:50]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:09:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:09:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:09:25]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:09:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:10:10]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:12:23]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:13:29]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:13:47]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:14:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:37:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:46:18]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:46:36]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:46:59]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:47:13]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:53:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:53:53]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 14:54:28]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:00:52]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:01:00]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:01:11]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:01:21]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:34:22]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:34:34]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:34:42]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:34:57]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:35:14]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:35:28]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:35:36]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:35:43]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:36:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:36:21]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:36:30]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:51:04]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:51:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:52:07]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:52:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:52:25]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:53:08]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:53:20]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 14-09-2014 / Time: 15:53:41]
 Current Working Module: EntryPoint
 Info : Testing Game
 

@@ -8,9 +8,9 @@
 	
 typedef enum eSpriteEffect
 {
-	Horizontally,  
-	Vertically, 
-	None
+	None = 0,
+	Horizontally = 1,  
+	Vertically = 2, 
 };
 
 typedef enum eSoundID

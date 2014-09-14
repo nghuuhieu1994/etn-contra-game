@@ -3,9 +3,7 @@
 
 #include <d3d9.h>
 #include <dsound.h>
-#include <iostream>
 #include "CGlobal.h"
-
 #include "CSpriteDx9.h"
 #include "CGameTimeDx9.h"
 #include "SpriteEffect.h"
@@ -13,8 +11,9 @@
 #include "CInputDx9.h"
 #include "CTextureDx9.h"
 #include "CSurfaceDx9.h"
+#include "CAnimationDx9.h"
 
-using namespace std;
+class CSpriteDx9;
 
 class CGame
 {
@@ -50,8 +49,8 @@ protected:
 	bool				InitializeDirectSound();
 
 	//sprite use for testing
-
-
+	CSpriteDx9* texture;
+	float		angle;
 	// fps in Game
 	float					m_fps;
 	// fps string
