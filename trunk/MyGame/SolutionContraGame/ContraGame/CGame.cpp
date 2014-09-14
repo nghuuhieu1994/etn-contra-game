@@ -246,9 +246,11 @@ void CGame::Run()
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
+
+
 					/* Begin Render some fucking peep in Game*/
 					angle += 0.01;
-					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(400, 200, 0), angle, eSpriteEffect::Vertically, new D3DXVECTOR2(1.5f, 1.5f));
+					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(100, 100, 0), angle, eSpriteEffect::Horizontally, new D3DXVECTOR2(1.0f, 1.0f));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
