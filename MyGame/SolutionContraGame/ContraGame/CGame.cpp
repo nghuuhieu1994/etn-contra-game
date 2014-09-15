@@ -159,6 +159,7 @@ bool CGame::InitializDirect3DSpriteHandle()
 		CGameLog::GetInstance("CGame")->SaveError("Can't create Direct3D Sprite Handle");
 		return false;
 	}
+
 	return true;
 }
 
@@ -249,8 +250,23 @@ void CGame::Run()
 
 
 					/* Begin Render some fucking peep in Game*/
-					angle += 0.01;
-					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(100, 100, 0), angle, eSpriteEffect::Horizontally, new D3DXVECTOR2(1.0f, 1.0f));
+					angle += 0.001;
+					static float f = 1.0f;
+					static bool isUp = false;
+
+					if(f >= 0.95f)
+						isUp = false;
+					else
+						if(f < 0.3f)
+							isUp = true;
+
+					if(isUp == false)
+						f -= 0.002f;
+					else
+						f += 0.002f;
+
+
+					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(0, 300, 0), angle, eSpriteEffect::None, new D3DXVECTOR2(f, f));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();

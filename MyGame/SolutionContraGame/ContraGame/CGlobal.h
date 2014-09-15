@@ -4,7 +4,7 @@
 #define			WIDTH		800
 #define			HEIGHT		600
 #define			FRAME_RATE	60
-#define			GAMETITLE	"Tran Danh"
+#define			GAMETITLE	"My First cmn Game"
 	
 typedef enum eSpriteEffect
 {
