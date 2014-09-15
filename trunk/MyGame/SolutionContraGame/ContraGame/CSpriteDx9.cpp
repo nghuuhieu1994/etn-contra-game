@@ -39,7 +39,7 @@ void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, const D3DXVECTOR3* Center
 	_lpDSpriteHandle->GetTransform(&oldTrasf);
 	D3DXVECTOR2 rotate;
 	rotate.x = Position->x;
-	rotate.y = - Position->y + HEIGHT;
+	rotate.y =  - Position->y;
 	D3DXMATRIX newTransfMatrix;
 
 	switch (SpriteEffect)
@@ -59,14 +59,18 @@ void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, const D3DXVECTOR3* Center
 		break;
 	}
 
-	D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRotate, NULL);
+	D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRotate, new D3DXVECTOR2(0, HEIGHT));
+	
 	D3DXVECTOR3 newP;
-
 	newP.x = Position->x;
-	newP.y = - Position->y + HEIGHT;
+	newP.y = - Position->y;
 	newP.z = Position->z;
 	
-	D3DXMATRIX fn = newTransfMatrix * oldTrasf;
+	D3DXMATRIX FlipMatrix;
+	D3DXMatrixIsIdentity(&FlipMatrix);
+	FlipMatrix._22 = -1;
+
+	D3DXMATRIX fn = oldTrasf * newTransfMatrix;
 	_lpDSpriteHandle->SetTransform(&fn);
 	m_MyTexture->RenderTexture(_lpDSpriteHandle, m_AnimationAction->getSourceRect(), Center, &newP, Color);
 	_lpDSpriteHandle->SetTransform(&oldTrasf);
