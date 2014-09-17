@@ -69,3 +69,14 @@ void SoundManagerDx9::DownVolume()
 	m_Volume -= 100;
 	setVolume(m_Volume);
 }
+
+void SoundManagerDx9::Release()
+{
+	map<eSoundID, SoundBuffer*>::iterator i;
+	for(i = m_ListSoundBuffer.begin(); i != m_ListSoundBuffer.end(); i++)
+	{
+		i->second->Release();
+		SAFE_DELETE(i->second);
+	}
+	m_ListSoundBuffer.clear();
+}
