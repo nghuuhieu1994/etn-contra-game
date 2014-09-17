@@ -18,6 +18,11 @@ typedef enum eSoundID
 	BROKEN
 };
 
+typedef enum eIDStateGame
+{
+
+};
+
 class CGlobal
 {
 public:

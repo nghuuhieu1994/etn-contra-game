@@ -53,11 +53,11 @@
     <ClCompile Include="GameState.cpp">
       <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>SourceFile\FrameWork\GameStateManager</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>SourceFile\FrameWork\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManagerDx9.cpp">
+      <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,11 +112,11 @@
     <ClInclude Include="GameState.h">
       <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>HeaderFile\FrameWork\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManagerDx9.h">
+      <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

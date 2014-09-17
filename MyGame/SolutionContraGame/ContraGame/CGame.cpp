@@ -266,7 +266,7 @@ void CGame::Run()
 						f += 0.002f;
 
 
-					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(0, 300, 0), angle, eSpriteEffect::None, new D3DXVECTOR2(f, f));
+					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(400, 300, 0), angle, eSpriteEffect::None, new D3DXVECTOR2(f, f));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
@@ -283,6 +283,8 @@ void CGame::Exit()
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
 	SAFE_DELETE(m_GameTime);
+	m_Input.Release();
+	SoundManagerDx9::getInstance()->Release();
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

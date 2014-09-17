@@ -3,6 +3,7 @@
 
 #include "SoundBuffer.h"
 #include "CGlobal.h"
+#include "CGameLog.h"
 #include <map>
 
 class SoundManagerDx9
@@ -23,6 +24,7 @@ public:
 	void setMute(bool isMute);
 	void UpVolume();
 	void DownVolume();
+	void Release();
 };
 
 

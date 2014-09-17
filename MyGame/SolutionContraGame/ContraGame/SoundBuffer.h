@@ -21,6 +21,7 @@ public:
 	void Play();
 	void Repeat();
 	void Stop();
+	void Release();
 };
 
 #endif

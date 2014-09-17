@@ -179,9 +179,14 @@ D3DXVECTOR2 CInputDx9::GetCursorLocation()
 	return D3DXVECTOR2(m_mouseState.lX, m_mouseState.lY);
 }
 
-CInputDx9::~CInputDx9()
+void CInputDx9::Release()
 {
 	SAFE_RELEASE(m_lpDirectInput);
 	SAFE_RELEASE(m_lpKeyBoardDevice);
 	SAFE_RELEASE(m_lpMouseDevice);
+}
+
+CInputDx9::~CInputDx9()
+{
+	Release();
 }

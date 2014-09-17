@@ -57,6 +57,7 @@ public:
 
 	bool IsMouseLeftPress();
 
+	void Release();
 	~CInputDx9();
 };
 

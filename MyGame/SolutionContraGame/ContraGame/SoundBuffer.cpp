@@ -103,3 +103,7 @@ LPDIRECTSOUNDBUFFER SoundBuffer::getSoundBuffer()
 {
 	return m_SoundBuffer;
 }
+void SoundBuffer::Release()
+{
+	SAFE_RELEASE(m_SoundBuffer);
+}
