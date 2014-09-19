@@ -160,6 +160,13 @@ bool CGame::InitializDirect3DSpriteHandle()
 		return false;
 	}
 
+	D3DXMATRIX matrixTransf;
+	D3DXMatrixIdentity(&matrixTransf);
+	matrixTransf._22 =  - 1.0f;
+	matrixTransf._41 = 0.0f;
+	matrixTransf._42 = HEIGHT;
+	m_lpSpriteDirect3DHandle->SetTransform(&matrixTransf);
+
 	return true;
 }
 
@@ -250,7 +257,7 @@ void CGame::Run()
 
 
 					/* Begin Render some fucking peep in Game*/
-					angle += 0.001;
+					//angle += 0.001;
 					static float f = 1.0f;
 					static bool isUp = false;
 
