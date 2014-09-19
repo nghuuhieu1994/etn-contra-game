@@ -35,43 +35,11 @@ void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
 }
 void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, float angleRotate, eSpriteEffect SpriteEffect, D3DXVECTOR2* Scale, D3DCOLOR Color)
 {
-	D3DXMATRIX oldTrasf;
-	_lpDSpriteHandle->GetTransform(&oldTrasf);
-	D3DXVECTOR2 rotate;
-	rotate.x = Position->x;
-	rotate.y =  - Position->y;
-	D3DXMATRIX newTransfMatrix;
-
-	switch (SpriteEffect)
-	{
-	case None:
-		//D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRoate, NULL);
-		break;
-	case Horizontally:
-		Scale->x *= -1;
-		//D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRoate, NULL);
-		break;
-	case Vertically:
-		Scale->y *= -1;
-		//D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRoate, NULL);
-		break;
-	default:
-		break;
-	}
-
-	D3DXMatrixTransformation2D(&newTransfMatrix, &rotate, 0.0f, Scale, &rotate, angleRotate, new D3DXVECTOR2(0, HEIGHT));
+	D3DXMATRIX oldTransf;
+	_lpDSpriteHandle->GetTransform(&oldTransf);
 	
-	D3DXVECTOR3 newP;
-	newP.x = Position->x;
-	newP.y = - Position->y;
-	newP.z = Position->z;
-	
-	D3DXMATRIX FlipMatrix;
-	D3DXMatrixIsIdentity(&FlipMatrix);
-	FlipMatrix._22 = -1;
 
-	D3DXMATRIX fn = oldTrasf * newTransfMatrix;
-	_lpDSpriteHandle->SetTransform(&fn);
-	m_MyTexture->RenderTexture(_lpDSpriteHandle, m_AnimationAction->getSourceRect(), Center, &newP, Color);
-	_lpDSpriteHandle->SetTransform(&oldTrasf);
+
+	this->m_MyTexture->RenderTexture(_lpDSpriteHandle, this->m_AnimationAction->getSourceRect(), Center, Position, Color);
+	_lpDSpriteHandle->GetTransform(&oldTransf);
 }
