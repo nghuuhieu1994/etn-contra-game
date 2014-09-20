@@ -204,7 +204,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 
 	texture->LoadContent(m_lpDirect3DDevice, "resources\\Q.png", 1, 1, 1);
 	m_UnitTest.x = 0;
-	m_UnitTest.y = 0;
+	m_UnitTest.y = 600;
 	m_UnitTest.z = 0;
 	return true;
 }
@@ -230,7 +230,7 @@ void CGame::Run()
 		else
 		{
 			m_GameTime->UpdateGameTime();
-
+			CInputDx9::GetInstance()->UpdateKeyBoard();
 			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
@@ -248,14 +248,21 @@ void CGame::Run()
 					OutputDebugString(szBuff);
 				}*/
 				#pragma endregion
-				
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_LEFT))
 				{
-					--m_UnitTest.x;
+					m_UnitTest.x = --m_UnitTest.x;
 				}
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_RIGHT))
 				{
-					++m_UnitTest.x;
+					m_UnitTest.x = ++m_UnitTest.x;
+				}
+				if (CInputDx9::GetInstance()->IsKeyDown(DIK_UP))
+				{
+					m_UnitTest.y = --m_UnitTest.y;
+				}
+				if (CInputDx9::GetInstance()->IsKeyDown(DIK_DOWN))
+				{
+					m_UnitTest.y = ++m_UnitTest.y;
 				}
 				Camera::GetInstance()->UpdateCamera(&m_UnitTest);
 
@@ -283,7 +290,7 @@ void CGame::Run()
 						f += 0.002f;*/
 
 
-					texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::None, &D3DXVECTOR2(0, 0));
+					texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();

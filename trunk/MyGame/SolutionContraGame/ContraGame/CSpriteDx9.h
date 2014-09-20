@@ -28,7 +28,7 @@ public:
 	// load all info about this Sprite
 	void LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR ColorKey = 0xFF000000);
 	// draw this sprite to screen
-	void Render(LPD3DXSPRITE _lpDSpriteHandle, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, float angleRotate = 0, eSpriteEffect SpriteEffect = eSpriteEffect::None, D3DXVECTOR2* Scale = new D3DXVECTOR2(1, 1), D3DCOLOR Color = 0xffffffff);
+	void Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR3* Center, D3DXVECTOR3* Position, float angleRotate = 0, eSpriteEffect SpriteEffect = eSpriteEffect::None, D3DXVECTOR2* Scale =  &D3DXVECTOR2(1, 1), D3DCOLOR Color = 0xffffffff);
 	void Release();
 };
 
