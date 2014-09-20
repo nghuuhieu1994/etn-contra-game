@@ -28,36 +28,38 @@ class CInputDx9
 	int						m_lastKeyDown;
 
 	int						m_currentKeyDown;
-	
-public:
+	static CInputDx9*		s_Instance;
 	CInputDx9();
-	void InitializeInput();
-	void InitializeKeyBoardDevice(HWND handleWindow);
-	void InitializeMouseDevice(HWND handleWindow);
 
-	void UpdateMouse();
+public:
+	static CInputDx9*		GetInstance();
+	void					InitializeInput();
+	void					InitializeKeyBoardDevice(HWND handleWindow);
+	void					InitializeMouseDevice(HWND handleWindow);
 
-	void UpdateKeyBoard();
+	void					UpdateMouse();
 
-	D3DXVECTOR2 GetCursorLocation();
+	void					UpdateKeyBoard();
 
-	bool IsKeyDown(int keyCode);
+	D3DXVECTOR2				GetCursorLocation();
 
-	bool IsKeyUp(int keyCode);
+	bool					IsKeyDown(int keyCode);
 
-	bool IsKeyPress(int keyCode);
+	bool					IsKeyUp(int keyCode);
 
-	bool IsKeyRelease(int keyCode);
+	bool					IsKeyPress(int keyCode);
 
-	bool IsMouseRightDown();
+	bool					IsKeyRelease(int keyCode);
 
-	bool IsMouseLeftDown();
+	bool					IsMouseRightDown();
 
-	bool IsMouseRightPress();
+	bool					IsMouseLeftDown();
 
-	bool IsMouseLeftPress();
+	bool					IsMouseRightPress();
 
-	void Release();
+	bool					IsMouseLeftPress();
+
+	void					Release();
 	~CInputDx9();
 };
 

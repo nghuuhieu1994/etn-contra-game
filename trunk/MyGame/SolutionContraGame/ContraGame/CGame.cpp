@@ -148,7 +148,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 	return true;
 }
 
-bool CGame::InitializDirect3DSpriteHandle()
+bool CGame::InitializeDirect3DSpriteHandle()
 {
 	D3DXCreateSprite(m_lpDirect3DDevice, &m_lpSpriteDirect3DHandle);
 	HRESULT hr;
@@ -160,12 +160,7 @@ bool CGame::InitializDirect3DSpriteHandle()
 		return false;
 	}
 
-	D3DXMATRIX matrixTransf;
-	D3DXMatrixIdentity(&matrixTransf);
-	matrixTransf._22 =  - 1.0f;
-	matrixTransf._41 = 0.0f;
-	matrixTransf._42 = HEIGHT;
-	m_lpSpriteDirect3DHandle->SetTransform(&matrixTransf);
+	
 
 	return true;
 }
@@ -193,7 +188,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->InitializeHandleWindow(hInstance);
 	this->InitializeDirect3DEnvironment();
 	this->InitializeDirect3DDevice(isWindowed);
-	this->InitializDirect3DSpriteHandle();
+	this->InitializeDirect3DSpriteHandle();
 	this->InitializeDirectSound();
 	// GameTime
 	this->m_GameTime = new CGameTimeDx9();
@@ -203,12 +198,14 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	// init all sounds
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 	// init all input
-	m_Input.InitializeInput();
-	m_Input.InitializeMouseDevice(m_handleWindow);
-	m_Input.InitializeKeyBoardDevice(m_handleWindow);
+	CInputDx9::GetInstance()->InitializeInput();
+	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
+	CInputDx9::GetInstance()->InitializeKeyBoardDevice(m_handleWindow);
 
 	texture->LoadContent(m_lpDirect3DDevice, "resources\\Q.png", 1, 1, 1);
-
+	m_UnitTest.x = 0;
+	m_UnitTest.y = 0;
+	m_UnitTest.z = 0;
 	return true;
 }
 
@@ -220,13 +217,16 @@ void CGame::Run()
 
 	while(!CGlobal::IsExit)
 	{
+		#pragma region Exit
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if(msg.message == WM_QUIT)
 				break;
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-		}
+		}  
+		#pragma endregion
+
 		else
 		{
 			m_GameTime->UpdateGameTime();
@@ -234,10 +234,10 @@ void CGame::Run()
 			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
-
-				m_Input.UpdateKeyBoard();
+				#pragma region Test input
+				/*m_Input.UpdateKeyBoard();
 				m_Input.UpdateMouse();
-					
+
 				if(m_Input.IsMouseLeftPress())
 				{
 					char szBuff[1024];
@@ -246,19 +246,29 @@ void CGame::Run()
 					_vsnprintf(szBuff, sizeof(szBuff), "chuot trai\n", arg);
 					va_end(arg);
 					OutputDebugString(szBuff);
+				}*/
+				#pragma endregion
+				
+				if (CInputDx9::GetInstance()->IsKeyDown(DIK_LEFT))
+				{
+					--m_UnitTest.x;
 				}
+				if (CInputDx9::GetInstance()->IsKeyDown(DIK_RIGHT))
+				{
+					++m_UnitTest.x;
+				}
+				Camera::GetInstance()->UpdateCamera(&m_UnitTest);
 
 				// render Game
-				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB( 0, 0, 0), 1.0f, 0); 
+				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0); 
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
-
 					/* Begin Render some fucking peep in Game*/
 					//angle += 0.001;
-					static float f = 1.0f;
+					/*static float f = 1.0f;
 					static bool isUp = false;
 
 					if(f >= 0.95f)
@@ -270,16 +280,17 @@ void CGame::Run()
 					if(isUp == false)
 						f -= 0.002f;
 					else
-						f += 0.002f;
+						f += 0.002f;*/
 
 
-					texture->Render(m_lpSpriteDirect3DHandle, new D3DXVECTOR3(767 / 2, 93 / 2, 0) , new D3DXVECTOR3(400, 300, 0), angle, eSpriteEffect::None, new D3DXVECTOR2(f, f));
+					texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::None, &D3DXVECTOR2(0, 0));
 					/* End render*/
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
-				m_lpDirect3DDevice->Present( 0, 0, 0, 0);
-				m_fps = 0;
+
+				m_lpDirect3DDevice->Present(0, 0, 0, 0);
+				m_fps = 0;//reset fps
 			}
 		}
 	}
@@ -290,7 +301,7 @@ void CGame::Exit()
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
 	SAFE_DELETE(m_GameTime);
-	m_Input.Release();
+	CInputDx9::GetInstance()->Release();
 	SoundManagerDx9::getInstance()->Release();
 }
 

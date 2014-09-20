@@ -1,19 +1,20 @@
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 800
+#if !defined __CAMERA_H__
+#define __CAMERA_H__
+
 #include <d3dx9.h>
+#include <d3d9.h>
+#include "CGameLog.h"
 
 class Camera
 {
-public:
-	float _X, _Y, _lastY, _hY;
-
-	D3DXMATRIX _matrix;
-	RECT _rect;
-public:
+	static Camera*		s_Instance;
 	Camera();
-	void Update(D3DXVECTOR2 character);
+	D3DXMATRIX			m_matrixTranslate;
+public:
+	static Camera*		GetInstance();
+	void				UpdateCamera(D3DXVECTOR3* simonLocation);
+	D3DXMATRIX			GetMatrixTranslate();
+	~Camera();
 };
 
 #endif

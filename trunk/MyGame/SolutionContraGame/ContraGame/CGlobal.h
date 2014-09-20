@@ -15,7 +15,7 @@ typedef enum eSpriteEffect
 
 typedef enum eSoundID
 {
-	BROKEN
+	BROKEN = 0,
 };
 
 typedef enum eIDStateGame

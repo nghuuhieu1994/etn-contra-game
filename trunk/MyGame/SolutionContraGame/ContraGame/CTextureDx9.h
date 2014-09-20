@@ -21,7 +21,7 @@ public:
 	// destructor
 	~CTextureDx9();
 	// load texture with colorkey default = 0xff000000
-	void LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectdevice, LPCSTR fileName, D3DXCOLOR ColorKey = 0xff000000);
+	void LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectdevice, LPCSTR fileName, D3DXCOLOR ColorKey = 0xffff00ff);
 	// render this texture to screen with default color = 0xffffff
 	void RenderTexture(LPD3DXSPRITE _lpDSpriteHandle, const RECT* sourceRect, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, D3DCOLOR Color = 0xFFFFFFFF);
 	// unload this texture
