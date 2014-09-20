@@ -187,4 +187,7 @@
       <UniqueIdentifier>{ed269f51-bc76-442a-976a-6faf4ba1c971}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\gamelog.log" />
+  </ItemGroup>
 </Project>

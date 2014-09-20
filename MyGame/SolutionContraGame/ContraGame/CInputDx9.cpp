@@ -9,6 +9,17 @@ CInputDx9::CInputDx9() :
 	m_cursorLocation.y = 0;
 }
 
+CInputDx9* CInputDx9::s_Instance = 0;
+
+CInputDx9* CInputDx9::GetInstance()
+{
+	if (s_Instance == 0)
+	{
+		s_Instance = new CInputDx9();
+	}
+	return s_Instance;
+}
+
 void CInputDx9::InitializeInput()
 {
 	HRESULT result;
@@ -176,7 +187,7 @@ void CInputDx9::UpdateMouse()
 
 D3DXVECTOR2 CInputDx9::GetCursorLocation()
 {
-	return D3DXVECTOR2(m_mouseState.lX, m_mouseState.lY);
+	return D3DXVECTOR2((float)m_mouseState.lX, (float)m_mouseState.lY);
 }
 
 void CInputDx9::Release()

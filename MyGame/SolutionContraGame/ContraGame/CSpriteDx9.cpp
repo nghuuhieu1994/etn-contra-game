@@ -35,11 +35,12 @@ void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
 }
 void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, float angleRotate, eSpriteEffect SpriteEffect, D3DXVECTOR2* Scale, D3DCOLOR Color)
 {
-	D3DXMATRIX oldTransf;
-	_lpDSpriteHandle->GetTransform(&oldTransf);
+	D3DXMATRIX matrixTransf;
+	D3DXMatrixIdentity(&matrixTransf);
+	matrixTransf._22 =  - 1.0f;
+	matrixTransf._41 = 0.0f;
+	matrixTransf._42 = HEIGHT;
+	_lpDSpriteHandle->SetTransform(&matrixTransf);
 	
-
-
 	this->m_MyTexture->RenderTexture(_lpDSpriteHandle, this->m_AnimationAction->getSourceRect(), Center, Position, Color);
-	_lpDSpriteHandle->GetTransform(&oldTransf);
 }
