@@ -20,11 +20,12 @@ Camera* Camera::GetInstance()
 
 void Camera::UpdateCamera(D3DXVECTOR3* simonLocation)
 {
-	if (simonLocation->x > 300)
+	/*if (simonLocation->x > 300)
 	{
 		m_matrixTranslate._41 = - (simonLocation->x - 300);
-	}
-
+	}*/
+	m_matrixTranslate._41 = simonLocation->x;
+	m_matrixTranslate._42 = simonLocation->y;
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()
