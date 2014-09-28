@@ -7,6 +7,7 @@ Camera::Camera()
 	D3DXMatrixIdentity(&m_matrixTranslate);
 	m_matrixTranslate._41 = 0;
 	m_matrixTranslate._42 = 600;
+	m_matrixTranslate._22 = -1.0f;
 }
 
 Camera* Camera::GetInstance()
@@ -24,8 +25,8 @@ void Camera::UpdateCamera(D3DXVECTOR3* simonLocation)
 	{
 		m_matrixTranslate._41 = - (simonLocation->x - 300);
 	}*/
-	m_matrixTranslate._41 = simonLocation->x;
-	m_matrixTranslate._42 = simonLocation->y;
+	/*m_matrixTranslate._41 = simonLocation->x;
+	m_matrixTranslate._42 = simonLocation->y;*/
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()

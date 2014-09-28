@@ -85,6 +85,12 @@ void CAnimationDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe)
 	sourceRect->bottom		= sourceRect->top + heightFrame;
 	sourceRect->right		= sourceRect->right + widthFrame;
 }
+
+D3DXVECTOR2 CAnimationDx9::GetFrameSize()
+{
+	return D3DXVECTOR2(this->widthFrame, this->heightFrame);
+}
+
 void CAnimationDx9::Release()
 {
 	SAFE_DELETE(sourceRect);

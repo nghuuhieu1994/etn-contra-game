@@ -7,24 +7,50 @@
 class CTextureDx9
 {
 private:
-	// LP to a texture using for render
+	
 	LPDIRECT3DTEXTURE9			m_lpTexture;
 public:
-	// int Width of texture
+	
 	int							m_Width;
-	// int Height of texture
+	
 	int							m_Height;
-	// constructor
+	
 	CTextureDx9();
-	//cpy constructor
+	
 	CTextureDx9(const CTextureDx9& Texture);
-	// destructor
+	
 	~CTextureDx9();
-	// load texture with colorkey default = 0xff000000
+	
 	void LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectdevice, LPCSTR fileName, D3DXCOLOR ColorKey = 0xffff00ff);
-	// render this texture to screen with default color = 0xffffff
+	
 	void RenderTexture(LPD3DXSPRITE _lpDSpriteHandle, const RECT* sourceRect, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, D3DCOLOR Color = 0xFFFFFFFF);
-	// unload this texture
+	void RenderTexture(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR2 position, D3DXVECTOR2 Center, D3DXVECTOR2 scale, float angle, D3DCOLOR color, RECT *srcRect, float deep)
+	{
+		D3DXVECTOR3 currentPosition(position.x, position.y, deep);
+		D3DXMATRIX oldMatrix;
+
+		_lpDSpriteHandle->GetTransform(&oldMatrix);
+
+		D3DXVECTOR2 centerScale = D3DXVECTOR2(position.x, position.y);
+
+		D3DXMATRIX newMatrixTransform;
+
+		D3DXMatrixTransformation2D(&newMatrixTransform, &centerScale, 0.0f, &scale, &Center, D3DXToRadian(angle), 0);
+
+		D3DXMATRIX finalMatrix = newMatrixTransform * oldMatrix;
+
+		_lpDSpriteHandle->SetTransform(&finalMatrix);
+
+		_lpDSpriteHandle->Draw(
+			this->m_lpTexture,
+			srcRect,
+			&D3DXVECTOR3((srcRect->right - srcRect->left)/2,(srcRect->bottom - srcRect->top)/2,0),
+			&currentPosition,
+			color);
+
+		_lpDSpriteHandle->SetTransform(&oldMatrix);
+	}
+
 	void UnLoadTexture();
 };
 
