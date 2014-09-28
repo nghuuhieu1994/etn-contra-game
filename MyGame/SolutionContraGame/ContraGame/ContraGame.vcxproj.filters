@@ -59,6 +59,7 @@
     <ClCompile Include="StateManagerDx9.cpp">
       <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -118,6 +119,7 @@
     <ClInclude Include="StateManagerDx9.h">
       <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="HeaderFile">

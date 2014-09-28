@@ -90,7 +90,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
 
-	if (isWindowed)//if Play in Window Mode
+	if (isWindowed)
 	{
 		d3dpp.BackBufferCount	= 1;
 		d3dpp.BackBufferFormat	= D3DFMT_A8R8G8B8;
@@ -100,7 +100,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 		d3dpp.hDeviceWindow		= this->m_handleWindow;
 		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD; 
 	}
-	else//if Play in Full ScreenMode
+	else
 	{
 		D3DDISPLAYMODE DisPlayMode;
 		ZeroMemory(&DisPlayMode, sizeof(DisPlayMode));
@@ -133,7 +133,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 
 	m_lpDirect3D->CreateDevice(
 			  D3DADAPTER_DEFAULT,
-			  D3DDEVTYPE_HAL,//DON'T USE D3DDEVTYPE_REF BECAUSE YOU WILL REGRET IN REST OF YOUR LIFE EVERYTIME YOU PLAY THIS GAME
+			  D3DDEVTYPE_HAL,
 			  m_handleWindow,
 			  D3DCREATE_HARDWARE_VERTEXPROCESSING,
 			  &d3dpp,
@@ -190,22 +190,23 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->InitializeDirect3DDevice(isWindowed);
 	this->InitializeDirect3DSpriteHandle();
 	this->InitializeDirectSound();
-	// GameTime
+	
 	this->m_GameTime = new CGameTimeDx9();
 	this->m_GameTime->InitGameTime();
-	// spf
+	
 	this->m_fps = 0;
-	// init all sounds
+	
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
-	// init all input
+	
 	CInputDx9::GetInstance()->InitializeInput();
 	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::GetInstance()->InitializeKeyBoardDevice(m_handleWindow);
 
-	texture->LoadContent(m_lpDirect3DDevice, "resources\\Q.png", 1, 1, 1);
-	m_UnitTest.x = 0;
-	m_UnitTest.y = 600;
+	texture->LoadContent(m_lpDirect3DDevice, "resources\\testRect.png", 1, 1, 1);
+	m_UnitTest.x = 400;
+	m_UnitTest.y = 300;
 	m_UnitTest.z = 0;
+	m_testSpriteEffect = eSpriteEffect::None;
 	return true;
 }
 
@@ -235,69 +236,49 @@ void CGame::Run()
 			if( m_fps > 1000 / 60)
 			{
 				#pragma region Test input
-				/*m_Input.UpdateKeyBoard();
-				m_Input.UpdateMouse();
-
-				if(m_Input.IsMouseLeftPress())
-				{
-					char szBuff[1024];
-					va_list arg;
-					va_start(arg, "chuot trai\n");
-					_vsnprintf(szBuff, sizeof(szBuff), "chuot trai\n", arg);
-					va_end(arg);
-					OutputDebugString(szBuff);
-				}*/
+				//texture->UpdateAnimation(m_GameTime, 50);
 				#pragma endregion
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_LEFT))
 				{
 					m_UnitTest.x = --m_UnitTest.x;
+					m_testSpriteEffect = eSpriteEffect::Horizontally;
 				}
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_RIGHT))
 				{
 					m_UnitTest.x = ++m_UnitTest.x;
+					m_testSpriteEffect = eSpriteEffect::None;
 				}
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_UP))
 				{
-					m_UnitTest.y = --m_UnitTest.y;
+					m_UnitTest.y = ++m_UnitTest.y;
+					m_testSpriteEffect = eSpriteEffect::Vertically;
 				}
 				if (CInputDx9::GetInstance()->IsKeyDown(DIK_DOWN))
 				{
-					m_UnitTest.y = ++m_UnitTest.y;
+					m_UnitTest.y = --m_UnitTest.y;
+					m_testSpriteEffect = eSpriteEffect::None;
 				}
 				Camera::GetInstance()->UpdateCamera(&m_UnitTest);
 
-				// render Game
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0); 
+				D3DXMATRIX oldMatrix;
+				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
+				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
-					/* Begin Render some fucking peep in Game*/
-					//angle += 0.001;
-					/*static float f = 1.0f;
-					static bool isUp = false;
-
-					if(f >= 0.95f)
-						isUp = false;
-					else
-						if(f < 0.3f)
-							isUp = true;
-
-					if(isUp == false)
-						f -= 0.002f;
-					else
-						f += 0.002f;*/
-
-
-					texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
-					/* End render*/
+					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
+					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
+					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(0, 0), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
 
 				m_lpDirect3DDevice->Present(0, 0, 0, 0);
-				m_fps = 0;//reset fps
+				m_fps = 0;
+				m_lpSpriteDirect3DHandle->SetTransform(&oldMatrix);
 			}
 		}
 	}

@@ -36,44 +36,44 @@ void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
 void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR3* Center, D3DXVECTOR3* Position, float angleRotate, eSpriteEffect SpriteEffect, D3DXVECTOR2* Scale, D3DCOLOR Color)
 {
 	
-	D3DXMATRIX matrixTransform;
+	//D3DXMATRIX matrixTransform;
 
-	D3DXMatrixIdentity(&matrixTransform);
-	//m_spriteEffect(&matrixTransform, &m_listSourceRectangle.at(0));
-	float m_FlipY = 0;
-	if (SpriteEffect == eSpriteEffect::None)
-	{
-		m_FlipY = 1.0f;
-	}
+	//D3DXMatrixIdentity(&matrixTransform);
+	////m_spriteEffect(&matrixTransform, &m_listSourceRectangle.at(0));
+	//float m_FlipY = 0;
+	//if (SpriteEffect == eSpriteEffect::None)
+	//{
+	//	m_FlipY = 1.0f;
+	//}
 
-	if (SpriteEffect == eSpriteEffect::Horizontally)
-	{
-		m_FlipY = -1.0f;
-	}
+	//if (SpriteEffect == eSpriteEffect::Horizontally)
+	//{
+	//	m_FlipY = -1.0f;
+	//}
 
-	D3DXMatrixScaling(&matrixTransform, m_FlipY, 1.0f, 1.0f);
+	//D3DXMatrixScaling(&matrixTransform, m_FlipY, 1.0f, 1.0f);
 
-	_lpDSpriteHandle->SetTransform(&matrixTransform);
+	//_lpDSpriteHandle->SetTransform(&matrixTransform);
 
-	D3DXMATRIX matrix;
-	D3DXMatrixIdentity(&matrix);
+	//D3DXMATRIX matrix;
+	//D3DXMatrixIdentity(&matrix);
 
-	matrix._22 = -1.0f;
+	//matrix._22 = -1.0f;
 
-	matrix._41 = Camera::GetInstance()->GetMatrixTranslate()._41;
-	matrix._42 = Camera::GetInstance()->GetMatrixTranslate()._42;
+	//matrix._41 = Camera::GetInstance()->GetMatrixTranslate()._41;
+	//matrix._42 = Camera::GetInstance()->GetMatrixTranslate()._42;
 
-	D3DXVECTOR4 vp_pos;
-	D3DXVec3Transform(&vp_pos, Position, &matrix);
+	//D3DXVECTOR4 vp_pos;
+	//D3DXVec3Transform(&vp_pos, Position, &matrix);
 
-	float halfWidth = 767 / 2;
-	float halfHeight = 93 / 2;
-	D3DXVECTOR3 p(vp_pos.x + halfWidth, vp_pos.y - halfHeight, 0);
-	D3DXVECTOR3 center(halfWidth, halfHeight, 0);
-	if (m_FlipY < 0)
-	{
-		p.x = -p.x;
-	}
+	//float halfWidth = 50 / 2;
+	//float halfHeight = 50 / 2;
+	//D3DXVECTOR3 p(vp_pos.x + halfWidth, vp_pos.y - halfHeight, 0);
+	//D3DXVECTOR3 center(halfWidth, halfHeight, 0);
+	//if (m_FlipY < 0)
+	//{
+	//	p.x = -p.x;
+	//}
 
-	this->m_MyTexture->RenderTexture(_lpDSpriteHandle, this->m_AnimationAction->getSourceRect(), &center, &p, Color);
+	//this->m_MyTexture->RenderTexture(_lpDSpriteHandle, this->m_AnimationAction->getSourceRect(), &center, &p, Color);
 }

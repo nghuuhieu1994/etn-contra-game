@@ -48,7 +48,7 @@ protected:
 	float					m_fps;
 
 	char				fps[10];
-
+	eSpriteEffect		m_testSpriteEffect;
 public:
 
 	CGame();
