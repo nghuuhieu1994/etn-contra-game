@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "CCamera.h"
 
 Camera* Camera::s_Instance = 0;
 
@@ -21,13 +21,13 @@ Camera* Camera::GetInstance()
 
 void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
-	/*if (cameramanLocation->x > 400)
+	if (cameramanLocation->x > WIDTH/2)
 	{
-		m_matrixTranslate._41 = (cameramanLocation->x + 400);
+		m_matrixTranslate._41 = -(cameramanLocation->x - WIDTH/2);
 	}
 	else
-	m_matrixTranslate._41 = cameramanLocation->x;*/
-	//m_matrixTranslate._42 = cameramanLocation->y;
+		m_matrixTranslate._41 = 0;
+	
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()

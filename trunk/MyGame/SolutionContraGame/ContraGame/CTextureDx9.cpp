@@ -28,6 +28,10 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 		CGameLog::GetInstance("CTextureDx9")->SaveError("Can't get image info from file");
 		return;
 	}
+	else
+	{		
+		CGameLog::GetInstance("SpriteManger")->SaveInfo(fileName);
+	}
 
 	hr = D3DXCreateTextureFromFileEx(
 		_lpDirectDevice,
@@ -73,7 +77,7 @@ void CTextureDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR2 position, D3
 	_lpDSpriteHandle->Draw(
 		this->m_lpTexture,
 		srcRect,
-		&D3DXVECTOR3((srcRect->right - srcRect->left)/2,(srcRect->bottom - srcRect->top)/2,0),
+		&D3DXVECTOR3((float)(srcRect->right - srcRect->left)/2, (float)(srcRect->bottom - srcRect->top)/2, 0),
 		&currentPosition,
 		color);
 

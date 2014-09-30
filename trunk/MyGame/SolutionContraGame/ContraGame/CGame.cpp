@@ -1,5 +1,4 @@
 #include "CGame.h"
-#include "CGameLog.h"
 
 CGame::CGame() : 
 	m_handleWindow(NULL), 
@@ -265,17 +264,17 @@ void CGame::Run()
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
-				SpriteManager::GetInstance()->GetSoundBuffer(eSpriteID::BILL_JUMP)->UpdateAnimation(m_GameTime, 100);
+				SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 200);
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
 					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
-					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
+					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 					//PhuongTrinhDuongThang(x_1, y_1);
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
-					SpriteManager::GetInstance()->GetSoundBuffer(eSpriteID::BILL_JUMP)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(400, 300), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(400, 300), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
@@ -295,6 +294,7 @@ void CGame::Exit()
 	SAFE_DELETE(m_GameTime);
 	CInputDx9::GetInstance()->Release();
 	SoundManagerDx9::GetInstance()->Release();
+	SpriteManager::GetInstance()->Release();
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

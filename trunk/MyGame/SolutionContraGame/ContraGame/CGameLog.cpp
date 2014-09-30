@@ -25,7 +25,7 @@ string CGameLog::GetCurrentDate()
     struct tm  tstruct;
     char       buf[80];
 	tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "Date: %d-%m-%Y / Time: %X", &tstruct);
+    strftime(buf, sizeof(buf), "Date: %d-%m-%Y | Time: %X", &tstruct);
 
     return buf;
 }

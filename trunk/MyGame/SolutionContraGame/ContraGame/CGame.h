@@ -12,7 +12,8 @@
 #include "CInputDx9.h"
 #include "CTextureDx9.h"
 #include "CSurfaceDx9.h"
-#include "Camera.h"
+#include "CGameLog.h"
+#include "CCamera.h"
 
 class CSpriteDx9;
 
