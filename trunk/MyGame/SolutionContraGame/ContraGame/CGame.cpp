@@ -196,7 +196,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	
 	this->m_fps = 0;
 	
-	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
+	SoundManagerDx9::GetInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 	
 	CInputDx9::GetInstance()->InitializeInput();
 	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
@@ -207,6 +207,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	m_UnitTest.y = 300;
 	m_UnitTest.z = 0;
 	m_testSpriteEffect = eSpriteEffect::None;
+	SpriteManager::GetInstance()->InitializeListSprite(m_lpDirect3DDevice);
 	return true;
 }
 
@@ -264,6 +265,7 @@ void CGame::Run()
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
+				SpriteManager::GetInstance()->GetSoundBuffer(eSpriteID::BILL_JUMP)->UpdateAnimation(m_GameTime, 100);
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
@@ -271,7 +273,9 @@ void CGame::Run()
 
 					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
 					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
-					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(0, 0), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					//PhuongTrinhDuongThang(x_1, y_1);
+					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					SpriteManager::GetInstance()->GetSoundBuffer(eSpriteID::BILL_JUMP)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(400, 300), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
@@ -290,7 +294,7 @@ void CGame::Exit()
 	SAFE_RELEASE(m_lpDirect3DDevice)
 	SAFE_DELETE(m_GameTime);
 	CInputDx9::GetInstance()->Release();
-	SoundManagerDx9::getInstance()->Release();
+	SoundManagerDx9::GetInstance()->Release();
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

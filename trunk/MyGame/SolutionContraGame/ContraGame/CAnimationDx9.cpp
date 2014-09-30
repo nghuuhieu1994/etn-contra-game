@@ -83,7 +83,7 @@ void CAnimationDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe)
 	sourceRect->top = (index_Current / colFrame) * heightFrame;
 	sourceRect->left = (index_Current % colFrame) * widthFrame;
 	sourceRect->bottom		= sourceRect->top + heightFrame;
-	sourceRect->right		= sourceRect->right + widthFrame;
+	sourceRect->right		= sourceRect->left + widthFrame;
 }
 
 D3DXVECTOR2 CAnimationDx9::GetFrameSize()

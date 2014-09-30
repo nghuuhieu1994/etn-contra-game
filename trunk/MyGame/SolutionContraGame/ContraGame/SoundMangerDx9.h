@@ -15,13 +15,15 @@ private:
 	
 	SoundManagerDx9() {m_Volume = 0; m_IsMute = false;}
 	static SoundManagerDx9* m_Instace;
-public:
-	static SoundManagerDx9* getInstance();
-	void LoadAllSoundBuffer(LPDIRECTSOUND8 lpDSound);
 	void LoadSoundBuffer(const char* fileName, eSoundID eID, LPDIRECTSOUND8 lpDSound);
-	SoundBuffer* getSoundBuffer(eSoundID eID);
-	void setVolume(long volume);
-	void setMute(bool isMute);
+public:
+	static SoundManagerDx9* GetInstance();
+	void LoadAllSoundBuffer(LPDIRECTSOUND8 lpDSound);
+	
+	SoundBuffer* GetSoundBuffer(eSoundID eID);
+
+	void SetVolume(long volume);
+	void SetMute(bool isMute);
 	void UpVolume();
 	void DownVolume();
 	void Release();

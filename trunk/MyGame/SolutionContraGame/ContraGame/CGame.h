@@ -8,6 +8,7 @@
 #include "CGameTimeDx9.h"
 #include "SpriteEffect.h"
 #include "SoundMangerDx9.h"
+#include "SpriteManager.h"
 #include "CInputDx9.h"
 #include "CTextureDx9.h"
 #include "CSurfaceDx9.h"

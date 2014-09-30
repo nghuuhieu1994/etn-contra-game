@@ -22,10 +22,10 @@ void CSpriteDx9::Release()
 	m_MyTexture->UnLoadTexture();
 	m_AnimationAction->Release();
 }
-void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR ColorKey)
+void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR TransparentColor)
 {
 	m_MyTexture = new CTextureDx9();
-	m_MyTexture->LoadTextureFromFile(_lpDirectDevice, fileName, ColorKey);
+	m_MyTexture->LoadTextureFromFile(_lpDirectDevice, fileName, TransparentColor);
 
 	m_AnimationAction = new CAnimationDx9(m_MyTexture->m_Width / Col, m_MyTexture->m_Height / Row, Col, Total);
 }
@@ -76,4 +76,32 @@ void CSpriteDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR3* Center, D3DX
 	//}
 
 	//this->m_MyTexture->RenderTexture(_lpDSpriteHandle, this->m_AnimationAction->getSourceRect(), &center, &p, Color);
+}
+
+void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color)
+{
+	/*D3DXVECTOR2 m_vOrigin = D3DXVECTOR2(position.x + m_AnimationAction->GetFrameSize().x/2,
+										position.y + m_AnimationAction->GetFrameSize().y/2);*/
+	D3DXVECTOR2 m_vOrigin = D3DXVECTOR2(position.x, position.y);
+	if(m_MyTexture != 0)
+	{
+		if(effect == eSpriteEffect::None)
+		{
+			m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+		}
+		else
+		{
+			if(effect == eSpriteEffect::Horizontally)
+			{
+				m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(-scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+			}
+			else
+			{
+				if(effect == eSpriteEffect::Vertically)
+				{
+					m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+				}
+			}
+		}
+	}
 }
