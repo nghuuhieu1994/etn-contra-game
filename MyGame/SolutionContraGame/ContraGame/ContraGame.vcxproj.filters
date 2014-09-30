@@ -53,13 +53,15 @@
     <ClCompile Include="GameState.cpp">
       <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>SourceFile\FrameWork\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="StateManagerDx9.cpp">
       <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteManager.cpp" />
+    <ClCompile Include="CCamera.cpp">
+      <Filter>SourceFile\FrameWork\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteManager.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -113,13 +115,15 @@
     <ClInclude Include="GameState.h">
       <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>HeaderFile\FrameWork\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="StateManagerDx9.h">
       <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteManager.h" />
+    <ClInclude Include="CCamera.h">
+      <Filter>HeaderFile\FrameWork\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteManager.h">
+      <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="HeaderFile">
@@ -187,6 +191,12 @@
     </Filter>
     <Filter Include="HeaderFile\FrameWork\Camera">
       <UniqueIdentifier>{ed269f51-bc76-442a-976a-6faf4ba1c971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\ContraGame\Object">
+      <UniqueIdentifier>{ec4d140d-a1fb-4169-a7e2-e1efdc65de8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\ContraGame\Object">
+      <UniqueIdentifier>{15b3b754-421e-45f4-a3c8-eeb7c67a98d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

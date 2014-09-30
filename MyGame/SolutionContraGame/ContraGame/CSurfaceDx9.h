@@ -7,6 +7,8 @@
 #include <d3dx9.h>
 #include <d3dx9tex.h>
 #include "CGameLog.h"
+#include "CGlobal.h"
+
 class CSurfaceDx9
 {
 private:

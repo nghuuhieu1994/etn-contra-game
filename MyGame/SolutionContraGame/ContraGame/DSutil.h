@@ -6,7 +6,7 @@
 #include <mmreg.h>
 #include <dsound.h>
 #include <xstring>
-#include "CGameLog.h"
+#include "CGlobal.h"
 
 using namespace std;
 

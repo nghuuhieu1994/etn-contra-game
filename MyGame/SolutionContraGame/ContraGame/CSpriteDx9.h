@@ -1,15 +1,16 @@
 #ifndef __CSPRITEDX9_H__
 #define __CSPRITEDX9_H__
-#include "CGame.h"
+
+#include "CGlobal.h"
 #include "CTextureDx9.h"
 #include "CAnimationDx9.h"
+
 class CSpriteDx9
 {
 private:
-	
-	CTextureDx9*			m_MyTexture;
-	
-	
+	CAnimationDx9*			m_AnimationAction;
+
+	CTextureDx9*			m_MyTexture;	
 	
 	int						m_Col;
 	
@@ -24,22 +25,23 @@ private:
 	
 	D3DXVECTOR2				m_RotateCenter;
 	D3DXVECTOR2				m_ScaleCenter;
-
 public:
-	CAnimationDx9*			m_AnimationAction;
-	CSpriteDx9();
 	
-	CSpriteDx9(const CSpriteDx9& Sprite);
+							CSpriteDx9();
 	
-	~CSpriteDx9();
-	void LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
+							CSpriteDx9(const CSpriteDx9& Sprite);
+	
+							~CSpriteDx9();
 
-	void UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
-	void Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR3* Center, D3DXVECTOR3* Position, float angleRotate = 0, eSpriteEffect SpriteEffect = eSpriteEffect::None, D3DXVECTOR2* Scale =  &D3DXVECTOR2(1, 1), D3DCOLOR Color = 0xffffffff);
+	CAnimationDx9*			getAnimation();
+
+	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
+
+	void					UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
 	
-	void Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
+	void					Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
 	
-	void Release();
+	void					Release();
 };
 
 #endif

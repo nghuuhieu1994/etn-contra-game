@@ -5,7 +5,7 @@
 #include "CGlobal.h"
 #include <map>
 
-class CSpriteDx9;
+
 
 class SpriteManager
 {
@@ -16,7 +16,7 @@ class SpriteManager
 
 public:
 	static SpriteManager* GetInstance();
-	CSpriteDx9* GetSoundBuffer(eSpriteID eID);
+	CSpriteDx9* GetSprite(eSpriteID eID);
 	void InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void Release();
 	~SpriteManager(void);
