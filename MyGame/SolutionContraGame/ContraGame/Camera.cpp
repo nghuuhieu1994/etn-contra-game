@@ -19,14 +19,15 @@ Camera* Camera::GetInstance()
 	return s_Instance;
 }
 
-void Camera::UpdateCamera(D3DXVECTOR3* simonLocation)
+void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
-	/*if (simonLocation->x > 300)
+	/*if (cameramanLocation->x > 400)
 	{
-		m_matrixTranslate._41 = - (simonLocation->x - 300);
-	}*/
-	/*m_matrixTranslate._41 = simonLocation->x;
-	m_matrixTranslate._42 = simonLocation->y;*/
+		m_matrixTranslate._41 = (cameramanLocation->x + 400);
+	}
+	else
+	m_matrixTranslate._41 = cameramanLocation->x;*/
+	//m_matrixTranslate._42 = cameramanLocation->y;
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()

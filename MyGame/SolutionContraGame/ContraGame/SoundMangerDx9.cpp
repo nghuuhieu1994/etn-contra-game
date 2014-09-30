@@ -1,8 +1,9 @@
 #include "SoundMangerDx9.h"
 #include "CGlobal.h"
-SoundManagerDx9* SoundManagerDx9::m_Instace = NULL;
 
-SoundManagerDx9* SoundManagerDx9::getInstance()
+SoundManagerDx9* SoundManagerDx9::m_Instace = 0;
+
+SoundManagerDx9* SoundManagerDx9::GetInstance()
 {
 	if ( m_Instace == 0 )
 	{
@@ -18,12 +19,13 @@ void SoundManagerDx9::LoadSoundBuffer(const char* fileName, eSoundID eID, LPDIRE
 	_soundbuffer->getSoundBuffer()->SetVolume(m_Volume);
 	m_ListSoundBuffer[eID] = _soundbuffer;
 }
+
 void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 lpDSound)
 {
 	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::BROKEN, lpDSound);
 	// need more and more sound rs
 }
-SoundBuffer* SoundManagerDx9::getSoundBuffer(eSoundID eID)
+SoundBuffer* SoundManagerDx9::GetSoundBuffer(eSoundID eID)
 {
 	map<eSoundID, SoundBuffer*>::iterator i;
 	i = m_ListSoundBuffer.find(eID);
@@ -32,7 +34,7 @@ SoundBuffer* SoundManagerDx9::getSoundBuffer(eSoundID eID)
 	return i->second;
 }
 
-void SoundManagerDx9::setVolume(long volume)
+void SoundManagerDx9::SetVolume(long volume)
 {
 	if(volume < -10000)
 		volume = -10000;
@@ -45,7 +47,7 @@ void SoundManagerDx9::setVolume(long volume)
 		i->second->getSoundBuffer()->SetVolume(m_Volume);
 	// ve nha code tiep
 }
-void SoundManagerDx9::setMute(bool isMute)
+void SoundManagerDx9::SetMute(bool isMute)
 {
 	CGlobal::IsMute = isMute;
 	map<eSoundID, SoundBuffer*>::iterator i;
@@ -60,14 +62,14 @@ void SoundManagerDx9::UpVolume()
 	if(m_Volume > -9900)
 		m_Volume = -9900;
 	m_Volume += 100;
-	setVolume(m_Volume);
+	SetVolume(m_Volume);
 }
 void SoundManagerDx9::DownVolume()
 {
 	if(m_Volume < -9900)
 		m_Volume = -9900;
 	m_Volume -= 100;
-	setVolume(m_Volume);
+	SetVolume(m_Volume);
 }
 
 void SoundManagerDx9::Release()

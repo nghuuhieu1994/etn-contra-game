@@ -4,7 +4,7 @@
 #define			WIDTH		800
 #define			HEIGHT		600
 #define			FRAME_RATE	60
-#define			GAMETITLE	"My First cmn Game"
+#define			GAMETITLE	"Contra"
 	
 typedef enum eSpriteEffect
 {
@@ -16,6 +16,13 @@ typedef enum eSpriteEffect
 typedef enum eSoundID
 {
 	BROKEN = 0,
+};
+
+typedef enum eSpriteID
+{
+	BILL_JUMP = 0,
+	BILL_LIE_DOWN = 1,
+
 };
 
 typedef enum eIDStateGame
