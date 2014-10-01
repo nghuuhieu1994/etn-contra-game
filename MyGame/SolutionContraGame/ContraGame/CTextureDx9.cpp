@@ -28,10 +28,6 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 		CGameLog::GetInstance("CTextureDx9")->SaveError("Can't get image info from file");
 		return;
 	}
-	else
-	{		
-		CGameLog::GetInstance("SpriteManger")->SaveInfo(fileName);
-	}
 
 	hr = D3DXCreateTextureFromFileEx(
 		_lpDirectDevice,

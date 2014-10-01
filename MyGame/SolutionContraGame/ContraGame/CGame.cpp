@@ -201,7 +201,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::GetInstance()->InitializeKeyBoardDevice(m_handleWindow);
 
-	texture->LoadContent(m_lpDirect3DDevice, "resources\\testRect.png", 1, 1, 1);
+	texture->LoadContent(m_lpDirect3DDevice, "resources\\Character\\Bill\\bullet.png", 1, 1, 1, 0xffff00ff);
 	m_UnitTest.x = 400;
 	m_UnitTest.y = 300;
 	m_UnitTest.z = 0;
@@ -209,6 +209,20 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	SpriteManager::GetInstance()->InitializeListSprite(m_lpDirect3DDevice);
 	return true;
 }
+int move_x_1 = 0;
+void XoayTron(int &x, int &y, float angle)
+{
+	//y = sin(x * 3.14 / 180.0) * 100 + 300;
+	//x += 1;
+	x = ++move_x_1 + 50 * cos(angle);
+	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
+	y = 300 + 50 * sin(angle);
+	//y = tung do tam xoay + ban kinh * sin(goc xoay)
+	
+}
+int x_1 = 0;
+int y_1 = 300;
+float angle_1 = 0;
 
 void CGame::Run()
 {
@@ -273,12 +287,13 @@ void CGame::Run()
 					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 					//PhuongTrinhDuongThang(x_1, y_1);
-					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
-					SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(400, 300), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					XoayTron(x_1, y_1, angle-=0.5f);
+					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					//SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(0, 0), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
-
+				
 				m_lpDirect3DDevice->Present(0, 0, 0, 0);
 				m_fps = 0;
 				m_lpSpriteDirect3DHandle->SetTransform(&oldMatrix);

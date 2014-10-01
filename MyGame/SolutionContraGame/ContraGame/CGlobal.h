@@ -35,6 +35,7 @@ typedef enum eSpriteID
 	BILL_MOVE_3,
 	BILL_MOVE_4,
 	BILL_MOVE_5,
+	BULLET_BIG,
 };
 
 typedef enum eIDStateGame

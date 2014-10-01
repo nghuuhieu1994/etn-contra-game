@@ -23,8 +23,8 @@ void CGameTimeDx9::UpdateGameTime()
 	CurTicks = this->m_Query.QuadPart;
 	if(((CurTicks - LastTicks) / m_FreQuency) <= CTimeSpanDx9::TicksPerMillisecond)
 		return;
-	this->setTotalGameTime(CTimeSpanDx9((CurTicks - StartTicks) / m_FreQuency));
-	this->setElapsedGameTime(CTimeSpanDx9((CurTicks - LastTicks) / m_FreQuency));
+	this->setTotalGameTime(CTimeSpanDx9((UINT64)((CurTicks - StartTicks) / m_FreQuency)));
+	this->setElapsedGameTime(CTimeSpanDx9((UINT64)((CurTicks - LastTicks) / m_FreQuency)));
 	LastTicks = CurTicks;
 }
 
