@@ -39,6 +39,11 @@ typedef enum eSpriteID
 	F_BULLET,
 };
 
+typedef enum eObjectID
+{
+
+};
+
 typedef enum eDirection
 {
 	TOP = 0,
