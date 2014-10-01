@@ -45,6 +45,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_3.png", eSpriteID::BILL_MOVE_3, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_4.png", eSpriteID::BILL_MOVE_4, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_5.png", eSpriteID::BILL_MOVE_5, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::BULLET_BIG, 1, 1, 1);
 }
 
 void SpriteManager::Release()
