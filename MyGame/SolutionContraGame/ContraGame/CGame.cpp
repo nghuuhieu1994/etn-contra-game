@@ -7,7 +7,6 @@ CGame::CGame() :
 	m_lpSpriteDirect3DHandle(NULL)
 {
 	texture = new CSpriteDx9();
-	angle = 0.0;
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
@@ -214,12 +213,19 @@ void XoayTron(int &x, int &y, float angle)
 {
 	//y = sin(x * 3.14 / 180.0) * 100 + 300;
 	//x += 1;
-	x = ++move_x_1 + 50 * cos(angle);
+	move_x_1 += 3;
+	x = move_x_1 + 40 * cos(angle);
 	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
-	y = 300 + 50 * sin(angle);
+	y = 300 + 40 * sin(angle);
 	//y = tung do tam xoay + ban kinh * sin(goc xoay)
 	
 }
+
+void HinhSin()
+{
+
+}
+
 int x_1 = 0;
 int y_1 = 300;
 float angle_1 = 0;
@@ -278,7 +284,7 @@ void CGame::Run()
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
-				SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 200);
+				//SpriteManager::GetInstance()->GetSprite(eSpriteID::F_BULLET)->UpdateAnimation(m_GameTime, 200);
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
@@ -287,9 +293,9 @@ void CGame::Run()
 					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 					//PhuongTrinhDuongThang(x_1, y_1);
-					XoayTron(x_1, y_1, angle-=0.5f);
-					texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
-					//SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(0, 0), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					XoayTron(x_1, y_1, angle_1-=0.5f);
+					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					SpriteManager::GetInstance()->GetSprite(eSpriteID::F_BULLET)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}

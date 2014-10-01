@@ -36,6 +36,15 @@ typedef enum eSpriteID
 	BILL_MOVE_4,
 	BILL_MOVE_5,
 	BULLET_BIG,
+	F_BULLET,
+};
+
+typedef enum eDirection
+{
+	TOP = 0,
+	BOTTOM = 1,
+	LEFT,
+	RIGHT,
 };
 
 typedef enum eIDStateGame

@@ -6,7 +6,6 @@
 #include "CGlobal.h"
 #include "CSpriteDx9.h"
 #include "CGameTimeDx9.h"
-#include "SpriteEffect.h"
 #include "SoundMangerDx9.h"
 #include "SpriteManager.h"
 #include "CInputDx9.h"
@@ -14,8 +13,6 @@
 #include "CSurfaceDx9.h"
 #include "CGameLog.h"
 #include "CCamera.h"
-
-class CSpriteDx9;
 
 class CGame
 {
@@ -45,7 +42,6 @@ protected:
 	bool				InitializeDirectSound();
 
 	CSpriteDx9* texture;
-	float		angle;
 
 	float					m_fps;
 
@@ -65,7 +61,6 @@ public:
 	
 	void Exit ();
 
-	//
 	~CGame ();
 };
 #endif
