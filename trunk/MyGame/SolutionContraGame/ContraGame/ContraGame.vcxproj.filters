@@ -32,9 +32,6 @@
     <ClCompile Include="CAnimationDx9.cpp">
       <Filter>SourceFile\FrameWork\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteEffect.cpp">
-      <Filter>SourceFile\FrameWork\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="CInputDx9.cpp">
       <Filter>SourceFile\FrameWork\InputHandle</Filter>
     </ClCompile>
@@ -61,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="SpriteManager.cpp">
       <Filter>SourceFile\FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhysicDx9.cpp">
+      <Filter>SourceFile\FrameWork\Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectDx9.cpp">
+      <Filter>SourceFile\FrameWork\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +97,6 @@
     <ClInclude Include="CAnimationDx9.h">
       <Filter>HeaderFile\FrameWork\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteEffect.h">
-      <Filter>HeaderFile\FrameWork\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="CInputDx9.h">
       <Filter>HeaderFile\FrameWork\InputHandle</Filter>
     </ClInclude>
@@ -123,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="SpriteManager.h">
       <Filter>HeaderFile\FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhysicDx9.h">
+      <Filter>HeaderFile\FrameWork\Physic</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectDx9.h">
+      <Filter>HeaderFile\FrameWork\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,11 +198,17 @@
     <Filter Include="HeaderFile\FrameWork\Camera">
       <UniqueIdentifier>{ed269f51-bc76-442a-976a-6faf4ba1c971}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HeaderFile\ContraGame\Object">
+    <Filter Include="SourceFile\FrameWork\Object">
+      <UniqueIdentifier>{15b3b754-421e-45f4-a3c8-eeb7c67a98d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\Object">
       <UniqueIdentifier>{ec4d140d-a1fb-4169-a7e2-e1efdc65de8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceFile\ContraGame\Object">
-      <UniqueIdentifier>{15b3b754-421e-45f4-a3c8-eeb7c67a98d2}</UniqueIdentifier>
+    <Filter Include="HeaderFile\FrameWork\Physic">
+      <UniqueIdentifier>{1e764a30-6868-4ffd-bbfb-626f55db7190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\Physic">
+      <UniqueIdentifier>{6a2c97d4-1542-4a07-aa26-4200303d963f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

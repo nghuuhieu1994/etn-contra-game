@@ -87,10 +87,11 @@
     <ClInclude Include="CTimeSpanDx9.h" />
     <ClInclude Include="DSutil.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="CObjectDx9.h" />
+    <ClInclude Include="CPhysicDx9.h" />
     <ClInclude Include="RectangleDx9.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
-    <ClInclude Include="SpriteEffect.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="StateManagerDx9.h" />
     <ClInclude Include="VectorDx9.h" />
@@ -110,10 +111,11 @@
     <ClCompile Include="DSutil.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="CObjectDx9.cpp" />
+    <ClCompile Include="CPhysicDx9.cpp" />
     <ClCompile Include="RectangleDx9.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
-    <ClCompile Include="SpriteEffect.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="StateManagerDx9.cpp" />
     <ClCompile Include="Vector.cpp" />
