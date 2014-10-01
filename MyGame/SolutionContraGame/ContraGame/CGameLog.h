@@ -21,7 +21,8 @@ public:
 	void SaveError(string Error);
 	
 	void SaveFloatNumber(float Number);
-	
+	string m_computerName;
+
 	string GetCurrentDate();
 private:
 	

@@ -1,14 +1,25 @@
 #include "CGameLog.h"
 #include <fstream>
 #include <time.h>
+#include <windows.h>
+#include <tchar.h>
 
 using namespace std;
 
-CGameLog* CGameLog::s_Instance = NULL;
+CGameLog* CGameLog::s_Instance = 0;
 
 CGameLog::CGameLog()
 {
 	this->m_LogFileName = "../gamelog.log";
+
+	char nameBuf[17];
+	DWORD nameBufSize;
+
+	nameBufSize = 16;
+
+	GetComputerName(nameBuf, &nameBufSize);
+
+	m_computerName = nameBuf;
 }
 
 CGameLog::~CGameLog()
@@ -62,6 +73,7 @@ void CGameLog::SaveInfo(string Information)
 {
 	fstream fLog(m_LogFileName.c_str(), ios::out | ios::app);
 
+	fLog << "[Computer Name: " << m_computerName << "]" << endl;
 	fLog << "[" << this->GetCurrentDate() << "]" << endl;
 	fLog << "Current Working Module: " << m_CurrentModuleName << endl;
     fLog << "Info : " << Information << endl << endl;
@@ -73,6 +85,7 @@ void CGameLog::SaveFloatNumber(float Number)
 {
 	fstream fLog(m_LogFileName.c_str(), ios::out | ios::app);
 
+	fLog << "[Computer Name: " << m_computerName << "]" << endl;
 	fLog << "[" << this->GetCurrentDate() << "]" << endl;
 	fLog << "Current Working Module: " << m_CurrentModuleName << endl;
     fLog << "ElapsedMillisecond : " << Number << endl << endl;
@@ -84,6 +97,7 @@ void CGameLog::SaveError(string Error)
 {
 	fstream fLog(m_LogFileName.c_str(), ios::out | ios::app);
 
+	fLog << "[Computer Name: " << m_computerName << "]" << endl;
 	fLog << "[" << this->GetCurrentDate() << "]" << endl;
     fLog << "Current Working Module: " << m_CurrentModuleName << endl;
     fLog<<"Error : "<<Error<<endl<<endl;
