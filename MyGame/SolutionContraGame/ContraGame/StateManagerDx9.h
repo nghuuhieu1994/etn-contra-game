@@ -28,9 +28,9 @@ public:
 	
 	void Initialize();
 	
-	void UpdateHanleInput(CInputDx9* input);
+	void UpdateHanleInput();
 	
-	void Update(CGameTimeDx9* gameTime);
+	void Update();
 	
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	

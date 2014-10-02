@@ -7,6 +7,8 @@ class CGameTimeDx9
 {
 private:
 	
+	static CGameTimeDx9* s_Instance;
+
 	CTimeSpanDx9	m_ElapsedGameTime;
 	
 	CTimeSpanDx9	m_TotalGameTime;
@@ -20,11 +22,14 @@ private:
 	UINT64			LastTicks;
 	
 	UINT64			CurTicks;
+
+	CGameTimeDx9();
+
+	CGameTimeDx9(CTimeSpanDx9& elapsedGameTime, CTimeSpanDx9& totalGameTime);
+
 public:
 	
-	CGameTimeDx9();
-	
-	CGameTimeDx9(CTimeSpanDx9& elapsedGameTime, CTimeSpanDx9& totalGameTime);
+	static CGameTimeDx9* getInstance();
 	
 	void InitGameTime();
 	

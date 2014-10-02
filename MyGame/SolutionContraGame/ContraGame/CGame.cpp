@@ -6,7 +6,6 @@ CGame::CGame() :
 	m_lpDirect3DDevice(NULL), 
 	m_lpSpriteDirect3DHandle(NULL)
 {
-	texture = new CSpriteDx9();
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
@@ -189,8 +188,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->InitializeDirect3DSpriteHandle();
 	this->InitializeDirectSound();
 	
-	this->m_GameTime = new CGameTimeDx9();
-	this->m_GameTime->InitGameTime();
+	CGameTimeDx9::getInstance()->InitGameTime();
 	
 	this->m_fps = 0;
 	
@@ -200,14 +198,13 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::GetInstance()->InitializeKeyBoardDevice(m_handleWindow);
 
-	texture->LoadContent(m_lpDirect3DDevice, "resources\\Character\\Bill\\bullet.png", 1, 1, 1, 0xffff00ff);
-	m_UnitTest.x = 400;
-	m_UnitTest.y = 300;
-	m_UnitTest.z = 0;
-	m_testSpriteEffect = eSpriteEffect::None;
 	SpriteManager::GetInstance()->InitializeListSprite(m_lpDirect3DDevice);
+
+	StateManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
+	StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
 	return true;
 }
+
 int move_x_1 = 0;
 void XoayTron(int &x, int &y, float angle)
 {
@@ -250,11 +247,12 @@ void CGame::Run()
 
 		else
 		{
-			m_GameTime->UpdateGameTime();
+			CGameTimeDx9::getInstance()->UpdateGameTime();
 			CInputDx9::GetInstance()->UpdateKeyBoard();
-			m_fps += m_GameTime->getElapsedGameTime().getMilliseconds();
+			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
+				/*
 				#pragma region Test input
 				//texture->UpdateAnimation(m_GameTime, 50);
 				#pragma endregion
@@ -279,23 +277,36 @@ void CGame::Run()
 					m_testSpriteEffect = eSpriteEffect::None;
 				}
 				Camera::GetInstance()->UpdateCamera(&m_UnitTest);
+				*/
+
+				StateManagerDx9::getInstance()->Update();
+				StateManagerDx9::getInstance()->UpdateHanleInput();
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0); 
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
+
+				
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
-				SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 50);
+				
+				/*SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 50);
+				*/
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
+					/*
 					//texture->Render(m_lpSpriteDirect3DHandle, &D3DXVECTOR3(0, 0, 0) , &D3DXVECTOR3(0, 0, 0), angle, eSpriteEffect::Horizontally, &D3DXVECTOR2(0, 0));
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 					//PhuongTrinhDuongThang(x_1, y_1);
 					XoayTron(x_1, y_1, angle_1-=0.1f);
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					*/
+
+					StateManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
+					
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
@@ -312,7 +323,7 @@ void CGame::Exit()
 {
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
-	SAFE_DELETE(m_GameTime);
+	//SAFE_DELETE(m_GameTime);
 	CInputDx9::GetInstance()->Release();
 	SoundManagerDx9::GetInstance()->Release();
 	SpriteManager::GetInstance()->Release();

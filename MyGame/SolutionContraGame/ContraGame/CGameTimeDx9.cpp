@@ -1,5 +1,7 @@
 #include "CGameTimeDx9.h"
 
+CGameTimeDx9* CGameTimeDx9::s_Instance = NULL;
+
 CGameTimeDx9::CGameTimeDx9()
 {
 	this->m_ElapsedGameTime = CTimeSpanDx9(1);
@@ -10,6 +12,16 @@ CGameTimeDx9::CGameTimeDx9(CTimeSpanDx9 &elapsedGameTime, CTimeSpanDx9 &totalGam
 	this->m_ElapsedGameTime = elapsedGameTime;
 	this->m_TotalGameTime	= totalGameTime;
 }
+
+CGameTimeDx9* CGameTimeDx9::getInstance()
+{
+	if(s_Instance == NULL)
+	{
+		s_Instance = new CGameTimeDx9();
+	}
+	return s_Instance;
+}
+
 void CGameTimeDx9::InitGameTime()
 {
 	QueryPerformanceFrequency(&this->m_Query);
