@@ -8,11 +8,14 @@
 #include "CGameTimeDx9.h"
 #include "SoundMangerDx9.h"
 #include "SpriteManager.h"
+#include "StateManagerDx9.h"
 #include "CInputDx9.h"
 #include "CTextureDx9.h"
 #include "CSurfaceDx9.h"
 #include "CGameLog.h"
 #include "CCamera.h"
+
+#include "DemoState.h"
 
 class CGame
 {
@@ -29,8 +32,7 @@ protected:
 	LPD3DXSPRITE		m_lpSpriteDirect3DHandle;
 
 	LPDIRECTSOUND8		m_lpDirectSound;
-	D3DXVECTOR3			m_UnitTest;
-	CGameTimeDx9*		m_GameTime;
+
 
 
 	bool				InitializeHandleWindow (HINSTANCE);
@@ -41,12 +43,10 @@ protected:
 
 	bool				InitializeDirectSound();
 
-	CSpriteDx9* texture;
 
 	float					m_fps;
 
 	char				fps[10];
-	eSpriteEffect		m_testSpriteEffect;
 public:
 
 	CGame();

@@ -65,6 +65,9 @@
     <ClCompile Include="CObjectDx9.cpp">
       <Filter>SourceFile\FrameWork\Object</Filter>
     </ClCompile>
+    <ClCompile Include="DemoState.cpp">
+      <Filter>SourceFile\ContraGame\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -129,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="CObjectDx9.h">
       <Filter>HeaderFile\FrameWork\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoState.h">
+      <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +215,12 @@
     </Filter>
     <Filter Include="SourceFile\FrameWork\Physic">
       <UniqueIdentifier>{6a2c97d4-1542-4a07-aa26-4200303d963f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\ContraGame\GameState">
+      <UniqueIdentifier>{9f82f17e-f157-4b1c-832b-a2af9b58473f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\ContraGame\GameState">
+      <UniqueIdentifier>{267c7132-fd2b-4da4-85fc-bde1066f2668}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

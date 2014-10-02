@@ -17,14 +17,14 @@ protected:
 public:
 	
 	GameState(eIDStateGame ID){eID = ID;}
-	
+
 	virtual ~GameState() {}
 	
 	virtual void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice) = 0;
 	
-	virtual void UpdateHandleInput(CInputDx9* Input) = 0;
+	virtual void UpdateHandleInput() = 0;
 	
-	virtual void Update(CGameTimeDx9* gameTime) = 0;
+	virtual void Update() = 0;
 	
 	virtual void Render(LPD3DXSPRITE _lpDSpriteHandle) = 0;
 	

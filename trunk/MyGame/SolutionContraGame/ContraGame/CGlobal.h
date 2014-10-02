@@ -54,7 +54,7 @@ typedef enum eDirection
 
 typedef enum eIDStateGame
 {
-
+	INTRO
 };
 
 class CGlobal

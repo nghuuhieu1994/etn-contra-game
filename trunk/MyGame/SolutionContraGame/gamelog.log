@@ -2226,6 +2226,20 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
+<<<<<<< .mine
+[Date: 01-10-2014 | Time: 13:39:16]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Date: 01-10-2014 | Time: 13:39:17]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Date: 01-10-2014 | Time: 13:39:17]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+=======
 [Date: 01-10-2014 | Time: 09:23:33]
 Current Working Module: EntryPoint
 Info : Testing Game
@@ -2357,6 +2371,54 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
+<<<<<<< .mine
+>>>>>>> .r35
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 17:06:52]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 17:06:52]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 17:06:52]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 17:07:34]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 17:08:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 20:19:26]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 20:19:26]
+Current Working Module: LoadWaveToBuffer
+Info : Can't Create Sound Buffer
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 20:19:30]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 01-10-2014 | Time: 20:19:30]
+Current Working Module: LoadWaveToBuffer
+Info : Can't Create Sound Buffer
+
+=======
 [Computer Name: HIEUNGUYEN]
 [Date: 01-10-2014 | Time: 15:58:14]
 Current Working Module: EntryPoint
@@ -2394,6 +2456,97 @@ Info : Testing Game
 
 [Computer Name: HIEUNGUYEN]
 [Date: 01-10-2014 | Time: 20:24:08]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+>>>>>>> .r36
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 13:20:38]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 13:20:38]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 13:20:38]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 13:27:41]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 13:31:45]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 02-10-2014 | Time: 18:54:07]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:04:39]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:04:40]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:04:40]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:22:42]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:30:06]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:30:58]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:31:40]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:32:06]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:32:27]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:33:22]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:33:50]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 03-10-2014 | Time: 03:38:43]
 Current Working Module: EntryPoint
 Info : Testing Game
 

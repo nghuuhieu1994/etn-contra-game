@@ -35,18 +35,18 @@ void StateManagerDx9::AddElement(GameState* gameState)
 	ListGameState.back()->InitializeState(m_lpDirectDevice);
 }
 
-void StateManagerDx9::UpdateHanleInput(CInputDx9* input)
+void StateManagerDx9::UpdateHanleInput()
 {
 	if ( !ListGameState.empty() )
 	{
-		ListGameState.back()->UpdateHandleInput(input);
+		ListGameState.back()->UpdateHandleInput();
 	}
 }
-void StateManagerDx9::Update(CGameTimeDx9* gameTime)
+void StateManagerDx9::Update()
 {
 	if ( !ListGameState.empty() )
 	{
-		ListGameState.back()->Update(gameTime);
+		ListGameState.back()->Update();
 	}
 }
 void StateManagerDx9::Render(LPD3DXSPRITE _lpDSpriteHandle)
