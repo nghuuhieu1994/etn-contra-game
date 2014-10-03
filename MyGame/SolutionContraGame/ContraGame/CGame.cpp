@@ -205,27 +205,27 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	return true;
 }
 
-int move_x_1 = 0;
-void XoayTron(int &x, int &y, float angle)
-{
-	//y = sin(x * 3.14 / 180.0) * 100 + 300;
-	//x += 1;
-	move_x_1 += 1;
-	x = (int)(move_x_1 + 40 * cos(angle));
-	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
-	y = (int)(300 + 40 * sin(angle));
-	//y = tung do tam xoay + ban kinh * sin(goc xoay)
-	
-}
-
-void HinhSin()
-{
-
-}
-
-int x_1 = 0;
-int y_1 = 300;
-float angle_1 = 0;
+//int move_x_1 = 0;
+//void XoayTron(int &x, int &y, float angle)
+//{
+//	//y = sin(x * 3.14 / 180.0) * 100 + 300;
+//	//x += 1;
+//	move_x_1 += 1;
+//	x = (int)(move_x_1 + 40 * cos(angle));
+//	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
+//	y = (int)(300 + 40 * sin(angle));
+//	//y = tung do tam xoay + ban kinh * sin(goc xoay)
+//	
+//}
+//
+//void HinhSin()
+//{
+//
+//}
+//
+//int x_1 = 0;
+//int y_1 = 300;
+//float angle_1 = 0;
 
 void CGame::Run()
 {
