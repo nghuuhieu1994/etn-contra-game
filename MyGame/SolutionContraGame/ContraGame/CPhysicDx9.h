@@ -2,6 +2,7 @@
 #define __PHYSIC_H__
 
 #include "CObjectDx9.h"
+#include "CGameTimeDx9.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <vector>
@@ -22,6 +23,7 @@ class Physic
 	D3DXVECTOR2			m_Accelerate;
 	eDirection			m_Direction;
 	Collision			m_Collision;
+	RECT				m_MovementRange;
 	vector<Collision>	m_ListCollision;
 
 public:
@@ -38,6 +40,16 @@ public:
 	eDirection		getDirection(){ return m_Direction; }
 
 	Physic();
+	void SetMovementRange(int maxTop, int maxLeft, int maxRight, int maxBottom)
+	{
+		m_MovementRange.top		= maxTop;
+		m_MovementRange.left	= maxLeft;
+		m_MovementRange.right	= maxRight;
+		m_MovementRange.bottom	= maxBottom;
+	}
+
+	bool CheckMovementRangeWidth();
+	bool CheckMovementRangeHeight();
 
 	void UpdateMovement(CGameTimeDx9* gameTime);
 	void CheckCollision(Object _object);

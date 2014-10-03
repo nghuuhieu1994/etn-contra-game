@@ -81,6 +81,7 @@
     <ClInclude Include="CGameTimeDx9.h" />
     <ClInclude Include="CGlobal.h" />
     <ClInclude Include="CInputDx9.h" />
+    <ClInclude Include="CObjectStateDx9.h" />
     <ClInclude Include="CSpriteDx9.h" />
     <ClInclude Include="CSurfaceDx9.h" />
     <ClInclude Include="CTextureDx9.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="CGameTimeDx9.cpp" />
     <ClCompile Include="CGlobal.cpp" />
     <ClCompile Include="CInputDx9.cpp" />
+    <ClCompile Include="CObjectStateDx9.cpp" />
     <ClCompile Include="CSpriteDx9.cpp" />
     <ClCompile Include="CSurfaceDx9.cpp" />
     <ClCompile Include="CTextureDx9.cpp" />

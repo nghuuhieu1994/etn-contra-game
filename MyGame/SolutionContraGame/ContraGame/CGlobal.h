@@ -41,6 +41,7 @@ typedef enum eSpriteID
 	BILL_MOVE_5,
 	BULLET_BIG,
 	F_BULLET,
+	BACKGROUND,
 };
 
 typedef enum eObjectID

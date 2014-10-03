@@ -13,7 +13,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	{
 		billmove5[i] =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_5);
 	}
-
+	backGround = SpriteManager::getInstance()->GetSprite(eSpriteID::BACKGROUND);
 	billjump  =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_JUMP);	
 	fBullet  =	SpriteManager::getInstance()->GetSprite(eSpriteID::F_BULLET);	
 	m_UnitTest.x = 400;
@@ -103,6 +103,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		Scale(scale);
 		Jump(_x_j, _y_j);
 		Sin(_x3, _y3);
+		backGround->Render(_lpDSpriteHandle, D3DXVECTOR2(400 + sin(angle_1), 300 + cos(angle_1)), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 		texture->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), m_testSpriteEffect, 0.0f, 1.0f, 1.0f);
 		billmove1->Render(_lpDSpriteHandle, D3DXVECTOR2(_x_1, _y_1), m_testSpriteEffect, 0.0f, 2.0f, 1.0f);
 		fBullet->Render(_lpDSpriteHandle, D3DXVECTOR2(_x_1 + 100, _y_1 + 100), m_testSpriteEffect, 0.0f, 2.0f, 1.0f);
