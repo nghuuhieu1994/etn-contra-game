@@ -8,8 +8,6 @@ private:
 	UINT64	m_Ticks;
 public:
 	
-
-	
 	static const UINT64	TicksPerDay				= 86400000000;
 	
 	static const UINT64	TicksPerHour			= 3600000000;

@@ -9,9 +9,9 @@ class CGameLog
 {
 public:
 	
-	static CGameLog* GetInstance();
+	static CGameLog* getInstance();
 	
-	static CGameLog* GetInstance(string ModuleName);
+	static CGameLog* getInstance(string ModuleName);
 	
 	void SetNameLogFile(string NameLogFile);
 	

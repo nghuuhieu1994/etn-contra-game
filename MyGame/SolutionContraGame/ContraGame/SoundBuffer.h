@@ -16,7 +16,7 @@ public:
 	SoundBuffer();
 	~SoundBuffer();
 
-	bool LoadWaveToBuffer(LPDIRECTSOUND8 lpDSound, const char* FileName);
+	bool LoadWaveToBuffer(LPDIRECTSOUND8 _lpDSound, const char* fileName);
 	LPDIRECTSOUNDBUFFER getSoundBuffer();
 	void Play();
 	void Repeat();

@@ -45,9 +45,9 @@ public:
 	
 	void			NextFrame();
 	
-	void			UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe);
+	void UpdateAnimation(int timeNexframe);
 
-	D3DXVECTOR2		GetFrameSize();
+	D3DXVECTOR2		getFrameSize();
 
 	void			Release();
 };

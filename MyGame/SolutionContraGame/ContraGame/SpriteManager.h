@@ -15,7 +15,7 @@ class SpriteManager
 	void LoadSpriteContent(LPDIRECT3DDEVICE9 _lpDirectDevice, const char* fileName, eSpriteID SpriteID, int Column, int Row, int TotalFrame);
 
 public:
-	static SpriteManager* GetInstance();
+	static SpriteManager* getInstance();
 	CSpriteDx9* GetSprite(eSpriteID eID);
 	void InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void Release();

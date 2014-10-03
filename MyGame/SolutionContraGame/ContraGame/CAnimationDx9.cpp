@@ -80,21 +80,22 @@ void CAnimationDx9::NextFrame()
 	}
 }
 
-void CAnimationDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe)
+void CAnimationDx9::UpdateAnimation(int timeNexframe)
 {
-	this->m_timeAnimation += (int)gameTime->getElapsedGameTime().getMilliseconds();
+	this->m_timeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+
 	if(this->m_timeAnimation > timeNexframe)
 	{
 		NextFrame();
+		m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
+		m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
+		m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
+		m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
 		this->m_timeAnimation = 0;
 	}
-	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
-	m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
-	m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
-	m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
 }
 
-D3DXVECTOR2 CAnimationDx9::GetFrameSize()
+D3DXVECTOR2 CAnimationDx9::getFrameSize()
 {
 	return D3DXVECTOR2((float)this->m_widthFrame, (float)this->m_heightFrame);
 }

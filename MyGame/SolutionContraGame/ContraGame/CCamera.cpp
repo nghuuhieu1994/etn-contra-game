@@ -10,7 +10,7 @@ Camera::Camera()
 	m_matrixTranslate._22 = -1.0f;
 }
 
-Camera* Camera::GetInstance()
+Camera* Camera::getInstance()
 {
 	if (s_Instance == NULL)
 	{

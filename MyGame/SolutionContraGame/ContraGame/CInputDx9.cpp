@@ -11,7 +11,7 @@ CInputDx9::CInputDx9() :
 
 CInputDx9* CInputDx9::s_Instance = 0;
 
-CInputDx9* CInputDx9::GetInstance()
+CInputDx9* CInputDx9::getInstance()
 {
 	if (s_Instance == 0)
 	{
@@ -34,21 +34,21 @@ void CInputDx9::InitializeInput()
 	if (result != D3D_OK)
 	{
 		//(Logger::GetLogger("DXGame::Init_Input()").Error("Can't Init DirectX Input"));
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Init DirectX Input");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input");
 	}
 
 	result = m_lpDirectInput->CreateDevice(GUID_SysKeyboard, &m_lpKeyBoardDevice, NULL);
 
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Init DirectX Input Keyboard Device");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input Keyboard Device");
 	}
 
 	result = m_lpDirectInput->CreateDevice(GUID_SysMouse, &m_lpMouseDevice, NULL);
 
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Init DirectX Input Mouse Device");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input Mouse Device");
 	}
 }
 
@@ -58,19 +58,19 @@ void CInputDx9::InitializeKeyBoardDevice(HWND handleWindow)
 	result = m_lpKeyBoardDevice->SetDataFormat(&c_dfDIKeyboard);
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Set Data Format Keyboard");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Set Data Format Keyboard");
 	}
 
 	result = m_lpKeyBoardDevice->SetCooperativeLevel(handleWindow, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Set Cooperative Level of Keyboard");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Set Cooperative Level of Keyboard");
 	}
 
 	result = m_lpKeyBoardDevice->Acquire();
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Acquire Keyboard");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Acquire Keyboard");
 	}
 }
 
@@ -84,20 +84,20 @@ void CInputDx9::InitializeMouseDevice(HWND handleWindow)
 
 	if(result != DI_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't set Data format of Mouse");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't set Data format of Mouse");
 	}
 
 	result=m_lpMouseDevice->SetCooperativeLevel(handleWindow,DISCL_NONEXCLUSIVE|DISCL_FOREGROUND);
 
 	if(result != DI_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't set Cooperative Level of Mouse");	
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't set Cooperative Level of Mouse");	
 	}
 
 	result = m_lpMouseDevice->Acquire();
 	if (result != D3D_OK)
 	{
-		CGameLog::GetInstance("CInputDx9")->SaveError("Can't Acquire Keyboard");
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't Acquire Keyboard");
 	}
 }
 

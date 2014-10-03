@@ -18,50 +18,50 @@ void StateManagerDx9::setDirectDevice(const LPDIRECT3DDEVICE9& _lpDirectDevice)
 
 void StateManagerDx9::Initialize()
 {
-	if( !ListGameState.empty() )
+	if( !m_ListGameState.empty() )
 	{
-		ListGameState.back()->InitializeState(m_lpDirectDevice);
+		m_ListGameState.back()->InitializeState(m_lpDirectDevice);
 	}
 }
 
 
 void StateManagerDx9::AddElement(GameState* gameState)
 {
-	if(!ListGameState.empty())
+	if(!m_ListGameState.empty())
 	{
-		ListGameState[ListGameState.size() - 1]->Pause();
+		m_ListGameState[m_ListGameState.size() - 1]->Pause();
 	}
-	ListGameState.push_back(gameState);
-	ListGameState.back()->InitializeState(m_lpDirectDevice);
+	m_ListGameState.push_back(gameState);
+	m_ListGameState.back()->InitializeState(m_lpDirectDevice);
 }
 
-void StateManagerDx9::UpdateHanleInput()
+void StateManagerDx9::HandleInput()
 {
-	if ( !ListGameState.empty() )
+	if ( !m_ListGameState.empty() )
 	{
-		ListGameState.back()->UpdateHandleInput();
+		m_ListGameState.back()->HandleInput();
 	}
 }
 void StateManagerDx9::Update()
 {
-	if ( !ListGameState.empty() )
+	if ( !m_ListGameState.empty() )
 	{
-		ListGameState.back()->Update();
+		m_ListGameState.back()->Update();
 	}
 }
 void StateManagerDx9::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	if ( !ListGameState.empty() )
+	if ( !m_ListGameState.empty() )
 	{
-		ListGameState.back()->Render(_lpDSpriteHandle);
+		m_ListGameState.back()->Render(_lpDSpriteHandle);
 	}
 }
 void StateManagerDx9::ExitState()
 {
-	if( !ListGameState.empty())
+	if( !m_ListGameState.empty())
 	{
-		ListGameState.back()->Release();
-		ListGameState.pop_back();
+		m_ListGameState.back()->Release();
+		m_ListGameState.pop_back();
 	}
 }
 void StateManagerDx9::ReplaceBy(GameState* gameState)
@@ -71,7 +71,7 @@ void StateManagerDx9::ReplaceBy(GameState* gameState)
 }
 void StateManagerDx9::ClearAll()
 {
-	while( !ListGameState.empty() )
+	while( !m_ListGameState.empty() )
 	{
 		ExitState();
 	}

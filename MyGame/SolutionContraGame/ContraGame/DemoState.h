@@ -13,13 +13,10 @@ private:
 	eSpriteEffect		m_testSpriteEffect;
 
 public:
-	DemoState(eIDStateGame ID) : GameState(ID)
-	{
-		//texture = new CSpriteDx9();
-	}
+	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
-	void UpdateHandleInput();
+	void HandleInput();
 	void Update();
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	void Pause();

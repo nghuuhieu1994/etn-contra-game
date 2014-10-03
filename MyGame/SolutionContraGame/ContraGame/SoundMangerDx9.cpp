@@ -1,31 +1,31 @@
 #include "SoundMangerDx9.h"
 #include "CGlobal.h"
 
-SoundManagerDx9* SoundManagerDx9::m_Instace = 0;
+SoundManagerDx9* SoundManagerDx9::s_Instace = 0;
 
-SoundManagerDx9* SoundManagerDx9::GetInstance()
+SoundManagerDx9* SoundManagerDx9::getInstance()
 {
-	if ( m_Instace == 0 )
+	if ( s_Instace == 0 )
 	{
-		m_Instace = new SoundManagerDx9();
+		s_Instace = new SoundManagerDx9();
 	}
-	return m_Instace;
+	return s_Instace;
 }
 
-void SoundManagerDx9::LoadSoundBuffer(const char* fileName, eSoundID eID, LPDIRECTSOUND8 lpDSound)
+void SoundManagerDx9::LoadSoundBuffer(const char* fileName, eSoundID eID, LPDIRECTSOUND8 _lpDSound)
 {
 	SoundBuffer* _soundbuffer = new SoundBuffer();
-	_soundbuffer->LoadWaveToBuffer(lpDSound, (char*)fileName);
+	_soundbuffer->LoadWaveToBuffer(_lpDSound, (char*)fileName);
 	_soundbuffer->getSoundBuffer()->SetVolume(m_Volume);
 	m_ListSoundBuffer[eID] = _soundbuffer;
 }
 
-void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 lpDSound)
+void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound)
 {
-	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::BROKEN, lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::BROKEN, _lpDSound);
 	// need more and more sound rs
 }
-SoundBuffer* SoundManagerDx9::GetSoundBuffer(eSoundID eID)
+SoundBuffer* SoundManagerDx9::getSoundBuffer(eSoundID eID)
 {
 	map<eSoundID, SoundBuffer*>::iterator i;
 	i = m_ListSoundBuffer.find(eID);

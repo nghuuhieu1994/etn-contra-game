@@ -41,7 +41,7 @@ string CGameLog::GetCurrentDate()
     return buf;
 }
 
-CGameLog* CGameLog::GetInstance()
+CGameLog* CGameLog::getInstance()
 {
 	if (s_Instance == NULL)
 	{
@@ -51,7 +51,7 @@ CGameLog* CGameLog::GetInstance()
 	return s_Instance;
 }
 
-CGameLog* CGameLog::GetInstance(string ModuleName)
+CGameLog* CGameLog::getInstance(string ModuleName)
 {
 	if (s_Instance == NULL)
 	{

@@ -25,7 +25,7 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CTextureDx9")->SaveError("Can't get image info from file");
+		CGameLog::getInstance("CTextureDx9")->SaveError("Can't get image info from file");
 		return;
 	}
 
@@ -47,7 +47,7 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 		);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CTextureDx9")->SaveError("can't load texture from file");
+		CGameLog::getInstance("CTextureDx9")->SaveError("can't load texture from file");
 		return;
 	}
 }

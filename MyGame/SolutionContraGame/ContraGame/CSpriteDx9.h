@@ -68,7 +68,7 @@ public:
 
 	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
 
-	void					UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
+	void					UpdateAnimation(int timeAnimation);
 	
 	void					Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
 	

@@ -39,7 +39,7 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 
 	if(!RegisterClassEx(&WndcEx))
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't Regist the WndcEx!!!");
+		CGameLog::getInstance("CGame")->SaveError("Can't Regist the WndcEx!!!");
 		return false;
 	}
 
@@ -59,7 +59,7 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 
 	if(!m_handleWindow)
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't Create Window!");
+		CGameLog::getInstance("CGame")->SaveError("Can't Create Window!");
 		return false;
 	}
 
@@ -74,7 +74,7 @@ bool CGame::InitializeDirect3DEnvironment()
 	this->m_lpDirect3D = Direct3DCreate9(D3D_SDK_VERSION);
 	if(!this->m_lpDirect3D)
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't Create Direct3D Object!");
+		CGameLog::getInstance("CGame")->SaveError("Can't Create Direct3D Object!");
 		return false;
 	}
 
@@ -115,7 +115,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 
 		if(FAILED(handleResult))
 		{
-			CGameLog::GetInstance("CGame")->SaveError("Device format is unacceptable for full screen mode");
+			CGameLog::getInstance("CGame")->SaveError("Device format is unacceptable for full screen mode");
 			return false;
 		}
 
@@ -138,7 +138,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 
 	if(FAILED(m_lpDirect3DDevice))
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't create Direct3D Device");
+		CGameLog::getInstance("CGame")->SaveError("Can't create Direct3D Device");
 		return false;
 	}
 
@@ -153,7 +153,7 @@ bool CGame::InitializeDirect3DSpriteHandle()
 
 	if(!hr)
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't create Direct3D Sprite Handle");
+		CGameLog::getInstance("CGame")->SaveError("Can't create Direct3D Sprite Handle");
 		return false;
 	}
 
@@ -168,13 +168,13 @@ bool CGame::InitializeDirectSound()
 	hr = DirectSoundCreate8(NULL, &m_lpDirectSound, NULL);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't Create Direct Sound!");
+		CGameLog::getInstance("CGame")->SaveError("Can't Create Direct Sound!");
 		return false;
 	}
 	hr = m_lpDirectSound->SetCooperativeLevel(this->m_handleWindow, DSSCL_PRIORITY);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CGame")->SaveError("Can't Set Cooperative Level DSound!");
+		CGameLog::getInstance("CGame")->SaveError("Can't Set Cooperative Level DSound!");
 		return false;
 	}
 	return true;
@@ -192,13 +192,13 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	
 	this->m_fps = 0;
 	
-	SoundManagerDx9::GetInstance()->LoadAllSoundBuffer(m_lpDirectSound);
+	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 	
-	CInputDx9::GetInstance()->InitializeInput();
-	CInputDx9::GetInstance()->InitializeMouseDevice(m_handleWindow);
-	CInputDx9::GetInstance()->InitializeKeyBoardDevice(m_handleWindow);
+	CInputDx9::getInstance()->InitializeInput();
+	CInputDx9::getInstance()->InitializeMouseDevice(m_handleWindow);
+	CInputDx9::getInstance()->InitializeKeyBoardDevice(m_handleWindow);
 
-	SpriteManager::GetInstance()->InitializeListSprite(m_lpDirect3DDevice);
+	SpriteManager::getInstance()->InitializeListSprite(m_lpDirect3DDevice);
 
 	StateManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
 	StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
@@ -248,7 +248,8 @@ void CGame::Run()
 		else
 		{
 			CGameTimeDx9::getInstance()->UpdateGameTime();
-			CInputDx9::GetInstance()->UpdateKeyBoard();
+			CInputDx9::getInstance()->UpdateKeyBoard();
+
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
@@ -256,40 +257,42 @@ void CGame::Run()
 				#pragma region Test input
 				//texture->UpdateAnimation(m_GameTime, 50);
 				#pragma endregion
-				if (CInputDx9::GetInstance()->IsKeyDown(DIK_LEFT))
+				if (CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 				{
 					m_UnitTest.x = --m_UnitTest.x;
 					m_testSpriteEffect = eSpriteEffect::Horizontally;
 				}
-				if (CInputDx9::GetInstance()->IsKeyDown(DIK_RIGHT))
+				if (CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 				{
 					m_UnitTest.x = ++m_UnitTest.x;
 					m_testSpriteEffect = eSpriteEffect::None;
 				}
-				if (CInputDx9::GetInstance()->IsKeyDown(DIK_UP))
+				if (CInputDx9::getInstance()->IsKeyDown(DIK_UP))
 				{
 					m_UnitTest.y = ++m_UnitTest.y;
 					m_testSpriteEffect = eSpriteEffect::Vertically;
 				}
-				if (CInputDx9::GetInstance()->IsKeyDown(DIK_DOWN))
+				if (CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
 				{
 					m_UnitTest.y = --m_UnitTest.y;
 					m_testSpriteEffect = eSpriteEffect::None;
 				}
-				Camera::GetInstance()->UpdateCamera(&m_UnitTest);
+				Camera::getInstance()->UpdateCamera(&m_UnitTest);
 				*/
 
+				sprintf(fps, "milisecs per frame: %f \n", m_fps);
+
+				OutputDebugString(fps);
+
 				StateManagerDx9::getInstance()->Update();
-				StateManagerDx9::getInstance()->UpdateHanleInput();
+				StateManagerDx9::getInstance()->HandleInput();
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0); 
 				D3DXMATRIX oldMatrix;
-				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
-
+				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);		
+				m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
 				
-				m_lpSpriteDirect3DHandle->SetTransform(&Camera::GetInstance()->GetMatrixTranslate());
-				
-				/*SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 50);
+				/*SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->UpdateAnimation(m_GameTime, 50);
 				*/
 
 				if(m_lpDirect3DDevice->BeginScene())
@@ -302,7 +305,7 @@ void CGame::Run()
 					//PhuongTrinhDuongThang(x_1, y_1);
 					XoayTron(x_1, y_1, angle_1-=0.1f);
 					//texture->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
-					SpriteManager::GetInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+					SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_1)->Render(m_lpSpriteDirect3DHandle, D3DXVECTOR2(x_1, y_1), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 					*/
 
 					StateManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
@@ -324,9 +327,9 @@ void CGame::Exit()
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
 	//SAFE_DELETE(m_GameTime);
-	CInputDx9::GetInstance()->Release();
-	SoundManagerDx9::GetInstance()->Release();
-	SpriteManager::GetInstance()->Release();
+	CInputDx9::getInstance()->Release();
+	SoundManagerDx9::getInstance()->Release();
+	SpriteManager::getInstance()->Release();
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
