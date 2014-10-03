@@ -7,7 +7,7 @@ int WINAPI WinMain(
 	LPSTR lpStrCmdLine,
 	int nShowCmd)
 {
-	CGameLog::GetInstance("EntryPoint")->SaveInfo("Testing Game");
+	CGameLog::getInstance("EntryPoint")->SaveInfo("Testing Game");
 	
 	CGame* Run = new CGame();
 	Run->Initialize(hInstance, true);

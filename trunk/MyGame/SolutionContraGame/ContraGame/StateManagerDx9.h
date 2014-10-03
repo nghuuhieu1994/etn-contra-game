@@ -14,7 +14,7 @@ private:
 	
 	~StateManagerDx9() {}
 	
-	vector<GameState*> ListGameState;
+	vector<GameState*> m_ListGameState;
 	
 	static StateManagerDx9* s_Instance;
 	
@@ -28,7 +28,7 @@ public:
 	
 	void Initialize();
 	
-	void UpdateHanleInput();
+	void HandleInput();
 	
 	void Update();
 	

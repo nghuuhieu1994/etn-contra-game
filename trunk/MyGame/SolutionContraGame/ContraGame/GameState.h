@@ -22,7 +22,7 @@ public:
 	
 	virtual void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice) = 0;
 	
-	virtual void UpdateHandleInput() = 0;
+	virtual void HandleInput() = 0;
 	
 	virtual void Update() = 0;
 	

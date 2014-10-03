@@ -12,16 +12,16 @@ SoundBuffer::~SoundBuffer()
 	SAFE_RELEASE(m_SoundBuffer);
 }
 
-bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 lpDSound, const char* FileName)
+bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 _lpDSound, const char* fileName)
 {
 	CWaveFile* waveFile = new CWaveFile();
 	HRESULT hr;
 
-	hr = waveFile->Open((char*)FileName, NULL, WAVEFILE_READ);
+	hr = waveFile->Open((char*)fileName, NULL, WAVEFILE_READ);
 
 	if FAILED(hr)
 	{
-		CGameLog::GetInstance("LoadWaveToBuffer")->SaveInfo("Can't find File");
+		CGameLog::getInstance("LoadWaveToBuffer")->SaveInfo("Can't find File");
 		return false;
 	}
 	DSBUFFERDESC _dsbd;
@@ -32,10 +32,10 @@ bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 lpDSound, const char* FileName
 	_dsbd.guid3DAlgorithm = GUID_NULL;
 	_dsbd.lpwfxFormat	= waveFile->m_pwfx;
 
-	hr = lpDSound->CreateSoundBuffer(&_dsbd, &m_SoundBuffer, NULL);
+	hr = _lpDSound->CreateSoundBuffer(&_dsbd, &m_SoundBuffer, NULL);
 	if FAILED(hr)
 	{
-		CGameLog::GetInstance("LoadWaveToBuffer")->SaveInfo("Can't Create Sound Buffer");
+		CGameLog::getInstance("LoadWaveToBuffer")->SaveInfo("Can't Create Sound Buffer");
 		return false;
 	}
 	VOID*	pDSLockedBuffer			= NULL; // pointer to a locked buffer memory
@@ -46,7 +46,7 @@ bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 lpDSound, const char* FileName
 
 	if FAILED(hr)
 	{
-		CGameLog::GetInstance("LoadWaveToBuffer")->SaveInfo("Can't Lock device");
+		CGameLog::getInstance("LoadWaveToBuffer")->SaveInfo("Can't Lock device");
 		return false;
 	}
 
@@ -59,7 +59,7 @@ bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 lpDSound, const char* FileName
 							&dwWavDataRead ) ;
 	if FAILED(hr)
 	{
-		CGameLog::GetInstance("LoadWaveToBuffer")->SaveInfo("Can't Read");
+		CGameLog::getInstance("LoadWaveToBuffer")->SaveInfo("Can't Read");
 		return false;
 	}
 

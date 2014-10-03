@@ -34,9 +34,9 @@ void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName,
 	m_AnimationAction = new CAnimationDx9(m_MyTexture->m_Width / Column, m_MyTexture->m_Height / Row, Column, Total);
 }
 
-void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)
+void CSpriteDx9::UpdateAnimation(int timeAnimation)
 {
-	m_AnimationAction->UpdateAnimation(gameTime, timeAnimation);
+	m_AnimationAction->UpdateAnimation(timeAnimation);
 }
 
 CAnimationDx9* CSpriteDx9::getAnimation()

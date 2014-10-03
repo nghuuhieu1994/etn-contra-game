@@ -27,14 +27,14 @@ void CSurfaceDx9::LoadSurfaceFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, D3DCOLO
 	hr = D3DXGetImageInfoFromFile(fileName, &_infoImage);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CSurfaceDx9")->SaveError("Can't get image info from file");
+		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't get image info from file");
 		return;
 	}
 	
 	hr = _lpDirectDevice->CreateOffscreenPlainSurface(_infoImage.Width, _infoImage.Height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &m_lpSurface, NULL); 
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CSurfaceDx9")->SaveError("Can't create off screen surface");
+		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't create off screen surface");
 		return;
 	}
 
@@ -49,14 +49,14 @@ void CSurfaceDx9::LoadSurfaceFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, D3DCOLO
 		NULL);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CSurfaceDx9")->SaveError("Can't load surface from file");
+		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't load surface from file");
 		return;
 	}
 
 	hr = _lpDirectDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &m_lpBackBuffer);
 	if(FAILED(hr))
 	{
-		CGameLog::GetInstance("CSurfaceDx9")->SaveError("Can't get Backbuffer");
+		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't get Backbuffer");
 		return;
 	}
 }

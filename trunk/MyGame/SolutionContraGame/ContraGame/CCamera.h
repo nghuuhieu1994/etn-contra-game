@@ -12,7 +12,7 @@ class Camera
 	Camera();
 	D3DXMATRIX			m_matrixTranslate;
 public:
-	static Camera*		GetInstance();
+	static Camera*		getInstance();
 	void				UpdateCamera(D3DXVECTOR3* cameramanLocation);
 	D3DXMATRIX			GetMatrixTranslate();
 	~Camera();

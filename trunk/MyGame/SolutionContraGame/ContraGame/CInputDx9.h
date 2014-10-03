@@ -30,7 +30,7 @@ class CInputDx9
 
 public:
 
-	static CInputDx9*		GetInstance();
+	static CInputDx9*		getInstance();
 	void					InitializeInput();
 	void					InitializeKeyBoardDevice(HWND handleWindow);
 	void					InitializeMouseDevice(HWND handleWindow);

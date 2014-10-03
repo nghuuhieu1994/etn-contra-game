@@ -7,7 +7,7 @@ SpriteManager::SpriteManager(void)
 	
 }
 
-SpriteManager* SpriteManager::GetInstance()
+SpriteManager* SpriteManager::getInstance()
 {
 	if(s_Instance == 0)
 	{
