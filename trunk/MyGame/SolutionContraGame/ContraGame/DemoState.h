@@ -10,6 +10,13 @@ class DemoState : public GameState
 private:
 	D3DXVECTOR3			m_UnitTest;
 	CSpriteDx9*			texture;
+	CSpriteDx9*			billmove1;
+	CSpriteDx9*			billmove2;
+	CSpriteDx9*			billmove3;
+	CSpriteDx9*			billmove4;
+	CSpriteDx9*			billmove5[3];
+	CSpriteDx9*			billjump;
+	CSpriteDx9*			fBullet;
 	eSpriteEffect		m_testSpriteEffect;
 
 public:
