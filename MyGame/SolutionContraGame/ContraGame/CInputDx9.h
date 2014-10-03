@@ -25,9 +25,6 @@ class CInputDx9
 
 	char					m_previousBuffer[256];
 
-	int						m_lastKeyDown;
-
-	int						m_currentKeyDown;
 	static CInputDx9*		s_Instance;
 	CInputDx9();
 
