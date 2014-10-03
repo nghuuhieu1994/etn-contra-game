@@ -2,102 +2,104 @@
 
 CAnimationDx9::CAnimationDx9()
 {
-	this->colFrame			= 0;
-	this->heightFrame		= 0;
-	this->index_End			= 0;
-	this->index_Start		= 0;
-	this->index_Current		= 0;
-	this->sourceRect		= 0;
-	this->timeAnimation		= 0;
-	this->totalFrame		= 0;
-	this->widthFrame		= 0;
+	this->m_columnFrame			= 0;
+	this->m_heightFrame			= 0;
+	this->m_index_End			= 0;
+	this->m_index_Start			= 0;
+	this->m_index_Current		= 0;
+	this->m_sourceRect			= 0;
+	this->m_timeAnimation		= 0;
+	this->m_totalFrame			= 0;
+	this->m_widthFrame			= 0;
 }
 CAnimationDx9::CAnimationDx9(int width, int height, int col, int total)
 {
-	this->widthFrame				= width;
-	this->heightFrame				= height;
-	this->colFrame					= col;
-	this->totalFrame				= total;
+	this->m_widthFrame				= width;
+	this->m_heightFrame				= height;
+	this->m_columnFrame				= col;
+	this->m_totalFrame				= total;
 
-	this->index_Current				= 0;
-	this->index_Start				= 0;
-	this->index_End					= total - 1;
+	this->m_index_Current			= 0;
+	this->m_index_Start				= 0;
+	this->m_index_End				= total - 1;
 
-	this->sourceRect				= new RECT();
-	this->sourceRect->top			= 0;
-	this->sourceRect->left			= 0;
-	this->sourceRect->bottom		= heightFrame;
-	this->sourceRect->right			= widthFrame;
+	this->m_sourceRect				= new RECT();
+	this->m_sourceRect->top			= 0;
+	this->m_sourceRect->left		= 0;
+	this->m_sourceRect->bottom		= m_heightFrame;
+	this->m_sourceRect->right		= m_widthFrame;
 
-	this->timeAnimation = 0;
+	this->m_timeAnimation			= 0;
 }
 
 CAnimationDx9::CAnimationDx9(const CAnimationDx9& Animation)
 {
-	this->colFrame					= Animation.colFrame;
-	this->heightFrame				= Animation.heightFrame;
-	this->index_End					= Animation.index_End;
-	this->index_Start				= Animation.index_Start;
-	this->index_Current				= Animation.index_Current;
-	this->timeAnimation				= 0;
-	this->totalFrame				= Animation.totalFrame;
-	this->widthFrame				= Animation.widthFrame;
+	this->m_columnFrame				= Animation.m_columnFrame;
+	this->m_heightFrame				= Animation.m_heightFrame;
+	this->m_index_End				= Animation.m_index_End;
+	this->m_index_Start				= Animation.m_index_Start;
+	this->m_index_Current			= Animation.m_index_Current;
+	this->m_timeAnimation			= 0;
+	this->m_totalFrame				= Animation.m_totalFrame;
+	this->m_widthFrame				= Animation.m_widthFrame;
 
 
-	this->sourceRect				= new RECT();
-	this->sourceRect->top			= Animation.sourceRect->top;
-	this->sourceRect->left			= Animation.sourceRect->left;
-	this->sourceRect->right			= Animation.sourceRect->right;
-	this->sourceRect->bottom		= Animation.sourceRect->bottom;
+	this->m_sourceRect				= new RECT();
+	this->m_sourceRect->top			= Animation.m_sourceRect->top;
+	this->m_sourceRect->left		= Animation.m_sourceRect->left;
+	this->m_sourceRect->right		= Animation.m_sourceRect->right;
+	this->m_sourceRect->bottom		= Animation.m_sourceRect->bottom;
 }
 
 CAnimationDx9::~CAnimationDx9()
 {
-	SAFE_DELETE(this->sourceRect);
+	SAFE_DELETE(this->m_sourceRect);
 }
 
 void CAnimationDx9::setIndexStart(int _start)
 {
-	this->index_Start = _start;
+	this->m_index_Start = _start;
 }
 
 void CAnimationDx9::setIndexEnd(int _end)
 {
-	this->index_End = _end;
+	this->m_index_End = _end;
 }
 
 RECT* CAnimationDx9::getSourceRect()
 {
-	return sourceRect;
+	return m_sourceRect;
 }
 
 void CAnimationDx9::NextFrame()
 {
-	this->index_Current ++;
-	if(this->index_Current > this->index_End)
-		this->index_Current = this->index_Start;
+	this->m_index_Current ++;
+	if(this->m_index_Current > this->m_index_End)
+	{
+		this->m_index_Current = this->m_index_Start;
+	}
 }
 
 void CAnimationDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe)
 {
-	this->timeAnimation += (int)gameTime->getElapsedGameTime().getMilliseconds();
-	if(this->timeAnimation > timeNexframe)
+	this->m_timeAnimation += (int)gameTime->getElapsedGameTime().getMilliseconds();
+	if(this->m_timeAnimation > timeNexframe)
 	{
 		NextFrame();
-		this->timeAnimation = 0;
+		this->m_timeAnimation = 0;
 	}
-	sourceRect->top				= (index_Current / colFrame) * heightFrame;
-	sourceRect->left			= (index_Current % colFrame) * widthFrame;
-	sourceRect->bottom			= sourceRect->top + heightFrame;
-	sourceRect->right			= sourceRect->left + widthFrame;
+	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
+	m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
+	m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
+	m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
 }
 
 D3DXVECTOR2 CAnimationDx9::GetFrameSize()
 {
-	return D3DXVECTOR2((float)this->widthFrame, (float)this->heightFrame);
+	return D3DXVECTOR2((float)this->m_widthFrame, (float)this->m_heightFrame);
 }
 
 void CAnimationDx9::Release()
 {
-	SAFE_DELETE(sourceRect);
+	SAFE_DELETE(m_sourceRect);
 }

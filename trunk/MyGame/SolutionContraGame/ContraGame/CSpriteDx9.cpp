@@ -10,7 +10,7 @@ CSpriteDx9::CSpriteDx9(const CSpriteDx9& Sprite)
 {
 	m_MyTexture = new CTextureDx9(*Sprite.m_MyTexture);
 	m_AnimationAction = new CAnimationDx9(*Sprite.m_AnimationAction);
-	m_Col = Sprite.m_Col;
+	m_Column = Sprite.m_Column;
 	m_Row = Sprite.m_Row;
 	m_Total = Sprite.m_Total;
 }
@@ -26,12 +26,12 @@ void CSpriteDx9::Release()
 	m_AnimationAction->Release();
 }
 
-void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR TransparentColor)
+void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor)
 {
 	m_MyTexture = new CTextureDx9();
 	m_MyTexture->LoadTextureFromFile(_lpDirectDevice, fileName, TransparentColor);
 
-	m_AnimationAction = new CAnimationDx9(m_MyTexture->m_Width / Col, m_MyTexture->m_Height / Row, Col, Total);
+	m_AnimationAction = new CAnimationDx9(m_MyTexture->m_Width / Column, m_MyTexture->m_Height / Row, Column, Total);
 }
 
 void CSpriteDx9::UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation)

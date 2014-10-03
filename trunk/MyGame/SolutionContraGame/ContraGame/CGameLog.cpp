@@ -57,6 +57,7 @@ CGameLog* CGameLog::GetInstance(string ModuleName)
 	{
 		s_Instance = new CGameLog();
 	}
+
 	s_Instance->m_CurrentModuleName = ModuleName;
 	return s_Instance;
 }
@@ -72,7 +73,7 @@ void CGameLog::SetNameLogFile(string NameLogFile)
 void CGameLog::SaveInfo(string Information)
 {
 	fstream fLog(m_LogFileName.c_str(), ios::out | ios::app);
-
+	
 	fLog << "[Computer Name: " << m_computerName << "]" << endl;
 	fLog << "[" << this->GetCurrentDate() << "]" << endl;
 	fLog << "Current Working Module: " << m_CurrentModuleName << endl;

@@ -12,7 +12,7 @@ private:
 
 	CTextureDx9*			m_MyTexture;
 	
-	int						m_Col;
+	int						m_Column;
 	
 	int						m_Row;
 	
@@ -32,8 +32,8 @@ public:
 	void					setMyTexture(CTextureDx9* _mytexture){ m_MyTexture = _mytexture; }
 	CTextureDx9*			getMyTexture()const { return m_MyTexture; }
 
-	void					setCol(int _col){ m_Col = _col; }
-	int						getCol()const { return m_Col; }
+	void					setColumn(int _column){ m_Column = _column; }
+	int						getColumn()const { return m_Column; }
 
 	void					setRow(int _row){ m_Row = _row; }
 	int						getRow()const { return m_Row; }
@@ -50,11 +50,13 @@ public:
 	void					setRotate(float _rotate){ m_Rotate = _rotate; }
 	float					getRotate()const { return m_Rotate; }
 
-	void					setRotateCenter(D3DXVECTOR2 _rotatecenter){ m_RotateCenter = _rotatecenter; }
+	void					setRotateCenter(D3DXVECTOR2 _rotateCenter){ m_RotateCenter = _rotateCenter; }
 	D3DXVECTOR2				getRotateCenter()const { return m_RotateCenter; }
 
-	void					setScaleCenter(D3DXVECTOR2 _scalecenter){ m_ScaleCenter = _scalecenter; }
+	void					setScaleCenter(D3DXVECTOR2 _scaleCenter){ m_ScaleCenter = _scaleCenter; }
 	D3DXVECTOR2				getScaleCenter()const { return m_ScaleCenter; }
+
+
 
 							CSpriteDx9();
 	
@@ -64,7 +66,7 @@ public:
 
 	CAnimationDx9*			getAnimation();
 
-	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Col, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
+	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
 
 	void					UpdateAnimation(CGameTimeDx9* gameTime, int timeAnimation);
 	

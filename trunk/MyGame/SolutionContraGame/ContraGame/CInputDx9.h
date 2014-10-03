@@ -29,6 +29,7 @@ class CInputDx9
 	CInputDx9();
 
 public:
+
 	static CInputDx9*		GetInstance();
 	void					InitializeInput();
 	void					InitializeKeyBoardDevice(HWND handleWindow);

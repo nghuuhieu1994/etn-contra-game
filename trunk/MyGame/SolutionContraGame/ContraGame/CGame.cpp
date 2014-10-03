@@ -211,9 +211,9 @@ void XoayTron(int &x, int &y, float angle)
 	//y = sin(x * 3.14 / 180.0) * 100 + 300;
 	//x += 1;
 	move_x_1 += 1;
-	x = move_x_1 + 40 * cos(angle);
+	x = (int)(move_x_1 + 40 * cos(angle));
 	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
-	y = 300 + 40 * sin(angle);
+	y = (int)(300 + 40 * sin(angle));
 	//y = tung do tam xoay + ban kinh * sin(goc xoay)
 	
 }

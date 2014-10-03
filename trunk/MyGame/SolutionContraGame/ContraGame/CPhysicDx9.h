@@ -23,6 +23,7 @@ class Physic
 	eDirection			m_Direction;
 	Collision			m_Collision;
 	vector<Collision>	m_ListCollision;
+
 public:
 	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	D3DXVECTOR3		getPosition(){ return m_Position; }

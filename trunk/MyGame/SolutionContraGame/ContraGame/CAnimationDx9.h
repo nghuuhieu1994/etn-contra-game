@@ -10,50 +10,46 @@
 class CAnimationDx9
 {
 private:
+	int				m_widthFrame;
 	
-	int				widthFrame;
-	
-	int				heightFrame;
+	int				m_heightFrame;
 
+	int				m_columnFrame;
 	
-	int				colFrame;
+	int				m_totalFrame;
 	
-	int				totalFrame;
-
+	int				m_index_Start;
 	
-	int				index_Start;
+	int				m_index_End;
 	
-	int				index_End;
+	int				m_index_Current;
 	
-	int				index_Current;
+	int				m_timeAnimation;
 	
-	int				timeAnimation;
-
-	
-	RECT*			sourceRect;
+	RECT*			m_sourceRect;
 public:
 	
-	CAnimationDx9();
+					CAnimationDx9();
 	
-	CAnimationDx9(int width,int height, int col, int total);
+					CAnimationDx9(int width,int height, int column, int total);
 	
-	CAnimationDx9(const CAnimationDx9& Animation);
+					CAnimationDx9(const CAnimationDx9& Animation);
 	
-	~CAnimationDx9();
+					~CAnimationDx9();
 	
-	void setIndexStart(int _start);
+	void			setIndexStart(int _start);
 	
-	void setIndexEnd(int _end);
+	void			setIndexEnd(int _end);
 
-	RECT* getSourceRect();
+	RECT*			getSourceRect();
 	
-	void NextFrame();
+	void			NextFrame();
 	
-	void UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe);
+	void			UpdateAnimation(CGameTimeDx9* gameTime, int timeNexframe);
 
-	D3DXVECTOR2 GetFrameSize();
+	D3DXVECTOR2		GetFrameSize();
 
-	void Release();
+	void			Release();
 };
 
 #endif
