@@ -1,7 +1,6 @@
 #ifndef __GAME_LOG__
 #define __GAME_LOG__
 
-
 #include <string>
 
 using namespace std;

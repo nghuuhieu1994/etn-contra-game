@@ -12,7 +12,11 @@
 
 #define SAFE_RELEASE(p)      if(p) { (p)->Release(); (p)=NULL; }
 
-#define DIRECTINPUT_VERSION 0X0800
+#define DIRECTINPUT_HEADER_VERSION  0x0800
+#ifndef DIRECTINPUT_VERSION
+#define DIRECTINPUT_VERSION         DIRECTINPUT_HEADER_VERSION
+//#pragma message(__FILE__ ": DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800")
+#endif
 
 typedef enum eSpriteEffect
 {
