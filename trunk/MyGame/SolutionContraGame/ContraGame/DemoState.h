@@ -17,6 +17,7 @@ private:
 	CSpriteDx9*			billmove5[3];
 	CSpriteDx9*			billjump;
 	CSpriteDx9*			fBullet;
+	CSpriteDx9*			backGround;
 	eSpriteEffect		m_testSpriteEffect;
 
 public:

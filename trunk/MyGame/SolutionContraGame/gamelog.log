@@ -2717,6 +2717,13 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
+<<<<<<< .mine
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 16:37:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+=======
 >>>>>>> .r40
 [Computer Name: TRANDANH]
 [Date: 03-10-2014 | Time: 19:28:42]
@@ -2962,4 +2969,35 @@ Info : Testing Game
 [Date: 03-10-2014 | Time: 21:45:54]
 Current Working Module: EntryPoint
 Info : Testing Game
+
+>>>>>>> .r42
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 21:52:46]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 21:52:47]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 21:52:47]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 22:07:36]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 22:07:45]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: HIEUNGUYEN]
+[Date: 03-10-2014 | Time: 22:07:45]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
 

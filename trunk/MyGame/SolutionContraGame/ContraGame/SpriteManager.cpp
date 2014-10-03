@@ -47,6 +47,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_5.png", eSpriteID::BILL_MOVE_5, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::BULLET_BIG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::F_BULLET, 4, 1, 4);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\background.png", eSpriteID::BACKGROUND, 1, 1, 1);
 }
 
 void SpriteManager::Release()
