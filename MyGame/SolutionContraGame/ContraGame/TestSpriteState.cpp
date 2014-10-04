@@ -20,7 +20,6 @@ void TestSpriteState::HandleInput()
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_RIGHT))
 	{
 		testSprite->NextFrame();
-		testSprite->NextSourceRect();
 	}
 }
 

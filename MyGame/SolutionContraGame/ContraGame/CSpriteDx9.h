@@ -27,7 +27,7 @@ private:
 	D3DXVECTOR2				m_ScaleCenter;
 public:
 	void NextFrame() { m_AnimationAction->NextFrame(); }
-	void NextSourceRect() { m_AnimationAction->NextSourceRect(); }
+	
 	void					setAnimationAction(CAnimationDx9* _animationaction){ m_AnimationAction = _animationaction; }
 	CAnimationDx9*			getAnimationAction()const { return m_AnimationAction; }
 
