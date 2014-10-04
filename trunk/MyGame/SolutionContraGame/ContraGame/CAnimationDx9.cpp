@@ -66,6 +66,15 @@ void CAnimationDx9::setIndexEnd(int _end)
 	this->m_index_End = _end;
 }
 
+void CAnimationDx9::setCurrentFrame(int Index)
+{
+	this->m_index_Current = Index;
+	if(m_index_Current < m_index_Start || m_index_Current > m_index_End)
+	{
+		m_index_Current = 0;
+	}
+}
+
 RECT* CAnimationDx9::getSourceRect()
 {
 	return m_sourceRect;

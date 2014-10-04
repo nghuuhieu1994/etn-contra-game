@@ -2,7 +2,7 @@
 
 void TestSpriteState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	testSprite = SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_5);
+	testSprite = SpriteManager::getInstance()->GetSprite(eSpriteID::MAP_1);
 }
 
 float scalexxx = 1.0f;

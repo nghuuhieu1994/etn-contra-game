@@ -71,3 +71,10 @@ void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSprite
 		}
 	}
 }
+
+void CSpriteDx9::RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color,int frameIndex)
+{
+	m_AnimationAction->setCurrentFrame(frameIndex);
+	m_AnimationAction->NextSourceRect();
+	Render(spriteHandle, position, effect, rotateAngle, scale, deep, color);
+}

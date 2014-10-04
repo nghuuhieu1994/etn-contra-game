@@ -28,6 +28,7 @@ typedef enum eSpriteEffect
 typedef enum eSoundID
 {
 	BROKEN = 0,
+	THU_CUOI_SONG = 1,
 };
 
 typedef enum eSpriteID
@@ -41,7 +42,8 @@ typedef enum eSpriteID
 	BILL_MOVE_5,
 	BULLET_BIG,
 	F_BULLET,
-	BACKGROUND,
+	MAP_1,
+
 };
 
 typedef enum eObjectID

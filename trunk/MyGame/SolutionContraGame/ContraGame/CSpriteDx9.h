@@ -73,7 +73,7 @@ public:
 	void					UpdateAnimation(int timeAnimation);
 	
 	void					Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
-	
+	void					RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color, int frameIndex);
 	void					Release();
 };
 

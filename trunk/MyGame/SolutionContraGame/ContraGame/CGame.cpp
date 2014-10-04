@@ -281,14 +281,14 @@ void CGame::Run()
 				Camera::getInstance()->UpdateCamera(&m_UnitTest);
 				*/
 
-				sprintf(fps, "milisecs per frame: %f \n", m_fps);
+				sprintf(fps, "milisecs per frame: %f \n", 1000/m_fps);
 
 				OutputDebugString(fps);
 
 				StateManagerDx9::getInstance()->Update();
 				StateManagerDx9::getInstance()->HandleInput();
 
-				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0); 
+				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0); 
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);		
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
