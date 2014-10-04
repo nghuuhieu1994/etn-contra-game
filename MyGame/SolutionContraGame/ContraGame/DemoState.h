@@ -5,12 +5,15 @@
 #include "StateManagerDx9.h"
 #include "CSpriteDx9.h"
 #include "SpriteManager.h"
+#include "CCamera.h"
+#include "SoundMangerDx9.h"
+#include "Background.h"
 
 class DemoState : public GameState
 {
 private:
 	D3DXVECTOR3			m_UnitTest;
-	CSpriteDx9*			texture;
+	/*CSpriteDx9*			texture;
 	CSpriteDx9*			billmove1;
 	CSpriteDx9*			billmove2;
 	CSpriteDx9*			billmove3;
@@ -19,8 +22,8 @@ private:
 	CSpriteDx9*			billjump;
 	CSpriteDx9*			fBullet;
 	CSpriteDx9*			backGround;
-	eSpriteEffect		m_testSpriteEffect;
-
+	eSpriteEffect		m_testSpriteEffect;*/
+	Background* m_background;
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}

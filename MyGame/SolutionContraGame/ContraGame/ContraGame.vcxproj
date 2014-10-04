@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CAnimationDx9.h" />
     <ClInclude Include="CGame.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="VectorDx9.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CAnimationDx9.cpp" />
     <ClCompile Include="CGame.cpp" />

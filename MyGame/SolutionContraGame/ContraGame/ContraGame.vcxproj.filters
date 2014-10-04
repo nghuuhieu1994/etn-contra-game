@@ -74,6 +74,9 @@
     <ClCompile Include="TestSpriteState.cpp">
       <Filter>SourceFile\ContraGame\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>SourceFile\FrameWork\Object\Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -147,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="TestSpriteState.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>HeaderFile\FrameWork\Object\Background</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +245,12 @@
     </Filter>
     <Filter Include="SourceFile\FrameWork\Object\ObjectState">
       <UniqueIdentifier>{83c87a31-df63-431b-b95e-be726d15f113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\FrameWork\Object\Background">
+      <UniqueIdentifier>{4e91411b-35f9-4c76-a5bf-692da8b5b9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\Object\Background">
+      <UniqueIdentifier>{d975ad88-fadf-468a-8651-2a57cb6902fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

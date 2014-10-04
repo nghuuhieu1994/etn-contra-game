@@ -40,7 +40,7 @@ public:
 	void			setIndexStart(int _start);
 	
 	void			setIndexEnd(int _end);
-
+	void			setCurrentFrame(int Index);
 	void			NextSourceRect();
 
 	RECT*			getSourceRect();
