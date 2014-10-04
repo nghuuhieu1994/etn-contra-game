@@ -95,6 +95,14 @@ void CAnimationDx9::UpdateAnimation(int timeNexframe)
 	}
 }
 
+void CAnimationDx9::NextSourceRect()
+{
+	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
+	m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
+	m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
+	m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
+}
+
 D3DXVECTOR2 CAnimationDx9::getFrameSize()
 {
 	return D3DXVECTOR2((float)this->m_widthFrame, (float)this->m_heightFrame);

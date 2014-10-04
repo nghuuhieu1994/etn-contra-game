@@ -71,6 +71,9 @@
     <ClCompile Include="CObjectStateDx9.cpp">
       <Filter>SourceFile\FrameWork\Object\ObjectState</Filter>
     </ClCompile>
+    <ClCompile Include="TestSpriteState.cpp">
+      <Filter>SourceFile\ContraGame\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="CObjectStateDx9.h">
       <Filter>HeaderFile\FrameWork\Object\ObjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSpriteState.h">
+      <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

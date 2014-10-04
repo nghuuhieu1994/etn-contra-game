@@ -7,18 +7,24 @@ Physic::Physic()
 
 bool Physic::CheckMovementRangeWidth()
 {
-	if(m_Position.x < m_MovementRange.left || m_Position.x > m_MovementRange.right)
+	if(m_MovementRange != 0)
 	{
-		return true;
+		if(m_Position.x < m_MovementRange->left || m_Position.x > m_MovementRange->right)
+		{
+			return true;
+		}
 	}
 	return false;
 }
 
 bool Physic::CheckMovementRangeHeight()
 {
-	if(m_Position.y < m_MovementRange.bottom || m_Position.y > m_MovementRange.top)
+	if(m_MovementRange != 0)
 	{
-		return true;
+		if(m_Position.y < m_MovementRange->bottom || m_Position.y > m_MovementRange->top)
+		{
+			return true;
+		}
 	}
 	return false;
 }

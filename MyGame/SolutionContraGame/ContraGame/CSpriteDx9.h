@@ -8,8 +8,8 @@
 class CSpriteDx9
 {
 private:
-	CAnimationDx9*			m_AnimationAction;
 
+	CAnimationDx9*			m_AnimationAction;
 	CTextureDx9*			m_MyTexture;
 	
 	int						m_Column;
@@ -26,6 +26,8 @@ private:
 	D3DXVECTOR2				m_RotateCenter;
 	D3DXVECTOR2				m_ScaleCenter;
 public:
+	void NextFrame() { m_AnimationAction->NextFrame(); }
+	void NextSourceRect() { m_AnimationAction->NextSourceRect(); }
 	void					setAnimationAction(CAnimationDx9* _animationaction){ m_AnimationAction = _animationaction; }
 	CAnimationDx9*			getAnimationAction()const { return m_AnimationAction; }
 
@@ -66,7 +68,7 @@ public:
 
 	CAnimationDx9*			getAnimation();
 
-	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor = 0xFF000000);
+	void					LoadContent(LPDIRECT3DDEVICE9 lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor = 0xFFFF00FF);
 
 	void					UpdateAnimation(int timeAnimation);
 	

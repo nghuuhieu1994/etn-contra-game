@@ -23,7 +23,7 @@ class Physic
 	D3DXVECTOR2			m_Accelerate;
 	eDirection			m_Direction;
 	Collision			m_Collision;
-	RECT				m_MovementRange;
+	RECT*				m_MovementRange;
 	vector<Collision>	m_ListCollision;
 
 public:
@@ -42,10 +42,14 @@ public:
 	Physic();
 	void SetMovementRange(int maxTop, int maxLeft, int maxRight, int maxBottom)
 	{
-		m_MovementRange.top		= maxTop;
-		m_MovementRange.left	= maxLeft;
-		m_MovementRange.right	= maxRight;
-		m_MovementRange.bottom	= maxBottom;
+		if(m_MovementRange == 0)
+		{
+			m_MovementRange = new RECT();
+		}
+		m_MovementRange->top	= maxTop;
+		m_MovementRange->left	= maxLeft;
+		m_MovementRange->right	= maxRight;
+		m_MovementRange->bottom	= maxBottom;
 	}
 
 	bool CheckMovementRangeWidth();

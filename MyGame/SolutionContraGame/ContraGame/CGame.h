@@ -14,7 +14,7 @@
 #include "CSurfaceDx9.h"
 #include "CGameLog.h"
 #include "CCamera.h"
-
+#include "TestSpriteState.h"
 #include "DemoState.h"
 
 class CGame
