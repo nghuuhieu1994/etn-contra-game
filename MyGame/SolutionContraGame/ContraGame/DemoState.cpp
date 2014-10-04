@@ -2,13 +2,31 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+<<<<<<< .mine
+		//texture->LoadContent(m_lpDirect3DDevice, "resources\\Character\\Bill\\bullet.png", 1, 1, 1, 0xffff00ff);
+	texture = SpriteManager::getInstance()->getSprite(eSpriteID::BILL_JUMP);
+	billmove1 = SpriteManager::getInstance()->getSprite(eSpriteID::BILL_MOVE_1);
+	billmove2 =	SpriteManager::getInstance()->getSprite(eSpriteID::BILL_MOVE_2);
+	billmove3 =	SpriteManager::getInstance()->getSprite(eSpriteID::BILL_MOVE_3);
+	billmove4 =	SpriteManager::getInstance()->getSprite(eSpriteID::BILL_MOVE_4);
+=======
 	//texture->LoadContent(m_lpDirect3DDevice, "resources\\Character\\Bill\\bullet.png", 1, 1, 1, 0xffff00ff);
 	//texture = SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_JUMP);
 	//billmove1 = SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_1);
 	//billmove2 =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_2);
 	//billmove3 =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_3);
 	//billmove4 =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_4);
+>>>>>>> .r48
 
+<<<<<<< .mine
+	for(int i = 0; i < 3; i++)
+	{
+		billmove5[i] =	SpriteManager::getInstance()->getSprite(eSpriteID::BILL_MOVE_5);
+	}
+	backGround = SpriteManager::getInstance()->getSprite(eSpriteID::BACKGROUND);
+	billjump  =	SpriteManager::getInstance()->getSprite(eSpriteID::BILL_JUMP);	
+	fBullet  =	SpriteManager::getInstance()->getSprite(eSpriteID::F_BULLET);	
+=======
 	//for(int i = 0; i < 3; i++)
 	//{
 	//	billmove5[i] =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_MOVE_5);
@@ -16,6 +34,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//backGround = SpriteManager::getInstance()->GetSprite(eSpriteID::BACKGROUND);
 	//billjump  =	SpriteManager::getInstance()->GetSprite(eSpriteID::BILL_JUMP);	
 	//fBullet  =	SpriteManager::getInstance()->GetSprite(eSpriteID::F_BULLET);	
+>>>>>>> .r48
 	m_UnitTest.x = 400;
 	m_UnitTest.y = 300;
 	//m_UnitTest.z = 0;
@@ -81,6 +100,67 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 //}
 //	
 
+<<<<<<< .mine
+int move_x_1 = 0;
+int speedX= 1;
+int speedY = 1;
+float angle_1 = 0;
+float scale = 0.1f;
+int flag = 1;
+float _x_1 = 100;
+float _y_1 = 300;
+float _x2 = 200;
+float _y2 = 300;
+float _x3 = 0;
+float _y3 = 100;
+float _x_j = 400;
+float _y_j = 0;
+
+void Rotate(float &x, float &y, float angle)
+{
+	if(move_x_1 >= 750 || move_x_1 < 0 )
+		speedX *= -1;
+	move_x_1 += 3*speedX;
+	x = move_x_1 + 40 * cos(angle);
+	//x = hoanh do tam xoay + ban kinh * cos(goc xoay)
+	y = 300 + 40 * sin(angle);
+	//y = tung do tam xoay + ban kinh * sin(goc xoay)
+	
+}
+
+void Diagonal(float &x, float &y)
+{
+	y = x + 5;
+	x += 2*speedX;
+}
+
+void Sin(float &x, float &y)
+{
+	y = sin(x * 3.14 / 180.0) * 50 + 200;
+	if(x >= 800)
+		speedX *= -1;
+	x += 2*speedX;
+}
+
+void Scale(float &s)
+{
+	if(s == 1.0f || s == 2.0f)
+		flag *= -1;
+	s = s + (flag * 0.01f);
+}
+
+void Jump(float &x, float &y)
+{
+	x = 100;
+	if(y > 600 || y < 0)
+		speedY *= -1;
+	y += 2*speedY;
+	
+}
+	
+
+=======
+>>>>>>> .r48
 void DemoState::HandleInput()
 {
 }

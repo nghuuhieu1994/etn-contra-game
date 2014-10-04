@@ -7,6 +7,8 @@
 #include <d3dx9.h>
 #include <vector>
 
+class Object;
+
 using namespace std;
 
 struct Collision
@@ -15,7 +17,6 @@ struct Collision
 	eDirection	m_CollidePosition;
 };
 
-class Object;
 class Physic
 {
 	D3DXVECTOR3			m_Position;
@@ -27,17 +28,17 @@ class Physic
 	vector<Collision>	m_ListCollision;
 
 public:
-	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
-	D3DXVECTOR3		getPosition(){ return m_Position; }
+	void			setPosition(D3DXVECTOR3 _position)	{ m_Position = _position; }
+	D3DXVECTOR3		getPosition()	{ return m_Position; }
 
-	void			setVelocity(D3DXVECTOR2 _velocity){ m_Velocity = _velocity; }
-	D3DXVECTOR2		getVelocity(){ return m_Velocity; }
+	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
+	D3DXVECTOR2		getVelocity()	{ return m_Velocity; }
 
-	void			setAccelerate(D3DXVECTOR2 _accelerate){ m_Accelerate = _accelerate; }
-	D3DXVECTOR2		getAccelerate(){ return m_Accelerate; }
+	void			setAccelerate(D3DXVECTOR2 _accelerate)	{ m_Accelerate = _accelerate; }
+	D3DXVECTOR2		getAccelerate()	{ return m_Accelerate; }
 
-	void			setDirection(eDirection _direction){ m_Direction = _direction; }
-	eDirection		getDirection(){ return m_Direction; }
+	void			setDirection(eDirection _direction)	{ m_Direction = _direction; }
+	eDirection		getDirection()	{ return m_Direction; }
 
 	Physic();
 	void SetMovementRange(int maxTop, int maxLeft, int maxRight, int maxBottom)

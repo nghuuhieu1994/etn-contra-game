@@ -23,7 +23,7 @@ void SpriteManager::LoadSpriteContent(LPDIRECT3DDEVICE9 _lpDirectDevice, const c
 	m_ListSprite[eID] = sprite;
 }
 
-CSpriteDx9* SpriteManager::GetSprite(eSpriteID eID)
+CSpriteDx9* SpriteManager::getSprite(eSpriteID eID)
 {
 	map<eSpriteID, CSpriteDx9*>::iterator i;
 
