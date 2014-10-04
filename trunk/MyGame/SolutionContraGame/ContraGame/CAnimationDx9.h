@@ -41,7 +41,8 @@ public:
 	
 	void			setIndexEnd(int _end);
 	void			setCurrentFrame(int Index);
-	void			NextSourceRect();
+
+	void			setSourceRectAtIndex(int Index);
 
 	RECT*			getSourceRect();
 	

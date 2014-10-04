@@ -104,10 +104,10 @@ void CAnimationDx9::UpdateAnimation(int timeNexframe)
 	}
 }
 
-void CAnimationDx9::NextSourceRect()
+void CAnimationDx9::setSourceRectAtIndex(int Index)
 {
-	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
-	m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
+	m_sourceRect->top			= (Index / m_columnFrame) * m_heightFrame;
+	m_sourceRect->left			= (Index % m_columnFrame) * m_widthFrame;
 	m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
 	m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
 }
