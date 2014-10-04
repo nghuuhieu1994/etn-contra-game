@@ -41,11 +41,13 @@ public:
 	
 	void			setIndexEnd(int _end);
 
+	void			NextSourceRect();
+
 	RECT*			getSourceRect();
 	
 	void			NextFrame();
 	
-	void UpdateAnimation(int timeNexframe);
+	void			UpdateAnimation(int timeNexframe);
 
 	D3DXVECTOR2		getFrameSize();
 

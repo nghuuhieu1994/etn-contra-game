@@ -1,5 +1,6 @@
 #ifndef __DEMO_STATE_H__
 #define __DEMO_STATE_H__
+
 #include "GameState.h"
 #include "StateManagerDx9.h"
 #include "CSpriteDx9.h"

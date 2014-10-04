@@ -96,6 +96,7 @@
     <ClInclude Include="SoundMangerDx9.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="StateManagerDx9.h" />
+    <ClInclude Include="TestSpriteState.h" />
     <ClInclude Include="VectorDx9.h" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +123,7 @@
     <ClCompile Include="SoundMangerDx9.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="StateManagerDx9.cpp" />
+    <ClCompile Include="TestSpriteState.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
