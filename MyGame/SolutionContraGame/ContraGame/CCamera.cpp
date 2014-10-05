@@ -1,12 +1,12 @@
 #include "CCamera.h"
-
+#include "CGlobal.h"
 Camera* Camera::s_Instance = 0;
 
 Camera::Camera()
 {
 	D3DXMatrixIdentity(&m_matrixTranslate);
 	m_matrixTranslate._41 = 0;
-	m_matrixTranslate._42 = 600;
+	m_matrixTranslate._42 = HEIGHT;
 	m_matrixTranslate._22 = -1.0f;
 }
 
