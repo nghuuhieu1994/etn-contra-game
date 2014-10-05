@@ -176,7 +176,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	SpriteManager::getInstance()->InitializeListSprite(m_lpDirect3DDevice);
 	StateManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
 	//StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
-	StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
+	StateManagerDx9::getInstance()->AddElement(new MenuGame(eIDStateGame::MENUGAME));
 	return true;
 }
 

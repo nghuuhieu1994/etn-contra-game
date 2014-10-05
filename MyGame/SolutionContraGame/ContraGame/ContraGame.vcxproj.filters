@@ -83,6 +83,9 @@
     <ClCompile Include="RambleIdleState.cpp">
       <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
     </ClCompile>
+    <ClCompile Include="MenuGame.cpp">
+      <Filter>SourceFile\ContraGame\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="RamboIdleState.h">
       <Filter>HeaderFile\FrameWork\Object\Rambo\RamboState</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGame.h">
+      <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

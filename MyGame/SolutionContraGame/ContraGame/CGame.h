@@ -16,7 +16,7 @@
 #include "CCamera.h"
 #include "TestSpriteState.h"
 #include "DemoState.h"
-
+#include "MenuGame.h"
 class CGame
 {
 private:
