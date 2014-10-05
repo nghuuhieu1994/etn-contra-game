@@ -49,6 +49,10 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::F_BULLET, 4, 1, 4);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::MAP_1, 92, 1, 92);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::MENUBG, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::ICON, 1, 1, 1);
+
 }
 
 void SpriteManager::Release()

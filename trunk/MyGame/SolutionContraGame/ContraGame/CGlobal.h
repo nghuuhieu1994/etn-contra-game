@@ -1,6 +1,11 @@
 #ifndef __CGLOBAL_H__
 #define __CGLOBAL_H__
 
+
+
+
+
+
 #define			WIDTH		800
 #define			HEIGHT		600
 #define			FRAME_RATE	60
@@ -41,7 +46,10 @@ typedef enum eSoundID
 {
 	BROKEN = 0,
 	THU_CUOI_SONG = 1,
+	THEME_SONG_S_1
 };
+
+
 
 typedef enum eSpriteID
 {
@@ -56,6 +64,8 @@ typedef enum eSpriteID
 	F_BULLET,
 	MAP_1,
 
+	MENUBG,
+	ICON
 };
 
 typedef enum eObjectID
@@ -75,6 +85,7 @@ typedef enum eIDStateGame
 {
 	INTRO = 0,
 	TEST_SPRITE = 1,
+	MENUGAME
 };
 
 class CGlobal

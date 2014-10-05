@@ -24,7 +24,9 @@ void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound)
 {
 	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::BROKEN, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::THU_CUOI_SONG, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\s_Theme_S_1.wav", eSoundID::THEME_SONG_S_1, _lpDSound);
 	// need more and more sound rs
+
 }
 SoundBuffer* SoundManagerDx9::getSoundBuffer(eSoundID eID)
 {

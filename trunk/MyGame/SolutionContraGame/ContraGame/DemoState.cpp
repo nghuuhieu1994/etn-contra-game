@@ -34,6 +34,7 @@ void DemoState::Update()
 		m_UnitTest.x= 0;
 	}
 
+	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	Camera::getInstance()->UpdateCamera(&m_UnitTest);
 }
 
