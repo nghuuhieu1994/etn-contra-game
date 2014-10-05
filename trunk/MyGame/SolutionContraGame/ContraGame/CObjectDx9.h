@@ -6,14 +6,17 @@
 class ObjectState;
 class Object
 {	
+protected:
 	ObjectState* state;
 	eObjectID m_eObjectID;
+	eDirection m_Direction;
 public:
 	Object();
-	void UpdateCollision(Object* checkingObject);
-	void UpdateMovement();
-	void Render(SPRITEHANDLE spriteHandle);
-	~Object();
+	Object(D3DXVECTOR3 _position, eDirection _direction, ObjectState* _state);
+	virtual void UpdateCollision(Object* checkingObject);
+	virtual void UpdateMovement();
+	virtual void Render(SPRITEHANDLE spriteHandle);
+	virtual ~Object();
 };
 
 #endif

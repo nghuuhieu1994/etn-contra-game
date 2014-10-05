@@ -2,7 +2,7 @@
 
 void TestSpriteState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	testSprite = SpriteManager::getInstance()->GetSprite(eSpriteID::MAP_1);
+	testSprite = SpriteManager::getInstance()->getSprite(eSpriteID::MAP_1);
 }
 
 float scalexxx = 1.0f;
@@ -19,7 +19,7 @@ void TestSpriteState::HandleInput()
 	}
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_RIGHT))
 	{
-		testSprite->NextFrame();
+		
 	}
 }
 

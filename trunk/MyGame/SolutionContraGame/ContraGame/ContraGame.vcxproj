@@ -92,6 +92,8 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="CObjectDx9.h" />
     <ClInclude Include="CPhysicDx9.h" />
+    <ClInclude Include="Rambo.h" />
+    <ClInclude Include="RamboIdleState.h" />
     <ClInclude Include="RectangleDx9.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
@@ -120,6 +122,8 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
+    <ClCompile Include="RambleIdleState.cpp" />
+    <ClCompile Include="Rambo.cpp" />
     <ClCompile Include="RectangleDx9.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
