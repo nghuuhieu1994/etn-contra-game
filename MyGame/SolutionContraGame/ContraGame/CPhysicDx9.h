@@ -3,6 +3,7 @@
 
 #include "CObjectDx9.h"
 #include "CGameTimeDx9.h"
+
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <vector>
@@ -17,6 +18,7 @@ struct Collision
 	eDirection	m_CollidePosition;
 };
 
+class ObjectState;
 class Physic
 {
 	D3DXVECTOR3			m_Position;
@@ -28,8 +30,9 @@ class Physic
 	vector<Collision>	m_ListCollision;
 
 public:
-	void			setPosition(D3DXVECTOR3 _position)	{ m_Position = _position; }
-	D3DXVECTOR3		getPosition()	{ return m_Position; }
+	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
+	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
+	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
 
 	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
 	D3DXVECTOR2		getVelocity()	{ return m_Velocity; }

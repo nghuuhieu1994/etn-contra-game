@@ -6,6 +6,10 @@
 #define			FRAME_RATE	60
 #define			GAMETITLE	"Contra"
 
+#ifndef SPRITEHANDLE
+#define			SPRITEHANDLE LPD3DXSPRITE
+#endif // !1
+
 #define SAFE_DELETE(p)       if(p) { delete (p);     (p)=NULL; }
 
 #define SAFE_DELETE_ARRAY(p) if(p) { delete[] (p);   (p)=NULL; }
