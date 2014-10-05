@@ -22,14 +22,18 @@ void DemoState::Update()
 	{
 		m_UnitTest.x++;
 	}
+
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 	{
+		
 		m_UnitTest.x--;
 	}
+
 	if(m_UnitTest.x < 0)
 	{
 		m_UnitTest.x= 0;
 	}
+
 	Camera::getInstance()->UpdateCamera(&m_UnitTest);
 }
 
