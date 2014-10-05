@@ -5,6 +5,13 @@ Object::Object()
 
 }
 
+Object::Object(D3DXVECTOR3 _position, eDirection _direction, ObjectState* _state)
+{
+	this->state = _state;
+	this->state->getPhysic()->setPosition(_position);
+	this->state->getPhysic()->setDirection(_direction);
+}
+
 void Object::UpdateCollision(Object* checkingObject)
 {
 	ObjectState* tempState = 0;

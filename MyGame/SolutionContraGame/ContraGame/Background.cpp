@@ -52,7 +52,7 @@ void Background::Render(LPD3DXSPRITE spriteHandle)
 	{
 		for (int j = 0; j < m_Column; j++)
 		{
-			SpriteManager::getInstance()->GetSprite(eSpriteID::MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2(16 + j * 32, 300 - 16 - i * 32), eSpriteEffect::None, 0.0f, 1.0f, 1.0f, 0xffffffff, m_TileMap[i][j]);
+			SpriteManager::getInstance()->getSprite(eSpriteID::MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2(16 + j * 32, 300 - 16 - i * 32), eSpriteEffect::None, 0.0f, 1.0f, 1.0f, 0xffffffff, m_TileMap[i][j]);
 		}
 	}
 }
