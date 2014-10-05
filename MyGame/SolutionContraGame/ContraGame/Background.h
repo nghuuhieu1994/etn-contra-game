@@ -3,6 +3,7 @@
 #include "CGameLog.h"
 #include "SpriteManager.h"
 #include "CSpriteDx9.h"
+#include "CGlobal.h"
 
 class Background
 {

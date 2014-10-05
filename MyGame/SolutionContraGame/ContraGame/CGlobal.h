@@ -22,6 +22,14 @@
 //#pragma message(__FILE__ ": DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800")
 #endif
 
+#ifndef TILE_WIDTH
+#define TILE_WIDTH 64
+#endif
+
+#ifndef TILE_HEIGHT
+#define TILE_HEIGHT 64
+#endif
+
 typedef enum eSpriteEffect
 {
 	None = 0,
