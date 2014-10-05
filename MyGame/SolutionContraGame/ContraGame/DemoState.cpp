@@ -2,6 +2,7 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+
 	m_UnitTest.x = 400;
 	m_UnitTest.y = 300;
 	m_UnitTest.z = 0;
