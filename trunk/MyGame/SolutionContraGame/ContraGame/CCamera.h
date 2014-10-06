@@ -5,6 +5,7 @@
 #include <d3d9.h>
 #include "CGameLog.h"
 #include "CGlobal.h"
+#include "SpriteManager.h"
 
 class Camera
 {
@@ -14,6 +15,7 @@ class Camera
 public:
 	static Camera*		getInstance();
 	void				UpdateCamera(D3DXVECTOR3* cameramanLocation);
+	void				Render(SPRITEHANDLE spriteHandle);
 	D3DXMATRIX			GetMatrixTranslate();
 	~Camera();
 };

@@ -1,11 +1,6 @@
 #ifndef __CGLOBAL_H__
 #define __CGLOBAL_H__
 
-
-
-
-
-
 #define			WIDTH		800
 #define			HEIGHT		600
 #define			FRAME_RATE	60
@@ -49,8 +44,6 @@ typedef enum eSoundID
 	THEME_SONG_S_1
 };
 
-
-
 typedef enum eSpriteID
 {
 	BILL_JUMP = 0,
@@ -65,7 +58,8 @@ typedef enum eSpriteID
 	MAP_1,
 
 	MENUBG,
-	ICON
+	ICON,
+	GRID,
 };
 
 typedef enum eObjectID
