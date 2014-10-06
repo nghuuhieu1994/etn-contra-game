@@ -17,9 +17,10 @@ public:
 	ObjectState();
 	CSpriteDx9* getSprite()const {return m_Sprite;}
 	Physic* getPhysic()const {return m_Physic;}
-	virtual ObjectState* UpdateCollision(Object* hostObject, Object* checkingObject);
-	virtual ObjectState* UpdateMovement(Object* hostObject);
-	void Render(SPRITEHANDLE spriteHandle);
+	virtual void UpdateAnimation() = 0;
+	virtual ObjectState* UpdateCollision(Object* hostObject, Object* checkingObject) = 0;
+	virtual ObjectState* UpdateMovement(Object* hostObject) = 0;
+	virtual void Render(SPRITEHANDLE spriteHandle) = 0;
 	virtual ~ObjectState();
 };
 

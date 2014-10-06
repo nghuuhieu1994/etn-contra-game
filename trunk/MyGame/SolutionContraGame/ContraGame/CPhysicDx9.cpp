@@ -2,7 +2,9 @@
 
 Physic::Physic()
 {
-
+	m_Position		= D3DXVECTOR3(400, 300, 0);
+	m_Velocity		= D3DXVECTOR2(0, 0);
+	m_Accelerate	= D3DXVECTOR2(0, 0);
 }
 
 bool Physic::CheckMovementRangeWidth()
@@ -48,7 +50,7 @@ void Physic::UpdateMovement(CGameTimeDx9* gameTime)
 	m_Position.y += m_Velocity.y * deltaTime;
 }
 
-void Physic::CheckCollision(Object _object)
+void Physic::CheckCollision(Object* _object)
 {
 
 }

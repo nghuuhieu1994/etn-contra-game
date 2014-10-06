@@ -30,11 +30,6 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 	
 }
 
-void Camera::Render(SPRITEHANDLE spriteHandle)
-{
-	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(spriteHandle, 
-}
-
 D3DXMATRIX Camera::GetMatrixTranslate()
 {
 	return m_matrixTranslate;

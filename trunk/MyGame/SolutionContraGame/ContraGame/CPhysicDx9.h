@@ -60,7 +60,7 @@ public:
 	bool CheckMovementRangeHeight();
 
 	void UpdateMovement(CGameTimeDx9* gameTime);
-	void CheckCollision(Object _object);
+	void CheckCollision(Object* _object);
 	~Physic();
 };
 

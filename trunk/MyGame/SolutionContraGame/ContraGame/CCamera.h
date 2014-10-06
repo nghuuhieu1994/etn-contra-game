@@ -15,7 +15,6 @@ class Camera
 public:
 	static Camera*		getInstance();
 	void				UpdateCamera(D3DXVECTOR3* cameramanLocation);
-	void				Render(SPRITEHANDLE spriteHandle);
 	D3DXMATRIX			GetMatrixTranslate();
 	~Camera();
 };
