@@ -9,6 +9,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_background = new Background();
 	m_background->Initialize("resources\\Map\\1\\1.map");
+	m_Rambo = new Rambo();
 }
 
 void DemoState::HandleInput()
@@ -18,29 +19,34 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
-	if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
-	{
-		m_UnitTest.x++;
-	}
+	//if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
+	//{
+	//	m_UnitTest.x++;
+	//}
 
-	if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
-	{
-		
-		m_UnitTest.x--;
-	}
+	//if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
+	//{
+	//	
+	//	m_UnitTest.x--;
+	//}
 
-	if(m_UnitTest.x < 0)
-	{
-		m_UnitTest.x= 0;
-	}
-
-	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
-	Camera::getInstance()->UpdateCamera(&m_UnitTest);
+	//if(m_UnitTest.x < 0)
+	//{
+	//	m_UnitTest.x= 0;
+	//}
+	m_Rambo->HandleInput();
+	m_Rambo->UpdateAnimation();
+	
+	//m_Rambo->
+	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+	Camera::getInstance()->UpdateCamera(&m_Rambo->getPosition());
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_background->Render(_lpDSpriteHandle);
+	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+	m_Rambo->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

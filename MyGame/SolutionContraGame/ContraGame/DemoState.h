@@ -8,6 +8,7 @@
 #include "CCamera.h"
 #include "SoundMangerDx9.h"
 #include "Background.h"
+#include "Rambo.h"
 
 class DemoState : public GameState
 {
@@ -23,7 +24,8 @@ private:
 	CSpriteDx9*			fBullet;
 	CSpriteDx9*			backGround;
 	eSpriteEffect		m_testSpriteEffect;*/
-	Background* m_background;
+	Background*			m_background;
+	Rambo*				m_Rambo;
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}

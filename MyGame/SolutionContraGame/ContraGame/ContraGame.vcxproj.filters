@@ -80,11 +80,14 @@
     <ClCompile Include="Rambo.cpp">
       <Filter>SourceFile\FrameWork\Object\Rambo</Filter>
     </ClCompile>
-    <ClCompile Include="RambleIdleState.cpp">
-      <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
-    </ClCompile>
     <ClCompile Include="MenuGame.cpp">
       <Filter>SourceFile\ContraGame\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="RamboIdleState.cpp">
+      <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
+    </ClCompile>
+    <ClCompile Include="RamboState.cpp">
+      <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="MenuGame.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="RamboState.h">
+      <Filter>HeaderFile\FrameWork\Object\Rambo\RamboState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
