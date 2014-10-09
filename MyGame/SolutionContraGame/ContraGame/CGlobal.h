@@ -1,5 +1,7 @@
 #ifndef __CGLOBAL_H__
 #define __CGLOBAL_H__
+#include <d3d9.h>
+#include <d3dx9.h>
 
 #define			WIDTH		800
 #define			HEIGHT		600
@@ -60,12 +62,26 @@ typedef enum eSpriteID
 	SPRITE_MENUBG,
 	SPRITE_ICON,
 	SPRITE_GRID,
+
+	// All ID Enemy Sprite
+	SPRITE_EXPLOISION,
+	SPRITE_SNIPER_STANDING_BOT,
+	SPRITE_SNIPER_STANDING_TOP,
+	SPRITE_SNIPER_STANDING_MID,
+
+
+	// End all ID Enemy Sprite
+
 };
 
 typedef enum eObjectState
 {
-	STATE_ALIVE = 0,
-	STATE_DEATH = 1,
+	STATE_ALIVE_IDLE = 0,
+	STATE_ALIVE_MOVE = 1,
+	STATE_ATTACK,
+	STATE_BEFORE_DEATH,
+	STATE_DEATH,
+	
 	STATE_BILL_MOVE_1,	
 	STATE_BILL_MOVE_2,
 	STATE_BILL_MOVE_3,
@@ -73,6 +89,8 @@ typedef enum eObjectState
 	STATE_BILL_IDLE,
 	STATE_BILL_JUMP,
 	STATE_BILL_LIE_DOWN,
+
+
 };
 
 typedef enum eObjectID

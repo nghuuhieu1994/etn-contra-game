@@ -74,6 +74,9 @@
     <ClCompile Include="CSpriteDx9.cpp">
       <Filter>SourceFile\FrameWork\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="SniperStanding.cpp">
+      <Filter>SourceFile\ContraGame\EnemyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -147,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Rambo.h">
       <Filter>HeaderFile\FrameWork\Object\Rambo</Filter>
+    </ClInclude>
+    <ClInclude Include="SniperStanding.h">
+      <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +245,12 @@
     </Filter>
     <Filter Include="SourceFile\FrameWork\Object\Rambo">
       <UniqueIdentifier>{5405f40a-46c4-4f00-9baa-6f7b354966df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\ContraGame\EnemyObject">
+      <UniqueIdentifier>{fcc03efb-16bb-4547-b91b-fbfad53b06a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceFile\ContraGame\EnemyObject">
+      <UniqueIdentifier>{a7803692-369a-4cce-90f0-3ac5b73efaa8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

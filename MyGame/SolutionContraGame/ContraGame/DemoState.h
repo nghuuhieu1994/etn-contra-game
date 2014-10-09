@@ -9,6 +9,7 @@
 #include "SoundMangerDx9.h"
 #include "Background.h"
 #include "Rambo.h"
+#include "SniperStanding.h"
 
 class DemoState : public GameState
 {
@@ -26,6 +27,7 @@ private:
 	eSpriteEffect		m_testSpriteEffect;*/
 	Background*			m_background;
 	Rambo*				m_Rambo;
+	SniperStanding*		m_SniperStanding;
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}

@@ -19,6 +19,7 @@ struct Collision
 };
 
 class ObjectState;
+
 class Physic
 {
 	D3DXVECTOR3			m_Position;
