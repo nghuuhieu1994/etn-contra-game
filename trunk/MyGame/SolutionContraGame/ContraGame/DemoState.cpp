@@ -11,37 +11,27 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_background->Initialize("resources\\Map\\1\\1.map");
 	
 	m_Rambo = new Rambo(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT);
+	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT);
+	m_SniperStanding->Initialize();
 }
 
 void DemoState::HandleInput()
 {
-
+	m_Rambo->HandleInput();
 }
 
 void DemoState::Update()
 {
-	//if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
-	//{
-	//	m_UnitTest.x++;
-	//}
 
-	//if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
-	//{
-	//	
-	//	m_UnitTest.x--;
-	//}
-
-	//if(m_UnitTest.x < 0)
-	//{
-	//	m_UnitTest.x= 0;
-	//}
-
-	
-	m_Rambo->HandleInput();
+	/*m_Rambo->HandleInput();*/
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateMovement();
 	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPhysic()->getPositionVec3());
+
+	m_SniperStanding->UpdateAnimation();
+	m_SniperStanding->UpdateMovement();
+
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -49,6 +39,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_background->Render(_lpDSpriteHandle);
 	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 	m_Rambo->Render(_lpDSpriteHandle);
+	m_SniperStanding->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

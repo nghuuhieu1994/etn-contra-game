@@ -201,10 +201,12 @@ void CGame::Run()
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
-				sprintf(fps, "milisecs per frame: %f \n", 1000/m_fps);
+				sprintf(fps, "frame per sec: %f \n", 1000/m_fps);
 				OutputDebugString(fps);
-				StateManagerDx9::getInstance()->Update();
+
 				StateManagerDx9::getInstance()->HandleInput();
+				StateManagerDx9::getInstance()->Update();
+
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0); 
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);		
@@ -212,7 +214,9 @@ void CGame::Run()
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
+					
 					StateManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
+					
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}

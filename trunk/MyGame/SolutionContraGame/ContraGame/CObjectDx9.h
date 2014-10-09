@@ -9,6 +9,7 @@
 #include <d3d9.h>
 
 class Physic;
+
 class Object
 {	
 protected:
@@ -28,6 +29,7 @@ public:
 	Physic*			getPhysic() const { return m_Physic; }
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
+	
 	virtual void UpdateCollision(Object* checkingObject) = 0;
 	virtual void UpdateMovement() = 0;
 	virtual void Render(SPRITEHANDLE spriteHandle) = 0;

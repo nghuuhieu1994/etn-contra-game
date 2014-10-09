@@ -93,6 +93,7 @@
     <ClInclude Include="CPhysicDx9.h" />
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Rambo.h" />
+    <ClInclude Include="SniperStanding.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
     <ClInclude Include="SpriteManager.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="CPhysicDx9.cpp" />
     <ClCompile Include="MenuGame.cpp" />
     <ClCompile Include="Rambo.cpp" />
+    <ClCompile Include="SniperStanding.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
     <ClCompile Include="SpriteManager.cpp" />

@@ -21,7 +21,7 @@ void Rambo::HandleInput()
 	m_UpdateFlag = 0;
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE:
+	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_DEATH:
 		break;
@@ -79,7 +79,7 @@ void Rambo::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE:
+	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_DEATH:
 		break;
@@ -127,7 +127,7 @@ void Rambo::UpdateMovement()
 {
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE:
+	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_DEATH:
 		break;
