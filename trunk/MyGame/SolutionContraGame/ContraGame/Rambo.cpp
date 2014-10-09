@@ -90,7 +90,7 @@ void Rambo::UpdateAnimation()
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
 			}
-			m_Sprite->UpdateAnimation(200);
+			m_Sprite->UpdateAnimation(400);
 		}
 		break;
 	case STATE_BILL_MOVE_2:
