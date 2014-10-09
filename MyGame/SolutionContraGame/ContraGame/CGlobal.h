@@ -65,6 +65,7 @@ typedef enum eSpriteID
 
 	// All ID Enemy Sprite
 	SPRITE_EXPLOISION,
+	SPRITE_BULLET,
 	SPRITE_SNIPER_STANDING_BOT,
 	SPRITE_SNIPER_STANDING_TOP,
 	SPRITE_SNIPER_STANDING_MID,
@@ -119,6 +120,7 @@ public:
 	static bool IsWindowMode;
 	static bool IsExit;
 	static bool IsMute;
+	static D3DXVECTOR2	RamboPosition;
 };
 
 #endif

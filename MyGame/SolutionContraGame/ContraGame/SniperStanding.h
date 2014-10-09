@@ -10,6 +10,8 @@ private:
 	CSpriteDx9* sprite_bot;
 	CSpriteDx9* sprite_mid;
 	CSpriteDx9* sprite_dead;
+	CSpriteDx9* Bullet[15];
+	bool		m_canAttack;
 public:
 	SniperStanding();
 	SniperStanding(D3DXVECTOR3 _position, eDirection _direction);

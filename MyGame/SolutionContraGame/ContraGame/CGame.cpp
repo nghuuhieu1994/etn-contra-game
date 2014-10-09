@@ -169,7 +169,9 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	this->InitializeDirectSound();
 	CGameTimeDx9::getInstance()->InitGameTime();
 	this->m_fps = 0;
-	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
+
+	//SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
+
 	CInputDx9::getInstance()->InitializeInput();
 	CInputDx9::getInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::getInstance()->InitializeKeyBoardDevice(m_handleWindow);
@@ -234,7 +236,7 @@ void CGame::Exit()
 	SAFE_RELEASE(m_lpDirect3DDevice)
 	//SAFE_DELETE(m_GameTime);
 	CInputDx9::getInstance()->Release();
-	SoundManagerDx9::getInstance()->Release();
+	//SoundManagerDx9::getInstance()->Release();
 	SpriteManager::getInstance()->Release();
 }
 
