@@ -46,7 +46,7 @@ namespace TileMap
 
             return true;
         }
-
+        
         public void ExportBitMap(int _OffSetX, int _OffSetY, Bitmap _bmp)
         {
             int _IndexI = 0;

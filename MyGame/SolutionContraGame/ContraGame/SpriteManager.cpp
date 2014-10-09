@@ -37,23 +37,23 @@ CSpriteDx9* SpriteManager::getSprite(eSpriteID eID)
 
 void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_jump.png", eSpriteID::BILL_JUMP, 4, 1, 4);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_lie.png", eSpriteID::BILL_LIE_DOWN, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_jump.png", eSpriteID::SPRITE_BILL_JUMP, 4, 1, 4);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_lie.png", eSpriteID::SPRITE_BILL_LIE_DOWN, 1, 1, 1);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_1.png", eSpriteID::BILL_MOVE_1, 5, 1, 5);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_2.png", eSpriteID::BILL_MOVE_2, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_3.png", eSpriteID::BILL_MOVE_3, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_4.png", eSpriteID::BILL_MOVE_4, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_5.png", eSpriteID::BILL_MOVE_5, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::BULLET_BIG, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::F_BULLET, 4, 1, 4);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_1.png", eSpriteID::SPRITE_BILL_MOVE_1, 5, 1, 5);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_2.png", eSpriteID::SPRITE_BILL_MOVE_2, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_3.png", eSpriteID::SPRITE_BILL_MOVE_3, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_4.png", eSpriteID::SPRITE_BILL_MOVE_4, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_idle.png", eSpriteID::SPRITE_BILL_IDLE, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::SPRITE_BULLET_BIG, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::SPRITE_F_BULLET, 4, 1, 4);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::MAP_1, 87, 1, 87);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 58, 1, 58);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::MENUBG, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::ICON, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::GRID, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::SPRITE_GRID, 1, 1, 1);
 }
 
 void SpriteManager::Release()

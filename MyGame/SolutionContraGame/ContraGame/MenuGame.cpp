@@ -2,8 +2,8 @@
 #include "DemoState.h"
 void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::MENUBG);
-	m_Icon = SpriteManager::getInstance()->getSprite(eSpriteID::ICON);
+	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG);
+	m_Icon = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON);
 
 	m_MenuPosition.x = WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300;
 

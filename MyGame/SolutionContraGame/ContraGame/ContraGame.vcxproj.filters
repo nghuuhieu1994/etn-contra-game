@@ -8,9 +8,6 @@
     <ClCompile Include="CGame.cpp">
       <Filter>SourceFile\ContraGame</Filter>
     </ClCompile>
-    <ClCompile Include="CSpriteDx9.cpp">
-      <Filter>SourceFile\FrameWork\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="CSurfaceDx9.cpp">
       <Filter>SourceFile\FrameWork\Graphics</Filter>
     </ClCompile>
@@ -41,12 +38,6 @@
     <ClCompile Include="CTimeSpan.cpp">
       <Filter>SourceFile\FrameWork\GameTime</Filter>
     </ClCompile>
-    <ClCompile Include="Vector.cpp">
-      <Filter>SourceFile\FrameWork\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleDx9.cpp">
-      <Filter>SourceFile\FrameWork\Math</Filter>
-    </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>SourceFile\FrameWork\GameStateManager</Filter>
     </ClCompile>
@@ -68,26 +59,20 @@
     <ClCompile Include="DemoState.cpp">
       <Filter>SourceFile\ContraGame\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="CObjectStateDx9.cpp">
-      <Filter>SourceFile\FrameWork\Object\ObjectState</Filter>
-    </ClCompile>
     <ClCompile Include="TestSpriteState.cpp">
       <Filter>SourceFile\ContraGame\GameState</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>SourceFile\FrameWork\Object\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Rambo.cpp">
-      <Filter>SourceFile\FrameWork\Object\Rambo</Filter>
-    </ClCompile>
     <ClCompile Include="MenuGame.cpp">
       <Filter>SourceFile\ContraGame\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="RamboIdleState.cpp">
-      <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
+    <ClCompile Include="Rambo.cpp">
+      <Filter>SourceFile\FrameWork\Object\Rambo</Filter>
     </ClCompile>
-    <ClCompile Include="RamboState.cpp">
-      <Filter>SourceFile\FrameWork\Object\Rambo\RamboState</Filter>
+    <ClCompile Include="CSpriteDx9.cpp">
+      <Filter>SourceFile\FrameWork\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,12 +115,6 @@
     <ClInclude Include="CGameTimeDx9.h">
       <Filter>HeaderFile\FrameWork\GameTime</Filter>
     </ClInclude>
-    <ClInclude Include="VectorDx9.h">
-      <Filter>HeaderFile\FrameWork\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleDx9.h">
-      <Filter>HeaderFile\FrameWork\Math</Filter>
-    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>HeaderFile\FrameWork\GameStateManager</Filter>
     </ClInclude>
@@ -157,26 +136,17 @@
     <ClInclude Include="DemoState.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="CObjectStateDx9.h">
-      <Filter>HeaderFile\FrameWork\Object\ObjectState</Filter>
-    </ClInclude>
     <ClInclude Include="TestSpriteState.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>HeaderFile\FrameWork\Object\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Rambo.h">
-      <Filter>HeaderFile\FrameWork\Object\Rambo</Filter>
-    </ClInclude>
-    <ClInclude Include="RamboIdleState.h">
-      <Filter>HeaderFile\FrameWork\Object\Rambo\RamboState</Filter>
-    </ClInclude>
     <ClInclude Include="MenuGame.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="RamboState.h">
-      <Filter>HeaderFile\FrameWork\Object\Rambo\RamboState</Filter>
+    <ClInclude Include="Rambo.h">
+      <Filter>HeaderFile\FrameWork\Object\Rambo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -228,12 +198,6 @@
     <Filter Include="SourceFile\FrameWork\GameTime">
       <UniqueIdentifier>{0098237f-ac55-4f93-9cc0-f74b8936c59d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HeaderFile\FrameWork\Math">
-      <UniqueIdentifier>{1a6bdb8d-87eb-4649-b825-a37ae00ca60d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SourceFile\FrameWork\Math">
-      <UniqueIdentifier>{2068a128-5ab3-416e-8091-b591c8ec5883}</UniqueIdentifier>
-    </Filter>
     <Filter Include="HeaderFile\FrameWork\GameStateManager">
       <UniqueIdentifier>{bde3dc41-62e6-455e-9972-86d57b8e3d89}</UniqueIdentifier>
     </Filter>
@@ -264,12 +228,6 @@
     <Filter Include="SourceFile\ContraGame\GameState">
       <UniqueIdentifier>{267c7132-fd2b-4da4-85fc-bde1066f2668}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HeaderFile\FrameWork\Object\ObjectState">
-      <UniqueIdentifier>{f7abfe51-1480-4391-a59b-2532d4e556ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SourceFile\FrameWork\Object\ObjectState">
-      <UniqueIdentifier>{83c87a31-df63-431b-b95e-be726d15f113}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceFile\FrameWork\Object\Background">
       <UniqueIdentifier>{4e91411b-35f9-4c76-a5bf-692da8b5b9e3}</UniqueIdentifier>
     </Filter>
@@ -277,16 +235,10 @@
       <UniqueIdentifier>{d975ad88-fadf-468a-8651-2a57cb6902fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="HeaderFile\FrameWork\Object\Rambo">
-      <UniqueIdentifier>{df1f6c05-98f3-48ae-a468-690d67be3ecb}</UniqueIdentifier>
+      <UniqueIdentifier>{32b19c28-3bcd-4985-8659-491384cace54}</UniqueIdentifier>
     </Filter>
     <Filter Include="SourceFile\FrameWork\Object\Rambo">
-      <UniqueIdentifier>{a025f471-3321-460f-8702-1f995c4af3de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="HeaderFile\FrameWork\Object\Rambo\RamboState">
-      <UniqueIdentifier>{74ea0df1-91a4-4ba0-9373-3ba882b016f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SourceFile\FrameWork\Object\Rambo\RamboState">
-      <UniqueIdentifier>{30e6a530-ab14-4022-9224-eddb3607e11d}</UniqueIdentifier>
+      <UniqueIdentifier>{5405f40a-46c4-4f00-9baa-6f7b354966df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

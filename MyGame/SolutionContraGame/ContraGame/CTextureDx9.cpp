@@ -8,6 +8,8 @@ CTextureDx9::CTextureDx9()
 CTextureDx9::CTextureDx9(const CTextureDx9& Texture)
 {
 	m_lpTexture = LPDIRECT3DTEXTURE9(Texture.m_lpTexture);
+	m_Width = Texture.m_Width;
+	m_Height = Texture.m_Height;
 }
 
 CTextureDx9::~CTextureDx9()

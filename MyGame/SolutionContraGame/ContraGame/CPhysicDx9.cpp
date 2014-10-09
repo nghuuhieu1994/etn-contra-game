@@ -2,7 +2,7 @@
 
 Physic::Physic()
 {
-	m_Position		= D3DXVECTOR3(400, 300, 0);
+	//m_Position		= D3DXVECTOR3(400, 300, 0);
 	m_Velocity		= D3DXVECTOR2(0, 0);
 	m_Accelerate	= D3DXVECTOR2(0, 0);
 }
@@ -45,9 +45,12 @@ void Physic::UpdateMovement(CGameTimeDx9* gameTime)
 	float deltaTime = gameTime->getElapsedGameTime().getSeconds();
 	
 	deltaTime = deltaTime/((float)1/FRAME_RATE);
-
+	char fps[100];
+	sprintf(fps, "milisecs per frame: %f \n", deltaTime);
+	OutputDebugString(fps);
 	m_Position.x += m_Velocity.x * deltaTime;
 	m_Position.y += m_Velocity.y * deltaTime;
+	m_Velocity = D3DXVECTOR2(0,0);
 }
 
 void Physic::CheckCollision(Object* _object)

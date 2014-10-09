@@ -23,8 +23,6 @@ private:
 	float					m_Scale;
 	float					m_Rotate;
 	
-	D3DXVECTOR2				m_RotateCenter;
-	D3DXVECTOR2				m_ScaleCenter;
 public:
 	
 	void					setAnimationAction(CAnimationDx9* _animationaction){ m_AnimationAction = _animationaction; }
@@ -50,14 +48,6 @@ public:
 
 	void					setRotate(float _rotate){ m_Rotate = _rotate; }
 	float					getRotate()const { return m_Rotate; }
-
-	void					setRotateCenter(D3DXVECTOR2 _rotateCenter){ m_RotateCenter = _rotateCenter; }
-	D3DXVECTOR2				getRotateCenter()const { return m_RotateCenter; }
-
-	void					setScaleCenter(D3DXVECTOR2 _scaleCenter){ m_ScaleCenter = _scaleCenter; }
-	D3DXVECTOR2				getScaleCenter()const { return m_ScaleCenter; }
-
-
 
 							CSpriteDx9();
 	

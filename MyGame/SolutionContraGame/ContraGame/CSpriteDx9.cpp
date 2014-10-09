@@ -16,6 +16,9 @@ CSpriteDx9::CSpriteDx9(const CSpriteDx9& Sprite)
 	m_Column = Sprite.m_Column;
 	m_Row = Sprite.m_Row;
 	m_Total = Sprite.m_Total;
+	m_Scale = Sprite.m_Scale;
+	m_Rotate = Sprite.m_Rotate;
+	m_SpriteEffect = Sprite.m_SpriteEffect;
 }
 
 CSpriteDx9::~CSpriteDx9()
@@ -25,7 +28,7 @@ CSpriteDx9::~CSpriteDx9()
 
 void CSpriteDx9::Release()
 {
-	m_MyTexture->UnLoadTexture();
+	//m_MyTexture->UnLoadTexture();
 	m_AnimationAction->Release();
 }
 
@@ -33,6 +36,9 @@ void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName,
 {
 	m_MyTexture = new CTextureDx9();
 	m_MyTexture->LoadTextureFromFile(_lpDirectDevice, fileName, TransparentColor);
+	m_Column = Column;
+	m_Row = Row;
+	m_Total = Total;
 
 	m_AnimationAction = new CAnimationDx9(m_MyTexture->m_Width / Column, m_MyTexture->m_Height / Row, Column, Total);
 }
