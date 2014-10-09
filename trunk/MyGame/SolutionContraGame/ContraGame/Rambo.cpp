@@ -90,7 +90,7 @@ void Rambo::UpdateAnimation()
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
 			}
-			m_Sprite->UpdateAnimation(400);
+			m_Sprite->UpdateAnimation(300);
 		}
 		break;
 	case STATE_BILL_MOVE_2:
@@ -141,6 +141,14 @@ void Rambo::UpdateMovement()
 			{
 				m_Physic->setVelocity(D3DXVECTOR2(-1.0f, m_Physic->getVelocity().y));
 			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
+			{
+				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, -1.0f));
+			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_UP))
+			{
+				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 1.0f));
+			}
 		}
 		break;
 	case STATE_BILL_MOVE_2:
@@ -159,6 +167,7 @@ void Rambo::UpdateMovement()
 		break;
 	}
 	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
+	CGlobal::RamboPosition = m_Physic->getPositionVec2();
 }
 
 
