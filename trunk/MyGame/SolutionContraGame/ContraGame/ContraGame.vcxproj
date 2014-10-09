@@ -82,7 +82,6 @@
     <ClInclude Include="CGameTimeDx9.h" />
     <ClInclude Include="CGlobal.h" />
     <ClInclude Include="CInputDx9.h" />
-    <ClInclude Include="CObjectStateDx9.h" />
     <ClInclude Include="CSpriteDx9.h" />
     <ClInclude Include="CSurfaceDx9.h" />
     <ClInclude Include="CTextureDx9.h" />
@@ -94,15 +93,11 @@
     <ClInclude Include="CPhysicDx9.h" />
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Rambo.h" />
-    <ClInclude Include="RamboIdleState.h" />
-    <ClInclude Include="RamboState.h" />
-    <ClInclude Include="RectangleDx9.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="StateManagerDx9.h" />
     <ClInclude Include="TestSpriteState.h" />
-    <ClInclude Include="VectorDx9.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
@@ -113,7 +108,6 @@
     <ClCompile Include="CGameTimeDx9.cpp" />
     <ClCompile Include="CGlobal.cpp" />
     <ClCompile Include="CInputDx9.cpp" />
-    <ClCompile Include="CObjectStateDx9.cpp" />
     <ClCompile Include="CSpriteDx9.cpp" />
     <ClCompile Include="CSurfaceDx9.cpp" />
     <ClCompile Include="CTextureDx9.cpp" />
@@ -125,16 +119,12 @@
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
     <ClCompile Include="MenuGame.cpp" />
-    <ClCompile Include="RamboIdleState.cpp" />
     <ClCompile Include="Rambo.cpp" />
-    <ClCompile Include="RamboState.cpp" />
-    <ClCompile Include="RectangleDx9.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="StateManagerDx9.cpp" />
     <ClCompile Include="TestSpriteState.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />

@@ -51,6 +51,11 @@ namespace TileMap
                 this.progressbarCreateTile.Value = 0;
                 Reset();
                 this.tbPathPicture.Text = openFileDialogSourcePicture.FileName;
+                if (new Bitmap(this.tbPathPicture.Text).Width % 64 != 0 || new Bitmap(this.tbPathPicture.Text).Height % 64 != 0)
+                {
+                    MessageBox.Show("Error!!!");
+                    return;
+                }
                 if (new Bitmap(this.tbPathPicture.Text).Width >= 32 && new Bitmap(this.tbPathPicture.Text).Height >= 32)
                 {
                     this.pbSourcePicture.Image = new Bitmap(this.tbPathPicture.Text);
@@ -136,13 +141,17 @@ namespace TileMap
 
             int _OffSetX = 0;
             int _OffSetY = 0;
+            this.progressbarCreateTile.Value = 0;
+            this.progressbarCreateTile.Maximum = _TileMap.TileMap.Count;
             for (int i = 0; i < _TileMap.TileMap.Count; ++i)
             {
                 _OffSetX = _TileMap.TileMap[i].ID;
                 _TileMap.TileMap[i].ExportBitMap(_OffSetX, _OffSetY, _TileMapPicture);
+                this.progressbarCreateTile.PerformStep();
             }
 
             _TileMapPicture.Save("tilemap.png");
+            this.progressbarCreateTile.Value = 0;
         }
 
         private void pnTileMapPic_Paint(object sender, PaintEventArgs e)

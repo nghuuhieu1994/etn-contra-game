@@ -1,21 +1,20 @@
 #ifndef __RAMBO_H__
 #define __RAMBO_H__
-#include "CGlobal.h"
 #include "CObjectDx9.h"
-#include "CObjectStateDx9.h"
-#include "RamboIdleState.h"
+#include "CInputDx9.h"
 
 class Rambo : public Object
 {
-	RamboState* state;
 public:
 	Rambo();
+	Rambo(D3DXVECTOR3 _position, eDirection _direction);
+	void Initialize();
 	void HandleInput();
-	D3DXVECTOR3 getPosition()const { return state->getPhysic()->getPositionVec3();}
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();
 	void Render(SPRITEHANDLE spriteHandle);
+	void Release();
 	virtual ~Rambo();
 };
 

@@ -9,7 +9,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_background = new Background();
 	m_background->Initialize("resources\\Map\\1\\1.map");
-	m_Rambo = new Rambo();
+	
+	m_Rambo = new Rambo(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT);
 }
 
 void DemoState::HandleInput()
@@ -34,12 +35,13 @@ void DemoState::Update()
 	//{
 	//	m_UnitTest.x= 0;
 	//}
+
+	
 	m_Rambo->HandleInput();
 	m_Rambo->UpdateAnimation();
-	
-	//m_Rambo->
+	m_Rambo->UpdateMovement();
 	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
-	Camera::getInstance()->UpdateCamera(&m_Rambo->getPosition());
+	Camera::getInstance()->UpdateCamera(&m_Rambo->getPhysic()->getPositionVec3());
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
