@@ -10,6 +10,7 @@
 #include "Background.h"
 #include "Rambo.h"
 #include "SniperStanding.h"
+#include "Gun_1.h"
 
 class DemoState : public GameState
 {
@@ -28,6 +29,7 @@ private:
 	Background*			m_background;
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;
+	Gun_1*				m_gun1;
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}

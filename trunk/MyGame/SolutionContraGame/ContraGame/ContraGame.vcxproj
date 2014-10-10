@@ -91,6 +91,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="CObjectDx9.h" />
     <ClInclude Include="CPhysicDx9.h" />
+    <ClInclude Include="Gun_1.h" />
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Rambo.h" />
     <ClInclude Include="SniperStanding.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
+    <ClCompile Include="Gun_1.cpp" />
     <ClCompile Include="MenuGame.cpp" />
     <ClCompile Include="Rambo.cpp" />
     <ClCompile Include="SniperStanding.cpp" />

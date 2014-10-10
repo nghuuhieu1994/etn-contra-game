@@ -68,6 +68,8 @@ typedef enum eSpriteID
 	SPRITE_SNIPER_STANDING_TOP,
 	SPRITE_SNIPER_STANDING_MID,
 
+	SPRITE_GUN_1,
+
 
 	// End all ID Enemy Sprite
 

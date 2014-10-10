@@ -77,6 +77,9 @@
     <ClCompile Include="SniperStanding.cpp">
       <Filter>SourceFile\ContraGame\EnemyObject</Filter>
     </ClCompile>
+    <ClCompile Include="Gun_1.cpp">
+      <Filter>SourceFile\ContraGame\EnemyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -152,6 +155,9 @@
       <Filter>HeaderFile\FrameWork\Object\Rambo</Filter>
     </ClInclude>
     <ClInclude Include="SniperStanding.h">
+      <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun_1.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
   </ItemGroup>
