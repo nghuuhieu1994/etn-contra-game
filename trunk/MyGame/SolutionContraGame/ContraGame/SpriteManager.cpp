@@ -1,5 +1,7 @@
 #include "SpriteManager.h"
 
+#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 44, 1, 44)
+
 SpriteManager* SpriteManager::s_Instance = 0;
 
 SpriteManager::SpriteManager(void)
@@ -48,7 +50,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::SPRITE_BULLET_BIG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::SPRITE_F_BULLET, 4, 1, 4);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 58, 1, 58);
+	INCLUDE_MAP1;
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);

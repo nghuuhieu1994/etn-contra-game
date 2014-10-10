@@ -50,7 +50,7 @@ void Physic::UpdateMovement(CGameTimeDx9* gameTime)
 	OutputDebugString(fps);
 	m_Position.x += m_Velocity.x * deltaTime;
 	m_Position.y += m_Velocity.y * deltaTime;
-	m_Velocity = D3DXVECTOR2(0,0);
+	
 }
 
 void Physic::CheckCollision(Object* _object)
