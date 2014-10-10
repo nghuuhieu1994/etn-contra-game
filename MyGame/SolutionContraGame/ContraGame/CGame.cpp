@@ -209,7 +209,7 @@ void CGame::Run()
 				StateManagerDx9::getInstance()->HandleInput();
 				StateManagerDx9::getInstance()->Update();
 
-				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0); 
+				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(255, 0, 255), 1.0f, 0); 
 				D3DXMATRIX oldMatrix;
 				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);		
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());

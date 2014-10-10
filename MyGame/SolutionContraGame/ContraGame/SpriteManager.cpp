@@ -62,6 +62,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\Sniper\\SniperStanding\\SniperStanding_top.png", eSpriteID::SPRITE_SNIPER_STANDING_TOP, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\Sniper\\SniperStanding\\SniperStanding_mid.png", eSpriteID::SPRITE_SNIPER_STANDING_MID, 2, 1, 2);
 	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\Enemy\\bullet.png", eSpriteID::SPRITE_BULLET, 1, 1, 1);
 	// End load EnemyContent
 }
 
