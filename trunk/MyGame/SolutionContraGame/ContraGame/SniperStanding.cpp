@@ -37,46 +37,46 @@ void SniperStanding::Initialize()
 
 void SniperStanding::UpdateAnimation()
 {
-	if(CGlobal::RamboPosition.x < m_Physic->getPositionVec2().x)
-		m_Direction = eDirection::LEFT;
-	else
-		m_Direction = eDirection::RIGHT;
+	//if(CGlobal::RamboPosition.x < m_Physic->getPositionVec2().x)
+	//	m_Direction = eDirection::LEFT;
+	//else
+	//	m_Direction = eDirection::RIGHT;
 
-	switch (m_ObjectState)
-	{
-	case STATE_ALIVE_IDLE:
+	//switch (m_ObjectState)
+	//{
+	//case STATE_ALIVE_IDLE:
 
-		if(CGlobal::RamboPosition.y > m_Physic->getPositionVec2().y + 50)
-			m_Sprite = sprite_top;
-		else
-		{
-			if(abs(CGlobal::RamboPosition.x - m_Physic->getPositionVec2().x) < 100)
-				m_Sprite = sprite_bot;
-			else
-				m_Sprite = sprite_mid;
-		}
-		m_Sprite->UpdateAnimation(500);
-		
+	//	if(CGlobal::RamboPosition.y > m_Physic->getPositionVec2().y + 50)
+	//		m_Sprite = sprite_top;
+	//	else
+	//	{
+	//		if(abs(CGlobal::RamboPosition.x - m_Physic->getPositionVec2().x) < 100)
+	//			m_Sprite = sprite_bot;
+	//		else
+	//			m_Sprite = sprite_mid;
+	//	}
+	//	m_Sprite->UpdateAnimation(500);
+	//	
 
 
-		break;
-	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(500);
-		break;
-	case STATE_DEATH:
+	//	break;
+	//case STATE_BEFORE_DEATH:
+	//	m_Sprite = sprite_dead;
+	//	m_Sprite->UpdateAnimation(500);
+	//	break;
+	//case STATE_DEATH:
 
-		break;
-	default:
-		break;
-	}
-	if(m_Direction == eDirection::LEFT)
-		m_Sprite->setSpriteEffect(eSpriteEffect::None);
-	else
-	{
-		if(m_Direction == eDirection::RIGHT)
-			m_Sprite->setSpriteEffect(eSpriteEffect::Horizontally);
-	}
+	//	break;
+	//default:
+	//	break;
+	//}
+	//if(m_Direction == eDirection::LEFT)
+	//	m_Sprite->setSpriteEffect(eSpriteEffect::None);
+	//else
+	//{
+	//	if(m_Direction == eDirection::RIGHT)
+	//		m_Sprite->setSpriteEffect(eSpriteEffect::Horizontally);
+	//}
 }
 void SniperStanding::UpdateMovement()
 {

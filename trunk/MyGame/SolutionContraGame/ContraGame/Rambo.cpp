@@ -31,16 +31,15 @@ void Rambo::HandleInput()
 			{
 				m_ObjectState = eObjectState::STATE_BILL_IDLE;
 				m_UpdateFlag = m_UpdateFlag | (1 << 0);
-			}	
+			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 			{
-				m_Sprite->setSpriteEffect(eSpriteEffect::None);
+				m_Direction = eDirection::RIGHT;
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 			{
-				m_Sprite->setSpriteEffect(eSpriteEffect::Horizontally);
+				m_Direction = eDirection::LEFT;
 			}
-			
 		}
 		break;
 	case STATE_BILL_MOVE_2:
@@ -70,6 +69,8 @@ void Rambo::HandleInput()
 		break;
 	case STATE_BILL_LIE_DOWN:
 		break;
+	case STATE_SHOOTING:
+		break;
 	default:
 		break;
 	}
@@ -84,14 +85,14 @@ void Rambo::UpdateAnimation()
 	case STATE_DEATH:
 		break;
 	case STATE_BILL_MOVE_1:
+	{
+		if (m_UpdateFlag & (1 << 0))
 		{
-			if( m_UpdateFlag & (1<<0))
-			{
-				delete m_Sprite;
-				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
-			}
-			m_Sprite->UpdateAnimation(300);
+			delete m_Sprite;
+			m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
 		}
+		m_Sprite->UpdateAnimation(200);
+	}
 		break;
 	case STATE_BILL_MOVE_2:
 		break;
@@ -100,17 +101,19 @@ void Rambo::UpdateAnimation()
 	case STATE_BILL_MOVE_4:
 		break;
 	case STATE_BILL_IDLE:
+	{
+		if (m_UpdateFlag & (1 << 0))
 		{
-			if( m_UpdateFlag & (1<<0))
-			{
-				delete m_Sprite;
-				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_IDLE));
-			}
+			delete m_Sprite;
+			m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_IDLE));
 		}
+	}
 		break;
 	case STATE_BILL_JUMP:
 		break;
 	case STATE_BILL_LIE_DOWN:
+		break;
+	case STATE_SHOOTING:
 		break;
 	default:
 		break;
@@ -135,19 +138,23 @@ void Rambo::UpdateMovement()
 		{
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 			{
-				m_Physic->setVelocity(D3DXVECTOR2(1.0f, m_Physic->getVelocity().y));
+				m_Physic->setVelocity(D3DXVECTOR2(2.0f, m_Physic->getVelocity().y));
+				break;
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 			{
-				m_Physic->setVelocity(D3DXVECTOR2(-1.0f, m_Physic->getVelocity().y));
+				m_Physic->setVelocity(D3DXVECTOR2(-2.0f, m_Physic->getVelocity().y));
+				break;
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
 			{
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, -1.0f));
+				break;
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_UP))
 			{
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 1.0f));
+				break;
 			}
 		}
 		break;
@@ -163,17 +170,28 @@ void Rambo::UpdateMovement()
 		break;
 	case STATE_BILL_LIE_DOWN:
 		break;
+	case STATE_SHOOTING:
+		break;
 	default:
 		break;
 	}
 	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
-	CGlobal::RamboPosition = m_Physic->getPositionVec2();
+	//CGlobal::RamboPosition = m_Physic->getPositionVec2();
 }
 
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
 {
-	m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+	if (m_Direction == eDirection::RIGHT)
+	{
+		m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), eSpriteEffect::None, m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+		return;
+	}
+	if (m_Direction == eDirection::LEFT)
+	{
+		m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), eSpriteEffect::Horizontally, m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+		return;
+	}
 }
 
 

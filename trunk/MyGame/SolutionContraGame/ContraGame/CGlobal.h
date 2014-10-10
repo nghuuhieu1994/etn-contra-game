@@ -1,7 +1,5 @@
 #ifndef __CGLOBAL_H__
 #define __CGLOBAL_H__
-#include <d3d9.h>
-#include <d3dx9.h>
 
 #define			WIDTH		800
 #define			HEIGHT		600
@@ -90,8 +88,7 @@ typedef enum eObjectState
 	STATE_BILL_IDLE,
 	STATE_BILL_JUMP,
 	STATE_BILL_LIE_DOWN,
-
-
+	STATE_SHOOTING,
 };
 
 typedef enum eObjectID
@@ -120,7 +117,7 @@ public:
 	static bool IsWindowMode;
 	static bool IsExit;
 	static bool IsMute;
-	static D3DXVECTOR2	RamboPosition;
+	//static D3DXVECTOR2	RamboPosition;
 };
 
 #endif
