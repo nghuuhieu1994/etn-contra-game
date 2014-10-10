@@ -13,6 +13,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Rambo = new Rambo(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT);
 	m_SniperStanding->Initialize();
+	m_gun1 = new Gun_1(D3DXVECTOR3(500, 200, 1), eDirection::RIGHT);
+	m_gun1->Initialize();
 }
 
 void DemoState::HandleInput()
@@ -31,6 +33,7 @@ void DemoState::Update()
 
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->UpdateMovement();
+	m_gun1->UpdateAnimation();
 
 }
 
@@ -40,6 +43,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
+	m_gun1->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
