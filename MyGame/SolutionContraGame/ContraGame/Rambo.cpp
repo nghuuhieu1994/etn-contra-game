@@ -128,7 +128,7 @@ void Rambo::UpdateAnimation()
 		{
 			delete m_Sprite;
 			m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
-			m_UpdateFlag = 0;
+			m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
 		}
 		m_Sprite->UpdateAnimation(200);
 	}
@@ -222,6 +222,7 @@ void Rambo::UpdateMovement()
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 0.0f));
 				m_UpdateFlag = m_UpdateFlag | (1 << 0);
 				m_ObjectState = eObjectState::STATE_BILL_IDLE;
+				m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 				return;
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
