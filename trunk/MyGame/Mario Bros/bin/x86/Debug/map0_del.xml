@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Width>736</Width>
+  <Height>448</Height>
+  <Nodes>
+    <Node ID="1" X="0" Y="0" Width="736" Height="736">
+      <GameObjects>
+        <GameObject ID="0" Type="5" X="0" Y="208" />
+        <GameObject ID="1" Type="5" X="16" Y="208" />
+        <GameObject ID="2" Type="5" X="32" Y="208" />
+        <GameObject ID="3" Type="5" X="48" Y="208" />
+        <GameObject ID="4" Type="5" X="64" Y="208" />
+        <GameObject ID="5" Type="5" X="80" Y="208" />
+        <GameObject ID="6" Type="5" X="96" Y="208" />
+        <GameObject ID="7" Type="5" X="128" Y="208" />
+        <GameObject ID="8" Type="5" X="112" Y="208" />
+        <GameObject ID="9" Type="5" X="144" Y="208" />
+        <GameObject ID="10" Type="5" X="160" Y="208" />
+        <GameObject ID="11" Type="5" X="176" Y="208" />
+        <GameObject ID="12" Type="5" X="192" Y="208" />
+        <GameObject ID="13" Type="5" X="208" Y="208" />
+        <GameObject ID="14" Type="5" X="224" Y="208" />
+        <GameObject ID="15" Type="5" X="240" Y="208" />
+        <GameObject ID="16" Type="5" X="272" Y="208" />
+        <GameObject ID="17" Type="5" X="256" Y="208" />
+        <GameObject ID="18" Type="5" X="288" Y="208" />
+        <GameObject ID="19" Type="5" X="304" Y="208" />
+        <GameObject ID="20" Type="5" X="320" Y="208" />
+        <GameObject ID="21" Type="5" X="336" Y="208" />
+        <GameObject ID="22" Type="5" X="352" Y="208" />
+        <GameObject ID="23" Type="5" X="368" Y="208" />
+        <GameObject ID="24" Type="5" X="384" Y="208" />
+        <GameObject ID="25" Type="5" X="400" Y="208" />
+        <GameObject ID="26" Type="5" X="416" Y="208" />
+        <GameObject ID="27" Type="5" X="432" Y="208" />
+        <GameObject ID="28" Type="5" X="448" Y="208" />
+        <GameObject ID="29" Type="5" X="464" Y="208" />
+        <GameObject ID="30" Type="5" X="480" Y="208" />
+        <GameObject ID="31" Type="42" X="288" Y="176" />
+        <GameObject ID="32" Type="1" X="0" Y="192" />
+      </GameObjects>
+    </Node>
+  </Nodes>
+</SaveData>

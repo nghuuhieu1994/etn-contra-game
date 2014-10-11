@@ -18,7 +18,7 @@ void Gun_1::UpdateAnimation()
 {
 	//delete m_Sprite;
 	//m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_FAT_GUN));
-	m_Sprite->UpdateAnimation(400);		
+	m_Sprite->UpdateAnimation(300);		
 	
 }
 

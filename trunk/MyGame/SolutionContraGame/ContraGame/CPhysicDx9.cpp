@@ -46,8 +46,8 @@ void Physic::UpdateMovement(CGameTimeDx9* gameTime)
 	
 	deltaTime = deltaTime/((float)1/FRAME_RATE);
 	char fps[100];
-	sprintf(fps, "milisecs per frame: %f \n", deltaTime);
-	OutputDebugString(fps);
+	//sprintf(fps, "milisecs per frame: %f \n", deltaTime);
+	//OutputDebugString(fps);
 	m_Position.x += m_Velocity.x * deltaTime;
 	m_Position.y += m_Velocity.y * deltaTime;
 	
