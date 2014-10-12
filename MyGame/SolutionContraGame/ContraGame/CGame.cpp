@@ -82,8 +82,8 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 	{
 		d3dpp.BackBufferCount	= 1;
 		d3dpp.BackBufferFormat	= D3DFMT_A8R8G8B8;
-		d3dpp.BackBufferHeight	= 600;
-		d3dpp.BackBufferWidth	= 800;
+		d3dpp.BackBufferHeight	= HEIGHT;
+		d3dpp.BackBufferWidth	= WIDTH;
 		d3dpp.Windowed			= true;
 		d3dpp.hDeviceWindow		= this->m_handleWindow;
 		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD; 
