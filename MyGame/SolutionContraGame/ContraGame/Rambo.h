@@ -7,7 +7,7 @@ class Rambo : public Object
 {
 public:
 	Rambo();
-	Rambo(D3DXVECTOR3 _position, eDirection _direction);
+	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void HandleInput();
 	void UpdateAnimation();

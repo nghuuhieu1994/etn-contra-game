@@ -12,9 +12,12 @@ private:
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* Bullet[15];
 	bool		m_canAttack;
+
+	int Rambo_X;
+	int Rambo_y;
 public:
 	SniperStanding();
-	SniperStanding(D3DXVECTOR3 _position, eDirection _direction);
+	SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

@@ -6049,6 +6049,18 @@ Error : Can't Acquire Keyboard
 Current Working Module: CInputDx9
 Error : Can't Acquire Keyboard
 
+<<<<<<< .mine
+[Computer Name: TRANDANH]
+[Date: 10-10-2014 | Time: 16:20:52]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 10-10-2014 | Time: 16:21:48]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+=======
 >>>>>>> .r65
 [Computer Name: HIEUNGUYEN]
 [Date: 10-10-2014 | Time: 08:36:05]
@@ -6865,6 +6877,49 @@ Info : Testing Game
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
 
+<<<<<<< .mine
+>>>>>>> .r68
+[Computer Name: TRANDANH]
+[Date: 10-10-2014 | Time: 23:36:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 10-10-2014 | Time: 23:36:25]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:36:17]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:36:18]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:46:34]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:46:35]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:54:10]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 11-10-2014 | Time: 01:54:10]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+=======
 [Computer Name: HIEUNGUYEN]
 [Date: 10-10-2014 | Time: 17:10:31]
 Current Working Module: EntryPoint
@@ -7025,6 +7080,9 @@ Info : Testing Game
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
 
+<<<<<<< .mine
+>>>>>>> .r69
+=======
 [Computer Name: HIEUNGUYEN]
 [Date: 12-10-2014 | Time: 12:43:17]
 Current Working Module: EntryPoint
@@ -7409,4 +7467,70 @@ Info : Testing Game
 [Date: 12-10-2014 | Time: 21:32:27]
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
+
+>>>>>>> .r71
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:11]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:11]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:11]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:12]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:42]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:19:42]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:42:19]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 12-10-2014 | Time: 22:42:20]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: TRANDANH]
+[Date: 13-10-2014 | Time: 00:08:53]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 13-10-2014 | Time: 00:08:53]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 13-10-2014 | Time: 00:08:53]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 13-10-2014 | Time: 00:09:33]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: TRANDANH]
+[Date: 13-10-2014 | Time: 00:10:01]
+Current Working Module: EntryPoint
+Info : Testing Game
 
