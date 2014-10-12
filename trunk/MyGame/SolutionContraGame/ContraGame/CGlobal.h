@@ -63,7 +63,6 @@ typedef enum eSpriteID
 
 	// All ID Enemy Sprite
 	SPRITE_EXPLOISION,
-	SPRITE_BULLET,
 	SPRITE_SNIPER_STANDING_BOT,
 	SPRITE_SNIPER_STANDING_TOP,
 	SPRITE_SNIPER_STANDING_MID,
@@ -95,7 +94,12 @@ typedef enum eObjectState
 
 typedef enum eObjectID
 {
-
+	TILE_BASE,
+	RAMBO,
+	BULLET_RAMBO,
+	BULLET_ENEMY,
+	SNIPER_STANDING,
+	GUN_1,
 };
 
 typedef enum eDirection

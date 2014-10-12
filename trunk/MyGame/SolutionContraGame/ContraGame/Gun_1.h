@@ -7,7 +7,7 @@ class Gun_1 : public Object
 {
 public:
 	Gun_1();
-	Gun_1(D3DXVECTOR3 _position, eDirection _direction);
+	Gun_1(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

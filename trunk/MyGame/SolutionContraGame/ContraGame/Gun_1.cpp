@@ -5,7 +5,8 @@ Gun_1::Gun_1()
 
 }
 
-Gun_1::Gun_1(D3DXVECTOR3 _position, eDirection _direction) : Object(_position, _direction)
+Gun_1::Gun_1(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+	: Object(_position, _direction, _objectID)
 {
 }
 

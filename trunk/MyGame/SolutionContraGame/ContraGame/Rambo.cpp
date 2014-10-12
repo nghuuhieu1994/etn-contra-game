@@ -5,7 +5,8 @@ Rambo::Rambo()
 
 }
 
-Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction) : Object(_position, _direction)
+Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+	: Object(_position, _direction, _objectID)
 {
 	m_ObjectState = eObjectState::STATE_BILL_IDLE;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_IDLE));

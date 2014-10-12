@@ -24,9 +24,10 @@ protected:
 	char			m_UpdateFlag;
 public:
 	Object();
-	Object(D3DXVECTOR3 _position, eDirection _direction);
+	Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
 	Physic*			getPhysic() const { return m_Physic; }
+	eObjectID		getID() const { return m_eObjectID; }
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
 	
