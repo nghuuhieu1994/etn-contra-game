@@ -8,7 +8,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_UnitTest.z = 0;
 
 	m_background = new Background();
-	m_background->Initialize("resources\\Map\\1\\1.map");
+	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
 	m_Rambo = new Rambo(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT);
