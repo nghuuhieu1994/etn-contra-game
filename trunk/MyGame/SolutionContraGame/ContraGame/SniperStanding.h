@@ -15,7 +15,7 @@ private:
 	bool		m_canAttack;
 	Physic*			m_Physic;
 	int Rambo_X;
-	int Rambo_y;
+	int Rambo_Y;
 public:
 	SniperStanding();
 	SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
@@ -23,6 +23,7 @@ public:
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();
+	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
 	~SniperStanding();

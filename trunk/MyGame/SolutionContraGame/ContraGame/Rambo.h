@@ -15,6 +15,7 @@ public:
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();
+	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
 	virtual ~Rambo();

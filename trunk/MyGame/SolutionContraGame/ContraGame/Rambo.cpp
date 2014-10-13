@@ -297,8 +297,13 @@ void Rambo::UpdateMovement()
 		break;
 	}
 	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
+	CGlobal::Rambo_X = m_Physic->getPositionVec2().x;
+	CGlobal::Rambo_Y = m_Physic->getPositionVec2().y;
 }
 
+void Rambo::Update()
+{
+}
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
 {

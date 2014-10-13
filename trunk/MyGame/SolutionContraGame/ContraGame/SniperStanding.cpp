@@ -41,35 +41,34 @@ void SniperStanding::Initialize()
 
 void SniperStanding::UpdateAnimation()
 {
-	if(Rambo_X < m_Physic->getPositionVec2().x)
-		m_Direction = eDirection::LEFT;
-	else
+	if(CGlobal::Rambo_X > this->m_Physic->getPositionVec2().x)
 		m_Direction = eDirection::RIGHT;
+	else
+		m_Direction = eDirection::LEFT;
 
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-
-		if(Rambo_y > m_Physic->getPositionVec2().y + 50)
+		if(CGlobal::Rambo_Y > m_Physic->getPositionVec2().y + 50)
+		{
 			m_Sprite = sprite_top;
+		}
 		else
 		{
-			if(abs(Rambo_X - m_Physic->getPositionVec2().x) < 100)
+			if(abs(CGlobal::Rambo_X - m_Physic->getPositionVec2().x) < 100)
 				m_Sprite = sprite_bot;
 			else
 				m_Sprite = sprite_mid;
 		}
-		m_Sprite->UpdateAnimation(500);
-		
-
-
+		break;
+	case STATE_SHOOTING:
+		m_Sprite->UpdateAnimation(900);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
 		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_DEATH:
-
 		break;
 	default:
 		break;
@@ -86,23 +85,55 @@ void SniperStanding::UpdateMovement()
 {
 	
 }
-
 void SniperStanding::UpdateCollision(Object* checkingObject)
 {
 	switch (checkingObject->getID())
 	{
 	case eObjectID::RAMBO:
 		Rambo_X = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().x;
-		Rambo_y = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().y;
-
+		Rambo_Y = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().y;
 		// do a realthing?
-
 		break;
 	default:
 		break;
 	}
 }
 
+void SniperStanding::Update()
+{
+	this->UpdateAnimation();
+
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_IDLE:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 1000)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_SHOOTING;
+		}
+		break;
+	case STATE_SHOOTING:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 500)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+		}
+		break;
+	case STATE_BEFORE_DEATH:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 1500)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_DEATH;
+		}
+		break;
+	case STATE_DEATH:
+		this->Release();
+		break;
+	}
+}
 
 void SniperStanding::Render(SPRITEHANDLE spriteHandle)
 {

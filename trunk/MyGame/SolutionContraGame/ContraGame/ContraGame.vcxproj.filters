@@ -83,6 +83,9 @@
     <ClCompile Include="Markup.cpp">
       <Filter>SourceFile\FrameWork\Map</Filter>
     </ClCompile>
+    <ClCompile Include="Gun_2.cpp">
+      <Filter>SourceFile\ContraGame\EnemyObject</Filter>
+    </ClCompile>
     <ClCompile Include="Flyer_Sin.cpp">
       <Filter>SourceFile\ContraGame\EnemyObject</Filter>
     </ClCompile>
@@ -143,7 +146,7 @@
       <Filter>HeaderFile\FrameWork\Physic</Filter>
     </ClInclude>
     <ClInclude Include="CObjectDx9.h">
-      <Filter>HeaderFile\FrameWork\Object</Filter>
+      <Filter>HeaderFile\FrameWork\InputHandle\Object</Filter>
     </ClInclude>
     <ClInclude Include="DemoState.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
@@ -152,13 +155,13 @@
       <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
-      <Filter>HeaderFile\FrameWork\Object\Background</Filter>
+      <Filter>HeaderFile\FrameWork\InputHandle\Object\Background</Filter>
     </ClInclude>
     <ClInclude Include="MenuGame.h">
       <Filter>HeaderFile\ContraGame\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Rambo.h">
-      <Filter>HeaderFile\FrameWork\Object\Rambo</Filter>
+      <Filter>HeaderFile\FrameWork\InputHandle\Object\Rambo</Filter>
     </ClInclude>
     <ClInclude Include="SniperStanding.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
@@ -168,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="Markup.h">
       <Filter>HeaderFile\FrameWork\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun_2.h">
+      <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
     <ClInclude Include="Flyer_Sin.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
@@ -237,9 +243,6 @@
     <Filter Include="SourceFile\FrameWork\Object">
       <UniqueIdentifier>{15b3b754-421e-45f4-a3c8-eeb7c67a98d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HeaderFile\FrameWork\Object">
-      <UniqueIdentifier>{ec4d140d-a1fb-4169-a7e2-e1efdc65de8b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="HeaderFile\FrameWork\Physic">
       <UniqueIdentifier>{1e764a30-6868-4ffd-bbfb-626f55db7190}</UniqueIdentifier>
     </Filter>
@@ -255,12 +258,6 @@
     <Filter Include="SourceFile\FrameWork\Object\Background">
       <UniqueIdentifier>{4e91411b-35f9-4c76-a5bf-692da8b5b9e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HeaderFile\FrameWork\Object\Background">
-      <UniqueIdentifier>{d975ad88-fadf-468a-8651-2a57cb6902fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="HeaderFile\FrameWork\Object\Rambo">
-      <UniqueIdentifier>{32b19c28-3bcd-4985-8659-491384cace54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceFile\FrameWork\Object\Rambo">
       <UniqueIdentifier>{5405f40a-46c4-4f00-9baa-6f7b354966df}</UniqueIdentifier>
     </Filter>
@@ -275,6 +272,15 @@
     </Filter>
     <Filter Include="SourceFile\FrameWork\Map">
       <UniqueIdentifier>{d665becc-ddcd-43ef-a358-5bcc88944e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\InputHandle\Object">
+      <UniqueIdentifier>{ec4d140d-a1fb-4169-a7e2-e1efdc65de8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\InputHandle\Object\Background">
+      <UniqueIdentifier>{d975ad88-fadf-468a-8651-2a57cb6902fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeaderFile\FrameWork\InputHandle\Object\Rambo">
+      <UniqueIdentifier>{32b19c28-3bcd-4985-8659-491384cace54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

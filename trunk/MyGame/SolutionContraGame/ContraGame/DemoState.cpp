@@ -34,7 +34,7 @@ void DemoState::Update()
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPhysic()->getPositionVec3());
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
-	m_SniperStanding->UpdateAnimation();
+	m_SniperStanding->Update();
 
 	m_gun1->UpdateAnimation();
 	m_Flyersin->UpdateAnimation();
