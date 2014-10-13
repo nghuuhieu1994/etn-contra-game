@@ -31,7 +31,8 @@ void Gun_1::UpdateCollision(Object* checkingObject)
 
 void Gun_1:: UpdateMovement()
 {}
-
+void Gun_1::Update()
+{}
 void Gun_1::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);

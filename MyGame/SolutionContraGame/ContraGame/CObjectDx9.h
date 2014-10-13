@@ -18,6 +18,9 @@ protected:
 	CSpriteDx9*		m_Sprite;
 	//Physic*			m_Physic;
 	eObjectState	m_ObjectState;
+
+	int				m_TimeChangeState;
+
 	//bit 0 -> Update Sprite
 	//bit 1 -> Update Animation
 	//bit 2 -> Update Movement
@@ -38,6 +41,7 @@ public:
 	
 	virtual void UpdateCollision(Object* checkingObject) = 0;
 	virtual void UpdateMovement() = 0;
+	virtual void Update() = 0;
 	virtual void Render(SPRITEHANDLE spriteHandle) = 0;
 	virtual void Release() = 0;
 	virtual ~Object();

@@ -69,8 +69,8 @@ typedef enum eSpriteID
 	SPRITE_SNIPER_STANDING_MID,
 
 	SPRITE_GUN_1,
+	SPRITE_GUN_2,
 	SPRITE_FLYER_SIN,
-
 
 	// End all ID Enemy Sprite
 
@@ -80,7 +80,7 @@ typedef enum eObjectState
 {
 	STATE_ALIVE_IDLE = 0,
 	STATE_ALIVE_MOVE = 1,
-	STATE_ATTACK,
+	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
 	STATE_BEFORE_DEATH,
 	STATE_DEATH,
 	
@@ -127,7 +127,8 @@ public:
 	static bool IsWindowMode;
 	static bool IsExit;
 	static bool IsMute;
-	//static D3DXVECTOR2	RamboPosition;
+	static int	Rambo_X;
+	static int	Rambo_Y;
 };
 
 #endif
