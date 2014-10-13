@@ -69,6 +69,7 @@ typedef enum eSpriteID
 	SPRITE_SNIPER_STANDING_MID,
 
 	SPRITE_GUN_1,
+	SPRITE_FLYER_SIN,
 
 
 	// End all ID Enemy Sprite
@@ -102,6 +103,7 @@ typedef enum eObjectID
 	BULLET_ENEMY,
 	SNIPER_STANDING,
 	GUN_1,
+	FLYER_SIN,
 };
 
 typedef enum eDirection
