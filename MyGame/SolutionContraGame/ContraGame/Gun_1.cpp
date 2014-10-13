@@ -8,6 +8,8 @@ Gun_1::Gun_1()
 Gun_1::Gun_1(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: Object(_position, _direction, _objectID)
 {
+	m_Physic = new Physic();
+	m_Physic->setPosition(_position);
 }
 
 void Gun_1::Initialize()

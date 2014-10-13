@@ -7,7 +7,8 @@ SniperStanding::SniperStanding()
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: Object(_position, _direction, _objectID)
 {
-
+	m_Physic = new Physic();
+	m_Physic->setPosition(_position);
 }
 
 void SniperStanding::Initialize()
@@ -91,8 +92,8 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 	switch (checkingObject->getID())
 	{
 	case eObjectID::RAMBO:
-		Rambo_X = checkingObject->getPhysic()->getPositionVec2().x;
-		Rambo_y = checkingObject->getPhysic()->getPositionVec2().y;
+		Rambo_X = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().x;
+		Rambo_y = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().y;
 
 		// do a realthing?
 
