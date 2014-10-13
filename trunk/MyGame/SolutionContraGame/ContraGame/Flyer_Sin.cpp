@@ -29,12 +29,22 @@ void Flyer_Sin::UpdateAnimation()
 void Flyer_Sin::UpdateCollision(Object* checkingObject)
 {}
 
+ D3DXVECTOR2 Sin(D3DXVECTOR2& a)
+{
+	a.y = sin(a.x * 3.14 / 180.0) * 50 + 200;
+	a.x += 0.5;
+	return a;
+}
+
 void Flyer_Sin:: UpdateMovement()
-{}
+{
+	m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
+	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
+}
 
 void Flyer_Sin::Render(SPRITEHANDLE spriteHandle)
 {
-	m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+	m_Sprite->Render(spriteHandle, Sin(m_Physic->getPositionVec2()) , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
 }
 
 
