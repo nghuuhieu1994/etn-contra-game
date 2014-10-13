@@ -11,6 +11,7 @@
 #include "Rambo.h"
 #include "SniperStanding.h"
 #include "Gun_1.h"
+#include "Flyer_Sin.h"
 
 class DemoState : public GameState
 {
@@ -30,6 +31,9 @@ private:
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;
 	Gun_1*				m_gun1;
+	Flyer_Sin*			m_Flyersin;
+
+
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}

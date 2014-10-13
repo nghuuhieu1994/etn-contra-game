@@ -83,6 +83,9 @@
     <ClCompile Include="Markup.cpp">
       <Filter>SourceFile\FrameWork\Map</Filter>
     </ClCompile>
+    <ClCompile Include="Flyer_Sin.cpp">
+      <Filter>SourceFile\ContraGame\EnemyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="Markup.h">
       <Filter>HeaderFile\FrameWork\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyer_Sin.h">
+      <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
