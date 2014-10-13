@@ -11,10 +11,20 @@
 
 #include <stdlib.h>
 #include <string.h> // memcpy, memset, strcmp...
+#ifndef MARKUP_STL
 #define MARKUP_STL
+#endif
+#ifndef WIN32
 #define WIN32
+#endif
+#ifndef _DEBUG
 #define _DEBUG
+#endif
+
+#ifndef _WINDOWS
 #define _WINDOWS
+#endif
+
 // Major build options
 // MARKUP_WCHAR wide char (2-byte UTF-16 on Windows, 4-byte UTF-32 on Linux and OS X)
 // MARKUP_MBCS ANSI/double-byte strings on Windows

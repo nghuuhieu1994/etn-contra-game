@@ -1,6 +1,6 @@
 #include "SpriteManager.h"
 
-#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 45, 1, 45)
+#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.bmp", eSpriteID::SPRITE_MAP_1, 45, 1, 45)
 
 SpriteManager* SpriteManager::s_Instance = 0;
 
@@ -39,16 +39,18 @@ CSpriteDx9* SpriteManager::getSprite(eSpriteID eID)
 
 void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_jump.png", eSpriteID::SPRITE_BILL_JUMP, 4, 1, 4);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_lie.png", eSpriteID::SPRITE_BILL_LIE_DOWN, 1, 1, 1);
+	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_idle.png", eSpriteID::SPRITE_RAMBO_IDLE, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_jump.png", eSpriteID::SPRITE_RAMBO_JUMP, 4, 1, 4);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_lie.png", eSpriteID::SPRITE_RAMBO_LIE, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_run.png", eSpriteID::SPRITE_RAMBO_RUN, 6, 1, 6);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_run.png", eSpriteID::SPRITE_RAMBO_SHOOT_RUN, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_top_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_up.png", eSpriteID::SPRITE_RAMBO_SHOOT_UP, 2, 1, 2);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_1.png", eSpriteID::SPRITE_BILL_MOVE_1, 6, 1, 6);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_2.png", eSpriteID::SPRITE_BILL_MOVE_2, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_3.png", eSpriteID::SPRITE_BILL_MOVE_3, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_move_4.png", eSpriteID::SPRITE_BILL_MOVE_4, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bill_idle.png", eSpriteID::SPRITE_BILL_IDLE, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\bullet.png", eSpriteID::SPRITE_BULLET_BIG, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Bill\\FBullet.png", eSpriteID::SPRITE_F_BULLET, 4, 1, 4);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\bullet.png", eSpriteID::SPRITE_BULLET_BIG, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\FBullet.png", eSpriteID::SPRITE_F_BULLET, 4, 1, 4);
 
 	INCLUDE_MAP1;
 

@@ -16,17 +16,22 @@ protected:
 	eObjectID		m_eObjectID;
 	eDirection		m_Direction;
 	CSpriteDx9*		m_Sprite;
-	Physic*			m_Physic;
+	//Physic*			m_Physic;
 	eObjectState	m_ObjectState;
 	//bit 0 -> Update Sprite
 	//bit 1 -> Update Animation
 	//bit 2 -> Update Movement
+	//bit 3 -> Available
+	//bit 4 -> Available
+	//bit 5 -> Available
+	//bit 6 -> Available
+	//bit 7 -> Available
 	char			m_UpdateFlag;
 public:
 	Object();
 	Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
-	Physic*			getPhysic() const { return m_Physic; }
+	//Physic*			getPhysic() const { return m_Physic; }
 	eObjectID		getID() const { return m_eObjectID; }
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;

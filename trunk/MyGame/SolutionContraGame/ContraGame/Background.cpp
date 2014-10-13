@@ -70,7 +70,7 @@ void Background::Render(LPD3DXSPRITE spriteHandle)
 	}*/
 	  for (std::list<GameObject*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
 	  {
-		  SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2((*it)->_X, (*it)->_Y), eSpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, (*it)->_ID);
+		  SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), eSpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, (*it)->_ID);
 	  }
 }
 
