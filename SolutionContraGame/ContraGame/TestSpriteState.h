@@ -1,9 +1,10 @@
 #ifndef __TEST_SPRITE_STATE_H__
 #define __TEST_SPRITE_STATE_H__
-#include "GameState.h"
-#include "StateManagerDx9.h"
+
 #include "CSpriteDx9.h"
+#include "GameState.h"
 #include "SpriteManager.h"
+#include "StateManagerDx9.h"
 
 #define CENTERX 400
 #define CENTERY 300

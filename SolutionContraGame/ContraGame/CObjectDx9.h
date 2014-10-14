@@ -11,7 +11,7 @@
 class Physic;
 
 class Object
-{	
+{
 protected:
 	eObjectID		m_eObjectID;
 	eDirection		m_Direction;
@@ -44,9 +44,9 @@ public:
 	eObjectID		getID() const { return m_eObjectID; }
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
-	
+
 	virtual void UpdateCollision(Object* checkingObject) = 0;
-	
+
 	virtual void Update() = 0;
 	virtual void Render(SPRITEHANDLE spriteHandle) = 0;
 	virtual void Release() = 0;

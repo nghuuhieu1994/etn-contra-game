@@ -19,13 +19,13 @@ void TestSpriteState::HandleInput()
 	}
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_RIGHT))
 	{
-		
+
 	}
 }
 
 void TestSpriteState::Update()
 {
-	
+
 }
 void TestSpriteState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
@@ -34,7 +34,7 @@ void TestSpriteState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 
 void TestSpriteState::Pause()
 {
-	
+
 }
 
 void TestSpriteState::Resume()

@@ -1,6 +1,6 @@
 #include "CInputDx9.h"
 
-CInputDx9::CInputDx9() : 
+CInputDx9::CInputDx9() :
 	m_lpDirectInput(0),
 	m_lpKeyBoardDevice(0),
 	m_lpMouseDevice(0)
@@ -91,7 +91,7 @@ void CInputDx9::InitializeMouseDevice(HWND handleWindow)
 
 	if(result != DI_OK)
 	{
-		CGameLog::getInstance("CInputDx9")->SaveError("Can't set Cooperative Level of Mouse");	
+		CGameLog::getInstance("CInputDx9")->SaveError("Can't set Cooperative Level of Mouse");
 	}
 
 	result = m_lpMouseDevice->Acquire();
@@ -182,7 +182,7 @@ void CInputDx9::UpdateMouse()
 		ZeroMemory(&m_mouseState, sizeof(m_mouseState));
 		m_lpMouseDevice->Acquire();
 	}
-	
+
 }
 
 D3DXVECTOR2 CInputDx9::GetCursorLocation()

@@ -10,9 +10,9 @@ class CInputDx9
 {
 	//Manage Input of Game
 	LPDIRECTINPUT8			m_lpDirectInput;
-	
+
 	LPDIRECTINPUTDEVICE8	m_lpKeyBoardDevice;
-	
+
 	LPDIRECTINPUTDEVICE8	m_lpMouseDevice;
 
 	DIMOUSESTATE2			m_mouseState;
