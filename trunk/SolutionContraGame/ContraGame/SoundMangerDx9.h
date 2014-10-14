@@ -12,14 +12,14 @@ private:
 	map<eSoundID, SoundBuffer*> m_ListSoundBuffer;
 	long		m_Volume;
 	bool		m_IsMute;
-	
+
 	SoundManagerDx9() {m_Volume = 0; m_IsMute = false;}
 	static SoundManagerDx9* s_Instace;
 	void LoadSoundBuffer(const char* fileName, eSoundID eID, LPDIRECTSOUND8 _lpDSound);
 public:
 	static SoundManagerDx9* getInstance();
 	void LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound);
-	
+
 	SoundBuffer* getSoundBuffer(eSoundID eID);
 
 	void SetVolume(long volume);

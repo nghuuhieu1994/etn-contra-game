@@ -4,7 +4,7 @@ SniperStanding::SniperStanding()
 {
 }
 
-SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	//m_Physic = new Physic();
@@ -19,7 +19,7 @@ void SniperStanding::Initialize()
 	sprite_top = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_STANDING_TOP));
 	sprite_mid = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_STANDING_MID));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	
+
 	/*
 	Bullet[0] = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
 	Bullet[1] = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
@@ -80,7 +80,7 @@ void SniperStanding::UpdateAnimation()
 }
 void SniperStanding::UpdateMovement()
 {
-	
+
 }
 void SniperStanding::UpdateCollision(Object* checkingObject)
 {
@@ -104,7 +104,7 @@ void SniperStanding::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 1000)
 		{
 			m_TimeChangeState = 0;
@@ -112,7 +112,7 @@ void SniperStanding::Update()
 		}
 		break;
 	case STATE_SHOOTING:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 500)
 		{
 			m_TimeChangeState = 0;
@@ -120,7 +120,7 @@ void SniperStanding::Update()
 		}
 		break;
 	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 1500)
 		{
 			m_TimeChangeState = 0;

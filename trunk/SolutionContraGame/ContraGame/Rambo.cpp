@@ -5,11 +5,11 @@ Rambo::Rambo()
 
 }
 
-Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	//m_Physic = new Physic();
-	/*m_Physic->setPosition(_position);*/
+	//m_Physic->setPosition(_position);
 	m_Position = _position;
 	m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
@@ -24,7 +24,7 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-	
+
 	switch (m_ObjectState)
 	{
 		case STATE_ALIVE_IDLE:
@@ -52,7 +52,7 @@ void Rambo::HandleInput()
 					m_ObjectState = eObjectState::STATE_RAMBO_SHOOT;
 					TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
 				}
-				if(CInputDx9::getInstance()->IsKeyDown(DIK_X))
+				if(CInputDx9::getInstance()->IsKeyPress(DIK_X))
 				{
 					m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 					m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 5.0f));
@@ -114,7 +114,7 @@ void Rambo::HandleInput()
 				{
 					m_ObjectState = eObjectState::STATE_RAMBO_SHOOT;
 				}
-				if(CInputDx9::getInstance()->IsKeyDown(DIK_X))
+				if(CInputDx9::getInstance()->IsKeyPress(DIK_X))
 				{
 					m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 					m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 5.0f));
@@ -279,10 +279,9 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 }
 
-
 void Rambo::UpdateMovement()
 {
-	
+
 	switch (m_ObjectState)
 	{
 		case STATE_ALIVE_IDLE:
@@ -350,15 +349,15 @@ void Rambo::UpdateMovement()
 			break;
 		case STATE_RAMBO_SHOOT:
 			{
-				
+
 			}
 			break;
 		default:
 			break;
 	}
 	this->m_Physic->UpdateMovement(&m_Position);
-	CGlobal::Rambo_X = getPositionVec2().x;
-	CGlobal::Rambo_Y = getPositionVec2().y;
+	CGlobal::Rambo_X = (int)(getPositionVec2().x);
+	CGlobal::Rambo_Y = (int)(getPositionVec2().y);
 }
 void Rambo::Update()
 {

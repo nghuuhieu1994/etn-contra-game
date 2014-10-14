@@ -23,15 +23,15 @@ void CSurfaceDx9::LoadSurfaceFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, D3DCOLO
 {
 	D3DXIMAGE_INFO _infoImage;
 	HRESULT hr;
-	
+
 	hr = D3DXGetImageInfoFromFile(fileName, &_infoImage);
 	if(FAILED(hr))
 	{
 		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't get image info from file");
 		return;
 	}
-	
-	hr = _lpDirectDevice->CreateOffscreenPlainSurface(_infoImage.Width, _infoImage.Height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &m_lpSurface, 0); 
+
+	hr = _lpDirectDevice->CreateOffscreenPlainSurface(_infoImage.Width, _infoImage.Height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &m_lpSurface, 0);
 	if(FAILED(hr))
 	{
 		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't create off screen surface");
