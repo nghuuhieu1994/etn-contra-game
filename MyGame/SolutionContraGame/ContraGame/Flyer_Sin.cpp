@@ -21,7 +21,7 @@ void Flyer_Sin::Initialize()
 
 void Flyer_Sin::UpdateAnimation()
 {
-	m_Sprite->UpdateAnimation(400);		
+	m_Sprite->UpdateAnimation(500);		
 	
 }
 
@@ -31,8 +31,8 @@ void Flyer_Sin::UpdateCollision(Object* checkingObject)
 
 void Flyer_Sin::Sin(D3DXVECTOR3& a)
 {
-	a.y = sin(a.x * 3.14 / 180.0) * 50 + m_startPosition.y;
-	a.x += 1.0;
+	a.y = sin(a.x * 3.14 / 90.0) * 80 + m_startPosition.y;
+	a.x += 1.5;
 }
 
 void Flyer_Sin:: UpdateMovement()
