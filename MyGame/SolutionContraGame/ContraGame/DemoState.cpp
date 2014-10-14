@@ -15,7 +15,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding->Initialize();
 	m_gun1 = new Gun_1(D3DXVECTOR3(500, 200, 1), eDirection::RIGHT, eObjectID::GUN_1);
 	m_gun1->Initialize();
-	m_Flyersin = new Flyer_Sin(D3DXVECTOR3(30, 300, 1), eDirection::RIGHT, eObjectID::FLYER_SIN);
+	m_Flyersin = new Flyer_Sin(D3DXVECTOR3(30, 100, 1), eDirection::RIGHT, eObjectID::FLYER_SIN);
 	m_Flyersin->Initialize();
 }
 
@@ -39,6 +39,7 @@ void DemoState::Update()
 
 	m_gun1->UpdateAnimation();
 	m_Flyersin->UpdateAnimation();
+	m_Flyersin->UpdateMovement();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)

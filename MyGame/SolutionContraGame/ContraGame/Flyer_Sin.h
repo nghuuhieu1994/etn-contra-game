@@ -6,6 +6,7 @@
 class Flyer_Sin : public Object
 {
 	Physic*			m_Physic;
+	D3DXVECTOR3		m_startPosition;
 public:
 	Flyer_Sin();
 	Physic*			getPhysic() const { return m_Physic; }
@@ -18,6 +19,7 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
 	virtual ~Flyer_Sin();
+	void Sin(D3DXVECTOR3& a);
 };
 
 #endif

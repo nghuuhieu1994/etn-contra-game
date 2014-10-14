@@ -7896,6 +7896,153 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
+<<<<<<< .mine
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:34:51]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:34:51]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:34:51]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:34:51]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:39:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 12-10-2014 | Time: 22:39:24]
+Current Working Module: CTextureDx9
+Error : Can't get image info from file
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:01:45]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:09:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:10:13]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:11:10]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:11:49]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:13:28]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:14:11]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:14:33]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:14:57]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:15:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:15:52]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:16:19]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:16:40]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:16:54]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:18:01]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:19:38]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:19:56]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:20:21]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:21:15]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:22:57]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:23:24]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:23:35]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+[Computer Name: XUANTHU]
+[Date: 14-10-2014 | Time: 09:24:27]
+Current Working Module: EntryPoint
+Info : Testing Game
+
+=======
 [Computer Name: XUANTHU]
 [Date: 13-10-2014 | Time: 22:21:35]
 Current Working Module: EntryPoint
@@ -8202,3 +8349,4 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
+>>>>>>> .r82
