@@ -88,6 +88,7 @@
     <ClInclude Include="CTimeSpanDx9.h" />
     <ClInclude Include="DemoState.h" />
     <ClInclude Include="DSutil.h" />
+    <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Flyer_Sin.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="CObjectDx9.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="CTimeSpan.cpp" />
     <ClCompile Include="DemoState.cpp" />
     <ClCompile Include="DSutil.cpp" />
+    <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="Flyer_Sin.cpp" />
     <ClCompile Include="GameState.cpp" />

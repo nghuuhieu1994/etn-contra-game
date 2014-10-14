@@ -1,11 +1,11 @@
 #ifndef __FlyerSin_H__
 #define __FlyerSin_H__
-#include "CObjectDx9.h"
+#include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class Flyer_Sin : public Object
+class Flyer_Sin : public DynamicObject
 {
-	Physic*			m_Physic;
+	//Physic*			m_Physic;
 	D3DXVECTOR3		m_startPosition;
 public:
 	Flyer_Sin();

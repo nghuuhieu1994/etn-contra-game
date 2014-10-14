@@ -29,7 +29,7 @@ void TestSpriteState::Update()
 }
 void TestSpriteState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	testSprite->Render(_lpDSpriteHandle, D3DXVECTOR2(CENTERX, CENTERY), eSpriteEffect::None, 0.0f, (float)scalexxx, 1.0f);
+	testSprite->Render(_lpDSpriteHandle, D3DXVECTOR2(CENTERX, CENTERY), ESpriteEffect::None, 0.0f, (float)scalexxx, 1.0f);
 }
 
 void TestSpriteState::Pause()

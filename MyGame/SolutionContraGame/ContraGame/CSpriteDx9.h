@@ -18,7 +18,7 @@ private:
 	
 	int						m_Total;
 
-	eSpriteEffect			m_SpriteEffect;
+	ESpriteEffect			m_SpriteEffect;
 
 	float					m_Scale;
 	float					m_Rotate;
@@ -40,8 +40,8 @@ public:
 	void					setTotal(int _total){ m_Total = _total; }
 	int						getTotal()const { return m_Total; }
 
-	void					setSpriteEffect(eSpriteEffect _spriteeffect){ m_SpriteEffect = _spriteeffect; }
-	eSpriteEffect			getSpriteEffect()const { return m_SpriteEffect; }
+	void					setSpriteEffect(ESpriteEffect _spriteeffect){ m_SpriteEffect = _spriteeffect; }
+	ESpriteEffect			getSpriteEffect()const { return m_SpriteEffect; }
 
 	void					setScale(float _scale){ m_Scale = _scale; }
 	float					getScale()const { return m_Scale; }
@@ -61,8 +61,8 @@ public:
 
 	void					UpdateAnimation(int timeAnimation);
 	
-	void					Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
-	void					RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color, int frameIndex);
+	void					Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
+	void					RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color, int frameIndex);
 	void					Release();
 };
 

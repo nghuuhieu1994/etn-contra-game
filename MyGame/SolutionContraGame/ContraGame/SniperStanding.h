@@ -1,10 +1,10 @@
 #ifndef __SNIPER_STANDING_H__
 #define __SNIPER_STANDING_H__
-#include "CObjectDx9.h"
+#include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "Rambo.h"
 
-class SniperStanding : public Object
+class SniperStanding : public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_top;

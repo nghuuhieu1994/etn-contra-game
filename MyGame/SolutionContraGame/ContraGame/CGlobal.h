@@ -6,9 +6,9 @@
 #define			FRAME_RATE	60
 #define			GAMETITLE	"Contra"
 
-#define			TURN_ON_UPDATE_ANIMATION(p)		p = p | (1 << 0)
-#define			TURN_OFF_UPDATE_ANIMATION(p)	p = p ^ (1 << 0)
-#define			IS_UPDATE_ANIMATION(p)			p & (1 << 0)
+#define			TURN_ON_UPDATE_SPRITE(p)		p = p | (1 << 0)
+#define			TURN_OFF_UPDATE_SPRITE(p)		p = p ^ (1 << 0)
+#define			IS_UPDATE_SPRITE(p)				p & (1 << 0)
 
 #ifndef SPRITEHANDLE
 #define			SPRITEHANDLE LPD3DXSPRITE
@@ -34,21 +34,21 @@
 #define TILE_HEIGHT 64
 #endif
 
-typedef enum eSpriteEffect
+enum ESpriteEffect
 {
 	None = 0,
 	Horizontally = 1,  
 	Vertically = 2, 
 };
 
-typedef enum eSoundID
+enum eSoundID
 {
 	BROKEN = 0,
 	THU_CUOI_SONG = 1,
 	THEME_SONG_S_1
 };
 
-typedef enum eSpriteID
+enum eSpriteID
 {
 	SPRITE_RAMBO_JUMP = 0,
 	SPRITE_RAMBO_LIE = 1,
@@ -80,7 +80,7 @@ typedef enum eSpriteID
 
 };
 
-typedef enum eObjectState
+enum eObjectState
 {
 	STATE_ALIVE_IDLE = 0,
 	STATE_ALIVE_MOVE = 1,
@@ -99,7 +99,7 @@ typedef enum eObjectState
 	STATE_RAMBO_RUN,
 };
 
-typedef enum eObjectID
+enum eObjectID
 {
 	TILE_BASE,
 	RAMBO,
@@ -110,7 +110,7 @@ typedef enum eObjectID
 	FLYER_SIN,
 };
 
-typedef enum eDirection
+enum eDirection
 {
 	TOP = 0,
 	BOTTOM = 1,
@@ -118,7 +118,7 @@ typedef enum eDirection
 	RIGHT,
 };
 
-typedef enum eIDStateGame
+enum eIDStateGame
 {
 	INTRO = 0,
 	TEST_SPRITE = 1,

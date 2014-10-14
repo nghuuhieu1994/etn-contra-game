@@ -63,8 +63,8 @@ void MenuGame::Update()
 
 void MenuGame::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	m_MenuBG->Render(_lpDSpriteHandle, D3DXVECTOR2(m_MenuPosition.x, m_MenuPosition.y), eSpriteEffect::None, 0.0f, 1.0f, m_MenuPosition.z);
-	m_Icon->Render(_lpDSpriteHandle, D3DXVECTOR2(m_IconPosition.x, m_IconPosition.y), eSpriteEffect::None, 0.0f, 1.0f, m_IconPosition.z);
+	m_MenuBG->Render(_lpDSpriteHandle, D3DXVECTOR2(m_MenuPosition.x, m_MenuPosition.y), ESpriteEffect::None, 0.0f, 1.0f, m_MenuPosition.z);
+	m_Icon->Render(_lpDSpriteHandle, D3DXVECTOR2(m_IconPosition.x, m_IconPosition.y), ESpriteEffect::None, 0.0f, 1.0f, m_IconPosition.z);
 }
 
 void MenuGame::Pause()

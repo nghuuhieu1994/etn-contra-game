@@ -89,6 +89,7 @@
     <ClCompile Include="Flyer_Sin.cpp">
       <Filter>SourceFile\ContraGame\EnemyObject</Filter>
     </ClCompile>
+    <ClCompile Include="DynamicObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -178,6 +179,7 @@
     <ClInclude Include="Flyer_Sin.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
+    <ClInclude Include="DynamicObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="HeaderFile">

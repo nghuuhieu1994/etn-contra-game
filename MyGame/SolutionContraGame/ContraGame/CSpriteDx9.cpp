@@ -4,7 +4,7 @@ CSpriteDx9::CSpriteDx9()
 {
 	m_MyTexture = 0;
 	m_AnimationAction = 0;
-	m_SpriteEffect = eSpriteEffect::None;
+	m_SpriteEffect = ESpriteEffect::None;
 	m_Scale = 1.0f;
 	m_Rotate = 0.0f;
 }
@@ -53,26 +53,26 @@ CAnimationDx9* CSpriteDx9::getAnimation()
 	return m_AnimationAction;
 }
 
-void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color)
+void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color)
 {
 	/*D3DXVECTOR2 m_vOrigin = D3DXVECTOR2(position.x + m_AnimationAction->GetFrameSize().x/2,
 										position.y + m_AnimationAction->GetFrameSize().y/2);*/
 	D3DXVECTOR2 m_vOrigin = D3DXVECTOR2(position.x, position.y);
 	if(m_MyTexture != 0)
 	{
-		if(effect == eSpriteEffect::None)
+		if(effect == ESpriteEffect::None)
 		{
 			m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
 		}
 		else
 		{
-			if(effect == eSpriteEffect::Horizontally)
+			if(effect == ESpriteEffect::Horizontally)
 			{
 				m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(-scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
 			}
 			else
 			{
-				if(effect == eSpriteEffect::Vertically)
+				if(effect == ESpriteEffect::Vertically)
 				{
 					m_MyTexture->Render(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
 				}
@@ -81,7 +81,7 @@ void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSprite
 	}
 }
 
-void CSpriteDx9::RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, eSpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color,int frameIndex)
+void CSpriteDx9::RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color,int frameIndex)
 {
 	m_AnimationAction->setSourceRectAtIndex(frameIndex);
 
