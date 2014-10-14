@@ -2,8 +2,8 @@
 
 CSpriteDx9::CSpriteDx9()
 {
-	m_MyTexture = NULL;
-	m_AnimationAction = NULL;
+	m_MyTexture = 0;
+	m_AnimationAction = 0;
 	m_SpriteEffect = eSpriteEffect::None;
 	m_Scale = 1.0f;
 	m_Rotate = 0.0f;

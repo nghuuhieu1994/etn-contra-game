@@ -21,6 +21,7 @@ protected:
 
 	int				m_TimeChangeState;
 
+	D3DXVECTOR3		m_Position;
 	//bit 0 -> Update Sprite
 	//bit 1 -> Update Animation
 	//bit 2 -> Update Movement
@@ -34,6 +35,11 @@ public:
 	Object();
 	Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
+
+	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
+	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
+	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
+
 	//Physic*			getPhysic() const { return m_Physic; }
 	eObjectID		getID() const { return m_eObjectID; }
 	virtual void Initialize() = 0;

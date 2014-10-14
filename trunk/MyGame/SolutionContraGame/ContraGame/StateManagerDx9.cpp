@@ -1,6 +1,6 @@
 #include "StateManagerDx9.h"
 
-StateManagerDx9* StateManagerDx9::s_Instance = NULL;
+StateManagerDx9* StateManagerDx9::s_Instance = 0;
 
 StateManagerDx9* StateManagerDx9::getInstance()
 {

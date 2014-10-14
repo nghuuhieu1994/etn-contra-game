@@ -2,7 +2,7 @@
 
 CTextureDx9::CTextureDx9()
 {
-	m_lpTexture = NULL;
+	m_lpTexture = 0;
 }
 
 CTextureDx9::CTextureDx9(const CTextureDx9& Texture)
@@ -44,7 +44,7 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 		D3DX_DEFAULT,
 		ColorKey,
 		&_infoImg,
-		NULL,
+		0,
 		&m_lpTexture
 		);
 	if(FAILED(hr))

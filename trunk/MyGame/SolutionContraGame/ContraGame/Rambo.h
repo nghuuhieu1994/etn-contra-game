@@ -18,6 +18,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
+	void PrintState();
 	virtual ~Rambo();
 };
 

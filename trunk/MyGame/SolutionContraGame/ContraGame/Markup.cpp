@@ -145,7 +145,7 @@ enum MarkupResultCode
 	MRC_MSG      = 64
 };
 
-void x_AddResult( MCD_STR& strResult, MCD_CSTR pszID, MCD_CSTR pszVal = NULL, int nResultCode = 0, int n = -1, int n2 = -1 )
+void x_AddResult( MCD_STR& strResult, MCD_CSTR pszID, MCD_CSTR pszVal = 0, int nResultCode = 0, int n = -1, int n2 = -1 )
 {
 	// Call this to append an error result to strResult, discard if accumulating too large
 	if ( MCD_STRLENGTH(strResult) < 1000 )
@@ -194,7 +194,7 @@ struct TextEncoding
 		m_nFailedChars = 0;
 		m_nToCount = 0;
 	};
-	int PerformConversion( void* pTo, MCD_CSTR pszToEncoding = NULL );
+	int PerformConversion( void* pTo, MCD_CSTR pszToEncoding = 0 );
 	bool FindRaggedEnd( int& nTruncBeforeBytes );
 #if defined(MARKUP_ICONV)
 	static const char* IConvName( char* szEncoding, MCD_CSTR pszEncoding );
@@ -366,7 +366,7 @@ int x_GetEncodingCodePage( MCD_CSTR pszEncoding )
 			if ( nEntryLen == nEncLen && x_StrNCmp(szEncodingLower,pEntry,nEntryLen) == 0 )
 			{
 				// Convert digits to integer up to code name which always starts with alpha 
-				nCodePage = MCD_PSZTOL( pCodePage, NULL, 10 );
+				nCodePage = MCD_PSZTOL( pCodePage, 0, 10 );
 				break;
 			}
 			pEntry += nEntryLen;
@@ -444,7 +444,7 @@ int TextEncoding::IConv( void* pTo, int nToCharSize, int nFromCharSize )
 		size_t nToCountRemainingBefore;
 		char* pToChar = (char*)pTo;
 		char* pFromChar = (char*)m_pFrom;
-		char* pToTempBuffer = NULL;
+		char* pToTempBuffer = 0;
 		const size_t nTempBufferSize = 2048;
 		size_t nResult;
 		if ( ! pTo )
@@ -476,7 +476,7 @@ int TextEncoding::IConv( void* pTo, int nToCharSize, int nFromCharSize )
 					nToCountRemaining -= nToCharSize;
 					nToLenBytes += nToCharSize;
 					size_t nInitFromLen = 0, nInitToCount = 0;
-					iconv(cd, NULL, &nInitFromLen ,NULL, &nInitToCount );
+					iconv(cd, 0, &nInitFromLen ,0, &nInitToCount );
 				}
 				else if ( nErrno == EINVAL )
 					break; // incomplete character or shift sequence at end of input
@@ -502,15 +502,15 @@ int TextEncoding::IConv( void* pTo, int nToCharSize, int nFromCharSize )
 #if defined(MARKUP_WINCONV)
 bool x_NoDefaultChar( int nCP )
 {
-	// WideCharToMultiByte fails if lpUsedDefaultChar is non-NULL for these code pages:
+	// WideCharToMultiByte fails if lpUsedDefaultChar is non-0 for these code pages:
     return (bool)(nCP == 65000 || nCP == 65001 || nCP == 50220 || nCP == 50221 || nCP == 50222 || nCP == 50225 ||
             nCP == 50227 || nCP == 50229 || nCP == 52936 || nCP == 54936 || (nCP >= 57002 && nCP <= 57011) );
 }
 #endif
 
-int TextEncoding::PerformConversion( void* pTo, MCD_CSTR pszToEncoding/*=NULL*/ )
+int TextEncoding::PerformConversion( void* pTo, MCD_CSTR pszToEncoding/*=0*/ )
 {
-	// If pTo is not NULL, it must be large enough to hold result, length of result is returned
+	// If pTo is not 0, it must be large enough to hold result, length of result is returned
 	// m_nFailedChars will be set to >0 if characters not supported in strToEncoding
 	int nToLen = 0;
 	if ( pszToEncoding.pcsz )
@@ -647,7 +647,7 @@ int TextEncoding::PerformConversion( void* pTo, MCD_CSTR pszToEncoding/*=NULL*/ 
 		else // to UTF-8 or other multi-byte
 		{
 			nToLen = WideCharToMultiByte(nToCP,0,(const wchar_t*)m_pFrom,m_nFromLen,(char*)pTo,
-					m_nToCount?m_nToCount+1:0,NULL,x_NoDefaultChar(nToCP)?NULL:&m_nFailedChars);
+					m_nToCount?m_nToCount+1:0,0,x_NoDefaultChar(nToCP)?0:&m_nFailedChars);
 		}
 #else // not WINCONV
 		else if ( nToCP == MCD_UTF8 )
@@ -756,8 +756,8 @@ int TextEncoding::PerformConversion( void* pTo, MCD_CSTR pszToEncoding/*=NULL*/ 
 #elif defined(MARKUP_WINCONV)
 		wchar_t* pwszUTF16 = new wchar_t[m_nFromLen];
 		int nUTF16Len = MultiByteToWideChar(nFromCP,0,(const char*)m_pFrom,m_nFromLen,pwszUTF16,m_nFromLen);
-		nToLen = WideCharToMultiByte(nToCP,0,pwszUTF16,nUTF16Len,(char*)pTo,m_nToCount,NULL,
-			x_NoDefaultChar(nToCP)?NULL:&m_nFailedChars);
+		nToLen = WideCharToMultiByte(nToCP,0,pwszUTF16,nUTF16Len,(char*)pTo,m_nToCount,0,
+			x_NoDefaultChar(nToCP)?0:&m_nFailedChars);
 		delete[] pwszUTF16;
 #endif // WINCONV
 	}
@@ -968,7 +968,7 @@ struct ElemPosTree
 	enum { PA_SEGBITS = 16, PA_SEGMASK = 0xffff };
 	void ReleaseElemPosTree() { Release(); Clear(); };
 	void Release() { for (int n=0;n<SegsUsed();++n) delete[] (char*)m_pSegs[n]; if (m_pSegs) delete[] (char*)m_pSegs; };
-	void Clear() { m_nSegs=0; m_nSize=0; m_pSegs=NULL; };
+	void Clear() { m_nSegs=0; m_nSize=0; m_pSegs=0; };
 	int GetSize() const { return m_nSize; };
 	int SegsUsed() const { return ((m_nSize-1)>>PA_SEGBITS) + 1; };
 	ElemPos& GetRefElemPosAt(int i) const { return m_pSegs[i>>PA_SEGBITS][i&PA_SEGMASK]; };
@@ -1112,7 +1112,7 @@ struct NodePos
 //
 struct TokenPos
 {
-	TokenPos( MCD_CSTR sz, int n, FilePos* p=NULL ) { Clear(); m_pDocText=sz; m_nTokenFlags=n; m_pReaderFilePos=p; };
+	TokenPos( MCD_CSTR sz, int n, FilePos* p=0 ) { Clear(); m_pDocText=sz; m_nTokenFlags=n; m_pReaderFilePos=p; };
 	void Clear() { m_nL=0; m_nR=-1; m_nNext=0; };
 	int Length() const { return m_nR - m_nL + 1; };
 	MCD_PCSZ GetTokenPtr() const { return &m_pDocText[m_nL]; };
@@ -1147,7 +1147,7 @@ struct TokenPos
 		return ( (x_StrNCmp( GetTokenPtr(), szName, nLen, m_nTokenFlags & CMarkup::MDF_IGNORECASE ) == 0)
 			&& ( szName[nLen] == '\0' || x_ISENDPATHWORD(szName[nLen]) ) );
 	};
-	bool FindAttrib( MCD_PCSZ pAttrib, int n = 0, MCD_STR* pstrAttrib = NULL );
+	bool FindAttrib( MCD_PCSZ pAttrib, int n = 0, MCD_STR* pstrAttrib = 0 );
 	int ParseNode( NodePos& node );
 	int m_nL;
 	int m_nR;
@@ -1159,10 +1159,10 @@ struct TokenPos
 	FilePos* m_pReaderFilePos;
 };
 
-bool TokenPos::FindAttrib( MCD_PCSZ pAttrib, int n/*=0*/, MCD_STR* pstrAttrib/*=NULL*/ )
+bool TokenPos::FindAttrib( MCD_PCSZ pAttrib, int n/*=0*/, MCD_STR* pstrAttrib/*=0*/ )
 {
 	// Return true if found, otherwise false and token.m_nNext is new insertion point
-	// If pAttrib is NULL find attrib n and leave token at attrib name
+	// If pAttrib is 0 find attrib n and leave token at attrib name
 	// If pAttrib is given, find matching attrib and leave token at value
 	// support non-well-formed attributes e.g. href=/advanced_search?hl=en, nowrap
 	// token also holds start and length of preceeding whitespace to support remove
@@ -1322,7 +1322,7 @@ struct TagPos
 struct ElemStack
 {
 	enum { LS_TABLESIZE = 23 };
-	ElemStack() { iTop=0; iUsed=0; iPar=0; nLevel=0; nSize=0; pL=NULL; Alloc(7); pL[0].Init(); InitTable(); };
+	ElemStack() { iTop=0; iUsed=0; iPar=0; nLevel=0; nSize=0; pL=0; Alloc(7); pL[0].Init(); InitTable(); };
 	~ElemStack() { if (pL) delete [] pL; };
 	TagPos& Current() { return pL[iTop]; };
 	void InitTable() { memset(anTable,0,sizeof(int)*LS_TABLESIZE); };
@@ -1435,8 +1435,8 @@ struct FilePos
 {
 	FilePos()
 	{
-		m_fp=NULL; m_nDocFlags=0; m_nFileByteLen=0; m_nFileByteOffset=0; m_nOpFileByteLen=0; m_nBlockSizeBasis=MARKUP_FILEBLOCKSIZE;
-		m_nFileCharUnitSize=0; m_nOpFileTextLen=0; m_pstrBuffer=NULL; m_nReadBufferStart=0; m_nReadBufferRemoved=0; m_nReadGatherStart=-1;
+		m_fp=0; m_nDocFlags=0; m_nFileByteLen=0; m_nFileByteOffset=0; m_nOpFileByteLen=0; m_nBlockSizeBasis=MARKUP_FILEBLOCKSIZE;
+		m_nFileCharUnitSize=0; m_nOpFileTextLen=0; m_pstrBuffer=0; m_nReadBufferStart=0; m_nReadBufferRemoved=0; m_nReadGatherStart=-1;
 	};
 	bool FileOpen( MCD_CSTR_FILENAME szFileName );
 	bool FileRead( void* pBuffer );
@@ -1445,7 +1445,7 @@ struct FilePos
 	bool FileReadNextBuffer();
 	void FileGatherStart( int nStart );
 	int FileGatherEnd( MCD_STR& strSubDoc );
-	bool FileWrite( void* pBuffer, const void* pConstBuffer = NULL );
+	bool FileWrite( void* pBuffer, const void* pConstBuffer = 0 );
 	bool FileWriteText( const MCD_STR& strDoc, int nWriteStrLen = -1 );
 	bool FileFlush( MCD_STR& strBuffer, int nWriteStrLen = -1, bool bFflush = false );
 	bool FileClose();
@@ -1476,7 +1476,7 @@ struct BomTableStruct { const char* pszBom; int nBomLen; MCD_PCSZ pszBomEnc; int
 	{ "\xef\xbb\xbf", 3, MCD_T("UTF-8"), CMarkup::MDF_UTF8PREAMBLE },
 	{ "\xff\xfe", 2, MCD_T("UTF-16LE"), CMarkup::MDF_UTF16LEFILE },
 	{ "\xfe\xff", 2, MCD_T("UTF-16BE"), CMarkup::MDF_UTF16BEFILE },
-	{ NULL,0,NULL,0 }
+	{ 0,0,0,0 }
 };
 
 bool FilePos::FileErrorAddResult()
@@ -1553,7 +1553,7 @@ bool FilePos::FileOpen( MCD_CSTR_FILENAME szFileName )
 		pMode = MCD_T_FILENAME("ab");
 	else if ( m_nDocFlags & CMarkup::MDF_WRITEFILE )
 		pMode = MCD_T_FILENAME("wb");
-	m_fp = NULL;
+	m_fp = 0;
 	MCD_FOPEN( m_fp, szFileName, pMode );
 	if ( ! m_fp )
 		return FileErrorAddResult();
@@ -1677,7 +1677,7 @@ bool FilePos::FileRead( void* pBuffer )
 		// Microsoft components can produce apparently valid docs with some nulls at ends of values
 		int nNullCount = 0;
 		int nNullCheckCharsRemaining = m_nOpFileTextLen;
-		char* pAfterNull = NULL;
+		char* pAfterNull = 0;
 		char* pNullScan = (char*)pBuffer;
 		bool bSingleByteChar = m_nFileCharUnitSize == 1;
 		while ( nNullCheckCharsRemaining-- )
@@ -1695,7 +1695,7 @@ bool FilePos::FileRead( void* pBuffer )
 			memmove( pAfterNull - (nNullCount*m_nFileCharUnitSize), pAfterNull, pNullScan - pAfterNull );
 		if ( nNullCount )
 		{
-			x_AddResult( m_strIOResult, MCD_T("nulls_removed"), NULL, MRC_COUNT, nNullCount );
+			x_AddResult( m_strIOResult, MCD_T("nulls_removed"), 0, MRC_COUNT, nNullCount );
 			m_nOpFileTextLen -= nNullCount;
 		}
 
@@ -1733,7 +1733,7 @@ bool FilePos::FileCheckRaggedEnd( void* pBuffer )
 		MCD_FSEEK( m_fp, m_nFileByteOffset, SEEK_SET );
 		m_nOpFileByteLen += nTruncBeforeBytes;
 		m_nOpFileTextLen += nTruncBeforeBytes / m_nFileCharUnitSize;
-		x_AddResult( m_strIOResult, MCD_T("read"), NULL, MRC_MODIFY|MRC_LENGTH, m_nOpFileTextLen );
+		x_AddResult( m_strIOResult, MCD_T("read"), 0, MRC_MODIFY|MRC_LENGTH, m_nOpFileTextLen );
 	}
 	return true;
 }
@@ -1790,7 +1790,7 @@ bool FilePos::FileReadText( MCD_STR& strDoc )
 		if ( bSuccess && bCheckRaggedEnd )
 			FileCheckRaggedEnd( (void*)pUTF16Buffer );
 		TextEncoding textencoding( MCD_T("UTF-16"), (const void*)pUTF16Buffer, m_nOpFileTextLen );
-		int nMBLen = textencoding.PerformConversion( NULL, MCD_ENC );
+		int nMBLen = textencoding.PerformConversion( 0, MCD_ENC );
 		int nBufferSizeForGrow = nMBLen + nMBLen/100; // extra 1%
 		MCD_CHAR* pMBBuffer = MCD_GETBUFFER(strDoc,nBufferSizeForGrow);
 		textencoding.PerformConversion( (void*)pMBBuffer );
@@ -1820,7 +1820,7 @@ bool FilePos::FileReadText( MCD_STR& strDoc )
 		if ( bSuccess && bCheckRaggedEnd )
 			FileCheckRaggedEnd( (void*)pBuffer );
 		TextEncoding textencoding( m_strEncoding, (const void*)pBuffer, m_nOpFileTextLen );
-		int nWideLen = textencoding.PerformConversion( NULL, MCD_ENC );
+		int nWideLen = textencoding.PerformConversion( 0, MCD_ENC );
 		int nBufferSizeForGrow = nWideLen + nWideLen/100; // extra 1%
 		MCD_CHAR* pWideBuffer = MCD_GETBUFFER(strDoc,nBufferSizeForGrow);
 		textencoding.PerformConversion( (void*)pWideBuffer );
@@ -1842,7 +1842,7 @@ bool FilePos::FileReadText( MCD_STR& strDoc )
 			if ( bSuccess && bCheckRaggedEnd )
 				FileCheckRaggedEnd( (void*)pBuffer );
 			TextEncoding textencoding( m_strEncoding, (const void*)pBuffer, m_nOpFileTextLen );
-			int nMBLen = textencoding.PerformConversion( NULL, MCD_ENC );
+			int nMBLen = textencoding.PerformConversion( 0, MCD_ENC );
 			int nBufferSizeForGrow = nMBLen + nMBLen/100; // extra 1%
 			MCD_CHAR* pMBBuffer = MCD_GETBUFFER(strDoc,nBufferSizeForGrow);
 			textencoding.PerformConversion( (void*)pMBBuffer );
@@ -1877,7 +1877,7 @@ bool FilePos::FileReadText( MCD_STR& strDoc )
 			if ( bConvertMB )
 			{
 				TextEncoding textencoding( m_strEncoding, MCD_2PCSZ(strDoc), m_nOpFileTextLen );
-				int nMBLen = textencoding.PerformConversion( NULL, MCD_ENC );
+				int nMBLen = textencoding.PerformConversion( 0, MCD_ENC );
 				nBufferSizeForGrow = nMBLen + nMBLen/100; // extra 1%
 				MCD_STR strConvDoc;
 				pBuffer = MCD_GETBUFFER(strConvDoc,nBufferSizeForGrow);
@@ -1896,12 +1896,12 @@ bool FilePos::FileReadText( MCD_STR& strDoc )
 	return bSuccess;
 }
 
-bool FilePos::FileWrite( void* pBuffer, const void* pConstBuffer /*=NULL*/ )
+bool FilePos::FileWrite( void* pBuffer, const void* pConstBuffer /*=0*/ )
 {
 	m_nOpFileByteLen = m_nOpFileTextLen * m_nFileCharUnitSize;
 	if ( ! pConstBuffer )
 		pConstBuffer = pBuffer;
-	unsigned short* pTempEndianBuffer = NULL;
+	unsigned short* pTempEndianBuffer = 0;
 	if ( x_EndianSwapRequired(m_nDocFlags) )
 	{
 		if ( ! pBuffer )
@@ -1945,7 +1945,7 @@ bool FilePos::FileWriteText( const MCD_STR& strDoc, int nWriteStrLen/*=-1*/ )
 #if defined(MARKUP_WCHAR) // WCHAR
 #if MARKUP_SIZEOFWCHAR == 4 // sizeof(wchar_t) == 4
 		TextEncoding textencoding( MCD_T("UTF-32"), (const void*)pDoc, nWriteStrLen );
-		m_nOpFileTextLen = textencoding.PerformConversion( NULL, MCD_T("UTF-16") );
+		m_nOpFileTextLen = textencoding.PerformConversion( 0, MCD_T("UTF-16") );
 		unsigned short* pUTF16Buffer = new unsigned short[m_nOpFileTextLen];
 		textencoding.PerformConversion( (void*)pUTF16Buffer );
 		x_AddResult( m_strIOResult, MCD_T("converted_from"), MCD_T("UTF-32"), MRC_ENCODING|MRC_LENGTH, nWriteStrLen );
@@ -1953,11 +1953,11 @@ bool FilePos::FileWriteText( const MCD_STR& strDoc, int nWriteStrLen/*=-1*/ )
 		delete [] pUTF16Buffer;
 #else // sizeof(wchar_t) == 2
 		m_nOpFileTextLen = nWriteStrLen;
-		bSuccess = FileWrite( NULL, pDoc );
+		bSuccess = FileWrite( 0, pDoc );
 #endif
 #else // not WCHAR
 		TextEncoding textencoding( MCD_ENC, (const void*)pDoc, nWriteStrLen );
-		m_nOpFileTextLen = textencoding.PerformConversion( NULL, MCD_T("UTF-16") );
+		m_nOpFileTextLen = textencoding.PerformConversion( 0, MCD_T("UTF-16") );
 		unsigned short* pUTF16Buffer = new unsigned short[m_nOpFileTextLen];
 		textencoding.PerformConversion( (void*)pUTF16Buffer );
 		x_AddResult( m_strIOResult, MCD_T("converted_from"), MCD_ENC, MRC_ENCODING|MRC_LENGTH, nWriteStrLen );
@@ -1972,12 +1972,12 @@ bool FilePos::FileWriteText( const MCD_STR& strDoc, int nWriteStrLen/*=-1*/ )
 		{
 			// Same or unsupported multi-byte to multi-byte, so save directly from string
 			m_nOpFileTextLen = nWriteStrLen;
-			bSuccess = FileWrite( NULL, pDoc );
+			bSuccess = FileWrite( 0, pDoc );
 			return bSuccess;
 		}
 #endif // not WCHAR
 		TextEncoding textencoding( MCD_ENC, (const void*)pDoc, nWriteStrLen );
-		m_nOpFileTextLen = textencoding.PerformConversion( NULL, m_strEncoding );
+		m_nOpFileTextLen = textencoding.PerformConversion( 0, m_strEncoding );
 		char* pMBBuffer = new char[m_nOpFileTextLen];
 		textencoding.PerformConversion( (void*)pMBBuffer );
 		x_AddResult( m_strIOResult, MCD_T("converted_from"), MCD_ENC, MRC_ENCODING|MRC_LENGTH, nWriteStrLen );
@@ -1996,7 +1996,7 @@ bool FilePos::FileClose()
 	{
 		if ( fclose(m_fp) )
 			FileErrorAddResult();
-		m_fp = NULL;
+		m_fp = 0;
 		m_nDocFlags &= ~(CMarkup::MDF_WRITEFILE|CMarkup::MDF_READFILE|CMarkup::MDF_APPENDFILE);
 		return true;
 	}
@@ -2109,7 +2109,7 @@ struct PathPos
 	bool IsAbsolutePath() { return nPathType == 2; };
 	bool IsPath() { return nPathType > 0; };
 	bool ValidPath() { return nPathType != -1; };
-	MCD_PCSZ GetPathAttribName() { if (iPathAttribName) return &p[iPathAttribName]; return NULL; };
+	MCD_PCSZ GetPathAttribName() { if (iPathAttribName) return &p[iPathAttribName]; return 0; };
 	bool AttribPredicateMatch( TokenPos& token );
 private:
 	bool ParsePath();
@@ -2234,12 +2234,12 @@ struct SavedPosMap
 struct SavedPosMapArray
 {
 	// SavedPosMapArray keeps pointers to SavedPosMap instances
-	SavedPosMapArray() { m_pMaps = NULL; };
+	SavedPosMapArray() { m_pMaps = 0; };
 	~SavedPosMapArray() { ReleaseMaps(); };
-	void ReleaseMaps() { SavedPosMap**p = m_pMaps; if (p) { while (*p) delete *p++; delete[] m_pMaps; m_pMaps=NULL; } };
+	void ReleaseMaps() { SavedPosMap**p = m_pMaps; if (p) { while (*p) delete *p++; delete[] m_pMaps; m_pMaps=0; } };
 	bool GetMap( SavedPosMap*& pMap, int nMap, int nMapSize = 7 );
 	void CopySavedPosMaps( SavedPosMapArray* pOtherMaps );
-	SavedPosMap** m_pMaps; // NULL terminated array
+	SavedPosMap** m_pMaps; // 0 terminated array
 };
 
 bool SavedPosMapArray::GetMap( SavedPosMap*& pMap, int nMap, int nMapSize /*=7*/ )
@@ -2279,7 +2279,7 @@ bool SavedPosMapArray::GetMap( SavedPosMap*& pMap, int nMap, int nMapSize /*=7*/
 		m_pMaps[nMapIndex] = new SavedPosMap( nMapSize );
 		++nMapIndex;
 	}
-	m_pMaps[nMapIndex] = NULL;
+	m_pMaps[nMapIndex] = 0;
 	pMap = m_pMaps[nMap];
 	return true; // map(s) created
 }
@@ -2290,7 +2290,7 @@ void SavedPosMapArray::CopySavedPosMaps( SavedPosMapArray* pOtherMaps )
 	if ( pOtherMaps->m_pMaps )
 	{
 		int nMap = 0;
-		SavedPosMap* pMap = NULL;
+		SavedPosMap* pMap = 0;
 		while ( pOtherMaps->m_pMaps[nMap] )
 		{
 			SavedPosMap* pMapSrc = pOtherMaps->m_pMaps[nMap];
@@ -2358,7 +2358,7 @@ int TokenPos::ParseNode( NodePos& node )
 	};
 	int nParseFlags = 0;
 
-	MCD_PCSZ pFindEnd = NULL;
+	MCD_PCSZ pFindEnd = 0;
 	int nNodeType = -1;
 	int nEndLen = 0;
 	int nName = 0;
@@ -2366,7 +2366,7 @@ int TokenPos::ParseNode( NodePos& node )
 	unsigned int cDminus1 = 0, cDminus2 = 0;
 	#define FINDNODETYPE(e,t) { pFindEnd=e; nEndLen=(sizeof(e)-1)/sizeof(MCD_CHAR); nNodeType=t; }
 	#define FINDNODETYPENAME(e,t,n) { FINDNODETYPE(e,t) nName=(int)(pD-m_pDocText)+n; }
-	#define FINDNODEBAD(e) { pFindEnd=MCD_T(">"); nEndLen=1; x_AddResult(node.strMeta,e,NULL,0,m_nNext); nNodeType=-1; }
+	#define FINDNODEBAD(e) { pFindEnd=MCD_T(">"); nEndLen=1; x_AddResult(node.strMeta,e,0,0,m_nNext); nNodeType=-1; }
 
 	node.nStart = m_nNext;
 	node.nNodeFlags = 0;
@@ -2402,7 +2402,7 @@ int TokenPos::ParseNode( NodePos& node )
 					MCD_STR& str = *m_pReaderFilePos->m_pstrBuffer;
 					m_pDocText = MCD_2PCSZ( str );
 					pD = &m_pDocText[nNewOffset];
-					cD = (unsigned int)*pD; // loaded char replaces null terminator
+					cD = (unsigned int)*pD; // loaded char replaces 0 terminator
 				}
 			}
 			if ( ! cD )
@@ -2460,7 +2460,7 @@ int TokenPos::ParseNode( NodePos& node )
 				m_nNext = (int)(pD - m_pDocText) + 1;
 				if ( nEndLen == 1 )
 				{
-					pFindEnd = NULL;
+					pFindEnd = 0;
 					if ( nNodeType == CMarkup::MNT_ELEMENT && cDminus1 == '/' )
 					{
 						if ( (! cDminus2) || x_ISNOTSECONDLASTINVAL(cDminus2) )
@@ -2475,7 +2475,7 @@ int TokenPos::ParseNode( NodePos& node )
 					int nLen = nEndLen;
 					while ( --nLen && *pEnd++ == *pInFindEnd++ );
 					if ( nLen == 0 )
-						pFindEnd = NULL;
+						pFindEnd = 0;
 				}
 				if ( ! pFindEnd && ! (nParseFlags & PD_DOCTYPE) )
 					break;
@@ -2900,7 +2900,7 @@ MCD_STR CMarkup::EscapeText( MCD_CSTR szText, int nFlags )
 	// &apos; apostrophe or single quote
 	// &quot; double quote
 	//
-	static MCD_PCSZ apReplace[] = { NULL,MCD_T("&lt;"),MCD_T("&amp;"),MCD_T("&gt;"),MCD_T("&quot;"),MCD_T("&apos;") };
+	static MCD_PCSZ apReplace[] = { 0,MCD_T("&lt;"),MCD_T("&amp;"),MCD_T("&gt;"),MCD_T("&quot;"),MCD_T("&apos;") };
 	MCD_STR strText;
 	MCD_PCSZ pSource = szText;
 	int nDestSize = MCD_PSZLEN(pSource);
@@ -3084,7 +3084,7 @@ MCD_STR CMarkup::UnescapeText( MCD_CSTR szText, int nTextLength /*=-1*/, int nFl
 						nNumberOffset = 2; // after #x
 						nBase = 16; // hex
 					}
-					nUnicode = MCD_PSZTOL( &szCodeName[nNumberOffset], NULL, nBase );
+					nUnicode = MCD_PSZTOL( &szCodeName[nNumberOffset], 0, nBase );
 				}
 				else // does not start with #
 				{
@@ -3100,7 +3100,7 @@ MCD_STR CMarkup::UnescapeText( MCD_CSTR szText, int nTextLength /*=-1*/, int nFl
 						if ( nEntryLen == nCodeLen && x_StrNCmp(szCodeName,pEntry,nEntryLen) == 0 )
 						{
 							// Convert digits to integer up to code name which always starts with alpha 
-							nUnicode = MCD_PSZTOL( pCodePoint, NULL, 10 );
+							nUnicode = MCD_PSZTOL( pCodePoint, 0, 10 );
 							break;
 						}
 						pEntry += nEntryLen;
@@ -3125,7 +3125,7 @@ MCD_STR CMarkup::UnescapeText( MCD_CSTR szText, int nTextLength /*=-1*/, int nFl
 				int nUsedDefaultChar = 0;
 				wchar_t wszUTF16[2];
 				EncodeCharUTF16( nUnicode, (unsigned short*)wszUTF16, nCharLen );
-				nCharLen = WideCharToMultiByte( CP_ACP, 0, wszUTF16, nCharLen, szChar, 5, NULL, &nUsedDefaultChar );
+				nCharLen = WideCharToMultiByte( CP_ACP, 0, wszUTF16, nCharLen, szChar, 5, 0, &nUsedDefaultChar );
 				if ( nUsedDefaultChar || nCharLen <= 0 )
 					nUnicode = 0;
 #else // not WINCONV
@@ -3183,16 +3183,16 @@ MCD_STR CMarkup::UnescapeText( MCD_CSTR szText, int nTextLength /*=-1*/, int nFl
 	return strText;
 }
 
-bool CMarkup::DetectUTF8( const char* pText, int nTextLen, int* pnNonASCII/*=NULL*/, bool* bErrorAtEnd/*=NULL*/ )
+bool CMarkup::DetectUTF8( const char* pText, int nTextLen, int* pnNonASCII/*=0*/, bool* bErrorAtEnd/*=0*/ )
 {
 	// return true if ASCII or all non-ASCII byte sequences are valid UTF-8 pattern:
 	// ASCII   0xxxxxxx
 	// 2-byte  110xxxxx 10xxxxxx
 	// 3-byte  1110xxxx 10xxxxxx 10xxxxxx
 	// 4-byte  11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-	// *pnNonASCII is set (if pnNonASCII is not NULL) to the number of non-ASCII UTF-8 sequences
+	// *pnNonASCII is set (if pnNonASCII is not 0) to the number of non-ASCII UTF-8 sequences
 	// or if an invalid UTF-8 sequence is found, to 1 + the valid non-ASCII sequences up to the invalid sequence
-	// *bErrorAtEnd is set (if bErrorAtEnd is not NULL) to true if the UTF-8 was cut off at the end in mid valid sequence
+	// *bErrorAtEnd is set (if bErrorAtEnd is not 0) to true if the UTF-8 was cut off at the end in mid valid sequence
 	int nUChar;
 	if ( pnNonASCII )
 		*pnNonASCII = 0;
@@ -3219,10 +3219,10 @@ bool CMarkup::DetectUTF8( const char* pText, int nTextLen, int* pnNonASCII/*=NUL
 	return true;
 }
 
-int CMarkup::DecodeCharUTF8( const char*& pszUTF8, const char* pszUTF8End/*=NULL*/ )
+int CMarkup::DecodeCharUTF8( const char*& pszUTF8, const char* pszUTF8End/*=0*/ )
 {
 	// Return Unicode code point and increment pszUTF8 past 1-4 bytes
-	// pszUTF8End can be NULL if pszUTF8 is null terminated
+	// pszUTF8End can be 0 if pszUTF8 is 0 terminated
 	int nUChar = (unsigned char)*pszUTF8;
 	++pszUTF8;
 	if ( nUChar & 0x80 )
@@ -3282,10 +3282,10 @@ void CMarkup::EncodeCharUTF16( int nUChar, unsigned short* pwszUTF16, int& nUTF1
 	}
 }
 
-int CMarkup::DecodeCharUTF16( const unsigned short*& pwszUTF16, const unsigned short* pszUTF16End/*=NULL*/ )
+int CMarkup::DecodeCharUTF16( const unsigned short*& pwszUTF16, const unsigned short* pszUTF16End/*=0*/ )
 {
 	// Return Unicode code point and increment pwszUTF16 past 1 or 2 (if surrogrates) UTF-16 code points
-	// pszUTF16End can be NULL if pszUTF16 is zero terminated
+	// pszUTF16End can be 0 if pszUTF16 is zero terminated
 	int nUChar = *pwszUTF16;
 	++pwszUTF16;
 	if ( (nUChar & ~0x000007ff) == 0xd800 ) // W1
@@ -3347,17 +3347,17 @@ void CMarkup::EncodeCharUTF8( int nUChar, char* pszUTF8, int& nUTF8Len )
 int CMarkup::UTF16To8( char* pszUTF8, const unsigned short* pwszUTF16, int nUTF8Count )
 {
 	// Supports the same arguments as wcstombs
-	// the pwszUTF16 source must be a NULL-terminated UTF-16 string
-	// if pszUTF8 is NULL, the number of bytes required is returned and nUTF8Count is ignored
-	// otherwise pszUTF8 is filled with the result string and NULL-terminated if nUTF8Count allows
-	// nUTF8Count is the byte size of pszUTF8 and must be large enough for the NULL if NULL desired
-	// and the number of bytes (excluding NULL) is returned
+	// the pwszUTF16 source must be a 0-terminated UTF-16 string
+	// if pszUTF8 is 0, the number of bytes required is returned and nUTF8Count is ignored
+	// otherwise pszUTF8 is filled with the result string and 0-terminated if nUTF8Count allows
+	// nUTF8Count is the byte size of pszUTF8 and must be large enough for the 0 if 0 desired
+	// and the number of bytes (excluding 0) is returned
 	//
 	int nUChar, nUTF8Len = 0;
 	while ( *pwszUTF16 )
 	{
 		// Decode UTF-16
-		nUChar = DecodeCharUTF16( pwszUTF16, NULL );
+		nUChar = DecodeCharUTF16( pwszUTF16, 0 );
 		if ( nUChar == -1 )
 			nUChar = '?';
 
@@ -3365,7 +3365,7 @@ int CMarkup::UTF16To8( char* pszUTF8, const unsigned short* pwszUTF16, int nUTF8
 		if ( pszUTF8 && nUTF8Len + 4 > nUTF8Count )
 		{
 			int nUTF8LenSoFar = nUTF8Len;
-			EncodeCharUTF8( nUChar, NULL, nUTF8Len );
+			EncodeCharUTF8( nUChar, 0, nUTF8Len );
 			if ( nUTF8Len > nUTF8Count )
 				return nUTF8LenSoFar;
 			nUTF8Len = nUTF8LenSoFar;
@@ -3380,11 +3380,11 @@ int CMarkup::UTF16To8( char* pszUTF8, const unsigned short* pwszUTF16, int nUTF8
 int CMarkup::UTF8To16( unsigned short* pwszUTF16, const char* pszUTF8, int nUTF8Count )
 {
 	// Supports the same arguments as mbstowcs
-	// the pszUTF8 source must be a UTF-8 string which will be processed up to NULL-terminator or nUTF8Count
-	// if pwszUTF16 is NULL, the number of UTF-16 chars required is returned
-	// nUTF8Count is maximum UTF-8 bytes to convert and should include NULL if NULL desired in result
-	// if pwszUTF16 is not NULL it is filled with the result string and it must be large enough
-	// result will be NULL-terminated if NULL encountered in pszUTF8 before nUTF8Count
+	// the pszUTF8 source must be a UTF-8 string which will be processed up to 0-terminator or nUTF8Count
+	// if pwszUTF16 is 0, the number of UTF-16 chars required is returned
+	// nUTF8Count is maximum UTF-8 bytes to convert and should include 0 if 0 desired in result
+	// if pwszUTF16 is not 0 it is filled with the result string and it must be large enough
+	// result will be 0-terminated if 0 encountered in pszUTF8 before nUTF8Count
 	// and the number of UTF-8 bytes converted is returned
 	//
 	const char* pszPosUTF8 = pszUTF8;
@@ -3412,7 +3412,7 @@ int CMarkup::UTF8To16( unsigned short* pwszUTF16, const char* pszUTF8, int nUTF8
 }
 
 #if ! defined(MARKUP_WCHAR) // not WCHAR
-MCD_STR CMarkup::UTF8ToA( MCD_CSTR pszUTF8, int* pnFailed/*=NULL*/ )
+MCD_STR CMarkup::UTF8ToA( MCD_CSTR pszUTF8, int* pnFailed/*=0*/ )
 {
 	// Converts from UTF-8 to locale ANSI charset
 	MCD_STR strANSI;
@@ -3704,7 +3704,7 @@ bool CMarkup::GetNthAttrib( int n, MCD_STR& strAttrib, MCD_STR& strValue ) const
 		token.m_nNext = m_nNodeOffset + 2;
 	else
 		return false;
-	if ( token.FindAttrib(NULL,n,&strAttrib) )
+	if ( token.FindAttrib(0,n,&strAttrib) )
 	{
 		strValue = UnescapeText( token.GetTokenPtr(), token.Length(), m_nDocFlags );
 		return true;
@@ -3722,7 +3722,7 @@ MCD_STR CMarkup::GetAttribName( int n ) const
 		token.m_nNext = m_nNodeOffset + 2;
 	else
 		return MCD_T("");
-	if ( token.FindAttrib(NULL,n) )
+	if ( token.FindAttrib(0,n) )
 		return token.GetTokenText();
 	return MCD_T("");
 }
@@ -3896,7 +3896,7 @@ bool CMarkup::RemoveChildElem()
 void CMarkup::x_InitMarkup()
 {
 	// Only called from CMarkup constructors
-	m_pFilePos = NULL;
+	m_pFilePos = 0;
 	m_pSavedPosMaps = new SavedPosMapArray;
 	m_pElemPosTree = new ElemPosTree;
 
@@ -4170,7 +4170,7 @@ int CMarkup::x_ParseElem( int iPosParent, TokenPos& token )
 
 int CMarkup::x_FindElem( int iPosParent, int iPos, PathPos& path ) const
 {
-	// If pPath is NULL or empty, go to next sibling element
+	// If pPath is 0 or empty, go to next sibling element
 	// Otherwise go to next sibling element with matching path
 	//
 	if ( ! path.ValidPath() )
@@ -4400,7 +4400,7 @@ bool CMarkup::x_CreateNode( MCD_STR& strNode, int nNodeType, MCD_PCSZ pText )
 		strNode += MCD_T(">");
 		break;
 	case MNT_CDATA_SECTION:
-		if ( MCD_PSZSTR(pText,MCD_T("]]>")) != NULL )
+		if ( MCD_PSZSTR(pText,MCD_T("]]>")) != 0 )
 			return false;
 		strNode = MCD_T("<![CDATA[");
 		strNode += pText;
@@ -5381,7 +5381,7 @@ bool CMarkup::x_AddNode( int nNodeType, MCD_PCSZ pText, int nNodeFlags )
 
 	// If its a new element, create an ElemPos
 	int iPos = iPosBefore;
-	ElemPos* pElem = NULL;
+	ElemPos* pElem = 0;
 	if ( nNodeType == MNT_ELEMENT )
 	{
 		// Set indexes

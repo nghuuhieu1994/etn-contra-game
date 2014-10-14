@@ -45,7 +45,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_lie.png", eSpriteID::SPRITE_RAMBO_LIE, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_run.png", eSpriteID::SPRITE_RAMBO_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_run.png", eSpriteID::SPRITE_RAMBO_SHOOT_RUN, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_run.png", eSpriteID::SPRITE_RAMBO_SHOOT_RUN, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_top_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_up.png", eSpriteID::SPRITE_RAMBO_SHOOT_UP, 2, 1, 2);
 

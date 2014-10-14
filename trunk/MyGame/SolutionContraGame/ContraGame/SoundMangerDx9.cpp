@@ -33,7 +33,7 @@ SoundBuffer* SoundManagerDx9::getSoundBuffer(eSoundID eID)
 	map<eSoundID, SoundBuffer*>::iterator i;
 	i = m_ListSoundBuffer.find(eID);
 	if(i == m_ListSoundBuffer.end())
-		return NULL;
+		return 0;
 	return i->second;
 }
 

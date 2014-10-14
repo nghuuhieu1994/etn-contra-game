@@ -22,7 +22,7 @@ class ObjectState;
 
 class Physic
 {
-	D3DXVECTOR3			m_Position;
+	//D3DXVECTOR3			m_Position;
 	D3DXVECTOR2			m_Velocity;
 	D3DXVECTOR2			m_Accelerate;
 	eDirection			m_Direction;
@@ -31,9 +31,9 @@ class Physic
 	vector<Collision>	m_ListCollision;
 
 public:
-	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
+	/*void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
-	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
+	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }*/
 
 	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
 	D3DXVECTOR2		getVelocity()	{ return m_Velocity; }
@@ -60,7 +60,7 @@ public:
 	bool CheckMovementRangeWidth();
 	bool CheckMovementRangeHeight();
 
-	void UpdateMovement(CGameTimeDx9* gameTime);
+	void UpdateMovement(D3DXVECTOR3* _position);
 	void CheckCollision(Object* _object);
 	~Physic();
 };

@@ -9,29 +9,29 @@ Physic::Physic()
 
 bool Physic::CheckMovementRangeWidth()
 {
-	if(m_MovementRange != 0)
+	/*if(m_MovementRange != 0)
 	{
 		if(m_Position.x < m_MovementRange->left || m_Position.x > m_MovementRange->right)
 		{
 			return true;
 		}
-	}
+	}*/
 	return false;
 }
 
 bool Physic::CheckMovementRangeHeight()
 {
-	if(m_MovementRange != 0)
+	/*if(m_MovementRange != 0)
 	{
 		if(m_Position.y < m_MovementRange->bottom || m_Position.y > m_MovementRange->top)
 		{
 			return true;
 		}
-	}
+	}*/
 	return false;
 }
 
-void Physic::UpdateMovement(CGameTimeDx9* gameTime)
+void Physic::UpdateMovement(D3DXVECTOR3* _position)
 {
 	if(CheckMovementRangeWidth())
 	{
@@ -41,15 +41,15 @@ void Physic::UpdateMovement(CGameTimeDx9* gameTime)
 	{
 		m_Velocity.y *= -1.0f;
 	}
-
-	float deltaTime = gameTime->getElapsedGameTime().getSeconds();
+	
+	float deltaTime = CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds();
 	
 	deltaTime = deltaTime/((float)1/FRAME_RATE);
-	char fps[100];
+	//char fps[100];
 	//sprintf(fps, "milisecs per frame: %f \n", deltaTime);
 	//OutputDebugString(fps);
-	m_Position.x += m_Velocity.x * deltaTime;
-	m_Position.y += m_Velocity.y * deltaTime;
+	_position->x += m_Velocity.x * deltaTime;
+	_position->y += m_Velocity.y * deltaTime;
 	
 }
 

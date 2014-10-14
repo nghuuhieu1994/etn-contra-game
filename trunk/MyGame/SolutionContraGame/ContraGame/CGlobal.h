@@ -6,15 +6,19 @@
 #define			FRAME_RATE	60
 #define			GAMETITLE	"Contra"
 
+#define			TURN_ON_UPDATE_ANIMATION(p)		p = p | (1 << 0)
+#define			TURN_OFF_UPDATE_ANIMATION(p)	p = p ^ (1 << 0)
+#define			IS_UPDATE_ANIMATION(p)			p & (1 << 0)
+
 #ifndef SPRITEHANDLE
 #define			SPRITEHANDLE LPD3DXSPRITE
 #endif // !1
 
-#define SAFE_DELETE(p)       if(p) { delete (p);     (p)=NULL; }
+#define SAFE_DELETE(p)       if(p) { delete (p);     (p)=0; }
 
-#define SAFE_DELETE_ARRAY(p) if(p) { delete[] (p);   (p)=NULL; }
+#define SAFE_DELETE_ARRAY(p) if(p) { delete[] (p);   (p)=0; }
 
-#define SAFE_RELEASE(p)      if(p) { (p)->Release(); (p)=NULL; }
+#define SAFE_RELEASE(p)      if(p) { (p)->Release(); (p)=0; }
 
 #define DIRECTINPUT_HEADER_VERSION  0x0800
 #ifndef DIRECTINPUT_VERSION
