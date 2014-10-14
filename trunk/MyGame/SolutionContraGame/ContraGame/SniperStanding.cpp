@@ -5,9 +5,9 @@ SniperStanding::SniperStanding()
 }
 
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
-	: Object(_position, _direction, _objectID)
+	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Physic = new Physic();
+	//m_Physic = new Physic();
 	m_Position = _position;
 	//m_Physic->setPosition(_position);// tach position ra khoi Physic
 }
@@ -71,11 +71,11 @@ void SniperStanding::UpdateAnimation()
 		break;
 	}
 	if(m_Direction == eDirection::LEFT)
-		m_Sprite->setSpriteEffect(eSpriteEffect::None);
+		m_Sprite->setSpriteEffect(ESpriteEffect::None);
 	else
 	{
 		if(m_Direction == eDirection::RIGHT)
-			m_Sprite->setSpriteEffect(eSpriteEffect::Horizontally);
+			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
 	}
 }
 void SniperStanding::UpdateMovement()

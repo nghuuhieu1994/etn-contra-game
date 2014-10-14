@@ -1,15 +1,15 @@
 #ifndef __RAMBO_H__
 #define __RAMBO_H__
-#include "CObjectDx9.h"
+#include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class Rambo : public Object
+class Rambo : public DynamicObject
 {
-	Physic*			m_Physic;
+	//Physic*			m_Physic;
 public:
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
-	Physic*			getPhysic() const { return m_Physic; }
+	//Physic*			getPhysic() const { return m_Physic; }
 	void Initialize();
 	void HandleInput();
 	void UpdateAnimation();

@@ -65,12 +65,12 @@ void Background::Render(LPD3DXSPRITE spriteHandle)
 	{
 		for (int j = 0; j < m_Column; j++)
 		{
-			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2(j * TILE_WIDTH + TILE_WIDTH / 2, m_Height - (i+1) * TILE_HEIGHT + TILE_HEIGHT/2), eSpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, m_TileMap[i][j]);
+			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2(j * TILE_WIDTH + TILE_WIDTH / 2, m_Height - (i+1) * TILE_HEIGHT + TILE_HEIGHT/2), ESpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, m_TileMap[i][j]);
 		}
 	}*/
 	  for (std::list<GameObject*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
 	  {
-		  SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), eSpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, (*it)->_ID);
+		  SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(spriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, (*it)->_ID);
 	  }
 }
 

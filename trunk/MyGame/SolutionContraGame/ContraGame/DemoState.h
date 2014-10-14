@@ -26,7 +26,7 @@ private:
 	CSpriteDx9*			billjump;
 	CSpriteDx9*			fBullet;
 	CSpriteDx9*			backGround;
-	eSpriteEffect		m_testSpriteEffect;*/
+	ESpriteEffect		m_testSpriteEffect;*/
 	Background*			m_background;
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;

@@ -45,7 +45,7 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_background->Render(_lpDSpriteHandle);
-	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), eSpriteEffect::None, 0.0f, 1.0f, 1.0f);
+	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
 	m_gun1->Render(_lpDSpriteHandle);
