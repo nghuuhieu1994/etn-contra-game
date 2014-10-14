@@ -9,7 +9,8 @@ Flyer_Sin::Flyer_Sin(D3DXVECTOR3 _position, eDirection _direction, eObjectID _ob
 	: Object(_position, _direction, _objectID)
 {
 	m_Physic = new Physic();
-	m_Physic->setPosition(_position);
+	//m_Physic->setPosition(_position);
+	m_Position = _position;
 }
 
 void Flyer_Sin::Initialize()
@@ -39,14 +40,14 @@ void Flyer_Sin::UpdateCollision(Object* checkingObject)
 void Flyer_Sin:: UpdateMovement()
 {
 	m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
-	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
+	this->m_Physic->UpdateMovement(&m_Position);
 }
 void Flyer_Sin::Update()
 {
 }
 void Flyer_Sin::Render(SPRITEHANDLE spriteHandle)
 {
-	m_Sprite->Render(spriteHandle, Sin(m_Physic->getPositionVec2()) , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+	m_Sprite->Render(spriteHandle, Sin(getPositionVec2()) , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
 

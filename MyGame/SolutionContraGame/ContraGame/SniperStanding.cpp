@@ -8,7 +8,8 @@ SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eOb
 	: Object(_position, _direction, _objectID)
 {
 	m_Physic = new Physic();
-	m_Physic->setPosition(_position);
+	m_Position = _position;
+	//m_Physic->setPosition(_position);// tach position ra khoi Physic
 }
 
 void SniperStanding::Initialize()
@@ -41,21 +42,17 @@ void SniperStanding::Initialize()
 
 void SniperStanding::UpdateAnimation()
 {
-	if(CGlobal::Rambo_X > this->m_Physic->getPositionVec2().x)
-		m_Direction = eDirection::RIGHT;
-	else
+	if(Rambo_X < m_Position.x)
 		m_Direction = eDirection::LEFT;
 
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(CGlobal::Rambo_Y > m_Physic->getPositionVec2().y + 50)
-		{
+		if(Rambo_Y > m_Position.y + 50)
 			m_Sprite = sprite_top;
-		}
 		else
 		{
-			if(abs(CGlobal::Rambo_X - m_Physic->getPositionVec2().x) < 100)
+			if(abs(Rambo_X - m_Position.x) < 100)
 				m_Sprite = sprite_bot;
 			else
 				m_Sprite = sprite_mid;
@@ -90,8 +87,9 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 	switch (checkingObject->getID())
 	{
 	case eObjectID::RAMBO:
-		Rambo_X = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().x;
-		Rambo_Y = ((Rambo*)checkingObject)->getPhysic()->getPositionVec2().y;
+		Rambo_X = (int)(((Rambo*)checkingObject)->getPositionVec2().x);
+		Rambo_Y = (int)(((Rambo*)checkingObject)->getPositionVec2().y);
+
 		// do a realthing?
 		break;
 	default:
@@ -137,14 +135,14 @@ void SniperStanding::Update()
 
 void SniperStanding::Render(SPRITEHANDLE spriteHandle)
 {
-	if(m_Sprite != NULL)
+	if(m_Sprite != 0)
 	{
-		m_Sprite->Render(spriteHandle, m_Physic->getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Physic->getPositionVec3().z);
+		m_Sprite->Render(spriteHandle, getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 	}
 }
 void SniperStanding::Release()
 {
-	m_Sprite = NULL;
+	m_Sprite = 0;
 	sprite_bot->Release();
 	sprite_dead->Release();
 	sprite_top->Release();

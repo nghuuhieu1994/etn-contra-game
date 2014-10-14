@@ -2,8 +2,8 @@
 
 CSurfaceDx9::CSurfaceDx9()
 {
-	m_lpSurface = NULL;
-	m_lpBackBuffer = NULL;
+	m_lpSurface = 0;
+	m_lpBackBuffer = 0;
 }
 CSurfaceDx9::CSurfaceDx9(const CSurfaceDx9& surface)
 {
@@ -31,7 +31,7 @@ void CSurfaceDx9::LoadSurfaceFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, D3DCOLO
 		return;
 	}
 	
-	hr = _lpDirectDevice->CreateOffscreenPlainSurface(_infoImage.Width, _infoImage.Height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &m_lpSurface, NULL); 
+	hr = _lpDirectDevice->CreateOffscreenPlainSurface(_infoImage.Width, _infoImage.Height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &m_lpSurface, 0); 
 	if(FAILED(hr))
 	{
 		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't create off screen surface");
@@ -40,13 +40,13 @@ void CSurfaceDx9::LoadSurfaceFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, D3DCOLO
 
 	hr = D3DXLoadSurfaceFromFile(
 		m_lpSurface,
-		NULL,
-		NULL,
+		0,
+		0,
 		fileName,
-		NULL,
+		0,
 		D3DX_DEFAULT,
 		ColorKey,
-		NULL);
+		0);
 	if(FAILED(hr))
 	{
 		CGameLog::getInstance("CSurfaceDx9")->SaveError("Can't load surface from file");

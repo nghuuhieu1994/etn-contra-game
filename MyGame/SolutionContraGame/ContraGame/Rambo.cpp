@@ -9,10 +9,12 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: Object(_position, _direction, _objectID)
 {
 	m_Physic = new Physic();
-	m_Physic->setPosition(_position);
+	/*m_Physic->setPosition(_position);*/
+	m_Position = _position;
 	m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
-	m_Physic->setPosition(D3DXVECTOR3(m_Physic->getPositionVec2().x, m_Physic->getPositionVec2().y, 1.0f));
+	//m_Physic->setPosition(D3DXVECTOR3(m_Position.x, m_Position.y, 1.0f));
+	m_Position.z = 1.0f;
 }
 
 void Rambo::Initialize()
@@ -29,12 +31,12 @@ void Rambo::HandleInput()
 		break;
 	case STATE_DEATH:
 		break;
-	case eObjectState::STATE_RAMBO_RUN://Run state
+	case eObjectState::STATE_RAMBO_RUN:
 		{
 			if(!CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT) && !CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 				m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
@@ -48,13 +50,13 @@ void Rambo::HandleInput()
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_SHOOT;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_X))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 5.0f));
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 		}
 		break;
@@ -63,7 +65,7 @@ void Rambo::HandleInput()
 			if(!CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT) && !CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 				m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
@@ -77,7 +79,16 @@ void Rambo::HandleInput()
 			if(!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_RUN;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
+			}
+		}
+		break;
+	case STATE_RAMBO_SHOOT_UP:
+		{
+			if(!CInputDx9::getInstance()->IsKeyDown(DIK_UP))
+			{
+				m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 		}
 		break;
@@ -91,13 +102,13 @@ void Rambo::HandleInput()
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_RUN;
 				m_Direction = eDirection::RIGHT;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_RUN;
 				m_Direction = eDirection::LEFT;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 			{
@@ -107,16 +118,41 @@ void Rambo::HandleInput()
 			{
 				m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 5.0f));
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
+			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_UP))
+			{
+				m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_UP;
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
+
+			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
+			{
+				m_ObjectState = eObjectState::STATE_RAMBO_LIE;
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 		}
 		break;
 	case STATE_RAMBO_JUMP:
 		{
-			
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
+			{
+				m_Direction = eDirection::LEFT;
+			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
+			{
+				m_Direction = eDirection::RIGHT;
+			}
 		}
 		break;
 	case STATE_RAMBO_LIE:
+		{
+			if(!CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
+			{
+				m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
+			}
+		}
 		break;
 	case STATE_RAMBO_SHOOT:
 		{
@@ -128,13 +164,13 @@ void Rambo::HandleInput()
 			{
 				m_Direction = eDirection::LEFT;
 				m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 			{
 				m_Direction = eDirection::RIGHT;
 				m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 		}
 		break;
@@ -153,22 +189,22 @@ void Rambo::UpdateAnimation()
 		break;
 	case STATE_RAMBO_RUN:
 	{
-		if (m_UpdateFlag & (1 << 0))
+		if (IS_UPDATE_ANIMATION(m_UpdateFlag))
 		{
 			delete m_Sprite;
 			m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_RUN));
-			m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+			TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
 		}
 		m_Sprite->UpdateAnimation(200);
 	}
 		break;
 	case STATE_RAMBO_SHOOT_RUN:
 		{
-			if (m_UpdateFlag & (1 << 0))
+			if (IS_UPDATE_ANIMATION(m_UpdateFlag))
 			{
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_RUN));
-				m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			m_Sprite->UpdateAnimation(200);
 		}
@@ -179,36 +215,58 @@ void Rambo::UpdateAnimation()
 		break;
 	case STATE_RAMBO_IDLE:
 		{
-			if (m_UpdateFlag & (1 << 0))
+			if (IS_UPDATE_ANIMATION(m_UpdateFlag))
 			{
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
-				m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 		}
 		break;
 	case STATE_RAMBO_JUMP:
 		{
-			if (m_UpdateFlag & (1 << 0))
+			if (IS_UPDATE_ANIMATION(m_UpdateFlag))
 			{
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_JUMP));
-				m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
 			}
 			m_Sprite->UpdateAnimation(100);
 		}
 		break;
 	case STATE_RAMBO_LIE:
+		{
+			if (IS_UPDATE_ANIMATION(m_UpdateFlag))
+			{
+				delete m_Sprite;
+				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_LIE));
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
+			}
+		}
 		break;
 	case STATE_RAMBO_SHOOT:
 		{
-			if (m_UpdateFlag & (1 << 0))
+			if (IS_UPDATE_ANIMATION(m_UpdateFlag))
 			{
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
-				m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
 			}
-			m_Sprite->UpdateAnimation(50);
+			m_Sprite->UpdateAnimation(100);
+		}
+		break;
+	case STATE_RAMBO_SHOOT_UP:
+		{
+			if(IS_UPDATE_ANIMATION(m_UpdateFlag))
+			{
+				delete m_Sprite;
+				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_UP));
+				TURN_OFF_UPDATE_ANIMATION(m_UpdateFlag);
+			}
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+			{
+				m_Sprite->UpdateAnimation(100);
+			}
 		}
 		break;
 	default:
@@ -224,6 +282,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 void Rambo::UpdateMovement()
 {
+	
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
@@ -266,11 +325,12 @@ void Rambo::UpdateMovement()
 		break;
 	case STATE_RAMBO_JUMP:
 		{
-			if(m_Physic->getPositionVec2().y < 100)
+			if(m_Position.y < 100)
 			{
-				m_Physic->setPosition(D3DXVECTOR3(m_Physic->getPositionVec3().x, 100, m_Physic->getPositionVec3().z));
+				//m_Physic->setPosition(D3DXVECTOR3(m_Physic->getPositionVec3().x, 100, m_Physic->getPositionVec3().z));
+				m_Position.y = 100;
 				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 0.0f));
-				m_UpdateFlag = m_UpdateFlag | (1 << 0);
+				TURN_ON_UPDATE_ANIMATION(m_UpdateFlag);
 				m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 				m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 				return;
@@ -296,13 +356,56 @@ void Rambo::UpdateMovement()
 	default:
 		break;
 	}
-	this->m_Physic->UpdateMovement(CGameTimeDx9::getInstance());
-	CGlobal::Rambo_X = m_Physic->getPositionVec2().x;
-	CGlobal::Rambo_Y = m_Physic->getPositionVec2().y;
+	this->m_Physic->UpdateMovement(&m_Position);
+	CGlobal::Rambo_X = getPositionVec2().x;
+	CGlobal::Rambo_Y = getPositionVec2().y;
 }
-
 void Rambo::Update()
 {
+
+}
+void Rambo::PrintState()
+{
+	switch (m_ObjectState)
+	{
+		case STATE_ALIVE_IDLE:
+			break;
+		case STATE_ALIVE_MOVE:
+			break;
+		case STATE_BEFORE_DEATH:
+			break;
+		case STATE_DEATH:
+			break;
+		case STATE_RAMBO_JUMP:
+			OutputDebugString("STATE_RAMBO_JUMP\n");
+			break;
+		case STATE_RAMBO_LIE:
+			OutputDebugString("STATE_RAMBO_LIE\n");
+			break;
+		case STATE_RAMBO_SHOOT:
+			OutputDebugString("STATE_RAMBO_SHOOT\n");
+			break;
+		case STATE_RAMBO_SHOOT_UP:
+			OutputDebugString("STATE_RAMBO_SHOOT_UP\n");
+			break;
+		case STATE_RAMBO_SHOOT_RUN:
+			OutputDebugString("STATE_RAMBO_SHOOT_RUN\n");
+			break;
+		case STATE_RAMBO_SHOOT_TOP_RIGHT:
+			OutputDebugString("STATE_RAMBO_SHOOT_TOP_RIGHT\n");
+			break;
+		case STATE_RAMBO_SHOOT_BOTTOM_RIGHT:
+			OutputDebugString("STATE_RAMBO_SHOOT_BOTTOM_RIGHT\n");
+			break;
+		case STATE_RAMBO_IDLE:
+			OutputDebugString("STATE_RAMBO_IDLE\n");
+			break;
+		case STATE_RAMBO_RUN:
+			OutputDebugString("STATE_RAMBO_RUN\n");
+			break;
+		default:
+			break;
+	}
 }
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
@@ -310,19 +413,19 @@ void Rambo::Render(SPRITEHANDLE spriteHandle)
 	if (m_Direction == eDirection::RIGHT)
 	{
 		m_Sprite->Render(spriteHandle,
-			m_Physic->getPositionVec2(),
+			getPositionVec2(),
 			eSpriteEffect::None, m_Sprite->getRotate(),
 			m_Sprite->getScale(),
-			m_Physic->getPositionVec3().z);
+			m_Position.z);
 		return;
 	}
 	if (m_Direction == eDirection::LEFT)
 	{
 		m_Sprite->Render(spriteHandle,
-			m_Physic->getPositionVec2(),
+			getPositionVec2(),
 			eSpriteEffect::Horizontally,
 			m_Sprite->getRotate(), m_Sprite->getScale(),
-			m_Physic->getPositionVec3().z);
+			m_Position.z);
 		return;
 	}
 }

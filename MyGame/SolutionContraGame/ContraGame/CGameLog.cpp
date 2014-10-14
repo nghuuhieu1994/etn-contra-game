@@ -24,7 +24,7 @@ CGameLog::CGameLog()
 
 CGameLog::~CGameLog()
 {
-	if (this->s_Instance != NULL)
+	if (this->s_Instance != 0)
 	{
 		delete this->s_Instance;
 	}
@@ -43,7 +43,7 @@ string CGameLog::GetCurrentDate()
 
 CGameLog* CGameLog::getInstance()
 {
-	if (s_Instance == NULL)
+	if (s_Instance == 0)
 	{
 		s_Instance = new CGameLog();
 	}
@@ -53,7 +53,7 @@ CGameLog* CGameLog::getInstance()
 
 CGameLog* CGameLog::getInstance(string ModuleName)
 {
-	if (s_Instance == NULL)
+	if (s_Instance == 0)
 	{
 		s_Instance = new CGameLog();
 	}
@@ -64,7 +64,7 @@ CGameLog* CGameLog::getInstance(string ModuleName)
 
 void CGameLog::SetNameLogFile(string NameLogFile)
 {
-	if (s_Instance != NULL)
+	if (s_Instance != 0)
 	{
 		s_Instance->m_LogFileName = NameLogFile; 
 	}

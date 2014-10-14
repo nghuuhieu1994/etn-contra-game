@@ -1,6 +1,6 @@
 #include "CGameTimeDx9.h"
 
-CGameTimeDx9* CGameTimeDx9::s_Instance = NULL;
+CGameTimeDx9* CGameTimeDx9::s_Instance = 0;
 
 CGameTimeDx9::CGameTimeDx9()
 {
@@ -15,7 +15,7 @@ CGameTimeDx9::CGameTimeDx9(CTimeSpanDx9 &elapsedGameTime, CTimeSpanDx9 &totalGam
 
 CGameTimeDx9* CGameTimeDx9::getInstance()
 {
-	if(s_Instance == NULL)
+	if(s_Instance == 0)
 	{
 		s_Instance = new CGameTimeDx9();
 	}

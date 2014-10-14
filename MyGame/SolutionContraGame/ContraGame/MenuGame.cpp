@@ -5,12 +5,12 @@ void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG);
 	m_Icon = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON);
 
-	m_MenuPosition.x = WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300;
+	m_MenuPosition.x = (float)(WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300);
 
 	//m_MenuPosition.x = 0;
 	m_MenuPosition.y = HEIGHT / 2;
 	m_MenuPosition.z = 0;
-	m_IconPosition.x = 80 + WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300;
+	m_IconPosition.x = (float)(80 + WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300);
 	m_IconPosition.y = 215;
 	m_IconPosition.z = 1;
 

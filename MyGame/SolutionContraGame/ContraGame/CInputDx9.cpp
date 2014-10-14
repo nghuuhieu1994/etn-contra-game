@@ -1,9 +1,9 @@
 #include "CInputDx9.h"
 
 CInputDx9::CInputDx9() : 
-	m_lpDirectInput(NULL),
-	m_lpKeyBoardDevice(NULL),
-	m_lpMouseDevice(NULL)
+	m_lpDirectInput(0),
+	m_lpKeyBoardDevice(0),
+	m_lpMouseDevice(0)
 {
 	m_cursorLocation.x = 0;
 	m_cursorLocation.y = 0;
@@ -25,11 +25,11 @@ void CInputDx9::InitializeInput()
 	HRESULT result;
 
 	result = DirectInput8Create(
-		GetModuleHandle(NULL),
+		GetModuleHandle(0),
 		DIRECTINPUT_VERSION,
 		IID_IDirectInput8,
 		(void**)&m_lpDirectInput,
-		NULL);
+		0);
 
 	if (result != D3D_OK)
 	{
@@ -37,14 +37,14 @@ void CInputDx9::InitializeInput()
 		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input");
 	}
 
-	result = m_lpDirectInput->CreateDevice(GUID_SysKeyboard, &m_lpKeyBoardDevice, NULL);
+	result = m_lpDirectInput->CreateDevice(GUID_SysKeyboard, &m_lpKeyBoardDevice, 0);
 
 	if (result != D3D_OK)
 	{
 		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input Keyboard Device");
 	}
 
-	result = m_lpDirectInput->CreateDevice(GUID_SysMouse, &m_lpMouseDevice, NULL);
+	result = m_lpDirectInput->CreateDevice(GUID_SysMouse, &m_lpMouseDevice, 0);
 
 	if (result != D3D_OK)
 	{

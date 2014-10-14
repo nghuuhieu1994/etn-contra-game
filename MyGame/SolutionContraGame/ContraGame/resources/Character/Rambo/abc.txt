@@ -1,6 +1,0 @@
-so hang int
-so cot int
-mau do int
-mau xanh la int
-mau xanh duong int
-alpha int

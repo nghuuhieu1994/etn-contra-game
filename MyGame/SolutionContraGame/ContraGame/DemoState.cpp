@@ -30,8 +30,9 @@ void DemoState::Update()
 	/*m_Rambo->HandleInput();*/
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateMovement();
+	m_Rambo->PrintState();
 	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
-	Camera::getInstance()->UpdateCamera(&m_Rambo->getPhysic()->getPositionVec3());
+	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->Update();

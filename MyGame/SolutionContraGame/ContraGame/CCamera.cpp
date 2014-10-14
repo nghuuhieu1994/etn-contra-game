@@ -12,7 +12,7 @@ Camera::Camera()
 
 Camera* Camera::getInstance()
 {
-	if (s_Instance == NULL)
+	if (s_Instance == 0)
 	{
 		s_Instance = new Camera();
 	}

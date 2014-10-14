@@ -1,10 +1,10 @@
 #include "CGame.h"
 
 CGame::CGame() : 
-	m_handleWindow(NULL), 
-	m_lpDirect3D(NULL), 
-	m_lpDirect3DDevice(NULL), 
-	m_lpSpriteDirect3DHandle(NULL)
+	m_handleWindow(0), 
+	m_lpDirect3D(0), 
+	m_lpDirect3DDevice(0), 
+	m_lpSpriteDirect3DHandle(0)
 {
 }
 
@@ -28,14 +28,14 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 	WndcEx.cbSize			= sizeof(WNDCLASSEX);
 	WndcEx.cbWndExtra		= 0;
 	WndcEx.hbrBackground	= (HBRUSH)COLOR_BACKGROUND;
-	WndcEx.hCursor			= LoadCursor(NULL, IDC_ARROW);
-	WndcEx.hIcon			= NULL;
-	WndcEx.hIconSm			= NULL;
+	WndcEx.hCursor			= LoadCursor(0, IDC_ARROW);
+	WndcEx.hIcon			= 0;
+	WndcEx.hIconSm			= 0;
 	WndcEx.hInstance		= hInstance;
 	WndcEx.lpfnWndProc		= (WNDPROC)WndProceduce;
 	WndcEx.lpszClassName	= "CGame";
-	WndcEx.lpszMenuName		= NULL;
-	WndcEx.style			= NULL;
+	WndcEx.lpszMenuName		= 0;
+	WndcEx.style			= 0;
 	if(!RegisterClassEx(&WndcEx))
 	{
 		CGameLog::getInstance("CGame")->SaveError("Can't Regist the WndcEx!!!");
@@ -49,10 +49,10 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 		100,
 		WIDTH,
 		HEIGHT,
-		NULL,
-		NULL,
+		0,
+		0,
 		hInstance,
-		NULL);
+		0);
 	if(!m_handleWindow)
 	{
 		CGameLog::getInstance("CGame")->SaveError("Can't Create Window!");
@@ -145,7 +145,7 @@ bool CGame::InitializeDirect3DSpriteHandle()
 bool CGame::InitializeDirectSound()
 {
 	HRESULT hr;
-	hr = DirectSoundCreate8(NULL, &m_lpDirectSound, NULL);
+	hr = DirectSoundCreate8(0, &m_lpDirectSound, 0);
 	if(FAILED(hr))
 	{
 		CGameLog::getInstance("CGame")->SaveError("Can't Create Direct Sound!");
@@ -188,7 +188,7 @@ void CGame::Run()
 	ZeroMemory(&msg, sizeof(msg));
 	while(!CGlobal::IsExit)
 	{
-		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		if(PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			if(msg.message == WM_QUIT)
 				break;
@@ -204,7 +204,7 @@ void CGame::Run()
 			if( m_fps > 1000 / 60)
 			{
 				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
-				OutputDebugString(fps);
+				//OutputDebugString(fps);
 
 				StateManagerDx9::getInstance()->HandleInput();
 				StateManagerDx9::getInstance()->Update();
