@@ -30,7 +30,7 @@ void Flyer_Sin::UpdateCollision(Object* checkingObject)
 
 void Flyer_Sin::Sin(D3DXVECTOR3& a)
 {
-	a.y = (float)(sin(a.x * 3.14 / 180.0) * 50 + m_startPosition.y);
+	a.y = (float)(sin(a.x * 3.14 / 90.0) * 80 + m_startPosition.y);
 	//a.x += 1.5;
 }
 
