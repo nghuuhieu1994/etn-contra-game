@@ -5,7 +5,7 @@ Flyer_Sin::Flyer_Sin()
 
 }
 
-Flyer_Sin::Flyer_Sin(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+Flyer_Sin::Flyer_Sin(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	//m_Physic = new Physic();
