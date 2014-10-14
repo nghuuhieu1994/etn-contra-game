@@ -2371,8 +2371,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-<<<<<<< .mine
->>>>>>> .r35
 [Computer Name: TRANDANH]
 [Date: 01-10-2014 | Time: 17:06:52]
 Current Working Module: EntryPoint
@@ -2459,7 +2457,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r36
 [Computer Name: TRANDANH]
 [Date: 02-10-2014 | Time: 13:20:38]
 Current Working Module: EntryPoint
@@ -2723,8 +2720,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-=======
->>>>>>> .r40
 [Computer Name: TRANDANH]
 [Date: 03-10-2014 | Time: 19:28:42]
 Current Working Module: EntryPoint
@@ -2987,7 +2982,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r42
 [Computer Name: HIEUNGUYEN]
 [Date: 03-10-2014 | Time: 21:52:46]
 Current Working Module: EntryPoint
@@ -3018,8 +3012,6 @@ Error : Can't Acquire Keyboard
 Current Working Module: CInputDx9
 Error : Can't Acquire Keyboard
 
-<<<<<<< .mine
->>>>>>> .r43
 [Computer Name: TRANDANH]
 [Date: 03-10-2014 | Time: 23:00:30]
 Current Working Module: EntryPoint
@@ -4187,9 +4179,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-=======
->>>>>>> .r48
->>>>>>> .r49
 [Computer Name: HIEUNGUYEN]
 [Date: 05-10-2014 | Time: 09:41:58]
 Current Working Module: EntryPoint
@@ -4278,14 +4267,11 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-=======
->>>>>>> .r53
 [Computer Name: HIEUNGUYEN]
 [Date: 06-10-2014 | Time: 00:24:56]
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r57
 [Computer Name: TRANDANH]
 [Date: 06-10-2014 | Time: 00:49:59]
 Current Working Module: EntryPoint
@@ -5113,8 +5099,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-<<<<<<< .mine
->>>>>>> .r61
 [Computer Name: TRANDANH]
 [Date: 07-10-2014 | Time: 00:19:26]
 Current Working Module: EntryPoint
@@ -5692,8 +5676,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-=======
->>>>>>> .r62
 [Computer Name: TRANDANH]
 [Date: 09-10-2014 | Time: 14:44:02]
 Current Working Module: EntryPoint
@@ -6060,8 +6042,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
-=======
->>>>>>> .r65
 [Computer Name: HIEUNGUYEN]
 [Date: 10-10-2014 | Time: 08:36:05]
 Current Working Module: EntryPoint
@@ -6877,8 +6857,6 @@ Info : Testing Game
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
 
-<<<<<<< .mine
->>>>>>> .r68
 [Computer Name: TRANDANH]
 [Date: 10-10-2014 | Time: 23:36:24]
 Current Working Module: EntryPoint
@@ -7080,9 +7058,6 @@ Info : Testing Game
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
 
-<<<<<<< .mine
->>>>>>> .r69
-=======
 [Computer Name: HIEUNGUYEN]
 [Date: 12-10-2014 | Time: 12:43:17]
 Current Working Module: EntryPoint
@@ -7468,7 +7443,6 @@ Info : Testing Game
 Current Working Module: CTextureDx9
 Error : Can't get image info from file
 
->>>>>>> .r71
 [Computer Name: TRANDANH]
 [Date: 12-10-2014 | Time: 22:19:11]
 Current Working Module: EntryPoint
@@ -8088,7 +8062,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r77
 [Computer Name: TRANDANH]
 [Date: 13-10-2014 | Time: 23:23:44]
 Current Working Module: EntryPoint
@@ -8349,8 +8322,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r82
-<<<<<<< .mine
 [Computer Name: HIEUNGUYEN]
 [Date: 14-10-2014 | Time: 09:39:32]
 Current Working Module: EntryPoint
@@ -8592,7 +8563,6 @@ Info : Testing Game
 Current Working Module: EntryPoint
 Info : Testing Game
 
->>>>>>> .r84
 [Computer Name: KHOADUYTANG]
 [Date: 07-10-2014 | Time: 10:58:33]
 Current Working Module: EntryPoint
