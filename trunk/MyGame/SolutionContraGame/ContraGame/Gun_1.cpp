@@ -20,9 +20,67 @@ void Gun_1::Initialize()
 
 void Gun_1::UpdateAnimation()
 {
-	//delete m_Sprite;
-	//m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_FAT_GUN));
-	m_Sprite->UpdateAnimation(300);		
+	m_Sprite->UpdateAnimation(300);	
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_IDLE:
+		break;
+	case STATE_DEATH:
+		break;
+	case STATE_BILL_MOVE_1:
+	{
+		if (m_UpdateFlag & (1 << 0))
+		{
+			delete m_Sprite;
+			m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_MOVE_1));
+			m_UpdateFlag = m_UpdateFlag ^ ( 1 << 0);
+		}
+		m_Sprite->UpdateAnimation(200);
+	}
+		break;
+	case STATE_BILL_MOVE_2:
+		break;
+	case STATE_BILL_MOVE_3:
+		break;
+	case STATE_BILL_MOVE_4:
+		break;
+	case STATE_BILL_IDLE:
+		{
+			if (m_UpdateFlag & (1 << 0))
+			{
+				delete m_Sprite;
+				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_IDLE));
+				m_UpdateFlag = 0;
+			}
+		}
+		break;
+	case STATE_BILL_JUMP:
+		{
+			if (m_UpdateFlag & (1 << 0))
+			{
+				delete m_Sprite;
+				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_JUMP));
+				m_UpdateFlag = 0;
+			}
+			m_Sprite->UpdateAnimation(100);
+		}
+		break;
+	case STATE_BILL_LIE_DOWN:
+		break;
+	case STATE_SHOOTING:
+		{
+			if (m_UpdateFlag & (1 << 0))
+			{
+				delete m_Sprite;
+				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BILL_IDLE));
+				m_UpdateFlag = 0;
+			}
+			m_Sprite->UpdateAnimation(50);
+		}
+		break;
+	default:
+		break;
+	}
 	
 }
 
