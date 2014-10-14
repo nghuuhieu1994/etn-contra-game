@@ -27,7 +27,7 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 	}
 	else
 		m_matrixTranslate._41 = 0;
-	
+
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()

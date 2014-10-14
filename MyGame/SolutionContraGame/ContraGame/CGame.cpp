@@ -1,9 +1,9 @@
 #include "CGame.h"
 
-CGame::CGame() : 
-	m_handleWindow(0), 
-	m_lpDirect3D(0), 
-	m_lpDirect3DDevice(0), 
+CGame::CGame() :
+	m_handleWindow(0),
+	m_lpDirect3D(0),
+	m_lpDirect3DDevice(0),
 	m_lpSpriteDirect3DHandle(0)
 {
 }
@@ -86,7 +86,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 		d3dpp.BackBufferWidth	= WIDTH;
 		d3dpp.Windowed			= true;
 		d3dpp.hDeviceWindow		= this->m_handleWindow;
-		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD; 
+		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD;
 	}
 	else
 	{
@@ -95,11 +95,11 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 		m_lpDirect3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &DisPlayMode);
 		HRESULT handleResult;
 		handleResult = m_lpDirect3D->CheckDeviceFormat(
-			D3DADAPTER_DEFAULT, 
-			D3DDEVTYPE_HAL, 
-			DisPlayMode.Format, 
-			D3DUSAGE_RENDERTARGET, 
-			D3DRTYPE_SURFACE, 
+			D3DADAPTER_DEFAULT,
+			D3DDEVTYPE_HAL,
+			DisPlayMode.Format,
+			D3DUSAGE_RENDERTARGET,
+			D3DRTYPE_SURFACE,
 			D3DFMT_A8R8G8B8);
 		if(FAILED(handleResult))
 		{
@@ -112,7 +112,7 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 		d3dpp.BackBufferWidth	= DisPlayMode.Width;
 		d3dpp.BackBufferHeight	= DisPlayMode.Height;
 		d3dpp.hDeviceWindow		= this->m_handleWindow;
-		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD; 
+		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD;
 	}
 	m_lpDirect3D->CreateDevice(
 			  D3DADAPTER_DEFAULT,
@@ -194,7 +194,7 @@ void CGame::Run()
 				break;
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-		}  
+		}
 		else
 		{
 			CGameTimeDx9::getInstance()->UpdateGameTime();
@@ -209,16 +209,16 @@ void CGame::Run()
 				StateManagerDx9::getInstance()->HandleInput();
 				StateManagerDx9::getInstance()->Update();
 
-				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0); 
+				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 				D3DXMATRIX oldMatrix;
-				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);		
+				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
 				m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
-					
+
 					StateManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
-					
+
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}

@@ -8,31 +8,31 @@ using namespace std;
 class CGameLog
 {
 public:
-	
+
 	static CGameLog* getInstance();
-	
+
 	static CGameLog* getInstance(string ModuleName);
-	
+
 	void SetNameLogFile(string NameLogFile);
-	
+
 	void SaveInfo(string Information);
-	
+
 	void SaveError(string Error);
-	
+
 	void SaveFloatNumber(float Number);
 	string m_computerName;
 
 	string GetCurrentDate();
 private:
-	
+
 	CGameLog();
-	
+
 	~CGameLog();
-	
+
 	static CGameLog* s_Instance;
-	
+
 	string m_LogFileName;
-	
+
 	string m_CurrentModuleName;
 };
 
