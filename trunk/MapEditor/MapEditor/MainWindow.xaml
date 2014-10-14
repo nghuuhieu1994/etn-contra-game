@@ -1,0 +1,77 @@
+﻿<Window x:Class="MapEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="603" Width="1125.625"
+        Background="Gray" ResizeMode="NoResize">
+    <Grid>
+
+        <ScrollViewer Canvas.Left="354" Canvas.Top="338" Margin="185,100,36,22" HorizontalScrollBarVisibility="Auto">
+            <Canvas Background="Black" Name="WorkspaceWorking" HorizontalAlignment="Left" Height="448" Width="886" VerticalAlignment="Top" MouseDown="down_to_define_start_position"
+                    MouseMove="move_to_update_position" MouseLeave="leave_to_define_last_position">
+                
+            </Canvas>
+        </ScrollViewer>
+        <Grid x:Name="LayoutRoot" Margin="-10,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Menu Height="73" Name="menu1" Margin="10,0,499,0" VerticalAlignment="Top" BorderThickness="2"
+              Foreground="White" FontSize="16" FontWeight="Bold" Grid.RowSpan="2">
+                <Menu.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF3A60AD" Offset="0.528"/>
+                        <GradientStop Color="#FF6A85D8" Offset="0.01"/>
+                        <GradientStop Color="#FF3464C4" Offset="1"/>
+                        <GradientStop Color="#FF202E7E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Menu.Background>
+                <Menu.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Menu.BitmapEffect>
+                <MenuItem Height="67" Width="73" Click="click_to_export_xml_file">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\save.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\undo.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\previous.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\eraser.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\clearall.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67" Name="gridline" Click="click_to_enable_gridline">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\grid.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67" Name="backgroundmap" Click="click_to_load_backgroundmap">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\background.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\align.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+            </Menu>
+            <ListBox HorizontalAlignment="Left" Height="442" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
+        </Grid>
+
+    </Grid>
+</Window>
