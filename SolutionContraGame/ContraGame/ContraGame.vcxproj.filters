@@ -88,6 +88,7 @@
     </ClCompile>
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="GifBulletStatic.cpp">
+    <ClCompile Include="Collision.cpp" />
       <Filter>SourceFile\ContraGame\EnemyObject</Filter>
     </ClCompile>
     <ClCompile Include="GunRotating.cpp">
@@ -186,6 +187,8 @@
     <ClInclude Include="GunRotating.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
+    <ClInclude Include="SweptAABB.h" />
+    <ClInclude Include="Collision.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="HeaderFile">

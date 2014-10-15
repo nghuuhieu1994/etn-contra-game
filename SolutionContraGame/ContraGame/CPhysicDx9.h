@@ -12,11 +12,11 @@ class Object;
 
 using namespace std;
 
-struct Collision
-{
-	eObjectID	m_CollideObject;
-	eDirection	m_CollidePosition;
-};
+//struct Collision
+//{
+//	eObjectID	m_CollideObject;
+//	eDirection	m_CollidePosition;
+//};
 
 class ObjectState;
 
@@ -26,9 +26,9 @@ class Physic
 	D3DXVECTOR2			m_Velocity;
 	D3DXVECTOR2			m_Accelerate;
 	eDirection			m_Direction;
-	Collision			m_Collision;
+	//Collision			m_Collision;
 	RECT*				m_MovementRange;
-	vector<Collision>	m_ListCollision;
+	//vector<Collision>	m_ListCollision;
 
 public:
 	/*void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }

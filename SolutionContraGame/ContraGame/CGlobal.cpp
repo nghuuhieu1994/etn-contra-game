@@ -6,3 +6,11 @@ bool CGlobal::IsMute		= false;
 //D3DXVECTOR2 CGlobal::RamboPosition = D3DXVECTOR2(0, 0);
 int CGlobal::Rambo_X		= 0;
 int CGlobal::Rambo_Y		= 0;
+
+bool IsMovementObject(int type)
+{
+
+	/* copde to detect movement object*/
+
+	return false;
+}
