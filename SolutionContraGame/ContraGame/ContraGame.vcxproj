@@ -94,6 +94,7 @@
     <ClInclude Include="CObjectDx9.h" />
     <ClInclude Include="CPhysicDx9.h" />
     <ClInclude Include="GifBulletStatic.h" />
+    <ClInclude Include="GunRotating.h" />
     <ClInclude Include="Gun_2.h" />
     <ClInclude Include="Markup.h" />
     <ClInclude Include="MenuGame.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
     <ClCompile Include="GifBulletStatic.cpp" />
+    <ClCompile Include="GunRotating.cpp" />
     <ClCompile Include="Gun_2.cpp" />
     <ClCompile Include="Markup.cpp" />
     <ClCompile Include="MenuGame.cpp" />

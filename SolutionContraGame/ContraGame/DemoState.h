@@ -12,6 +12,7 @@
 #include "SniperStanding.h"
 #include "GifBulletStatic.h"
 #include "Flyer_Sin.h"
+#include "GunRotating.h"
 
 class DemoState : public GameState
 {
@@ -32,6 +33,8 @@ private:
 	SniperStanding*		m_SniperStanding;
 	GifBulletStatic*	m_gifBullet;
 	Flyer_Sin*			m_Flyersin;
+	GunRotating*		m_gunRotating;
+	
 
 
 public:

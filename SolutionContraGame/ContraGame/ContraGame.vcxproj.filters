@@ -90,6 +90,9 @@
     <ClCompile Include="GifBulletStatic.cpp">
       <Filter>SourceFile\ContraGame\EnemyObject</Filter>
     </ClCompile>
+    <ClCompile Include="GunRotating.cpp">
+      <Filter>SourceFile\ContraGame\EnemyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobal.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GifBulletStatic.h">
+      <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GunRotating.h">
       <Filter>HeaderFile\ContraGame\EnemyObject</Filter>
     </ClInclude>
   </ItemGroup>
