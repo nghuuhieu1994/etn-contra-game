@@ -25,7 +25,7 @@ void GunRotating::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		m_Sprite->UpdateAnimation(500);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
