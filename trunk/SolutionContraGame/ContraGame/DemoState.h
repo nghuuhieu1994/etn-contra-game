@@ -10,7 +10,7 @@
 #include "Background.h"
 #include "Rambo.h"
 #include "SniperStanding.h"
-#include "Gun_1.h"
+#include "GifBulletStatic.h"
 #include "Flyer_Sin.h"
 
 class DemoState : public GameState
@@ -30,7 +30,7 @@ private:
 	Background*			m_background;
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;
-	Gun_1*				m_gun1;
+	GifBulletStatic*	m_gifBullet;
 	Flyer_Sin*			m_Flyersin;
 
 
