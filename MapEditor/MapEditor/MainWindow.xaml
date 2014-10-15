@@ -6,8 +6,8 @@
     <Grid>
 
         <ScrollViewer Canvas.Left="354" Canvas.Top="338" Margin="185,100,36,22" HorizontalScrollBarVisibility="Auto">
-            <Canvas Background="Black" Name="WorkspaceWorking" HorizontalAlignment="Left" Height="448" Width="886" VerticalAlignment="Top" MouseDown="down_to_define_start_position"
-                    MouseMove="move_to_update_position" MouseLeave="leave_to_define_last_position">
+            <Canvas Background="Black" Name="WorkspaceWorking" HorizontalAlignment="Left" Height="448" Width="886" VerticalAlignment="Top" MouseLeftButtonDown="down_to_define_start_position"
+                  MouseMove="move_to_update_position">
                 
             </Canvas>
         </ScrollViewer>

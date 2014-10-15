@@ -105,12 +105,12 @@ namespace MapEditor
             return false;
         }
 
-        public static VECTOR2D ConvertCoordination(VECTOR2D _position)
+        public static VECTOR2D ConvertCoordination(OBJECT _object)
         {
-            VECTOR2D temp = new VECTOR2D(_position.cX, _position.cY);
-            temp.cY = Support.HEIGHT_MAP - _position.cY;
-            temp.cX = temp.cX + Support.WIDTH_OF_TILE / 2;
-            temp.cY = temp.cY - Support.HEIGHT_OF_TILE / 2;
+            VECTOR2D temp = new VECTOR2D(_object.Position.cX, _object.Position.cY);
+            temp.cY = Support.HEIGHT_MAP - _object.Position.cY;
+            temp.cX = temp.cX + _object.Bound.width / 2;
+            temp.cY = temp.cY - _object.Bound.height / 2;
             return temp;
         }
     }
