@@ -49,7 +49,7 @@ namespace MapEditor.Framwork
         public void writeElement(OBJECT _object)
         {
             VECTOR2D temp = new VECTOR2D();
-            temp = Support.ConvertCoordination(_object.Position);
+            temp = Support.ConvertCoordination(_object);
             mWriter.WriteStartElement("Object");
             mWriter.WriteAttributeString("Type", Convert.ToString(_object.Type));
             mWriter.WriteAttributeString("Id", Convert.ToString(_object.ID));

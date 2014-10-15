@@ -33,6 +33,12 @@ namespace MapEditor
         private CMap map;
         */
 
+        /* Properties for drag mouse */
+        bool isDragged = false;
+        System.Windows.Point startPosition;
+        System.Windows.Point endPosition;
+        Rectangle rect;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -181,8 +187,11 @@ namespace MapEditor
                     DestroyGridline();
                     Support.GRIDLINE = true;
                     CreateGridline();
-                    Support.IsExportXml = false;
-                    ExportXml.getInstance().DestroyWriter();
+                    if (Support.IsExportXml == true)
+                    {
+                        Support.IsExportXml = false;
+                        ExportXml.getInstance().DestroyWriter();
+                    }
                     WorkspaceWorking.Width = Support.WIDHT_MAP;
                     WorkspaceWorking.Height = Support.HEIGHT_MAP;
                     Support.map.CreateTileMap();
@@ -309,17 +318,68 @@ namespace MapEditor
 
         public void down_to_define_start_position(object sender, MouseEventArgs m)
         {
-            MessageBox.Show(m.LeftButton.ToString());
+            if (isDragged == false)
+            {
+                isDragged = true;
+                startPosition = m.GetPosition(WorkspaceWorking);
+            }
         }
 
         public void move_to_update_position(object sender, MouseEventArgs m)
         {
+            System.Windows.Point finalPosition = new System.Windows.Point();
+            if (isDragged == true && m.LeftButton == MouseButtonState.Pressed)
+            {
+                if (rect != null)
+                {
+                    WorkspaceWorking.Children.Remove(rect);
+                }
+                endPosition = m.GetPosition(WorkspaceWorking);
+                rect = new Rectangle();
+                rect.Width = (double)Math.Abs(endPosition.X - startPosition.X);
+                rect.Height = (double)Math.Abs(endPosition.Y - startPosition.Y);
+                rect.Stroke = new SolidColorBrush(Colors.Blue);
 
-        }
+                if (endPosition.X > startPosition.X)
+                {
+                    Canvas.SetLeft(rect, startPosition.X);
+                    finalPosition.X = startPosition.X;
+                }
+                else
+                {
+                    Canvas.SetLeft(rect, endPosition.X);
+                    finalPosition.X = endPosition.X;
+                }
 
-        public void leave_to_define_last_position(object sender, MouseEventArgs m)
-        {
+                if (startPosition.Y < endPosition.Y)
+                {
+                    Canvas.SetTop(rect, startPosition.Y);
+                    finalPosition.Y = startPosition.Y;
+                }
+                else
+                {
+                    Canvas.SetTop(rect, endPosition.Y);
+                    finalPosition.Y = endPosition.Y;
+                }
 
+
+                WorkspaceWorking.Children.Add(rect);
+            }
+            else
+            {
+                if (isDragged == true && m.LeftButton == MouseButtonState.Released)
+                {
+                    isDragged = false;
+                    if (rect != null)
+                    {
+                        OBJECT obj = new OBJECT(1, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        Support.listObject.Add(obj);
+                        obj = null;
+                    }
+                    rect = null;
+                    startPosition = endPosition;
+                }
+            }
         }
     }
 }
