@@ -37,11 +37,16 @@ public:
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
 
 	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
+	void			setPositionX(float _X){ m_Position.x = _X;}
+	void			setPositionY(float _Y){ m_Position.y = _Y;}
+
 	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
 	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
 
 	//Physic*			getPhysic() const { return m_Physic; }
 	eObjectID		getID() const { return m_eObjectID; }
+
+	RECT getBound();
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
 
@@ -50,6 +55,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Render(SPRITEHANDLE spriteHandle) = 0;
 	virtual void Release() = 0;
+
 	virtual ~Object();
 };
 
