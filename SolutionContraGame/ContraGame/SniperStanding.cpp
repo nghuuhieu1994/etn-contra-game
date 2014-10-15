@@ -44,6 +44,8 @@ void SniperStanding::UpdateAnimation()
 {
 	if(Rambo_X < m_Position.x)
 		m_Direction = eDirection::LEFT;
+	else
+		m_Direction = eDirection::RIGHT;
 
 	switch (m_ObjectState)
 	{
@@ -99,7 +101,7 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 
 void SniperStanding::Update()
 {
-	this->UpdateAnimation();
+	//this->UpdateAnimation();
 
 	switch (m_ObjectState)
 	{
