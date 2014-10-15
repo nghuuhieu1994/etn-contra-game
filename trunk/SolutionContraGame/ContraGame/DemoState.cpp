@@ -17,6 +17,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_gifBullet->Initialize();
 	m_Flyersin = new Flyer_Sin(D3DXVECTOR3(30, 200, 1), eDirection::RIGHT, eObjectID::FLYER_SIN);
 	m_Flyersin->Initialize();
+	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::RIGHT, eObjectID::GUN_ROTATING);
+	m_gunRotating->Initialize();
 }
 
 void DemoState::HandleInput()
@@ -40,6 +42,8 @@ void DemoState::Update()
 
 	m_gifBullet->UpdateAnimation();
 	m_gifBullet->Update();
+	m_gunRotating->UpdateAnimation();
+	m_gunRotating->Update();
 	m_Flyersin->UpdateAnimation();
 	m_Flyersin->UpdateMovement();
 }
@@ -52,6 +56,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Flyersin->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
+	m_gunRotating->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
