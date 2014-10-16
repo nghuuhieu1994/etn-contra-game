@@ -8803,6 +8803,18 @@ Error : Can't Acquire Keyboard
 Current Working Module: CInputDx9
 Error : Can't Acquire Keyboard
 
+<<<<<<< .mine
+[Computer Name: TRANDANH]
+[Date: 16-10-2014 | Time: 02:35:31]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+[Computer Name: TRANDANH]
+[Date: 16-10-2014 | Time: 02:35:31]
+Current Working Module: CInputDx9
+Error : Can't Acquire Keyboard
+
+=======
 [Computer Name: KHOADUYTANG]
 [Date: 16-10-2014 | Time: 00:28:31]
 Current Working Module: CInputDx9
@@ -8813,3 +8825,4 @@ Error : Can't Acquire Keyboard
 Current Working Module: CInputDx9
 Error : Can't Acquire Keyboard
 
+>>>>>>> .r104
