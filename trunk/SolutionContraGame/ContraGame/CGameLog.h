@@ -13,8 +13,6 @@ public:
 
 	static CGameLog* getInstance(string ModuleName);
 
-	void SetNameLogFile(string NameLogFile);
-
 	void SaveInfo(string Information);
 
 	void SaveError(string Error);
@@ -23,6 +21,8 @@ public:
 	string m_computerName;
 
 	string GetCurrentDate();
+	string GetOutFileName();
+	string GetDateFileName();
 private:
 
 	CGameLog();
@@ -31,7 +31,7 @@ private:
 
 	static CGameLog* s_Instance;
 
-	string m_LogFileName;
+	//string m_LogFileName;
 
 	string m_CurrentModuleName;
 };
