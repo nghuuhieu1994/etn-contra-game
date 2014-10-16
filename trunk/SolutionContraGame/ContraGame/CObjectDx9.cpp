@@ -24,6 +24,7 @@ Object::Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objctID)
 	m_Direction = _direction;
 	m_eObjectID = _objctID;
 	m_TimeChangeState = 0;
+	m_TimeChangeAttackDirectAttack = 0;
 }
 
 Object::~Object()

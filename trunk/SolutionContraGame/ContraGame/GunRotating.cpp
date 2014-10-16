@@ -25,7 +25,7 @@ void GunRotating::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		m_Sprite->UpdateAnimation(1000);
+		//m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -61,16 +61,30 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 100)
+		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 300)
 		{
 			 this->getSprite()->getAnimation()->setIndexStart(0);
-			 this->getSprite()->getAnimation()->setIndexEnd(0);
-			 // this->getSprite()->getAnimation()->setCurrentFrame(0);
+			 this->getSprite()->getAnimation()->setIndexEnd(1);
 		}
 		else
 		{
-			 this->getSprite()->getAnimation()->setIndexStart(0);
-			 this->getSprite()->getAnimation()->setIndexEnd(13);
+			if(CGlobal::Rambo_Y <= this->getPositionVec2().y)
+			{
+				 if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 200)
+				 {
+					 this->getSprite()->getAnimation()->setCurrentFrame(2);
+				 }
+				 else
+				 {
+					 if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 150)
+					 {
+						this->getSprite()->getAnimation()->setCurrentFrame(2);
+					 }
+					 else
+					 {
+					 }
+				 }
+			}
 		}
 		break;
 	case STATE_BEFORE_DEATH:

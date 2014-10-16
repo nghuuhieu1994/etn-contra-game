@@ -20,6 +20,9 @@ void SniperStanding::Initialize()
 	sprite_mid = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_STANDING_MID));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 
+	m_Sprite = sprite_mid;
+
+
 	/*
 	Bullet[0] = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
 	Bullet[1] = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
@@ -50,14 +53,21 @@ void SniperStanding::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(Rambo_Y > m_Position.y + 50)
-			m_Sprite = sprite_top;
-		else
+		m_TimeChangeAttackDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeAttackDirectAttack > 1500)
 		{
-			if(abs(Rambo_X - m_Position.x) < 100)
-				m_Sprite = sprite_bot;
+			if(Rambo_Y > m_Position.y + 50)
+			{
+				m_Sprite = sprite_top;
+			}
 			else
-				m_Sprite = sprite_mid;
+			{
+				if(abs(Rambo_X - m_Position.x) < 100)
+					m_Sprite = sprite_bot;
+				else
+					m_Sprite = sprite_mid;
+			}
+			m_TimeChangeAttackDirectAttack = 0;
 		}
 		break;
 	case STATE_SHOOTING:

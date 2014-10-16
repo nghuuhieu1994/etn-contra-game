@@ -20,6 +20,7 @@ protected:
 	eObjectState	m_ObjectState;
 
 	int				m_TimeChangeState;
+	int				m_TimeChangeAttackDirectAttack;
 
 	D3DXVECTOR3		m_Position;
 	//bit 0 -> Update Sprite
