@@ -1,16 +1,16 @@
-#ifndef __FlyerSin_H__
-#define __FlyerSin_H__
+#ifndef __BULLET_MOVING_H__
+#define __BULLET_MOVING_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class Flyer_Sin : public DynamicObject
+class GifBulletMoving : public DynamicObject
 {
 	//Physic*			m_Physic;
 	D3DXVECTOR3		m_startPosition;
 public:
-	Flyer_Sin();
+	GifBulletMoving();
 	Physic*			getPhysic() const { return m_Physic; }
-	Flyer_Sin(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	GifBulletMoving(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
@@ -18,7 +18,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	virtual ~Flyer_Sin();
+	virtual ~GifBulletMoving();
 	void Sin(D3DXVECTOR3& a);
 };
 

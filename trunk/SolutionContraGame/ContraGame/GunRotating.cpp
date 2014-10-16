@@ -20,23 +20,37 @@ void GunRotating::Initialize()
 
 void GunRotating::UpdateAnimation()
 {
-	//m_Sprite->UpdateAnimation(300);	
+
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		//m_Sprite->UpdateAnimation(500);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(200);
+		m_Sprite->UpdateAnimation(120);
 		break;
 	case STATE_DEATH:
 		break;
 	default:
 		break;
 	}
+
+	if(CGlobal::Rambo_X < m_Position.x)
+		m_Direction = eDirection::LEFT;
+	else
+		m_Direction = eDirection::RIGHT;
+
+	if(m_Direction == eDirection::LEFT)
+		m_Sprite->setSpriteEffect(ESpriteEffect::None);
+	else
+	{
+		if(m_Direction == eDirection::RIGHT)
+			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+	}
 }
+
 
 
 void GunRotating::UpdateCollision(Object* checkingObject)
@@ -61,31 +75,6 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 300)
-		{
-			 this->getSprite()->getAnimation()->setIndexStart(0);
-			 this->getSprite()->getAnimation()->setIndexEnd(1);
-		}
-		else
-		{
-			if(CGlobal::Rambo_Y <= this->getPositionVec2().y)
-			{
-				 if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 200)
-				 {
-					 this->getSprite()->getAnimation()->setCurrentFrame(2);
-				 }
-				 else
-				 {
-					 if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 150)
-					 {
-						this->getSprite()->getAnimation()->setCurrentFrame(2);
-					 }
-					 else
-					 {
-					 }
-				 }
-			}
-		}
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
