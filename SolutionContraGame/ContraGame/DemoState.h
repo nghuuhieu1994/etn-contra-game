@@ -11,7 +11,7 @@
 #include "Rambo.h"
 #include "SniperStanding.h"
 #include "GifBulletStatic.h"
-#include "Flyer_Sin.h"
+#include "GifBulletMoving.h"
 #include "GunRotating.h"
 
 class DemoState : public GameState
@@ -32,7 +32,7 @@ private:
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;
 	GifBulletStatic*	m_gifBullet;
-	Flyer_Sin*			m_Flyersin;
+	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
 	
 

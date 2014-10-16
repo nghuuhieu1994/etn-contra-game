@@ -17,7 +17,7 @@ void GifBulletStatic::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	//m_Sprite
-	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GifBulletStatic));
+	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_BULLET_STATIC));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 }
 
@@ -68,7 +68,6 @@ void GifBulletStatic::Update()
 		{
 			 this->getSprite()->getAnimation()->setIndexStart(0);
 			 this->getSprite()->getAnimation()->setIndexEnd(0);
-			 // this->getSprite()->getAnimation()->setCurrentFrame(0);
 		}
 		else
 		{

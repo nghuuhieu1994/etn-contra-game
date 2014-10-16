@@ -204,7 +204,7 @@ void CGame::Run()
 			if( m_fps > 1000 / 60)
 			{
 				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
-				//OutputDebugString(fps);
+				OutputDebugString(fps);
 
 				StateManagerDx9::getInstance()->HandleInput();
 				StateManagerDx9::getInstance()->Update();

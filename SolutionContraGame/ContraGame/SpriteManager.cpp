@@ -68,10 +68,10 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	// End load EnemyContent
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GifBulletStatic.png", eSpriteID::SPRITE_GifBulletStatic, 7, 1, 7);
-	//LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\Gun_2.png", eSpriteID::SPRITE_GUN_2, 14, 1, 14);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Flyer_Sin\\Flyersin.png", eSpriteID::SPRITE_FLYER_SIN, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletStatic.png", eSpriteID::SPRITE_GIF_BULLET_STATIC, 7, 1, 7);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletMoving.png", eSpriteID::SPRITE_GIF_BULLET_MOVING, 1, 1, 1);
+	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 9, 1, 9);
 }
 
 void SpriteManager::Release()
