@@ -32,23 +32,25 @@ void DemoState::HandleInput()
 void DemoState::Update()
 {
 
-	/*m_Rambo->HandleInput();*/
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateMovement();
 	m_Rambo->PrintState();
-	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->Update();
 
+	m_gifBullet->UpdateCollision(m_Rambo);
 	m_gifBullet->UpdateAnimation();
 	m_gifBullet->Update();
 
+	m_gunRotating->UpdateCollision(m_Rambo);
 	m_gunRotating->UpdateAnimation();
 	m_gunRotating->Update();
 
+	m_gifBulletMoving->UpdateCollision(m_Rambo);
 	m_gifBulletMoving->UpdateAnimation();
 	m_gifBulletMoving->UpdateMovement();
 }
@@ -56,12 +58,12 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_background->Render(_lpDSpriteHandle);
-	//SpriteManager::getInstance()->getSprite(eSpriteID::GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
+	SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
-	m_Rambo->Render(_lpDSpriteHandle);
 	m_gunRotating->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

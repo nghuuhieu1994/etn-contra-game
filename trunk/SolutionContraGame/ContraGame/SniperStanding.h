@@ -15,8 +15,8 @@ private:
 	//CSpriteDx9* Bullet[15]; // 
 	//bool		m_canAttack; // 
 	// Physic*		m_Physic;  ->> i hate this fucking line of code
-	//int Rambo_X;
-	//int Rambo_Y;
+	int Rambo_X;
+	int Rambo_Y;
 public:
 	SniperStanding();
 	SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

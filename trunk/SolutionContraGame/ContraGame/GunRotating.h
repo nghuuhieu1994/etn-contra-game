@@ -8,6 +8,13 @@ class GunRotating : public DynamicObject
 	//Physic*			m_Physic;
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive;
+
+	int Rambo_X;
+	int Rambo_Y;
+
+	int _distance_X;
+	int _distance_Y;
+
 public:
 	GunRotating();
 	//Physic*			getPhysic() const { return m_Physic; }

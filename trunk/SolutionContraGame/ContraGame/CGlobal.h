@@ -116,6 +116,23 @@ enum eDirection
 	RIGHT,
 };
 
+typedef enum eDirectAttack
+{
+	NONE = 0,
+	NORTH = 1, // Bac
+	SOUTH, // Nam
+	EAST, // Dong
+	WEST, // Tay
+	NORTH_EAST, // Bac > Dong
+	EAST_NORTH, // Dong > Bac
+	NORTH_WEST, // Bac > Tay
+	WEST_NORTH, // Tay > Bac
+	WEST_SOUTH, // Tay > Nam
+	SOUTH_WEST, // Nam > Tay
+	SOUTH_EAST, // Nam > Dong
+	EAST_SOUTH  // Dong > Nam
+};
+
 enum ETypeObject
 {
 	TILE_MAP = 0,

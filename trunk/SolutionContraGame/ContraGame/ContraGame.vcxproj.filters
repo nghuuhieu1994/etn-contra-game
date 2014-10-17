@@ -35,6 +35,9 @@
     <ClCompile Include="EntryPoint.cpp">
       <Filter>EntryPoint</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyRun.cpp">
+      <Filter>EntryPoint</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -69,6 +72,9 @@
     <ClInclude Include="StateManagerDx9.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="TestSpriteState.h" />
+    <ClInclude Include="EnemyRun.h">
+      <Filter>EntryPoint</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
