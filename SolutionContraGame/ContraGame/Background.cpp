@@ -2,16 +2,6 @@
 #include <fstream>
 #include "SpriteManager.h"
 
-Tile::Tile()
-{
-
-}
-
-Tile::~Tile()
-{
-
-}
-
 Background::Background()
 {
 	CMarkup xml;
