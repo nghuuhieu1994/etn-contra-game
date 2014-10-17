@@ -18,7 +18,7 @@ protected:
 	CSpriteDx9*		m_Sprite;
 	//Physic*			m_Physic;
 	eObjectState	m_ObjectState;
-
+	ETypeObject		m_TypeObject;
 	int				m_TimeChangeState;
 	int				m_TimeChangeAttackDirectAttack;
 
