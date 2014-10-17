@@ -28,6 +28,18 @@ void GifBulletStatic::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
+
+		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 100)
+		{
+			 this->getSprite()->getAnimation()->setIndexStart(0);
+			 this->getSprite()->getAnimation()->setIndexEnd(0);
+		}
+		else
+		{
+			 this->getSprite()->getAnimation()->setIndexStart(0);
+			 this->getSprite()->getAnimation()->setIndexEnd(6);
+		}
+
 		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_BEFORE_DEATH:
@@ -64,16 +76,6 @@ void GifBulletStatic::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 100)
-		{
-			 this->getSprite()->getAnimation()->setIndexStart(0);
-			 this->getSprite()->getAnimation()->setIndexEnd(0);
-		}
-		else
-		{
-			 this->getSprite()->getAnimation()->setIndexStart(0);
-			 this->getSprite()->getAnimation()->setIndexEnd(6);
-		}
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

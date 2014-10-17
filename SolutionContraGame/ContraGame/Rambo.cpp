@@ -356,8 +356,8 @@ void Rambo::UpdateMovement()
 	//		break;
 	//}
 	//this->m_Physic->UpdateMovement(&m_Position);
-	//CGlobal::Rambo_X = (int)(getPositionVec2().x);
-	//CGlobal::Rambo_Y = (int)(getPositionVec2().y);
+	CGlobal::Rambo_X = (int)(getPositionVec2().x);
+	CGlobal::Rambo_Y = (int)(getPositionVec2().y);
 }
 void Rambo::Update()
 {

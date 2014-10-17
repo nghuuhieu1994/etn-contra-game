@@ -11,6 +11,7 @@ class DynamicObject :
 {
 protected:
 	Physic*			m_Physic;
+	eDirectAttack	m_DirectAttack;
 public:
 	DynamicObject(void);
 	Physic*			getPhysic() const { return m_Physic; }
