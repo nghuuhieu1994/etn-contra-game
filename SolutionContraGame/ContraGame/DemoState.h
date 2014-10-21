@@ -13,6 +13,7 @@
 #include "GifBulletStatic.h"
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
+#include "Markup.h"
 
 class DemoState : public GameState
 {
@@ -35,13 +36,14 @@ private:
 	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
 	
-
+	list<GameObject *> _ListGameObjects;
 
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
+	void ReadMap();
 	void Update();
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	void Pause();

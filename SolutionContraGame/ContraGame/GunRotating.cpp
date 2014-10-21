@@ -162,7 +162,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 	case eObjectID::RAMBO:
 		Rambo_X = checkingObject->getPositionVec2().x;
 		Rambo_Y = checkingObject->getPositionVec2().y;
-		m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+		//m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 		// do something
 
 		break;
