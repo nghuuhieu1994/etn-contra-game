@@ -14,6 +14,9 @@
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
 #include "Markup.h"
+#include <list>
+
+using namespace std;
 
 class DemoState : public GameState
 {
@@ -29,7 +32,7 @@ private:
 	CSpriteDx9*			fBullet;
 	CSpriteDx9*			backGround;
 	ESpriteEffect		m_testSpriteEffect;*/
-	Background*			m_background;
+//	Background*			m_background;
 	Rambo*				m_Rambo;
 	SniperStanding*		m_SniperStanding;
 	GifBulletStatic*	m_gifBullet;
