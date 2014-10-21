@@ -64,9 +64,10 @@ void DemoState::Update()
 {
 
 	m_Rambo->UpdateAnimation();
-	m_Rambo->UpdateMovement();
+	
 	m_Rambo->UpdateCollision(m_VirtualObject);
-	m_Rambo->PrintState();
+	m_Rambo->UpdateMovement();
+	
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 

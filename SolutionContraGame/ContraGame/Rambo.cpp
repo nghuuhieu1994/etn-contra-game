@@ -291,11 +291,12 @@ void Rambo::UpdateCollision(Object* checkingObject)
 		case ETypeObject::VIRTUAL_OBJECT:
 			if(tempDirection == IDDirection::DIR_TOP)
 			{
-				// tempDirection = IDDirection::DIR_TOP;
+				tempDirection = IDDirection::DIR_TOP;
 				this->m_Position.x += this->m_Collision->m_MoveX;
 				this->m_Position.y += this->m_Collision->m_MoveY;
-			//	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
-			//	this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
 			}
 
 			else if(tempDirection == IDDirection::DIR_BOTTOM)
