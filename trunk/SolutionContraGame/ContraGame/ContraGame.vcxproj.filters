@@ -2,36 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="CCamera.cpp" />
-    <ClCompile Include="CAnimationDx9.cpp" />
-    <ClCompile Include="CGame.cpp" />
-    <ClCompile Include="CGameLog.cpp" />
-    <ClCompile Include="CGameTimeDx9.cpp" />
-    <ClCompile Include="CGlobal.cpp" />
-    <ClCompile Include="CInputDx9.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="CSpriteDx9.cpp" />
-    <ClCompile Include="CSurfaceDx9.cpp" />
-    <ClCompile Include="CTextureDx9.cpp" />
-    <ClCompile Include="CTimeSpan.cpp" />
-    <ClCompile Include="DemoState.cpp" />
-    <ClCompile Include="DSutil.cpp" />
-    <ClCompile Include="DynamicObject.cpp" />
-    <ClCompile Include="GifBulletMoving.cpp" />
-    <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="CObjectDx9.cpp" />
-    <ClCompile Include="CPhysicDx9.cpp" />
-    <ClCompile Include="GifBulletStatic.cpp" />
-    <ClCompile Include="GunRotating.cpp" />
-    <ClCompile Include="Markup.cpp" />
-    <ClCompile Include="MenuGame.cpp" />
-    <ClCompile Include="Rambo.cpp" />
-    <ClCompile Include="SniperStanding.cpp" />
-    <ClCompile Include="SoundBuffer.cpp" />
-    <ClCompile Include="SoundMangerDx9.cpp" />
-    <ClCompile Include="SpriteManager.cpp" />
-    <ClCompile Include="StateManagerDx9.cpp" />
-    <ClCompile Include="TestSpriteState.cpp" />
     <ClCompile Include="EntryPoint.cpp">
       <Filter>EntryPoint</Filter>
     </ClCompile>
@@ -39,46 +9,202 @@
       <Filter>EntryPoint</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="VirtualObject.cpp" />
+    <ClCompile Include="CSpriteDx9.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CSurfaceDx9.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureDx9.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Markup.cpp">
+      <Filter>Framework\XML Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBuffer.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMangerDx9.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteManager.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimationDx9.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhysicDx9.cpp">
+      <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputDx9.cpp">
+      <Filter>Framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="DSutil.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectDx9.cpp">
+      <Filter>Framework\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLog.cpp">
+      <Filter>Framework\Gamelog</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameTimeDx9.cpp">
+      <Filter>Framework\Game Time</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeSpan.cpp">
+      <Filter>Framework\Game Time</Filter>
+    </ClCompile>
+    <ClCompile Include="CGlobal.cpp">
+      <Filter>Framework\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>Framework\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoState.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuGame.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManagerDx9.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Rambo.cpp">
+      <Filter>GameObject\Rambo</Filter>
+    </ClCompile>
+    <ClCompile Include="GifBulletMoving.cpp">
+      <Filter>GameObject\Items\GifBulletMoving</Filter>
+    </ClCompile>
+    <ClCompile Include="GifBulletStatic.cpp">
+      <Filter>GameObject\Items\GifBulletStatic</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSpriteState.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualObject.cpp">
+      <Filter>GameObject\Virtual</Filter>
+    </ClCompile>
+    <ClCompile Include="SniperStanding.cpp">
+      <Filter>GameObject\Enemy\SniperStanding</Filter>
+    </ClCompile>
+    <ClCompile Include="GunRotating.cpp">
+      <Filter>GameObject\Enemy\GunRotating</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
-    <ClInclude Include="CCamera.h" />
-    <ClInclude Include="CAnimationDx9.h" />
-    <ClInclude Include="CGame.h" />
-    <ClInclude Include="CGameLog.h" />
-    <ClInclude Include="CGameTimeDx9.h" />
-    <ClInclude Include="CGlobal.h" />
-    <ClInclude Include="CInputDx9.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="CSpriteDx9.h" />
-    <ClInclude Include="CSurfaceDx9.h" />
-    <ClInclude Include="CTextureDx9.h" />
-    <ClInclude Include="CTimeSpanDx9.h" />
-    <ClInclude Include="DemoState.h" />
-    <ClInclude Include="DSutil.h" />
-    <ClInclude Include="DynamicObject.h" />
-    <ClInclude Include="SniperStanding.h" />
-    <ClInclude Include="GifBulletMoving.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="CObjectDx9.h" />
-    <ClInclude Include="CPhysicDx9.h" />
-    <ClInclude Include="GifBulletStatic.h" />
-    <ClInclude Include="GunRotating.h" />
-    <ClInclude Include="Markup.h" />
-    <ClInclude Include="MenuGame.h" />
-    <ClInclude Include="Rambo.h" />
-    <ClInclude Include="SoundBuffer.h" />
-    <ClInclude Include="SoundMangerDx9.h" />
-    <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="StateManagerDx9.h" />
-    <ClInclude Include="SweptAABB.h" />
-    <ClInclude Include="TestSpriteState.h" />
     <ClInclude Include="EnemyRun.h">
       <Filter>EntryPoint</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h" />
-    <ClInclude Include="VirtualObject.h" />
+    <ClInclude Include="CSpriteDx9.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CSurfaceDx9.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureDx9.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Markup.h">
+      <Filter>Framework\XML Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBuffer.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMangerDx9.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteManager.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimationDx9.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhysicDx9.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CInputDx9.h">
+      <Filter>Framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="DSutil.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectDx9.h">
+      <Filter>Framework\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLog.h">
+      <Filter>Framework\Gamelog</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameTimeDx9.h">
+      <Filter>Framework\Game Time</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeSpanDx9.h">
+      <Filter>Framework\Game Time</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobal.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Framework\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoState.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGame.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManagerDx9.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SweptAABB.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Rambo.h">
+      <Filter>GameObject\Rambo</Filter>
+    </ClInclude>
+    <ClInclude Include="GifBulletMoving.h">
+      <Filter>GameObject\Items\GifBulletMoving</Filter>
+    </ClInclude>
+    <ClInclude Include="GifBulletStatic.h">
+      <Filter>GameObject\Items\GifBulletStatic</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSpriteState.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CGame.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualObject.h">
+      <Filter>GameObject\Virtual</Filter>
+    </ClInclude>
+    <ClInclude Include="SniperStanding.h">
+      <Filter>GameObject\Enemy\SniperStanding</Filter>
+    </ClInclude>
+    <ClInclude Include="GunRotating.h">
+      <Filter>GameObject\Enemy\GunRotating</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -89,6 +215,66 @@
     </Filter>
     <Filter Include="Framework">
       <UniqueIdentifier>{76817c5c-95dc-4dc1-b317-0d97697b8b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Graphics">
+      <UniqueIdentifier>{62388534-b205-43c4-a7df-0c3677d6d2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\XML Reader">
+      <UniqueIdentifier>{891cd2b2-29ef-4da0-818c-f12189842155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sound">
+      <UniqueIdentifier>{c1886de8-7d18-4f10-b8bd-df7dea93d0b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Physics">
+      <UniqueIdentifier>{2dd695ba-9d9e-4e4e-afb1-6b3e6a71ec80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Input">
+      <UniqueIdentifier>{a64591e7-a7dd-4bcd-8678-7d8b6b2c14e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Object">
+      <UniqueIdentifier>{5e6eab10-53ce-4f0b-b36b-a536afa9c8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Camera">
+      <UniqueIdentifier>{a14ae5a0-781e-4ed8-a2d5-7e2f993d216e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Gamelog">
+      <UniqueIdentifier>{d3ad5c3b-dc66-467e-9e39-5d066ec9978a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Game Time">
+      <UniqueIdentifier>{ab35ba13-4b65-461b-a7d1-7d9f49d59a12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Global">
+      <UniqueIdentifier>{eb5574fd-c3d8-4087-9c08-0314e37da7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{b1d8a3fd-4db0-4639-af66-65f2624b2872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{d4f464d5-ec22-41ed-9d1d-5046c29b1f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Virtual">
+      <UniqueIdentifier>{00e91b31-0adc-439c-bfbf-69614c4b4dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy">
+      <UniqueIdentifier>{523f90a5-018c-4952-88c5-32bb52da5733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Rambo">
+      <UniqueIdentifier>{a491e186-93ff-47cd-b4ec-1941d7aeb716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items">
+      <UniqueIdentifier>{86e0d6db-57fb-4b92-9e4d-8021b95c309c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBulletMoving">
+      <UniqueIdentifier>{83622fd0-a32d-4d40-b228-4b407613dfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBulletStatic">
+      <UniqueIdentifier>{8890abc7-0875-4664-bc7b-2682612fbcfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\GunRotating">
+      <UniqueIdentifier>{806044a0-c581-4652-a3e9-6e5d5706e24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding">
+      <UniqueIdentifier>{3864c8b8-46ec-4b14-83af-901290947762}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

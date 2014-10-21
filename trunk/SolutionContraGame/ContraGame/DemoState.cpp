@@ -79,7 +79,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	{
 		if ((*it)->_Type == 0)
 		{
-			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.1f, 0xffffffff, (*it)->_ID); 
+			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
 		}
 	}
 	SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
