@@ -22,6 +22,9 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::RIGHT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
+
+	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
+	m_Enemy->Initialize();
 	ReadMap();
 }
 
@@ -70,6 +73,8 @@ void DemoState::Update()
 	m_gifBulletMoving->UpdateCollision(m_Rambo);
 	m_gifBulletMoving->UpdateAnimation();
 	m_gifBulletMoving->UpdateMovement();
+	
+	m_Enemy->UpdateAnimation();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -89,6 +94,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_gunRotating->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	
+	m_Enemy->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
