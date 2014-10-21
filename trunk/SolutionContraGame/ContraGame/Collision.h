@@ -5,7 +5,7 @@
 #include "CGlobal.h"
 #include "SweptAABB.h"
 
-class DynamicObject;
+
 
 static bool Intersect(const RECT *rect1, const RECT *rect2)
 {
@@ -43,16 +43,15 @@ static BOX ConvertToBroadPhase(BOX _Box)
 	return GetSweptBroadPhaseBox(_Box);
 }
 
+class DynamicObject;
 class Collision 
 {
 public:
 	float m_MoveX, m_MoveY;
 public:
 	Collision();
-	virtual void InitCollision();
-	virtual IDDirection CheckCollision(DynamicObject *, Object *);
-	//virtual IDDirection CheckCollision(CBaseObject *);
-	//virtual void ResponeCollision(DynamicObject *, Object *) = 0;
+	void InitCollision();
+	IDDirection CheckCollision(DynamicObject *, Object *);
 	~Collision();
 };
 

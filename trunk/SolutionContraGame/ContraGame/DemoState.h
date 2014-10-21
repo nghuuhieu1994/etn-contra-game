@@ -16,6 +16,7 @@
 #include "Tile.h"
 #include "EnemyRun.h"
 #include "Markup.h"
+#include "VirtualObject.h"
 #include <list>
 
 using namespace std;
@@ -41,7 +42,8 @@ private:
 	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
 	EnemyRun*			m_Enemy;
-	
+	VirtualObject*		m_VirtualObject;
+
 	list<Object *> _ListGameObjects;
 
 public:

@@ -25,6 +25,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
+
+	m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
+	m_VirtualObject->Initialize();
+
+	_ListGameObjects.push_back(m_VirtualObject);
+
 	ReadMap();
 }
 
@@ -59,27 +65,28 @@ void DemoState::Update()
 
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateMovement();
+	m_Rambo->UpdateCollision(m_VirtualObject);
 	m_Rambo->PrintState();
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
-	m_SniperStanding->UpdateCollision(m_Rambo);
-	m_SniperStanding->UpdateAnimation();
-	m_SniperStanding->Update();
+	//m_SniperStanding->UpdateCollision(m_Rambo);
+	//m_SniperStanding->UpdateAnimation();
+	//m_SniperStanding->Update();
 
-	m_gifBullet->UpdateCollision(m_Rambo);
-	m_gifBullet->UpdateAnimation();
-	m_gifBullet->Update();
+	//m_gifBullet->UpdateCollision(m_Rambo);
+	//m_gifBullet->UpdateAnimation();
+	//m_gifBullet->Update();
 
-	m_gunRotating->UpdateCollision(m_Rambo);
-	m_gunRotating->UpdateAnimation();
-	m_gunRotating->Update();
+	//m_gunRotating->UpdateCollision(m_Rambo);
+	//m_gunRotating->UpdateAnimation();
+	//m_gunRotating->Update();
 
-	m_gifBulletMoving->UpdateCollision(m_Rambo);
-	m_gifBulletMoving->UpdateAnimation();
-	m_gifBulletMoving->UpdateMovement();
-	
-	m_Enemy->UpdateAnimation();
+	//m_gifBulletMoving->UpdateCollision(m_Rambo);
+	//m_gifBulletMoving->UpdateAnimation();
+	//m_gifBulletMoving->UpdateMovement();
+	//
+	//m_Enemy->UpdateAnimation();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
