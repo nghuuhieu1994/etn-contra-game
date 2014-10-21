@@ -199,6 +199,7 @@ void Rambo::UpdateAnimation()
 				delete m_Sprite;
 				m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_RUN));
 				TURN_OFF_UPDATE_SPRITE(m_UpdateFlag);
+				break;
 			}
 			m_Sprite->UpdateAnimation(200);
 		}
