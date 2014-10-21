@@ -40,7 +40,12 @@ void DemoState::ReadMap()
 		GameObject *_GameObject;
 		_GameObject = new GameObject();
 		_GameObject->Deserialize(xml.GetSubDoc().c_str());
-		_ListGameObjects.push_back(_GameObject);
+		//_ListGameObjects.push_back(_GameObject);
+		if (_GameObject->_Type == ETypeObject::TILE_MAP)
+		{
+			Object* temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
+			_ListGameObjects.push_back(temp);
+		}
 	}
 }
 
@@ -80,12 +85,13 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	//m_background->Render(_lpDSpriteHandle);
-	for (std::list<GameObject*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
+	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
 	{
-		if ((*it)->_Type == 0)
+		/*if ((*it)->_Type == 0)
 		{
 			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
-		}
+		}*/
+		(*it)->Render(_lpDSpriteHandle);
 	}
 	SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
 	m_gifBullet->Render(_lpDSpriteHandle);
