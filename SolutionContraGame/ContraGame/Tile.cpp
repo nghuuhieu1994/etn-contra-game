@@ -23,6 +23,7 @@ void Tile::UpdateAnimation()
 }
 void Tile::UpdateCollision(Object* checkingObject)
 {
+	// NOTE: No code
 }
 
 void Tile::Update()

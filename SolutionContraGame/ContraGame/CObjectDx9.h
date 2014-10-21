@@ -46,8 +46,9 @@ public:
 
 	//Physic*			getPhysic() const { return m_Physic; }
 	eObjectID		getID() const { return m_eObjectID; }
+	ETypeObject		getTypeObject() const { return m_TypeObject; }
 
-	RECT getBound();
+	virtual RECT getBound();
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
 

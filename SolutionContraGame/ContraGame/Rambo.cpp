@@ -282,7 +282,40 @@ void Rambo::UpdateAnimation()
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
+	IDDirection tempDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
+	if(tempDirection != IDDirection::DIR_NONE)
+	{
+		switch(checkingObject->getTypeObject())
+		{
+		case ETypeObject::VIRTUAL_OBJECT:
+			if(tempDirection == IDDirection::DIR_TOP)
+			{
+				// tempDirection = IDDirection::DIR_TOP;
+				this->m_Position.x += this->m_Collision->m_MoveX;
+				this->m_Position.y += this->m_Collision->m_MoveY;
+			//	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+			//	this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+			}
+
+			else if(tempDirection == IDDirection::DIR_BOTTOM)
+			{
+				tempDirection = IDDirection::DIR_BOTTOM;
+			}
+
+			else if(tempDirection == IDDirection::DIR_LEFT)
+			{
+				tempDirection = IDDirection::DIR_LEFT;
+			}
+
+			else if(tempDirection == IDDirection::DIR_RIGHT)
+			{
+				tempDirection = IDDirection::DIR_RIGHT;
+			}
+
+			break;
+		}
+	}
 }
 
 void Rambo::UpdateMovement()

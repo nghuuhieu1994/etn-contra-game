@@ -6,13 +6,14 @@
 #include "CGameTimeDx9.h"
 
 
+class Collision;
 class DynamicObject :
-	public Object
+	public Object 
 {
 protected:
 	Physic*			m_Physic;
 	eDirectAttack	m_DirectAttack;
-
+	Collision*		m_Collision;
 public:
 	DynamicObject(void);
 	Physic*			getPhysic() const { return m_Physic; }

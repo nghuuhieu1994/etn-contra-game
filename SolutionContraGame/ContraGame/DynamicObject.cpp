@@ -11,6 +11,7 @@ Object(_position, _direction, _objectID)
 	m_Physic = new Physic();
 	m_Position = _position;
 	m_DirectAttack = eDirectAttack::NONE;
+	this->m_Collision = new Collision();
 }
 
 void DynamicObject::UpdateBound()
