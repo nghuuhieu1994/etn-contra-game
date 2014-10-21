@@ -10,8 +10,7 @@ Tile::Tile(D3DXVECTOR3 _position, int ID, eSpriteID tileMapID)
 	m_TypeObject = ETypeObject::TILE_MAP;
 	m_Position = _position;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(tileMapID));
-	m_Sprite->getAnimation()->setIndexStart(ID);
-	m_Sprite->getAnimation()->setIndexEnd(ID);
+	m_Sprite->getAnimation()->setSourceRectAtIndex(ID);
 }
 
 void Tile::Initialize()

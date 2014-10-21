@@ -13,6 +13,7 @@
 #include "GifBulletStatic.h"
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
+#include "Tile.h"
 #include "EnemyRun.h"
 #include "Markup.h"
 #include <list>
@@ -41,7 +42,7 @@ private:
 	GunRotating*		m_gunRotating;
 	EnemyRun*			m_Enemy;
 	
-	list<GameObject *> _ListGameObjects;
+	list<Object *> _ListGameObjects;
 
 public:
 	DemoState(eIDStateGame ID) : GameState(ID){}
