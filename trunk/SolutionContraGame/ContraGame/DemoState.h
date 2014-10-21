@@ -13,6 +13,7 @@
 #include "GifBulletStatic.h"
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
+#include "EnemyRun.h"
 #include "Markup.h"
 #include <list>
 
@@ -38,6 +39,7 @@ private:
 	GifBulletStatic*	m_gifBullet;
 	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
+	EnemyRun*			m_Enemy;
 	
 	list<GameObject *> _ListGameObjects;
 

@@ -1,14 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
     <ClCompile Include="EntryPoint.cpp">
       <Filter>EntryPoint</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyRun.cpp">
-      <Filter>EntryPoint</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="CSpriteDx9.cpp">
       <Filter>Framework\Graphics</Filter>
     </ClCompile>
@@ -66,18 +61,6 @@
     <ClCompile Include="DynamicObject.cpp">
       <Filter>Framework\Object</Filter>
     </ClCompile>
-    <ClCompile Include="DemoState.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuGame.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManagerDx9.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="Rambo.cpp">
       <Filter>GameObject\Rambo</Filter>
     </ClCompile>
@@ -90,9 +73,6 @@
     <ClCompile Include="TestSpriteState.cpp">
       <Filter>GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="CGame.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="VirtualObject.cpp">
       <Filter>GameObject\Virtual</Filter>
     </ClCompile>
@@ -102,13 +82,32 @@
     <ClCompile Include="GunRotating.cpp">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClCompile>
+    <ClCompile Include="StateManagerDx9.cpp">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoState.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRun.cpp">
+      <Filter>GameObject\Enemy\EnemyRun</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuGame.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>GameObject\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>GameObject\Tile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="EnemyRun.h">
-      <Filter>EntryPoint</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h" />
     <ClInclude Include="CSpriteDx9.h">
       <Filter>Framework\Graphics</Filter>
     </ClInclude>
@@ -166,20 +165,8 @@
     <ClInclude Include="DynamicObject.h">
       <Filter>Framework\Object</Filter>
     </ClInclude>
-    <ClInclude Include="DemoState.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuGame.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManagerDx9.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
     <ClInclude Include="SweptAABB.h">
       <Filter>Framework\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>GameScene</Filter>
     </ClInclude>
     <ClInclude Include="Rambo.h">
       <Filter>GameObject\Rambo</Filter>
@@ -193,9 +180,6 @@
     <ClInclude Include="TestSpriteState.h">
       <Filter>GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="CGame.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
     <ClInclude Include="VirtualObject.h">
       <Filter>GameObject\Virtual</Filter>
     </ClInclude>
@@ -204,6 +188,30 @@
     </ClInclude>
     <ClInclude Include="GunRotating.h">
       <Filter>GameObject\Enemy\GunRotating</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManagerDx9.h">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoState.h">
+      <Filter>GameScene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRun.h">
+      <Filter>GameObject\Enemy\EnemyRun</Filter>
+    </ClInclude>
+    <ClInclude Include="CGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGame.h">
+      <Filter>GameScene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>GameObject\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>GameObject\Tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +283,24 @@
     </Filter>
     <Filter Include="GameObject\Enemy\SniperStanding">
       <UniqueIdentifier>{3864c8b8-46ec-4b14-83af-901290947762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\SceneManager">
+      <UniqueIdentifier>{c5740650-00eb-4e21-b1f4-fba1e80dad7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Scene">
+      <UniqueIdentifier>{509bd375-0179-4e0c-8251-06fc3ea72d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\EnemyRun">
+      <UniqueIdentifier>{3b959c08-be49-4114-8b6e-fac5c0537d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b51c09b2-f018-47ea-9c04-4692fcdff4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\BackGround">
+      <UniqueIdentifier>{f620d2bf-221a-4f9d-98d4-628b9f262ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Tile">
+      <UniqueIdentifier>{db6ff48f-d5e0-466b-90dc-4e6c1a489995}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
