@@ -38,6 +38,8 @@
     <ClCompile Include="EnemyRun.cpp">
       <Filter>EntryPoint</Filter>
     </ClCompile>
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="VirtualObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -75,6 +77,8 @@
     <ClInclude Include="EnemyRun.h">
       <Filter>EntryPoint</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="VirtualObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -82,6 +86,9 @@
   <ItemGroup>
     <Filter Include="EntryPoint">
       <UniqueIdentifier>{9634b189-2e82-4812-bda0-6664bac40cf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{76817c5c-95dc-4dc1-b317-0d97697b8b38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

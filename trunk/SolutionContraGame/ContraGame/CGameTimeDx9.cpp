@@ -7,6 +7,7 @@ CGameTimeDx9::CGameTimeDx9()
 	this->m_ElapsedGameTime = CTimeSpanDx9(1);
 	this->m_TotalGameTime	= CTimeSpanDx9(1);
 }
+
 CGameTimeDx9::CGameTimeDx9(CTimeSpanDx9 &elapsedGameTime, CTimeSpanDx9 &totalGameTime)
 {
 	this->m_ElapsedGameTime = elapsedGameTime;
