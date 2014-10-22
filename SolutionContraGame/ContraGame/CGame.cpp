@@ -44,7 +44,7 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 	m_handleWindow = CreateWindow(
 		"CGame",
 		GAMETITLE,
-		WS_OVERLAPPEDWINDOW,
+		(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX),
 		100,
 		100,
 		WIDTH,
