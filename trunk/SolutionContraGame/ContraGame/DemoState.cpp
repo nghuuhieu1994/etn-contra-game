@@ -99,6 +99,10 @@ void DemoState::Update()
 
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateCollision(m_VirtualObject);
+	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
+	{
+		m_Rambo->UpdateCollision(*it);
+	}
 	m_Rambo->UpdateMovement();
 	
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
