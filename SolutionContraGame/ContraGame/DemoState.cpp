@@ -40,7 +40,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 void DemoState::ReadMap()
 {
 	CMarkup xml;
-	xml.Load("resources\\Map\\1\\1a.map");
+	xml.Load("resources\\Map\\1\\map.xml");
 	xml.FindElem("Objects");
 	xml.IntoElem();
 
@@ -50,11 +50,42 @@ void DemoState::ReadMap()
 		_GameObject = new GameObject();
 		_GameObject->Deserialize(xml.GetSubDoc().c_str());
 		//_ListGameObjects.push_back(_GameObject);
-		if (_GameObject->_Type == ETypeObject::TILE_MAP)
+		/*if (_GameObject->_Type == ETypeObject::TILE_MAP)
 		{
+			_GameObject->DeserializeTile(xml.GetSubDoc().c_str());
 			Object* temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
 			_ListGameObjects.push_back(temp);
+		}*/
+		Object* temp;
+		switch (_GameObject->_Type)
+		{
+		case ETypeObject::TILE_MAP:
+			{
+				_GameObject->DeserializeTile(xml.GetSubDoc().c_str());
+				temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
+			}
+			break;
+		case ETypeObject::VIRTUAL_OBJECT:
+			{
+				_GameObject->DeserializeVirtualObject(xml.GetSubDoc().c_str());
+				//temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
+				temp = new VirtualObject(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 1), _GameObject->m_Width, _GameObject->m_Height);
+			}
+			break;
+		case ETypeObject::STATIC_OBJECT:
+			{
+
+			}
+			break;
+		case ETypeObject::DYNAMIC_OBJECT:
+			{
+
+			}
+			break;
+		default:
+			break;
 		}
+		_ListGameObjects.push_back(temp);
 	}
 }
 
