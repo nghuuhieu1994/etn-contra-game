@@ -714,5 +714,15 @@
   <Object Type="0" Id="23" X="6368" Y="32" />
   <Object Type="0" Id="23" X="6432" Y="32" />
   <Object Type="0" Id="44" X="6496" Y="32" />
-  <Object Type="1" Id="0" X="196" Y="224" />
+  <Object Type="1" Id="0" X="448" Y="240" Width="768" Height="32" />
+  <Object Type="1" Id="0" X="416" Y="176" Width="192" Height="32" />
+  <Object Type="1" Id="0" X="496" Y="128" Width="32" Height="0" />
+  <Object Type="1" Id="0" X="512" Y="160" Width="0" Height="0" />
+  <Object Type="1" Id="0" X="544" Y="112" Width="64" Height="32" />
+  <Object Type="1" Id="0" X="640" Y="48" Width="128" Height="32" />
+  <Object Type="1" Id="0" X="736" Y="112" Width="64" Height="32" />
+  <Object Type="1" Id="0" X="1184" Y="240" Width="704" Height="32" />
+  <Object Type="1" Id="0" X="896" Y="176" Width="128" Height="32" />
+  <Object Type="1" Id="0" X="1376" Y="144" Width="192" Height="32" />
+  <Object Type="1" Id="0" X="1280" Y="48" Width="128" Height="32" />
 </Objects>
