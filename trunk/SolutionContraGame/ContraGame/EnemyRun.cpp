@@ -19,17 +19,48 @@ void EnemyRun::Initialize()
 
 void EnemyRun::UpdateAnimation()
 {
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_IDLE:
+		this->getSprite()->getAnimation()->setIndexStart(0);
+		this->getSprite()->getAnimation()->setIndexEnd(2);
+		break;
+	case STATE_ALIVE_MOVE:
+		break;
+	case STATE_SHOOTING:
+		break;
+	case STATE_BEFORE_DEATH:
+		break;
+	case STATE_DEATH:
+		break;
+	default:
+		break;
+	}
 	m_Sprite->UpdateAnimation(300);
+	if(m_Direction == eDirection::LEFT)
+		m_Sprite->setSpriteEffect(ESpriteEffect::None);
+	else
+	{
+		if(m_Direction == eDirection::RIGHT)
+			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+	}
 }
 void EnemyRun::UpdateCollision(Object* checkingObject)
 {
+	switch (checkingObject->getID())
+	{
 
+	default:
+		break;
+	}
 }
 void EnemyRun::UpdateMovement()
 {
+	setPositionX(getPositionVec2().x - 1);
 }
 void EnemyRun::Update()
 {
+
 }
 
 void EnemyRun::Render(SPRITEHANDLE spriteHandle)

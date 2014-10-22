@@ -2,11 +2,11 @@
 #define __MENU_GAME_H__
 
 //#include "CSpriteDx9.h"
-#include "GameState.h"
+#include "GameScene.h"
 #include "SpriteManager.h"
-#include "StateManagerDx9.h"
+#include "SceneManagerDx9.h"
 
-class MenuGame : public GameState
+class MenuGame : public GameScene
 {
 private:
 	bool m_IsDone;
@@ -15,7 +15,7 @@ private:
 	D3DXVECTOR3			m_IconPosition;
 	D3DXVECTOR3			m_MenuPosition;
 public:
-	MenuGame(eIDStateGame ID) : GameState(ID) {}
+	MenuGame(eIDSceneGame ID) : GameScene(ID) {}
 	~MenuGame(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();

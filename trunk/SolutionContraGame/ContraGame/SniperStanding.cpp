@@ -25,7 +25,7 @@ void SniperStanding::Initialize()
 
 void SniperStanding::UpdateAnimation()
 {
-	if(Rambo_X < m_Position.x)
+	if(CGlobal::Rambo_X < m_Position.x)
 		m_Direction = eDirection::LEFT;
 	else
 		m_Direction = eDirection::RIGHT;
@@ -36,13 +36,13 @@ void SniperStanding::UpdateAnimation()
 		m_TimeChangeAttackDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeAttackDirectAttack > 1500)
 		{
-			if(Rambo_Y > m_Position.y + 50)
+			if(CGlobal::Rambo_Y > m_Position.y + 50)
 			{
 				m_Sprite = sprite_top;
 			}
 			else
 			{
-				if(abs(Rambo_X - m_Position.x) < 100)
+				if(abs(CGlobal::Rambo_X - m_Position.x) < 100)
 					m_Sprite = sprite_bot;
 				else
 					m_Sprite = sprite_mid;
@@ -79,8 +79,6 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 	switch (checkingObject->getID())
 	{
 	case eObjectID::RAMBO:
-		Rambo_X = checkingObject->getPositionVec2().x;
-		Rambo_Y = checkingObject->getPositionVec2().y;
 		break;
 	default:
 		break;

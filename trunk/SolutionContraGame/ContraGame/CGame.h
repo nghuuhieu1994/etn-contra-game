@@ -13,7 +13,7 @@
 #include "MenuGame.h"
 #include "SoundMangerDx9.h"
 #include "SpriteManager.h"
-#include "StateManagerDx9.h"
+#include "SceneManagerDx9.h"
 #include "TestSpriteState.h"
 #include <d3d9.h>
 #include <dsound.h>

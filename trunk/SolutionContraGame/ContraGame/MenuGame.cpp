@@ -40,7 +40,7 @@ void MenuGame::HandleInput()
 		{
 			if(m_IconPosition.y == 215)
 			{
-				StateManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDStateGame::INTRO));
+				SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::INTRO));
 			}
 		}
 

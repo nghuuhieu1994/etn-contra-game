@@ -1,8 +1,8 @@
 #ifndef __DEMO_STATE_H__
 #define __DEMO_STATE_H__
 
-#include "GameState.h"
-#include "StateManagerDx9.h"
+#include "GameScene.h"
+#include "SceneManagerDx9.h"
 #include "CSpriteDx9.h"
 #include "SpriteManager.h"
 #include "CCamera.h"
@@ -13,7 +13,11 @@
 #include "GifBulletStatic.h"
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
+<<<<<<< .mine
+#include "BigGunRotating.h"
+=======
 #include "Tile.h"
+>>>>>>> .r125
 #include "EnemyRun.h"
 #include "Markup.h"
 #include "VirtualObject.h"
@@ -21,7 +25,7 @@
 
 using namespace std;
 
-class DemoState : public GameState
+class DemoState : public GameScene
 {
 private:
 	D3DXVECTOR3			m_UnitTest;
@@ -42,12 +46,18 @@ private:
 	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
 	EnemyRun*			m_Enemy;
+<<<<<<< .mine
+	BigGunRotating*		m_bigGunRotating;
+	
+	list<GameObject *> _ListGameObjects;
+=======
 	VirtualObject*		m_VirtualObject;
+>>>>>>> .r125
 
 	list<Object *> _ListGameObjects;
 
 public:
-	DemoState(eIDStateGame ID) : GameState(ID){}
+	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();

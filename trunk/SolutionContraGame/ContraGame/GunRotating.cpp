@@ -1,4 +1,4 @@
-#include "GunRotating.h"
+﻿#include "GunRotating.h"
 
 
 
@@ -23,15 +23,18 @@ void GunRotating::Initialize()
 
 void GunRotating::UpdateAnimation()
 {	
+	// tư tưởng thằng này:
+	// Tính khoảng cách theo trục X, Y
+	// Dựa vào Khoảng cách đó mà thực hiện set Frame hiện tại cho mỗi trường hợp:
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		_distance_X = abs(Rambo_X - this->getPositionVec2().x);
-		_distance_Y = Rambo_Y - this->getPositionVec2().y;
+		_distance_X = abs(CGlobal::Rambo_X - this->getPositionVec2().x);
+		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
+
 		if( _distance_X > 350)
 		{
-			// block status
 			m_Sprite->getAnimation()->setIndexStart(0);
 			m_Sprite->getAnimation()->setIndexEnd(1);
 		}
@@ -39,7 +42,7 @@ void GunRotating::UpdateAnimation()
 		{
 			if(_distance_X <= 350 && _distance_X > 300)
 			{
-				if(Rambo_X < getPositionVec2().x)
+				if(CGlobal::Rambo_X < getPositionVec2().x)
 				{
 					m_Sprite->getAnimation()->setIndexStart(2);
 					m_Sprite->getAnimation()->setIndexEnd(2);
@@ -56,7 +59,7 @@ void GunRotating::UpdateAnimation()
 			{
 				if(_distance_X <= 300 && _distance_X > 100)
 				{
-					if(Rambo_X < getPositionVec2().x)
+					if(CGlobal::Rambo_X < getPositionVec2().x)
 					{
 						if(_distance_Y <= 0)
 						{
@@ -91,7 +94,7 @@ void GunRotating::UpdateAnimation()
 				{
 					if(_distance_X <= 100 && _distance_X > 20)
 					{
-						if(Rambo_X < getPositionVec2().x)
+						if(CGlobal::Rambo_X < getPositionVec2().x)
 						{
 							if(_distance_Y <= 0)
 							{
@@ -160,9 +163,6 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 	switch (checkingObject->getID())
 	{
 	case eObjectID::RAMBO:
-		Rambo_X = checkingObject->getPositionVec2().x;
-		Rambo_Y = checkingObject->getPositionVec2().y;
-		// do something
 
 		break;
 	case eObjectID::BULLET_RAMBO:
