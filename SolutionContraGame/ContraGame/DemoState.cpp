@@ -28,16 +28,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
-<<<<<<< .mine
-
-=======
 
 	m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();
 
 	_ListGameObjects.push_back(m_VirtualObject);
 
->>>>>>> .r125
 	ReadMap();
 }
 
@@ -90,7 +86,6 @@ void DemoState::Update()
 	//m_gunRotating->UpdateAnimation();
 	//m_gunRotating->Update();
 
-<<<<<<< .mine
 	m_bigGunRotating->UpdateCollision(m_Rambo);
 	m_bigGunRotating->UpdateAnimation();
 	m_bigGunRotating->Update();
@@ -101,13 +96,13 @@ void DemoState::Update()
 	m_gifBulletMoving->UpdateMovement();
 	
 	m_Enemy->UpdateAnimation();
-=======
+
 	//m_gifBulletMoving->UpdateCollision(m_Rambo);
 	//m_gifBulletMoving->UpdateAnimation();
 	//m_gifBulletMoving->UpdateMovement();
 	//
 	//m_Enemy->UpdateAnimation();
->>>>>>> .r125
+
 	m_Enemy->UpdateMovement();
 }
 

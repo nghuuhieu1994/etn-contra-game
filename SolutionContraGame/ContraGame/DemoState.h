@@ -13,11 +13,8 @@
 #include "GifBulletStatic.h"
 #include "GifBulletMoving.h"
 #include "GunRotating.h"
-<<<<<<< .mine
 #include "BigGunRotating.h"
-=======
 #include "Tile.h"
->>>>>>> .r125
 #include "EnemyRun.h"
 #include "Markup.h"
 #include "VirtualObject.h"
@@ -46,15 +43,11 @@ private:
 	GifBulletMoving*	m_gifBulletMoving;
 	GunRotating*		m_gunRotating;
 	EnemyRun*			m_Enemy;
-<<<<<<< .mine
 	BigGunRotating*		m_bigGunRotating;
 	
-	list<GameObject *> _ListGameObjects;
-=======
 	VirtualObject*		m_VirtualObject;
->>>>>>> .r125
 
-	list<Object *> _ListGameObjects;
+	list<Object *>		_ListGameObjects;
 
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
