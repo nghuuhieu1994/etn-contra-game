@@ -37,6 +37,7 @@ namespace MapEditor
         bool isDragged = false;
         System.Windows.Point startPosition;
         System.Windows.Point endPosition;
+        System.Windows.Point finalPosition = new System.Windows.Point();
         Rectangle rect;
 
         public MainWindow()
@@ -302,6 +303,7 @@ namespace MapEditor
             return false;
         }
 
+        // Drawing rectangle
         public void click_to_export_xml_file(object sender, RoutedEventArgs e)
         {
             if (Support.listObject != null  && Support.IsExportXml == false)
@@ -323,22 +325,41 @@ namespace MapEditor
                 isDragged = true;
                 startPosition = m.GetPosition(WorkspaceWorking);
             }
+
+            startPosition.X = ((int)m.GetPosition(WorkspaceWorking).X / (int)Support.WIDHT_OF_VIRTUALOBJECT) * Support.WIDHT_OF_VIRTUALOBJECT;
+            startPosition.Y = ((int)m.GetPosition(WorkspaceWorking).Y / Support.HEIGHT_OF_VIRTUALOBJECT) * Support.HEIGHT_OF_VIRTUALOBJECT;
         }
 
         public void move_to_update_position(object sender, MouseEventArgs m)
         {
-            System.Windows.Point finalPosition = new System.Windows.Point();
             if (isDragged == true && m.LeftButton == MouseButtonState.Pressed)
             {
                 if (rect != null)
                 {
                     WorkspaceWorking.Children.Remove(rect);
                 }
+
                 endPosition = m.GetPosition(WorkspaceWorking);
+
+                endPosition.X = ((int)endPosition.X / Support.WIDHT_OF_VIRTUALOBJECT) * Support.WIDHT_OF_VIRTUALOBJECT;
+                endPosition.Y = ((int)endPosition.Y / Support.HEIGHT_OF_VIRTUALOBJECT) * Support.HEIGHT_OF_VIRTUALOBJECT;
+
+                if ((int)endPosition.X % Support.WIDHT_OF_VIRTUALOBJECT > 0 || (endPosition.X - startPosition.X) / Support.WIDHT_OF_VIRTUALOBJECT < 1)
+                {
+                    endPosition.X += Support.WIDHT_OF_VIRTUALOBJECT;
+                }
+
+                if ((int)endPosition.Y % Support.HEIGHT_OF_VIRTUALOBJECT > 0 || (endPosition.Y - startPosition.Y) / Support.HEIGHT_OF_VIRTUALOBJECT < 1)
+                {
+                    endPosition.Y += Support.HEIGHT_OF_VIRTUALOBJECT;
+                }
+
+
                 rect = new Rectangle();
                 rect.Width = (double)Math.Abs(endPosition.X - startPosition.X);
                 rect.Height = (double)Math.Abs(endPosition.Y - startPosition.Y);
-                rect.Stroke = new SolidColorBrush(Colors.Blue);
+                rect.Stroke = new SolidColorBrush(Colors.Red);
+                rect.StrokeThickness = 3;
 
                 if (endPosition.X > startPosition.X)
                 {
@@ -361,7 +382,7 @@ namespace MapEditor
                     Canvas.SetTop(rect, endPosition.Y);
                     finalPosition.Y = endPosition.Y;
                 }
-
+                Canvas.SetZIndex(rect, 2);
 
                 WorkspaceWorking.Children.Add(rect);
             }
@@ -372,14 +393,29 @@ namespace MapEditor
                     isDragged = false;
                     if (rect != null)
                     {
+
                         OBJECT obj = new OBJECT(1, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        if (Support.listObject == null)
+                        {
+                            Support.listObject = new List<OBJECT>();
+                        }
                         Support.listObject.Add(obj);
+                        
                         obj = null;
                     }
                     rect = null;
                     startPosition = endPosition;
                 }
             }
+
+            // Update coordination for tb
+            if (this.tbX != null && this.tbY != null)
+            {
+                this.tbX.Text = m.GetPosition(WorkspaceWorking).X.ToString();
+                this.tbY.Text = m.GetPosition(WorkspaceWorking).Y.ToString();
+            }
         }
+
+
     }
 }

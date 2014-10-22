@@ -55,6 +55,11 @@ namespace MapEditor.Framwork
             mWriter.WriteAttributeString("Id", Convert.ToString(_object.ID));
             mWriter.WriteAttributeString("X", Convert.ToString(temp.cX));
             mWriter.WriteAttributeString("Y", Convert.ToString(temp.cY));
+            if (_object.Type == 1)
+            {
+                mWriter.WriteAttributeString("Width", Convert.ToString(_object.Bound.width));
+                mWriter.WriteAttributeString("Height", Convert.ToString(_object.Bound.height));
+            }
             mWriter.Flush();
             mWriter.WriteEndElement();
         }

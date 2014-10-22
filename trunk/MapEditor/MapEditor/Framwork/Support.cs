@@ -63,7 +63,9 @@ namespace MapEditor
         public static CMap map = null;
         public static List<OBJECT> listObject;
         public static bool IsExportXml = false;
-
+        public static bool IsAlign = false;
+        public static int WIDHT_OF_VIRTUALOBJECT = 32;
+        public static int HEIGHT_OF_VIRTUALOBJECT = 32;
 
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
@@ -111,6 +113,7 @@ namespace MapEditor
             temp.cY = Support.HEIGHT_MAP - _object.Position.cY;
             temp.cX = temp.cX + _object.Bound.width / 2;
             temp.cY = temp.cY - _object.Bound.height / 2;
+
             return temp;
         }
     }
