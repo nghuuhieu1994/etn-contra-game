@@ -71,6 +71,10 @@
                 </MenuItem>
             </Menu>
             <ListBox HorizontalAlignment="Left" Height="442" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
+            <TextBox HorizontalAlignment="Left" Height="37" Margin="703,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" FontSize="20" Name="tbX"/>
+            <Label Content="X:" HorizontalAlignment="Left" Margin="667,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>
+            <Label Content="Y:" HorizontalAlignment="Left" Margin="852,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>
+            <TextBox HorizontalAlignment="Left" Height="37" Margin="883,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" FontSize="20" Name="tbY"/>
         </Grid>
 
     </Grid>

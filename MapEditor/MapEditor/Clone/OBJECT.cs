@@ -67,21 +67,28 @@ namespace MapEditor.Framwork
             this.mID = _id;
             this.mPosition = _position;
             this.mBound = _bound;
-            this.mImage = new Image();
 
-            if (Support.map != null)
+            if (_type != 1)
             {
-                BitmapSource bmpSource;
-                JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
+                this.mImage = new Image();
 
-                byte[] arrPixel = new byte[((Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
-                Support.map.TileMap[this.mID].ExportBitMap(0, 0, arrPixel, (Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
-                bmpSource = BitmapSource.Create(Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
-                this.mImage.Source = bmpSource;
-                this.mImage.Width =  bmpSource.Width;
-                this.mImage.Height = bmpSource.Height;
-                this.mImage.Tag = this.mType;
+                // Set atribute for image object
+                if (Support.map != null)
+                {
+                    BitmapSource bmpSource;
+                    JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
+
+                    byte[] arrPixel = new byte[((Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
+                    Support.map.TileMap[this.mID].ExportBitMap(0, 0, arrPixel, (Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
+                    bmpSource = BitmapSource.Create(Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
+                    this.mImage.Source = bmpSource;
+                    this.mImage.Width = bmpSource.Width;
+                    this.mImage.Height = bmpSource.Height;
+                    this.mImage.Tag = this.mType;
+                }
             }
+
         }
+
     }
 }
