@@ -13,7 +13,6 @@ public:
 	virtual ~Rambo();
 	void HandleInput();
 	void Initialize();
-	void PrintState();
 	void Release();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Update();

@@ -45,12 +45,11 @@ void Physic::UpdateMovement(D3DXVECTOR3* _position)
 	float deltaTime = CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds();
 
 	deltaTime = deltaTime/((float)1/FRAME_RATE);
-	m_Velocity.x += m_Accelerate.x * deltaTime;
-	m_Velocity.y += m_Accelerate.y * deltaTime;
 
 	_position->x += m_Velocity.x * deltaTime;
 	_position->y += m_Velocity.y * deltaTime;
-
+	m_Velocity.x += m_Accelerate.x * deltaTime;
+	m_Velocity.y += m_Accelerate.y * deltaTime;
 }
 
 void Physic::CheckCollision(Object* _object)

@@ -10,7 +10,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(100, 488, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -67,11 +67,9 @@ void DemoState::Update()
 {
 
 	m_Rambo->UpdateAnimation();
-	
 	m_Rambo->UpdateCollision(m_VirtualObject);
 	m_Rambo->UpdateMovement();
 	
-
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
 	//m_SniperStanding->UpdateCollision(m_Rambo);

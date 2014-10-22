@@ -15,6 +15,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
 	//m_Physic->setPosition(D3DXVECTOR3(m_Position.x, m_Position.y, 1.0f));
 	m_Position.z = 1.0f;
+	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
 }
 
 void Rambo::Initialize()
@@ -55,7 +56,7 @@ void Rambo::HandleInput()
 				if(CInputDx9::getInstance()->IsKeyPress(DIK_X))
 				{
 					m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
-					m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 5.0f));
+					m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 0.5f));
 					TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
 				}
 			}
@@ -292,10 +293,12 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			if(tempDirection == IDDirection::DIR_TOP)
 			{
 				tempDirection = IDDirection::DIR_TOP;
-				this->m_Position.x += this->m_Collision->m_MoveX;
+		//		this->m_Position.x += this->m_Collision->m_MoveX;
 				this->m_Position.y += this->m_Collision->m_MoveY;
-				this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
-				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				//this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+				this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
+				if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+					this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 				TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
 			}
 
@@ -364,16 +367,16 @@ void Rambo::UpdateMovement()
 			break;
 		case STATE_RAMBO_JUMP:
 			{
-				if(m_Position.y < 100)
-				{
-					//m_Physic->setPosition(D3DXVECTOR3(m_Physic->getPositionVec3().x, 100, m_Physic->getPositionVec3().z));
-					m_Position.y = 100;
-					m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 0.0f));
-					TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
-					m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-					m_Physic->setVelocity(D3DXVECTOR2(0, 0));
-					return;
-				}
+				//if(m_Position.y < 100)
+				//{
+				//	//m_Physic->setPosition(D3DXVECTOR3(m_Physic->getPositionVec3().x, 100, m_Physic->getPositionVec3().z));
+				//	m_Position.y = 100;
+				//	m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, 0.0f));
+				//	TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
+				//	m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+				//	m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+				//	return;
+				//}
 				if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 				{
 					m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
@@ -382,7 +385,7 @@ void Rambo::UpdateMovement()
 				{
 					m_Physic->setVelocity(D3DXVECTOR2(-1.5f, m_Physic->getVelocity().y));
 				}
-				m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, m_Physic->getVelocity().y - 0.1f));
+				//m_Physic->setVelocity(D3DXVECTOR2(m_Physic->getVelocity().x, m_Physic->getVelocity().y - 0.1f));
 			}
 			break;
 		case STATE_RAMBO_LIE:
@@ -402,49 +405,6 @@ void Rambo::UpdateMovement()
 void Rambo::Update()
 {
 
-}
-void Rambo::PrintState()
-{
-	/*switch (m_ObjectState)
-	{
-		case STATE_ALIVE_IDLE:
-			break;
-		case STATE_ALIVE_MOVE:
-			break;
-		case STATE_BEFORE_DEATH:
-			break;
-		case STATE_DEATH:
-			break;
-		case STATE_RAMBO_JUMP:
-			OutputDebugString("STATE_RAMBO_JUMP\n");
-			break;
-		case STATE_RAMBO_LIE:
-			OutputDebugString("STATE_RAMBO_LIE\n");
-			break;
-		case STATE_RAMBO_SHOOT:
-			OutputDebugString("STATE_RAMBO_SHOOT\n");
-			break;
-		case STATE_RAMBO_SHOOT_UP:
-			OutputDebugString("STATE_RAMBO_SHOOT_UP\n");
-			break;
-		case STATE_RAMBO_SHOOT_RUN:
-			OutputDebugString("STATE_RAMBO_SHOOT_RUN\n");
-			break;
-		case STATE_RAMBO_SHOOT_TOP_RIGHT:
-			OutputDebugString("STATE_RAMBO_SHOOT_TOP_RIGHT\n");
-			break;
-		case STATE_RAMBO_SHOOT_BOTTOM_RIGHT:
-			OutputDebugString("STATE_RAMBO_SHOOT_BOTTOM_RIGHT\n");
-			break;
-		case STATE_RAMBO_IDLE:
-			OutputDebugString("STATE_RAMBO_IDLE\n");
-			break;
-		case STATE_RAMBO_RUN:
-			OutputDebugString("STATE_RAMBO_RUN\n");
-			break;
-		default:
-			break;
-	}*/
 }
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
