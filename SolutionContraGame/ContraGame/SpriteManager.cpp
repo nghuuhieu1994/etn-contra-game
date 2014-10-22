@@ -74,6 +74,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletMoving.png", eSpriteID::SPRITE_GIF_BULLET_MOVING, 1, 1, 1);
 	
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 3, 9);
 }
 
 void SpriteManager::Release()

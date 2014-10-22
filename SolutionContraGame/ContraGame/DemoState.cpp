@@ -14,23 +14,30 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
-	m_gifBullet = new GifBulletStatic(D3DXVECTOR3(500, 200, 1), eDirection::RIGHT, eObjectID::GIF_BULLET_STATIC);
+	m_gifBullet = new GifBulletStatic(D3DXVECTOR3(500, 200, 1), eDirection::LEFT, eObjectID::GIF_BULLET_STATIC);
 	m_gifBullet->Initialize();
 
-	m_gifBulletMoving = new GifBulletMoving(D3DXVECTOR3(30, 200, 1), eDirection::RIGHT, eObjectID::GIF_BULLET_MOVING);
+	m_gifBulletMoving = new GifBulletMoving(D3DXVECTOR3(30, 200, 1), eDirection::LEFT, eObjectID::GIF_BULLET_MOVING);
 	m_gifBulletMoving->Initialize();
 
-	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::RIGHT, eObjectID::GUN_ROTATING);
+	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
+	
+	m_bigGunRotating = new BigGunRotating(D3DXVECTOR3(800, 10, 1), eDirection::LEFT, eObjectID::BIG_GUN_ROTATING);
+	m_bigGunRotating->Initialize();
 
 	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
+<<<<<<< .mine
+
+=======
 
 	m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();
 
 	_ListGameObjects.push_back(m_VirtualObject);
 
+>>>>>>> .r125
 	ReadMap();
 }
 
@@ -83,11 +90,25 @@ void DemoState::Update()
 	//m_gunRotating->UpdateAnimation();
 	//m_gunRotating->Update();
 
+<<<<<<< .mine
+	m_bigGunRotating->UpdateCollision(m_Rambo);
+	m_bigGunRotating->UpdateAnimation();
+	m_bigGunRotating->Update();
+
+
+	m_gifBulletMoving->UpdateCollision(m_Rambo);
+	m_gifBulletMoving->UpdateAnimation();
+	m_gifBulletMoving->UpdateMovement();
+	
+	m_Enemy->UpdateAnimation();
+=======
 	//m_gifBulletMoving->UpdateCollision(m_Rambo);
 	//m_gifBulletMoving->UpdateAnimation();
 	//m_gifBulletMoving->UpdateMovement();
 	//
 	//m_Enemy->UpdateAnimation();
+>>>>>>> .r125
+	m_Enemy->UpdateMovement();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -106,6 +127,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
 	m_gunRotating->Render(_lpDSpriteHandle);
+	m_bigGunRotating->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	
 	m_Enemy->Render(_lpDSpriteHandle);

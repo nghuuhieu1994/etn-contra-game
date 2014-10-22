@@ -176,9 +176,8 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	CInputDx9::getInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::getInstance()->InitializeKeyBoardDevice(m_handleWindow);
 	SpriteManager::getInstance()->InitializeListSprite(m_lpDirect3DDevice);
-	StateManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
-	//StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
-	StateManagerDx9::getInstance()->AddElement(new DemoState(eIDStateGame::INTRO));
+	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
+	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::INTRO));
 	return true;
 }
 
@@ -203,11 +202,11 @@ void CGame::Run()
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
-				/*sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
-				OutputDebugString(fps);*/
+				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
+				OutputDebugString(fps);
 
-				StateManagerDx9::getInstance()->HandleInput();
-				StateManagerDx9::getInstance()->Update();
+				SceneManagerDx9::getInstance()->HandleInput();
+				SceneManagerDx9::getInstance()->Update();
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 				D3DXMATRIX oldMatrix;
@@ -217,7 +216,7 @@ void CGame::Run()
 				{
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
-					StateManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
+					SceneManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
 
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();

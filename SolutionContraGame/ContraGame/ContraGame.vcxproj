@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CAnimationDx9.h" />
     <ClInclude Include="CGame.h" />
@@ -92,7 +93,7 @@
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="EnemyRun.h" />
     <ClInclude Include="GifBulletMoving.h" />
-    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="CObjectDx9.h" />
     <ClInclude Include="CPhysicDx9.h" />
     <ClInclude Include="GifBulletStatic.h" />
@@ -104,7 +105,7 @@
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundMangerDx9.h" />
     <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="StateManagerDx9.h" />
+    <ClInclude Include="SceneManagerDx9.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="TestSpriteState.h" />
     <ClInclude Include="Tile.h" />
@@ -112,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CAnimationDx9.cpp" />
     <ClCompile Include="CGame.cpp" />
@@ -142,7 +144,7 @@
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundMangerDx9.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
-    <ClCompile Include="StateManagerDx9.cpp" />
+    <ClCompile Include="SceneManagerDx9.cpp" />
     <ClCompile Include="TestSpriteState.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="VirtualObject.cpp" />

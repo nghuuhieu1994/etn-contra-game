@@ -82,9 +82,6 @@
     <ClCompile Include="GunRotating.cpp">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClCompile>
-    <ClCompile Include="StateManagerDx9.cpp">
-      <Filter>GameScene\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>GameScene\SceneManager</Filter>
     </ClCompile>
@@ -105,6 +102,12 @@
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>GameObject\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManagerDx9.cpp">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BigGunRotating.cpp">
+      <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,12 +192,6 @@
     <ClInclude Include="GunRotating.h">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClInclude>
-    <ClInclude Include="StateManagerDx9.h">
-      <Filter>GameScene\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>GameScene\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="DemoState.h">
       <Filter>GameScene\Scene</Filter>
     </ClInclude>
@@ -212,6 +209,15 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>GameObject\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManagerDx9.h">
+      <Filter>GameScene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BigGunRotating.h">
+      <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

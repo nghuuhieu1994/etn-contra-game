@@ -2,19 +2,19 @@
 #define __TEST_SPRITE_STATE_H__
 
 #include "CSpriteDx9.h"
-#include "GameState.h"
+#include "GameScene.h"
 #include "SpriteManager.h"
-#include "StateManagerDx9.h"
+#include "SceneManagerDx9.h"
 
 #define CENTERX 400
 #define CENTERY 300
 
-class TestSpriteState : public GameState
+class TestSpriteState : public GameScene
 {
 private:
 	CSpriteDx9* testSprite;
 public:
-	TestSpriteState(eIDStateGame ID) : GameState(ID){}
+	TestSpriteState(eIDSceneGame ID) : GameScene(ID){}
 	~TestSpriteState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
