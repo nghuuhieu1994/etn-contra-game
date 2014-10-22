@@ -137,11 +137,13 @@ IDDirection Collision::CheckCollision(DynamicObject *_DynamicObject, Object * _O
 			if(_DynamicObject->getBound().bottom == _Object->getBound().top)
 			{
 				//_AnimationObject->m_Position.y = _AnimationObject->m_Position.y - 1;
+				//_DynamicObject->setPositionY(_DynamicObject->getPositionVec2().y- 0.1f);
 				return IDDirection::DIR_TOP;
 			}
 			else if(_DynamicObject->getBound().top == _Object->getBound().bottom)
 			{
 				//_AnimationObject->m_Position.y = _AnimationObject->m_Position.y + 1;
+				//_DynamicObject->setPositionY(_DynamicObject->getPositionVec2().y + 1);
 				return IDDirection::DIR_BOTTOM;
 			}
 			else if(_DynamicObject->getBound().right == _Object->getBound().left)

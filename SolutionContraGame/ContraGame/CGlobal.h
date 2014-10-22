@@ -2,7 +2,7 @@
 #define __CGLOBAL_H__
 
 #define			WIDTH		800
-#define			HEIGHT		512
+#define			HEIGHT		448
 #define			FRAME_RATE	60
 #define			GAMETITLE	"Contra"
 
