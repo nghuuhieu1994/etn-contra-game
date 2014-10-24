@@ -206,8 +206,8 @@ void CGame::Run()
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps > 1000 / 60)
 			{
-				/*sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
-				OutputDebugString(fps);*/
+				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
+				OutputDebugString(fps);
 
 				SceneManagerDx9::getInstance()->HandleInput();
 				SceneManagerDx9::getInstance()->Update();
