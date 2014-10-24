@@ -431,9 +431,7 @@ void Rambo::UpdateMovement()
 	this->m_Physic->UpdateMovement(&m_Position);
 	CGlobal::Rambo_X = (int)(getPositionVec2().x);
 	CGlobal::Rambo_Y = (int)(getPositionVec2().y);
-	char fps[100];
-	sprintf(fps, "frame per sec: %f %f\n", this->m_Physic->getVelocity().x, this->m_Physic->getVelocity().y);
-	OutputDebugString(fps);
+
 }
 void Rambo::Update()
 {
