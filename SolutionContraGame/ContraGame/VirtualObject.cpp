@@ -5,10 +5,10 @@ RECT VirtualObject::getBound()
 {
 	RECT tempBound = RECT();
 
-	tempBound.left = m_Position.x - m_Width / 2;
-	tempBound.right = tempBound.left + m_Width;
-	tempBound.top = m_Position.y + m_Height / 2;
-	tempBound.bottom = tempBound.top - m_Height;
+	tempBound.left		= (long)(m_Position.x - m_Width / 2);
+	tempBound.right		= (long)(tempBound.left + m_Width);
+	tempBound.top		= (long)(m_Position.y + m_Height / 2);
+	tempBound.bottom	= (long)(tempBound.top - m_Height);
 
 	return tempBound;
 }
