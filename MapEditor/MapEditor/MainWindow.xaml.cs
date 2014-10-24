@@ -399,7 +399,10 @@ namespace MapEditor
                         {
                             Support.listObject = new List<OBJECT>();
                         }
-                        Support.listObject.Add(obj);
+                        if (obj.Bound.width != 0 && obj.Bound.height != 0)
+                        {
+                            Support.listObject.Add(obj);
+                        }
                         
                         obj = null;
                     }
