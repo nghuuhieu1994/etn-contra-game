@@ -64,8 +64,8 @@ namespace MapEditor
         public static List<OBJECT> listObject;
         public static bool IsExportXml = false;
         public static bool IsAlign = false;
-        public static int WIDHT_OF_VIRTUALOBJECT = 32;
-        public static int HEIGHT_OF_VIRTUALOBJECT = 32;
+        public static int WIDHT_OF_VIRTUALOBJECT = 16;
+        public static int HEIGHT_OF_VIRTUALOBJECT = 16;
 
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
