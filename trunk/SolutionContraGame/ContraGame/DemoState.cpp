@@ -98,12 +98,14 @@ void DemoState::Update()
 {
 
 	m_Rambo->UpdateAnimation();
-	m_Rambo->UpdateCollision(m_VirtualObject);
+	//m_Rambo->UpdateCollision(m_VirtualObject);
+	
+	m_Rambo->UpdateMovement();
+
 	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
 	{
 		m_Rambo->UpdateCollision(*it);
 	}
-	m_Rambo->UpdateMovement();
 	
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
@@ -173,5 +175,14 @@ void DemoState::Resume()
 
 void DemoState::Release()
 {
-	
+	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
+	{
+		/*if ((*it)->_Type == 0)
+		{
+			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
+		}*/
+		(*it)->Release();
+		delete (*it);
+		_ListGameObjects.remove(*it);
+	}
 }

@@ -25,6 +25,8 @@ class CInputDx9
 
 	char					m_previousBuffer[256];
 
+	DIDEVICEOBJECTDATA		m_KeyEvents[1024];
+	bool					m_PressKey[256];
 	static CInputDx9*		s_Instance;
 	CInputDx9();
 

@@ -37,6 +37,7 @@ void CInputDx9::InitializeInput()
 		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input");
 	}
 
+
 	result = m_lpDirectInput->CreateDevice(GUID_SysKeyboard, &m_lpKeyBoardDevice, 0);
 
 	if (result != D3D_OK)
@@ -44,11 +45,29 @@ void CInputDx9::InitializeInput()
 		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input Keyboard Device");
 	}
 
+	DIPROPDWORD dipdw;
+
+    dipdw.diph.dwSize       = sizeof(DIPROPDWORD);
+    dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+    dipdw.diph.dwObj        = 0;
+    dipdw.diph.dwHow        = DIPH_DEVICE;
+    dipdw.dwData            = 1024; // Arbitary buffer size
+
+	HRESULT hr = m_lpKeyBoardDevice->SetProperty( DIPROP_BUFFERSIZE, &dipdw.diph );
+	if (hr != DI_OK) return;
+
+
 	result = m_lpDirectInput->CreateDevice(GUID_SysMouse, &m_lpMouseDevice, 0);
 
 	if (result != D3D_OK)
 	{
 		CGameLog::getInstance("CInputDx9")->SaveError("Can't Init DirectX Input Mouse Device");
+	}
+	for (int i = 0; i < 256; i++)
+	{
+		m_PressKey[i] = false;
+		m_currentBuffer[i] = 0;
+		m_previousBuffer[i] = 0;
 	}
 }
 
@@ -126,6 +145,29 @@ void CInputDx9::UpdateKeyBoard()
 	memcpy(m_previousBuffer, m_currentBuffer, 256);
 	m_lpKeyBoardDevice->Acquire(); // Acquire device
 	m_lpKeyBoardDevice->GetDeviceState(sizeof(m_currentBuffer), (LPVOID)&m_currentBuffer);
+
+	DWORD dwElements = 1024;
+	HRESULT hr = m_lpKeyBoardDevice->GetDeviceData( sizeof(DIDEVICEOBJECTDATA), m_KeyEvents, &dwElements, 0);
+
+	if (!FAILED(hr))
+	{
+		for( DWORD i = 0; i < dwElements; i++ ) 
+		{
+			int KeyCode = m_KeyEvents[i].dwOfs;
+			int KeyState = m_KeyEvents[i].dwData;
+			if ( (KeyState & 0x80) > 0)
+				m_PressKey[KeyCode] = true;
+			else 
+				m_PressKey[KeyCode] = false;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 256; i++)
+		{
+			m_PressKey[i] = false;
+		}
+	}
 }
 
 bool CInputDx9::IsKeyDown(int keyCode)
@@ -148,24 +190,26 @@ bool CInputDx9::IsKeyUp(int keyCode)
 
 bool CInputDx9::IsKeyPress(int keyCode)
 {
-	if(
+	/*if(
 		(m_currentBuffer[keyCode] & 0x00000080) &&
 		!(m_previousBuffer[keyCode] & 0x00000080))
 	{
 		return true;
 	}
-	return false;
+	return false;*/
+	return m_PressKey[keyCode];
 }
 
 bool CInputDx9::IsKeyRelease(int keyCode)
 {
-	if(
+	/*if(
 		!(m_currentBuffer[keyCode] & 0x00000080) &&
 		(m_previousBuffer[keyCode]	& 0x00000080))
 	{
 		return true;
 	}
-	return false;
+	return false;*/
+	return !m_PressKey[keyCode];
 }
 
 void CInputDx9::UpdateMouse()

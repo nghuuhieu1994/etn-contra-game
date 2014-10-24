@@ -1,7 +1,8 @@
 #include "EnemyRun.h"
 
 EnemyRun::EnemyRun()
-{}
+{
+}
 
 EnemyRun::EnemyRun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
