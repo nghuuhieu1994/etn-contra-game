@@ -109,6 +109,9 @@
     <ClCompile Include="BigGunRotating.cpp">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClCompile>
+    <ClCompile Include="SniperHiding.cpp">
+      <Filter>GameObject\Enemy\SniperHiding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -219,6 +222,9 @@
     <ClInclude Include="BigGunRotating.h">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClInclude>
+    <ClInclude Include="SniperHiding.h">
+      <Filter>GameObject\Enemy\SniperHiding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -307,6 +313,9 @@
     </Filter>
     <Filter Include="GameObject\Tile">
       <UniqueIdentifier>{db6ff48f-d5e0-466b-90dc-4e6c1a489995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperHiding">
+      <UniqueIdentifier>{3ef19249-7d9f-4916-a5d8-683240db85ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

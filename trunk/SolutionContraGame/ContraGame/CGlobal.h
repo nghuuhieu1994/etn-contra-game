@@ -96,6 +96,7 @@ enum eObjectState
 	STATE_RAMBO_SHOOT_TOP_RIGHT,
 	STATE_RAMBO_SHOOT_UP,
 	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
+	STATE_HIDING,
 };
 
 enum eObjectID
