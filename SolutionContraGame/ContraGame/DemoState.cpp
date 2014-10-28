@@ -97,29 +97,29 @@ void DemoState::HandleInput()
 void DemoState::Update()
 {
 
-	m_Rambo->UpdateAnimation();
-	//m_Rambo->UpdateCollision(m_VirtualObject);
+	/*m_Rambo->UpdateAnimation();
+	m_Rambo->UpdateCollision(m_VirtualObject);
 	
 	m_Rambo->UpdateMovement();
 
 	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
 	{
 		m_Rambo->UpdateCollision(*it);
-	}
+	}*/
 	
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
-	//m_SniperStanding->UpdateCollision(m_Rambo);
-	//m_SniperStanding->UpdateAnimation();
-	//m_SniperStanding->Update();
+	m_SniperStanding->UpdateCollision(m_Rambo);
+	m_SniperStanding->UpdateAnimation();
+	m_SniperStanding->Update();
 
-	//m_gifBullet->UpdateCollision(m_Rambo);
-	//m_gifBullet->UpdateAnimation();
-	//m_gifBullet->Update();
+	m_gifBullet->UpdateCollision(m_Rambo);
+	m_gifBullet->UpdateAnimation();
+	m_gifBullet->Update();
 
-	//m_gunRotating->UpdateCollision(m_Rambo);
-	//m_gunRotating->UpdateAnimation();
-	//m_gunRotating->Update();
+	m_gunRotating->UpdateCollision(m_Rambo);
+	m_gunRotating->UpdateAnimation();
+	m_gunRotating->Update();
 
 	m_bigGunRotating->UpdateCollision(m_Rambo);
 	m_bigGunRotating->UpdateAnimation();
@@ -131,13 +131,6 @@ void DemoState::Update()
 	m_gifBulletMoving->UpdateMovement();
 	
 	m_Enemy->UpdateAnimation();
-
-	//m_gifBulletMoving->UpdateCollision(m_Rambo);
-	//m_gifBulletMoving->UpdateAnimation();
-	//m_gifBulletMoving->UpdateMovement();
-	//
-	//m_Enemy->UpdateAnimation();
-
 	m_Enemy->UpdateMovement();
 }
 

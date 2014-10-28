@@ -133,7 +133,6 @@
     <ClCompile Include="EnemyRun.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="GifBulletMoving.cpp" />
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
     <ClCompile Include="GifBulletStatic.cpp" />

@@ -22,10 +22,7 @@ void BigGunRotating::Initialize()
 }
 
 void BigGunRotating::UpdateAnimation()
-{	
-	// tư tưởng thằng này:
-	// Tính khoảng cách theo trục X, Y
-	// Dựa vào Khoảng cách đó mà thực hiện set Frame hiện tại cho mỗi trường hợp:
+{
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
@@ -33,38 +30,34 @@ void BigGunRotating::UpdateAnimation()
 		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
 		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
 		
-		if(_distance_X > 350)
+		if(_distance_X > 300)
 		{
 			this->getSprite()->getAnimation()->setCurrentFrame(0);
 		}
 		else
 		{
-			if(_distance_X > 350 && _distance_X >= 100)
+			if(_distance_X < 300 && _distance_X >= 120)
 			{
 				if( _distance_Y == 0 )
 				{
 					this->getSprite()->getAnimation()->setIndexStart(0);
 					this->getSprite()->getAnimation()->setIndexEnd(2);
 				}
-				if( _distance_Y > 0 && _distance_Y < 50)
-						{
-							this->getSprite()->getAnimation()->setIndexStart(3);
-							this->getSprite()->getAnimation()->setIndexEnd(5);
-						}
-				
+				if( _distance_Y > 0 && _distance_Y < 40)
+				{
+					this->getSprite()->getAnimation()->setIndexStart(3);
+					this->getSprite()->getAnimation()->setIndexEnd(5);
+				}		
 			}
-			else if( _distance_X <= 100)
+			else if( _distance_X <= 120)
 			{
-			if( _distance_Y >= 50)
-			{
-				this->getSprite()->getAnimation()->setIndexStart(6);
-				this->getSprite()->getAnimation()->setIndexEnd(8);			
-			}			
+				if( _distance_Y >= 40)
+				{
+					this->getSprite()->getAnimation()->setIndexStart(6);
+					this->getSprite()->getAnimation()->setIndexEnd(8);			
+				}			
 			}
-			
-			
 		}
-	
 		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
