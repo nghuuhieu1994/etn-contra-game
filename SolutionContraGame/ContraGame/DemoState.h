@@ -18,6 +18,7 @@
 #include "EnemyRun.h"
 #include "Markup.h"
 #include "VirtualObject.h"
+#include "SniperHiding.h"
 #include <list>
 
 using namespace std;
@@ -44,6 +45,7 @@ private:
 	GunRotating*		m_gunRotating;
 	EnemyRun*			m_Enemy;
 	BigGunRotating*		m_bigGunRotating;
+	SniperHiding*		m_snipperHiding;
 	
 	VirtualObject*		m_VirtualObject;
 
