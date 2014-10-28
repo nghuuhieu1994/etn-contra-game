@@ -82,9 +82,6 @@
     <ClCompile Include="GunRotating.cpp">
       <Filter>GameObject\Enemy\GunRotating</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>GameScene\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="DemoState.cpp">
       <Filter>GameScene\Scene</Filter>
     </ClCompile>
