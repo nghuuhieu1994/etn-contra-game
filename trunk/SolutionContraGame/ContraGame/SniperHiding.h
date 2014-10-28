@@ -6,9 +6,9 @@
 class SniperHiding : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
-	CSpriteDx9* sprite_alive;
+	CSpriteDx9* sprite_alive_hiding;
+	CSpriteDx9* sprite_alive_shooting;
 	int _distance_X;
-	int _distance_Y;
 public:
 	SniperHiding ();
 	//Physic*			getPhysic() const { return m_Physic; }

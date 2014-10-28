@@ -14,54 +14,31 @@ SniperHiding::SniperHiding(D3DXVECTOR3 _position, eDirection _direction, eObject
 
 void SniperHiding::Initialize()
 {
-	m_ObjectState = eObjectState::STATE_HIDING;
-	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_GUN_ROATING));
+	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING));
+	sprite_alive_shooting = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_SHOOTING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	m_Sprite = sprite_alive;
+	m_Sprite = sprite_alive_hiding;
 }
 
 void SniperHiding::UpdateAnimation()
 {	
+	if(CGlobal::Rambo_X < m_Position.x)
+		m_Direction = eDirection::LEFT;
+	else
+		m_Direction = eDirection::RIGHT;
+
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		m_Sprite = sprite_alive;
-		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
-		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
-		
-		if(_distance_X > 350)
-		{
-			this->getSprite()->getAnimation()->setCurrentFrame(0);
-		}
-		else
-		{
-			if(_distance_X > 350 && _distance_X >= 100)
-			{
-				if( _distance_Y == 0 )
-				{
-					this->getSprite()->getAnimation()->setIndexStart(0);
-					this->getSprite()->getAnimation()->setIndexEnd(2);
-				}
-				if( _distance_Y > 0 && _distance_Y < 50)
-						{
-							this->getSprite()->getAnimation()->setIndexStart(3);
-							this->getSprite()->getAnimation()->setIndexEnd(5);
-						}
-				
-			}
-			else if( _distance_X <= 100)
-			{
-			if( _distance_Y >= 50)
-			{
-				this->getSprite()->getAnimation()->setIndexStart(6);
-				this->getSprite()->getAnimation()->setIndexEnd(8);			
-			}			
-			}
-			
-			
-		}
-	
-		m_Sprite->UpdateAnimation(1000);
+		m_Sprite = sprite_alive_hiding;
+		m_Sprite->getAnimation()->setCurrentFrame(0);
+		m_Sprite->UpdateAnimation(800);
+		break;
+	case STATE_SHOOTING:
+		m_Sprite = sprite_alive_shooting;
+		m_Sprite->getAnimation()->setCurrentFrame(0);
+		m_Sprite->UpdateAnimation(800);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -72,6 +49,13 @@ void SniperHiding::UpdateAnimation()
 	default:
 		break;
 	}	
+	if(m_Direction == eDirection::LEFT)
+		m_Sprite->setSpriteEffect(ESpriteEffect::None);
+	else
+	{
+		if(m_Direction == eDirection::RIGHT)
+			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+	}
 }
 
 
@@ -97,6 +81,20 @@ void SniperHiding::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 200)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_SHOOTING;
+		}
+		break;
+	case STATE_SHOOTING:
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 200)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+		}
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -130,7 +128,8 @@ void SniperHiding::Render(SPRITEHANDLE spriteHandle)
 void SniperHiding::Release()
 {
 	m_Sprite = 0;
-	sprite_alive->Release();
+	sprite_alive_hiding->Release();
+	sprite_alive_shooting->Release();
 	sprite_dead->Release();
 }
 
