@@ -200,11 +200,10 @@ void CGame::Run()
 			{
 				PostMessage(m_handleWindow, WM_QUIT, 0, 0);
 			}
-			CGameTimeDx9::getInstance()->UpdateGameTime();
 			CInputDx9::getInstance()->UpdateKeyBoard();
-
+			CGameTimeDx9::getInstance()->UpdateGameTime();
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if( m_fps > 1000 / 60)
+			if( m_fps >= 1000 / 60)
 			{
 				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
 				OutputDebugString(fps);

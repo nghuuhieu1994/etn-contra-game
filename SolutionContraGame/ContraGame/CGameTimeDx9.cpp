@@ -34,9 +34,9 @@ void CGameTimeDx9::UpdateGameTime()
 {
 	QueryPerformanceCounter(&this->m_Query);
 	CurTicks = this->m_Query.QuadPart;
-	if(((CurTicks - LastTicks) / m_FreQuency) <= CTimeSpanDx9::TicksPerMillisecond)
+	if(((CurTicks - LastTicks) / m_FreQuency) < CTimeSpanDx9::TicksPerMillisecond)
 	{
-			return;
+		return;
 	}
 	else
 		{
