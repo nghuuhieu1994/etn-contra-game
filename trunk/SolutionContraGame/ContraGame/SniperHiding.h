@@ -7,7 +7,7 @@ class SniperHiding : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive_hiding;
-	CSpriteDx9* sprite_alive_shooting;
+	//CSpriteDx9* sprite_alive_shooting;
 	int _distance_X;
 public:
 	SniperHiding ();

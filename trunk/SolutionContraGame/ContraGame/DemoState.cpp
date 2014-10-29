@@ -14,7 +14,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
-	m_snipperHiding = new SniperHiding(D3DXVECTOR3(750, 130, 0), eDirection::LEFT, eObjectID::SNIPER_HIDING);
+	m_snipperHiding = new SniperHiding(D3DXVECTOR3(750, 290, 0), eDirection::LEFT, eObjectID::SNIPER_HIDING);
 	m_snipperHiding->Initialize();
 
 	m_gifBullet = new GifBulletStatic(D3DXVECTOR3(500, 200, 1), eDirection::LEFT, eObjectID::GIF_BULLET_STATIC);
@@ -134,7 +134,8 @@ void DemoState::Update()
 	m_gifBulletMoving->UpdateMovement();
 
 	m_snipperHiding->UpdateAnimation();
-	m_snipperHiding->UpdateMovement();
+	m_snipperHiding->Update();
+	m_snipperHiding->UpdateCollision(m_Rambo);
 	
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
