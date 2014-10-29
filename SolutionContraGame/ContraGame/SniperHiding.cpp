@@ -16,9 +16,9 @@ void SniperHiding::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING));
-	sprite_alive_shooting = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_SHOOTING));
+	//sprite_alive_shooting = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_SHOOTING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	m_Sprite = sprite_alive_hiding;
+	//m_Sprite = sprite_alive_shooting;
 }
 
 void SniperHiding::UpdateAnimation()
@@ -32,13 +32,14 @@ void SniperHiding::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive_hiding;
-		m_Sprite->getAnimation()->setCurrentFrame(0);
-		m_Sprite->UpdateAnimation(800);
+		this->getSprite()->getAnimation()->setCurrentFrame(1);
+		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_SHOOTING:
-		m_Sprite = sprite_alive_shooting;
-		m_Sprite->getAnimation()->setCurrentFrame(0);
-		m_Sprite->UpdateAnimation(800);
+		//m_Sprite = sprite_alive_shooting;
+		m_Sprite = sprite_alive_hiding;
+		this->getSprite()->getAnimation()->setCurrentFrame(0);
+		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -82,7 +83,7 @@ void SniperHiding::Update()
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 200)
+		if(m_TimeChangeState > 4000)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -90,7 +91,7 @@ void SniperHiding::Update()
 		break;
 	case STATE_SHOOTING:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 200)
+		if(m_TimeChangeState > 2000)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
@@ -129,7 +130,7 @@ void SniperHiding::Release()
 {
 	m_Sprite = 0;
 	sprite_alive_hiding->Release();
-	sprite_alive_shooting->Release();
+	//sprite_alive_shooting->Release();
 	sprite_dead->Release();
 }
 
