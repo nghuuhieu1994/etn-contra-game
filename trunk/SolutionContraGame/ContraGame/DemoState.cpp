@@ -10,7 +10,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 448/2, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(100, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -104,13 +104,13 @@ void DemoState::Update()
 	
 	m_Rambo->UpdateMovement();
 
-	/*for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); ++it)
+	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); ++it)
 	{
 		if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
 		{
 			m_Rambo->UpdateCollision(*it); 
 		}
-	}*/
+	}
 	
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
@@ -146,14 +146,14 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	//m_background->Render(_lpDSpriteHandle);
-	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
-	{
-		/*if ((*it)->_Type == 0)
-		{
-			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
-		}*/
-		(*it)->Render(_lpDSpriteHandle);
-	}
+	//for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
+	//{
+	//	/*if ((*it)->_Type == 0)
+	//	{
+	//		SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
+	//	}*/
+	//	(*it)->Render(_lpDSpriteHandle);
+	//}
 	
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
