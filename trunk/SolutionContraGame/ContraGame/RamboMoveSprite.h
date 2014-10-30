@@ -5,6 +5,8 @@
 
 class RamboMoveSprite : public RamboSprite
 {
+	/*int m_inversePositionY;
+	float timeAnimation;*/
 public:
 	RamboMoveSprite(void);
 	void UpdateAnimation();

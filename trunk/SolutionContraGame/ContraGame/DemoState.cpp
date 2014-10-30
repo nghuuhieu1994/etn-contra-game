@@ -154,7 +154,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		}*/
 		(*it)->Render(_lpDSpriteHandle);
 	}
-	SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GRID)->Render(_lpDSpriteHandle, D3DXVECTOR2(m_UnitTest.x, m_UnitTest.y), ESpriteEffect::None, 0.0f, 1.0f, 1.0f);
+	
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);

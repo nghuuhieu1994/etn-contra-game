@@ -203,30 +203,45 @@ void CGame::Run()
 			CInputDx9::getInstance()->UpdateKeyBoard();
 			CGameTimeDx9::getInstance()->UpdateGameTime();
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			static float second;
+			second += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps >= (float)(1000 / 60))
 			{
-				sprintf(fps, "frame per sec: %f \n", 1000 / m_fps);
-				OutputDebugString(fps);
-
+				sprintf(fps, "%f", 1000 / m_fps);
+				
 				SceneManagerDx9::getInstance()->HandleInput();
 				SceneManagerDx9::getInstance()->Update();
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
-				D3DXMATRIX oldMatrix;
-				m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
-				m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
+				
+				if (second > 1000)
+				{
+					SetWindowText(m_handleWindow, fps);
+					second = 0;
+				}
+				
 				if(m_lpDirect3DDevice->BeginScene())
 				{
+					D3DXMATRIX oldMatrix;
+				
+					m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
+					m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
 					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
 
 					SceneManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
+					
+					m_lpSpriteDirect3DHandle->SetTransform(&oldMatrix);
 
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
+				
+
+				
+
 				m_lpDirect3DDevice->Present(0, 0, 0, 0);
 				m_fps = 0;
-				m_lpSpriteDirect3DHandle->SetTransform(&oldMatrix);
+				
 			}
 		}
 	}
