@@ -2,12 +2,12 @@
 #define __RAMBO_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "RamboMoveSprite.h"
 
 class Rambo : public DynamicObject
 {
-	//Physic*			m_Physic;
+	RamboSprite* m_RamboSprite;
 public:
-	//Physic*			getPhysic() const { return m_Physic; }
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	virtual ~Rambo();
@@ -21,10 +21,4 @@ public:
 	void UpdateMovement();
 };
 
-class RamboSpritePool
-{
-public:
-	RamboSpritePool();
-	~RamboSpritePool();
-};
 #endif

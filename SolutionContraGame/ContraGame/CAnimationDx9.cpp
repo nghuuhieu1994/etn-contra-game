@@ -11,6 +11,7 @@ CAnimationDx9::CAnimationDx9()
 	this->m_timeAnimation		= 0;
 	this->m_totalFrame			= 0;
 	this->m_widthFrame			= 0;
+	this->m_inverseNumber		= 1;
 }
 CAnimationDx9::CAnimationDx9(int width, int height, int col, int total)
 {
@@ -30,6 +31,7 @@ CAnimationDx9::CAnimationDx9(int width, int height, int col, int total)
 	this->m_sourceRect->right		= m_widthFrame;
 
 	this->m_timeAnimation			= 0;
+	this->m_inverseNumber			= 1;
 }
 
 CAnimationDx9::CAnimationDx9(const CAnimationDx9& Animation)
@@ -49,6 +51,8 @@ CAnimationDx9::CAnimationDx9(const CAnimationDx9& Animation)
 	this->m_sourceRect->left		= Animation.m_sourceRect->left;
 	this->m_sourceRect->right		= Animation.m_sourceRect->right;
 	this->m_sourceRect->bottom		= Animation.m_sourceRect->bottom;
+
+	this->m_inverseNumber			= Animation.m_inverseNumber;
 }
 
 CAnimationDx9::~CAnimationDx9()
@@ -89,6 +93,21 @@ void CAnimationDx9::NextFrame()
 	}
 }
 
+void CAnimationDx9::NextFrameInverse()
+{
+	this->m_index_Current += m_inverseNumber;
+	if(this->m_index_Current > this->m_index_End)
+	{
+		this->m_index_Current = this->m_index_End - 1;
+		m_inverseNumber *= -1;
+	}
+	if(this->m_index_Current < this->m_index_Start)
+	{
+		this->m_index_Current = this->m_index_Start + 1;
+		m_inverseNumber *= -1;
+	}
+}
+
 void CAnimationDx9::UpdateAnimation(int timeNexframe)
 {
 	this->m_timeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -96,26 +115,56 @@ void CAnimationDx9::UpdateAnimation(int timeNexframe)
 	if(this->m_timeAnimation > timeNexframe)
 	{
 		NextFrame();
-		m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
-		m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
-		m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
-		m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
+		CreateSourceRectangle();
 		this->m_timeAnimation = 0;
 	}
 }
 
-void CAnimationDx9::setSourceRectAtIndex(int Index)
+void CAnimationDx9::UpdateAnimationInverse(int timeNextFrame)
 {
-	m_sourceRect->top			= (Index / m_columnFrame) * m_heightFrame;
-	m_sourceRect->left			= (Index % m_columnFrame) * m_widthFrame;
+	this->m_timeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if(this->m_timeAnimation > timeNextFrame)
+	{
+		NextFrameInverse();
+		CreateSourceRectangle();
+		this->m_timeAnimation = 0;
+	}
+}
+
+void CAnimationDx9::CreateSourceRectangle()
+{
+	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
+	m_sourceRect->left			= (m_index_Current % m_columnFrame) * m_widthFrame;
 	m_sourceRect->bottom		= m_sourceRect->top + m_heightFrame;
 	m_sourceRect->right			= m_sourceRect->left + m_widthFrame;
+}
+
+
+void CAnimationDx9::setSourceRectAtIndex(int Index)
+{
+	m_sourceRect->top			= (Index / m_columnFrame)	* m_heightFrame;
+	m_sourceRect->left			= (Index % m_columnFrame)	* m_widthFrame;
+	m_sourceRect->bottom		= m_sourceRect->top			+ m_heightFrame;
+	m_sourceRect->right			= m_sourceRect->left		+ m_widthFrame;
 }
 
 D3DXVECTOR2 CAnimationDx9::getFrameSize()
 {
 	return D3DXVECTOR2((float)this->m_widthFrame, (float)this->m_heightFrame);
 }
+
+void CAnimationDx9::Reset()
+{
+	this->m_sourceRect->top			= 0;
+	this->m_sourceRect->left		= 0;
+	this->m_sourceRect->bottom		= m_heightFrame;
+	this->m_sourceRect->right		= m_widthFrame;
+
+	this->m_timeAnimation			= 0;
+	this->m_index_Current			= 0;
+	this->m_inverseNumber			= 1;
+}
+
 
 void CAnimationDx9::Release()
 {
