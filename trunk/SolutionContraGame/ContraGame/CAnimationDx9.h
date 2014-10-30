@@ -27,6 +27,7 @@ private:
 	int				m_timeAnimation;
 
 	RECT*			m_sourceRect;
+	int				m_inverseNumber;
 public:
 
 					CAnimationDx9();
@@ -40,6 +41,7 @@ public:
 	void			setIndexStart(int _start);
 
 	void			setIndexEnd(int _end);
+
 	void			setCurrentFrame(int Index);
 
 	void			setSourceRectAtIndex(int Index);
@@ -48,9 +50,17 @@ public:
 
 	void			NextFrame();
 
+	void			NextFrameInverse();
+
 	void			UpdateAnimation(int timeNexframe);
 
+	void			UpdateAnimationInverse(int timeNextFrame);
+
+	void			CreateSourceRectangle();
+
 	D3DXVECTOR2		getFrameSize();
+
+	void			Reset();
 
 	void			Release();
 };

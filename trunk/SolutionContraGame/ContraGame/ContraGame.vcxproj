@@ -101,6 +101,8 @@
     <ClInclude Include="Markup.h" />
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Rambo.h" />
+    <ClInclude Include="RamboMoveSprite.h" />
+    <ClInclude Include="RamboSprite.h" />
     <ClInclude Include="SniperHiding.h" />
     <ClInclude Include="SniperStanding.h" />
     <ClInclude Include="SoundBuffer.h" />
@@ -140,6 +142,8 @@
     <ClCompile Include="Markup.cpp" />
     <ClCompile Include="MenuGame.cpp" />
     <ClCompile Include="Rambo.cpp" />
+    <ClCompile Include="RamboMoveSprite.cpp" />
+    <ClCompile Include="RamboSprite.cpp" />
     <ClCompile Include="SniperHiding.cpp" />
     <ClCompile Include="SniperStanding.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />

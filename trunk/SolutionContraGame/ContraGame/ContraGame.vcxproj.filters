@@ -109,6 +109,12 @@
     <ClCompile Include="SniperHiding.cpp">
       <Filter>GameObject\Enemy\SniperHiding</Filter>
     </ClCompile>
+    <ClCompile Include="RamboSprite.cpp">
+      <Filter>GameObject\Rambo\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="RamboMoveSprite.cpp">
+      <Filter>GameObject\Rambo\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -222,6 +228,12 @@
     <ClInclude Include="SniperHiding.h">
       <Filter>GameObject\Enemy\SniperHiding</Filter>
     </ClInclude>
+    <ClInclude Include="RamboSprite.h">
+      <Filter>GameObject\Rambo\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="RamboMoveSprite.h">
+      <Filter>GameObject\Rambo\Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -313,6 +325,9 @@
     </Filter>
     <Filter Include="GameObject\Enemy\SniperHiding">
       <UniqueIdentifier>{3ef19249-7d9f-4916-a5d8-683240db85ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Rambo\Sprite">
+      <UniqueIdentifier>{ae0d94a0-2a6b-4ade-93ec-05489dfba7d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
