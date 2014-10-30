@@ -59,13 +59,15 @@ void DemoState::ReadMap()
 			Object* temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
 			_ListGameObjects.push_back(temp);
 		}*/
-		Object* temp;
+		Object* temp = 0;
 		switch (_GameObject->_Type)
 		{
 		case ETypeObject::TILE_MAP:
 			{
 				_GameObject->DeserializeTile(xml.GetSubDoc().c_str());
 				temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
+				m_backgroundTile.push_back(temp);
+				temp = 0;
 			}
 			break;
 		case ETypeObject::VIRTUAL_OBJECT:
@@ -88,7 +90,10 @@ void DemoState::ReadMap()
 		default:
 			break;
 		}
-		_ListGameObjects.push_back(temp);
+		if (temp != 0)
+		{
+			_ListGameObjects.push_back(temp); 
+		}
 	}
 }
 
@@ -146,15 +151,13 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	//m_background->Render(_lpDSpriteHandle);
-	//for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
-	//{
-	//	/*if ((*it)->_Type == 0)
-	//	{
-	//		SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
-	//	}*/
-	//	(*it)->Render(_lpDSpriteHandle);
-	//}
+	for (std::list<Object*>::iterator it = m_backgroundTile.begin(); it != m_backgroundTile.end(); it++)
+	{
+		(*it)->Render(_lpDSpriteHandle);
+	}
 	
+
+
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
