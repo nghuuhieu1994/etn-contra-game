@@ -131,6 +131,7 @@ void CAnimationDx9::UpdateAnimationInverse(int timeNextFrame)
 	}
 }
 
+
 void CAnimationDx9::CreateSourceRectangle()
 {
 	m_sourceRect->top			= (m_index_Current / m_columnFrame) * m_heightFrame;
