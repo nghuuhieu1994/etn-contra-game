@@ -40,14 +40,14 @@ void Rambo::HandleInput()
 {
 	if (CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 	{
-		m_Physic->setVelocityX(3.0f);
+		m_Physic->setVelocityX(2.0f);
 		m_Direction = eDirection::RIGHT;
 	}
 	else
 	{
 		if (CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 		{
-			m_Physic->setVelocityX(-3.0f);
+			m_Physic->setVelocityX(-2.0f);
 			m_Direction = eDirection::LEFT;
 		}
 		else

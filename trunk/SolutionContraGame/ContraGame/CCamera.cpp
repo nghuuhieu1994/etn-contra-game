@@ -23,7 +23,7 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
 	if (cameramanLocation->x > WIDTH/2)
 	{
-		m_matrixTranslate._41 = -(cameramanLocation->x - WIDTH/2);
+		m_matrixTranslate._41 = (int)(-(cameramanLocation->x - WIDTH/2));
 	}
 	else
 		m_matrixTranslate._41 = 0;

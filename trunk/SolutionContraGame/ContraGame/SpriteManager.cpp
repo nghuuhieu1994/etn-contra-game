@@ -1,6 +1,6 @@
 #include "SpriteManager.h"
 
-#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.bmp", eSpriteID::SPRITE_MAP_1, 45, 1, 45)
+#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 44, 1, 44)
 
 SpriteManager* SpriteManager::s_Instance = 0;
 
