@@ -36,6 +36,9 @@ public:
 	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }*/
 
 	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
+	void			setVelocityX(float _x)	{ m_Velocity.x = _x; }
+	void			setVelocityY(float _y)	{ m_Velocity.y = _y; }
+
 	D3DXVECTOR2		getVelocity()	{ return m_Velocity; }
 
 	void			setAccelerate(D3DXVECTOR2 _accelerate)	{ m_Accelerate = _accelerate; }

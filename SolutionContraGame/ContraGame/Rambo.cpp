@@ -16,7 +16,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_RamboSprite = new RamboSprite();
 	//m_Physic->setPosition(D3DXVECTOR3(m_Position.x, m_Position.y, 1.0f));
 	m_Position.z = 1.0f;
-	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
+	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
 }
 
 RECT Rambo::getBound()
@@ -38,8 +38,23 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-
-
+	if (CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
+	{
+		m_Physic->setVelocityX(3.0f);
+		m_Direction = eDirection::RIGHT;
+	}
+	else
+	{
+		if (CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
+		{
+			m_Physic->setVelocityX(-3.0f);
+			m_Direction = eDirection::LEFT;
+		}
+		else
+		{
+			m_Physic->setVelocityX(0.0f);
+		}
+	}
 }
 
 void Rambo::UpdateAnimation()
