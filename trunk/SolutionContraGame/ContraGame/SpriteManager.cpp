@@ -85,7 +85,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveUp\\top_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveDown\\bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\shoot.png", eSpriteID::SPRITE_RAMBO_SHOOT_BODY, 1, 1, 1);
-	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\up.png", eSpriteID::SPRITE_RAMBO_SHOOT_UP_BODY, 1, 1, 1);
 }
 
 void SpriteManager::Release()

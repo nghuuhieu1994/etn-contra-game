@@ -9,9 +9,10 @@ RamboSprite::RamboSprite(void)
 	m_TopRight		= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT_BODY));
 	m_BottomRight	= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT_BODY));
 	m_Shoot			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_BODY));
+	m_Up			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_UP_BODY));
 	m_Body = m_Run;
-	m_PositionBody = D3DXVECTOR3(0, 18, 0);
-	m_PositionLeg = D3DXVECTOR3(0, -10, 0);
+	m_PositionBody = D3DXVECTOR3(0, 23, 0);
+	m_PositionLeg = D3DXVECTOR3(0, -5, 0);
 	m_inversePositionY = -1;
 	timeAnimation = 0;
 }
@@ -37,7 +38,7 @@ void RamboSprite::UpdateAnimation()
 			else
 			{
 				m_inversePositionY = -1;
-				m_PositionBody.y = 18;
+				m_PositionBody.y = 23;
 				timeAnimation = 0;
 			}
 		}
@@ -59,7 +60,7 @@ void RamboSprite::UpdateAnimation()
 				else
 				{
 					m_inversePositionY = -1;
-					m_PositionBody.y = 18;
+					m_PositionBody.y = 23;
 					timeAnimation = 0;
 				}
 			}
@@ -79,7 +80,7 @@ void RamboSprite::UpdateAnimation()
 				else
 				{
 					m_inversePositionY = -1;
-					m_PositionBody.y = 18;
+					m_PositionBody.y = 23;
 					timeAnimation = 0;
 					m_Body = m_Run;
 					m_Body->getAnimation()->UpdateAnimationInverse(250); 
@@ -90,6 +91,10 @@ void RamboSprite::UpdateAnimation()
 	else
 	{
 		m_Body = m_Shoot;
+		if(CInputDx9::getInstance()->IsKeyDown(DIK_UP))
+		{
+			m_Body = m_Up;
+		}
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
 			this->timeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -103,7 +108,7 @@ void RamboSprite::UpdateAnimation()
 		else
 		{
 			m_inversePositionY = -1;
-			m_PositionBody.y = 18;
+			m_PositionBody.y = 23;
 			timeAnimation = 0;
 			m_Body->getAnimation()->UpdateAnimationInverse(250); 
 		}
