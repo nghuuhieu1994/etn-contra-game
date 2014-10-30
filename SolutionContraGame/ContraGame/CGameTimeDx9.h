@@ -17,11 +17,11 @@ private:
 	
 	float			m_FreQuency;
 	
-	UINT64			StartTicks;
+	LONGLONG			StartTicks;
 	
-	UINT64			LastTicks;
+	LONGLONG			LastTicks;
 	
-	UINT64			CurTicks;
+	LONGLONG			CurTicks;
 
 	CGameTimeDx9();
 
