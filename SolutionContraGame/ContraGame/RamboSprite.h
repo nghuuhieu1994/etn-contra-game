@@ -8,8 +8,10 @@ class RamboSprite
 	float timeAnimation;
 	CSpriteDx9* m_TopRight;
 	CSpriteDx9* m_BottomRight;
+	CSpriteDx9* m_Up;
 	CSpriteDx9* m_Run;
 	CSpriteDx9* m_Shoot;
+
 	CSpriteDx9* m_Body;
 	CSpriteDx9* m_Leg;
 	D3DXVECTOR3 m_PositionBody;

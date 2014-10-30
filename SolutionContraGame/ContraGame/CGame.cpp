@@ -41,12 +41,22 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 		CGameLog::getInstance("CGame")->SaveError("Can't Regist the WndcEx!!!");
 		return false;
 	}
+	RECT desktop;
+   // Get a handle to the desktop window
+   const HWND hDesktop = GetDesktopWindow();
+   // Get the size of screen to the variable desktop
+   GetWindowRect(hDesktop, &desktop);
+   // The top left corner will have coordinates (0,0)
+   // and the bottom right corner will have coordinates
+   // (horizontal, vertical)
+   int horizontal = desktop.right;
+   int vertical = desktop.bottom;
 	m_handleWindow = CreateWindow(
 		"CGame",
 		GAMETITLE,
 		(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX),
-		100,
-		100,
+		(horizontal-WIDTH)/2,
+		(vertical - HEIGHT)/2,
 		WIDTH,
 		HEIGHT,
 		0,
