@@ -18,7 +18,7 @@ public:
 	RamboSprite(void);
 	void UpdateAnimation();
 	void Reset();
-	D3DXVECTOR2 GetFrameSize() { return D3DXVECTOR2(64, 74); }
+	D3DXVECTOR2 GetFrameSize() { return D3DXVECTOR2(30, 74); }
 	void Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep);
 	virtual ~RamboSprite(void);
 };
