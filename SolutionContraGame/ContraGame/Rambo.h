@@ -2,7 +2,7 @@
 #define __RAMBO_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
-#include "RamboMoveSprite.h"
+#include "RamboSprite.h"
 
 class Rambo : public DynamicObject
 {
@@ -12,6 +12,7 @@ public:
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	virtual ~Rambo();
 	void HandleInput();
+	RECT getBound();
 	void Initialize();
 	void Release();
 	void Render(SPRITEHANDLE spriteHandle);

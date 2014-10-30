@@ -70,6 +70,14 @@ void CAnimationDx9::setIndexEnd(int _end)
 	this->m_index_End = _end;
 }
 
+void CAnimationDx9::setSourceRect(RECT _rect)
+{
+	this->m_sourceRect->top			= _rect.top;
+	this->m_sourceRect->left		= _rect.left;
+	this->m_sourceRect->right		= _rect.right;
+	this->m_sourceRect->bottom		= _rect.bottom;
+}
+
 void CAnimationDx9::setCurrentFrame(int Index)
 {
 	this->m_index_Current = Index;
