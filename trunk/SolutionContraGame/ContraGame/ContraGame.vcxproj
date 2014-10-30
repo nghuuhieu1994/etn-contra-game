@@ -128,7 +128,7 @@
     <ClCompile Include="CSpriteDx9.cpp" />
     <ClCompile Include="CSurfaceDx9.cpp" />
     <ClCompile Include="CTextureDx9.cpp" />
-    <ClCompile Include="CTimeSpan.cpp" />
+    <ClCompile Include="CTimeSpanDx9.cpp" />
     <ClCompile Include="DemoState.cpp" />
     <ClCompile Include="DSutil.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
