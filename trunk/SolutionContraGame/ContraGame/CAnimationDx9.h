@@ -47,7 +47,7 @@ public:
 	void			setSourceRectAtIndex(int Index);
 
 	RECT*			getSourceRect();
-
+	void			setSourceRect(RECT _rect);
 	void			NextFrame();
 
 	void			NextFrameInverse();

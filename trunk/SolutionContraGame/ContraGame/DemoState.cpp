@@ -10,7 +10,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 200, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(100, 448/2, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -104,13 +104,13 @@ void DemoState::Update()
 	
 	m_Rambo->UpdateMovement();
 
-	//for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); ++it)
-	//{
-	//	if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
-	//	{
-	//		m_Rambo->UpdateCollision(*it); 
-	//	}
-	//}
+	/*for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); ++it)
+	{
+		if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
+		{
+			m_Rambo->UpdateCollision(*it); 
+		}
+	}*/
 	
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 

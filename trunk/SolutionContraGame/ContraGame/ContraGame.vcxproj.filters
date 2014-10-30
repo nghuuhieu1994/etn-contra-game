@@ -112,9 +112,6 @@
     <ClCompile Include="RamboSprite.cpp">
       <Filter>GameObject\Rambo\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="RamboMoveSprite.cpp">
-      <Filter>GameObject\Rambo\Sprite</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -229,9 +226,6 @@
       <Filter>GameObject\Enemy\SniperHiding</Filter>
     </ClInclude>
     <ClInclude Include="RamboSprite.h">
-      <Filter>GameObject\Rambo\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="RamboMoveSprite.h">
       <Filter>GameObject\Rambo\Sprite</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,10 +13,22 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_Position = _position;
 	m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 	//m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_IDLE));
-	m_RamboSprite = new RamboMoveSprite();
+	m_RamboSprite = new RamboSprite();
 	//m_Physic->setPosition(D3DXVECTOR3(m_Position.x, m_Position.y, 1.0f));
 	m_Position.z = 1.0f;
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
+}
+
+RECT Rambo::getBound()
+{
+	RECT tempBound = RECT();
+
+	tempBound.left = m_Position.x - m_RamboSprite->GetFrameSize().x / 2;
+	tempBound.right = tempBound.left + m_RamboSprite->GetFrameSize().x;
+	tempBound.top = m_Position.y + m_RamboSprite->GetFrameSize().y / 2;
+	tempBound.bottom = tempBound.top - m_RamboSprite->GetFrameSize().y;
+
+	return tempBound;
 }
 
 void Rambo::Initialize()
