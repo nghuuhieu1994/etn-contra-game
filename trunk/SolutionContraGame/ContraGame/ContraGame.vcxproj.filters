@@ -112,6 +112,9 @@
     <ClCompile Include="RamboSprite.cpp">
       <Filter>GameObject\Rambo\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="BossGun.cpp">
+      <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -228,6 +231,9 @@
     <ClInclude Include="RamboSprite.h">
       <Filter>GameObject\Rambo\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="BossGun.h">
+      <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -322,6 +328,12 @@
     </Filter>
     <Filter Include="GameObject\Rambo\Sprite">
       <UniqueIdentifier>{ae0d94a0-2a6b-4ade-93ec-05489dfba7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Boss">
+      <UniqueIdentifier>{143134b7-854e-49fa-ac90-f1452ba6b1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Boss\BossMap1">
+      <UniqueIdentifier>{92fcf2da-943b-4458-af8d-a95625214951}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
