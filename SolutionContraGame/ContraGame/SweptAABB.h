@@ -34,18 +34,18 @@ static bool AABB(BOX b1, BOX b2, float& moveX, float& moveY)
 
 	float l = b2.x - ( b1.x + b1.width);
 	float r = ( b2.x + b2.width) - b1.x;
-	float t = ( b2.y - b2.height ) - b1.y;
+	float b = ( b2.y - b2.height ) - b1.y;
 	//float t = b2.y - (b1.y - b1.height);
 	//float b = (b2.y - b2.height) - b1.y;
-	float b = b2.y - ( b1.y - b1.height);
+	float t = b2.y - ( b1.y - b1.height);
 
 	// check that there was a collision
-	if (l > 0 || r < 0 || t > 0 || b < 0)
+	if (l > 0 || r < 0 || t < 0 || b > 0)
 		return false;
 
 	// find the offset of both sides
 	moveX = abs(l) < r ? l : r;
-	moveY = abs(t) < b ? t : b;
+	moveY = abs(b) < t ? b : t;
 
 	// only use whichever offset is the smallest
 	if (abs(moveX) < abs(moveY))
@@ -54,6 +54,8 @@ static bool AABB(BOX b1, BOX b2, float& moveX, float& moveY)
 		moveX = 0.0f;
 
 	return true;
+
+
 }
 
 // thuật toán xét va chạm swept aabb
