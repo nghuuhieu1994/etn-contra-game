@@ -41,7 +41,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_idle.png", eSpriteID::SPRITE_RAMBO_IDLE, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_jump.png", eSpriteID::SPRITE_RAMBO_JUMP, 4, 1, 4);
+	
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_lie.png", eSpriteID::SPRITE_RAMBO_LIE, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_run.png", eSpriteID::SPRITE_RAMBO_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT, 3, 1, 3);
@@ -88,6 +88,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\up.png", eSpriteID::SPRITE_RAMBO_SHOOT_UP_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\jump.png", eSpriteID::SPRITE_RAMBO_JUMP, 4, 1, 4);
 }
 
 void SpriteManager::Release()

@@ -239,10 +239,6 @@ void CGame::Run()
 					m_lpSpriteDirect3DHandle->End();
 					m_lpDirect3DDevice->EndScene();
 				}
-				
-
-				
-
 				m_lpDirect3DDevice->Present(0, 0, 0, 0);
 				m_fps = 0;
 				
@@ -259,6 +255,7 @@ void CGame::Exit()
 	CInputDx9::getInstance()->Release();
 	//SoundManagerDx9::getInstance()->Release();
 	SpriteManager::getInstance()->Release();
+	SceneManagerDx9::getInstance()->ClearAll();;
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

@@ -7,6 +7,7 @@
 class Rambo : public DynamicObject
 {
 	RamboSprite* m_RamboSprite;
+	bool isJump;
 public:
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

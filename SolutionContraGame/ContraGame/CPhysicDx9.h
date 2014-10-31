@@ -38,10 +38,12 @@ public:
 	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
 	void			setVelocityX(float _x)	{ m_Velocity.x = _x; }
 	void			setVelocityY(float _y)	{ m_Velocity.y = _y; }
-
 	D3DXVECTOR2		getVelocity()	{ return m_Velocity; }
 
 	void			setAccelerate(D3DXVECTOR2 _accelerate)	{ m_Accelerate = _accelerate; }
+	void			setAccelerateX(float _x)	{ m_Accelerate.x = _x; }
+	void			setAccelerateY(float _y)	{ m_Accelerate.y = _y; }
+
 	D3DXVECTOR2		getAccelerate()	{ return m_Accelerate; }
 
 	void			setDirection(eDirection _direction)	{ m_Direction = _direction; }

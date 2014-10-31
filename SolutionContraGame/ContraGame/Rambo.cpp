@@ -55,6 +55,12 @@ void Rambo::HandleInput()
 			m_Physic->setVelocityX(0.0f);
 		}
 	}
+	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE) && !isJump)
+	{
+		isJump = true;
+		m_Physic->setVelocityY(5.0f);
+		m_RamboSprite->SetIsJump(true);
+	}
 }
 
 void Rambo::UpdateAnimation()
@@ -75,15 +81,14 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			{
 				collideDirection = IDDirection::DIR_TOP;
 				//this->m_Position.x += this->m_Collision->m_MoveX;
-				this->m_Position.y += this->m_Collision->m_MoveY;
+				//this->m_Position.y += this->m_Collision->m_MoveY;
 				this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
-				if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+				if(isJump)
 				{
+					isJump = false;
 					//this->m_Position.y += this->m_Collision->m_MoveY;
-					this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 					this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
-					TURN_ON_UPDATE_SPRITE(m_UpdateFlag);
-					OutputDebugString("AAA");
+					m_RamboSprite->SetIsJump(false);
 				}
 				break;
 			}

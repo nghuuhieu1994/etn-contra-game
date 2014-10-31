@@ -24,7 +24,6 @@ void SceneManagerDx9::Initialize()
 	}
 }
 
-
 void SceneManagerDx9::AddElement(GameScene* GameScene)
 {
 	if(!m_ListGameScene.empty())

@@ -41,7 +41,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
 
-	//_ListGameObjects.push_back(m_VirtualObject);
+	//m_listGameObjects.push_back(m_VirtualObject);
 
 	ReadMap();
 }
@@ -58,12 +58,12 @@ void DemoState::ReadMap()
 		GameObject *_GameObject;
 		_GameObject = new GameObject();
 		_GameObject->Deserialize(xml.GetSubDoc().c_str());
-		//_ListGameObjects.push_back(_GameObject);
+		//m_listGameObjects.push_back(_GameObject);
 		/*if (_GameObject->_Type == ETypeObject::TILE_MAP)
 		{
 			_GameObject->DeserializeTile(xml.GetSubDoc().c_str());
 			Object* temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
-			_ListGameObjects.push_back(temp);
+			m_listGameObjects.push_back(temp);
 		}*/
 		Object* temp = 0;
 		switch (_GameObject->_Type)
@@ -98,7 +98,7 @@ void DemoState::ReadMap()
 		}
 		if (temp != 0)
 		{
-			_ListGameObjects.push_back(temp); 
+			m_listGameObjects.push_back(temp); 
 		}
 	}
 }
@@ -110,20 +110,18 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
+	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
 	m_Rambo->UpdateAnimation();
 	
 	m_Rambo->UpdateMovement();
 
-	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); ++it)
+	for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end(); ++it)
 	{
-		if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
-		{
-			m_Rambo->UpdateCollision(*it); 
-		}
+		m_Rambo->UpdateCollision(*it);
 	}
 	
-	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
+	
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
@@ -196,14 +194,11 @@ void DemoState::Resume()
 
 void DemoState::Release()
 {
-	for (std::list<Object*>::iterator it = _ListGameObjects.begin(); it != _ListGameObjects.end(); it++)
+	for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end(); it++)
 	{
-		/*if ((*it)->_Type == 0)
-		{
-			SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAP_1)->RenderAtFrame(_lpDSpriteHandle, D3DXVECTOR2((float)(*it)->_X, (float)(*it)->_Y), ESpriteEffect::None, 0.0f, 1.0f, 0.0f, 0xffffffff, (*it)->_ID); 
-		}*/
 		(*it)->Release();
 		delete (*it);
-		_ListGameObjects.remove(*it);
+		//m_listGameObjects.remove(*it);
 	}
+	m_listGameObjects.clear();
 }

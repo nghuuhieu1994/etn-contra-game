@@ -38,7 +38,7 @@ public:
 	void AddElement(GameScene* GameScene);
 	
 	void ExitState();
-	
+
 	void ReplaceBy(GameScene* GameScene);
 	
 	void ClearAll();
