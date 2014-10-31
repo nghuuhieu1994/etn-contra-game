@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BigGunRotating.h" />
+    <ClInclude Include="BossCenter.h" />
     <ClInclude Include="BossGun.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CAnimationDx9.h" />
@@ -117,6 +118,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BigGunRotating.cpp" />
+    <ClCompile Include="BossCenter.cpp" />
     <ClCompile Include="BossGun.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CAnimationDx9.cpp" />

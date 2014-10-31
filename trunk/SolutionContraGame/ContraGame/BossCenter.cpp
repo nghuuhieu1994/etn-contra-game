@@ -1,38 +1,35 @@
-#include "BossGun.h"
+#include "BossCenter.h"
 
 
 
-BossGun::BossGun()
+BossCenter::BossCenter()
 {
 
 }
 
-BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+BossCenter::BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
+	//m_Position = _position;
 }
 
-void BossGun::Initialize()
+void BossCenter::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
+	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
 }
 
-void BossGun::UpdateAnimation()
-{	
+void BossCenter::UpdateAnimation()
+{
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		this->getSprite()->getAnimation()->setCurrentFrame(1);
-		m_Sprite->UpdateAnimation(500);
-		break;
-	case STATE_SHOOTING:
-		m_Sprite = sprite_alive;
-		this->getSprite()->getAnimation()->setCurrentFrame(0);	
-		m_Sprite->UpdateAnimation(500);
+		this->getSprite()->getAnimation()->setIndexStart(0);
+		this->getSprite()->getAnimation()->setIndexEnd(2);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -46,7 +43,7 @@ void BossGun::UpdateAnimation()
 }
 
 
-void BossGun::UpdateCollision(Object* checkingObject)
+void BossCenter::UpdateCollision(Object* checkingObject)
 {
 	switch (checkingObject->getID())
 	{
@@ -61,27 +58,13 @@ void BossGun::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void BossGun:: UpdateMovement()
+void BossCenter:: UpdateMovement()
 {}
-void BossGun::Update()
+void BossCenter::Update()
 {
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
-		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_SHOOTING;
-		}
-		break;
-	case STATE_SHOOTING:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
-		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-		}
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -98,7 +81,7 @@ void BossGun::Update()
 		break;
 	}
 }
-void BossGun::Render(SPRITEHANDLE spriteHandle)
+void BossCenter::Render(SPRITEHANDLE spriteHandle)
 {
 	if(m_Sprite != 0)
 	{
@@ -112,14 +95,14 @@ void BossGun::Render(SPRITEHANDLE spriteHandle)
 }
 
 
-void BossGun::Release()
+void BossCenter::Release()
 {
 	m_Sprite = 0;
 	sprite_alive->Release();
 	sprite_dead->Release();
 }
 
-BossGun::~BossGun()
+BossCenter::~BossCenter()
 {
 
 }

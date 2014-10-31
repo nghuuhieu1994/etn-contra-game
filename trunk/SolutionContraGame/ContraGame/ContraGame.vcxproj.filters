@@ -115,6 +115,9 @@
     <ClCompile Include="BossGun.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
+    <ClCompile Include="BossCenter.cpp">
+      <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -232,6 +235,9 @@
       <Filter>GameObject\Rambo\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="BossGun.h">
+      <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClInclude>
+    <ClInclude Include="BossCenter.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
   </ItemGroup>

@@ -84,6 +84,7 @@ enum eSpriteID
 	SPRITE_RAMBO_SHOOT_BODY,
 	SPRITE_RAMBO_SHOOT_UP_BODY,
 	SPRITE_GUN_BOSS,
+	SPRITE_BOSS_CENTER,
 	// End all ID Enemy Sprite
 
 };
@@ -119,6 +120,8 @@ enum eObjectID
 	GUN_ROTATING,
 	BIG_GUN_ROTATING,
 	ENEMY_RUN,
+	BOSS_GUN,
+	BOSS_CENTER,
 };
 
 enum eDirection

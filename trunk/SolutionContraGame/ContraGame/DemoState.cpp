@@ -32,6 +32,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
 
+	m_bossGun = new BossGun(D3DXVECTOR3(600, 100, 1), eDirection::LEFT, eObjectID::BOSS_GUN);
+	m_bossGun->Initialize();
+
+	m_bossCenter = new BossCenter(D3DXVECTOR3(600, 50, 1), eDirection::LEFT, eObjectID::BOSS_CENTER);
+	m_bossCenter->Initialize();
+
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
 
@@ -146,6 +152,12 @@ void DemoState::Update()
 	
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
+
+	m_bossGun->UpdateAnimation();
+	m_bossGun->Update();
+
+	m_bossCenter->UpdateAnimation();
+	m_bossCenter->Update();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -167,6 +179,9 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
+	m_bossGun->Render(_lpDSpriteHandle);
+	m_bossCenter->Render(_lpDSpriteHandle);
+
 }
 
 void DemoState::Pause()
