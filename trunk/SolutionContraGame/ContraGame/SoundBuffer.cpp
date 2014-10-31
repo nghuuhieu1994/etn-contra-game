@@ -2,6 +2,7 @@
 #include "CGameLog.h"
 #include "DSutil.h"
 #include "CGlobal.h"
+
 SoundBuffer::SoundBuffer()
 {
 	this->m_SoundBuffer = 0;

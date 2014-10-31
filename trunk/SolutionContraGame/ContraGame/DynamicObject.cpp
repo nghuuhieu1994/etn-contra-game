@@ -27,8 +27,8 @@ BOX DynamicObject::GetBroadPhaseBox(D3DXVECTOR2 _Velocity)
 			ConvertToBox(getBound()).y,
 			ConvertToBox(getBound()).width, 
 			ConvertToBox(getBound()).height, 
-			_Velocity.x * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds(),
-			_Velocity.y * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds());
+			_Velocity.x * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE),
+			_Velocity.y * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE));
 	
 	return ConvertToBroadPhase(box);
 }
@@ -44,8 +44,8 @@ BOX DynamicObject::GetBroadPhaseBox()
 								ConvertToBox(getBound()).y,
 								ConvertToBox(getBound()).width,
 								ConvertToBox(getBound()).height,
-								m_Physic->getVelocity().x * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds(),
-								m_Physic->getVelocity().y * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds()
+								m_Physic->getVelocity().x * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE),
+								m_Physic->getVelocity().y * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE)
 								)
 			);
 	}
@@ -57,8 +57,8 @@ BOX DynamicObject::GetBroadPhaseBox()
 								ConvertToBox(getBound()).y,
 								ConvertToBox(getBound()).width,
 								ConvertToBox(getBound()).height,
-								m_Physic->getVelocity().x * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds(),
-								-300.0f * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds()
+								m_Physic->getVelocity().x * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE),
+								-300.0f * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE)
 								)
 			);
 	}
@@ -71,8 +71,8 @@ BOX DynamicObject::GetBoundForDynamicObject(D3DXVECTOR2 velocity)
 			  ConvertToBox(getBound()).y,
 			  ConvertToBox(getBound()).width,
 			  ConvertToBox(getBound()).height,
-			  m_Physic->getVelocity().x * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds(),
-			  m_Physic->getVelocity().x  * CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds()
+			  velocity.x * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE),
+			  velocity.y * (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds()/((float)1/FRAME_RATE)
 			);
 }
 
