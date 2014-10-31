@@ -53,7 +53,7 @@ private:
 	
 	VirtualObject*		m_VirtualObject;
 
-	list<Object *>		_ListGameObjects;
+	list<Object *>		m_listGameObjects;
 
 	list<Object *>		m_backgroundTile;
 public:
