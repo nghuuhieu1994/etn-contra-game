@@ -3,11 +3,16 @@
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "RamboSprite.h"
+#include <list>
+
+using namespace std;
 
 class Rambo : public DynamicObject
 {
 	RamboSprite* m_RamboSprite;
 	bool isJump;
+	bool isLieDown;
+	list<eObjectState> m_stackState;
 public:
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
