@@ -21,7 +21,7 @@ protected:
 	ETypeObject		m_TypeObject;
 	int				m_TimeChangeState;
 	int				m_TimeChangeAttackDirectAttack;
-
+	static int		m_identifyNumber;
 	D3DXVECTOR3		m_Position;
 	//bit 0 -> Update Sprite
 	//bit 1 -> Update Animation
@@ -36,6 +36,8 @@ public:
 	Object();
 	Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
+
+	int				getIdentifyNumber(){ return this->m_identifyNumber; }
 
 	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	void			setPositionX(float _X){ m_Position.x = _X;}

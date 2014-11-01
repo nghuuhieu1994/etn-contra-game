@@ -190,14 +190,14 @@ bool CInputDx9::IsKeyUp(int keyCode)
 
 bool CInputDx9::IsKeyPress(int keyCode)
 {
-	/*if(
+	if(
 		(m_currentBuffer[keyCode] & 0x00000080) &&
 		!(m_previousBuffer[keyCode] & 0x00000080))
 	{
 		return true;
 	}
-	return false;*/
-	return m_PressKey[keyCode];
+	return false;
+//	return m_PressKey[keyCode];
 }
 
 bool CInputDx9::IsKeyRelease(int keyCode)
