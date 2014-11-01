@@ -61,7 +61,7 @@ public:
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
-	void ReadMap();
+	void ReadMap(const char* _filePath);
 	void Update();
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	void Pause();

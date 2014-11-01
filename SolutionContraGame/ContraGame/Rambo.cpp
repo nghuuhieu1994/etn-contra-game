@@ -58,7 +58,7 @@ void Rambo::HandleInput()
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE) && !isJump)
 	{
 		isJump = true;
-		m_Physic->setVelocityY(5.0f);
+		m_Physic->setVelocityY(4.0f);
 		m_RamboSprite->SetIsJump(true);
 	}
 }
@@ -77,7 +77,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 		switch(checkingObject->getTypeObject())
 		{
 		case ETypeObject::VIRTUAL_OBJECT:
-			if(collideDirection == IDDirection::DIR_TOP)
+			if(collideDirection == IDDirection::DIR_TOP && this->m_Physic->getVelocity().y < 0)
 			{
 				this->m_Position.y += this->m_Collision->m_MoveY;
 				collideDirection = IDDirection::DIR_TOP;

@@ -10,7 +10,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(2800, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -43,13 +43,13 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	//m_listGameObjects.push_back(m_VirtualObject);
 
-	ReadMap();
+	ReadMap("resources\\Map\\1\\map.xml");
 }
 
-void DemoState::ReadMap()
+void DemoState::ReadMap(const char* _filePath)
 {
 	CMarkup xml;
-	xml.Load("resources\\Map\\1\\map.xml");
+	xml.Load(_filePath);
 	xml.FindElem("Objects");
 	xml.IntoElem();
 
@@ -73,7 +73,6 @@ void DemoState::ReadMap()
 				_GameObject->DeserializeTile(xml.GetSubDoc().c_str());
 				temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
 				m_backgroundTile.push_back(temp);
-				temp = 0;
 			}
 			break;
 		case ETypeObject::VIRTUAL_OBJECT:
@@ -81,6 +80,7 @@ void DemoState::ReadMap()
 				_GameObject->DeserializeVirtualObject(xml.GetSubDoc().c_str());
 				//temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
 				temp = new VirtualObject(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 1), _GameObject->m_Width, _GameObject->m_Height);
+				m_listGameObjects.push_back(temp); 
 			}
 			break;
 		case ETypeObject::STATIC_OBJECT:
@@ -95,10 +95,6 @@ void DemoState::ReadMap()
 			break;
 		default:
 			break;
-		}
-		if (temp != 0)
-		{
-			m_listGameObjects.push_back(temp); 
 		}
 	}
 }
