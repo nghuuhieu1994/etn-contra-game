@@ -43,6 +43,13 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			}
 			break;
 		case STATE_RAMBO_JUMP:
+			{
+				m_PositionBody	= D3DXVECTOR3(0, 0, 0);
+				m_frameSize		= D3DXVECTOR2(64, 64);
+				m_Leg			= 0;
+				m_Body			= m_Jump;
+				m_Body->UpdateAnimation(100);
+			}
 			break;
 		case STATE_RAMBO_LIE:
 			{
@@ -66,7 +73,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			break;
 		case STATE_RAMBO_SHOOT:
 			break;
-		case STATE_RAMBO_SHOOT_BOTTOM_RIGHT:
+		case STATE_RAMBO_AIM_BOTTOM_RIGHT:
 			{
 				m_PositionBody	= D3DXVECTOR3(0, 23, 0);
 				m_PositionLeg	= D3DXVECTOR3(0, -5, 0);
@@ -87,7 +94,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 				m_Leg->UpdateAnimation(250);
 			}
 			break;
-		case STATE_RAMBO_SHOOT_TOP_RIGHT:
+		case STATE_RAMBO_AIM_TOP_RIGHT:
 			{
 				m_PositionBody	= D3DXVECTOR3(0, 23, 0);
 				m_PositionLeg	= D3DXVECTOR3(0, -5, 0);
@@ -97,7 +104,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 				m_Leg->UpdateAnimation(250);
 			}
 			break;
-		case STATE_RAMBO_SHOOT_UP:
+		case STATE_RAMBO_AIM_UP:
 			{
 				m_PositionBody	= D3DXVECTOR3(0, 23, 0);
 				m_PositionLeg	= D3DXVECTOR3(0, -5, 0);
