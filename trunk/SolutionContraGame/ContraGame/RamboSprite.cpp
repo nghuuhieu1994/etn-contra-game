@@ -78,6 +78,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			}
 			break;
 		case STATE_RAMBO_SHOOT_RUN:
+			{
+				m_PositionBody	= D3DXVECTOR3(0, 23, 0);
+				m_PositionLeg	= D3DXVECTOR3(0, -5, 0);
+				m_frameSize		= D3DXVECTOR2(30, 74);
+				m_Leg			= m_moveLeg;
+				m_Body			= m_Shoot;
+				m_Leg->UpdateAnimation(250);
+			}
 			break;
 		case STATE_RAMBO_SHOOT_TOP_RIGHT:
 			{

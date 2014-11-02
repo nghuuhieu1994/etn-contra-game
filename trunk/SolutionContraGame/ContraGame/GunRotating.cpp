@@ -30,8 +30,8 @@ void GunRotating::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive;
-		_distance_X = abs(CGlobal::Rambo_X - this->getPositionVec2().x);
-		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
+		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
+		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
 
 		if( _distance_X > 350)
 		{

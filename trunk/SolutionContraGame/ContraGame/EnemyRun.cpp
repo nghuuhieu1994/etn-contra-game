@@ -50,7 +50,8 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 {
 	switch (checkingObject->getID())
 	{
-
+	case eObjectID::RAMBO:
+		break;
 	default:
 		break;
 	}

@@ -11,10 +11,10 @@ RECT Object::getBound()
 {
 	RECT tempBound = RECT();
 
-	tempBound.left = m_Position.x - m_Sprite->getAnimation()->getFrameSize().x / 2;
-	tempBound.right = tempBound.left + m_Sprite->getAnimation()->getFrameSize().x;
-	tempBound.top = m_Position.y + m_Sprite->getAnimation()->getFrameSize().y / 2;
-	tempBound.bottom = tempBound.top - m_Sprite->getAnimation()->getFrameSize().y;
+	tempBound.left		= (long)(m_Position.x - m_Sprite->getAnimation()->getFrameSize().x / 2);
+	tempBound.right		= (long)(tempBound.left + m_Sprite->getAnimation()->getFrameSize().x);
+	tempBound.top		= (long)(m_Position.y + m_Sprite->getAnimation()->getFrameSize().y / 2);
+	tempBound.bottom	= (long)(tempBound.top - m_Sprite->getAnimation()->getFrameSize().y);
 
 	return tempBound;
 }
