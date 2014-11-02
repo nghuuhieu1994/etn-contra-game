@@ -40,14 +40,14 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-	/*if (CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
+	if(CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
 	{
 		m_Physic->setVelocityX(2.0f);
 		m_Direction = eDirection::RIGHT;
 	}
 	else
 	{
-		if (CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
+		if(CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
 		{
 			m_Physic->setVelocityX(-2.0f);
 			m_Direction = eDirection::LEFT;
@@ -55,12 +55,12 @@ void Rambo::HandleInput()
 		else
 		{
 			m_Physic->setVelocityX(0.0f);
-			if (CInputDx9::getInstance()->IsKeyDown(DIK_DOWN) && !isJump)
+			if(CInputDx9::getInstance()->IsKeyDown(DIK_DOWN) && !isJump)
 			{
 
 			}
 		}
-	}*/
+	}
 	//if(CInputDx9::getInstance()->IsKeyPress(DIK_SPACE) && !isJump)
 	//{
 	//	isJump = true;
@@ -299,6 +299,10 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 void Rambo::UpdateMovement()
 {
+	if (m_ObjectState == eObjectState::STATE_RAMBO_LIE)
+	{
+		m_Physic->setVelocityX(0.0f);
+	}
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
 	this->m_Physic->UpdateMovement(&m_Position);
 	CGlobal::Rambo_X = (int)(getPositionVec2().x);
