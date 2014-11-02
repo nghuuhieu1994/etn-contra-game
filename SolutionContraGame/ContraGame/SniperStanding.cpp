@@ -33,7 +33,7 @@ void SniperStanding::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeAttackDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		m_TimeChangeAttackDirectAttack += (int)(CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds());
 		if(m_TimeChangeAttackDirectAttack > 1500)
 		{
 			if(CGlobal::Rambo_Y > m_Position.y + 50)
