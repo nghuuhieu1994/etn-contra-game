@@ -32,6 +32,18 @@ void SniperHiding::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive_hiding;
+		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
+		//if( _distance_X > 350)
+		//{
+		//	//m_Sprite->getAnimation()->setIndexStart(0);
+		//	//m_Sprite->getAnimation()->setIndexEnd(1);
+		//	m_Sprite->getAnimation()->setCurrentFrame(0);
+		//}
+		//else if(_distance_X < 350)
+		//{
+		//	m_Sprite->getAnimation()->setIndexStart(0);
+		//	m_Sprite->getAnimation()->setIndexEnd(1);
+		//}
 		this->getSprite()->getAnimation()->setCurrentFrame(1);
 		m_Sprite->UpdateAnimation(500);
 		break;
@@ -79,7 +91,10 @@ void SniperHiding:: UpdateMovement()
 {}
 void SniperHiding::Update()
 {
-	switch (m_ObjectState)
+	_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
+	if(_distance_X < 350)
+	{
+		switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -111,6 +126,8 @@ void SniperHiding::Update()
 	default:
 		break;
 	}
+	}
+	
 }
 void SniperHiding::Render(SPRITEHANDLE spriteHandle)
 {
