@@ -105,6 +105,7 @@ enum eObjectState
 	STATE_RAMBO_RUN,
 	STATE_RAMBO_SHOOT,
 	STATE_RAMBO_SHOOT_RUN,
+	STATE_RAMBO_FALL,
 	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
 };
 

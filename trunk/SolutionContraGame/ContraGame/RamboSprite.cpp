@@ -115,6 +115,18 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 				this->Reset();
 			}
 			break;
+		case STATE_RAMBO_FALL:
+			{
+				m_PositionBody	= D3DXVECTOR3(0, 23, 0);
+				m_PositionLeg	= D3DXVECTOR3(0, -5, 0);
+				m_frameSize		= D3DXVECTOR2(30, 74);
+				m_Leg			= m_moveLeg;
+				m_Body			= m_Run;
+
+				m_Body->getAnimation()->setSourceRectAtIndex(0);
+				m_Leg->getAnimation()->setSourceRectAtIndex(1);
+			}
+			break;
 		case STATE_SHOOTING:
 			break;
 		default:

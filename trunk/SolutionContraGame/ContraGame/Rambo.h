@@ -12,6 +12,7 @@ class Rambo : public DynamicObject
 	RamboSprite* m_RamboSprite;
 	bool isJump;
 	bool isLieDown;
+	bool isFall;
 	list<eObjectState> m_stackState;
 public:
 	Rambo();
