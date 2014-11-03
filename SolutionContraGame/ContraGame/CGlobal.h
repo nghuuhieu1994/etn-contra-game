@@ -154,10 +154,10 @@ typedef enum eDirectAttack
 
 enum ETypeObject
 {
-	DYNAMIC_OBJECT = 0,
-	STATIC_OBJECT = 1,
-	TILE_MAP = 2,
-	VIRTUAL_OBJECT = 3,
+	TILE_MAP = 0,
+	VIRTUAL_OBJECT = 1,
+	STATIC_OBJECT = 2,
+	DYNAMIC_OBJECT = 3,
 };
 
 enum eIDSceneGame
