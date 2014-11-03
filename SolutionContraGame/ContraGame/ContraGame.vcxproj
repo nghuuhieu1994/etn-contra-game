@@ -78,6 +78,9 @@
     <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="BossCenter.h" />
     <ClInclude Include="BossGun.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletPool.h" />
+    <ClInclude Include="BulletPoolManager.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CAnimationDx9.h" />
     <ClInclude Include="CGame.h" />
@@ -120,6 +123,9 @@
     <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="BossCenter.cpp" />
     <ClCompile Include="BossGun.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletPool.cpp" />
+    <ClCompile Include="BulletPoolManager.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CAnimationDx9.cpp" />
     <ClCompile Include="CGame.cpp" />

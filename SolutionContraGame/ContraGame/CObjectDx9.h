@@ -50,6 +50,7 @@ public:
 	eObjectID		getID() const { return m_eObjectID; }
 	ETypeObject		getTypeObject() const { return m_TypeObject; }
 
+	eObjectState	getObjectState() const {return m_ObjectState;}
 	virtual RECT getBound();
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;

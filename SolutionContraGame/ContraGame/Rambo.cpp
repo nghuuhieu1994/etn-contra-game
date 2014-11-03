@@ -74,6 +74,33 @@ void Rambo::HandleInput()
 	//	m_Physic->setVelocityY(5.0f);
 	//	m_RamboSprite->SetIsJump(true);
 	//}
+	if (CInputDx9::getInstance()->IsKeyDown(DIK_RIGHT))
+	{
+		m_Physic->setVelocityX(2.0f);
+		m_Direction = eDirection::RIGHT;
+	}
+	else
+	{
+		if (CInputDx9::getInstance()->IsKeyDown(DIK_LEFT))
+		{
+			m_Physic->setVelocityX(-2.0f);
+			m_Direction = eDirection::LEFT;
+		}
+		else
+		{
+			m_Physic->setVelocityX(0.0f);
+			if (CInputDx9::getInstance()->IsKeyDown(DIK_DOWN) && !isJump)
+			{
+
+			}
+		}
+	}
+	//if(CInputDx9::getInstance()->IsKeyPress(DIK_SPACE) && !isJump)
+	//{
+	//	isJump = true;
+	//	m_Physic->setVelocityY(5.0f);
+	//	m_RamboSprite->SetIsJump(true);
+	//}
 
 	switch (m_ObjectState)
 	{

@@ -21,6 +21,9 @@
 #include "SniperHiding.h"
 #include "BossGun.h"
 #include "BossCenter.h"
+#include "Bullet.h"
+#include "BulletPoolManager.h"
+#include "BulletPool.h"
 #include <list>
 
 using namespace std;
@@ -50,7 +53,6 @@ private:
 	SniperHiding*		m_snipperHiding;
 	BossGun*			m_bossGun;
 	BossCenter*			m_bossCenter;
-	
 	VirtualObject*		m_VirtualObject;
 
 	list<Object *>		m_listGameObjects;

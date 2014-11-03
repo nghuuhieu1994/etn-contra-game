@@ -124,6 +124,7 @@ enum eObjectID
 	ENEMY_RUN,
 	BOSS_GUN,
 	BOSS_CENTER,
+	BULLET
 };
 
 
@@ -166,6 +167,11 @@ enum eIDSceneGame
 	INTRO = 0,
 	TEST_SPRITE = 1,
 	MENUGAME
+};
+
+enum eIDTypeBullet
+{
+	BULLETRAMBO = 0,
 };
 
 class CGlobal
