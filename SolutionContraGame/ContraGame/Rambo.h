@@ -14,11 +14,17 @@ class Rambo : public DynamicObject
 	bool isJump;
 	bool isLieDown;
 	bool isFall;
-	list<eObjectState> m_stackState;
+	list<Object*> m_objectBelowPrevious;
+	list<Object*> m_objectBelowCurrent;
+	Object*				m_ignoreCollisionObject;
+	RECT	m_RectangleCheckingObjectBelow;
 public:
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	virtual ~Rambo();
+
+	void setRectangleCheckingObjectBelow();
+
 	void HandleInput();
 	RECT getBound();
 	void Initialize();

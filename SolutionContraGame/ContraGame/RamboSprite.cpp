@@ -48,7 +48,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 				m_frameSize		= D3DXVECTOR2(64, 64);
 				m_Leg			= 0;
 				m_Body			= m_Jump;
-				m_Body->UpdateAnimation(100);
+				m_Body->UpdateAnimation(200);
 			}
 			break;
 		case STATE_RAMBO_LIE:
