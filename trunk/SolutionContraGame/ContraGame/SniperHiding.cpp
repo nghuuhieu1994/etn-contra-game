@@ -44,13 +44,13 @@ void SniperHiding::UpdateAnimation()
 		//	m_Sprite->getAnimation()->setIndexStart(0);
 		//	m_Sprite->getAnimation()->setIndexEnd(1);
 		//}
-		this->getSprite()->getAnimation()->setCurrentFrame(0);
+		this->getSprite()->getAnimation()->setCurrentFrame(1);
 		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_SHOOTING:
 		//m_Sprite = sprite_alive_shooting;
 		m_Sprite = sprite_alive_hiding;
-		this->getSprite()->getAnimation()->setCurrentFrame(1);
+		this->getSprite()->getAnimation()->setCurrentFrame(0);
 		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_BEFORE_DEATH:
@@ -74,14 +74,14 @@ void SniperHiding::UpdateAnimation()
 
 void SniperHiding::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+	/*IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
 		switch(checkingObject->getTypeObject())
 		{
 		case ETypeObject::DYNAMIC_OBJECT:
-			switch (checkingObject->getID)
+			switch (checkingObject->getID())
 			{
 			case eObjectID ::BULLET_RAMBO:
 				if(collideDirection == IDDirection::DIR_TOP)
@@ -115,7 +115,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 		default:
 				break;	
 		}
-	}
+	}*/
 }
 
 void SniperHiding:: UpdateMovement()
