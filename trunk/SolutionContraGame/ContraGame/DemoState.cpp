@@ -7,10 +7,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_UnitTest.y = 300;
 	m_UnitTest.z = 0;
 
+
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(400, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -37,6 +38,9 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_bossCenter = new BossCenter(D3DXVECTOR3(600, 50, 1), eDirection::LEFT, eObjectID::BOSS_CENTER);
 	m_bossCenter->Initialize();
+
+	BulletPoolManager::getInstance()->Initialize();
+	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO);
 
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
@@ -116,6 +120,13 @@ void DemoState::Update()
 	{
 		m_Rambo->UpdateCollision(*it);
 	}
+	
+	//BulletPoolManager::getInstance()->Update();
+
+	BulletPoolManager::getInstance()->UpdateMovement();
+	BulletPoolManager::getInstance()->UpdateAnimation();
+
+	//BulletPoolManager::getInstance()->UpdateCollision();
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
@@ -159,8 +170,6 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	{
 		(*it)->Render(_lpDSpriteHandle);
 	}
-	
-
 
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
@@ -168,7 +177,9 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_gunRotating->Render(_lpDSpriteHandle);
 	m_bigGunRotating->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
-	
+
+	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
 	m_bossGun->Render(_lpDSpriteHandle);
@@ -195,4 +206,5 @@ void DemoState::Release()
 		//m_listGameObjects.remove(*it);
 	}
 	m_listGameObjects.clear();
+	BulletPoolManager::getInstance()->Release();
 }

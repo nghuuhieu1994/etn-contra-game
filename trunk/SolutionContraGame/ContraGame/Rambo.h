@@ -1,5 +1,6 @@
 #ifndef __RAMBO_H__
 #define __RAMBO_H__
+
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "RamboSprite.h"

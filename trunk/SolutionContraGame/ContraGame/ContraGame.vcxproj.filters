@@ -118,6 +118,15 @@
     <ClCompile Include="BossCenter.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletPool.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletPoolManager.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -240,6 +249,15 @@
     <ClInclude Include="BossCenter.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletPool.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletPoolManager.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -340,6 +358,9 @@
     </Filter>
     <Filter Include="GameObject\Boss\BossMap1">
       <UniqueIdentifier>{92fcf2da-943b-4458-af8d-a95625214951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Bullet">
+      <UniqueIdentifier>{03e8071e-b2a8-42bd-a111-1aec60a23ece}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
