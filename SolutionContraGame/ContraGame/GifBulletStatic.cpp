@@ -56,16 +56,23 @@ void GifBulletStatic::UpdateAnimation()
 
 void GifBulletStatic::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
-	{
-	case eObjectID::RAMBO:
-		// do something
-		break;
-	case eObjectID::BULLET_RAMBO:
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
-		break;
-	default:
-		break;
+	if(collideDirection != IDDirection::DIR_NONE)
+	{
+		switch(collideDirection)
+		{
+		case IDDirection::DIR_TOP:
+			break;
+		case IDDirection::DIR_BOTTOM:
+			break;
+		case IDDirection::DIR_LEFT:
+			break;
+		case IDDirection::DIR_RIGHT:
+			break;
+		default:
+			break;
+		}
 	}
 }
 

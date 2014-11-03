@@ -160,16 +160,47 @@ void GunRotating::UpdateAnimation()
 
 void GunRotating::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+	if(collideDirection != IDDirection::DIR_NONE)
 	{
-	case eObjectID::RAMBO:
+		switch(checkingObject->getTypeObject())
+		{
+		case ETypeObject::DYNAMIC_OBJECT:
+			switch (checkingObject->getID)
+			{
+			case eObjectID ::BULLET_RAMBO:
+				if(collideDirection == IDDirection::DIR_TOP)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+				else if(collideDirection == IDDirection::DIR_BOTTOM)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
 
-		break;
-	case eObjectID::BULLET_RAMBO:
+				else if(collideDirection == IDDirection::DIR_LEFT)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
 
-		break;
-	default:
-		break;
+				else if(collideDirection == IDDirection::DIR_RIGHT)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+
+		default:
+				break;	
+		}
 	}
 }
 

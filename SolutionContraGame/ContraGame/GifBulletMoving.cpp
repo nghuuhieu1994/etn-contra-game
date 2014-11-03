@@ -26,7 +26,26 @@ void GifBulletMoving::UpdateAnimation()
 
 
 void GifBulletMoving::UpdateCollision(Object* checkingObject)
-{}
+{
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+	if(collideDirection != IDDirection::DIR_NONE)
+	{
+		switch(collideDirection)
+		{
+		case IDDirection::DIR_TOP:
+			break;
+		case IDDirection::DIR_BOTTOM:
+			break;
+		case IDDirection::DIR_LEFT:
+			break;
+		case IDDirection::DIR_RIGHT:
+			break;
+		default:
+			break;
+		}
+	}
+}
 
 void GifBulletMoving::Sin(D3DXVECTOR3& a)
 {
