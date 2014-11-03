@@ -23,52 +23,52 @@ void BigGunRotating::Initialize()
 
 void BigGunRotating::UpdateAnimation()
 {
-	switch (m_ObjectState)
-	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		m_Sprite = sprite_alive;
-		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
-		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
-		
-		if(_distance_X > 300)
-		{
-			this->getSprite()->getAnimation()->setCurrentFrame(0);
-		}
-		else
-		{
-			if(_distance_X < 300 && _distance_X >= 120)
-			{
-				if( _distance_Y == 0 )
-				{
-					this->getSprite()->getAnimation()->setIndexStart(0);
-					this->getSprite()->getAnimation()->setIndexEnd(2);
-				}
-				if( _distance_Y > 0 && _distance_Y < 40)
-				{
-					this->getSprite()->getAnimation()->setIndexStart(3);
-					this->getSprite()->getAnimation()->setIndexEnd(5);
-				}		
-			}
-			else if( _distance_X <= 120)
-			{
-				if( _distance_Y >= 40)
-				{
-					this->getSprite()->getAnimation()->setIndexStart(6);
-					this->getSprite()->getAnimation()->setIndexEnd(8);			
-				}			
-			}
-		}
-		m_Sprite->UpdateAnimation(1000);
-		break;
-	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(120);
-		break;
-	case STATE_DEATH:
-		break;
-	default:
-		break;
-	}	
+	//switch (m_ObjectState)
+	//{
+	//case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
+	//	m_Sprite = sprite_alive;
+	//	_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
+	//	_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
+	//	
+	//	if(_distance_X > 300)
+	//	{
+	//		this->getSprite()->getAnimation()->setCurrentFrame(0);
+	//	}
+	//	else
+	//	{
+	//		if(_distance_X < 300 && _distance_X >= 120)
+	//		{
+	//			if( _distance_Y == 0 )
+	//			{
+	//				this->getSprite()->getAnimation()->setIndexStart(0);
+	//				this->getSprite()->getAnimation()->setIndexEnd(2);
+	//			}
+	//			if( _distance_Y > 0 && _distance_Y < 40)
+	//			{
+	//				this->getSprite()->getAnimation()->setIndexStart(3);
+	//				this->getSprite()->getAnimation()->setIndexEnd(5);
+	//			}		
+	//		}
+	//		else if( _distance_X <= 120)
+	//		{
+	//			if( _distance_Y >= 40)
+	//			{
+	//				this->getSprite()->getAnimation()->setIndexStart(6);
+	//				this->getSprite()->getAnimation()->setIndexEnd(8);			
+	//			}			
+	//		}
+	//	}
+	//	m_Sprite->UpdateAnimation(1000);
+	//	break;
+	//case STATE_BEFORE_DEATH:
+	//	m_Sprite = sprite_dead;
+	//	m_Sprite->UpdateAnimation(120);
+	//	break;
+	//case STATE_DEATH:
+	//	break;
+	//default:
+	//	break;
+	//}	
 }
 
 
@@ -81,7 +81,7 @@ void BigGunRotating::UpdateCollision(Object* checkingObject)
 		switch(checkingObject->getTypeObject())
 		{
 		case ETypeObject::DYNAMIC_OBJECT:
-			switch (checkingObject->getID)
+			switch (checkingObject->getID())
 			{
 			case eObjectID ::BULLET_RAMBO:
 				if(collideDirection == IDDirection::DIR_TOP)

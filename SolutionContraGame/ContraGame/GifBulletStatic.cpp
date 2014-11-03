@@ -56,7 +56,7 @@ void GifBulletStatic::UpdateAnimation()
 
 void GifBulletStatic::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+	/*IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
@@ -73,7 +73,7 @@ void GifBulletStatic::UpdateCollision(Object* checkingObject)
 		default:
 			break;
 		}
-	}
+	}*/
 }
 
 void GifBulletStatic:: UpdateMovement()
