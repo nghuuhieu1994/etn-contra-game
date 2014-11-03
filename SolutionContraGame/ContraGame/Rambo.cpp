@@ -317,7 +317,10 @@ void Rambo::HandleInput()
 void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
-	
+	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+	{
+		m_RamboSprite->shakeYourBodyBitch();
+	}
 	/*char state[100];
 	sprintf(state, "%d\n", m_ObjectState);
 	OutputDebugString(state);*/
