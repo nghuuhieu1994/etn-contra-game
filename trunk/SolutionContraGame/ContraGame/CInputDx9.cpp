@@ -188,6 +188,26 @@ bool CInputDx9::IsKeyUp(int keyCode)
 	return true;
 }
 
+bool CInputDx9::IsLeftUpRightDown()
+{
+	return IsKeyUp(DIK_LEFT) && IsKeyDown(DIK_RIGHT);
+}
+
+bool CInputDx9::IsLeftDownRightUp()
+{
+	return IsKeyDown(DIK_LEFT) && IsKeyUp(DIK_RIGHT);
+}
+
+bool CInputDx9::IsLeftDownRightDown()
+{
+	return IsKeyDown(DIK_LEFT) && IsKeyDown(DIK_RIGHT);
+}
+
+bool CInputDx9::IsLeftUpRightUp()
+{
+	return IsKeyUp(DIK_LEFT) && IsKeyUp(DIK_RIGHT);
+}
+
 bool CInputDx9::IsKeyPress(int keyCode)
 {
 	if(
@@ -202,14 +222,14 @@ bool CInputDx9::IsKeyPress(int keyCode)
 
 bool CInputDx9::IsKeyRelease(int keyCode)
 {
-	/*if(
+	if(
 		!(m_currentBuffer[keyCode] & 0x00000080) &&
 		(m_previousBuffer[keyCode]	& 0x00000080))
 	{
 		return true;
 	}
-	return false;*/
-	return !m_PressKey[keyCode];
+	return false;
+	/*return !m_PressKey[keyCode];*/
 }
 
 void CInputDx9::UpdateMouse()

@@ -1,7 +1,7 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-#include "DynamicObject.h";
+#include "DynamicObject.h"
 
 class Bullet : public DynamicObject
 {
