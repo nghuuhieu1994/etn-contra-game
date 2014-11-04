@@ -83,7 +83,7 @@ void DemoState::ReadMap(const char* _filePath)
 			{
 				_GameObject->DeserializeVirtualObject(xml.GetSubDoc().c_str());
 				//temp = new Tile(D3DXVECTOR3(_GameObject->_X, _GameObject->_Y, 0), _GameObject->_ID, eSpriteID::SPRITE_MAP_1);
-				temp = new VirtualObject(D3DXVECTOR3((float)(_GameObject->_X), (float)(_GameObject->_Y), 1), _GameObject->m_Width, _GameObject->m_Height);
+				temp = new VirtualObject(D3DXVECTOR3((float)(_GameObject->_X), (float)(_GameObject->_Y), 1), _GameObject->m_Width, _GameObject->m_Height, (eObjectID)_GameObject->_ID);
 				m_listGameObjects.push_back(temp); 
 			}
 			break;

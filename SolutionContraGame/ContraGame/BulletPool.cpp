@@ -22,7 +22,7 @@ void BulletPool::Initialize()
 	std::queue<Bullet*> queueOfRambo;
 	for(int i = 0; i < BULLETOFRAMBO; ++i)
 	{
-		Bullet* tempBullet = new Bullet(D3DXVECTOR3(400.0f, 400.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
+		Bullet* tempBullet = new Bullet(D3DXVECTOR3(400.0f, 300.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
 		tempBullet->Initialize();
 		queueOfRambo.push(tempBullet);
 	}

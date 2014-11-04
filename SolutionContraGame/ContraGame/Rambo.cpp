@@ -366,16 +366,12 @@ void Rambo::HandleInput()
 
 void Rambo::UpdateAnimation()
 {
-	if (m_Position.y < 50)
-	{
-		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
-	}
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		m_RamboSprite->shakeBody();
 	}
-	if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP)
+	if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM)
 	{
 		isFall = true; 
 	}
@@ -410,83 +406,102 @@ void Rambo::UpdateCollision(Object* checkingObject)
 		{
 		case ETypeObject::VIRTUAL_OBJECT://nếu là viên gạch
 			{
-				if(collideDirection == IDDirection::DIR_TOP && checkingObject != m_ignoreCollisionObject)//nếu là va chạm trên đầu của viên gạch
-					// && this->m_Position.y - checkingObject->getPositionVec2().y > 35 && m_Physic->getVelocity().y < 0)
+				switch (checkingObject->getID())
 				{
-					//LOGIC CỦA VA CHẠM TRÊN ĐẦU VIÊN GẠCH SẼ CODE TRONG NÀY
-					//------------------------------------------------------
-//					this->m_Position.y += this->m_Collision->m_MoveY;
-					//collideDirection = IDDirection::DIR_TOP;
-					//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
-//					m_Physic->setVelocityY(0.0f);
-					
-					if (m_ObjectState == STATE_RAMBO_JUMP)
+				case eObjectID::TILE_BASE:
+								#pragma region TILE_BASE
 					{
-						if (m_Physic->getVelocity().y < 0 && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
-						{							
-							m_ObjectState = STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							m_maxPositionY = 0;
-						}
-						//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
-						//m_RamboSprite->SetIsJump(false);
+						if(collideDirection == IDDirection::DIR_TOP && checkingObject != m_ignoreCollisionObject)//nếu là va chạm trên đầu của viên gạch
+							// && this->m_Position.y - checkingObject->getPositionVec2().y > 35 && m_Physic->getVelocity().y < 0)
+						{
+							//LOGIC CỦA VA CHẠM TRÊN ĐẦU VIÊN GẠCH SẼ CODE TRONG NÀY
+							//------------------------------------------------------
+							//					this->m_Position.y += this->m_Collision->m_MoveY;
+							//collideDirection = IDDirection::DIR_TOP;
+							//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
+							//					m_Physic->setVelocityY(0.0f);
 
-					}
-					else
-					{
-						if (m_ObjectState == STATE_RAMBO_FALL)
-						{
-							m_ObjectState = STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-						}
-						else
-						{
-							if(m_ObjectState == STATE_RAMBO_LIE)
+							if (m_ObjectState == STATE_RAMBO_JUMP)
 							{
-								this->m_Position.y += this->m_Collision->m_MoveY;
-								m_Physic->setVelocityY(0.0f);
-								if (CInputDx9::getInstance()->IsKeyDown(DIK_X) && m_objectBelowPrevious.size() > 1)
-								{
-									m_ignoreCollisionObject = checkingObject;
-									m_ObjectState = STATE_RAMBO_FALL;
+								if (m_Physic->getVelocity().y < 0 && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
+								{							
+									m_ObjectState = STATE_RAMBO_IDLE;
+									this->m_Position.y += this->m_Collision->m_MoveY;
+									m_Physic->setVelocityY(0.0f);
+									m_maxPositionY = 0;
 								}
+								//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
+								//m_RamboSprite->SetIsJump(false);
+
 							}
 							else
 							{
-								this->m_Position.y += this->m_Collision->m_MoveY;
-								m_Physic->setVelocityY(0.0f);
+								if (m_ObjectState == STATE_RAMBO_FALL)
+								{
+									m_ObjectState = STATE_RAMBO_IDLE;
+									this->m_Position.y += this->m_Collision->m_MoveY;
+									m_Physic->setVelocityY(0.0f);
+								}
+								else
+								{
+									if(m_ObjectState == STATE_RAMBO_LIE)
+									{
+										this->m_Position.y += this->m_Collision->m_MoveY;
+										m_Physic->setVelocityY(0.0f);
+										if (CInputDx9::getInstance()->IsKeyDown(DIK_X) && m_objectBelowPrevious.size() > 1)
+										{
+											m_ignoreCollisionObject = checkingObject;
+											m_ObjectState = STATE_RAMBO_FALL;
+										}
+									}
+									else
+									{
+										this->m_Position.y += this->m_Collision->m_MoveY;
+										m_Physic->setVelocityY(0.0f);
+									}
+								}
 							}
+							isFall = false;
+							//------------------------------------------------------
+							break;
+						}
+						else if(collideDirection == IDDirection::DIR_BOTTOM)//nếu va chạm dưới đáy viên gạch
+						{
+							//collideDirection = IDDirection::DIR_BOTTOM;
+							if (m_ignoreCollisionObject == checkingObject)
+							{
+								m_ignoreCollisionObject = 0;
+							}
+							break;
+						}
+
+						else if(collideDirection == IDDirection::DIR_LEFT)//nếu va chạm bên trái viên gạch
+						{
+							//collideDirection = IDDirection::DIR_LEFT;
+							break;
+						}
+
+						else if(collideDirection == IDDirection::DIR_RIGHT)//nếu va chạm bên phải viên gạch
+						{
+							//collideDirection = IDDirection::DIR_RIGHT;
+							break;
+						}
+
+						break;
+					}  
+#pragma endregion
+				case eObjectID::VIRTUAL_OBJECT_WATER:
+					{
+						if (collideDirection == IDDirection::DIR_TOP)
+						{
+							m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+							isFall = false;
+							this->m_Position.y += this->m_Collision->m_MoveY;
 						}
 					}
-					isFall = false;
-					//------------------------------------------------------
+				default:
 					break;
 				}
-				else if(collideDirection == IDDirection::DIR_BOTTOM)//nếu va chạm dưới đáy viên gạch
-				{
-					//collideDirection = IDDirection::DIR_BOTTOM;
-					if (m_ignoreCollisionObject == checkingObject)
-					{
-						m_ignoreCollisionObject = 0;
-					}
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_LEFT)//nếu va chạm bên trái viên gạch
-				{
-					//collideDirection = IDDirection::DIR_LEFT;
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_RIGHT)//nếu va chạm bên phải viên gạch
-				{
-					//collideDirection = IDDirection::DIR_RIGHT;
-					break;
-				}
-				
-				break;
 			}
 
 		default:

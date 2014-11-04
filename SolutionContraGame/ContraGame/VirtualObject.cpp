@@ -24,13 +24,14 @@ VirtualObject::VirtualObject(D3DXVECTOR3 _position, eDirection _direction, eObje
 
 }
 
-VirtualObject::VirtualObject(D3DXVECTOR3 _position, int _width, int _height)
+VirtualObject::VirtualObject(D3DXVECTOR3 _position, int _width, int _height, eObjectID _ObjectID)
 {
-	m_TypeObject = ETypeObject::VIRTUAL_OBJECT;
-	m_Position = _position;
-	m_Width = _width;
-	m_Height = _height;
-	m_Sprite = 0;
+	m_TypeObject	=	ETypeObject::VIRTUAL_OBJECT;
+	m_Position		=	_position;
+	m_Width			=	_width;
+	m_Height		=	_height;
+	m_Sprite		=	0;
+	m_eObjectID		=	_ObjectID;
 }
 
 void VirtualObject::Initialize()
