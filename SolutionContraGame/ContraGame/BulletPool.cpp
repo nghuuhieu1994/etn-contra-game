@@ -65,7 +65,7 @@ void BulletPool::addBulleToBulletPool(Bullet* _object)
 
 void BulletPool::releaseBulletPool()
 {
-	for(int i = 0; i < m_BulletPool.size(); ++i)
+	for(int i = 0; i < (int)m_BulletPool.size(); ++i)
 	{
 		while(m_BulletPool[i].empty() == false)
 		{

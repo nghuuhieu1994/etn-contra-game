@@ -53,6 +53,14 @@ public:
 
 	bool					IsMouseRightDown();
 
+	bool					IsLeftUpRightDown();
+
+	bool					IsLeftDownRightUp();
+
+	bool					IsLeftDownRightDown();
+
+	bool					IsLeftUpRightUp();
+
 	bool					IsMouseLeftDown();
 
 	bool					IsMouseRightPress();

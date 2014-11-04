@@ -5,7 +5,7 @@
 class RamboSprite
 {
 	int m_inversePositionY;
-	float timeAnimation;
+	float m_timeShakeAnimation;
 
 	bool	m_isJump;
 	bool	m_isLieDown;
@@ -28,6 +28,9 @@ class RamboSprite
 	D3DXVECTOR3 m_tempPositionBody;
 	D3DXVECTOR3 m_tempPositionLeg;
 	D3DXVECTOR2 m_frameSize;
+
+	eObjectState m_previousState;
+
 	bool		m_isShake;
 public:
 	RamboSprite(void);
@@ -39,7 +42,7 @@ public:
 	void resetInverseVariable();
 	void SetIsJump(bool _jump) { m_isJump = _jump; }
 	D3DXVECTOR2 GetFrameSize() { return m_frameSize; }
-	void shakeYourBodyBitch();
+	void shakeBody();
 	void Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep);
 	virtual ~RamboSprite(void);
 };
