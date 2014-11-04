@@ -89,6 +89,12 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\jump.png", eSpriteID::SPRITE_RAMBO_JUMP, 4, 1, 4);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\water_bomb.png", eSpriteID::SPRITE_RAMBO_WATER_BOMB, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\climb.png", eSpriteID::SPRITE_RAMBO_CLIMB, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\dive.png", eSpriteID::SPRITE_RAMBO_DIVE, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\swim.png", eSpriteID::SPRITE_RAMBO_SWIM, 1, 1, 1);
+
 }
 
 void SpriteManager::Release()
