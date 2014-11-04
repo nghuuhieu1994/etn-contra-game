@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	VirtualObject(D3DXVECTOR3 _position, int _width, int _height);
+	VirtualObject(D3DXVECTOR3 _position, int _width, int _height, eObjectID _ObjectID);
 	~VirtualObject(void);
 };
 

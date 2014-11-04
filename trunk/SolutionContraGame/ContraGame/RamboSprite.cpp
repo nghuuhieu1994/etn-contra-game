@@ -241,7 +241,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
 					
-					m_frameSize		= D3DXVECTOR2(64, 64);
+					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= 0;
 					m_Body			= m_Swim;
 					m_inversePositionY = -1;
