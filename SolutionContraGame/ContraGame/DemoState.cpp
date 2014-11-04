@@ -199,12 +199,15 @@ void DemoState::Resume()
 
 void DemoState::Release()
 {
-	for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end(); it++)
+	//for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end();)
+	std::list<Object*>::iterator it;
+	while((int)m_listGameObjects.size() > 0)
 	{
+		it = m_listGameObjects.begin();
 		(*it)->Release();
 		delete (*it);
-		//m_listGameObjects.remove(*it);
+		m_listGameObjects.remove(*it);
 	}
-	m_listGameObjects.clear();
+	//m_listGameObjects.clear();
 	BulletPoolManager::getInstance()->Release();
 }

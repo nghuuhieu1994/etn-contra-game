@@ -248,7 +248,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_timeShakeAnimation = 0;
 				}
 
-				shakeBody();
+				shakeBodySwim();
 			}
 			break;
 		case STATE_RAMBO_CLIMB:
@@ -288,6 +288,18 @@ void RamboSprite::shakeBody()
 	}
 }
 
+void RamboSprite::shakeBodySwim()
+{
+	this->m_timeShakeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if(this->m_timeShakeAnimation > 500)
+	{
+		m_PositionBody.y += 2 * m_inversePositionY;
+		
+		m_inversePositionY *= -1;
+		m_timeShakeAnimation = 0;
+	}
+}
+
 void RamboSprite::Reset()
 {
 	if (m_Body != 0)
@@ -304,7 +316,7 @@ void RamboSprite::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESprit
 {
 	if (m_Leg != 0)
 	{
-		m_Leg->Render(spriteHandle, D3DXVECTOR2(position.x, position.y + m_PositionLeg.y), effect, rotateAngle, scale, deep); 
+		m_Leg->Render(spriteHandle, D3DXVECTOR2(position.x, position.y + m_PositionLeg.y), effect, rotateAngle, scale, deep, D3DXCOLOR(255, 255, 255, 255)); 
 	}
 
 	if (m_Body != 0)

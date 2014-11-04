@@ -366,6 +366,10 @@ void Rambo::HandleInput()
 
 void Rambo::UpdateAnimation()
 {
+	if (m_Position.y < 50)
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+	}
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
@@ -496,6 +500,10 @@ void Rambo::UpdateMovement()
 	if (m_ObjectState == eObjectState::STATE_RAMBO_LIE || m_ObjectState == eObjectState::STATE_RAMBO_FALL)
 	{
 		m_Physic->setVelocityX(0.0f);
+	}
+	if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT || m_ObjectState == eObjectState::STATE_RAMBO_CLIMB)
+	{
+		m_Physic->setVelocityY(0.0f);
 	}
 
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f);

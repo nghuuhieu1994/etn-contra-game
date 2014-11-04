@@ -5,6 +5,7 @@
 
 class Tile : public Object
 {
+	char m_ID;
 public:
 	Tile(void);
 	Tile(D3DXVECTOR3 _position, int _ID, eSpriteID tileMapID);
