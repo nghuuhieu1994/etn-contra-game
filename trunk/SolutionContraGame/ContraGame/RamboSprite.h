@@ -19,6 +19,11 @@ class RamboSprite
 	CSpriteDx9* m_Shoot;
 	CSpriteDx9* m_Jump;
 	CSpriteDx9* m_Lie;
+	CSpriteDx9* m_Swim;
+	CSpriteDx9* m_Dive;
+	CSpriteDx9* m_WaterBomb;
+	CSpriteDx9* m_Climb;
+
 	CSpriteDx9* m_moveLeg;
 
 	CSpriteDx9* m_Body;

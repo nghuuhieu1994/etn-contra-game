@@ -1,5 +1,5 @@
 ﻿#include "Rambo.h"
-#define VELOCITY_Y_JUMP 5.0f
+#define VELOCITY_Y_JUMP 4.8f
 Rambo::Rambo()
 {
 
@@ -411,13 +411,20 @@ void Rambo::UpdateCollision(Object* checkingObject)
 				{
 					//LOGIC CỦA VA CHẠM TRÊN ĐẦU VIÊN GẠCH SẼ CODE TRONG NÀY
 					//------------------------------------------------------
-					this->m_Position.y += this->m_Collision->m_MoveY;
+//					this->m_Position.y += this->m_Collision->m_MoveY;
 					//collideDirection = IDDirection::DIR_TOP;
 					//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
-					m_Physic->setVelocityY(0.0f);
-					if(m_ObjectState == STATE_RAMBO_JUMP)
+//					m_Physic->setVelocityY(0.0f);
+					
+					if (m_ObjectState == STATE_RAMBO_JUMP)
 					{
-						m_ObjectState = STATE_RAMBO_IDLE;
+						if (m_Physic->getVelocity().y < 0 && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
+						{							
+							m_ObjectState = STATE_RAMBO_IDLE;
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							m_Physic->setVelocityY(0.0f);
+							m_maxPositionY = 0;
+						}
 						//this->m_Physic->setVelocity(D3DXVECTOR2(this->m_Physic->getVelocity().x, 0));
 						//m_RamboSprite->SetIsJump(false);
 
@@ -427,16 +434,25 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						if (m_ObjectState == STATE_RAMBO_FALL)
 						{
 							m_ObjectState = STATE_RAMBO_IDLE;
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							m_Physic->setVelocityY(0.0f);
 						}
 						else
 						{
 							if(m_ObjectState == STATE_RAMBO_LIE)
 							{
+								this->m_Position.y += this->m_Collision->m_MoveY;
+								m_Physic->setVelocityY(0.0f);
 								if (CInputDx9::getInstance()->IsKeyDown(DIK_X) && m_objectBelowPrevious.size() > 1)
 								{
 									m_ignoreCollisionObject = checkingObject;
 									m_ObjectState = STATE_RAMBO_FALL;
 								}
+							}
+							else
+							{
+								this->m_Position.y += this->m_Collision->m_MoveY;
+								m_Physic->setVelocityY(0.0f);
 							}
 						}
 					}
@@ -484,6 +500,13 @@ void Rambo::UpdateMovement()
 
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f);
 	this->m_Physic->UpdateMovement(&m_Position);
+	if (m_ObjectState == STATE_RAMBO_JUMP)
+	{
+		if (m_maxPositionY < m_Position.y)
+		{
+			m_maxPositionY = m_Position.y;
+		}
+	}
 	CGlobal::Rambo_X = (int)(getPositionVec2().x);
 	CGlobal::Rambo_Y = (int)(getPositionVec2().y);
 	m_objectBelowCurrent.clear();

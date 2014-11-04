@@ -18,6 +18,7 @@ class Rambo : public DynamicObject
 	list<Object*> m_objectBelowCurrent;
 	Object*				m_ignoreCollisionObject;
 	RECT	m_RectangleCheckingObjectBelow;
+	float m_maxPositionY;
 public:
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
