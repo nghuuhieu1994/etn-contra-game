@@ -5,7 +5,7 @@
         Background="Gray" ResizeMode="NoResize">
     <Grid>
 
-        <ScrollViewer Canvas.Left="354" Canvas.Top="338" Margin="185,100,36,22" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer Name="ScrollCanvas" Canvas.Left="354" Canvas.Top="338" Margin="185,100,36,22" HorizontalScrollBarVisibility="Auto">
             <Canvas Background="Black" Name="WorkspaceWorking" HorizontalAlignment="Left" Height="448" Width="886" VerticalAlignment="Top" MouseLeftButtonDown="down_to_define_start_position"
                   MouseMove="move_to_update_position">
                 

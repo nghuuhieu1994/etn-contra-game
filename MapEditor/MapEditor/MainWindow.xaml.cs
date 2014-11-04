@@ -341,9 +341,17 @@ namespace MapEditor
 
                 endPosition = m.GetPosition(WorkspaceWorking);
 
+                #region Scroll SrollViewer of Canvas
+                if (endPosition.X > 800 + ScrollCanvas.HorizontalOffset)
+                {
+                    ScrollCanvas.ScrollToHorizontalOffset(ScrollCanvas.HorizontalOffset + 1);
+                    ScrollCanvas.UpdateLayout();
+                } 
+                #endregion
+
                 endPosition.X = ((int)endPosition.X / Support.WIDHT_OF_VIRTUALOBJECT) * Support.WIDHT_OF_VIRTUALOBJECT;
                 endPosition.Y = ((int)endPosition.Y / Support.HEIGHT_OF_VIRTUALOBJECT) * Support.HEIGHT_OF_VIRTUALOBJECT;
-
+                
                 if ((int)endPosition.X % Support.WIDHT_OF_VIRTUALOBJECT > 0 || (endPosition.X - startPosition.X) / Support.WIDHT_OF_VIRTUALOBJECT < 1)
                 {
                     endPosition.X += Support.WIDHT_OF_VIRTUALOBJECT;
