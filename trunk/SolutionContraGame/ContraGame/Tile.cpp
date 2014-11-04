@@ -11,6 +11,7 @@ Tile::Tile(D3DXVECTOR3 _position, int ID, eSpriteID tileMapID)
 	m_Position = _position;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(tileMapID));
 	m_Sprite->getAnimation()->setSourceRectAtIndex(ID);
+	m_ID = ID;
 	/*RECT temp = *m_Sprite->getAnimation()->getSourceRect();
 	temp.right = temp.right - 1;
 	m_Sprite->getAnimation()->setSourceRect(temp);*/
