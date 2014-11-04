@@ -160,15 +160,12 @@ void GunRotating::UpdateAnimation()
 
 void GunRotating::UpdateCollision(Object* checkingObject)
 {
-	/*IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
-		switch(checkingObject->getTypeObject())
+		switch (checkingObject->getID())
 		{
-		case ETypeObject::DYNAMIC_OBJECT:
-			switch (checkingObject->getID())
-			{
 			case eObjectID ::BULLET_RAMBO:
 				if(collideDirection == IDDirection::DIR_TOP)
 				{
@@ -196,12 +193,9 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 
 			default:
 				break;
-			}
-
-		default:
-				break;	
 		}
-	}*/
+
+	}
 }
 
 void GunRotating:: UpdateMovement()

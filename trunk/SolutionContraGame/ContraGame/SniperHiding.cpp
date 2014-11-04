@@ -17,7 +17,7 @@ void SniperHiding::Initialize()
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING));
 	//sprite_alive_shooting = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_SHOOTING));
-	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
+	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION));
 	//m_Sprite = sprite_alive_shooting;
 }
 
@@ -74,15 +74,12 @@ void SniperHiding::UpdateAnimation()
 
 void SniperHiding::UpdateCollision(Object* checkingObject)
 {
-	/*IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
-		switch(checkingObject->getTypeObject())
+		switch (checkingObject->getID())
 		{
-		case ETypeObject::DYNAMIC_OBJECT:
-			switch (checkingObject->getID())
-			{
 			case eObjectID ::BULLET_RAMBO:
 				if(collideDirection == IDDirection::DIR_TOP)
 				{
@@ -110,12 +107,9 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 
 			default:
 				break;
-			}
-
-		default:
-				break;	
 		}
-	}*/
+
+	}
 }
 
 void SniperHiding:: UpdateMovement()
