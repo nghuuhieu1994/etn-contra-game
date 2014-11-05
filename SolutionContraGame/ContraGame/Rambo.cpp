@@ -20,7 +20,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	isJump = false;
 	isFall = false;
 	isLieDown = false;
-
+	m_timeClimb = 0;
 }
 
 RECT Rambo::getBound()
@@ -344,12 +344,45 @@ void Rambo::HandleInput()
 				
 			}
 			break;
+		case STATE_RAMBO_WATER_BOMB:
+			{
+
+			}
+			break;
+		case STATE_RAMBO_DIVE:
+			{
+
+			}
+			break;
+		case STATE_RAMBO_SWIM:
+			{
+			}
+			break;
+		case STATE_RAMBO_CLIMB:
+			{
+				m_timeClimb += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if (m_timeClimb > 200)
+				{
+					m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+					m_Position.y = m_Position.y + 20;
+				}
+			}
+			break;
+		case STATE_RAMBO_SWIM_SHOOT:
+			{
+
+			}
+			break;
 		default:
 			break;
 	}
 	if(isFall)
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
+	}
+	if(m_ObjectState != eObjectState::STATE_RAMBO_CLIMB)
+	{
+		m_timeClimb = 0;
 	}
 	if(CInputDx9::getInstance()->IsLeftUpRightDown())
 	{
@@ -371,21 +404,21 @@ void Rambo::UpdateAnimation()
 	{
 		m_RamboSprite->shakeBody();
 	}
-	if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM)
+	if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB)
 	{
 		isFall = true; 
 	}
-	/*char state[100];
-	sprintf(state, "%d\n", m_ObjectState);
-	OutputDebugString(state);*/
+	char temp[100];
+	sprintf(temp, "%d \n", m_objectBelowCurrent.size());
+	OutputDebugString(temp);
 }
 
 void Rambo::setRectangleCheckingObjectBelow()
 {
-	m_RectangleCheckingObjectBelow.left = (long)(int)(m_Position.x - 10);
+	m_RectangleCheckingObjectBelow.left = (long)(int)(m_Position.x);
 	m_RectangleCheckingObjectBelow.top = (long)(int)(m_Position.y - 17);
 	
-	m_RectangleCheckingObjectBelow.right = (long)(int)(m_Position.x + 10);
+	m_RectangleCheckingObjectBelow.right = (long)(int)(m_Position.x + 1);
 	m_RectangleCheckingObjectBelow.bottom = (long)(int)(0);
 }
 
@@ -456,8 +489,26 @@ void Rambo::UpdateCollision(Object* checkingObject)
 									}
 									else
 									{
-										this->m_Position.y += this->m_Collision->m_MoveY;
-										m_Physic->setVelocityY(0.0f);
+										if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
+										{
+											if ((m_Position.x >= checkingObject->getBound().left && m_Physic->getVelocity().x > 0) ||
+												(m_Position.x <= checkingObject->getBound().right && m_Physic->getVelocity().x < 0))
+											{
+												m_ObjectState = eObjectState::STATE_RAMBO_CLIMB; 
+											}
+										}
+										else
+										{
+											if(m_ObjectState == eObjectState::STATE_RAMBO_CLIMB)
+											{
+												m_Physic->setVelocityX(0.0f);
+											}
+											else
+											{
+												this->m_Position.y += this->m_Collision->m_MoveY;
+												m_Physic->setVelocityY(0.0f);
+											}
+										}
 									}
 								}
 							}
@@ -478,12 +529,20 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						else if(collideDirection == IDDirection::DIR_LEFT)//nếu va chạm bên trái viên gạch
 						{
 							//collideDirection = IDDirection::DIR_LEFT;
+							if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
+							{
+								m_Position.x += 1;
+							}
 							break;
 						}
 
 						else if(collideDirection == IDDirection::DIR_RIGHT)//nếu va chạm bên phải viên gạch
 						{
 							//collideDirection = IDDirection::DIR_RIGHT;
+							if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
+							{
+								m_Position.x -= 1;
+							}
 							break;
 						}
 
@@ -492,7 +551,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 #pragma endregion
 				case eObjectID::VIRTUAL_OBJECT_WATER:
 					{
-						if (collideDirection == IDDirection::DIR_TOP)
+						if (collideDirection == IDDirection::DIR_TOP && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB)
 						{
 							m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
 							isFall = false;
@@ -512,7 +571,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 void Rambo::UpdateMovement()
 {
-	if (m_ObjectState == eObjectState::STATE_RAMBO_LIE || m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+	if (m_ObjectState == eObjectState::STATE_RAMBO_LIE || m_ObjectState == eObjectState::STATE_RAMBO_FALL || m_ObjectState == eObjectState::STATE_RAMBO_CLIMB)
 	{
 		m_Physic->setVelocityX(0.0f);
 	}
@@ -522,7 +581,9 @@ void Rambo::UpdateMovement()
 	}
 
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f);
+	
 	this->m_Physic->UpdateMovement(&m_Position);
+	
 	if (m_ObjectState == STATE_RAMBO_JUMP)
 	{
 		if (m_maxPositionY < m_Position.y)
