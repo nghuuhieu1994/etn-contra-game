@@ -253,7 +253,16 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			break;
 		case STATE_RAMBO_CLIMB:
 			{
-
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
+					
+					m_frameSize		= D3DXVECTOR2(20, 20);
+					m_Leg			= 0;
+					m_Body			= m_Climb;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
 			}
 			break;
 		case STATE_SHOOTING:
