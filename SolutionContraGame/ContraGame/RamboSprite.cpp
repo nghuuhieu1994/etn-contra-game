@@ -73,7 +73,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_inversePositionY = -1;
 					m_timeShakeAnimation = 0;
 				}
-				m_Body->UpdateAnimation(200);
+				m_Body->UpdateAnimation(150);
 			}
 			break;
 		case STATE_RAMBO_LIE:
@@ -222,7 +222,15 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			break;
 		case STATE_RAMBO_WATER_BOMB:
 			{
-
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, -8, 0);
+					m_frameSize		= D3DXVECTOR2(32, 32);
+					m_Leg			= 0;
+					m_Body			= m_WaterBomb;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
 			}
 			break;
 		case STATE_RAMBO_DIVE:

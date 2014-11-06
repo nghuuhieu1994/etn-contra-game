@@ -188,25 +188,46 @@ bool CInputDx9::IsKeyUp(int keyCode)
 	return true;
 }
 
-bool CInputDx9::IsLeftUpRightDown()
+bool CInputDx9::IsKeyLeftUpAndKeyRightDown()
 {
 	return IsKeyUp(DIK_LEFT) && IsKeyDown(DIK_RIGHT);
 }
 
-bool CInputDx9::IsLeftDownRightUp()
+bool CInputDx9::IsKeyLeftDownAndKeyRightUp()
 {
 	return IsKeyDown(DIK_LEFT) && IsKeyUp(DIK_RIGHT);
 }
 
-bool CInputDx9::IsLeftDownRightDown()
+bool CInputDx9::IsKeyLeftDownAndKeyRightDown()
 {
 	return IsKeyDown(DIK_LEFT) && IsKeyDown(DIK_RIGHT);
 }
 
-bool CInputDx9::IsLeftUpRightUp()
+bool CInputDx9::IsKeyLeftUpAndKeyRightUp()
 {
 	return IsKeyUp(DIK_LEFT) && IsKeyUp(DIK_RIGHT);
 }
+
+bool CInputDx9::IsKeyUpUpAndKeyDownUp()
+{
+	return IsKeyUp(DIK_UP) && IsKeyUp(DIK_DOWN);
+}
+
+bool CInputDx9::IsKeyUpDownAndKeyDownDown()
+{
+	return IsKeyDown(DIK_UP) && IsKeyDown(DIK_DOWN);
+}
+
+bool CInputDx9::IsKeyUpDownAndKeyDownUp()
+{
+	return IsKeyDown(DIK_UP) && IsKeyUp(DIK_DOWN);
+}
+
+bool CInputDx9::IsKeyUpUpAndKeyDownDown()
+{
+	return IsKeyUp(DIK_UP) && IsKeyDown(DIK_DOWN);
+}
+
 
 bool CInputDx9::IsKeyPress(int keyCode)
 {

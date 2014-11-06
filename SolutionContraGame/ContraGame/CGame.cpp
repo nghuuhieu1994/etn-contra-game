@@ -180,6 +180,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	CInputDx9::getInstance()->InitializeMouseDevice(m_handleWindow);
 	CInputDx9::getInstance()->InitializeKeyBoardDevice(m_handleWindow);
 	SpriteManager::getInstance()->InitializeListSprite(m_lpDirect3DDevice);
+	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
 	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::INTRO));
 	return true;
