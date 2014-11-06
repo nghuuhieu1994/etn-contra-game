@@ -10,28 +10,41 @@ using namespace std;
 
 class Rambo : public DynamicObject
 {
-	RamboSprite* m_RamboSprite;
+private:
+	bool isFall;
 	bool isJump;
 	bool isLieDown;
-	bool isFall;
-	list<Object*> m_objectBelowPrevious;
-	list<Object*> m_objectBelowCurrent;
-	Object*				m_ignoreCollisionObject;
-	RECT	m_RectangleCheckingObjectBelow;
 	float m_maxPositionY;
 	float m_timeClimb;
+	float m_timeWaterBomb;
+	list<Object*> m_objectBelowCurrent;
+	list<Object*> m_objectBelowPrevious;
+	Object*				m_ignoreCollisionObject;
+	RamboSprite* m_RamboSprite;
+	RECT	m_RectangleCheckingObjectBelow;
+
+	int HandleInputAimBottomRightState();
+	int HandleInputAimTopRightState();
+	int HandleInputAimUpState();
+	int HandleInputClimbState();
+	int HandleInputIdleState();
+	int HandleInputJumpState();
+	int HandleInputLieState();
+	int HandleInputRunState();
+	int HandleInputShootRunState();
+	int HandleInputSwimState();
+	int HandleInputWaterBombState();
 public:
+	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
-	virtual ~Rambo();
-
-	void setRectangleCheckingObjectBelow();
-
-	void HandleInput();
 	RECT getBound();
+	virtual ~Rambo();
+	void HandleInput();
 	void Initialize();
 	void Release();
 	void Render(SPRITEHANDLE spriteHandle);
+	void setRectangleCheckingObjectBelow();
 	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
