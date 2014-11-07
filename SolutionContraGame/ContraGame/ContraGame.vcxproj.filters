@@ -258,6 +258,45 @@
     <ClInclude Include="BulletPoolManager.h">
       <Filter>GameObject\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="FrameworkDefineMacro.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ESoundID.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ESpriteID.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ESpriteEffect.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EObjectState.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EDirection.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EObjectID.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EDirectAttack.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="IDDirection.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ETypeObject.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EIDSceneGame.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="EIDTypeBullet.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />

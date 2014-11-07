@@ -1,7 +1,7 @@
 ﻿#include "Rambo.h"
 #define VELOCITY_Y_JUMP 4.8f
-#define VELOCITY_X_MOVE_TO_RIGHT	1.2f
-#define VELOCITY_Y_MOVE_TO_LEFT		-1.2f
+#define VELOCITY_X_MOVE_TO_RIGHT	1.1f
+#define VELOCITY_Y_MOVE_TO_LEFT		-1.1f
 
 Rambo::Rambo()
 {
@@ -178,18 +178,19 @@ int Rambo::HandleInputSwimState()
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
-		
+		return 0;
 	}
 	else
 	{
 		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 		{
 			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
-			
+			return 0;
 		}
 		else
 		{
 			m_Physic->setVelocityX(0.0f);
+			return 0;
 		}
 	}
 	return 1;

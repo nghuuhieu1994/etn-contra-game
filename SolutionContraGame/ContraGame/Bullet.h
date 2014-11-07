@@ -2,6 +2,7 @@
 #define __BULLET_H__
 
 #include "DynamicObject.h"
+#include "EIDTypeBullet.h"
 
 class Bullet : public DynamicObject
 {

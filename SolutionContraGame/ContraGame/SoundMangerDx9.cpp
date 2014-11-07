@@ -1,7 +1,8 @@
 #include "SoundMangerDx9.h"
-#include "CGlobal.h"
 
 SoundManagerDx9* SoundManagerDx9::s_Instace = 0;
+bool CSoundSwitch::IsExit = false;
+bool CSoundSwitch::IsMute = false;
 
 SoundManagerDx9* SoundManagerDx9::getInstance()
 {
@@ -52,7 +53,7 @@ void SoundManagerDx9::SetVolume(long volume)
 }
 void SoundManagerDx9::SetMute(bool isMute)
 {
-	CGlobal::IsMute = isMute;
+	CSoundSwitch::IsMute = isMute;
 	map<eSoundID, SoundBuffer*>::iterator i;
 	if(isMute)
 	{

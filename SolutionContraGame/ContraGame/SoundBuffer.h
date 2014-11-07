@@ -6,6 +6,7 @@
 #include <d3d9.h>
 #include <string>
 #include <string.h>
+#include "FrameworkDefineMacro.h"
 using namespace std;
 
 class SoundBuffer

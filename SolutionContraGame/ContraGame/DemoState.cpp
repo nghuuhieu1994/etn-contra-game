@@ -12,6 +12,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
 	m_Rambo = new Rambo(D3DXVECTOR3(400, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
+#ifdef AAA
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -38,6 +39,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_bossCenter = new BossCenter(D3DXVECTOR3(600, 50, 1), eDirection::LEFT, eObjectID::BOSS_CENTER);
 	m_bossCenter->Initialize();
+#endif
 
 	BulletPoolManager::getInstance()->Initialize();
 	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO);
@@ -128,7 +130,7 @@ void DemoState::Update()
 	BulletPoolManager::getInstance()->UpdateAnimation();
 
 	//BulletPoolManager::getInstance()->UpdateCollision();
-
+#ifdef ENEMY
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->Update();
@@ -162,6 +164,7 @@ void DemoState::Update()
 
 	m_bossCenter->UpdateAnimation();
 	m_bossCenter->Update();
+#endif
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -171,21 +174,23 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	{
 		(*it)->Render(_lpDSpriteHandle);
 	}
-
+	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+#ifdef ENEMY
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
 	m_gunRotating->Render(_lpDSpriteHandle);
 	m_bigGunRotating->Render(_lpDSpriteHandle);
-	m_Rambo->Render(_lpDSpriteHandle);
+	
 
-	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+	
 
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
 	m_bossGun->Render(_lpDSpriteHandle);
 	m_bossCenter->Render(_lpDSpriteHandle);
-
+#endif
 }
 
 void DemoState::Pause()

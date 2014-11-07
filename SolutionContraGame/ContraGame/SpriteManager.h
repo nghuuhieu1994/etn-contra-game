@@ -2,7 +2,8 @@
 #define __SPRITE_MANAGER__
 
 #include "CSpriteDx9.h"
-#include "CGlobal.h"
+//#include "CGlobal.h"
+#include "ESpriteID.h"
 #include <map>
 
 class SpriteManager

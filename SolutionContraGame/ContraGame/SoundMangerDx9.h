@@ -2,7 +2,9 @@
 #define __SOUNDMANAGERDX9_H__
 
 #include "SoundBuffer.h"
-#include "CGlobal.h"
+//#include "CGlobal.h"
+#include "FrameworkDefineMacro.h"
+#include "ESoundID.h"
 #include "CGameLog.h"
 #include <map>
 

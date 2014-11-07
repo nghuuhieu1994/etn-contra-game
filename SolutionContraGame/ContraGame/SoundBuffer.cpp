@@ -1,7 +1,7 @@
 #include "SoundBuffer.h"
 #include "CGameLog.h"
 #include "DSutil.h"
-#include "CGlobal.h"
+//#include "CGlobal.h"
 
 SoundBuffer::SoundBuffer()
 {
@@ -88,12 +88,12 @@ bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 _lpDSound, const char* fileNam
 
 void SoundBuffer::Play()
 {
-	if(!CGlobal::IsMute)
+	if(!CSoundSwitch::IsMute)
 		m_SoundBuffer->Play(0, 0, 0);
 }
 void SoundBuffer::Repeat()
 {
-	if(!CGlobal::IsMute)
+	if(!CSoundSwitch::IsMute)
 		m_SoundBuffer->Play(0, 0, DSBPLAY_LOOPING);
 }
 void SoundBuffer::Stop()
