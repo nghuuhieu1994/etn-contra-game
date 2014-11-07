@@ -65,17 +65,21 @@ void GifBulletMoving::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void GifBulletMoving::Sin(D3DXVECTOR3& a)
+float GifBulletMoving::Moving(D3DXVECTOR3& a)
 {
-	a.y = (float)(sin(a.x * 3.14 / 90.0) * 80 + m_startPosition.y);
+	return (float)(sin(a.x * 3.14 / 90.0) * 80 + m_startPosition.y);
 	//a.x += 1.5;
 }
 
 void GifBulletMoving:: UpdateMovement()
 {
-	m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
+	//
+	//m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
+	m_Physic->setVelocityY(Moving(m_Position) - m_Position.y);
+	m_Physic->setVelocityX(1.5f);
+
 	m_Physic->UpdateMovement(&m_Position);
-	Sin(m_Position);
+	//Sin(m_Position);
 }
 
 void GifBulletMoving::Update()

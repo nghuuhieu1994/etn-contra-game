@@ -45,7 +45,7 @@ private:
 //	Background*			m_background;
 	Rambo*				m_Rambo;
 
-#ifdef ENEMY
+
 	SniperStanding*		m_SniperStanding;
 	GifBulletStatic*	m_gifBullet;
 	GifBulletMoving*	m_gifBulletMoving;
@@ -55,7 +55,7 @@ private:
 	SniperHiding*		m_snipperHiding;
 	BossGun*			m_bossGun;
 	BossCenter*			m_bossCenter;
-#endif
+
 
 	list<Object *>		m_listGameObjects;
 
