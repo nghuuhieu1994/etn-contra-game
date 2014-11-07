@@ -1,12 +1,12 @@
 #include "CCamera.h"
-#include "CGlobal.h"
+
 Camera* Camera::s_Instance = 0;
 
 Camera::Camera()
 {
 	D3DXMatrixIdentity(&m_matrixTranslate);
 	m_matrixTranslate._41 = 0;
-	m_matrixTranslate._42 = HEIGHT;
+	m_matrixTranslate._42 = SCREEN_HEIGHT;
 	m_matrixTranslate._22 = -1.0f;
 }
 
@@ -21,9 +21,9 @@ Camera* Camera::getInstance()
 
 void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
-	if (cameramanLocation->x > WIDTH/2)
+	if (cameramanLocation->x > SCREEN_WIDTH/2)
 	{
-		m_matrixTranslate._41 = (float)((int)(-(cameramanLocation->x - WIDTH/2)));
+		m_matrixTranslate._41 = (float)((int)(-(cameramanLocation->x - SCREEN_WIDTH/2)));
 	}
 	else
 		m_matrixTranslate._41 = 0;

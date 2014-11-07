@@ -1,10 +1,16 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
-#include "CGlobal.h"
+#include "EObjectState.h"
+#include "EObjectID.h"
 #include "CSpriteDx9.h"
 #include "CPhysicDx9.h"
+#include "ETypeObject.h"
+#include "IDDirection.h"
+#include "EDirection.h"
+#include "EDirectAttack.h"
 #include "SpriteManager.h"
 #include "SoundMangerDx9.h"
+#include "Box.h"
 #include <d3dx9.h>
 #include <d3d9.h>
 

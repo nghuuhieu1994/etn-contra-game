@@ -6,7 +6,8 @@
 #include <mmreg.h>
 #include <dsound.h>
 #include <xstring>
-#include "CGlobal.h"
+#include "FrameworkDefineMacro.h"
+//#include "CGlobal.h"
 
 using namespace std;
 

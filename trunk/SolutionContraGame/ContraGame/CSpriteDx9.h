@@ -1,9 +1,10 @@
 #ifndef __CSPRITEDX9_H__
 #define __CSPRITEDX9_H__
 
-#include "CGlobal.h"
+
 #include "CTextureDx9.h"
 #include "CAnimationDx9.h"
+#include "ESpriteEffect.h"
 
 class CSpriteDx9
 {

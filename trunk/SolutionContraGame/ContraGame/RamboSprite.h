@@ -1,4 +1,5 @@
 #include "SpriteManager.h"
+#include "EObjectState.h"
 #ifndef __RAMBO_MOVE_SPRITE__
 #define __RAMBO_MOVE_SPRITE__
 

@@ -2,7 +2,7 @@
 #define __CANIMATION_H__
 #include "CGameTimeDx9.h"
 #include "CGameLog.h"
-#include "CGlobal.h"
+#include "FrameworkDefineMacro.h"
 
 #include <d3d9.h>
 #include <d3dx9.h>
