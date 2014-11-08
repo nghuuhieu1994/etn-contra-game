@@ -17,7 +17,7 @@ public:
 	static BulletPoolManager* getInstance();
 
 	void Initialize();
-	void addBulletIntoList(eIDTypeBullet);
+	void addBulletIntoList(eIDTypeBullet, D3DXVECTOR3, D3DXVECTOR2);
 	void popBulletFromList();
 	void Update();
 	void UpdateAnimation();

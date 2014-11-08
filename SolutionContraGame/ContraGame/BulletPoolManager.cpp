@@ -12,9 +12,9 @@ void BulletPoolManager::Initialize()
 	BulletPool::getInstance()->Initialize();
 }
 
-void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet)
+void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, D3DXVECTOR2 velocity)
 {
-	this->m_ListBulletInGame.push_back(BulletPool::getInstance()->popBulletFromBulletPool(typeBullet));
+	this->m_ListBulletInGame.push_back(BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, velocity));
 }
 
 void BulletPoolManager::popBulletFromList()

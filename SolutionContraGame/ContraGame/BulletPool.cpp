@@ -20,6 +20,7 @@ BulletPool* BulletPool::getInstance()
 void BulletPool::Initialize()
 {
 	std::queue<Bullet*> queueOfRambo;
+
 	for(int i = 0; i < BULLETOFRAMBO; ++i)
 	{
 		Bullet* tempBullet = new Bullet(D3DXVECTOR3(400.0f, 300.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
@@ -30,7 +31,7 @@ void BulletPool::Initialize()
 	m_BulletPool.push_back(queueOfRambo);
 }
 
-Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet)
+Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity)
 {
 	switch(_typebullet)
 	{
@@ -38,6 +39,8 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet)
 		if(m_BulletPool[eIDTypeBullet::BULLETRAMBO].empty() == false)
 		{
 			Bullet* object = m_BulletPool[eIDTypeBullet::BULLETRAMBO].front();
+			object->setPosition(_position);
+			object->getPhysic()->setVelocity(_velocity);
 			m_BulletPool[eIDTypeBullet::BULLETRAMBO].pop();
 
 			return object;

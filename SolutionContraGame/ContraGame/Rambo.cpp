@@ -319,6 +319,7 @@ int Rambo::HandleInputRunState()
 					if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
+						BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
 						return 0;
 					}
 					else
@@ -499,6 +500,7 @@ int Rambo::HandleInputShootRunState()
 	if(!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_RUN;
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
 		return 0;
 	}
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightUp() || CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightDown())

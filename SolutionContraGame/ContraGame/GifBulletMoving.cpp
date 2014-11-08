@@ -36,7 +36,6 @@ void GifBulletMoving::UpdateCollision(Object* checkingObject)
 			case eObjectID ::BULLET_RAMBO:
 				if(collideDirection == IDDirection::DIR_TOP)
 				{
-					
 					break;
 				}
 				else if(collideDirection == IDDirection::DIR_BOTTOM)

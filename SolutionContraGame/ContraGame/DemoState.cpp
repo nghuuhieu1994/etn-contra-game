@@ -40,11 +40,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter = new BossCenter(D3DXVECTOR3(600, 50, 1), eDirection::LEFT, eObjectID::BOSS_CENTER);
 	m_bossCenter->Initialize();
 
-
-	
-
 	BulletPoolManager::getInstance()->Initialize();
-	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO);
 
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
@@ -125,13 +121,9 @@ void DemoState::Update()
 	{
 		m_Rambo->UpdateCollision(*it);
 	}
-	
-	//BulletPoolManager::getInstance()->Update();
 
-	BulletPoolManager::getInstance()->UpdateMovement();
 	BulletPoolManager::getInstance()->UpdateAnimation();
-
-	//BulletPoolManager::getInstance()->UpdateCollision();
+	BulletPoolManager::getInstance()->UpdateMovement();
 
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
