@@ -147,6 +147,7 @@ void Rambo::HandleInput()
 		default:
 			break;
 	}
+	Shoot();
 	if(isFall)
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
@@ -483,14 +484,14 @@ int Rambo::HandleInputShootRunState()
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
-		
+		m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
 	}
 	else
 	{
 		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 		{
 			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
-			
+			m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
 		}
 		else
 		{
@@ -500,7 +501,7 @@ int Rambo::HandleInputShootRunState()
 	if(!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_RUN;
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+		
 		return 0;
 	}
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightUp() || CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightDown())
@@ -538,6 +539,47 @@ int Rambo::HandleInputShootRunState()
 		}
 	}
 }
+
+void Rambo::Shoot()
+{
+	if (CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+	{
+		switch (m_DirectAttack)
+		{
+		case ZERO_CLOCK_DIRECTION:
+			break;
+		case ONE_CLOCK_DIRECTION:
+			break;
+		case TWO_CLOCK_DIRECTION:
+			break;
+		case THREE_CLOCK_DIRECTION:
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+			break;
+		case FOUR_CLOCK_DIRECTION:
+			break;
+		case FIVE_CLOCK_DIRECTION:
+			break;
+		case SIX_CLOCK_DIRECTION:
+			break;
+		case SEVEN_CLOCK_DIRECTION:
+			break;
+		case EIGHT_CLOCK_DIRECTION:
+			break;
+		case NINE_CLOCK_DIRECTION:
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+			break;
+		case TEN_CLOCK_DIRECTION:
+			break;
+		case ELEVEN_CLOCK_DIRECTION:
+			break;
+		case TWELVE_CLOCK_DIRECTION:
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 int Rambo::HandleInputJumpState()
 {
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
