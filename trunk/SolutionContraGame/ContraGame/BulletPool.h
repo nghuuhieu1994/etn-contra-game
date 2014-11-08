@@ -26,7 +26,7 @@ public:
 	static BulletPool* m_Instance;
 	static BulletPool* getInstance();
 	void Initialize();
-	Bullet* popBulletFromBulletPool(eIDTypeBullet);
+	Bullet* popBulletFromBulletPool(eIDTypeBullet, D3DXVECTOR3, D3DXVECTOR2);
 	void addBulleToBulletPool(Bullet*);
 	void releaseBulletPool();
 };

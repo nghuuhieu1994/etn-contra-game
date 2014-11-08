@@ -5,6 +5,9 @@
 #include "CInputDx9.h"
 #include "RamboSprite.h"
 #include <list>
+#include "Bullet.h"
+#include "BulletPool.h"
+#include "BulletPoolManager.h"
 
 using namespace std;
 

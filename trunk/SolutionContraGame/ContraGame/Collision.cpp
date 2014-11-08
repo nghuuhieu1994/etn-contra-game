@@ -27,7 +27,7 @@ IDDirection Collision::CheckCollision(DynamicObject *_DynamicObject, Object * _O
 		if(IsMovementObject(_Object->getID()) == true)
 		{
 			// nếu vật có chuyển động thì ta trừ vận tốc 2 vật
-			object = (DynamicObject *)_Object;
+			object = (DynamicObject *)_Object;	
 			velocity = D3DXVECTOR2(_DynamicObject->getPhysic()->getVelocity().x - object->getPhysic()->getVelocity().x, _DynamicObject->getPhysic()->getVelocity().y - object->getPhysic()->getVelocity().y);
 		}
 		else
