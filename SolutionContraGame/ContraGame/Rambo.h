@@ -37,6 +37,7 @@ private:
 	int HandleInputShootRunState();
 	int HandleInputSwimState();
 	int HandleInputWaterBombState();
+	void Shoot();
 public:
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
