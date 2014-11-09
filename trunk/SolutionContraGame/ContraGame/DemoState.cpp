@@ -142,9 +142,10 @@ void DemoState::Update()
 	m_bigGunRotating->Update();
 
 
-	m_gifBulletMoving->UpdateCollision(m_Rambo);
+	
 	m_gifBulletMoving->UpdateAnimation();
 	m_gifBulletMoving->UpdateMovement();
+	m_gifBulletMoving->UpdateCollision(m_Rambo);
 
 	m_snipperHiding->UpdateAnimation();
 	m_snipperHiding->Update();
