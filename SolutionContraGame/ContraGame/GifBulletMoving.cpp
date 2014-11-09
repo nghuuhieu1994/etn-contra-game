@@ -12,6 +12,7 @@ GifBulletMoving::GifBulletMoving(D3DXVECTOR3 _position, eDirection _direction, e
 	//m_Physic->setPosition(_position);
 	m_Position = _position;
 	m_startPosition = _position;
+	
 }
 
 void GifBulletMoving::Initialize()
@@ -64,19 +65,18 @@ void GifBulletMoving::UpdateCollision(Object* checkingObject)
 	}
 }
 
-float GifBulletMoving::Moving(D3DXVECTOR3& a)
+float GifBulletMoving::Moving()
 {
-	return (float)(sin(a.x * 3.14 / 90.0) * 80 + m_startPosition.y);
-	//a.x += 1.5;
+	return (float)((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y);
 }
 
 void GifBulletMoving:: UpdateMovement()
 {
 	//
 	//m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
-	m_Physic->setVelocityY(Moving(m_Position) - m_Position.y);
+	
+	m_Physic->setVelocityY(Moving());
 	m_Physic->setVelocityX(1.5f);
-
 	m_Physic->UpdateMovement(&m_Position);
 	//Sin(m_Position);
 }

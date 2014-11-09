@@ -19,7 +19,7 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
 	virtual ~GifBulletMoving();
-	float Moving(D3DXVECTOR3& a);
+	float Moving();
 };
 
 #endif
