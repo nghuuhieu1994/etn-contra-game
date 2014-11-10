@@ -3,14 +3,19 @@
 
 #include "DynamicObject.h"
 #include "EIDTypeBullet.h"
+#include "EDirectAttack.h"
 
 class Bullet : public DynamicObject
 {
-private:
+protected:
 	eIDTypeBullet m_TypeBullet;
+	eDirectAttack m_DirectAttack;
+	D3DXVECTOR3 m_StartPosition;
 	float m_livingTime;
 public:
 	eIDTypeBullet getTypeBullet() const{return m_TypeBullet;};
+	void setDirectAttack(eDirectAttack _directAttack){ this->m_DirectAttack = _directAttack;};
+	void setStartPosition(D3DXVECTOR3 _position){ this->m_StartPosition = _position;};
 	void ResetLivingTime();
 	Bullet();
 	Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
@@ -21,7 +26,7 @@ public:
 	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
-	void UpdateMovement();
+	virtual void UpdateMovement();
 };
 
 #endif

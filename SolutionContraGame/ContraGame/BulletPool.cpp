@@ -21,9 +21,9 @@ void BulletPool::Initialize()
 {
 	std::queue<Bullet*> queueOfRambo;
 
-	for(int i = 0; i < BULLETOFRAMBO; ++i)
+	for(int i = 0; i < QUALITY_OF_DEFAULT_BULLET_RAMBO; ++i)
 	{
-		Bullet* tempBullet = new Bullet(D3DXVECTOR3(400.0f, 300.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
+		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(400.0f, 300.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
 		tempBullet->Initialize();
 		queueOfRambo.push(tempBullet);
 	}
@@ -31,18 +31,19 @@ void BulletPool::Initialize()
 	m_BulletPool.push_back(queueOfRambo);
 }
 
-Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity)
+Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, eDirectAttack _directionAttack)
 {
 	switch(_typebullet)
 	{
-	case eIDTypeBullet::BULLETRAMBO:
-		if(m_BulletPool[eIDTypeBullet::BULLETRAMBO].empty() == false)
+	case eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO:
+		if(m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].empty() == false)
 		{
-			Bullet* object = m_BulletPool[eIDTypeBullet::BULLETRAMBO].front();
+			DefaultBullet* object = (DefaultBullet*) m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].front();
 			object->setPosition(_position);
-			object->getPhysic()->setVelocity(_velocity);
+			object->setStartPosition(_position);
+			object->setDirectAttack(_directionAttack);
 			object->ResetLivingTime();
-			m_BulletPool[eIDTypeBullet::BULLETRAMBO].pop();
+			m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].pop();
 
 			return object;
 		}
@@ -55,11 +56,10 @@ void BulletPool::addBulleToBulletPool(Bullet* _object)
 {
 	if(_object->getID() == eObjectID::BULLET)
 	{
-		Bullet* tempBullet = (Bullet*)_object;
-		switch(tempBullet->getTypeBullet())
+		switch(_object->getTypeBullet())
 		{
-		case eIDTypeBullet::BULLETRAMBO:
-			m_BulletPool[eIDTypeBullet::BULLETRAMBO].push(tempBullet);
+		case eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO:
+			m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].push((DefaultBullet*) _object);
 			break;
 		default:
 			break;

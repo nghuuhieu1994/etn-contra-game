@@ -12,9 +12,9 @@ void BulletPoolManager::Initialize()
 	BulletPool::getInstance()->Initialize();
 }
 
-void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, D3DXVECTOR2 velocity)
+void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, eDirectAttack _directionAttack)
 {
-	this->m_ListBulletInGame.push_back(BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, velocity));
+	this->m_ListBulletInGame.push_back((DefaultBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _directionAttack));
 }
 
 void BulletPoolManager::popBulletFromList()
@@ -37,7 +37,7 @@ void BulletPoolManager::popBulletFromList()
 
 BulletPoolManager* BulletPoolManager::getInstance()
 {
-	if(BulletPoolManager::m_Instance == NULL)
+	if(BulletPoolManager::m_Instance == NULL)			
 	{
 		BulletPoolManager::m_Instance = new BulletPoolManager();
 	}

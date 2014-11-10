@@ -94,6 +94,7 @@
     <ClInclude Include="CSurfaceDx9.h" />
     <ClInclude Include="CTextureDx9.h" />
     <ClInclude Include="CTimeSpanDx9.h" />
+    <ClInclude Include="DefaultBullet.h" />
     <ClInclude Include="DemoState.h" />
     <ClInclude Include="DSutil.h" />
     <ClInclude Include="DynamicObject.h" />
@@ -151,6 +152,7 @@
     <ClCompile Include="CSurfaceDx9.cpp" />
     <ClCompile Include="CTextureDx9.cpp" />
     <ClCompile Include="CTimeSpanDx9.cpp" />
+    <ClCompile Include="DefaultBullet.cpp" />
     <ClCompile Include="DemoState.cpp" />
     <ClCompile Include="DSutil.cpp" />
     <ClCompile Include="DynamicObject.cpp" />

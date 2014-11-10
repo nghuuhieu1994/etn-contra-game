@@ -3,7 +3,7 @@
 
 enum eIDTypeBullet
 {
-	BULLETRAMBO = 0,
+	DEFAULT_BULLET_OF_RAMBO = 0,
 };
 
 #endif

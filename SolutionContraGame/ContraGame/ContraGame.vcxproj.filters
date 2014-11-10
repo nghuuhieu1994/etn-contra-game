@@ -127,6 +127,9 @@
     <ClCompile Include="BulletPoolManager.cpp">
       <Filter>GameObject\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="DefaultBullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -296,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultBullet.h">
+      <Filter>GameObject\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
