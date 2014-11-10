@@ -33,7 +33,7 @@ void DefaultBullet::UpdateMovement()
 		this->getPhysic()->setVelocityY(0.0f);
 		break;
 	case eDirectAttack::AD_TOP_RIGHT:
-		tempPosition = D3DXVECTOR3(this->m_Position.x + this->getPhysic()->getVelocity().x- this->m_StartPosition.x, 0.0f, 0.0f);
+		tempPosition = D3DXVECTOR3(this->m_Position.x + this->getPhysic()->getVelocity().x - this->m_StartPosition.x, 0.0f, 0.0f);
 		tempPosition.y = tempPosition.x;
 		this->getPhysic()->setVelocityY((tempPosition.y + this->m_StartPosition.y - this->m_Position.y));
 		break;
