@@ -493,6 +493,7 @@ int Rambo::HandleInputAimTopRightState()
 }
 int Rambo::HandleInputAimUpState()
 {
+	m_DirectAttack = eDirectAttack::AD_TOP;
 	if(!CInputDx9::getInstance()->IsKeyDown(DIK_UP) || CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
@@ -544,12 +545,14 @@ int Rambo::HandleInputShootRunState()
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
 	}
 	else
 	{
 		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 		{
 			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
+			m_DirectAttack = eDirectAttack::AD_LEFT;
 		}
 		else
 		{
