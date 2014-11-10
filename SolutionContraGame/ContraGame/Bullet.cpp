@@ -24,6 +24,12 @@ void Bullet::Initialize()
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
 }
 
+void Bullet::ResetLivingTime()
+{
+	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE; 
+	m_livingTime = 0;
+}
+
 void Bullet::Release()
 {
 	this->m_Sprite = NULL;
@@ -40,7 +46,11 @@ void Bullet::Render(SPRITEHANDLE spriteHandle)
 
 void Bullet::Update()
 {
-
+	m_livingTime += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if (m_livingTime > 4000)
+	{
+		m_ObjectState = eObjectState::STATE_DEATH;
+	}
 }
 
 void Bullet::UpdateAnimation()

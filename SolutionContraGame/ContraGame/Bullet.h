@@ -8,9 +8,10 @@ class Bullet : public DynamicObject
 {
 private:
 	eIDTypeBullet m_TypeBullet;
+	float m_livingTime;
 public:
 	eIDTypeBullet getTypeBullet() const{return m_TypeBullet;};
-
+	void ResetLivingTime();
 	Bullet();
 	Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	virtual ~Bullet();

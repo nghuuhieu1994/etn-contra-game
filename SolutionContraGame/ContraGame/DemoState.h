@@ -46,6 +46,7 @@ private:
 	Rambo*				m_Rambo;
 
 
+#ifdef HIEU
 	SniperStanding*		m_SniperStanding;
 	GifBulletStatic*	m_gifBullet;
 	GifBulletMoving*	m_gifBulletMoving;
@@ -54,7 +55,9 @@ private:
 	BigGunRotating*		m_bigGunRotating;
 	SniperHiding*		m_snipperHiding;
 	BossGun*			m_bossGun;
-	BossCenter*			m_bossCenter;
+	BossCenter*			m_bossCenter;  
+#endif // HIEU
+
 
 
 	list<Object *>		m_listGameObjects;

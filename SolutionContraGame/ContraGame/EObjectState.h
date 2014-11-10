@@ -22,6 +22,8 @@ enum eObjectState
 	STATE_RAMBO_SWIM,
 	STATE_RAMBO_CLIMB,
 	STATE_RAMBO_SWIM_SHOOT,
+	STATE_RAMBO_SWIM_SHOOT_UP,
+	STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT,
 	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
 };
 #endif
