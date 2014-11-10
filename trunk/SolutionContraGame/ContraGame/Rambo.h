@@ -50,6 +50,7 @@ private:
 	void SetVelocityXZero();
 	void SetVelocityYZero();
 	bool isAddBullet();
+	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
