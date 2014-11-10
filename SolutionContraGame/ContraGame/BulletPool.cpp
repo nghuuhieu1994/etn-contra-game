@@ -59,6 +59,7 @@ void BulletPool::addBulleToBulletPool(Bullet* _object)
 		switch(_object->getTypeBullet())
 		{
 		case eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO:
+			_object->reset();
 			m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].push((DefaultBullet*) _object);
 			break;
 		default:

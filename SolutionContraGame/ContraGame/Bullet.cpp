@@ -25,6 +25,12 @@ void Bullet::Initialize()
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_DEFAULT_BULLET_RAMBO));
 }
 
+void Bullet::reset()
+{
+	this->getPhysic()->setVelocityX(2.0f);
+	this->getPhysic()->setVelocityY(0.0f);
+}
+
 void Bullet::ResetLivingTime()
 {
 	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE; 
