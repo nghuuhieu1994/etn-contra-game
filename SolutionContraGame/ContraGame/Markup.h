@@ -1,9 +1,16 @@
+
+
+
+
+
+
+
+
 #if !defined(_MARKUP_H_INCLUDED_)
 #define _MARKUP_H_INCLUDED_
 
 #include <stdlib.h>
-#include <string.h>
-
+#include <string.h> 
 #ifndef MARKUP_STL
 #define MARKUP_STL
 #endif
@@ -20,41 +27,57 @@
 #define _WINDOWS
 #endif
 
-#if _MSC_VER > 1000
+
+
+
+
+
+
+
+
+#if ! defined(MARKUP_WINDOWS)
+#if defined(_WIN32) || defined(WIN32)
+#define MARKUP_WINDOWS
+#endif 
+#endif 
+#if _MSC_VER > 1000 
 #pragma once
-#if ! defined(MARKUP_SAFESTR)
-#pragma warning(disable:4996)
-#endif
-#if defined(MARKUP_STL) && _MSC_VER < 1400
-#pragma warning(disable:4786)
-#endif
-#else
+#if ! defined(MARKUP_SAFESTR) 
+#pragma warning(disable:4996) 
+#endif 
+#if defined(MARKUP_STL) && _MSC_VER < 1400 
+#pragma warning(disable:4786) 
+#endif 
+#else 
 #if ! defined(MARKUP_STL)
 #define MARKUP_STL
-#endif
+#endif 
 #if defined(__GNUC__) && ! defined(MARKUP_ICONV) && ! defined(MARKUP_STDCONV) && ! defined(MARKUP_WINCONV)
+#if ! defined(MARKUP_WINDOWS)
 #define MARKUP_ICONV
-#endif
-#endif
+#endif 
+#endif 
+#endif 
 #if (defined(_UNICODE) || defined(UNICODE)) && ! defined(MARKUP_WCHAR)
 #define MARKUP_WCHAR
-#endif
+#endif 
 #if (defined(_MBCS) || defined(MBCS)) && ! defined(MARKUP_MBCS)
 #define MARKUP_MBCS
-#endif
+#endif 
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
 #define MARKUP_SIZEOFWCHAR 4
-#else
+#else 
 #define MARKUP_SIZEOFWCHAR 2
-#endif
-#endif
+#endif 
+#endif 
 #if ! defined(MARKUP_WINCONV) && ! defined(MARKUP_STDCONV) && ! defined(MARKUP_ICONV)
 #define MARKUP_WINCONV
-#endif
+#endif 
 #if ! defined(MARKUP_FILEBLOCKSIZE)
 #define MARKUP_FILEBLOCKSIZE 16384
 #endif
+
 
 
 #define MCD_ACP 0
@@ -68,74 +91,77 @@
 #define MCD_PSZCHR wcschr
 #define MCD_PSZSTR wcsstr
 #define MCD_PSZTOL wcstol
-#if defined(MARKUP_SAFESTR)
+#if defined(MARKUP_SAFESTR) 
 #define MCD_SSZ(sz) sz,(sizeof(sz)/sizeof(MCD_CHAR))
 #define MCD_PSZCPY(sz,p) wcscpy_s(MCD_SSZ(sz),p)
 #define MCD_PSZNCPY(sz,p,n) wcsncpy_s(MCD_SSZ(sz),p,n)
 #define MCD_SPRINTF swprintf_s
-#define MCD_FOPEN(f,n,m) {if(_wfopen_s(&f,n,m)!=0)f=0;}
-#else
-#if defined(__GNUC__)
+#define MCD_FOPEN(f,n,m) {if(_wfopen_s(&f,n,m)!=0)f=NULL;}
+#else 
+#if defined(__GNUC__) && ! defined(MARKUP_WINDOWS) 
 #define MCD_SSZ(sz) sz,(sizeof(sz)/sizeof(MCD_CHAR))
-#else
+#else 
 #define MCD_SSZ(sz) sz
-#endif
+#endif 
 #define MCD_PSZCPY wcscpy
 #define MCD_PSZNCPY wcsncpy
 #define MCD_SPRINTF swprintf
 #define MCD_FOPEN(f,n,m) f=_wfopen(n,m)
-#endif
+#endif 
 #define MCD_T(s) L ## s
-#if MARKUP_SIZEOFWCHAR == 4
+#if MARKUP_SIZEOFWCHAR == 4 
 #define MCD_ENC MCD_T("UTF-32")
-#else
+#else 
 #define MCD_ENC MCD_T("UTF-16")
 #endif
 #define MCD_CLEN(p) 1
-#else
+#else 
 #define MCD_CHAR char
 #define MCD_PCSZ const char*
 #define MCD_PSZLEN (int)strlen
 #define MCD_PSZCHR strchr
 #define MCD_PSZSTR strstr
 #define MCD_PSZTOL strtol
-#if defined(MARKUP_SAFESTR)
+#if defined(MARKUP_SAFESTR) 
 #define MCD_SSZ(sz) sz,(sizeof(sz)/sizeof(MCD_CHAR))
 #define MCD_PSZCPY(sz,p) strcpy_s(MCD_SSZ(sz),p)
 #define MCD_PSZNCPY(sz,p,n) strncpy_s(MCD_SSZ(sz),p,n)
 #define MCD_SPRINTF sprintf_s
-#define MCD_FOPEN(f,n,m) {if(fopen_s(&f,n,m)!=0)f=0;}
-#else
+#define MCD_FOPEN(f,n,m) {if(fopen_s(&f,n,m)!=0)f=NULL;}
+#else 
 #define MCD_SSZ(sz) sz
 #define MCD_PSZCPY strcpy
 #define MCD_PSZNCPY strncpy
 #define MCD_SPRINTF sprintf
 #define MCD_FOPEN(f,n,m) f=fopen(n,m)
-#endif
+#endif 
 #define MCD_T(s) s
-#if defined(MARKUP_MBCS)
+#if defined(MARKUP_MBCS) 
 #define MCD_ENC MCD_T("")
 #if defined(MARKUP_WINCONV)
 #define MCD_CLEN(p) (int)_mbclen((const unsigned char*)p)
-#else
+#else 
 #define MCD_CLEN(p) (int)mblen(p,MB_CUR_MAX)
-#endif
-#else
+#endif 
+#else 
 #define MCD_ENC MCD_T("UTF-8")
 #define MCD_CLEN(p) 1
-#endif
-#endif
-#if _MSC_VER < 1000
+#endif 
+#endif 
+#if _MSC_VER < 1000 
 #define MCD_STRERROR strerror(errno)
-#endif
+#endif 
 
-#if defined(MARKUP_STL)
+
+
+
+#if defined(MARKUP_STL) 
 #include <string>
 #if defined(MARKUP_WCHAR)
 #define MCD_STR std::wstring
-#else
+#else 
 #define MCD_STR std::string
-#endif
+#endif 
 #define MCD_2PCSZ(s) s.c_str()
 #define MCD_STRLENGTH(s) (int)s.size()
 #define MCD_STRCLEAR(s) s.erase()
@@ -153,9 +179,9 @@
 #define MCD_BLDAPPENDN(s,p,n) s.append(p,n)
 #define MCD_BLDAPPEND(s,p) s.append(p)
 #define MCD_BLDAPPEND1(s,c) s+=(MCD_CHAR)(c)
-#define MCD_BLDLEN(s) s.size()
+#define MCD_BLDLEN(s) (int)s.size()
 #define MCD_BLDTRUNC(s,n) s.resize(n)
-#else
+#else 
 
 #include <afx.h>
 #define MCD_STR CString
@@ -177,13 +203,13 @@
 #define MCD_BLDAPPEND1(s,c) pD[nL++]=(MCD_CHAR)(c)
 #define MCD_BLDLEN(s) nL
 #define MCD_BLDTRUNC(s,n) nL=n
-#endif
-#define MCD_STRTOINT(s) MCD_PSZTOL(MCD_2PCSZ(s),0,10)
+#endif 
+#define MCD_STRTOINT(s) MCD_PSZTOL(MCD_2PCSZ(s),NULL,10)
 
 
 struct MCD_CSTR
 {
-	MCD_CSTR() { pcsz=0; };
+	MCD_CSTR() { pcsz=NULL; };
 	MCD_CSTR( MCD_PCSZ p ) { pcsz=p; };
 	MCD_CSTR( const MCD_STR& s ) { pcsz = MCD_2PCSZ(s); };
 	operator MCD_PCSZ() const { return pcsz; };
@@ -198,35 +224,50 @@ struct MCD_CSTR
 #define MCD_PCSZ_FILENAME const char*
 struct MCD_CSTR_FILENAME
 {
-	MCD_CSTR_FILENAME() { pcsz=0; };
+	MCD_CSTR_FILENAME() { pcsz=NULL; };
 	MCD_CSTR_FILENAME( MCD_PCSZ_FILENAME p ) { pcsz=p; };
 	MCD_CSTR_FILENAME( const std::string& s ) { pcsz = s.c_str(); };
 	operator MCD_PCSZ_FILENAME() const { return pcsz; };
 	MCD_PCSZ_FILENAME pcsz;
 };
-#else
+#else 
 #define MCD_CSTR_FILENAME MCD_CSTR
 #define MCD_T_FILENAME MCD_T
 #define MCD_PCSZ_FILENAME MCD_PCSZ
-#endif
+#endif 
 
-#if defined(__GNUC__)
+
+#if defined(__GNUC__) && ! defined(MARKUP_WINDOWS) 
 #define MCD_FSEEK fseeko
 #define MCD_FTELL ftello
 #define MCD_INTFILEOFFSET off_t
-#elif _MSC_VER >= 1000 && defined(MARKUP_HUGEFILE)
-#if _MSC_VER < 1400
+#elif _MSC_VER >= 1000 && defined(MARKUP_HUGEFILE) 
+#if _MSC_VER < 1400 
 extern "C" int __cdecl _fseeki64(FILE *, __int64, int);
 extern "C" __int64 __cdecl _ftelli64(FILE *);
-#endif
+#endif 
 #define MCD_FSEEK _fseeki64
 #define MCD_FTELL _ftelli64
 #define MCD_INTFILEOFFSET __int64
-#else
+#else 
 #define MCD_FSEEK fseek
 #define MCD_FTELL ftell
 #define MCD_INTFILEOFFSET long
-#endif
+#endif 
+
+
+#if defined(MARKUP_EOL_NONE)
+#define MCD_EOL MCD_T("")
+#elif defined(MARKUP_EOL_RETURN) 
+#define MCD_EOL MCD_T("\r")
+#elif defined(MARKUP_EOL_NEWLINE) 
+#define MCD_EOL MCD_T("\n")
+#elif defined(MARKUP_EOL_CRLF) || defined(MARKUP_WINDOWS) 
+#define MCD_EOL MCD_T("\r\n")
+#else 
+#define MCD_EOL MCD_T("\n")
+#endif 
+#define MCD_EOLLEN (sizeof(MCD_EOL)/sizeof(MCD_CHAR)-1) 
 
 struct FilePos;
 struct TokenPos;
@@ -238,20 +279,20 @@ struct ElemPosTree;
 class CMarkup
 {
 public:
-	CMarkup() { x_InitMarkup(); SetDoc( 0 ); };
+	CMarkup() { x_InitMarkup(); SetDoc( NULL ); };
 	CMarkup( MCD_CSTR szDoc ) { x_InitMarkup(); SetDoc( szDoc ); };
-	CMarkup( int nFlags ) { x_InitMarkup(); SetDoc( 0 ); m_nDocFlags = nFlags; };
+	CMarkup( int nFlags ) { x_InitMarkup(); SetDoc( NULL ); m_nDocFlags = nFlags; };
 	CMarkup( const CMarkup& markup ) { x_InitMarkup(); *this = markup; };
 	void operator=( const CMarkup& markup );
 	~CMarkup();
 
-
+	
 	bool Load( MCD_CSTR_FILENAME szFileName );
 	bool SetDoc( MCD_PCSZ pDoc );
 	bool SetDoc( const MCD_STR& strDoc );
 	bool IsWellFormed();
-	bool FindElem( MCD_CSTR szName=0 );
-	bool FindChildElem( MCD_CSTR szName=0 );
+	bool FindElem( MCD_CSTR szName=NULL );
+	bool FindChildElem( MCD_CSTR szName=NULL );
 	bool IntoElem();
 	bool OutOfElem();
 	void ResetChildPos() { x_SetPos(m_iPosParent,m_iPos,0); };
@@ -300,26 +341,26 @@ public:
 	};
 	enum MarkupNodeType
 	{
-		MNT_ELEMENT					= 1,
-		MNT_TEXT					= 2,
-		MNT_WHITESPACE				= 4,
-		MNT_TEXT_AND_WHITESPACE     = 6,
-		MNT_CDATA_SECTION			= 8,
-		MNT_PROCESSING_INSTRUCTION	= 16,
-		MNT_COMMENT					= 32,
-		MNT_DOCUMENT_TYPE			= 64,
-		MNT_EXCLUDE_WHITESPACE		= 123,
-		MNT_LONE_END_TAG			= 128,
-		MNT_NODE_ERROR              = 32768
+		MNT_ELEMENT					= 1,    
+		MNT_TEXT					= 2,    
+		MNT_WHITESPACE				= 4,    
+		MNT_TEXT_AND_WHITESPACE     = 6,    
+		MNT_CDATA_SECTION			= 8,    
+		MNT_PROCESSING_INSTRUCTION	= 16,   
+		MNT_COMMENT					= 32,   
+		MNT_DOCUMENT_TYPE			= 64,   
+		MNT_EXCLUDE_WHITESPACE		= 123,  
+		MNT_LONE_END_TAG			= 128,  
+		MNT_NODE_ERROR              = 32768 
 	};
 
-
+	
 	bool Save( MCD_CSTR_FILENAME szFileName );
 	const MCD_STR& GetDoc() const { return m_strDoc; };
-	bool AddElem( MCD_CSTR szName, MCD_CSTR szData=0, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags); };
-	bool InsertElem( MCD_CSTR szName, MCD_CSTR szData=0, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT); };
-	bool AddChildElem( MCD_CSTR szName, MCD_CSTR szData=0, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_CHILD); };
-	bool InsertChildElem( MCD_CSTR szName, MCD_CSTR szData=0, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT|MNF_CHILD); };
+	bool AddElem( MCD_CSTR szName, MCD_CSTR szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags); };
+	bool InsertElem( MCD_CSTR szName, MCD_CSTR szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT); };
+	bool AddChildElem( MCD_CSTR szName, MCD_CSTR szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_CHILD); };
+	bool InsertChildElem( MCD_CSTR szName, MCD_CSTR szData=NULL, int nFlags=0 ) { return x_AddElem(szName,szData,nFlags|MNF_INSERT|MNF_CHILD); };
 	bool AddElem( MCD_CSTR szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags); };
 	bool InsertElem( MCD_CSTR szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags|MNF_INSERT); };
 	bool AddChildElem( MCD_CSTR szName, int nValue, int nFlags=0 ) { return x_AddElem(szName,nValue,nFlags|MNF_CHILD); };
@@ -337,7 +378,7 @@ public:
 	bool AddNode( int nType, MCD_CSTR szText ) { return x_AddNode(nType,szText,0); };
 	bool InsertNode( int nType, MCD_CSTR szText ) { return x_AddNode(nType,szText,MNF_INSERT); };
 
-
+	
 	bool RemoveElem();
 	bool RemoveChildElem();
 	bool RemoveNode();
@@ -352,20 +393,20 @@ public:
 	bool SetElemContent( MCD_CSTR szContent ) { return x_SetElemContent(szContent); };
 
 
-
-	static bool ReadTextFile( MCD_CSTR_FILENAME szFileName, MCD_STR& strDoc, MCD_STR* pstrResult=0, int* pnDocFlags=0, MCD_STR* pstrEncoding=0 );
-	static bool WriteTextFile( MCD_CSTR_FILENAME szFileName, const MCD_STR& strDoc, MCD_STR* pstrResult=0, int* pnDocFlags=0, MCD_STR* pstrEncoding=0 );
+	
+	static bool ReadTextFile( MCD_CSTR_FILENAME szFileName, MCD_STR& strDoc, MCD_STR* pstrResult=NULL, int* pnDocFlags=NULL, MCD_STR* pstrEncoding=NULL );
+	static bool WriteTextFile( MCD_CSTR_FILENAME szFileName, const MCD_STR& strDoc, MCD_STR* pstrResult=NULL, int* pnDocFlags=NULL, MCD_STR* pstrEncoding=NULL );
 	static MCD_STR EscapeText( MCD_CSTR szText, int nFlags = 0 );
 	static MCD_STR UnescapeText( MCD_CSTR szText, int nTextLength = -1, int nFlags = 0 );
 	static int UTF16To8( char *pszUTF8, const unsigned short* pwszUTF16, int nUTF8Count );
 	static int UTF8To16( unsigned short* pwszUTF16, const char* pszUTF8, int nUTF8Count );
-	static MCD_STR UTF8ToA( MCD_CSTR pszUTF8, int* pnFailed = 0 );
+	static MCD_STR UTF8ToA( MCD_CSTR pszUTF8, int* pnFailed = NULL );
 	static MCD_STR AToUTF8( MCD_CSTR pszANSI );
 	static void EncodeCharUTF8( int nUChar, char* pszUTF8, int& nUTF8Len );
-	static int DecodeCharUTF8( const char*& pszUTF8, const char* pszUTF8End = 0 );
+	static int DecodeCharUTF8( const char*& pszUTF8, const char* pszUTF8End = NULL );
 	static void EncodeCharUTF16( int nUChar, unsigned short* pwszUTF16, int& nUTF16Len );
-	static int DecodeCharUTF16( const unsigned short*& pwszUTF16, const unsigned short* pszUTF16End = 0 );
-	static bool DetectUTF8( const char* pText, int nTextLen, int* pnNonASCII = 0, bool* bErrorAtEnd = 0 );
+	static int DecodeCharUTF16( const unsigned short*& pwszUTF16, const unsigned short* pszUTF16End = NULL );
+	static bool DetectUTF8( const char* pText, int nTextLen, int* pnNonASCII = NULL, bool* bErrorAtEnd = NULL );
 	static MCD_STR GetDeclaredEncoding( MCD_CSTR szDoc );
 	static int GetEncodingCodePage( MCD_CSTR pszEncoding );
 
@@ -374,7 +415,7 @@ protected:
 #if defined(_DEBUG)
 	MCD_PCSZ m_pDebugCur;
 	MCD_PCSZ m_pDebugPos;
-#endif
+#endif 
 
 	MCD_STR m_strDoc;
 	MCD_STR m_strResult;
@@ -399,12 +440,12 @@ protected:
 		MNF_CHILD      = 0x004000
 	};
 
-#if defined(_DEBUG)
+#if defined(_DEBUG) 
 	void x_SetDebugState();
 #define MARKUP_SETDEBUGSTATE x_SetDebugState()
-#else
+#else 
 #define MARKUP_SETDEBUGSTATE
-#endif
+#endif 
 
 	void x_InitMarkup();
 	void x_SetPos( int iPosParent, int iPos, int iPosChild );
@@ -445,4 +486,4 @@ protected:
 	void x_DocChange( int nLeft, int nReplace, const MCD_STR& strInsert );
 };
 
-#endif
+#endif 

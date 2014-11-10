@@ -1,6 +1,5 @@
 #include "CGame.h"
 #include "CGameLog.h"
-#include "Markup.h"
 
 #define WINDOWS_MODE
 #if defined WINDOWS_MODE

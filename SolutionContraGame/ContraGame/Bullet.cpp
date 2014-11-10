@@ -33,12 +33,12 @@ void Bullet::ResetLivingTime()
 
 void Bullet::Release()
 {
-	this->m_Sprite = NULL;
+	this->m_Sprite = 0;
 }
 
 void Bullet::Render(SPRITEHANDLE spriteHandle)
 {
-	if(m_Sprite != NULL)
+	if(m_Sprite != 0)
 	{
 		m_Sprite->Render(spriteHandle, this->getPositionVec2(), this->m_Sprite->getSpriteEffect(), this->m_Sprite->getRotate(), 
 			this->m_Sprite->getScale(), this->getPositionVec3().z);

@@ -9,7 +9,7 @@
 
 static bool Intersect(const RECT *rect1, const RECT *rect2)
 {
-	if (rect1 == NULL || rect2 == NULL)
+	if (rect1 == 0 || rect2 == 0)
 		return false;
 
 	if (rect1->right < rect2->left) // _rect bên trái so với obj->_rect

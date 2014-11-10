@@ -1,6 +1,6 @@
 #include "BulletPoolManager.h"
 
-BulletPoolManager* BulletPoolManager::m_Instance = NULL;
+BulletPoolManager* BulletPoolManager::m_Instance = 0;
 
 BulletPoolManager::BulletPoolManager()
 {
@@ -37,7 +37,7 @@ void BulletPoolManager::popBulletFromList()
 
 BulletPoolManager* BulletPoolManager::getInstance()
 {
-	if(BulletPoolManager::m_Instance == NULL)			
+	if(BulletPoolManager::m_Instance == 0)
 	{
 		BulletPoolManager::m_Instance = new BulletPoolManager();
 	}
@@ -96,7 +96,7 @@ void BulletPoolManager::Release()
 	BulletPool::getInstance()->releaseBulletPool();
 	this->m_ListBulletInGame.clear();
 	delete BulletPoolManager::m_Instance;
-	BulletPoolManager::m_Instance = NULL;
+	BulletPoolManager::m_Instance = 0;
 }
 
 BulletPoolManager::~BulletPoolManager()

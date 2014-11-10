@@ -1,7 +1,5 @@
 ﻿#include "BigGunRotating.h"
 
-
-
 BigGunRotating::BigGunRotating()
 {
 
