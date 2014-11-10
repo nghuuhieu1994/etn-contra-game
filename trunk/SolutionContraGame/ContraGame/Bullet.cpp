@@ -13,15 +13,16 @@ Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 	this->m_Direction = _direction;
 	this->m_eObjectID = _objectID;
 	this->m_Position.z = 1.0f;
-	this->m_Physic->setVelocityX(0.2f);
+	this->m_Physic->setVelocityX(2.0f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
-	this->m_TypeBullet = eIDTypeBullet::BULLETRAMBO;
+	this->m_TypeBullet = eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO;
+	this->m_DirectAttack = eDirectAttack::AD_TOP;
 }
 
 void Bullet::Initialize()
 {
 	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
+	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_DEFAULT_BULLET_RAMBO));
 }
 
 void Bullet::ResetLivingTime()

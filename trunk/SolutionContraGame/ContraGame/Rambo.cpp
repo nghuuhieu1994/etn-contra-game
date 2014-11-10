@@ -114,6 +114,7 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_AIM_TOP_RIGHT:
 			{
+				Shoot();
 				HandleInputAimTopRightState();
 			}
 			break;
@@ -365,7 +366,7 @@ int Rambo::HandleInputRunState()
 					if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
-						//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+						//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
 						return 0;
 					}
 					else
@@ -600,46 +601,47 @@ void Rambo::Shoot()
 	{
 		if (isAddBullet())
 		{
+			this->m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
 			switch (m_DirectAttack)
 			{
 			case AD_TOP:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(0.0f, 2.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_BOTTOM:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(0.0f, -2.0f)); 
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack); 
 				}
 				break;
 			case AD_LEFT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, 0.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_RIGHT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_TOP_RIGHT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 2.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_TOP_LEFT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, 2.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_BOTTOM_RIGHT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, -2.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			case AD_BOTTOM_LEFT:
 				{
-					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, -2.0f));
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, this->m_DirectAttack);
 				}
 				break;
 			default:

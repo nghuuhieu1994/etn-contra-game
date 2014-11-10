@@ -2,19 +2,11 @@
 #define __BULLETPOOL_H__
 
 #include "Bullet.h"
+#include "DefaultBullet.h"
 #include <vector>
 #include <queue>
 
-/// BulletPool contain
-///	RAMBOBULLET => 20
-/// 
-///
-///
-///
-///
-///
-
-#define BULLETOFRAMBO 20
+#define QUALITY_OF_DEFAULT_BULLET_RAMBO 20
 
 class BulletPool
 {
@@ -26,7 +18,7 @@ public:
 	static BulletPool* m_Instance;
 	static BulletPool* getInstance();
 	void Initialize();
-	Bullet* popBulletFromBulletPool(eIDTypeBullet, D3DXVECTOR3, D3DXVECTOR2);
+	Bullet* popBulletFromBulletPool(eIDTypeBullet, D3DXVECTOR3, eDirectAttack);
 	void addBulleToBulletPool(Bullet*);
 	void releaseBulletPool();
 };
