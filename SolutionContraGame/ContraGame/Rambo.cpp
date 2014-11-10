@@ -235,6 +235,14 @@ int Rambo::HandleInputSwimState()
 int Rambo::HandleInputIdleState()
 {
 	m_Physic->setVelocityX(0.0f);
+	if (m_Direction == eDirection::LEFT)
+	{
+		m_DirectAttack = eDirectAttack::AD_LEFT;
+	}
+	if (m_Direction == eDirection::RIGHT)
+	{
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
+	}
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown() || CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_RUN;
