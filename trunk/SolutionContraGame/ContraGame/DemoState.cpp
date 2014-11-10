@@ -13,6 +13,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	
 	m_Rambo = new Rambo(D3DXVECTOR3(400, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
 
+#ifdef HIEU
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
@@ -27,7 +28,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
-	
+
 	m_bigGunRotating = new BigGunRotating(D3DXVECTOR3(800, 10, 1), eDirection::LEFT, eObjectID::BIG_GUN_ROTATING);
 	m_bigGunRotating->Initialize();
 
@@ -38,14 +39,16 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossGun->Initialize();
 
 	m_bossCenter = new BossCenter(D3DXVECTOR3(600, 50, 1), eDirection::LEFT, eObjectID::BOSS_CENTER);
-	m_bossCenter->Initialize();
+	m_bossCenter->Initialize();  
+#endif // HIEU
+
 
 	BulletPoolManager::getInstance()->Initialize();
 
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
-	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Play();
-	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Play();
+	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();*/
 	//m_listGameObjects.push_back(m_VirtualObject);
 
 	ReadMap("resources\\Map\\1\\map.xml");
@@ -113,18 +116,21 @@ void DemoState::Update()
 {
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 
-	m_Rambo->UpdateAnimation();
+	/*m_Rambo->UpdateAnimation();
 	
 	m_Rambo->UpdateMovement();
 
 	for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end(); ++it)
 	{
 		m_Rambo->UpdateCollision(*it);
-	}
+	}*/
+
+	m_Rambo->Update(m_listGameObjects);
 
 	BulletPoolManager::getInstance()->UpdateAnimation();
 	BulletPoolManager::getInstance()->UpdateMovement();
-
+	BulletPoolManager::getInstance()->Update();
+#ifdef HIEU
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->Update();
@@ -150,7 +156,7 @@ void DemoState::Update()
 	m_snipperHiding->UpdateAnimation();
 	m_snipperHiding->Update();
 	m_snipperHiding->UpdateCollision(m_Rambo);
-	
+
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
 
@@ -158,7 +164,9 @@ void DemoState::Update()
 	m_bossGun->Update();
 
 	m_bossCenter->UpdateAnimation();
-	m_bossCenter->Update();
+	m_bossCenter->Update();  
+#endif // HIEU
+
 
 
 	
@@ -174,18 +182,21 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 
+#ifdef HIEU
 	m_gifBullet->Render(_lpDSpriteHandle);
 	m_gifBulletMoving->Render(_lpDSpriteHandle);
 	m_SniperStanding->Render(_lpDSpriteHandle);
 	m_gunRotating->Render(_lpDSpriteHandle);
 	m_bigGunRotating->Render(_lpDSpriteHandle);
-	
 
-	
+
+
 
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
-	m_bossGun->Render(_lpDSpriteHandle);
+	m_bossGun->Render(_lpDSpriteHandle);  
+#endif // HIEU
+
 
 
 }

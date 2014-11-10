@@ -235,12 +235,68 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 			break;
 		case STATE_RAMBO_DIVE:
 			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
+					
+					m_frameSize		= D3DXVECTOR2(32, 32);
+					m_Leg			= 0;
+					m_Body			= m_Dive;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
 
+				shakeBodySwim();
 			}
 			break;
 		case STATE_RAMBO_SWIM_SHOOT:
 			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 12, 0);
+					m_PositionLeg	= D3DXVECTOR3(0, 0, 0);
 
+					m_frameSize		= D3DXVECTOR2(32, 32);
+					m_Leg			= m_Dive;
+					m_Body			= m_Shoot;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
+				shakeBodySwim();
+			}
+			break;
+		case STATE_RAMBO_SWIM_SHOOT_UP:
+			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 12, 0);
+					m_PositionLeg	= D3DXVECTOR3(0, 0, 0);
+
+					m_frameSize		= D3DXVECTOR2(32, 32);
+					m_Leg			= m_Dive;
+					m_Body			= m_Up;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
+
+				shakeBodySwim();
+			}
+			break;
+		case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 12, 0);
+					m_PositionLeg	= D3DXVECTOR3(0, 0, 0);
+					
+					m_frameSize		= D3DXVECTOR2(32, 32);
+					m_Leg			= m_Dive;
+					m_Body			= m_TopRight;
+					m_inversePositionY = -1;
+					m_timeShakeAnimation = 0;
+				}
+
+				shakeBodySwim();
 			}
 			break;
 		case STATE_RAMBO_SWIM:

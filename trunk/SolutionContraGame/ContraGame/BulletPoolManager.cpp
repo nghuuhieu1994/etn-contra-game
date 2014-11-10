@@ -19,12 +19,18 @@ void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 
 
 void BulletPoolManager::popBulletFromList()
 {
-	for(std::list<Bullet*>::iterator i = this->m_ListBulletInGame.begin() ; i != this->m_ListBulletInGame.end(); ++i)
+	for(std::list<Bullet*>::iterator i = this->m_ListBulletInGame.begin() ; i != this->m_ListBulletInGame.end(); )
 	{
 		if((*i)->getObjectState() == eObjectState::STATE_DEATH)
 		{
 			BulletPool::getInstance()->addBulleToBulletPool((*i));
-			this->m_ListBulletInGame.remove((*i));
+			//this->m_ListBulletInGame.remove((*i));
+			i = this->m_ListBulletInGame.erase(i);
+			//i = m_ListBulletInGame.begin();
+		}
+		else
+		{
+			++i;
 		}
 	}
 }

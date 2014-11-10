@@ -21,6 +21,8 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	isLieDown = false;
 	m_timeClimb = 0;
 	m_timeWaterBomb = 0;
+	m_timeAddBullet = 600;
+	m_DirectAttack = eDirectAttack::AD_RIGHT;
 }
 
 RECT Rambo::getBound()
@@ -52,6 +54,7 @@ void Rambo::HandleInput()
 		m_Position.y = 450;
 	}
 
+
 	//if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	//{
 	//	m_Physic->setVelocityX(1.0f);
@@ -74,21 +77,25 @@ void Rambo::HandleInput()
 	{
 		case STATE_RAMBO_IDLE:
 			{
+				Shoot();
 				HandleInputIdleState();
 			}
 			break;
 		case STATE_RAMBO_JUMP:
 			{
+				Shoot();
 				HandleInputJumpState();
 			}
 			break;
 		case STATE_RAMBO_LIE:
 			{
+				Shoot();
 				HandleInputLieState();
 			}
 			break;
 		case STATE_RAMBO_RUN:
 			{
+				Shoot();
 				HandleInputRunState();
 			}
 			break;
@@ -101,6 +108,7 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_SHOOT_RUN:
 			{
+				Shoot();
 				HandleInputShootRunState();
 			}
 			break;
@@ -111,6 +119,7 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_AIM_UP:
 			{
+				Shoot();
 				HandleInputAimUpState();
 			}
 			break;
@@ -126,7 +135,7 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_DIVE:
 			{
-
+				HandleInputDiveState();
 			}
 			break;
 		case STATE_RAMBO_SWIM:
@@ -141,13 +150,23 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_SWIM_SHOOT:
 			{
-
+				HandleInputSwimShootState();
+			}
+			break;
+		case STATE_RAMBO_SWIM_SHOOT_UP:
+			{
+				HandleInputSwimShootUpState();
+			}
+			break;
+		case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+			{
+				HandleInputSwimShootTopRightState();
 			}
 			break;
 		default:
 			break;
 	}
-	Shoot();
+	//Shoot();
 	if(isFall)
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
@@ -176,6 +195,10 @@ void Rambo::HandleInput()
 
 int Rambo::HandleInputSwimState()
 {
+	if (CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM_SHOOT;	
+	}
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
@@ -190,8 +213,16 @@ int Rambo::HandleInputSwimState()
 		}
 		else
 		{
-			m_Physic->setVelocityX(0.0f);
-			return 0;
+			if(CInputDx9::getInstance()->IsKeyUpUpAndKeyDownDown())
+			{
+				m_ObjectState = eObjectState::STATE_RAMBO_DIVE;
+			}
+			else
+			{
+				m_Physic->setVelocityX(0.0f);
+				return 0; 
+			}
+
 		}
 	}
 	return 1;
@@ -247,7 +278,21 @@ int Rambo::HandleInputIdleState()
 
 int Rambo::HandleInputLieState()
 {
-	m_Physic->setVelocityX(0.0f);
+	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
+	{
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
+	}
+	else
+	{
+		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+		{
+			m_DirectAttack = eDirectAttack::AD_LEFT;
+		}
+		else
+		{
+			
+		}
+	}
 	if(!CInputDx9::getInstance()->IsKeyDown(DIK_DOWN) || CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
@@ -320,7 +365,7 @@ int Rambo::HandleInputRunState()
 					if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
-						BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+						//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
 						return 0;
 					}
 					else
@@ -332,6 +377,17 @@ int Rambo::HandleInputRunState()
 			}
 		}
 	}
+}
+
+bool Rambo::isAddBullet()
+{
+	m_timeAddBullet += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if (m_timeAddBullet > 500)
+	{
+		m_timeAddBullet = 0;
+		return true;
+	}
+	return false;
 }
 
 int Rambo::HandleInputAimBottomRightState()
@@ -484,14 +540,12 @@ int Rambo::HandleInputShootRunState()
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
-		m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
 	}
 	else
 	{
 		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 		{
 			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
-			m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
 		}
 		else
 		{
@@ -544,38 +598,53 @@ void Rambo::Shoot()
 {
 	if (CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
-		switch (m_DirectAttack)
+		if (isAddBullet())
 		{
-		case ZERO_CLOCK_DIRECTION:
-			break;
-		case ONE_CLOCK_DIRECTION:
-			break;
-		case TWO_CLOCK_DIRECTION:
-			break;
-		case THREE_CLOCK_DIRECTION:
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
-			break;
-		case FOUR_CLOCK_DIRECTION:
-			break;
-		case FIVE_CLOCK_DIRECTION:
-			break;
-		case SIX_CLOCK_DIRECTION:
-			break;
-		case SEVEN_CLOCK_DIRECTION:
-			break;
-		case EIGHT_CLOCK_DIRECTION:
-			break;
-		case NINE_CLOCK_DIRECTION:
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
-			break;
-		case TEN_CLOCK_DIRECTION:
-			break;
-		case ELEVEN_CLOCK_DIRECTION:
-			break;
-		case TWELVE_CLOCK_DIRECTION:
-			break;
-		default:
-			break;
+			switch (m_DirectAttack)
+			{
+			case AD_TOP:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(0.0f, 2.0f));
+				}
+				break;
+			case AD_BOTTOM:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(0.0f, -2.0f)); 
+				}
+				break;
+			case AD_LEFT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, 0.0f));
+				}
+				break;
+			case AD_RIGHT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 0.0f));
+				}
+				break;
+			case AD_TOP_RIGHT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, 2.0f));
+				}
+				break;
+			case AD_TOP_LEFT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, 2.0f));
+				}
+				break;
+			case AD_BOTTOM_RIGHT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(2.0f, -2.0f));
+				}
+				break;
+			case AD_BOTTOM_LEFT:
+				{
+					BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLETRAMBO, this->m_Position, D3DXVECTOR2(-2.0f, -2.0f));
+				}
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
@@ -601,16 +670,198 @@ int Rambo::HandleInputJumpState()
 	}
 	return 0;
 }
+
+int Rambo::HandleInputDiveState()
+{
+	if(CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown() || CInputDx9::getInstance()->IsKeyUp(DIK_DOWN))
+	{
+		m_ObjectState = STATE_RAMBO_SWIM;
+	}
+	return 1;
+}
+int Rambo::HandleInputSwimShootState()
+{
+	if (CInputDx9::getInstance()->IsKeyUp(DIK_Z))
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+	}
+	if (CInputDx9::getInstance()->IsKeyUpDownAndKeyDownUp())
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM_SHOOT_UP;
+	}
+	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
+	{
+		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
+		return 0;
+	}
+	else
+	{
+		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+		{
+			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
+			return 0;	
+		}
+		else
+		{
+			m_Physic->setVelocityX(0.0f);
+			return 0;
+		}
+	}
+	return 1;
+}
+int Rambo::HandleInputSwimShootUpState()
+{
+	if (CInputDx9::getInstance()->IsKeyUp(DIK_Z) || CInputDx9::getInstance()->IsKeyUp(DIK_UP) || CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown())
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+		return 0;
+	}
+	else
+	{
+		if (CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown() || CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+		{
+			m_ObjectState = eObjectState::STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT;
+		}
+	}
+	return 1;
+}
+int Rambo::HandleInputSwimShootTopRightState()
+{
+	if (CInputDx9::getInstance()->IsKeyUp(DIK_Z))
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+		return 0;
+	}
+	if (CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightDown() ||CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightUp())
+	{
+		m_ObjectState = eObjectState::STATE_RAMBO_SWIM_SHOOT_UP;
+		return 0;
+	}
+	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
+	{
+		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
+		return 0;
+	}
+	else
+	{
+		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+		{
+			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
+			return 0;	
+		}
+		else
+		{
+			m_Physic->setVelocityX(0.0f);
+			return 0;
+		}
+	}
+	return 1;
+}
+
 void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
+	//THIS CODE MUST ADD IN STATE
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		m_RamboSprite->shakeBody();
 	}
-	if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB && m_ObjectState != eObjectState::STATE_RAMBO_WATER_BOMB)
+	//--------------------------
+	/*if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB && m_ObjectState != eObjectState::STATE_RAMBO_WATER_BOMB)
 	{
 		isFall = true; 
+	}*/
+	
+}
+
+void Rambo::SetFallFlag()
+{
+	switch (m_ObjectState)
+	{
+	case STATE_RAMBO_AIM_BOTTOM_RIGHT:
+	case STATE_RAMBO_AIM_TOP_RIGHT:
+	case STATE_RAMBO_AIM_UP:
+	case STATE_RAMBO_IDLE:
+	case STATE_RAMBO_LIE:
+	case STATE_RAMBO_MOVE:
+	case STATE_RAMBO_RUN:
+	case STATE_RAMBO_SHOOT:
+	case STATE_RAMBO_SHOOT_RUN:
+	case STATE_RAMBO_FALL:
+		isFall = true;
+		break;
+	case STATE_RAMBO_WATER_BOMB:
+	case STATE_RAMBO_JUMP:
+	case STATE_RAMBO_DIVE:
+	case STATE_RAMBO_SWIM:
+	case STATE_RAMBO_CLIMB:
+	case STATE_RAMBO_SWIM_SHOOT:
+	case STATE_RAMBO_SWIM_SHOOT_UP:
+	case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+		isFall = false;
+		break;
+	default:
+		break;
+	}
+}
+
+void Rambo::SetVelocityXZero()
+{
+	switch (m_ObjectState)
+	{		
+	case STATE_RAMBO_AIM_BOTTOM_RIGHT:
+	case STATE_RAMBO_AIM_TOP_RIGHT:
+	case STATE_RAMBO_JUMP:
+	case STATE_RAMBO_MOVE:
+	case STATE_RAMBO_RUN:
+	case STATE_RAMBO_SHOOT:
+	case STATE_RAMBO_SHOOT_RUN:
+	case STATE_RAMBO_SWIM:
+	case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+	case STATE_RAMBO_SWIM_SHOOT:
+		return;
+	case STATE_RAMBO_IDLE:
+	case STATE_RAMBO_SWIM_SHOOT_UP:
+	case STATE_RAMBO_FALL:
+	case STATE_RAMBO_CLIMB:
+	case STATE_RAMBO_DIVE:
+	case STATE_RAMBO_WATER_BOMB:
+	case STATE_RAMBO_AIM_UP:
+	case STATE_RAMBO_LIE:
+		m_Physic->setVelocityX(0.0f);
+		return;
+	default:
+		break;
+	}
+}
+
+void Rambo::SetVelocityYZero()
+{
+	switch (m_ObjectState)
+	{		
+	case STATE_RAMBO_AIM_BOTTOM_RIGHT:
+	case STATE_RAMBO_AIM_TOP_RIGHT:
+	case STATE_RAMBO_AIM_UP:
+	case STATE_RAMBO_IDLE:
+	case STATE_RAMBO_JUMP:
+	case STATE_RAMBO_LIE:
+	case STATE_RAMBO_MOVE:
+	case STATE_RAMBO_RUN:
+	case STATE_RAMBO_SHOOT:
+	case STATE_RAMBO_SHOOT_RUN:
+	case STATE_RAMBO_FALL:
+		return;
+	case STATE_RAMBO_SWIM:
+	case STATE_RAMBO_SWIM_SHOOT:
+	case STATE_RAMBO_CLIMB:
+	case STATE_RAMBO_DIVE:
+	case STATE_RAMBO_WATER_BOMB:
+	case STATE_RAMBO_SWIM_SHOOT_UP:
+	case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+		m_Physic->setVelocityY(0.0f);
+		return;
+	default:
+		break;
 	}
 }
 
@@ -664,7 +915,8 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 				}
 				else
 				{
-					if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
+					if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT || 
+						m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT_UP || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT)
 					{
 						if ((m_Position.x >= checkingObject->getBound().left && m_Physic->getVelocity().x > 0) ||
 							(m_Position.x <= checkingObject->getBound().right && m_Physic->getVelocity().x < 0))
@@ -789,17 +1041,36 @@ void Rambo::UpdateCollision(Object* checkingObject)
 	}
 }
 
+void Rambo::Update(list<Object*> listObject)
+{
+	//START UPDATE
+	//Update animation after handle input update state of Rambo
+	this->UpdateAnimation();
+
+	//set fall flag for special state for simulate gravity
+	SetFallFlag();
+	//set velocity to zero for dimesion X and Y for special state, if you add new state, remember to add it in 2 function
+	SetVelocityXZero();
+	SetVelocityYZero();
+
+	this->UpdateMovement();
+
+	//clear object list below Rambo for add new element in check collision sequence
+	m_objectBelowCurrent.clear();
+	//checking collision with object in game
+	for (std::list<Object*>::iterator it = listObject.begin(); it != listObject.end(); ++it)
+	{
+		this->UpdateCollision(*it);
+	}
+	//clear list object of previous update and reference it to current object list
+	m_objectBelowPrevious.clear();
+	m_objectBelowPrevious = m_objectBelowCurrent;
+	//END UPDATE
+}
+
 void Rambo::UpdateMovement()
 {
-	if (m_ObjectState == eObjectState::STATE_RAMBO_LIE || m_ObjectState == eObjectState::STATE_RAMBO_FALL || m_ObjectState == eObjectState::STATE_RAMBO_CLIMB || m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
-	{
-		m_Physic->setVelocityX(0.0f);
-	}
-	if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT || m_ObjectState == eObjectState::STATE_RAMBO_CLIMB || m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
-	{
-		m_Physic->setVelocityY(0.0f);
-	}
-
+	
 	this->m_Physic->UpdateMovement(&m_Position);
 	
 	if(getBound().left < 0)
@@ -816,7 +1087,7 @@ void Rambo::UpdateMovement()
 	}
 	CGlobal::Rambo_X = (int)(getPositionVec2().x);
 	CGlobal::Rambo_Y = (int)(getPositionVec2().y);
-	m_objectBelowCurrent.clear();
+	
 }
 void Rambo::Update()
 {
@@ -825,8 +1096,7 @@ void Rambo::Update()
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
 {
-	m_objectBelowPrevious.clear();
-	m_objectBelowPrevious = m_objectBelowCurrent;
+	
 	if (m_Direction == eDirection::RIGHT)
 	{
 		m_RamboSprite->Render(spriteHandle,

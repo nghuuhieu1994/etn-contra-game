@@ -20,6 +20,7 @@ private:
 	float m_maxPositionY;
 	float m_timeClimb;
 	float m_timeWaterBomb;
+	float m_timeAddBullet;
 	list<Object*> m_objectBelowCurrent;
 	list<Object*> m_objectBelowPrevious;
 	Object*				m_ignoreCollisionObject;
@@ -37,7 +38,18 @@ private:
 	int HandleInputShootRunState();
 	int HandleInputSwimState();
 	int HandleInputWaterBombState();
+	int HandleInputDiveState();
+	//UNIMPLEMENT
+	
+	int HandleInputSwimShootState();
+	int HandleInputSwimShootUpState();
+	int HandleInputSwimShootTopRightState();
+	//--------------------------------------
+	void SetFallFlag();
 	void Shoot();
+	void SetVelocityXZero();
+	void SetVelocityYZero();
+	bool isAddBullet();
 public:
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
@@ -50,6 +62,7 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();
+	void Update(list<Object*>);
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();

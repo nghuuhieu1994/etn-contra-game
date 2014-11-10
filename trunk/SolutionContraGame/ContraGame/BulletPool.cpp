@@ -41,6 +41,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 			Bullet* object = m_BulletPool[eIDTypeBullet::BULLETRAMBO].front();
 			object->setPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
+			object->ResetLivingTime();
 			m_BulletPool[eIDTypeBullet::BULLETRAMBO].pop();
 
 			return object;

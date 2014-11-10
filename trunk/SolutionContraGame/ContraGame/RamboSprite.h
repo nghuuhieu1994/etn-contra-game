@@ -3,6 +3,8 @@
 #ifndef __RAMBO_MOVE_SPRITE__
 #define __RAMBO_MOVE_SPRITE__
 
+
+//Need to implement fucking class called Animation because this game have so much fucking animation :((
 class RamboSprite
 {
 	int m_inversePositionY;
