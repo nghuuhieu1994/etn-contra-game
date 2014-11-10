@@ -1,6 +1,6 @@
 #include "BulletPool.h"
 
-BulletPool* BulletPool::m_Instance = NULL;
+BulletPool* BulletPool::m_Instance = 0;
 
 BulletPool::BulletPool()
 {
@@ -9,7 +9,7 @@ BulletPool::BulletPool()
 
 BulletPool* BulletPool::getInstance()
 {
-	if(BulletPool::m_Instance == NULL)
+	if(BulletPool::m_Instance == 0)
 	{
 		BulletPool::m_Instance = new BulletPool();
 	}
@@ -48,7 +48,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 			return object;
 		}
 	default:
-		return NULL;
+		return 0;
 	}
 }
 
@@ -81,7 +81,7 @@ void BulletPool::releaseBulletPool()
 
 	m_BulletPool.clear();
 	delete BulletPool::m_Instance;
-	BulletPool::m_Instance = NULL;
+	BulletPool::m_Instance = 0;
 }
 
 BulletPool::~BulletPool()

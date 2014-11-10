@@ -7,7 +7,7 @@
 #include "SpriteManager.h"
 #include "CCamera.h"
 #include "SoundMangerDx9.h"
-#include "Background.h"
+#include "MapReader.h"
 #include "Rambo.h"
 #include "SniperStanding.h"
 #include "GifBulletStatic.h"
@@ -31,7 +31,7 @@ using namespace std;
 class DemoState : public GameScene
 {
 private:
-	D3DXVECTOR3			m_UnitTest;
+	//D3DXVECTOR3			m_UnitTest;
 	/*CSpriteDx9*			texture;
 	CSpriteDx9*			billmove1;
 	CSpriteDx9*			billmove2;
@@ -68,7 +68,6 @@ public:
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
-	void ReadMap(const char* _filePath);
 	void Update();
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	void Pause();

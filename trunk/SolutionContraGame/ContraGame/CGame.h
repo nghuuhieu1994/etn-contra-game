@@ -4,7 +4,7 @@
 #include "CCamera.h"
 #include "CGameLog.h"
 #include "CGameTimeDx9.h"
-#include "CGlobal.h"
+#include "FrameworkDefineMacro.h"
 #include "CInputDx9.h"
 #include "CSpriteDx9.h"
 #include "CSurfaceDx9.h"
@@ -45,13 +45,13 @@ public:
 
 	CGame (HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode);
 
-	bool Initialize (HINSTANCE handleInstance, bool isWindowed);
+	bool Initialize(HINSTANCE handleInstance, bool isWindowed);
 
-	void Load ();
+	void Load();
 
-	void Run ();
+	void Run();
 
-	void Exit ();
+	void Exit();
 
 	~CGame ();
 };

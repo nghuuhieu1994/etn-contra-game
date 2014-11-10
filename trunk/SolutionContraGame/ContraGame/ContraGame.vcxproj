@@ -74,7 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Background.h" />
+    <ClInclude Include="MapReader.h" />
     <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="BossCenter.h" />
     <ClInclude Include="BossGun.h" />
@@ -133,7 +133,7 @@
     <ClInclude Include="VirtualObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="BossCenter.cpp" />
     <ClCompile Include="BossGun.cpp" />

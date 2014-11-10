@@ -3,10 +3,11 @@
 
 #include "CGameLog.h"
 #include "CGameTimeDx9.h"
-#include "CGlobal.h"
+//#include "CGlobal.h"
 #include "EIDSceneGame.h"
 #include "CInputDx9.h"
 #include "SceneManagerDx9.h"
+#include "FrameworkDefineMacro.h"
 
 class SceneManagerDx9;
 

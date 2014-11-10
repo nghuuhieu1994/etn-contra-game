@@ -49,10 +49,10 @@ bool CGame::InitializeHandleWindow(HINSTANCE hInstance)
 		"CGame",
 		GAMETITLE,
 		(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX),
-		(horizontal-WIDTH)/2,
-		(vertical - HEIGHT)/2,
-		WIDTH,
-		HEIGHT,
+		(horizontal - SCREEN_WIDTH)/2,
+		(vertical - SCREEN_HEIGHT)/2,
+		SCREEN_WIDTH,
+		SCREEN_HEIGHT,
 		0,
 		0,
 		hInstance,
@@ -86,8 +86,8 @@ bool CGame::InitializeDirect3DDevice(bool isWindowed)
 	{
 		d3dpp.BackBufferCount	= 1;
 		d3dpp.BackBufferFormat	= D3DFMT_A8R8G8B8;
-		d3dpp.BackBufferHeight	= HEIGHT;
-		d3dpp.BackBufferWidth	= WIDTH;
+		d3dpp.BackBufferHeight	= SCREEN_HEIGHT;
+		d3dpp.BackBufferWidth	= SCREEN_WIDTH;
 		d3dpp.Windowed			= true;
 		d3dpp.hDeviceWindow		= this->m_handleWindow;
 		d3dpp.SwapEffect		= D3DSWAPEFFECT_DISCARD;

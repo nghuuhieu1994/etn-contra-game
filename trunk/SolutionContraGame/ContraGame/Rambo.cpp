@@ -151,16 +151,19 @@ void Rambo::HandleInput()
 			break;
 		case STATE_RAMBO_SWIM_SHOOT:
 			{
+				Shoot();
 				HandleInputSwimShootState();
 			}
 			break;
 		case STATE_RAMBO_SWIM_SHOOT_UP:
 			{
+				Shoot();
 				HandleInputSwimShootUpState();
 			}
 			break;
 		case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
 			{
+				Shoot();
 				HandleInputSwimShootTopRightState();
 			}
 			break;
@@ -320,14 +323,14 @@ int Rambo::HandleInputRunState()
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 	{
 		m_Physic->setVelocityX(VELOCITY_X_MOVE_TO_RIGHT);
-		
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
 	}
 	else
 	{
 		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
 		{
 			m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
-			
+			m_DirectAttack = eDirectAttack::AD_LEFT;	
 		}
 		else
 		{
@@ -601,7 +604,7 @@ void Rambo::Shoot()
 	{
 		if (isAddBullet())
 		{
-			this->m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
+			//this->m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
 			switch (m_DirectAttack)
 			{
 			case AD_TOP:
