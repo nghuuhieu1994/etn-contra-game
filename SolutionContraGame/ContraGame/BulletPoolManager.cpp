@@ -26,7 +26,6 @@ void BulletPoolManager::popBulletFromList()
 			BulletPool::getInstance()->addBulleToBulletPool((*i));
 			//this->m_ListBulletInGame.remove((*i));
 			i = this->m_ListBulletInGame.erase(i);
-			//i = m_ListBulletInGame.begin();
 		}
 		else
 		{
