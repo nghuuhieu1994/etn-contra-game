@@ -612,6 +612,10 @@ int Rambo::HandleInputShootRunState()
 
 void Rambo::Shoot()
 {
+	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+	{
+		m_RamboSprite->shakeBody();
+	}
 	if (CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		if (isAddBullet())
@@ -672,7 +676,15 @@ D3DXVECTOR3	Rambo::GetStartPositionOfBullet()
 	{
 		case STATE_RAMBO_IDLE:
 			{
-				return D3DXVECTOR3(m_Position.x, m_Position.y + 9, 0);
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 9, m_Position.y + 8, 0); 
+				}
+				if (m_Direction == eDirection::RIGHT)
+				{
+					return D3DXVECTOR3(m_Position.x + 5, m_Position.y + 8, 0);
+				}
+				return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
 			}
 			break;
 		case STATE_RAMBO_JUMP:
@@ -687,6 +699,14 @@ D3DXVECTOR3	Rambo::GetStartPositionOfBullet()
 			break;
 		case STATE_RAMBO_AIM_BOTTOM_RIGHT:
 			{
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 24, m_Position.y - 10, 0); 
+				}
+				if (m_Direction == eDirection::RIGHT)
+				{
+					return D3DXVECTOR3(m_Position.x + 22, m_Position.y - 10, 0);
+				}
 				return D3DXVECTOR3(m_Position.x, m_Position.y + 22, 0);
 			}
 			break;
@@ -697,7 +717,15 @@ D3DXVECTOR3	Rambo::GetStartPositionOfBullet()
 			break;
 		case STATE_RAMBO_AIM_TOP_RIGHT:
 			{
-				return D3DXVECTOR3(m_Position.x, m_Position.y - 6, 0);
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 12, m_Position.y + 10, 0); 
+				}
+				if (m_Direction == eDirection::RIGHT)
+				{
+					return D3DXVECTOR3(m_Position.x + 10, m_Position.y + 10, 0);
+				}
+				return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
 			}
 			break;
 		case STATE_RAMBO_AIM_UP:
@@ -733,7 +761,15 @@ D3DXVECTOR3	Rambo::GetStartPositionOfBullet()
 			break;
 		case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
 			{
-				return D3DXVECTOR3(m_Position.x, m_Position.y - 6, 0);
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 16, m_Position.y + 10, 0); 
+				}
+				if (m_Direction == eDirection::RIGHT)
+				{
+					return D3DXVECTOR3(m_Position.x + 14, m_Position.y + 10, 0);
+				}
+				return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
 			}
 			break;
 		default:
@@ -910,10 +946,10 @@ void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
 	//THIS CODE MUST ADD IN STATE
-	if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+	/*if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 	{
 		m_RamboSprite->shakeBody();
-	}
+	}*/
 	//--------------------------
 	/*if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB && m_ObjectState != eObjectState::STATE_RAMBO_WATER_BOMB)
 	{
