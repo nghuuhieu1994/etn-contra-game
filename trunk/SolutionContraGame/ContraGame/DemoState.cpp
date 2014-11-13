@@ -42,7 +42,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter->Initialize();  
 #endif // HIEU
 
-	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
+	m_Enemy = new EnemyRun(D3DXVECTOR3(300, 300, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
 	BulletPoolManager::getInstance()->Initialize();
 	LedObject::getStaticInstance()->Initialize();
@@ -128,6 +128,11 @@ void DemoState::Update()
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
 	m_Enemy->Update();
+	for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
+	{
+		//m_Enemy->UpdateCollision(m_listGameObjects. --> i hate std::list tooooooooooooooooooo D owi
+		m_Enemy->UpdateCollision(*i);
+	}
 
 	
 }

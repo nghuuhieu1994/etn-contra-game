@@ -81,28 +81,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 		switch (checkingObject->getID())
 		{
 			case eObjectID ::BULLET_RAMBO:
-				if(collideDirection == IDDirection::DIR_TOP)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-				else if(collideDirection == IDDirection::DIR_BOTTOM)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_LEFT)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_RIGHT)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 
 			default:
