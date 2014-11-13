@@ -16,6 +16,8 @@ void EnemyRun::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_RUN));
 	m_Sprite = sprite_main;
+	isFall = 0;
+	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
 }
 
 void EnemyRun::UpdateAnimation()
@@ -25,6 +27,8 @@ void EnemyRun::UpdateAnimation()
 	case STATE_ALIVE_IDLE:
 		this->getSprite()->getAnimation()->setIndexStart(0);
 		this->getSprite()->getAnimation()->setIndexEnd(2);
+		this->m_Physic->setVelocityX(-0.5);
+		this->m_Physic->setVelocityY(0);
 		break;
 	case STATE_ALIVE_MOVE:
 		break;
@@ -32,6 +36,21 @@ void EnemyRun::UpdateAnimation()
 		break;
 	case STATE_ENEMY_JUMP:
 		this->getSprite()->getAnimation()->setCurrentFrame(1);
+		this->m_Physic->setVelocityY(-0.3);
+		this->m_Physic->setAccelerateY(-1.5);
+		this->m_Physic->setVelocityX(-0.2);
+		//this->m_Physic->setAccelerateX(-0.3f);
+		//this->m_Physic->setAccelerateX(0.0f);
+		/*if(isFall < 20)
+		{
+		this->m_Position.y += 2;
+		m_Physic->setVelocityY(0.0f);
+		m_Physic->setAccelerateY(2.0f);
+		}
+		isFall++;
+
+		if(isFall >= 20)
+			this->m_Position.y -= 1;*/
 		break;
 	case STATE_BEFORE_DEATH: 
 		m_Sprite = sprite_dead;
@@ -60,30 +79,12 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 		switch (checkingObject->getID())
 		{
 			case eObjectID ::BULLET_RAMBO:
-				if(collideDirection == IDDirection::DIR_TOP)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-				else if(collideDirection == IDDirection::DIR_BOTTOM)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_LEFT)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
-
-				else if(collideDirection == IDDirection::DIR_RIGHT)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					break;
-				}
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
-
+			case eObjectID::TILE_BASE:
+				// implement ur respons here :)
+				// GLuck
+				break;
 			default:
 				break;
 		}
@@ -92,7 +93,8 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 }
 void EnemyRun::UpdateMovement()
 {
-	setPositionX(getPositionVec2().x - 1);
+	//setPositionX(getPositionVec2().x - 1);
+	m_Physic->UpdateMovement(&m_Position);
 }
 void EnemyRun::Update()
 {
@@ -100,19 +102,20 @@ void EnemyRun::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			if(m_TimeChangeState > 2500)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ENEMY_JUMP;
+				
 			}
 			break;
 		case STATE_ENEMY_JUMP:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			/*m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 1500)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-			}
+			}*/
 			break;
 		case STATE_BEFORE_DEATH:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
