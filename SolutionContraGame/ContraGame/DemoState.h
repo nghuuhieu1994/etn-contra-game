@@ -24,6 +24,7 @@
 #include "Bullet.h"
 #include "BulletPoolManager.h"
 #include "BulletPool.h"
+#include "LedObject.h"
 #include <list>
 
 using namespace std;

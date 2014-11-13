@@ -45,7 +45,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
 	BulletPoolManager::getInstance()->Initialize();
-
+	LedObject::getStaticInstance()->Initialize();
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
 	m_VirtualObject->Initialize();*/
 	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Play();
@@ -74,10 +74,12 @@ void DemoState::Update()
 		m_Rambo->UpdateCollision(*it);
 	}*/
 
-	for (std::list<Object*>::iterator it = m_ledObject.begin(); it != m_ledObject.end(); it++)
+	/*for (std::list<Object*>::iterator it = m_ledObject.begin(); it != m_ledObject.end(); it++)
 	{
 		(*it)->UpdateAnimation();
-	}
+	}*/
+
+	LedObject::getStaticInstance()->UpdateAnimation();
 
 	m_Rambo->Update(m_listGameObjects);
 
