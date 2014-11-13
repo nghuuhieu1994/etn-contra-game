@@ -4,6 +4,8 @@
 enum eIDTypeBullet
 {
 	DEFAULT_BULLET_OF_RAMBO = 0,
+	RED_BULLET_OF_RAMBO = 1,
+	FIRE_BULLET_OF_RAMBO = 2,
 };
 
 #endif

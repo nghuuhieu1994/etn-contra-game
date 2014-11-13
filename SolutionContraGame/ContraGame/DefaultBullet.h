@@ -8,6 +8,7 @@ class DefaultBullet : public Bullet
 public:
 	DefaultBullet();
 	DefaultBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	void Initialize();
 	void UpdateMovement();
 	~DefaultBullet();
 };

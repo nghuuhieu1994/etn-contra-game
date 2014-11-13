@@ -63,6 +63,8 @@ private:
 	list<Object *>		m_listGameObjects;
 
 	list<Object *>		m_backgroundTile;
+
+	list<Object *>		m_ledObject;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}

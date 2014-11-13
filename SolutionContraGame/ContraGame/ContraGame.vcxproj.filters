@@ -130,6 +130,12 @@
     <ClCompile Include="MapReader.cpp">
       <Filter>Framework\Map Reader</Filter>
     </ClCompile>
+    <ClCompile Include="RedBullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
     <ClCompile Include="GifS.cpp">
       <Filter>GameObject\Items\GifBullet\GifS</Filter>
     </ClCompile>
@@ -147,6 +153,9 @@
     </ClCompile>
     <ClCompile Include="GifL.cpp">
       <Filter>GameObject\Items\GifBullet\GifL</Filter>
+    </ClCompile>
+    <ClCompile Include="LedObject.cpp">
+      <Filter>GameObject\LedObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +330,12 @@
     <ClInclude Include="MapReader.h">
       <Filter>Framework\Map Reader</Filter>
     </ClInclude>
+    <ClInclude Include="RedBullet.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
     <ClInclude Include="GifS.h">
       <Filter>GameObject\Items\GifBullet\GifS</Filter>
     </ClInclude>
@@ -338,6 +353,9 @@
     </ClInclude>
     <ClInclude Include="GifL.h">
       <Filter>GameObject\Items\GifBullet\GifL</Filter>
+    </ClInclude>
+    <ClInclude Include="LedObject.h">
+      <Filter>GameObject\LedObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +481,9 @@
     </Filter>
     <Filter Include="GameObject\Items\GifBullet\GifL">
       <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\LedObject">
+      <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

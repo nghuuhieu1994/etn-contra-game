@@ -53,7 +53,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_listGameObjects.push_back(m_VirtualObject);
 
 	//ReadMap("resources\\Map\\1\\map.xml");
-	MapReader::getInstance()->ReadMap("resources\\Map\\1\\map.xml", &m_listGameObjects, &m_backgroundTile);
+	MapReader::getInstance()->ReadMap("resources\\Map\\1\\map.xml", &m_listGameObjects, &m_backgroundTile, &m_ledObject);
 }
 
 void DemoState::HandleInput()
@@ -74,11 +74,18 @@ void DemoState::Update()
 		m_Rambo->UpdateCollision(*it);
 	}*/
 
+	for (std::list<Object*>::iterator it = m_ledObject.begin(); it != m_ledObject.end(); it++)
+	{
+		(*it)->UpdateAnimation();
+	}
+
 	m_Rambo->Update(m_listGameObjects);
 
 	BulletPoolManager::getInstance()->UpdateAnimation();
 	BulletPoolManager::getInstance()->UpdateMovement();
 	BulletPoolManager::getInstance()->Update();
+
+
 #ifdef HIEU
 	m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
@@ -127,6 +134,10 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	//m_background->Render(_lpDSpriteHandle);
 	for (std::list<Object*>::iterator it = m_backgroundTile.begin(); it != m_backgroundTile.end(); it++)
+	{
+		(*it)->Render(_lpDSpriteHandle);
+	}
+	for(std::list<Object*>::iterator it = m_ledObject.begin(); it != m_ledObject.end(); ++it)
 	{
 		(*it)->Render(_lpDSpriteHandle);
 	}

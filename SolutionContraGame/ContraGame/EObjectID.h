@@ -17,5 +17,6 @@ enum eObjectID
 	BOSS_CENTER,
 	BULLET,
 	VIRTUAL_OBJECT_WATER,
+	LED_OBJECT_STAR,
 };
 #endif
