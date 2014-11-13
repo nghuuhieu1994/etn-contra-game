@@ -30,7 +30,12 @@ void EnemyRun::UpdateAnimation()
 		break;
 	case STATE_SHOOTING:
 		break;
-	case STATE_BEFORE_DEATH:
+	case STATE_ENEMY_JUMP:
+		this->getSprite()->getAnimation()->setCurrentFrame(1);
+		break;
+	case STATE_BEFORE_DEATH: 
+		m_Sprite = sprite_dead;
+		m_Sprite->UpdateAnimation(120);
 		break;
 	case STATE_DEATH:
 		break;
@@ -48,12 +53,41 @@ void EnemyRun::UpdateAnimation()
 }
 void EnemyRun::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
+	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+	if(collideDirection != IDDirection::DIR_NONE)
 	{
-	case eObjectID::RAMBO:
-		break;
-	default:
-		break;
+		switch (checkingObject->getID())
+		{
+			case eObjectID ::BULLET_RAMBO:
+				if(collideDirection == IDDirection::DIR_TOP)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+				else if(collideDirection == IDDirection::DIR_BOTTOM)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+
+				else if(collideDirection == IDDirection::DIR_LEFT)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+
+				else if(collideDirection == IDDirection::DIR_RIGHT)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					break;
+				}
+				break;
+
+			default:
+				break;
+		}
+
 	}
 }
 void EnemyRun::UpdateMovement()
@@ -62,7 +96,38 @@ void EnemyRun::UpdateMovement()
 }
 void EnemyRun::Update()
 {
-
+	switch (m_ObjectState)
+		{
+		case STATE_ALIVE_IDLE:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 2000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_ENEMY_JUMP;
+			}
+			break;
+		case STATE_ENEMY_JUMP:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 2000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			}
+			break;
+		case STATE_BEFORE_DEATH:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 1000)
+			{
+				m_ObjectState = eObjectState::STATE_DEATH;
+				m_TimeChangeState = 0;
+			}
+			break;
+		case STATE_DEATH:
+			this->Release();
+			break;
+		default:
+			break;
+		}
 }
 
 void EnemyRun::Render(SPRITEHANDLE spriteHandle)

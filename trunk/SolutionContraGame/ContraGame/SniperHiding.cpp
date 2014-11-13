@@ -121,37 +121,37 @@ void SniperHiding::Update()
 	if(_distance_X < 350)
 	{
 		switch (m_ObjectState)
-	{
-	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 2000)
 		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_SHOOTING;
+		case STATE_ALIVE_IDLE:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 2000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_SHOOTING;
+			}
+			break;
+		case STATE_SHOOTING:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 4000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			}
+			break;
+		case STATE_BEFORE_DEATH:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 1000)
+			{
+				m_ObjectState = eObjectState::STATE_DEATH;
+				m_TimeChangeState = 0;
+			}
+			break;
+		case STATE_DEATH:
+			this->Release();
+			break;
+		default:
+			break;
 		}
-		break;
-	case STATE_SHOOTING:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 4000)
-		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-		}
-		break;
-	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
-		{
-			m_ObjectState = eObjectState::STATE_DEATH;
-			m_TimeChangeState = 0;
-		}
-		break;
-	case STATE_DEATH:
-		this->Release();
-		break;
-	default:
-		break;
-	}
 	}
 	
 }
