@@ -52,6 +52,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\bullet.png", eSpriteID::SPRITE_BULLET_BIG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\FBullet.png", eSpriteID::SPRITE_F_BULLET, 4, 1, 4);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\default_bullet_rambo.png", eSpriteID::SPRITE_DEFAULT_BULLET_RAMBO, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\fire.png", eSpriteID::SPRITE_FIRE_BULLET_RAMBO, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Landscape\\ledframe.png", eSpriteID::SPRITE_LED_OBJECT, 2, 1, 2);
 	INCLUDE_MAP1;
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);

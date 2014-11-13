@@ -21,4 +21,5 @@ public:
 	void Release();
 	virtual ~BossCenter();
 };
+
 #endif

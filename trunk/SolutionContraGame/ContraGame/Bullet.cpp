@@ -12,21 +12,12 @@ Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 	this->m_Position = _position;
 	this->m_Direction = _direction;
 	this->m_eObjectID = _objectID;
-	this->m_Position.z = 1.0f;
-	this->m_Physic->setVelocityX(2.0f);
-	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
-	this->m_TypeBullet = eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO;
-	this->m_DirectAttack = eDirectAttack::AD_TOP;
-}
-
-void Bullet::Initialize()
-{
 	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_DEFAULT_BULLET_RAMBO));
 }
 
 void Bullet::reset()
 {
+	this->m_factor = 0;
 	this->getPhysic()->setVelocityX(2.0f);
 	this->getPhysic()->setVelocityY(0.0f);
 }
@@ -40,6 +31,7 @@ void Bullet::ResetLivingTime()
 void Bullet::Release()
 {
 	this->m_Sprite = 0;
+	//this->m_Sprite->Release();
 }
 
 void Bullet::Render(SPRITEHANDLE spriteHandle)
@@ -62,6 +54,7 @@ void Bullet::Update()
 
 void Bullet::UpdateAnimation()
 {
+	this->m_Sprite->UpdateAnimation(200);
 	switch(this->m_ObjectState)
 	{
 	case eObjectState::STATE_ALIVE_MOVE:
@@ -73,8 +66,6 @@ void Bullet::UpdateAnimation()
 	default:
 		break;
 	}
-
-	this->m_Sprite->UpdateAnimation(300);
 }
 
 void Bullet::UpdateCollision(Object* checkingObject)

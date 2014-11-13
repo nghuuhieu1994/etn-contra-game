@@ -74,12 +74,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FireBullet.h" />
     <ClInclude Include="GifB.h" />
     <ClInclude Include="GifF.h" />
     <ClInclude Include="GifL.h" />
     <ClInclude Include="GifM.h" />
     <ClInclude Include="GifR.h" />
     <ClInclude Include="GifS.h" />
+    <ClInclude Include="LedObject.h" />
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="BossCenter.h" />
@@ -127,6 +129,7 @@
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Rambo.h" />
     <ClInclude Include="RamboSprite.h" />
+    <ClInclude Include="RedBullet.h" />
     <ClInclude Include="SniperHiding.h" />
     <ClInclude Include="SniperStanding.h" />
     <ClInclude Include="SoundBuffer.h" />
@@ -139,12 +142,14 @@
     <ClInclude Include="VirtualObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FireBullet.cpp" />
     <ClCompile Include="GifB.cpp" />
     <ClCompile Include="GifF.cpp" />
     <ClCompile Include="GifL.cpp" />
     <ClCompile Include="GifM.cpp" />
     <ClCompile Include="GifR.cpp" />
     <ClCompile Include="GifS.cpp" />
+    <ClCompile Include="LedObject.cpp" />
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="BossCenter.cpp" />
@@ -179,6 +184,7 @@
     <ClCompile Include="MenuGame.cpp" />
     <ClCompile Include="Rambo.cpp" />
     <ClCompile Include="RamboSprite.cpp" />
+    <ClCompile Include="RedBullet.cpp" />
     <ClCompile Include="SniperHiding.cpp" />
     <ClCompile Include="SniperStanding.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />

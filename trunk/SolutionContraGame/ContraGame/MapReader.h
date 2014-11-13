@@ -34,7 +34,7 @@ private:
 	~MapReader(){}
 public:
 	static MapReader* getInstance();
-	void ReadMap(const char* _filePath, list<Object*>* _listObject, list<Object*>* _backgroundList);
+	void ReadMap(const char* _filePath, list<Object*>* _listObject, list<Object*>* _backgroundList, list<Object*>* _ledObject);
 };
 
 #endif

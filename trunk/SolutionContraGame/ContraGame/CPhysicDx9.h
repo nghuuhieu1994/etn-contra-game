@@ -56,7 +56,7 @@ public:
 		if(m_MovementRange == 0)
 		{
 			m_MovementRange = new RECT();
-		}
+		}		
 		m_MovementRange->top	= maxTop;
 		m_MovementRange->left	= maxLeft;
 		m_MovementRange->right	= maxRight;

@@ -19,19 +19,36 @@ BulletPool* BulletPool::getInstance()
 
 void BulletPool::Initialize()
 {
-	std::queue<Bullet*> queueOfRambo;
-
+	std::queue<Bullet*> queuDefaultBulletOfRambo;
 	for(int i = 0; i < QUALITY_OF_DEFAULT_BULLET_RAMBO; ++i)
 	{
-		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(400.0f, 300.0f, 1.0f), eDirection::TOP, eObjectID::BULLET);	
+		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);	
 		tempBullet->Initialize();
-		queueOfRambo.push(tempBullet);
+		queuDefaultBulletOfRambo.push(tempBullet);
 	}
-	
-	m_BulletPool.push_back(queueOfRambo);
+
+	m_BulletPool.push_back(queuDefaultBulletOfRambo);
+	std::queue<Bullet*> queueRedBulletOfRambo;
+	for(int i = 0; i < QUALITY_OF_RED_BULLET_RAMBO; ++i)
+	{
+		RedBullet* tempBullet = new RedBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);
+		tempBullet->Initialize();
+		queueRedBulletOfRambo.push(tempBullet);
+	}
+	m_BulletPool.push_back(queueRedBulletOfRambo);
+
+	std::queue<Bullet*> queueFireBulletOfRambo;
+	for(int i = 0; i < QUALITY_OF_RED_BULLET_RAMBO; ++i)
+	{
+		FireBullet* tempBullet = new FireBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);
+		tempBullet->Initialize();
+		queueFireBulletOfRambo.push(tempBullet);
+	}
+
+	m_BulletPool.push_back(queueFireBulletOfRambo);
 }
 
-Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, eDirectAttack _directionAttack)
+Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity, float _factor)
 {
 	switch(_typebullet)
 	{
@@ -41,12 +58,44 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 			DefaultBullet* object = (DefaultBullet*) m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].front();
 			object->setPosition(_position);
 			object->setStartPosition(_position);
-			object->setDirectAttack(_directionAttack);
+			object->getPhysic()->setVelocity(_velocity);
+			object->setFactor(_factor);
 			object->ResetLivingTime();
 			m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].pop();
 
 			return object;
 		}
+		break;
+	case eIDTypeBullet::RED_BULLET_OF_RAMBO:
+		if(m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].empty() == false)
+		{
+			RedBullet* object = (RedBullet*) m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].front();
+			object->setPosition(_position);
+			object->setStartPosition(_position);
+			object->getPhysic()->setVelocity(_velocity);
+			object->setFactor(_factor);
+			object->ResetLivingTime();
+			m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].pop();
+
+			return object;
+		}
+		break;
+	case eIDTypeBullet::FIRE_BULLET_OF_RAMBO:
+		if(m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].empty() == false)
+		{
+			FireBullet* object = (FireBullet*) m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].front();
+			object->setPosition(_position);
+			object->setStartPosition(_position);
+			object->getPhysic()->setVelocity(_velocity);
+			object->setFactor(_factor);
+			object->ResetLivingTime();
+			object->setVelocityOrigin(_velocity);
+			object->setPositionOfOrigin(_position);
+			m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].pop();
+
+			return object;
+		}
+		break;
 	default:
 		return 0;
 	}
@@ -54,13 +103,21 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 
 void BulletPool::addBulleToBulletPool(Bullet* _object)
 {
-	if(_object->getID() == eObjectID::BULLET)
+	if(_object->getID() == eObjectID::BULLET_RAMBO)
 	{
 		switch(_object->getTypeBullet())
 		{
 		case eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO:
 			_object->reset();
 			m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].push((DefaultBullet*) _object);
+			break;
+		case eIDTypeBullet::RED_BULLET_OF_RAMBO:
+			_object->reset();
+			m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].push((RedBullet*) _object);
+			break;
+		case eIDTypeBullet::FIRE_BULLET_OF_RAMBO:
+			_object->reset();
+			m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].push((RedBullet*) _object);
 			break;
 		default:
 			break;
