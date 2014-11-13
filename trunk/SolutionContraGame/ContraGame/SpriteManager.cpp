@@ -76,6 +76,13 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletStatic.png", eSpriteID::SPRITE_GIF_BULLET_STATIC, 7, 1, 7);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletMoving.png", eSpriteID::SPRITE_GIF_BULLET_MOVING, 1, 1, 1);
 	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletB.png", eSpriteID::SPRITE_GIF_B, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletR.png", eSpriteID::SPRITE_GIF_R, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletS.png", eSpriteID::SPRITE_GIF_S, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletL.png", eSpriteID::SPRITE_GIF_L, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletM.png", eSpriteID::SPRITE_GIF_M, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBulle\\GifBulletTypet\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
+
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 3, 9);
 

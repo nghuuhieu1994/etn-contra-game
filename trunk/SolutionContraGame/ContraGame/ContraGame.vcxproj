@@ -74,6 +74,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GifB.h" />
+    <ClInclude Include="GifF.h" />
+    <ClInclude Include="GifL.h" />
+    <ClInclude Include="GifM.h" />
+    <ClInclude Include="GifR.h" />
+    <ClInclude Include="GifS.h" />
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="BossCenter.h" />
@@ -133,6 +139,12 @@
     <ClInclude Include="VirtualObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GifB.cpp" />
+    <ClCompile Include="GifF.cpp" />
+    <ClCompile Include="GifL.cpp" />
+    <ClCompile Include="GifM.cpp" />
+    <ClCompile Include="GifR.cpp" />
+    <ClCompile Include="GifS.cpp" />
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="BossCenter.cpp" />

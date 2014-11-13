@@ -130,6 +130,24 @@
     <ClCompile Include="MapReader.cpp">
       <Filter>Framework\Map Reader</Filter>
     </ClCompile>
+    <ClCompile Include="GifS.cpp">
+      <Filter>GameObject\Items\GifBullet\GifS</Filter>
+    </ClCompile>
+    <ClCompile Include="GifR.cpp">
+      <Filter>GameObject\Items\GifBullet\GifR</Filter>
+    </ClCompile>
+    <ClCompile Include="GifB.cpp">
+      <Filter>GameObject\Items\GifBullet\GifB</Filter>
+    </ClCompile>
+    <ClCompile Include="GifF.cpp">
+      <Filter>GameObject\Items\GifBullet\GifF</Filter>
+    </ClCompile>
+    <ClCompile Include="GifM.cpp">
+      <Filter>GameObject\Items\GifBullet\GifM</Filter>
+    </ClCompile>
+    <ClCompile Include="GifL.cpp">
+      <Filter>GameObject\Items\GifBullet\GifL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -303,6 +321,24 @@
     <ClInclude Include="MapReader.h">
       <Filter>Framework\Map Reader</Filter>
     </ClInclude>
+    <ClInclude Include="GifS.h">
+      <Filter>GameObject\Items\GifBullet\GifS</Filter>
+    </ClInclude>
+    <ClInclude Include="GifR.h">
+      <Filter>GameObject\Items\GifBullet\GifR</Filter>
+    </ClInclude>
+    <ClInclude Include="GifB.h">
+      <Filter>GameObject\Items\GifBullet\GifB</Filter>
+    </ClInclude>
+    <ClInclude Include="GifF.h">
+      <Filter>GameObject\Items\GifBullet\GifF</Filter>
+    </ClInclude>
+    <ClInclude Include="GifM.h">
+      <Filter>GameObject\Items\GifBullet\GifM</Filter>
+    </ClInclude>
+    <ClInclude Include="GifL.h">
+      <Filter>GameObject\Items\GifBullet\GifL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -406,6 +442,27 @@
     </Filter>
     <Filter Include="Framework\Map Reader">
       <UniqueIdentifier>{f620d2bf-221a-4f9d-98d4-628b9f262ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet">
+      <UniqueIdentifier>{f2212de6-6de4-4f29-ac7e-c23112221f26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifS">
+      <UniqueIdentifier>{b04c12c8-a896-4037-8145-0c97ce060b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifR">
+      <UniqueIdentifier>{83b5c345-0b47-47d6-8fe8-01d8d0e94dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifB">
+      <UniqueIdentifier>{e849387b-a5be-418b-a1d9-a68b9998443b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifF">
+      <UniqueIdentifier>{e016559f-f511-400c-9830-524cb623c65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifM">
+      <UniqueIdentifier>{7134e551-542a-4e77-b5da-aaee6e27b2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBullet\GifL">
+      <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
