@@ -24,6 +24,7 @@ enum eObjectState
 	STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT,
 	STATE_RAMBO_SWIM_SHOOT_UP,
 	STATE_RAMBO_WATER_BOMB,
-	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
+	STATE_SHOOTING,// dm deo them cai nay sao xet cho no ban?
+	STATE_ENEMY_JUMP,
 };
 #endif

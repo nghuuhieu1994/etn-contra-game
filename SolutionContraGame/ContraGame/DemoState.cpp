@@ -42,7 +42,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter->Initialize();  
 #endif // HIEU
 
-
+	m_Enemy = new EnemyRun(D3DXVECTOR3(500, 100, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
+	m_Enemy->Initialize();
 	BulletPoolManager::getInstance()->Initialize();
 
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
@@ -115,7 +116,9 @@ void DemoState::Update()
 	m_bossCenter->Update();  
 #endif // HIEU
 
-
+	m_Enemy->UpdateAnimation();
+	m_Enemy->UpdateMovement();
+	m_Enemy->Update();
 
 	
 }
@@ -145,7 +148,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_bossGun->Render(_lpDSpriteHandle);  
 #endif // HIEU
 
-
+	m_Enemy->Render(_lpDSpriteHandle);
 
 }
 

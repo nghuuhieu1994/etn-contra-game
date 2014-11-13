@@ -58,7 +58,7 @@ private:
 	BossCenter*			m_bossCenter;  
 #endif // HIEU
 
-
+	EnemyRun*			m_Enemy;
 
 	list<Object *>		m_listGameObjects;
 
