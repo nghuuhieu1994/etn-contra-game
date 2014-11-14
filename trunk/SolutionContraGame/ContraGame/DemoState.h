@@ -27,6 +27,8 @@
 #include "LedObject.h"
 #include <list>
 
+//#define HIEU
+
 using namespace std;
 
 class DemoState : public GameScene

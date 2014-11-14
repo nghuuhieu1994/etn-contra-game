@@ -1,5 +1,6 @@
 #include "DemoState.h"
 
+
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 
@@ -11,7 +12,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(100, 449, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(50, 300, 1), eDirection::RIGHT, eObjectID::RAMBO);
 
 #ifdef HIEU
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
@@ -42,7 +43,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter->Initialize();  
 #endif // HIEU
 
-	m_Enemy = new EnemyRun(D3DXVECTOR3(300, 300, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
+	m_Enemy = new EnemyRun(D3DXVECTOR3(350, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
 	BulletPoolManager::getInstance()->Initialize();
 	LedObject::getStaticInstance()->Initialize();
@@ -51,7 +52,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Play();
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();*/
 	//m_listGameObjects.push_back(m_VirtualObject);
-
 	//ReadMap("resources\\Map\\1\\map.xml");
 	MapReader::getInstance()->ReadMap("resources\\Map\\1\\map.xml", &m_listGameObjects, &m_backgroundTile, &m_ledObject);
 }

@@ -25,6 +25,9 @@ public:
 	void UpdateCollision(Object* checkingObject);
 	void Render(SPRITEHANDLE spriteHandler);
 	void Release();
+
+	// Danh code
+	std::list<Bullet*> getListBullet() { return m_ListBulletInGame; }
 };
 
 #endif
