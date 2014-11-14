@@ -63,6 +63,10 @@ private:
 
 	EnemyRun*			m_Enemy;
 
+	SniperHiding*		m_snipperHiding;
+
+	BigGunRotating*		m_bigGunRotating;
+
 	list<Object *>		m_listGameObjects;
 
 	list<Object *>		m_backgroundTile;

@@ -2,6 +2,10 @@
 #define __BIG_GUN_ROTATING_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "Bullet.h"
+#include "BulletPool.h"
+#include "BulletPoolManager.h"
+
 
 class BigGunRotating : public DynamicObject
 {
@@ -9,6 +13,13 @@ class BigGunRotating : public DynamicObject
 	CSpriteDx9* sprite_alive;
 	int _distance_X;
 	int _distance_Y;
+
+	int m_timeAddBullet;
+	bool isShoot;
+
+	bool isAddBullet();
+	void Shoot();
+	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
 	BigGunRotating();
 	//Physic*			getPhysic() const { return m_Physic; }
