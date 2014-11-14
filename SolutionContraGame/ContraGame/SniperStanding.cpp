@@ -85,7 +85,6 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 			case eObjectID ::BULLET_RAMBO:
 				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
-
 			default:
 				break;
 		}
@@ -110,6 +109,7 @@ void SniperStanding::Update()
 		if(m_TimeChangeState > 500)
 		{
 			m_TimeChangeState = 0;
+			
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		}
 		break;

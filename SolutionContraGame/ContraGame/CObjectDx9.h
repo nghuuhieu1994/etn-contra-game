@@ -25,8 +25,8 @@ protected:
 	//Physic*			m_Physic;
 	eObjectState	m_ObjectState;
 	ETypeObject		m_TypeObject;
-	int				m_TimeChangeState;
-	int				m_TimeChangeAttackDirectAttack;
+	float				m_TimeChangeState;
+	float				m_TimeChangeAttackDirectAttack;
 	static int		m_identifyNumber;
 	D3DXVECTOR3		m_Position;
 	//bit 0 -> Update Sprite

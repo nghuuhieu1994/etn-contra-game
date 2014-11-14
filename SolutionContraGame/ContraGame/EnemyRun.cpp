@@ -1,5 +1,7 @@
 #include "EnemyRun.h"
-
+#define VELOC_MOVE_RIGHT 0
+#define VELOC_MOVE_LEFT 0
+#define VELOC_JUMB		5
 EnemyRun::EnemyRun()
 {
 }
@@ -13,11 +15,15 @@ EnemyRun::EnemyRun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _obje
 void EnemyRun::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+	m_Direction = eDirection::RIGHT;
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_RUN));
 	m_Sprite = sprite_main;
-	isFall = 0;
-	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
+	isJumb = false;
+	isDead = false;
+	m_TimeChangeState = 0;
+	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 }
 
 void EnemyRun::UpdateAnimation()
@@ -25,43 +31,34 @@ void EnemyRun::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		this->getSprite()->getAnimation()->setIndexStart(0);
-		this->getSprite()->getAnimation()->setIndexEnd(2);
-		this->m_Physic->setVelocityX(-0.5);
-		this->m_Physic->setVelocityY(0);
+		this->m_Sprite->getAnimationAction()->setCurrentFrame(3);
 		break;
 	case STATE_ALIVE_MOVE:
-		break;
-	case STATE_SHOOTING:
-		break;
-	case STATE_ENEMY_JUMP:
-		this->getSprite()->getAnimation()->setCurrentFrame(1);
-		this->m_Physic->setVelocityY(-0.3);
-		this->m_Physic->setAccelerateY(-1.5);
-		this->m_Physic->setVelocityX(-0.2);
-		//this->m_Physic->setAccelerateX(-0.3f);
-		//this->m_Physic->setAccelerateX(0.0f);
-		/*if(isFall < 20)
+		if (!isJumb)
 		{
-		this->m_Position.y += 2;
-		m_Physic->setVelocityY(0.0f);
-		m_Physic->setAccelerateY(2.0f);
+			this->m_Sprite->getAnimationAction()->setIndexStart(0);
+			this->m_Sprite->getAnimationAction()->setIndexEnd(5);
 		}
-		isFall++;
-
-		if(isFall >= 20)
-			this->m_Position.y -= 1;*/
+		else
+		{
+			this->m_Sprite->getAnimationAction()->setCurrentFrame(4);
+			isJumb = false;
+		}
+		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_BEFORE_DEATH: 
+		this->m_Sprite->getAnimationAction()->setCurrentFrame(5);
+		break;
+	case STATE_EXPLOISION:
 		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(120);
+		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
 		break;
 	default:
 		break;
 	}
-	m_Sprite->UpdateAnimation(300);
+
 	if(m_Direction == eDirection::LEFT)
 		m_Sprite->setSpriteEffect(ESpriteEffect::None);
 	else
@@ -82,8 +79,11 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 			case eObjectID::TILE_BASE:
-				// implement ur respons here :)
-				// GLuck
+				if (collideDirection == IDDirection::DIR_TOP)
+				{
+					m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+					this->m_Physic->setVelocityY(0);
+				}
 				break;
 			default:
 				break;
@@ -93,7 +93,60 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 }
 void EnemyRun::UpdateMovement()
 {
-	//setPositionX(getPositionVec2().x - 1);
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_IDLE:
+		break;
+	case STATE_ALIVE_MOVE:
+		if (isJumb != true)
+		{
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+			}
+		}
+		else
+		{
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+			}
+			m_Physic->setVelocityY(VELOC_JUMB);
+			isJumb = false;
+		}
+		break;
+	case STATE_BEFORE_DEATH:
+		if (isDead == false)
+		{
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(-VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(-VELOC_MOVE_RIGHT);
+			}
+			m_Physic->setVelocityY(VELOC_JUMB);
+			isDead = true;
+		}
+		break;
+	case STATE_EXPLOISION:
+		m_Physic->setVelocityX(0);
+		m_Physic->setVelocityY(0);
+		break;
+	case STATE_DEATH:
+		break;
+	default:
+		break;
+	}
 	m_Physic->UpdateMovement(&m_Position);
 }
 void EnemyRun::Update()
@@ -101,28 +154,31 @@ void EnemyRun::Update()
 	switch (m_ObjectState)
 		{
 		case STATE_ALIVE_IDLE:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2500)
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 300)
 			{
 				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_ENEMY_JUMP;
-				
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 			}
 			break;
-		case STATE_ENEMY_JUMP:
-			/*m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1500)
-			{
-				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-			}*/
+		case STATE_ALIVE_MOVE:
+			// do a realthing to detect jumb?
+
 			break;
 		case STATE_BEFORE_DEATH:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1000)
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 300)
 			{
-				m_ObjectState = eObjectState::STATE_DEATH;
 				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_EXPLOISION;
+			}
+			break;
+		case STATE_EXPLOISION:
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 1000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_DEATH;
 			}
 			break;
 		case STATE_DEATH:
