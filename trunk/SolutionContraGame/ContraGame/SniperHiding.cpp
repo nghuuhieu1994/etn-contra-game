@@ -12,6 +12,58 @@ SniperHiding::SniperHiding(D3DXVECTOR3 _position, eDirection _direction, eObject
 	
 }
 
+bool SniperHiding::isAddBullet()
+{
+	m_timeAddBullet += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if (m_timeAddBullet > 1000)
+	{
+		m_timeAddBullet = 0;
+		return true;
+	}
+	return false;
+}
+
+void SniperHiding::Shoot()
+{
+	switch (m_DirectAttack)
+	{
+	case AD_LEFT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		}
+		break;
+	case AD_RIGHT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+		}
+		break;
+	default:
+		break;	
+	}
+}
+
+D3DXVECTOR3 SniperHiding::GetStartPositionOfBullet()
+{
+	switch(m_ObjectState)
+	{
+		case STATE_SHOOTING:
+			{
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
+				}
+				if (m_Direction == eDirection::RIGHT)
+				{
+					return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 5, 0);
+				}
+				return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
+			}
+			break;
+		default:
+			break;
+	}
+}
+
 void SniperHiding::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
@@ -19,6 +71,7 @@ void SniperHiding::Initialize()
 	//sprite_alive_shooting = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_SHOOTING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION));
 	//m_Sprite = sprite_alive_shooting;
+	isShoot = false;
 }
 
 void SniperHiding::UpdateAnimation()
@@ -49,6 +102,7 @@ void SniperHiding::UpdateAnimation()
 		break;
 	case STATE_SHOOTING:
 		//m_Sprite = sprite_alive_shooting;
+		//isShoot = true;
 		m_Sprite = sprite_alive_hiding;
 		this->getSprite()->getAnimation()->setCurrentFrame(0);
 		m_Sprite->UpdateAnimation(500);
@@ -63,11 +117,18 @@ void SniperHiding::UpdateAnimation()
 		break;
 	}	
 	if(m_Direction == eDirection::LEFT)
+	{
 		m_Sprite->setSpriteEffect(ESpriteEffect::None);
+		m_DirectAttack = eDirectAttack::AD_LEFT;
+	}
+
 	else
 	{
 		if(m_Direction == eDirection::RIGHT)
+		{
 			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+			m_DirectAttack == eDirectAttack::AD_RIGHT;
+		}
 	}
 }
 
@@ -92,7 +153,8 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 }
 
 void SniperHiding:: UpdateMovement()
-{}
+{
+}
 
 void SniperHiding::Update()
 {
@@ -103,15 +165,21 @@ void SniperHiding::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			if(m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;
+				isShoot = true;
 			}
 			break;
 		case STATE_SHOOTING:
+			if(isShoot == true)
+			{
+				Shoot();
+				isShoot = false;
+			}
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 4000)
+			if(m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;

@@ -43,8 +43,16 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter->Initialize();  
 #endif // HIEU
 
-	m_Enemy = new EnemyRun(D3DXVECTOR3(350, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
+	m_Enemy = new EnemyRun(D3DXVECTOR3(400, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
+
+	m_snipperHiding = new SniperHiding(D3DXVECTOR3(350, 290, 0), eDirection::LEFT, eObjectID::SNIPER_HIDING);
+	m_snipperHiding->Initialize();
+
+	
+	m_bigGunRotating = new BigGunRotating(D3DXVECTOR3(450, 50, 1), eDirection::LEFT, eObjectID::BIG_GUN_ROTATING);
+	m_bigGunRotating->Initialize();
+
 	BulletPoolManager::getInstance()->Initialize();
 	LedObject::getStaticInstance()->Initialize();
 	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
@@ -130,9 +138,29 @@ void DemoState::Update()
 	m_Enemy->Update();
 	for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
 	{
-		//m_Enemy->UpdateCollision(m_listGameObjects. --> i hate std::list tooooooooooooooooooo D owi
 		m_Enemy->UpdateCollision(*i);
 	}
+
+	m_snipperHiding->UpdateAnimation();
+	m_snipperHiding->Update();
+	for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
+	{
+		m_snipperHiding->UpdateCollision(*i);
+	}
+
+	/*if(m_snipperHiding->getObjectState() != eObjectState::STATE_DEATH )
+	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin();
+		i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
+	{
+		m_snipperHiding->UpdateCollision(*i);
+		
+	}*/
+
+	m_bigGunRotating->UpdateCollision(m_Rambo);
+	m_bigGunRotating->UpdateAnimation();
+	m_bigGunRotating->Update();
+
+	
 
 	
 }
@@ -149,6 +177,11 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		(*it)->Render(_lpDSpriteHandle);
 	}
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+
+	m_Enemy->Render(_lpDSpriteHandle);
+	m_snipperHiding->Render(_lpDSpriteHandle);
+	m_bigGunRotating->Render(_lpDSpriteHandle);
+
 	m_Rambo->Render(_lpDSpriteHandle);
 
 #ifdef HIEU
@@ -166,7 +199,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_bossGun->Render(_lpDSpriteHandle);  
 #endif // HIEU
 
-	m_Enemy->Render(_lpDSpriteHandle);
+
 
 }
 

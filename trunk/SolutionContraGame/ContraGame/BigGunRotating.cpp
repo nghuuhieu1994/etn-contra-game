@@ -11,12 +11,70 @@ BigGunRotating::BigGunRotating(D3DXVECTOR3 _position, eDirection _direction, eOb
 	//m_Position = _position;
 }
 
+bool BigGunRotating::isAddBullet()
+{
+	m_timeAddBullet += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	if (m_timeAddBullet > 1500)
+	{
+		m_timeAddBullet = 0;
+		return true;
+	}
+	return false;
+}
+
+void BigGunRotating::Shoot()
+{
+	switch (m_DirectAttack)
+	{
+	case AD_TOP:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);		
+		}
+		break;			
+	case AD_LEFT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		}
+		break;
+	case AD_TOP_LEFT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
+		}
+		break;			
+	default:
+		break;	
+	}
+}
+
+D3DXVECTOR3 BigGunRotating::GetStartPositionOfBullet()
+{
+	switch(m_ObjectState)
+	{
+	case STATE_ALIVE_IDLE:
+			{
+				//if(m_DirectAttack == eDirectAttack::AD_LEFT)
+				//{
+					//return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
+				//}
+				if (m_Direction == eDirection::LEFT)
+				{
+					return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
+				}
+				return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 3, 0); 
+			}
+			break;
+		default:
+			break;
+	}
+}
+
 void BigGunRotating::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_GUN_ROATING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
+	isShoot = false;
 }
 
 void BigGunRotating::UpdateAnimation()
@@ -40,11 +98,14 @@ void BigGunRotating::UpdateAnimation()
 				{
 					this->getSprite()->getAnimation()->setIndexStart(0);
 					this->getSprite()->getAnimation()->setIndexEnd(2);
+					m_Direction = eDirection::LEFT;
+					m_DirectAttack = eDirectAttack::AD_LEFT;
 				}
 				if( _distance_Y > 0 && _distance_Y < 40)
 				{
 					this->getSprite()->getAnimation()->setIndexStart(3);
 					this->getSprite()->getAnimation()->setIndexEnd(5);
+					m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
 				}		
 			}
 			else if( _distance_X <= 120)
@@ -52,7 +113,8 @@ void BigGunRotating::UpdateAnimation()
 				if( _distance_Y >= 40)
 				{
 					this->getSprite()->getAnimation()->setIndexStart(6);
-					this->getSprite()->getAnimation()->setIndexEnd(8);			
+					this->getSprite()->getAnimation()->setIndexEnd(8);	
+					m_DirectAttack = eDirectAttack::AD_TOP;
 				}			
 			}
 		}
@@ -96,7 +158,23 @@ void BigGunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		break;
+		{
+			
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 1500)
+			{
+				m_TimeChangeState = 0;
+				isShoot = true;
+			}
+			if(isShoot == true && _distance_X < 350)
+			{
+				Shoot();
+				isShoot = false;
+			}
+
+			break;
+
+		}
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 1000)
