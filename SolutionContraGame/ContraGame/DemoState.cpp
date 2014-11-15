@@ -143,10 +143,10 @@ void DemoState::Update()
 
 	m_snipperHiding->UpdateAnimation();
 	m_snipperHiding->Update();
-	for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
+	/*for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
 	{
 		m_snipperHiding->UpdateCollision(*i);
-	}
+	}*/
 
 	/*if(m_snipperHiding->getObjectState() != eObjectState::STATE_DEATH )
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin();
