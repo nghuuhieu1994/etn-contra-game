@@ -10,13 +10,13 @@ BossCenter::BossCenter()
 BossCenter::BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	//m_Position = _position;
+
 }
 
 void BossCenter::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER));
+	sprite_alive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER);
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
 }
@@ -26,10 +26,7 @@ void BossCenter::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		m_Sprite = sprite_alive;
-		this->getSprite()->getAnimation()->setIndexStart(0);
-		this->getSprite()->getAnimation()->setIndexEnd(2);
-		m_Sprite->UpdateAnimation(1000);
+		m_Sprite->UpdateAnimation(200);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
