@@ -41,7 +41,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_idle.png", eSpriteID::SPRITE_RAMBO_IDLE, 2, 1, 2);
-	
+
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_lie.png", eSpriteID::SPRITE_RAMBO_LIE, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_run.png", eSpriteID::SPRITE_RAMBO_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\rambo_shoot_bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT, 3, 1, 3);
@@ -77,7 +77,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletStatic.png", eSpriteID::SPRITE_GIF_BULLET_STATIC, 7, 1, 7);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletMoving.png", eSpriteID::SPRITE_GIF_BULLET_MOVING, 1, 1, 1);
-	
+
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletB.png", eSpriteID::SPRITE_GIF_B, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletR.png", eSpriteID::SPRITE_GIF_R, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletS.png", eSpriteID::SPRITE_GIF_S, 1, 1, 1);
@@ -90,13 +90,11 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_BODY, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Leg\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_LEG, 3, 1, 3);
-	
+
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveUp\\top_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveDown\\bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\shoot.png", eSpriteID::SPRITE_RAMBO_SHOOT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\up.png", eSpriteID::SPRITE_RAMBO_SHOOT_UP_BODY, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\jump.png", eSpriteID::SPRITE_RAMBO_JUMP, 4, 1, 4);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\water_bomb.png", eSpriteID::SPRITE_RAMBO_WATER_BOMB, 1, 1, 1);
@@ -104,6 +102,9 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\dive.png", eSpriteID::SPRITE_RAMBO_DIVE, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\swim.png", eSpriteID::SPRITE_RAMBO_SWIM, 1, 1, 1);
 
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBodyAlive.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 }
 
 void SpriteManager::Release()

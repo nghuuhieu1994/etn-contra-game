@@ -7,8 +7,6 @@ class BossCenter : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive;
-	int _distance_X;
-	int _distance_Y;
 public:
 	BossCenter();
 	BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

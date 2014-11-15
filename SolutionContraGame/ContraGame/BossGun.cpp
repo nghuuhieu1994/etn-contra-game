@@ -25,14 +25,10 @@ void BossGun::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		m_Sprite = sprite_alive;
-		this->getSprite()->getAnimation()->setCurrentFrame(1);
-		m_Sprite->UpdateAnimation(500);
+		this->getSprite()->getAnimationAction()->setCurrentFrame(1);
 		break;
 	case STATE_SHOOTING:
-		m_Sprite = sprite_alive;
-		this->getSprite()->getAnimation()->setCurrentFrame(0);	
-		m_Sprite->UpdateAnimation(500);
+		this->getSprite()->getAnimationAction()->setCurrentFrame(0);	
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -77,7 +73,7 @@ void BossGun::Update()
 		break;
 	case STATE_SHOOTING:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		if(m_TimeChangeState > 200)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;

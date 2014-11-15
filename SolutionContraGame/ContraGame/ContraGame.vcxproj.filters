@@ -157,6 +157,9 @@
     <ClCompile Include="LedObject.cpp">
       <Filter>GameObject\LedObject</Filter>
     </ClCompile>
+    <ClCompile Include="Tinker.cpp">
+      <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -356,6 +359,9 @@
     </ClInclude>
     <ClInclude Include="LedObject.h">
       <Filter>GameObject\LedObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tinker.h">
+      <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
