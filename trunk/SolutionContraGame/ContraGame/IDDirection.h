@@ -2,7 +2,7 @@
 #define __IDDirection_h__
 enum IDDirection
 {
-	DIR_ANONYMOUS,
+	DIR_ANONYMOUS = 0,
 	DIR_BOTTOM,
 	DIR_LEFT,
 	DIR_NONE,

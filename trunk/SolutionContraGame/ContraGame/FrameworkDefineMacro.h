@@ -1,3 +1,5 @@
+#ifndef __FRAMEWORK_H__
+#define __FRAMEWORK_H__
 
 #define SCREEN_HEIGHT 448
 
@@ -11,14 +13,16 @@
 
 #ifndef SPRITEHANDLE
 #define	SPRITEHANDLE LPD3DXSPRITE
-#endif
-#define			GAMETITLE	"Contra"
+#endif // SPRITEHANDLE
+
+#define	GAMETITLE	"Contra"
 #define	FRAME_RATE	60
 
 #define DIRECTINPUT_HEADER_VERSION  0x0800
+
 #ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION         DIRECTINPUT_HEADER_VERSION
-#endif
+#endif // DIRECTINPUT_VERSION
 
 //initialize value of variable in this struct in SoundManager.cpp
 #ifndef __CSOUNDSWITCH__
@@ -28,4 +32,6 @@ struct CSoundSwitch
 	static bool IsExit;
 	static bool IsMute;
 };
-#endif
+#endif // __CSOUNDSWITCH__
+
+#endif // __FRAMEWORK_H__

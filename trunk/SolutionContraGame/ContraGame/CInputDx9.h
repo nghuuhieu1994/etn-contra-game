@@ -35,6 +35,7 @@ public:
 	bool					IsMouseLeftPress();
 	bool					IsMouseRightDown();
 	bool					IsMouseRightPress();
+
 	bool					IsKeyUpUpAndKeyDownUp();
 	bool					IsKeyUpDownAndKeyDownDown();
 	bool					IsKeyUpDownAndKeyDownUp();

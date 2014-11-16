@@ -15,8 +15,8 @@ enum eObjectID
 	ENEMY_RUN,
 	BOSS_GUN,
 	BOSS_CENTER,
-	BIG_BOSS,
-	BULLET,
+	BIG_BOSS_1, // Boss Map 1
+	BULLET, //  Cai nay de lam gi???
 	VIRTUAL_OBJECT_WATER,
 	LED_OBJECT_STAR,
 };
