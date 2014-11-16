@@ -7,11 +7,9 @@
 
 class CTextureDx9
 {
-private:
-	
+private:	
 	LPDIRECT3DTEXTURE9			m_lpTexture;
-public:
-	
+public:	
 	int							m_Width;
 	
 	int							m_Height;

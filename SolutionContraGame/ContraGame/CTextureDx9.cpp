@@ -56,21 +56,21 @@ void CTextureDx9::LoadTextureFromFile(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR 
 
 void CTextureDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR2 position, D3DXVECTOR2 Center, D3DXVECTOR2 scale, float angle, D3DCOLOR color, RECT *srcRect, float deep)
 {
-	D3DXVECTOR3 currentPosition(position.x, position.y, deep);//toa do trong the gioi thuc
+	D3DXVECTOR3 currentPosition(position.x, position.y, deep); //toa do trong the gioi thuc
 
-	D3DXMATRIX oldMatrix;//ma tran luu lai phep transform cua SpriteBatch
+	D3DXMATRIX oldMatrix; //ma tran luu lai phep transform cua SpriteBatch
 
 	_lpDSpriteHandle->GetTransform(&oldMatrix);
 
 	D3DXVECTOR2 centerScale = D3DXVECTOR2(position.x, position.y);//lay vi tri cua vat the lam tam xoay(vi vi tri cua vat la vi tri chinh giua cua vat)
 
-	D3DXMATRIX matrixScalingRotate;//ma tran rotate, scale
+	D3DXMATRIX matrixScalingRotate; //ma tran rotate, scale
 
 	D3DXMatrixTransformation2D(&matrixScalingRotate, &centerScale, 0.0f, &scale, &Center, D3DXToRadian(angle), 0);
 
 	D3DXMATRIX finalMatrix = matrixScalingRotate * oldMatrix;
 
-	_lpDSpriteHandle->SetTransform(&finalMatrix);//ma tran chuyen toa do vi tri cua vat the tu the gioi thuc sang toa do trong directX de ve
+	_lpDSpriteHandle->SetTransform(&finalMatrix); //ma tran chuyen toa do vi tri cua vat the tu the gioi thuc sang toa do trong directX de ve
 
 	_lpDSpriteHandle->Draw(
 		this->m_lpTexture,

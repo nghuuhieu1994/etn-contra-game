@@ -42,7 +42,7 @@ void Physic::UpdateMovement(D3DXVECTOR3* _position)
 		m_Velocity.y *= -1.0f;
 	}
 
-	float deltaTime = CGameTimeDx9::getInstance()->getElapsedGameTime().getSeconds();
+	float deltaTime = CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
 
 	deltaTime = deltaTime/((float)1/FRAME_RATE);
 

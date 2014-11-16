@@ -12,7 +12,7 @@ CSurfaceDx9::CSurfaceDx9(const CSurfaceDx9& surface)
 }
 CSurfaceDx9::~CSurfaceDx9()
 {
-	UnLoadSurface();
+	//UnLoadSurface();
 }
 void CSurfaceDx9::UnLoadSurface()
 {

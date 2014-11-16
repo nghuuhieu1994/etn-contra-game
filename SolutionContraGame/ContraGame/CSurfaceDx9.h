@@ -1,8 +1,6 @@
 #ifndef __CSURFACEDX9_H__
 #define __CSURFACEDX9_H__
 
-
-
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <d3dx9tex.h>

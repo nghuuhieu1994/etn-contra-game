@@ -34,7 +34,8 @@ class Physic
 public:
 	/*void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
-	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }*/
+	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
+	*/
 
 	void			setVelocity(D3DXVECTOR2 _velocity)	{ m_Velocity = _velocity; }
 	void			setVelocityX(float _x)	{ m_Velocity.x = _x; }

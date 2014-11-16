@@ -99,7 +99,6 @@ IDDirection Collision::CheckCollision(DynamicObject *_DynamicObject, Object * _O
 		{
 			//if(abs(m_MoveX) < abs(moveX))
 			//{
-				
 			//}
 			
 			if(moveX < 0.0f )
@@ -115,7 +114,6 @@ IDDirection Collision::CheckCollision(DynamicObject *_DynamicObject, Object * _O
 		{
 			//if(abs(m_MoveY) < abs(moveY))
 			//{
-				
 			//}
 			
 			if(moveY >= 0.0f)

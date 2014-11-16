@@ -22,33 +22,14 @@ public:
 	CTimeSpanDx9();
 	
 	CTimeSpanDx9(UINT64 Ticks);
-
-	
-	float	getDays();
-	
-	float	getHours();
-	
-	float	getMins();
-	
-	float	getSeconds();
 	
 	float	getMilliseconds();
 
 	
 	UINT64	getTicks();
-
-	
-	UINT64	getTotalDays();
-	
-	UINT64	getTotalHours();
-	
-	UINT64	getTotalMins();
-	
-	UINT64	getTotalSeconds();
 	
 	UINT64	getTotalMilliseconds();
-
-	
+		
 	CTimeSpanDx9& operator=(const CTimeSpanDx9& Timesp);
 	
 	~CTimeSpanDx9();
