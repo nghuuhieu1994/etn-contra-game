@@ -12,6 +12,13 @@ private:
 	CSpriteDx9* sprite_mid;
 	CSpriteDx9* sprite_dead;
 
+	int _distance_X;
+	int _distance_Y;
+	bool isShoot;
+
+	void Shoot();
+	D3DXVECTOR3	GetStartPositionOfBullet();
+
 public:
 	SniperStanding();
 	SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

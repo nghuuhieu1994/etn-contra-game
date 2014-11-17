@@ -13,6 +13,73 @@ GunRotating::GunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID
 	//m_Position = _position;
 }
 
+void GunRotating::Shoot()
+{
+	switch (m_DirectAttack)
+	{
+	case AD_LEFT:
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		break;
+	case AD_RIGHT:
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+		break;
+	case AD_TOP:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+		break;
+	case AD_BOTTOM:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100); 
+		break;
+	case AD_TOP_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
+		break;
+	case AD_TOP_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1);
+		break;
+	case AD_BOTTOM_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
+		break;
+	case AD_BOTTOM_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1);
+		break;
+	default:
+		break;	
+	}
+}
+
+D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
+{
+	switch(m_DirectAttack)
+	{
+	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 20, 0); 
+		break;
+	case AD_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 20, 0);
+		break;
+	case AD_TOP:
+		return D3DXVECTOR3(m_Position.x, m_Position.y + 8, 0); 
+		break;
+	case AD_BOTTOM:
+		return D3DXVECTOR3(m_Position.x, m_Position.y - 8, 0); 
+		break;
+	case AD_TOP_LEFT:
+		return D3DXVECTOR3(m_Position.x - 10, m_Position.y + 25, 0);
+		break;
+	case AD_TOP_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 10, m_Position.y + 25, 0);
+		break;
+	case AD_BOTTOM_LEFT:
+		return D3DXVECTOR3(m_Position.x - 15, m_Position.y  , 0); 
+		break;
+	case AD_BOTTOM_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 15, m_Position.y , 0); 
+		break;
+
+	default:
+		break;	
+	}
+}
+
 void GunRotating::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
@@ -47,12 +114,14 @@ void GunRotating::UpdateAnimation()
 					m_Sprite->getAnimation()->setIndexStart(2);
 					m_Sprite->getAnimation()->setIndexEnd(2);
 					m_Sprite->getAnimation()->setCurrentFrame(2);
+					m_DirectAttack = eDirectAttack::AD_LEFT;
 				}
 				else
 				{
 					m_Sprite->getAnimation()->setIndexStart(8);
 					m_Sprite->getAnimation()->setIndexEnd(8);
 					m_Sprite->getAnimation()->setCurrentFrame(8);
+					m_DirectAttack = eDirectAttack::AD_RIGHT;
 				}
 			}
 			else
@@ -66,12 +135,14 @@ void GunRotating::UpdateAnimation()
 							m_Sprite->getAnimation()->setIndexStart(13);
 							m_Sprite->getAnimation()->setIndexEnd(13);
 							m_Sprite->getAnimation()->setCurrentFrame(13);
+							m_DirectAttack = eDirectAttack::AD_BOTTOM_LEFT;
 						}
 						else
 						{
 							m_Sprite->getAnimation()->setIndexStart(3);
 							m_Sprite->getAnimation()->setIndexEnd(3);
 							m_Sprite->getAnimation()->setCurrentFrame(3);
+							//m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
 						}
 					}
 					else
@@ -81,12 +152,14 @@ void GunRotating::UpdateAnimation()
 							m_Sprite->getAnimation()->setIndexStart(9);
 							m_Sprite->getAnimation()->setIndexEnd(9);
 							m_Sprite->getAnimation()->setCurrentFrame(9);
+							m_DirectAttack = eDirectAttack::AD_BOTTOM_RIGHT;
 						}
 						else
 						{
 							m_Sprite->getAnimation()->setIndexStart(7);
 							m_Sprite->getAnimation()->setIndexEnd(7);
 							m_Sprite->getAnimation()->setCurrentFrame(7);
+							//m_DirectAttack = eDirectAttack::AD_TOP_RIGHT;
 						}
 					}
 				}
@@ -101,12 +174,14 @@ void GunRotating::UpdateAnimation()
 								m_Sprite->getAnimation()->setIndexStart(12);
 								m_Sprite->getAnimation()->setIndexEnd(12);
 								m_Sprite->getAnimation()->setCurrentFrame(12);
+								//m_DirectAttack = eDirectAttack::AD_BOTTOM_LEFT;
 							}
 							else
 							{
 								m_Sprite->getAnimation()->setIndexStart(4);
 								m_Sprite->getAnimation()->setIndexEnd(4);
 								m_Sprite->getAnimation()->setCurrentFrame(4);
+								m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
 							}
 						}
 						else
@@ -116,12 +191,14 @@ void GunRotating::UpdateAnimation()
 								m_Sprite->getAnimation()->setIndexStart(10);
 								m_Sprite->getAnimation()->setIndexEnd(10);
 								m_Sprite->getAnimation()->setCurrentFrame(10);
+								//m_DirectAttack = eDirectAttack::AD_BOTTOM_RIGHT;
 							}
 							else
 							{
 								m_Sprite->getAnimation()->setIndexStart(6);
 								m_Sprite->getAnimation()->setIndexEnd(6);
 								m_Sprite->getAnimation()->setCurrentFrame(6);
+								m_DirectAttack = eDirectAttack::AD_TOP_RIGHT;
 							}
 						}
 					}
@@ -132,12 +209,14 @@ void GunRotating::UpdateAnimation()
 							m_Sprite->getAnimation()->setIndexStart(11);
 							m_Sprite->getAnimation()->setIndexEnd(11);
 							m_Sprite->getAnimation()->setCurrentFrame(11);
+							m_DirectAttack = eDirectAttack::AD_BOTTOM;
 						}
 						else
 						{
 							m_Sprite->getAnimation()->setIndexStart(5);
 							m_Sprite->getAnimation()->setIndexEnd(5);
 							m_Sprite->getAnimation()->setCurrentFrame(5);
+							m_DirectAttack = eDirectAttack::AD_TOP;
 						}
 					}
 				}
@@ -184,6 +263,17 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 2000 && _distance_X < 350)
+			{
+				m_TimeChangeState = 0;
+				isShoot = true;
+			}
+			if(isShoot == true && _distance_X < 350)
+			{
+				Shoot();
+				isShoot = false;
+			}
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -192,6 +282,8 @@ void GunRotating::Update()
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;
 		}
+		break;
+
 		break;
 	case STATE_DEATH:
 		this->Release();

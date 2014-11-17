@@ -14,10 +14,7 @@ class BigGunRotating : public DynamicObject
 	int _distance_X;
 	int _distance_Y;
 
-	int m_timeAddBullet;
 	bool isShoot;
-
-	bool isAddBullet();
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 public:

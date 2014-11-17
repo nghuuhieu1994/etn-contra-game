@@ -63,6 +63,10 @@ private:
 
 	EnemyRun*			m_Enemy;
 
+	SniperStanding*		m_SniperStanding;
+
+	GunRotating*		m_gunRotating;
+
 	SniperHiding*		m_snipperHiding;
 
 	BigGunRotating*		m_bigGunRotating;
