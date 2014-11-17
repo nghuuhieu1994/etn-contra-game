@@ -3,6 +3,7 @@
 enum eObjectID
 {
 	TILE_BASE,
+	VIRTUAL_OBJECT_WATER,
 	RAMBO,
 	BULLET_RAMBO,
 	BULLET_ENEMY,
@@ -17,7 +18,6 @@ enum eObjectID
 	BOSS_CENTER,
 	BIG_BOSS_1, // Boss Map 1
 	BULLET, //  Cai nay de lam gi???
-	VIRTUAL_OBJECT_WATER,
 	LED_OBJECT_STAR,
 };
 #endif
