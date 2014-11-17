@@ -16,7 +16,7 @@ enum eDirectAttack
 	//SOUTH_WEST, // Nam > Tay
 	//SOUTH_EAST, // Nam > Dong
 	//EAST_SOUTH  // Dong > Nam 
-	/*
+	
 	ZERO_CLOCK_DIRECTION = 0,
 	ONE_CLOCK_DIRECTION = 1,
 	TWO_CLOCK_DIRECTION = 2,
@@ -30,7 +30,7 @@ enum eDirectAttack
 	TEN_CLOCK_DIRECTION = 10,
 	ELEVEN_CLOCK_DIRECTION = 11,
 	TWELVE_CLOCK_DIRECTION = 12,
-	*/
+	
 
 	AD_TOP,
 	AD_BOTTOM,
