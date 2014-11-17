@@ -767,10 +767,10 @@
   <Object Type="1" Id="0" X="6256" Y="40" Width="480" Height="16" />
   <Object Type="1" Id="0" X="6368" Y="104" Width="64" Height="16" />
   <Object Type="1" Id="0" X="6304" Y="168" Width="64" Height="16" />
-  <Object Type="1" Id="14" X="280" Y="16" Width="560" Height="16" />
-  <Object Type="1" Id="14" X="960" Y="16" Width="480" Height="16" />
-  <Object Type="1" Id="14" X="2080" Y="16" Width="1440" Height="16" />
-  <Object Type="1" Id="14" X="3232" Y="16" Width="416" Height="16" />
+  <Object Type="1" Id="1" X="280" Y="16" Width="560" Height="16" />
+  <Object Type="1" Id="1" X="960" Y="16" Width="480" Height="16" />
+  <Object Type="1" Id="1" X="2080" Y="16" Width="1440" Height="16" />
+  <Object Type="1" Id="1" X="3232" Y="16" Width="416" Height="16" />
    <Object Type="2" Id="0" X="22" Y="426" />
   <Object Type="2" Id="0" X="54" Y="426" />
   <Object Type="2" Id="0" X="22" Y="425" />
