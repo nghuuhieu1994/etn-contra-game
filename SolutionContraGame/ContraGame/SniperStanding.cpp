@@ -7,10 +7,68 @@ SniperStanding::SniperStanding()
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	//m_Physic = new Physic();
 	m_Position = _position;
-	//m_Physic->setPosition(_position);// tach position ra khoi Physic
 }
+
+void SniperStanding::Shoot()
+{
+	switch (m_DirectAttack)
+	{
+	case AD_LEFT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		}
+		break;
+	case AD_RIGHT:
+		{
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+		}
+		break;
+	case AD_TOP_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
+		break;
+	case AD_TOP_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1);
+		break;
+	case AD_BOTTOM_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
+		break;
+	case AD_BOTTOM_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1);
+		break;
+	default:
+		break;	
+	}
+}
+
+D3DXVECTOR3 SniperStanding::GetStartPositionOfBullet()
+{
+	switch(m_DirectAttack)
+	{
+	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 20, 0); 
+		break;
+	case AD_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 20, 0);
+		break;
+	case AD_TOP_LEFT:
+		return D3DXVECTOR3(m_Position.x - 10, m_Position.y + 25, 0);
+		break;
+	case AD_TOP_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 10, m_Position.y + 25, 0);
+		break;
+	case AD_BOTTOM_LEFT:
+		return D3DXVECTOR3(m_Position.x - 15, m_Position.y  , 0); 
+		break;
+	case AD_BOTTOM_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 15, m_Position.y , 0); 
+		break;
+
+	default:
+		break;	
+	}
+}
+
 
 void SniperStanding::Initialize()
 {
@@ -25,10 +83,28 @@ void SniperStanding::Initialize()
 
 void SniperStanding::UpdateAnimation()
 {
+	_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
+	_distance_Y = (int)(abs(CGlobal::Rambo_Y - this->getPositionVec2().y));
 	if(CGlobal::Rambo_X < m_Position.x)
+	{
 		m_Direction = eDirection::LEFT;
+		if(m_Sprite == sprite_bot)
+			m_DirectAttack = eDirectAttack::AD_BOTTOM_LEFT;
+		if(m_Sprite == sprite_mid)
+			m_DirectAttack = eDirectAttack::AD_LEFT;
+		if(m_Sprite == sprite_top)
+			m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
+	}
 	else
+	{
 		m_Direction = eDirection::RIGHT;
+		if(m_Sprite == sprite_bot)
+				m_DirectAttack = eDirectAttack::AD_BOTTOM_RIGHT;
+			if(m_Sprite == sprite_mid)
+				m_DirectAttack = eDirectAttack::AD_RIGHT;
+			if(m_Sprite == sprite_top)
+				m_DirectAttack = eDirectAttack::AD_TOP_RIGHT;
+	}
 
 	switch (m_ObjectState)
 	{
@@ -63,11 +139,18 @@ void SniperStanding::UpdateAnimation()
 		break;
 	}
 	if(m_Direction == eDirection::LEFT)
+	{
 		m_Sprite->setSpriteEffect(ESpriteEffect::None);
+
+	}
 	else
 	{
 		if(m_Direction == eDirection::RIGHT)
+		{
 			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+
+		}
+
 	}
 }
 void SniperStanding::UpdateMovement()
@@ -102,9 +185,15 @@ void SniperStanding::Update()
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_SHOOTING;
+			isShoot = true;
 		}
 		break;
 	case STATE_SHOOTING:
+		if(isShoot == true && _distance_X < 300)
+			{
+				Shoot();
+				isShoot = false;
+			}
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 500)
 		{

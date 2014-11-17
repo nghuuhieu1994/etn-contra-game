@@ -2,6 +2,7 @@
 #define __GUN_ROTATING_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "Rambo.h"
 
 class GunRotating : public DynamicObject
 {
@@ -9,6 +10,10 @@ class GunRotating : public DynamicObject
 	CSpriteDx9* sprite_alive;
 	int _distance_X;
 	int _distance_Y;
+	bool isShoot;
+
+	void Shoot();
+	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
 	GunRotating();
 	//Physic*			getPhysic() const { return m_Physic; }

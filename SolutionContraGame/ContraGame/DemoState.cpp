@@ -43,6 +43,13 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_bossCenter->Initialize();  
 #endif // HIEU
 
+	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
+	m_SniperStanding->Initialize();
+
+	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
+	m_gunRotating->Initialize();
+
+
 	m_Enemy = new EnemyRun(D3DXVECTOR3(400, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN);
 	m_Enemy->Initialize();
 
@@ -133,6 +140,14 @@ void DemoState::Update()
 	m_bossCenter->Update();  
 #endif // HIEU
 
+		//m_SniperStanding->UpdateCollision(m_Rambo);
+	m_SniperStanding->UpdateAnimation();
+	m_SniperStanding->Update();
+
+	//m_gunRotating->UpdateCollision(m_Rambo);
+	m_gunRotating->UpdateAnimation();
+	m_gunRotating->Update();
+
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
 	m_Enemy->Update();
@@ -178,6 +193,8 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	}
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 
+	m_SniperStanding->Render(_lpDSpriteHandle);
+	m_gunRotating->Render(_lpDSpriteHandle);
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
 	m_bigGunRotating->Render(_lpDSpriteHandle);

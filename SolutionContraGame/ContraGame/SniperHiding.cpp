@@ -12,16 +12,6 @@ SniperHiding::SniperHiding(D3DXVECTOR3 _position, eDirection _direction, eObject
 	
 }
 
-bool SniperHiding::isAddBullet()
-{
-	m_timeAddBullet += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-	if (m_timeAddBullet > 1000)
-	{
-		m_timeAddBullet = 0;
-		return true;
-	}
-	return false;
-}
 
 void SniperHiding::Shoot()
 {
@@ -44,23 +34,16 @@ void SniperHiding::Shoot()
 
 D3DXVECTOR3 SniperHiding::GetStartPositionOfBullet()
 {
-	switch(m_ObjectState)
+	switch(m_DirectAttack)
 	{
-		case STATE_SHOOTING:
-			{
-				if (m_Direction == eDirection::LEFT)
-				{
-					return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
-				}
-				if (m_Direction == eDirection::RIGHT)
-				{
-					return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 5, 0);
-				}
-				return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
-			}
-			break;
-		default:
-			break;
+	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
+		break;
+	case AD_RIGHT:
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 5, 0);
+		break;
+	default:
+		break;	
 	}
 }
 
@@ -77,26 +60,21 @@ void SniperHiding::Initialize()
 void SniperHiding::UpdateAnimation()
 {	
 	if(CGlobal::Rambo_X < m_Position.x)
+	{
 		m_Direction = eDirection::LEFT;
+		m_DirectAttack = eDirectAttack::AD_LEFT;
+	}
 	else
+	{
 		m_Direction = eDirection::RIGHT;
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
+	}
 
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
 		m_Sprite = sprite_alive_hiding;
 		_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
-		//if( _distance_X > 350)
-		//{
-		//	//m_Sprite->getAnimation()->setIndexStart(0);
-		//	//m_Sprite->getAnimation()->setIndexEnd(1);
-		//	m_Sprite->getAnimation()->setCurrentFrame(0);
-		//}
-		//else if(_distance_X < 350)
-		//{
-		//	m_Sprite->getAnimation()->setIndexStart(0);
-		//	m_Sprite->getAnimation()->setIndexEnd(1);
-		//}
 		this->getSprite()->getAnimation()->setCurrentFrame(1);
 		m_Sprite->UpdateAnimation(500);
 		break;
@@ -119,7 +97,6 @@ void SniperHiding::UpdateAnimation()
 	if(m_Direction == eDirection::LEFT)
 	{
 		m_Sprite->setSpriteEffect(ESpriteEffect::None);
-		m_DirectAttack = eDirectAttack::AD_LEFT;
 	}
 
 	else
@@ -127,7 +104,6 @@ void SniperHiding::UpdateAnimation()
 		if(m_Direction == eDirection::RIGHT)
 		{
 			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
-			m_DirectAttack == eDirectAttack::AD_RIGHT;
 		}
 	}
 }
@@ -159,7 +135,7 @@ void SniperHiding:: UpdateMovement()
 void SniperHiding::Update()
 {
 	_distance_X = (int)(abs(CGlobal::Rambo_X - this->getPositionVec2().x));
-	if(_distance_X < 350)
+	if(_distance_X < 300)
 	{
 		switch (m_ObjectState)
 		{

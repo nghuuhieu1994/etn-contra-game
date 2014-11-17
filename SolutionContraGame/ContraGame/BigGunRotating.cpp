@@ -11,20 +11,12 @@ BigGunRotating::BigGunRotating(D3DXVECTOR3 _position, eDirection _direction, eOb
 	//m_Position = _position;
 }
 
-bool BigGunRotating::isAddBullet()
-{
-	m_timeAddBullet += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-	if (m_timeAddBullet > 1500)
-	{
-		m_timeAddBullet = 0;
-		return true;
-	}
-	return false;
-}
+
 
 void BigGunRotating::Shoot()
 {
-	switch (m_DirectAttack)
+	
+		switch (m_DirectAttack)
 	{
 	case AD_TOP:
 		{
@@ -44,27 +36,26 @@ void BigGunRotating::Shoot()
 	default:
 		break;	
 	}
+	
+	
 }
 
 D3DXVECTOR3 BigGunRotating::GetStartPositionOfBullet()
 {
-	switch(m_ObjectState)
+	
+	switch(m_DirectAttack)
 	{
-	case STATE_ALIVE_IDLE:
-			{
-				//if(m_DirectAttack == eDirectAttack::AD_LEFT)
-				//{
-					//return D3DXVECTOR3(m_Position.x, m_Position.y, 0);
-				//}
-				if (m_Direction == eDirection::LEFT)
-				{
-					return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
-				}
-				return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 3, 0); 
-			}
-			break;
-		default:
-			break;
+	case AD_TOP:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 5, 0); 
+		break;
+	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x - 1, m_Position.y , 0);
+		break;
+	case AD_TOP_LEFT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y , 0); 
+
+	default:
+		break;
 	}
 }
 
@@ -89,6 +80,7 @@ void BigGunRotating::UpdateAnimation()
 		if(_distance_X > 300)
 		{
 			this->getSprite()->getAnimation()->setCurrentFrame(0);
+			m_DirectAttack = eDirectAttack::AD_LEFT;
 		}
 		else
 		{
@@ -118,7 +110,7 @@ void BigGunRotating::UpdateAnimation()
 				}			
 			}
 		}
-		m_Sprite->UpdateAnimation(1000);
+		m_Sprite->UpdateAnimation(2000);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -161,7 +153,7 @@ void BigGunRotating::Update()
 		{
 			
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1500)
+			if(m_TimeChangeState > 2300 && _distance_X < 350)
 			{
 				m_TimeChangeState = 0;
 				isShoot = true;
