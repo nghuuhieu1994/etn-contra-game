@@ -8,11 +8,12 @@
 class BulletPoolManager
 {
 private:
-	std::list<Bullet* > m_ListBulletInGame;
+	//std::list<Bullet* > m_ListBulletInGame;
 
 	BulletPoolManager();
 	~BulletPoolManager();
 public:
+	std::list<Bullet* > m_ListBulletInGame;
 	static BulletPoolManager* m_Instance;
 	static BulletPoolManager* getInstance();
 

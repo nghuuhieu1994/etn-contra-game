@@ -12,7 +12,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//m_background = new Background();
 	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
-	m_Rambo = new Rambo(D3DXVECTOR3(50, 300, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(100, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 
 #ifdef HIEU
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
@@ -46,7 +46,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
-	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
+	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 280, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
 
 
@@ -140,7 +140,7 @@ void DemoState::Update()
 	m_bossCenter->Update();  
 #endif // HIEU
 
-		//m_SniperStanding->UpdateCollision(m_Rambo);
+	//m_SniperStanding->UpdateCollision(m_Rambo);
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->Update();
 
@@ -151,10 +151,10 @@ void DemoState::Update()
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
 	m_Enemy->Update();
-	for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
-	{
-		m_Enemy->UpdateCollision(*i);
-	}
+	//for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
+	//{
+	//	m_Enemy->UpdateCollision(*i);
+	//}
 
 	m_snipperHiding->UpdateAnimation();
 	m_snipperHiding->Update();
@@ -168,6 +168,14 @@ void DemoState::Update()
 		i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_snipperHiding->UpdateCollision(*i);
+		
+	}*/
+
+	/*if(m_gunRotating->getObjectState() != eObjectState::STATE_DEATH )
+	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin();
+		i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
+	{
+		m_gunRotating->UpdateCollision(*i);
 		
 	}*/
 
