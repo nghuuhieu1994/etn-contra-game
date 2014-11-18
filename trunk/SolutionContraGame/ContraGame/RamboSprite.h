@@ -39,6 +39,8 @@ class RamboSprite
 
 	eObjectState m_previousState;
 
+	int m_timesShake;
+
 	bool		m_isShake;
 public:
 	RamboSprite(void);
@@ -52,6 +54,7 @@ public:
 	D3DXVECTOR2 GetFrameSize() { return m_frameSize; }
 	void shakeBody();
 	void shakeBodySwim();
+	void IncreaseTimesShake(int _times){ m_timesShake += _times; }
 	void Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep);
 	virtual ~RamboSprite(void);
 };
