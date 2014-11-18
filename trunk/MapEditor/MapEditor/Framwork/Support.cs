@@ -1,4 +1,5 @@
-﻿using MapEditor.Framwork;
+﻿using MapEditor.Algorithm;
+using MapEditor.Framwork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,62 @@ namespace MapEditor
             this.width = _width;
             this.height = _height;
         }
+
+        public static RECTANGLE Intersec(RECTANGLE r1, RECTANGLE r2)
+        {
+            RECTANGLE rect = new RECTANGLE(0, 0, 0, 0);
+            if (r1.cX <= r2.cX)
+            {
+                rect.cX = r2.cX;
+                if (r1.cX + r1.width >= r2.cX + r2.width)
+                {
+                    rect.width = r2.width;
+                }
+                else
+                {
+                    rect.width = (int)(r1.cX + r1.width - r2.cX);
+                }
+            }
+            else
+            {
+                rect.cX = r1.cX;
+                if (r1.cX <= r2.cX + r2.width)
+                {
+                    rect.width = (int)(r2.cX + r2.width - r1.cX);
+                }
+            }
+
+            if (r1.cY <= r2.cY)
+            {
+                rect.cY = r2.cY;
+                if (r1.cY + r1.height >= r2.cY + r2.height)
+                {
+                    rect.height = r2.height;
+                }
+                else
+                {
+                    rect.height = (int)(r1.cY + r1.height - r2.cY);
+                }
+            }
+            else
+            {
+                rect.cY = r1.cY;
+                if (r1.cY <= r2.cY + r2.height)
+                {
+                    rect.height = (int)(r2.cY + r2.height - r1.cY);
+                }
+            }
+
+            if (rect.width > 0 && rect.height > 0)
+            {
+                return rect;
+            }
+            else
+            {
+                return new RECTANGLE(0, 0, 0, 0);
+            }
+        }
+
     }
 
     public struct Point
@@ -47,6 +104,13 @@ namespace MapEditor
             this.cX = _x;
             this.cY = _y;
         }
+    }
+
+    public enum ObjectID
+    {
+        TILE_MAP = 0,
+        VIRTUAL_OBJECT = 1,
+        LED_OBJECT = 2,
     }
 
     public partial class Support
@@ -66,6 +130,7 @@ namespace MapEditor
         public static bool IsAlign = false;
         public static int WIDHT_OF_VIRTUALOBJECT = 16;
         public static int HEIGHT_OF_VIRTUALOBJECT = 16;
+        public static CNode quadTree = null;
 
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
@@ -115,6 +180,19 @@ namespace MapEditor
             temp.cY = temp.cY - _object.Bound.height / 2;
 
             return temp;
+        }
+
+        public static bool IsDynamic(int typeObject)
+        {
+            switch (typeObject)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    return false;
+                default:
+                    return false;
+            }
         }
     }
 }
