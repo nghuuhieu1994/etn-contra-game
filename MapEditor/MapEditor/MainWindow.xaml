@@ -49,19 +49,19 @@
                         <ImageBrush ImageSource="Resource\interface\eraser.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Width="73" Height="67">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="Resource\interface\clearall.png" Stretch="Fill" />
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem Width="73" Height="67" Name="gridline" Click="click_to_enable_gridline">
+                <MenuItem Width="73" Height="67" x:Name="gridline" Click="click_to_enable_gridline">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\grid.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Width="73" Height="67" Name="backgroundmap" Click="click_to_load_backgroundmap">
+                <MenuItem Width="73" Height="67" x:Name="backgroundmap" Click="click_to_load_backgroundmap" RenderTransformOrigin="-0.342,0.299">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\background.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Width="73" Height="67">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\clearall.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
                 <MenuItem Width="73" Height="67">
@@ -70,7 +70,7 @@
                     </MenuItem.Background>
                 </MenuItem>
             </Menu>
-            <ListBox HorizontalAlignment="Left" Height="442" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
+            <ListBox HorizontalAlignment="Left" Height="442" Margin="20,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
             <TextBox HorizontalAlignment="Left" Height="37" Margin="703,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" FontSize="20" Name="tbX"/>
             <Label Content="X:" HorizontalAlignment="Left" Margin="667,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>
             <Label Content="Y:" HorizontalAlignment="Left" Margin="852,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>

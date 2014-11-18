@@ -62,6 +62,14 @@ namespace TileMap
             get { return m_ArrColor; }
             set { m_ArrColor = value; }
         }
+
+        private List<Point> m_ListLedPosition;
+
+        public List<Point> ListLedPosition
+        {
+            get { return m_ListLedPosition; }
+            set { m_ListLedPosition = value; }
+        }
         #endregion
 
         public CMap(BitmapSource _BitMap)
@@ -73,6 +81,7 @@ namespace TileMap
             this.m_BitMap.CopyPixels(m_ArrColor, ((int)(this.m_BitMap.Width + 0.9) * this.m_BitMap.Format.BitsPerPixel) / 8, 0);
             this.m_WidthTileMap = Support.WIDTH_OF_TILE;
             this.m_HeightTileMap = Support.HEIGHT_OF_TILE;
+            this.m_ListLedPosition = new List<Point>();
         }
 
         public void CreateTileMap()
@@ -118,12 +127,22 @@ namespace TileMap
             Color[,] _TempTile = new Color[Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE];
             int _IndexI = 0;
             int _IndexJ = 0;
+            int tempNew = 0;
+            int tempOld = 0;
 
             for (int i = _OffSetY * Support.HEIGHT_OF_TILE; i < _OffSetY * Support.HEIGHT_OF_TILE + Support.HEIGHT_OF_TILE; ++i)
             {
                 for (int j = _OffSetX * Support.WIDTH_OF_TILE; j < _OffSetX * Support.WIDTH_OF_TILE + Support.WIDTH_OF_TILE; ++j)
                 {
                     _TempTile[_IndexI, _IndexJ] = Support.GetPixel(j, i, this.m_ArrColor, (int)(this.m_BitMap.Width + 0.9)* this.m_BitMap.Format.BitsPerPixel / 8);
+
+                    if (_TempTile[_IndexI, _IndexJ].A == 255 && _TempTile[_IndexI, _IndexJ].R == 60 && _TempTile[_IndexI, _IndexJ].G == 188 && _TempTile[_IndexI, _IndexJ].B == 253 && _OffSetY < 2)
+                    {
+                        tempNew = j;
+                        if(tempNew - tempOld != 1)
+                        this.m_ListLedPosition.Add(new Point(j, i));
+                        tempOld = j;
+                    }
                     ++_IndexJ;
                 }
                 ++_IndexI;

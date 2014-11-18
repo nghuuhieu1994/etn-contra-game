@@ -25,6 +25,7 @@ namespace MapEditor.Framwork
         private VECTOR2D mPosition;
         private RECTANGLE mBound;
         private Image mImage;
+        private int mRangeOfMovement;
 
         public int Type
         {
@@ -88,6 +89,15 @@ namespace MapEditor.Framwork
                 }
             }
 
+            if (Support.IsDynamic(this.mType))
+            {
+                this.mRangeOfMovement = 600;
+                this.mBound = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width + this.mRangeOfMovement, this.mBound.height + this.mRangeOfMovement);
+            }
+            else
+            {
+                this.mBound = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width, this.mBound.height);
+            }
         }
 
     }

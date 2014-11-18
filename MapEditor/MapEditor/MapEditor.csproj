@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Algorithm\CNode.cs" />
     <Compile Include="Framwork\ExportXml.cs" />
     <Compile Include="Framwork\GridLine.cs" />
     <Compile Include="Clone\OBJECT.cs" />

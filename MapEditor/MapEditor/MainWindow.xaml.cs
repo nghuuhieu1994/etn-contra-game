@@ -1,4 +1,5 @@
-﻿using MapEditor.Framwork;
+﻿using MapEditor.Algorithm;
+using MapEditor.Framwork;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -19,20 +20,8 @@ using TileMap;
 
 namespace MapEditor
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        /*
-        private BitmapImage carBitmap = new BitmapImage(new Uri(Support.stringPathFile + "universe.jpg", UriKind.Absolute));
-        private Image image = new Image();
-        private Rectangle rect = new Rectangle();
-
-        private BitmapImage rsTileMap = new BitmapImage(new Uri(Support.stringPathFile + "test_tile_map.jpg", UriKind.Absolute));
-        private CMap map;
-        */
-
         /* Properties for drag mouse */
         bool isDragged = false;
         System.Windows.Point startPosition;
@@ -105,8 +94,6 @@ namespace MapEditor
             #endregion
         }
 
-        #region.Gridline [DONE]
-        // Create a gridline [ set true in default ]
         public bool CreateGridline()
         {
             if (Support.GRIDLINE == true)
@@ -127,7 +114,6 @@ namespace MapEditor
             return false;
         }
 
-        // Destroy gridline when GRIDLINE = false
         public bool DestroyGridline()
         {
             if (Support.GRIDLINE == true)
@@ -149,90 +135,10 @@ namespace MapEditor
             return false;
         }
 
-        // click to enable gridline
-        public void click_to_enable_gridline(object sender, RoutedEventArgs e)
-        {
-            if (Support.GRIDLINE == false)
-            {
-                Support.GRIDLINE = true;
-                CreateGridline();
-            }
-            else
-            {
-                DestroyGridline();
-            }
-        }
-        #endregion
-
-        public void click_to_load_backgroundmap(object sender, RoutedEventArgs e)
-        {
-
-            if (Support.map != null)
-            {
-                Support.map = null;
-            }
-
-            OpenFileDialog openFileDialogSourcePicture = new OpenFileDialog();
-            openFileDialogSourcePicture.Filter = "PNG (*.png)|*.png| BMP (*.bmp)|*.bmp| All File (*.*)|*.*";
-            openFileDialogSourcePicture.FilterIndex = 3;
-            openFileDialogSourcePicture.RestoreDirectory = true;
-
-            if (openFileDialogSourcePicture.ShowDialog() == true)
-            {
-                CTile.CountID = 0;
-                if (Support.map == null)
-                {
-                    Support.map = new CMap(new BitmapImage(new Uri(openFileDialogSourcePicture.FileName, UriKind.Absolute)));
-                    Support.WIDHT_MAP = (int)(Support.map.BitMap.Width  + 0.9);
-                    Support.HEIGHT_MAP = (int)(Support.map.BitMap.Height + 0.9);
-                    DestroyGridline();
-                    Support.GRIDLINE = true;
-                    CreateGridline();
-                    if (Support.IsExportXml == true)
-                    {
-                        Support.IsExportXml = false;
-                        ExportXml.getInstance().DestroyWriter();
-                    }
-                    WorkspaceWorking.Width = Support.WIDHT_MAP;
-                    WorkspaceWorking.Height = Support.HEIGHT_MAP;
-                    Support.map.CreateTileMap();
-                }
-            }
-
-            if (Support.map != null)
-            {
-                BitmapSource bmpSource;
-                JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
-
-                byte[] arrPixel = new byte[((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
-
-                int offsetX = 0;
-                int offsetY = 0;
-
-                for (int i = 0; i < Support.map.TileMap.Count; ++i)
-                {
-                    offsetX = Support.map.TileMap[i].ID;
-                    Support.map.TileMap[i].ExportBitMap(offsetX, offsetY, arrPixel, (Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
-                }
-
-                FileStream stream = new FileStream(@"..\..\Resource\tilemap\tile_map.bmp", FileMode.Create);
-                bmpSource = BitmapSource.Create(Support.map.TileMap.Count * Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
-                bmpCreate.Frames.Add(BitmapFrame.Create(bmpSource));
-                bmpCreate.Save(stream);
-                stream.Close();
-
-                ConvertFromTileToObject();
-                AddImageOfObjectToCanvas();
-            }
-
-        }
-
         public bool ConvertFromTileToObject()
         {
             if (Support.map != null)
             {
-             //   BitmapImage bmpTileMap = new BitmapImage(new Uri(Support.stringPathFile + "tilemap/tile_map.bmp", UriKind.Absolute));
-
                 if (Support.listObject == null)
                 {
                     Support.listObject = new List<OBJECT>();
@@ -248,9 +154,14 @@ namespace MapEditor
                     {
                         if (Support.listObject != null)
                         {
-                           Support.listObject.Add(new OBJECT(0, Support.map.ArrMap[i, j], new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
+                           Support.listObject.Add(new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
                         }
                     }
+                }
+
+                for (int i = 0; i < Support.map.ListLedPosition.Count; ++i)
+                {
+                    Support.listObject.Add(new OBJECT((int)ObjectID.LED_OBJECT, 0, new VECTOR2D(Support.map.ListLedPosition[i].cX, Support.map.ListLedPosition[i].cY), new RECTANGLE(0, 0, 0, 0)));
                 }
 
                 return true;
@@ -303,12 +214,36 @@ namespace MapEditor
             return false;
         }
 
-        // Drawing rectangle
+        /* Event Handler */
+        public void click_to_enable_gridline(object sender, RoutedEventArgs e)
+        {
+            if (Support.GRIDLINE == false)
+            {
+                Support.GRIDLINE = true;
+                CreateGridline();
+            }
+            else
+            {
+                DestroyGridline();
+            }
+        }
+
         public void click_to_export_xml_file(object sender, RoutedEventArgs e)
         {
-            if (Support.listObject != null  && Support.IsExportXml == false)
+            if (Support.listObject != null && Support.IsExportXml == false)
             {
-                ExportXml.getInstance().writeXmlFile(Support.listObject);
+                if (Support.quadTree == null)
+                {
+                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 0, 6528, 6528));
+                    for (int i = 0; i < Support.listObject.Count; ++i)
+                    {
+                        Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
+                    }
+                }
+                ExportXml.getInstance().MWriter.WriteStartDocument();
+                ExportXml.getInstance().writeQuadtreeToXml(Support.quadTree, ExportXml.getInstance().MWriter);
+                ExportXml.getInstance().MWriter.WriteEndDocument();
+                ExportXml.getInstance().MWriter.Close();
                 Support.IsExportXml = true;
                 MessageBox.Show("Export XML FILE SUCCESSFUL");
             }
@@ -402,7 +337,7 @@ namespace MapEditor
                     if (rect != null)
                     {
 
-                        OBJECT obj = new OBJECT(1, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        OBJECT obj = new OBJECT((int)ObjectID.TILE_MAP, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                         if (Support.listObject == null)
                         {
                             Support.listObject = new List<OBJECT>();
@@ -427,6 +362,68 @@ namespace MapEditor
             }
         }
 
+        public void click_to_load_backgroundmap(object sender, RoutedEventArgs e)
+        {
 
+            if (Support.map != null)
+            {
+                Support.map = null;
+            }
+
+            OpenFileDialog openFileDialogSourcePicture = new OpenFileDialog();
+            openFileDialogSourcePicture.Filter = "PNG (*.png)|*.png| BMP (*.bmp)|*.bmp| All File (*.*)|*.*";
+            openFileDialogSourcePicture.FilterIndex = 3;
+            openFileDialogSourcePicture.RestoreDirectory = true;
+
+            if (openFileDialogSourcePicture.ShowDialog() == true)
+            {
+                CTile.CountID = 0;
+                if (Support.map == null)
+                {
+                    Support.map = new CMap(new BitmapImage(new Uri(openFileDialogSourcePicture.FileName, UriKind.Absolute)));
+                    Support.WIDHT_MAP = (int)(Support.map.BitMap.Width + 0.9);
+                    Support.HEIGHT_MAP = (int)(Support.map.BitMap.Height + 0.9);
+                    DestroyGridline();
+                    Support.GRIDLINE = true;
+                    CreateGridline();
+                    if (Support.IsExportXml == true)
+                    {
+                        Support.IsExportXml = false;
+                        ExportXml.getInstance().DestroyWriter();
+                    }
+                    WorkspaceWorking.Width = Support.WIDHT_MAP;
+                    WorkspaceWorking.Height = Support.HEIGHT_MAP;
+                    Support.map.CreateTileMap();
+                }
+            }
+
+            if (Support.map != null)
+            {
+                BitmapSource bmpSource;
+                JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
+
+                byte[] arrPixel = new byte[((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
+
+                int offsetX = 0;
+                int offsetY = 0;
+
+                for (int i = 0; i < Support.map.TileMap.Count; ++i)
+                {
+                    offsetX = Support.map.TileMap[i].ID;
+                    Support.map.TileMap[i].ExportBitMap(offsetX, offsetY, arrPixel, (Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
+                }
+
+                FileStream stream = new FileStream(@"..\..\Resource\tilemap\tile_map.bmp", FileMode.Create);
+                bmpSource = BitmapSource.Create(Support.map.TileMap.Count * Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
+                bmpCreate.Frames.Add(BitmapFrame.Create(bmpSource));
+                bmpCreate.Save(stream);
+                stream.Close();
+
+                ConvertFromTileToObject();
+                AddImageOfObjectToCanvas();
+            }
+
+        }
+        /* End Event Handler */
     }
 }
