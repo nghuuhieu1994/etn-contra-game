@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 
 namespace MapEditor.Framwork
@@ -56,9 +57,13 @@ namespace MapEditor.Framwork
 
         public void writeElement(OBJECT _object)
         {
+            mWriter.WriteStartElement("Object");
             VECTOR2D temp = new VECTOR2D();
             temp = Support.ConvertCoordination(_object);
-            mWriter.WriteStartElement("Object");
+            if (_object.ID == 26 && temp.cY == 32 && temp.cX == 32)
+            {
+                MessageBox.Show("DAY");
+            }
             mWriter.WriteAttributeString("Type", Convert.ToString(_object.Type));
             mWriter.WriteAttributeString("Id", Convert.ToString(_object.ID));
             mWriter.WriteAttributeString("X", Convert.ToString(temp.cX));

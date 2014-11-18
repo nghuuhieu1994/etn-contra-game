@@ -238,6 +238,7 @@ namespace MapEditor
                     for (int i = 0; i < Support.listObject.Count; ++i)
                     {
                         Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
+                        
                     }
                 }
                 ExportXml.getInstance().MWriter.WriteStartDocument();
@@ -400,8 +401,8 @@ namespace MapEditor
             if (Support.map != null)
             {
                 BitmapSource bmpSource;
-                JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
-
+                PngBitmapEncoder bmpCreate = new PngBitmapEncoder();
+                
                 byte[] arrPixel = new byte[((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
 
                 int offsetX = 0;
@@ -413,7 +414,7 @@ namespace MapEditor
                     Support.map.TileMap[i].ExportBitMap(offsetX, offsetY, arrPixel, (Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
                 }
 
-                FileStream stream = new FileStream(@"..\..\Resource\tilemap\tile_map.bmp", FileMode.Create);
+                FileStream stream = new FileStream(@"..\..\Resource\tilemap\tile_map.png", FileMode.Create);
                 bmpSource = BitmapSource.Create(Support.map.TileMap.Count * Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
                 bmpCreate.Frames.Add(BitmapFrame.Create(bmpSource));
                 bmpCreate.Save(stream);
