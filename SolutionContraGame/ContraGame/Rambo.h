@@ -16,6 +16,7 @@ class Rambo : public DynamicObject
 private:
 	bool isFall;
 	bool isJump;
+	eIDTypeBullet m_TypeBullet;
 	bool isLieDown;
 	float m_maxPositionY;
 	float m_timeClimb;
@@ -39,12 +40,12 @@ private:
 	int HandleInputSwimState();
 	int HandleInputWaterBombState();
 	int HandleInputDiveState();
-	//UNIMPLEMENT
-	
 	int HandleInputSwimShootState();
 	int HandleInputSwimShootUpState();
 	int HandleInputSwimShootTopRightState();
-	//--------------------------------------
+
+	bool HandleInputShooting();
+
 	void SetFallFlag();
 	void Shoot();
 	void SetVelocityXZero();

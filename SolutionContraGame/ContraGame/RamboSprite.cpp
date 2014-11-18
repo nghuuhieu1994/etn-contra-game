@@ -22,12 +22,12 @@ RamboSprite::RamboSprite(void)
 
 	m_Body = m_Run;
 	
-	m_inversePositionY = -1;
-	m_timeShakeAnimation = 0;
+	resetInverseVariable();
 	m_isJump = false;
 	m_isShake = false;
 	//m_PositionBody	= D3DXVECTOR3(0, 23, 0);
 	m_previousState = (eObjectState)-1;
+	m_timesShake = 0;
 }
 
 void RamboSprite::resetInverseVariable()
@@ -50,16 +50,15 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Leg			= m_moveLeg;
 					m_Body			= m_Shoot;
 
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 				this->Reset();
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_JUMP:
@@ -70,8 +69,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(64, 64);
 					m_Leg			= 0;
 					m_Body			= m_Jump; 
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 				m_Body->UpdateAnimation(150);
 			}
@@ -84,16 +82,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Body			= m_Lie;
 					m_frameSize		= D3DXVECTOR2(68, 34);
 					m_PositionBody	= D3DXVECTOR3(0, 0, 0); 
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 			}
 			break;
 		case STATE_RAMBO_RUN:
@@ -105,8 +101,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_Run;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				m_Leg->UpdateAnimation(250);
@@ -124,16 +119,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_BottomRight;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 22, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 				m_Leg->UpdateAnimation(250);
 			}
 			break;
@@ -146,16 +139,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_Shoot; 
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 				m_Leg->UpdateAnimation(250);
 			}
 			break;
@@ -168,16 +159,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_TopRight; 
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 				m_Leg->UpdateAnimation(250);
 			}
 			break;
@@ -190,16 +179,14 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_Up;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
-				if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
-				}
+					resetInverseVariable();
+				}*/
 				this->Reset();
 			}
 			break;
@@ -212,8 +199,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(30, 74);
 					m_Leg			= m_moveLeg;
 					m_Body			= m_Run;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				m_Body->getAnimation()->setSourceRectAtIndex(0);
@@ -228,8 +214,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= 0;
 					m_Body			= m_WaterBomb;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 			}
 			break;
@@ -242,8 +227,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= 0;
 					m_Body			= m_Dive;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				shakeBodySwim();
@@ -259,8 +243,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= m_Dive;
 					m_Body			= m_Shoot;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 				shakeBodySwim();
 			}
@@ -275,8 +258,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= m_Dive;
 					m_Body			= m_Up;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				shakeBodySwim();
@@ -292,8 +274,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= m_Dive;
 					m_Body			= m_TopRight;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				shakeBodySwim();
@@ -308,8 +289,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(32, 32);
 					m_Leg			= 0;
 					m_Body			= m_Swim;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 
 				shakeBodySwim();
@@ -324,8 +304,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_frameSize		= D3DXVECTOR2(20, 20);
 					m_Leg			= 0;
 					m_Body			= m_Climb;
-					m_inversePositionY = -1;
-					m_timeShakeAnimation = 0;
+					resetInverseVariable();
 				}
 			}
 			break;
@@ -351,13 +330,17 @@ void RamboSprite::loadCurrentState()
 
 void RamboSprite::shakeBody()
 {
-	this->m_timeShakeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-	if(this->m_timeShakeAnimation > 150)
+	if (m_timesShake > 0)
 	{
-		m_PositionBody.y += 2 * m_inversePositionY;
-		
-		m_inversePositionY *= -1;
-		m_timeShakeAnimation = 0;
+		this->m_timeShakeAnimation += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(this->m_timeShakeAnimation > 150)
+		{
+			m_PositionBody.y += 2 * m_inversePositionY;
+
+			m_inversePositionY *= -1;
+			m_timeShakeAnimation = 0;
+			--m_timesShake;
+		} 
 	}
 }
 
