@@ -46,7 +46,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
-	m_gunRotating = new GunRotating(D3DXVECTOR3(600, 280, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
+	m_gunRotating = new GunRotating(D3DXVECTOR3(500, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
 
 

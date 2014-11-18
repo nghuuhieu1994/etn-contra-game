@@ -30,7 +30,7 @@ void BigGunRotating::Shoot()
 		break;
 	case AD_TOP_LEFT:
 		{
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.5f, 0.0f), -1);
 		}
 		break;			
 	default:
@@ -84,33 +84,41 @@ void BigGunRotating::UpdateAnimation()
 		}
 		else
 		{
-			if(_distance_X < 300 && _distance_X >= 120)
+			if(_distance_X < 300 && _distance_X >= 80)
 			{
-				if( _distance_Y == 0 )
+				if( _distance_Y >= 0 && _distance_Y <= 30)
 				{
 					this->getSprite()->getAnimation()->setIndexStart(0);
 					this->getSprite()->getAnimation()->setIndexEnd(2);
 					m_Direction = eDirection::LEFT;
 					m_DirectAttack = eDirectAttack::AD_LEFT;
 				}
-				if( _distance_Y > 0 && _distance_Y < 40)
+				else if( _distance_Y > 30 )
 				{
 					this->getSprite()->getAnimation()->setIndexStart(3);
 					this->getSprite()->getAnimation()->setIndexEnd(5);
 					m_DirectAttack = eDirectAttack::AD_TOP_LEFT;
-				}		
+				}	
+				
 			}
-			else if( _distance_X <= 120)
+			else if(_distance_X < 80)
 			{
-				if( _distance_Y >= 40)
+				if( _distance_Y >= 30)
 				{
 					this->getSprite()->getAnimation()->setIndexStart(6);
 					this->getSprite()->getAnimation()->setIndexEnd(8);	
 					m_DirectAttack = eDirectAttack::AD_TOP;
-				}			
+				}	
+				else
+				{
+					this->getSprite()->getAnimation()->setIndexStart(0);
+					this->getSprite()->getAnimation()->setIndexEnd(2);
+					m_Direction = eDirection::LEFT;
+					m_DirectAttack = eDirectAttack::AD_LEFT;
+				}
 			}
 		}
-		m_Sprite->UpdateAnimation(2000);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -153,12 +161,12 @@ void BigGunRotating::Update()
 		{
 			
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2300 && _distance_X < 350)
+			if(m_TimeChangeState > 2000 && _distance_X < 300)
 			{
 				m_TimeChangeState = 0;
 				isShoot = true;
 			}
-			if(isShoot == true && _distance_X < 350)
+			if(isShoot == true && _distance_X < 300)
 			{
 				Shoot();
 				isShoot = false;
