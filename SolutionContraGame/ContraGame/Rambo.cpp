@@ -1158,7 +1158,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 	if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
 	{
-		if(Intersect(&checkingObject->getBound(), &m_RectangleCheckingObjectBelow))
+		if(Intersect(checkingObject->getBound(), m_RectangleCheckingObjectBelow))
 		{
 			m_objectBelowCurrent.push_back(checkingObject);
 		} 

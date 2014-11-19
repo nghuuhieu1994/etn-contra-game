@@ -6,15 +6,14 @@
 void GameObjectXML::Deserialize(const char *childContent)
 {
 	CMarkup xml(childContent);
-	xml.FindElem();
 	m_Type = atoi(xml.GetAttrib("Type").c_str());
 }
 
 void GameObjectXML::DeserializeVirtualObject(const char* childContent)
 {
 	CMarkup xml(childContent);
-	xml.FindElem();
-	m_ID			= atoi(xml.GetAttrib("Id").c_str());
+	xml.FindElem();		
+	m_ID		= atoi(xml.GetAttrib("Id").c_str());
 	m_Type		= atoi(xml.GetAttrib("Type").c_str());
 	m_X			= atoi(xml.GetAttrib("X").c_str());
 	m_Y			= atoi(xml.GetAttrib("Y").c_str());

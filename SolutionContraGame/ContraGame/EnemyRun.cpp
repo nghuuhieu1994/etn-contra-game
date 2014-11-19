@@ -19,7 +19,9 @@ void EnemyRun::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_RUN));
 	m_Sprite = sprite_main;
-	isJumb = false;
+	//isFall = 0;
+	//this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));s
+	isJumb = true;
 	isDead = false;
 	m_TimeChangeState = 0;
 	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));

@@ -154,6 +154,15 @@
     <ClCompile Include="Tinker.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadTree.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="MapQuadtree.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
     <ClCompile Include="Explosion.cpp">
       <Filter>GameObject\Bridge</Filter>
     </ClCompile>
@@ -381,6 +390,15 @@
     <ClInclude Include="Tinker.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadTree.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="MapQuadtree.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
     <ClInclude Include="Explosion.h">
       <Filter>GameObject\Bridge</Filter>
     </ClInclude>
@@ -538,6 +556,9 @@
     </Filter>
     <Filter Include="GameObject\LedObject">
       <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuadTree">
+      <UniqueIdentifier>{1d944e8e-3ab5-4d00-9f0e-7e4cc620296f}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Bridge">
       <UniqueIdentifier>{ee45eb54-858e-4429-9a7c-899414c0cccd}</UniqueIdentifier>
