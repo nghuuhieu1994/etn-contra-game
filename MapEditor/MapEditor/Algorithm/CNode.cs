@@ -46,7 +46,7 @@ namespace MapEditor.Algorithm
         private int m_id;
         private RECTANGLE m_bound;
         private List<OBJECT> m_listObject;
-        private static int MAX_WIDTH_SIZE_OF_NODE = 448;
+        private static int MAX_WIDTH_SIZE_OF_NODE = 512;
         private static int MAX_HEIGHT_SIZE_OF_NODE = 448;
 
         #region.Properties
@@ -107,11 +107,11 @@ namespace MapEditor.Algorithm
                 }
                 else if (positionOfNode == PositionOfNode.BottomLeft)
                 {
-                    this.m_bound = new RECTANGLE(parentBound.cX, parentBound.cY + parentBound.height / 2, parentBound.width / 2, parentBound.height / 2);
+                    this.m_bound = new RECTANGLE(parentBound.cX, parentBound.cY - parentBound.height / 2, parentBound.width / 2, parentBound.height / 2);
                 }
                 else if (positionOfNode == PositionOfNode.BottomRight)
                 {
-                    this.m_bound = new RECTANGLE(parentBound.cX + parentBound.width / 2, parentBound.cY + parentBound.height / 2, parentBound.width / 2, parentBound.height / 2);
+                    this.m_bound = new RECTANGLE(parentBound.cX + parentBound.width / 2, parentBound.cY - parentBound.height / 2, parentBound.width / 2, parentBound.height / 2);
                 }
             }
         }
@@ -130,7 +130,7 @@ namespace MapEditor.Algorithm
                 return;
             }
 
-            if (node.m_bound.width >= 2 * MAX_WIDTH_SIZE_OF_NODE && node.m_bound.height >= 2 * MAX_HEIGHT_SIZE_OF_NODE)
+            if (node.m_bound.width >= 2*MAX_WIDTH_SIZE_OF_NODE)
             {
                 if (node.m_tl == null)
                 {

@@ -44,7 +44,7 @@ namespace MapEditor.Framwork
         }
         public RECTANGLE Bound
         {
-            get { return mBound; }
+            get { return new RECTANGLE(mBound.cX - mBound.width / 2, mBound.cY + mBound.height / 2, mBound.width, mBound.height); }
             set { mBound = value; }
         }
         public Image image

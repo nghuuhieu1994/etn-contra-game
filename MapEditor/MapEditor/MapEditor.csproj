@@ -116,9 +116,6 @@
     <Resource Include="Resource\interface\system.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Hydrangeas.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\interface\undo.png" />
   </ItemGroup>
   <ItemGroup>

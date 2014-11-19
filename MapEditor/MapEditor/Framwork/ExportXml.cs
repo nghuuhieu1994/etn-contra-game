@@ -84,7 +84,7 @@ namespace MapEditor.Framwork
                 mWriter.WriteStartElement("Node");
                 mWriter.WriteAttributeString("Id", Convert.ToString(quadTree.ID));
                 mWriter.WriteAttributeString("X", Convert.ToString(quadTree.Bound.cX));
-                mWriter.WriteAttributeString("Y", Convert.ToString(6528 - quadTree.Bound.cY));
+                mWriter.WriteAttributeString("Y", Convert.ToString(quadTree.Bound.cY));
                 mWriter.WriteAttributeString("Width", Convert.ToString(quadTree.Bound.width));
                 mWriter.WriteAttributeString("Height", Convert.ToString(quadTree.Bound.height));
 
@@ -100,13 +100,11 @@ namespace MapEditor.Framwork
                     mWriter.WriteStartElement("Objects"); 
                     for (int i = 0; i < quadTree.ListObject.Count; ++i)
                     {
-                        VECTOR2D temp = new VECTOR2D();
-                        temp = Support.ConvertCoordination(quadTree.ListObject[i]);
                         mWriter.WriteStartElement("Object");
                         mWriter.WriteAttributeString("Type", Convert.ToString(quadTree.ListObject[i].Type));
                         mWriter.WriteAttributeString("Id", Convert.ToString(quadTree.ListObject[i].ID));
-                        mWriter.WriteAttributeString("X", Convert.ToString(temp.cX));
-                        mWriter.WriteAttributeString("Y", Convert.ToString(temp.cY));
+                        mWriter.WriteAttributeString("X", Convert.ToString(quadTree.ListObject[i].Position.cX));
+                        mWriter.WriteAttributeString("Y", Convert.ToString(quadTree.ListObject[i].Position.cY));
                         mWriter.WriteAttributeString("Width", Convert.ToString(quadTree.ListObject[i].Bound.width));
                         mWriter.WriteAttributeString("Height", Convert.ToString(quadTree.ListObject[i].Bound.height));
                         mWriter.WriteEndElement();

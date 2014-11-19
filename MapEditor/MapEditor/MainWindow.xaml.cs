@@ -154,7 +154,9 @@ namespace MapEditor
                     {
                         if (Support.listObject != null)
                         {
-                           Support.listObject.Add(new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
+                            OBJECT tempObject = new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(tempObject);
+                            Support.listObject.Add(new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
                         }
                     }
                 }
@@ -179,8 +181,9 @@ namespace MapEditor
                 {
                     if (Support.listObject[i].Type == 0)
                     {
-                        Canvas.SetLeft(Support.listObject[i].image, Support.listObject[i].Position.cX);
-                        Canvas.SetTop(Support.listObject[i].image, Support.listObject[i].Position.cY);
+                        // optimize
+                        Canvas.SetLeft(Support.listObject[i].image, Support.listObject[i].Position.cX - Support.listObject[i].Bound.width / 2);
+                        Canvas.SetTop(Support.listObject[i].image, Support.HEIGHT_MAP - Support.listObject[i].Position.cY - Support.listObject[i].Bound.width / 2);
                         WorkspaceWorking.Children.Add(Support.listObject[i].image);
                     }
                 }
@@ -234,11 +237,10 @@ namespace MapEditor
             {
                 if (Support.quadTree == null)
                 {
-                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 0, 6528, 6528));
+                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 6528, 6528, 6528));
                     for (int i = 0; i < Support.listObject.Count; ++i)
                     {
                         Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
-                        
                     }
                 }
                 ExportXml.getInstance().MWriter.WriteStartDocument();
@@ -337,8 +339,9 @@ namespace MapEditor
                     isDragged = false;
                     if (rect != null)
                     {
-
-                        OBJECT obj = new OBJECT((int)ObjectID.TILE_MAP, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        OBJECT temp = new OBJECT((int)ObjectID.VIRTUAL_OBJECT, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                        OBJECT obj = new OBJECT((int)ObjectID.VIRTUAL_OBJECT, 0, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
                         if (Support.listObject == null)
                         {
                             Support.listObject = new List<OBJECT>();
