@@ -332,6 +332,11 @@ int Rambo::HandleInputLieState()
 		m_DirectAttack = eDirectAttack::AD_LEFT;
 	}
 
+	if (HandleInputShooting())
+	{
+		Shoot();
+	}
+
 	if(!CInputDx9::getInstance()->IsKeyDown(DIK_DOWN) || CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_IDLE;

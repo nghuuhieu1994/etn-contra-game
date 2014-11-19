@@ -62,6 +62,7 @@ public:
 	void HandleInput();
 	void Initialize();
 	void Release();
+	void setTypeBullet(eIDTypeBullet _type){ m_TypeBullet = _type; }
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();
