@@ -61,26 +61,47 @@ namespace MapEditor
                 }
             }
 
-            if (r1.cY <= r2.cY)
+            if (r1.cY >= r2.cY)
             {
                 rect.cY = r2.cY;
-                if (r1.cY + r1.height >= r2.cY + r2.height)
+                if (r2.cY - r2.height >= r1.cY - r1.height)
                 {
                     rect.height = r2.height;
                 }
                 else
                 {
-                    rect.height = (int)(r1.cY + r1.height - r2.cY);
+                    rect.height = (int)(r2.cY - r1.cY - r1.height);
                 }
             }
             else
             {
                 rect.cY = r1.cY;
-                if (r1.cY <= r2.cY + r2.height)
+                if(r2.cY - r2.height < r1.cY)
                 {
-                    rect.height = (int)(r2.cY + r2.height - r1.cY);
+                    rect.height = (int)(r1.cY - r2.cY - r2.height);
                 }
             }
+
+            //if (r1.cY >= r2.cY)
+            //{
+            //    rect.cY = r2.cY;
+            //    if (r1.cY + r1.height >= r2.cY + r2.height)
+            //    {
+            //        rect.height = r2.height;
+            //    }
+            //    else
+            //    {
+            //        rect.height = (int)(r1.cY + r1.height - r2.cY);
+            //    }
+            //}
+            //else
+            //{
+            //    rect.cY = r1.cY;
+            //    if (r1.cY <= r2.cY + r2.height)
+            //    {
+            //        rect.height = (int)(r2.cY + r2.height - r1.cY);
+            //    }
+            //}
 
             if (rect.width > 0 && rect.height > 0)
             {
