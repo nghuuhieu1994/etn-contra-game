@@ -1,0 +1,38 @@
+#ifndef __NODE_H__
+#define __NODE_H__
+
+#include "CObjectDx9.h"
+#include <list>
+#include <vector>
+#include "Collision.h"
+#include "Tile.h"
+#include "VirtualObject.h"
+
+class Node
+{
+private:
+	 int mID;
+	 RECT mBound;
+public:
+	Node* mTl;
+	Node* mTr;
+	Node* mBl;
+	Node* mBr;
+	//std::list<Object*> mListObject;
+	std::vector<Object*> mListObject;
+	int getID() const { return this->mID; };
+	RECT getBound() const { return this->mBound; };
+	//std::list<Object*> getListObject() const { return this->mListObject; };
+	std::vector<Object*> getListObject() const { return this->mListObject; };
+	Node* getTl() const { return this->mTl; };
+	Node* getTr() const { return this->mTr; };
+	Node* getBl() const { return this->mBl; };
+	Node* getBr() const { return this->mBr; };
+
+	void setTl(Node* _tl) { this->mTl = _tl;};
+	Node();
+	Node(int, RECT);
+	~Node();
+};
+
+#endif
