@@ -61,9 +61,6 @@
     <ClCompile Include="Rambo.cpp">
       <Filter>GameObject\Rambo</Filter>
     </ClCompile>
-    <ClCompile Include="GifBulletMoving.cpp">
-      <Filter>GameObject\Items\GifBulletMoving</Filter>
-    </ClCompile>
     <ClCompile Include="GifBulletStatic.cpp">
       <Filter>GameObject\Items\GifBulletStatic</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
     </ClCompile>
     <ClCompile Include="DemoState.cpp">
       <Filter>GameScene\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRun.cpp">
-      <Filter>GameObject\Enemy\EnemyRun</Filter>
     </ClCompile>
     <ClCompile Include="CGame.cpp">
       <Filter>Game</Filter>
@@ -160,6 +154,36 @@
     <ClCompile Include="Tinker.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>GameObject\Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>GameObject\Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="SnipperWaterHiding.cpp">
+      <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
+    </ClCompile>
+    <ClCompile Include="SnipperShooting.cpp">
+      <Filter>GameObject\Enemy\SniperStandingShooting</Filter>
+    </ClCompile>
+    <ClCompile Include="GifBulletSinStraight.cpp">
+      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
+    </ClCompile>
+    <ClCompile Include="RockFlying.cpp">
+      <Filter>GameObject\Items\RockFlying</Filter>
+    </ClCompile>
+    <ClCompile Include="RockFalling.cpp">
+      <Filter>GameObject\Items\RockFalling</Filter>
+    </ClCompile>
+    <ClCompile Include="GifBulletMoving.cpp">
+      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRun.cpp">
+      <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRunShooting.cpp">
+      <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -225,9 +249,6 @@
     <ClInclude Include="Rambo.h">
       <Filter>GameObject\Rambo</Filter>
     </ClInclude>
-    <ClInclude Include="GifBulletMoving.h">
-      <Filter>GameObject\Items\GifBulletMoving</Filter>
-    </ClInclude>
     <ClInclude Include="GifBulletStatic.h">
       <Filter>GameObject\Items\GifBulletStatic</Filter>
     </ClInclude>
@@ -245,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="DemoState.h">
       <Filter>GameScene\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRun.h">
-      <Filter>GameObject\Enemy\EnemyRun</Filter>
     </ClInclude>
     <ClInclude Include="CGame.h">
       <Filter>Game</Filter>
@@ -362,6 +380,36 @@
     </ClInclude>
     <ClInclude Include="Tinker.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>GameObject\Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>GameObject\Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="SnipperWaterHiding.h">
+      <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
+    </ClInclude>
+    <ClInclude Include="SniperShooting.h">
+      <Filter>GameObject\Enemy\SniperStandingShooting</Filter>
+    </ClInclude>
+    <ClInclude Include="GifBulletSinStraight.h">
+      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
+    </ClInclude>
+    <ClInclude Include="RockFlying.h">
+      <Filter>GameObject\Items\RockFlying</Filter>
+    </ClInclude>
+    <ClInclude Include="RockFalling.h">
+      <Filter>GameObject\Items\RockFalling</Filter>
+    </ClInclude>
+    <ClInclude Include="GifBulletMoving.h">
+      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRun.h">
+      <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRunShooting.h">
+      <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +538,33 @@
     </Filter>
     <Filter Include="GameObject\LedObject">
       <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Bridge">
+      <UniqueIdentifier>{ee45eb54-858e-4429-9a7c-899414c0cccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SnipperWaterHiding">
+      <UniqueIdentifier>{ad37125c-6525-4e0c-8d6b-cb4d18985d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinStraight">
+      <UniqueIdentifier>{3bd874b3-488f-4b74-a8fb-67662779d225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\RockFlying">
+      <UniqueIdentifier>{9f7a89df-e1aa-4418-88ce-b77956bccbee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\RockFalling">
+      <UniqueIdentifier>{1f94f8a4-5c6a-412d-beca-f82985bed2ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinNormal">
+      <UniqueIdentifier>{495b6cb9-37ba-4b85-980a-684ee3dc3881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStandingShooting">
+      <UniqueIdentifier>{578763b8-50b0-412c-a0e1-901c48785e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunShooting">
+      <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunNormal">
+      <UniqueIdentifier>{5e21e0a2-34c2-4ae8-95b8-4fc1091f9a59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
