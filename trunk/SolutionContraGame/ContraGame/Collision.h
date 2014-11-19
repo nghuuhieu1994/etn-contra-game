@@ -7,18 +7,15 @@
 
 
 
-static bool Intersect(const RECT *rect1, const RECT *rect2)
+static bool Intersect(RECT rect1, RECT rect2)
 {
-	if (rect1 == 0 || rect2 == 0)
+	if (rect1.right <= rect2.left) // _rect bên trái so với obj->_rect
 		return false;
-
-	if (rect1->right < rect2->left) // _rect bên trái so với obj->_rect
+	if (rect1.left >= rect2.right) // _rect bên phải so với obj->_rect
 		return false;
-	if (rect1->left > rect2->right) // _rect bên phải so với obj->_rect
+	if (rect1.bottom >= rect2.top) // _rect bên trên so với obj->_rect
 		return false;
-	if (rect1->bottom > rect2->top) // _rect bên trên so với obj->_rect
-		return false;
-	if (rect1->top < rect2->bottom) // _rect bên dưới so với obj->_rect
+	if (rect1.top <= rect2.bottom) // _rect bên dưới so với obj->_rect
 		return false;
 
 	return true;

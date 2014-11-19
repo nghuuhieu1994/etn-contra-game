@@ -19,6 +19,18 @@ Camera* Camera::getInstance()
 	return s_Instance;
 }
 
+RECT Camera::getBound()
+{
+	RECT tempRect = RECT();
+
+	tempRect.top = m_matrixTranslate._42;
+	tempRect.left = -m_matrixTranslate._41;
+	tempRect.right = tempRect.left + SCREEN_WIDTH;
+	tempRect.bottom = tempRect.top - SCREEN_HEIGHT;
+
+	return tempRect;
+}
+
 void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
 	if (cameramanLocation->x > SCREEN_WIDTH/2)

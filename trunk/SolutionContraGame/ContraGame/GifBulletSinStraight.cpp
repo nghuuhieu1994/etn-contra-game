@@ -65,7 +65,7 @@ void GifBulletSinStraight::UpdateCollision(Object* checkingObject)
 
 float GifBulletSinStraight::Moving()
 {
-	//return (float)((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y);
+	return (float)((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y);
 }
 
 void GifBulletSinStraight:: UpdateMovement()

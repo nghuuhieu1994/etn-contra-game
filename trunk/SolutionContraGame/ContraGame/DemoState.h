@@ -26,6 +26,7 @@
 #include "BulletPool.h"
 #include "LedObject.h"
 #include <list>
+#include "QuadTree.h"
 
 //#define HIEU
 
@@ -34,48 +35,8 @@ using namespace std;
 class DemoState : public GameScene
 {
 private:
-	//D3DXVECTOR3			m_UnitTest;
-	/*CSpriteDx9*			texture;
-	CSpriteDx9*			billmove1;
-	CSpriteDx9*			billmove2;
-	CSpriteDx9*			billmove3;
-	CSpriteDx9*			billmove4;
-	CSpriteDx9*			billmove5[3];
-	CSpriteDx9*			billjump;
-	CSpriteDx9*			fBullet;
-	CSpriteDx9*			backGround;
-	ESpriteEffect		m_testSpriteEffect;*/
-//	Background*			m_background;
 	Rambo*				m_Rambo;
-
-
-#ifdef HIEU
-	SniperStanding*		m_SniperStanding;
-	GifBulletStatic*	m_gifBullet;
-	GifBulletMoving*	m_gifBulletMoving;
-	GunRotating*		m_gunRotating;
-	EnemyRun*			m_Enemy;
-	BigGunRotating*		m_bigGunRotating;
-	SniperHiding*		m_snipperHiding;
-	BossGun*			m_bossGun;
-	BossCenter*			m_bossCenter;  
-#endif // HIEU
-
-	EnemyRun*			m_Enemy;
-
-	SniperStanding*		m_SniperStanding;
-
-	GunRotating*		m_gunRotating;
-
-	SniperHiding*		m_snipperHiding;
-
-	BigGunRotating*		m_bigGunRotating;
-
-	list<Object *>		m_listGameObjects;
-
-	list<Object *>		m_backgroundTile;
-
-	list<Object *>		m_ledObject;
+	QuadTree*			m_Quadtree;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}

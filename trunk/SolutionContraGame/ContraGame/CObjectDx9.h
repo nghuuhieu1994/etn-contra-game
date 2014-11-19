@@ -1,5 +1,6 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
+
 #include "EObjectState.h"
 #include "EObjectID.h"
 #include "CSpriteDx9.h"
