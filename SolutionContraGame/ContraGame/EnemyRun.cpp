@@ -9,7 +9,7 @@ EnemyRun::EnemyRun()
 EnemyRun::EnemyRun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position = _position;
+	//m_Position = _position;
 }
 
 void EnemyRun::Initialize()

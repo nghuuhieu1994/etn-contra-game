@@ -10,16 +10,13 @@ class SniperHiding : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive_hiding;
-	//CSpriteDx9* sprite_alive_shooting;
 	int _distance_X;
 	bool isShoot;
-
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 
 public:
 	SniperHiding ();
-	//Physic*			getPhysic() const { return m_Physic; }
 	SniperHiding (D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();

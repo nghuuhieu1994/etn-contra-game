@@ -22,11 +22,11 @@ protected:
 	eObjectID		m_eObjectID;
 	eDirection		m_Direction;
 	CSpriteDx9*		m_Sprite;
-	//Physic*			m_Physic;
 	eObjectState	m_ObjectState;
 	ETypeObject		m_TypeObject;
 	float			m_TimeChangeState;
-	float			m_TimeChangeAttackDirectAttack;
+	float			m_TimeChangeDirectAttack;
+	float			m_TimeAttack;
 	static int		m_identifyNumber;
 	D3DXVECTOR3		m_Position;
 	//bit 0 -> Update Sprite

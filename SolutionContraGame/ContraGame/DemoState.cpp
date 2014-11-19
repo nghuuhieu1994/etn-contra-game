@@ -3,14 +3,6 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-
-	/*m_UnitTest.x = 400;
-	m_UnitTest.y = 300;
-	m_UnitTest.z = 0;*/
-
-
-	//m_background = new Background();
-	//m_background->Initialize("resources\\Map\\1\\1.map");
 	
 	m_Rambo = new Rambo(D3DXVECTOR3(100, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 
@@ -46,7 +38,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SniperStanding = new SniperStanding(D3DXVECTOR3(650, 130, 0), eDirection::LEFT, eObjectID::SNIPER_STANDING);
 	m_SniperStanding->Initialize();
 
-	m_gunRotating = new GunRotating(D3DXVECTOR3(500, 200, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
+	m_gunRotating = new GunRotating(D3DXVECTOR3(620, 150, 1), eDirection::LEFT, eObjectID::GUN_ROTATING);
 	m_gunRotating->Initialize();
 
 
@@ -57,17 +49,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_snipperHiding->Initialize();
 
 	
-	m_bigGunRotating = new BigGunRotating(D3DXVECTOR3(450, 50, 1), eDirection::LEFT, eObjectID::BIG_GUN_ROTATING);
+	m_bigGunRotating = new BigGunRotating(D3DXVECTOR3(450, 200, 1), eDirection::LEFT, eObjectID::BIG_GUN_ROTATING);
 	m_bigGunRotating->Initialize();
 
 	BulletPoolManager::getInstance()->Initialize();
 	LedObject::getStaticInstance()->Initialize();
-	/*m_VirtualObject = new VirtualObject(D3DXVECTOR3(96, 224, 1), 64, 64);
-	m_VirtualObject->Initialize();*/
-	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Play();
-	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();*/
-	//m_listGameObjects.push_back(m_VirtualObject);
-	//ReadMap("resources\\Map\\1\\map.xml");
 	MapReader::getInstance()->ReadMap("resources\\Map\\1\\map.xml", &m_listGameObjects, &m_backgroundTile, &m_ledObject);
 }
 
@@ -79,20 +65,6 @@ void DemoState::HandleInput()
 void DemoState::Update()
 {
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
-
-	/*m_Rambo->UpdateAnimation();
-	
-	m_Rambo->UpdateMovement();
-
-	for (std::list<Object*>::iterator it = m_listGameObjects.begin(); it != m_listGameObjects.end(); ++it)
-	{
-		m_Rambo->UpdateCollision(*it);
-	}*/
-
-	/*for (std::list<Object*>::iterator it = m_ledObject.begin(); it != m_ledObject.end(); it++)
-	{
-		(*it)->UpdateAnimation();
-	}*/
 
 	LedObject::getStaticInstance()->UpdateAnimation();
 
@@ -139,58 +111,27 @@ void DemoState::Update()
 	m_bossCenter->UpdateAnimation();
 	m_bossCenter->Update();  
 #endif // HIEU
-
-	//m_SniperStanding->UpdateCollision(m_Rambo);
+	/*
 	m_SniperStanding->UpdateAnimation();
 	m_SniperStanding->Update();
-
-	//m_gunRotating->UpdateCollision(m_Rambo);
-	m_gunRotating->UpdateAnimation();
-	m_gunRotating->Update();
 
 	m_Enemy->UpdateAnimation();
 	m_Enemy->UpdateMovement();
 	m_Enemy->Update();
-	//for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
-	//{
-	//	m_Enemy->UpdateCollision(*i);
-	//}
 
 	m_snipperHiding->UpdateAnimation();
 	m_snipperHiding->Update();
-	/*for(auto i = m_listGameObjects.begin() ; i != m_listGameObjects.end(); i++)
-	{
-		m_snipperHiding->UpdateCollision(*i);
-	}*/
-
-	/*if(m_snipperHiding->getObjectState() != eObjectState::STATE_DEATH )
-	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin();
-		i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
-	{
-		m_snipperHiding->UpdateCollision(*i);
-		
-	}*/
-
-	/*if(m_gunRotating->getObjectState() != eObjectState::STATE_DEATH )
-	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin();
-		i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
-	{
-		m_gunRotating->UpdateCollision(*i);
-		
-	}*/
-
-	m_bigGunRotating->UpdateCollision(m_Rambo);
+	*/
 	m_bigGunRotating->UpdateAnimation();
 	m_bigGunRotating->Update();
-
 	
 
-	
+	m_gunRotating->UpdateAnimation();
+	m_gunRotating->Update();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	//m_background->Render(_lpDSpriteHandle);
 	for (std::list<Object*>::iterator it = m_backgroundTile.begin(); it != m_backgroundTile.end(); it++)
 	{
 		(*it)->Render(_lpDSpriteHandle);
@@ -201,11 +142,13 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	}
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 
-	m_SniperStanding->Render(_lpDSpriteHandle);
-	m_gunRotating->Render(_lpDSpriteHandle);
+	/*m_SniperStanding->Render(_lpDSpriteHandle);
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
+	*/
 	m_bigGunRotating->Render(_lpDSpriteHandle);
+
+	m_gunRotating->Render(_lpDSpriteHandle);
 
 	m_Rambo->Render(_lpDSpriteHandle);
 
@@ -222,10 +165,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Enemy->Render(_lpDSpriteHandle);
 	m_snipperHiding->Render(_lpDSpriteHandle);
 	m_bossGun->Render(_lpDSpriteHandle);  
-#endif // HIEU
-
-
-
+#endif // HIEU	
 }
 
 void DemoState::Pause()

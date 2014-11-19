@@ -45,6 +45,10 @@ public:
 
 	void			setSourceRectAtIndex(int Index);
 
+	int				getCurrentIndex(){ return this->m_index_Current; }
+	int				getStartIndex() { return this->m_index_Start; }
+	int				getEndIndex() { return this->m_index_End; }
+
 	RECT*			getSourceRect();
 	void			setSourceRect(RECT _rect);
 	void			NextFrame();
