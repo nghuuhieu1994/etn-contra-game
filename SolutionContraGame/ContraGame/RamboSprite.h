@@ -52,6 +52,7 @@ public:
 	void resetInverseVariable();
 	void SetIsJump(bool _jump) { m_isJump = _jump; }
 	D3DXVECTOR2 GetFrameSize() { return m_frameSize; }
+	bool IsCompleteAnimation(){ return m_timesShake? false : true; }
 	void shakeBody();
 	void shakeBodySwim();
 	void IncreaseTimesShake(int _times){ m_timesShake += _times; }

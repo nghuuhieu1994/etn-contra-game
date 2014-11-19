@@ -22,6 +22,7 @@ private:
 	float m_timeClimb;
 	float m_timeWaterBomb;
 	float m_timeAddBullet;
+	float m_timeDelayRunAndShootRun;
 	list<Object*> m_objectBelowCurrent;
 	list<Object*> m_objectBelowPrevious;
 	Object*				m_ignoreCollisionObject;

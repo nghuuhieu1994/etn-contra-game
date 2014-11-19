@@ -212,14 +212,14 @@ void CGame::Run()
 			second += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if( m_fps >= (float)(1000 / 60))
 			{
-				sprintf(fps, "FPS: %f", 1000 / m_fps);
+				sprintf(fps, "FPS: %.0f", 1000 / m_fps);
 				
 				SceneManagerDx9::getInstance()->HandleInput();
 				SceneManagerDx9::getInstance()->Update();
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 				
-				if (second > 200)
+				if (second > 1000)
 				{
 					SetWindowText(m_handleWindow, fps);
 					second = 0;

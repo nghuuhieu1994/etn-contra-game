@@ -82,6 +82,39 @@ void CTextureDx9::Render(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR2 position, D3
 	_lpDSpriteHandle->SetTransform(&oldMatrix);
 }
 
+#include "CCamera.h"
+
+void CTextureDx9::RenderWithoutTransform(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECTOR2 position, D3DXVECTOR2 Center, D3DXVECTOR2 scale, float angle, D3DCOLOR color, RECT *srcRect, float deep)
+{
+	D3DXVECTOR2 CamTransDistance;
+	CamTransDistance.x = -Camera::getInstance()->GetMatrixTranslate()._41;
+	CamTransDistance.y = Camera::getInstance()->GetMatrixTranslate()._42;
+	D3DXVECTOR3 currentPosition(position.x + CamTransDistance.x, position.y, deep); //toa do trong the gioi thuc
+
+	D3DXMATRIX oldMatrix; //ma tran luu lai phep transform cua SpriteBatch
+
+	_lpDSpriteHandle->GetTransform(&oldMatrix);
+	
+	D3DXVECTOR2 centerScale = D3DXVECTOR2(position.x, position.y);//lay vi tri cua vat the lam tam xoay(vi vi tri cua vat la vi tri chinh giua cua vat)
+
+	D3DXMATRIX matrixScalingRotate; //ma tran rotate, scale
+
+	D3DXMatrixTransformation2D(&matrixScalingRotate, &centerScale, 0.0f, &scale, &Center, D3DXToRadian(angle), 0);
+
+	D3DXMATRIX finalMatrix = matrixScalingRotate * oldMatrix;
+
+	_lpDSpriteHandle->SetTransform(&finalMatrix); //ma tran chuyen toa do vi tri cua vat the tu the gioi thuc sang toa do trong directX de ve
+
+	_lpDSpriteHandle->Draw(
+		this->m_lpTexture,
+		srcRect,
+		&D3DXVECTOR3((float)(srcRect->right - srcRect->left)/2, (float)(srcRect->bottom - srcRect->top)/2, 0),
+		&currentPosition,
+		color);
+
+	_lpDSpriteHandle->SetTransform(&oldMatrix);
+}
+
 void CTextureDx9::RenderTexture(LPD3DXSPRITE _lpDSpriteHandle,const RECT* sourceRect, const D3DXVECTOR3* Center, const D3DXVECTOR3* Position, D3DCOLOR Color)
 {
 	_lpDSpriteHandle->Draw(m_lpTexture, sourceRect, Center, Position, Color);
