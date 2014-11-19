@@ -22,18 +22,23 @@ RamboSprite::RamboSprite(void)
 
 	m_Body = m_Run;
 	
-	resetInverseVariable();
+	
 	m_isJump = false;
 	m_isShake = false;
 	//m_PositionBody	= D3DXVECTOR3(0, 23, 0);
 	m_previousState = (eObjectState)-1;
 	m_timesShake = 0;
+	resetInverseVariable();
 }
 
 void RamboSprite::resetInverseVariable()
 {
 	m_inversePositionY = -1;
 	m_timeShakeAnimation = 0;
+	if (m_timesShake % 2 != 0)
+	{
+		m_timesShake = 0;
+	}
 }
 
 void RamboSprite::UpdateAnimation(eObjectState _objectState)
@@ -72,6 +77,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					resetInverseVariable();
 				}
 				m_Body->UpdateAnimation(150);
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_LIE:
@@ -84,7 +90,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_PositionBody	= D3DXVECTOR3(0, 0, 0); 
 					resetInverseVariable();
 				}
-
+				this->shakeBody();
 				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 				{
 					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
@@ -128,6 +134,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					resetInverseVariable();
 				}*/
 				m_Leg->UpdateAnimation(250);
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_SHOOT_RUN:
@@ -148,6 +155,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					resetInverseVariable();
 				}*/
 				m_Leg->UpdateAnimation(250);
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_AIM_TOP_RIGHT:
@@ -162,12 +170,8 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					resetInverseVariable();
 				}
 
-				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-				{
-					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					resetInverseVariable();
-				}*/
 				m_Leg->UpdateAnimation(250);
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_AIM_UP:
@@ -182,11 +186,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					resetInverseVariable();
 				}
 
-				/*if (!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-				{
-					m_PositionBody	= D3DXVECTOR3(0, 23, 0);
-					resetInverseVariable();
-				}*/
+				this->shakeBody();
 				this->Reset();
 			}
 			break;
@@ -245,7 +245,7 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Body			= m_Shoot;
 					resetInverseVariable();
 				}
-				shakeBodySwim();
+				this->shakeBody();
 			}
 			break;
 		case STATE_RAMBO_SWIM_SHOOT_UP:
@@ -260,8 +260,8 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Body			= m_Up;
 					resetInverseVariable();
 				}
-
-				shakeBodySwim();
+				this->shakeBody();
+				
 			}
 			break;
 		case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
@@ -276,8 +276,8 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Body			= m_TopRight;
 					resetInverseVariable();
 				}
-
-				shakeBodySwim();
+				this->shakeBody();
+				
 			}
 			break;
 		case STATE_RAMBO_SWIM:

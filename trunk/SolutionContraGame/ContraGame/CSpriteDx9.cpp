@@ -81,6 +81,32 @@ void CSpriteDx9::Render(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESprite
 	}
 }
 
+void CSpriteDx9::RenderWithoutTransform(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color)
+{
+	D3DXVECTOR2 m_vOrigin = D3DXVECTOR2(position.x, position.y);
+	if(m_MyTexture != 0)
+	{
+		if(effect == ESpriteEffect::None)
+		{
+			m_MyTexture->RenderWithoutTransform(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+		}
+		else
+		{
+			if(effect == ESpriteEffect::Horizontally)
+			{
+				m_MyTexture->RenderWithoutTransform(spriteHandle, position, m_vOrigin, D3DXVECTOR2(-scale, -scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+			}
+			else
+			{
+				if(effect == ESpriteEffect::Vertically)
+				{
+					m_MyTexture->RenderWithoutTransform(spriteHandle, position, m_vOrigin, D3DXVECTOR2(scale, scale), rotateAngle, color, m_AnimationAction->getSourceRect(), deep);
+				}
+			}
+		}
+	}
+}
+
 void CSpriteDx9::RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color,int frameIndex)
 {
 	m_AnimationAction->setSourceRectAtIndex(frameIndex);

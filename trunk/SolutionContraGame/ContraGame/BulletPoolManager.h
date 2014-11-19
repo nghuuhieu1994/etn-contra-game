@@ -13,7 +13,7 @@ private:
 	BulletPoolManager();
 	~BulletPoolManager();
 public:
-	std::list<Bullet* > m_ListBulletInGame;
+	std::list<Bullet*> m_ListBulletInGame;
 	static BulletPoolManager* m_Instance;
 	static BulletPoolManager* getInstance();
 
@@ -28,8 +28,19 @@ public:
 	void Release();
 
 	// Danh code
-	std::list<Bullet*> getListBullet() { return m_ListBulletInGame; }
+	list<Bullet*> getListBullet() { return m_ListBulletInGame; }
+	int GetAmountBulletOfType(eIDTypeBullet _type)
+	{
+		int result = 0;
+		for (auto i = m_ListBulletInGame.begin(); i != m_ListBulletInGame.end(); ++i)
+		{
+			if ((*i)->getTypeBullet() == _type)
+			{
+				++result;
+			}
+		}
+		return result;
+	}
 };
 
 #endif
-

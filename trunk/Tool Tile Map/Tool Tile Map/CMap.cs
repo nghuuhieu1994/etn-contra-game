@@ -72,6 +72,15 @@ namespace TileMap
                     {
                         this.m_TileMap.Add(_Tile);
                         this.m_ArrMap[i, j] = CTile.CountID;
+                        Bitmap a = new Bitmap(CTile.WIDTH_TILE, CTile.HEIGHT_TILE);
+                        for (int y = 0; y < CTile.HEIGHT_TILE; y++)
+                        {
+                            for (int x = 0; x < CTile.WIDTH_TILE; x++)
+                            {
+                                a.SetPixel(x, y, _Tile.ArrPixel[y, x]);
+                            } 
+                        }
+                        a.Save(CTile.CountID.ToString() + ".png");
                         ++CTile.CountID;
                     }
                     else
@@ -88,6 +97,15 @@ namespace TileMap
                             {
                                 this.m_TileMap.Add(_Tile);
                                 this.m_ArrMap[i, j] = CTile.CountID;
+                                Bitmap a = new Bitmap(CTile.WIDTH_TILE, CTile.HEIGHT_TILE);
+                                for (int y = 0; y < CTile.HEIGHT_TILE; y++)
+                                {
+                                    for (int x = 0; x < CTile.WIDTH_TILE; x++)
+                                    {
+                                        a.SetPixel(x, y, _Tile.ArrPixel[y, x]);
+                                    }
+                                }
+                                a.Save(CTile.CountID.ToString() + ".png");
                                 ++CTile.CountID;
                             }
                         }
