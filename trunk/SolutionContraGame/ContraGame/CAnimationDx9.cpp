@@ -81,10 +81,11 @@ void CAnimationDx9::setSourceRect(RECT _rect)
 void CAnimationDx9::setCurrentFrame(int Index)
 {
 	this->m_index_Current = Index;
-	if(m_index_Current < m_index_Start || m_index_Current > m_index_End)
-	{
-		m_index_Current = 0;
-	}
+	CreateSourceRectangle();
+	//if(m_index_Current < m_index_Start || m_index_Current > m_index_End)
+	//{
+	//	m_index_Current = 0;
+	//}
 }
 
 RECT* CAnimationDx9::getSourceRect()

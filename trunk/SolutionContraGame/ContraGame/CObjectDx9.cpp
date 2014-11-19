@@ -21,12 +21,11 @@ RECT Object::getBound()
 
 Object::Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objctID)
 {
-	//m_Physic = new Physic();
-	//m_Physic->setPosition(_position); //tach m_Physic ra khoi Object
 	m_Direction = _direction;
 	m_eObjectID = _objctID;
 	m_TimeChangeState = 0;
-	m_TimeChangeAttackDirectAttack = 0;
+	m_TimeChangeDirectAttack = 0;
+	m_TimeAttack = 0;
 	++m_identifyNumber;
 }
 

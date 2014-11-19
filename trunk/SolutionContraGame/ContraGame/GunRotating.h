@@ -11,12 +11,10 @@ class GunRotating : public DynamicObject
 	int _distance_X;
 	int _distance_Y;
 	bool isShoot;
-
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
 	GunRotating();
-	//Physic*			getPhysic() const { return m_Physic; }
 	GunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();

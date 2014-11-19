@@ -7,7 +7,6 @@ SniperStanding::SniperStanding()
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position = _position;
 }
 
 void SniperStanding::Shoot()
@@ -15,26 +14,16 @@ void SniperStanding::Shoot()
 	switch (m_DirectAttack)
 	{
 	case AD_LEFT:
-		{
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
-		}
 		break;
 	case AD_RIGHT:
-		{
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
-		}
 		break;
 	case AD_TOP_LEFT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
 		break;
 	case AD_TOP_RIGHT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1);
 		break;
 	case AD_BOTTOM_LEFT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
 		break;
 	case AD_BOTTOM_RIGHT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1);
 		break;
 	default:
 		break;	
@@ -109,8 +98,8 @@ void SniperStanding::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeAttackDirectAttack += (int)(CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds());
-		if(m_TimeChangeAttackDirectAttack > 1500)
+		m_TimeChangeDirectAttack += (int)(CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds());
+		if (m_TimeChangeDirectAttack > 1500)
 		{
 			if(CGlobal::Rambo_Y > m_Position.y + 50)
 			{
@@ -123,7 +112,7 @@ void SniperStanding::UpdateAnimation()
 				else
 					m_Sprite = sprite_mid;
 			}
-			m_TimeChangeAttackDirectAttack = 0;
+			m_TimeChangeDirectAttack = 0;
 		}
 		break;
 	case STATE_SHOOTING:
@@ -145,12 +134,7 @@ void SniperStanding::UpdateAnimation()
 	}
 	else
 	{
-		if(m_Direction == eDirection::RIGHT)
-		{
-			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
-
-		}
-
+		m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
 	}
 }
 void SniperStanding::UpdateMovement()
@@ -181,7 +165,7 @@ void SniperStanding::Update()
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		if(m_TimeChangeState > 3000)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -190,12 +174,12 @@ void SniperStanding::Update()
 		break;
 	case STATE_SHOOTING:
 		if(isShoot == true && _distance_X < 300)
-			{
-				Shoot();
-				isShoot = false;
-			}
+		{
+			Shoot();
+			isShoot = false;
+		}
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 500)
+		if(m_TimeChangeState > 2500)
 		{
 			m_TimeChangeState = 0;
 			
