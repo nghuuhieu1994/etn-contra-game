@@ -25,6 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	m_TypeBullet = eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO;
 	m_timeDelayRunAndShootRun = 0;
+	
 }
 
 RECT Rambo::getBound()
@@ -323,6 +324,7 @@ bool Rambo::HandleInputShooting()
 
 int Rambo::HandleInputLieState()
 {
+	m_Physic->setVelocityX(0.0f);
 	if(m_Direction == eDirection::RIGHT)
 	{
 		m_DirectAttack = eDirectAttack::AD_RIGHT;
@@ -1214,7 +1216,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void Rambo::Update(list<Object*> listObject)
+void Rambo::Update(vector<Object*> listObject)
 {
 	//START UPDATE
 	//Update animation after handle input update state of Rambo
@@ -1233,7 +1235,10 @@ void Rambo::Update(list<Object*> listObject)
 	//checking collision with object in game
 	for (auto it = listObject.begin(); it != listObject.end(); ++it)
 	{
-		this->UpdateCollision(*it);
+		if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
+		{
+			this->UpdateCollision(*it); 
+		}
 	}
 	//clear list object of previous update and reference it to current object list
 	m_objectBelowPrevious.clear();

@@ -66,7 +66,7 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();
-	void Update(list<Object*>);
+	void Update(vector<Object*>);
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();

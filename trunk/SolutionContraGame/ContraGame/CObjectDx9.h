@@ -53,7 +53,7 @@ public:
 	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
 	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
 
-	//Physic*			getPhysic() const { return m_Physic; }
+	
 	eObjectID		getID() const { return m_eObjectID; }
 	ETypeObject		getTypeObject() const { return m_TypeObject; }
 
