@@ -19,14 +19,15 @@ RECT Object::getBound()
 	return tempBound;
 }
 
-Object::Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objctID)
+Object::Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 {
+	m_Position = _position;
 	m_Direction = _direction;
-	m_eObjectID = _objctID;
+	m_eObjectID = _objectID;
 	m_TimeChangeState = 0;
 	m_TimeChangeDirectAttack = 0;
 	m_TimeAttack = 0;
-	++m_identifyNumber;
+	m_ObjectIdentifyNumber = m_identifyNumber++;
 }
 
 Object::~Object()

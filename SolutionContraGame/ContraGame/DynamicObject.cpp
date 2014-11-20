@@ -9,7 +9,7 @@ DynamicObject::DynamicObject(D3DXVECTOR3 _position, eDirection _direction, eObje
 Object(_position, _direction, _objectID)
 {
 	m_Physic = new Physic();
-	m_Position = _position;
+	
 	m_DirectAttack = eDirectAttack::AD_TOP;
 	this->m_Collision = new Collision();
 }

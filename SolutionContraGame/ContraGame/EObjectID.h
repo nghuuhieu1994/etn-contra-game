@@ -19,5 +19,6 @@ enum eObjectID
 	BIG_BOSS_1, // Boss Map 1
 	BULLET, //  Cai nay de lam gi???
 	LED_OBJECT_STAR,
+	TILE_BACKGROUND,
 };
 #endif

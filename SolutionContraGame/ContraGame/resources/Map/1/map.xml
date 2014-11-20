@@ -102,10 +102,7 @@
           <Object Type="0" Id="39" X="736" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="40" X="800" Y="32" Width="64" Height="64" />
           <Object Type="1" Id="0" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="1" Id="0" X="416" Y="168" Width="192" Height="16" />
-          <Object Type="1" Id="0" X="544" Y="104" Width="64" Height="16" />
           <Object Type="1" Id="0" X="640" Y="40" Width="128" Height="16" />
-          <Object Type="1" Id="0" X="736" Y="104" Width="64" Height="16" />
         </Objects>
       </Node>
       <Node Id="1334" X="816" Y="816" Width="816" Height="816">
@@ -209,9 +206,6 @@
           <Object Type="0" Id="25" X="1568" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="25" X="1632" Y="32" Width="64" Height="64" />
           <Object Type="1" Id="0" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="1" Id="0" X="896" Y="168" Width="128" Height="16" />
-          <Object Type="1" Id="0" X="1280" Y="40" Width="128" Height="16" />
-          <Object Type="1" Id="0" X="1376" Y="136" Width="192" Height="16" />
         </Objects>
       </Node>
     </Node>

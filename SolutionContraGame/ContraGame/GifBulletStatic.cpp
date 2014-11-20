@@ -10,7 +10,7 @@ GifBulletStatic::GifBulletStatic(D3DXVECTOR3 _position, eDirection _direction, e
 {
 	//m_Physic = new Physic();
 	//m_Physic->setPosition(_position);
-	m_Position = _position;
+	
 }
 
 void GifBulletStatic::Initialize()

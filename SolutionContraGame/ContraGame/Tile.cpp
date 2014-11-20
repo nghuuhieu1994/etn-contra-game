@@ -5,10 +5,10 @@ Tile::Tile(void)
 {
 }
 
-Tile::Tile(D3DXVECTOR3 _position, int ID, eSpriteID tileMapID)
+Tile::Tile(D3DXVECTOR3 _position, int ID, eSpriteID tileMapID) : Object(_position, eDirection::NONE, eObjectID::TILE_BACKGROUND)
 {
 	m_TypeObject = ETypeObject::TILE_MAP;
-	m_Position = _position;
+	//m_Position = _position;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(tileMapID));
 	m_Sprite->getAnimation()->setSourceRectAtIndex(ID);
 	m_ID = ID;
