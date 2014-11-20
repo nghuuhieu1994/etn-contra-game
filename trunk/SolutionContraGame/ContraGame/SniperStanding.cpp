@@ -181,8 +181,7 @@ void SniperStanding::Update()
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 2500)
 		{
-			m_TimeChangeState = 0;
-			
+			m_TimeChangeState = 0;			
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		}
 		break;

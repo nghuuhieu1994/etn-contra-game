@@ -7,7 +7,11 @@ class BossGun : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive;
-	int _distance_X;
+	
+	bool isShoot;
+	void Shoot();
+	D3DXVECTOR3	GetStartPositionOfBullet();
+
 public:
 	BossGun();
 	BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

@@ -14,11 +14,25 @@ BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 
 void BossGun::Initialize()
 {
+	m_AttackCounter = 10;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
+
+	isShoot = false;
 }
+
+void BossGun::Shoot()
+{
+	// typesome fucking code to add bullet ---> pollBullet
+}
+
+D3DXVECTOR3 BossGun::GetStartPositionOfBullet()
+{
+	return D3DXVECTOR3(m_Position.x - 20, m_Position.y, m_Position.z);
+}
+
 
 void BossGun::UpdateAnimation()
 {	
@@ -32,7 +46,7 @@ void BossGun::UpdateAnimation()
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(120);
+		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
 		break;
@@ -46,12 +60,14 @@ void BossGun::UpdateCollision(Object* checkingObject)
 {
 	switch (checkingObject->getID())
 	{
-	case eObjectID::RAMBO:
-
-		break;
-	case eObjectID::BULLET_RAMBO:
-
-		break;
+		// checking collision with Bullet
+		//m_AttackCounter--;
+		/*
+		if(m_AttackCounter == 0)
+		{
+			this->m_ObjectState == eObjectState::STATE_BEFORE_DETH;
+		}
+		*/
 	default:
 		break;
 	}
@@ -64,24 +80,33 @@ void BossGun::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 800)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_SHOOTING;
+			isShoot = true;
 		}
 		break;
 	case STATE_SHOOTING:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 200)
+		if(isShoot == true)
 		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			Shoot();
+			isShoot = false;
+		}
+		else
+		{
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 200)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			}
 		}
 		break;
 	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 1500)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;

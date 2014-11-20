@@ -26,7 +26,6 @@ Object::Object(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 	m_eObjectID = _objectID;
 	m_TimeChangeState = 0;
 	m_TimeChangeDirectAttack = 0;
-	m_TimeAttack = 0;
 	m_ObjectIdentifyNumber = m_identifyNumber++;
 }
 
