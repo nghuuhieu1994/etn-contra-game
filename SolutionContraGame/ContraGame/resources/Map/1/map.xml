@@ -101,7 +101,11 @@
           <Object Type="0" Id="38" X="672" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="39" X="736" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="40" X="800" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
+          <Object Type="1" Id="0" X="800" Y="232" Width="1472" Height="16" />
+          <Object Type="1" Id="0" X="416" Y="168" Width="192" Height="16" />
+          <Object Type="1" Id="0" X="544" Y="104" Width="64" Height="16" />
+          <Object Type="1" Id="0" X="640" Y="40" Width="128" Height="16" />
+          <Object Type="1" Id="0" X="736" Y="104" Width="64" Height="16" />
         </Objects>
       </Node>
       <Node Id="1334" X="816" Y="816" Width="816" Height="816">
@@ -204,7 +208,10 @@
           <Object Type="0" Id="41" X="1504" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="25" X="1568" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="25" X="1632" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
+          <Object Type="1" Id="0" X="800" Y="232" Width="1472" Height="16" />
+          <Object Type="1" Id="0" X="896" Y="168" Width="128" Height="16" />
+          <Object Type="1" Id="0" X="1280" Y="40" Width="128" Height="16" />
+          <Object Type="1" Id="0" X="1376" Y="136" Width="192" Height="16" />
         </Objects>
       </Node>
     </Node>
@@ -311,7 +318,6 @@
           <Object Type="0" Id="25" X="2336" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="25" X="2400" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="35" X="2464" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
       <Node Id="1344" X="2448" Y="816" Width="816" Height="816">
@@ -407,7 +413,6 @@
           <Object Type="0" Id="36" X="3104" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="40" X="3168" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="36" X="3232" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
     </Node>
@@ -511,7 +516,6 @@
           <Object Type="0" Id="24" X="3936" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="24" X="4000" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="24" X="4064" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
       <Node Id="1434" X="4080" Y="816" Width="816" Height="816">
@@ -614,7 +618,6 @@
           <Object Type="0" Id="24" X="4768" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="24" X="4832" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="24" X="4896" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
     </Node>
@@ -721,7 +724,6 @@
           <Object Type="0" Id="22" X="5600" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="16" X="5664" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="24" X="5728" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
       <Node Id="1444" X="5712" Y="816" Width="816" Height="816">
@@ -817,7 +819,6 @@
           <Object Type="0" Id="22" X="6368" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="22" X="6432" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="43" X="6496" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" X="3288" Y="232" Width="6448" Height="16" />
         </Objects>
       </Node>
     </Node>
