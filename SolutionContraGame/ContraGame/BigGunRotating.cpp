@@ -70,7 +70,6 @@ void BigGunRotating::UpdateAnimation()
 				m_Sprite->getAnimationAction()->setIndexEnd(2);
 				m_DirectAttack = eDirectAttack::AD_LEFT;
 			}
-
 			if (abs(_distance_X) < 300 && abs(_distance_X) > 100 && _distance_Y > 0)
 			{
 				m_Sprite->getAnimationAction()->setIndexStart(3);
@@ -123,6 +122,7 @@ void BigGunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+
 		// type somefucking code to release 1 bullet on screen
 		break;
 	case STATE_BEFORE_DEATH:

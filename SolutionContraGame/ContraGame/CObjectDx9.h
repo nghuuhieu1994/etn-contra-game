@@ -27,10 +27,11 @@ protected:
 	ETypeObject		m_TypeObject;
 	float			m_TimeChangeState;
 	float			m_TimeChangeDirectAttack;
-	float			m_TimeAttack;
+	int				m_AttackCounter;
 	static int		m_identifyNumber;
 	int				m_ObjectIdentifyNumber;
 	D3DXVECTOR3		m_Position;
+
 	//bit 0 -> Update Sprite
 	//bit 1 -> Update Animation
 	//bit 2 -> Update Movement
