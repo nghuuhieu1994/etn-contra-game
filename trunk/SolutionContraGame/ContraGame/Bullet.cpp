@@ -9,7 +9,7 @@ Bullet::Bullet()
 Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	this->m_Position = _position;
+	
 	this->m_Direction = _direction;
 	this->m_eObjectID = _objectID;
 	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;

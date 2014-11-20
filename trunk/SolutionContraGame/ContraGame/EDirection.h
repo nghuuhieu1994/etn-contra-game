@@ -6,5 +6,6 @@ enum eDirection
 	LEFT = 1,
 	RIGHT,
 	TOP,
+	NONE,
 };
 #endif

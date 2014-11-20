@@ -17,10 +17,9 @@ LedObject* LedObject::getStaticInstance()
 	return s_Instance;
 }
 
-LedObject::LedObject(D3DXVECTOR3 _position, eObjectID _objectID)
+LedObject::LedObject(D3DXVECTOR3 _position, eObjectID _objectID) : Object(_position, eDirection::NONE, _objectID)
 {
-	this->m_Position = _position;
-	this->m_eObjectID = _objectID;
+	
 }
 
 void LedObject::Initialize()

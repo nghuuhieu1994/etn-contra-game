@@ -11,7 +11,7 @@ Rambo::Rambo()
 Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position = _position;
+	
 	m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
 	m_RamboSprite = new RamboSprite();
 	m_Position.z = 1.0f;

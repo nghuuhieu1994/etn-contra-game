@@ -9,7 +9,7 @@ Explosion::Explosion(D3DXVECTOR3 _position, eDirection _direction, eObjectID _ob
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
-	m_Position = _position;
+	
 	
 }
 
