@@ -7,21 +7,19 @@ class CGameTimeDx9
 {
 private:
 	
-	static CGameTimeDx9* s_Instance;
+	static CGameTimeDx9*	s_Instance;
 
-	CTimeSpanDx9	m_ElapsedGameTime;
+	CTimeSpanDx9			m_ElapsedGameTime;
 	
-	CTimeSpanDx9	m_TotalGameTime;
+	LARGE_INTEGER			m_Query;
 	
-	LARGE_INTEGER	m_Query;
+	float					m_FreQuency;
 	
-	float			m_FreQuency;
+	LONGLONG				StartTicks;
 	
-	LONGLONG			StartTicks;
+	LONGLONG				LastTicks;
 	
-	LONGLONG			LastTicks;
-	
-	LONGLONG			CurTicks;
+	LONGLONG				CurTicks;
 
 	CGameTimeDx9();
 

@@ -9,24 +9,37 @@ Tinker::Tinker(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 
 void Tinker::Initialize()
 {
-	this->m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	this->m_BodyAlive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY);	
-	m_Sprite = m_BodyAlive;
+	timeDelayGun = 0;
+	isDelay = false;
 
-	m_BodyDeath = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_DEATH);
+	this->m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+
+	this->m_BossBody = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY);
+	m_Sprite = m_BossBody;
+
 	m_Center = new BossCenter(D3DXVECTOR3(this->getPositionVec3().x - 80, this->getPositionVec3().y - 80, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_CENTER);
 	m_Center->Initialize();
-	m_Left = new BossGun(D3DXVECTOR3(this->getPositionVec3().x - 50, this->getPositionVec3().y - 50, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
+	m_Left = new BossGun(D3DXVECTOR3(this->getPositionVec3().x - 85, this->getPositionVec3().y + 13, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
 	m_Left->Initialize();
-	m_Right = new BossGun(D3DXVECTOR3(this->getPositionVec3().x + 50, this->getPositionVec3().y + 50, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
+	m_Right = new BossGun(D3DXVECTOR3(this->getPositionVec3().x - 30, this->getPositionVec3().y + 13, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
 	m_Right->Initialize();
-
-	isBurned = false;
 }
 
 void Tinker::UpdateAnimation()
 {
-	m_Left->UpdateAnimation();
+	if(isDelay == false)
+	{
+		timeDelayGun += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	}
+	if(timeDelayGun > 1300)
+	{
+		isDelay = true;
+		timeDelayGun = 0;
+	}
+	if(isDelay)
+	{
+		m_Left->UpdateAnimation();
+	}
 	m_Right->UpdateAnimation();
 	m_Center->UpdateAnimation();
 }
@@ -67,33 +80,19 @@ void Tinker::Update()
 	switch (this->m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(m_Left->getObjectState() == eObjectState::STATE_DEATH &&
-			m_Right->getObjectState() == eObjectState::STATE_DEATH &&
-			m_Center->getObjectState() == eObjectState::STATE_DEATH)
+		if(m_Center->getObjectState() == eObjectState::STATE_DEATH)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 696)
+			if(m_TimeChangeState > 1000)
 			{
+				m_TimeChangeState = 0;
 				this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 			}
 		}
 		break;
 	case STATE_BEFORE_DEATH:
-		if(isBurned == true)
-		{
-			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 3500)
-			{
-				this->m_ObjectState = eObjectState::STATE_DEATH;
-			}
-		}
-		else
-		{
-			// createBurningFunc
-		}
 		break;
 	case STATE_DEATH:
-		this->Release();
 		break;
 	default:
 		break;
@@ -102,6 +101,8 @@ void Tinker::Update()
 
 void Tinker::Render(SPRITEHANDLE spriteHandle)
 {
+	m_Left->Render(spriteHandle);
+	m_Right->Render(spriteHandle);
 	if (m_Sprite != NULL)
 	{
 		m_Sprite->Render(spriteHandle,
@@ -111,8 +112,6 @@ void Tinker::Render(SPRITEHANDLE spriteHandle)
 			m_Sprite->getScale(),
 			m_Position.z);
 	}
-	m_Left->Render(spriteHandle);
-	m_Right->Render(spriteHandle);
 	m_Center->Render(spriteHandle);
 }
 
@@ -120,6 +119,8 @@ void Tinker::Release()
 {
 	m_Center = NULL;
 	m_Sprite = NULL;
+	m_Left = NULL;
+	m_Right = NULL;
 }
 
 Tinker::~Tinker()
