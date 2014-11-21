@@ -14,7 +14,7 @@ BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 
 void BossGun::Initialize()
 {
-	m_AttackCounter = 10;
+	m_AttackCounter = 20;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -39,10 +39,9 @@ void BossGun::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		this->getSprite()->getAnimationAction()->setCurrentFrame(1);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_SHOOTING:
-		this->getSprite()->getAnimationAction()->setCurrentFrame(0);	
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;

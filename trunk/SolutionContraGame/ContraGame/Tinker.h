@@ -7,16 +7,13 @@
 class Tinker : DynamicObject
 {
 private:
-	CSpriteDx9*		m_BodyAlive;
-	CSpriteDx9*		m_BodyDeath;
 	BossCenter*		m_Center;
 	BossGun*		m_Left;
 	BossGun*		m_Right;
+	CSpriteDx9*		m_BossBody;
 
-	CSpriteDx9*		m_spriteExplosion[8]; // explo step by step .....
-	bool isBurned;
-
-	void BossExplosion();
+	float timeDelayGun;
+	bool isDelay;
 
 public:
 	Tinker();

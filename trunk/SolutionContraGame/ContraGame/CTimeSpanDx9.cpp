@@ -19,10 +19,6 @@ UINT64	CTimeSpanDx9::getTicks()
 	return m_Ticks;
 }
 
-UINT64 CTimeSpanDx9::getTotalMilliseconds()
-{
-	return m_Ticks / TicksPerMillisecond;
-}
 CTimeSpanDx9& CTimeSpanDx9::operator=(const CTimeSpanDx9 &Timesp)
 {
 	this->m_Ticks = Timesp.m_Ticks;

@@ -8,15 +8,9 @@ private:
 	UINT64	m_Ticks;
 public:
 	
-	static const UINT64	TicksPerDay				= 86400000000;
+    static const UINT64 TicksPerSecond			= 10000000;
 	
-	static const UINT64	TicksPerHour			= 3600000000;
-	
-    static const UINT64 TicksPerMinute			= 60000000;
-	
-    static const UINT64 TicksPerSecond			= 1000000;
-	
-    static const UINT64 TicksPerMillisecond		= 1000;
+    static const UINT64 TicksPerMillisecond		= 10000;
 
 	
 	CTimeSpanDx9();
@@ -24,12 +18,9 @@ public:
 	CTimeSpanDx9(UINT64 Ticks);
 	
 	float	getMilliseconds();
-
 	
 	UINT64	getTicks();
 	
-	UINT64	getTotalMilliseconds();
-		
 	CTimeSpanDx9& operator=(const CTimeSpanDx9& Timesp);
 	
 	~CTimeSpanDx9();
