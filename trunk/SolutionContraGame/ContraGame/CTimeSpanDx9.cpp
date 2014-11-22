@@ -10,9 +10,9 @@ CTimeSpanDx9::CTimeSpanDx9(UINT64 Ticks)
 }
 CTimeSpanDx9::~CTimeSpanDx9()
 {}
-float CTimeSpanDx9::getMilliseconds()
+int CTimeSpanDx9::getMilliseconds()
 {
-	return (float)(m_Ticks) / TicksPerMillisecond;
+	return (m_Ticks) / TicksPerMillisecond;
 }
 UINT64	CTimeSpanDx9::getTicks()
 {
