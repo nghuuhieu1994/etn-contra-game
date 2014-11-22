@@ -205,13 +205,17 @@ void CGame::Run()
 			{
 				PostMessage(m_handleWindow, WM_QUIT, 0, 0);
 			}
+
 			CInputDx9::getInstance()->UpdateKeyBoard();
+
 			CGameTimeDx9::getInstance()->UpdateGameTime();
+
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+
 			static float second;
 			second += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 
-			if( m_fps >= float(1000) / (float) 60)
+			if( m_fps >= 1000 / 60)
 			{
 				sprintf(fps, "FPS: %.3f \n", 1000.0 / m_fps);
 				
@@ -220,7 +224,7 @@ void CGame::Run()
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 				
-				if (second > 1000)
+				if (second > 500)
 				{
 					SetWindowText(m_handleWindow, fps);
 					OutputDebugString(fps);
