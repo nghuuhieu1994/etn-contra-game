@@ -5,11 +5,9 @@
 
 class LedObject : public Object
 {
-	static LedObject* s_Instance;
 public:
 	LedObject();
 	LedObject(D3DXVECTOR3, eObjectID);
-	static LedObject* getStaticInstance();
 	~LedObject();
 	void Initialize() ;
 	void UpdateAnimation();

@@ -1,36 +1,27 @@
 #include "LedObject.h"
 
-
-LedObject* LedObject::s_Instance = 0;
-
 LedObject::LedObject()
 {
 
 }
 
-LedObject* LedObject::getStaticInstance()
-{
-	if (s_Instance == 0)
-	{
-		s_Instance = new LedObject();
-	}
-	return s_Instance;
-}
 
 LedObject::LedObject(D3DXVECTOR3 _position, eObjectID _objectID) : Object(_position, eDirection::NONE, _objectID)
 {
 	
-}
-
-void LedObject::Initialize()
-{
 	this->m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	this->m_Sprite = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_LED_OBJECT);
 }
 
+void LedObject::Initialize()
+{
+
+	//this->m_Sprite = this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_LED_OBJECT));
+}
+
 void LedObject::UpdateAnimation()
 {
-	this->getSprite()->UpdateAnimation(300);
+	this->getSprite()->UpdateAnimation(400);
 }
 
 void LedObject::UpdateCollision(Object* _checkingObject)
