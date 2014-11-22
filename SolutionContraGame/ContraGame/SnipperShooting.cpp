@@ -12,8 +12,10 @@ void SniperShooting::Shoot()
 	switch (m_DirectAttack)
 	{
 	case AD_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 		break;
 	case AD_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 		break;
 	default:
 		break;	
@@ -25,8 +27,10 @@ D3DXVECTOR3 SniperShooting::GetStartPositionOfBullet()
 	switch(m_DirectAttack)
 	{
 	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y, 0);
 		break;
 	case AD_RIGHT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y , 0); 
 		break;
 	default:
 		break;	
@@ -57,9 +61,17 @@ void SniperShooting::UpdateAnimation()
 
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
+	case STATE_ALIVE_IDLE: 
+		m_Sprite = sprite_alive;
+		m_Sprite->getAnimationAction()->setIndexStart(0);
+		m_Sprite->getAnimationAction()->setIndexEnd(3);
+		m_Sprite->UpdateAnimation(400);
 		break;
 	case STATE_SHOOTING:
+		m_Sprite = sprite_alive;
+		m_Sprite->getAnimationAction()->setIndexStart(4);
+		m_Sprite->getAnimationAction()->setIndexEnd(5);
+		m_Sprite->UpdateAnimation(400);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -94,6 +106,7 @@ void SniperShooting::UpdateCollision(Object* checkingObject)
 		switch (checkingObject->getID())
 		{
 			case eObjectID ::BULLET_RAMBO:
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 			default:
 				break;
@@ -115,7 +128,7 @@ void SniperShooting::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 3000)
+			if(m_TimeChangeState > 10000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;

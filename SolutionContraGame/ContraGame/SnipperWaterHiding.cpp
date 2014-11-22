@@ -9,29 +9,12 @@ SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direct
 
 void SnipperWaterHiding::Shoot()
 {
-	switch (m_DirectAttack)
-	{
-	case AD_LEFT:
-		break;
-	case AD_RIGHT:
-		break;
-	default:
-		break;	
-	}
+	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);		
 }
 
 D3DXVECTOR3 SnipperWaterHiding::GetStartPositionOfBullet()
 {
-	switch(m_DirectAttack)
-	{
-	case AD_LEFT:
-		break;
-	case AD_RIGHT:
-		break;
-	default:
-		break;	
-	}
-	return D3DXVECTOR3();
+	return D3DXVECTOR3(m_Position.x, m_Position.y + 8, 0); 
 }
 
 void SnipperWaterHiding::Initialize()
@@ -44,22 +27,15 @@ void SnipperWaterHiding::Initialize()
 
 void SnipperWaterHiding::UpdateAnimation()
 {	
-	if(CGlobal::Rambo_X < m_Position.x)
-	{
-		m_Direction = eDirection::LEFT;
-		m_DirectAttack = eDirectAttack::AD_LEFT;
-	}
-	else
-	{
-		m_Direction = eDirection::RIGHT;
-		m_DirectAttack = eDirectAttack::AD_RIGHT;
-	}
-
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
+	case STATE_ALIVE_IDLE: 
+		m_Sprite = sprite_alive_hiding;
+		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_SHOOTING:
+		m_Sprite = sprite_alive_hiding;
+		m_Sprite->getAnimationAction()->setCurrentFrame(1);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -70,18 +46,7 @@ void SnipperWaterHiding::UpdateAnimation()
 	default:
 		break;
 	}	
-	if(m_Direction == eDirection::LEFT)
-	{
-		m_Sprite->setSpriteEffect(ESpriteEffect::None);
-	}
-
-	else
-	{
-		if(m_Direction == eDirection::RIGHT)
-		{
-			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
-		}
-	}
+	m_Sprite->UpdateAnimation(500);
 }
 
 
@@ -94,6 +59,7 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 		switch (checkingObject->getID())
 		{
 			case eObjectID ::BULLET_RAMBO:
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 			default:
 				break;
@@ -108,8 +74,7 @@ void SnipperWaterHiding:: UpdateMovement()
 
 void SnipperWaterHiding::Update()
 {
-	_distance_X = abs(CGlobal::Rambo_X - this->getPositionVec2().x);
-	if(_distance_X < 300)
+	if(CGlobal::Rambo_Y > m_Position.y)
 	{
 		switch (m_ObjectState)
 		{
@@ -170,7 +135,6 @@ void SnipperWaterHiding::Release()
 {
 	m_Sprite = 0;
 	sprite_alive_hiding->Release();
-	//sprite_alive_shooting->Release();
 	sprite_dead->Release();
 }
 

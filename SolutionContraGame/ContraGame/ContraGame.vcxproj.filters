@@ -172,9 +172,6 @@
     <ClCompile Include="SnipperWaterHiding.cpp">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClCompile>
-    <ClCompile Include="SnipperShooting.cpp">
-      <Filter>GameObject\Enemy\SniperStandingShooting</Filter>
-    </ClCompile>
     <ClCompile Include="GifBulletSinStraight.cpp">
       <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
     </ClCompile>
@@ -408,9 +405,6 @@
     <ClInclude Include="SnipperWaterHiding.h">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClInclude>
-    <ClInclude Include="SniperShooting.h">
-      <Filter>GameObject\Enemy\SniperStandingShooting</Filter>
-    </ClInclude>
     <ClInclude Include="GifBulletSinStraight.h">
       <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
     </ClInclude>
@@ -577,9 +571,6 @@
     </Filter>
     <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinNormal">
       <UniqueIdentifier>{495b6cb9-37ba-4b85-980a-684ee3dc3881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Enemy\SniperStandingShooting">
-      <UniqueIdentifier>{578763b8-50b0-412c-a0e1-901c48785e42}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunShooting">
       <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>

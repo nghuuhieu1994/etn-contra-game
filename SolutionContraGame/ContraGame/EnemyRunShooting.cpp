@@ -27,19 +27,66 @@ void EnemyRunShooting::Initialize()
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 }
 
+void EnemyRunShooting::Shoot()
+{
+	switch (m_DirectAttack)
+	{
+	case AD_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+		break;
+	case AD_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		break;
+	default:
+		break;	
+	}
+}
+
+D3DXVECTOR3  EnemyRunShooting::GetStartPositionOfBullet()
+{
+	switch(m_DirectAttack)
+	{
+	case AD_LEFT:
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y, 0);
+		break;
+	case AD_RIGHT:
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y , 0); 
+		break;
+	default:
+		break;	
+	}
+	return D3DXVECTOR3();
+}
+
+
 void EnemyRunShooting::UpdateAnimation()
 {
+	if(CGlobal::Rambo_X < m_Position.x)
+	{
+		m_Direction = eDirection::LEFT;
+		m_DirectAttack = eDirectAttack::AD_LEFT;
+	}
+	else
+	{
+		m_Direction = eDirection::RIGHT;
+		m_DirectAttack = eDirectAttack::AD_RIGHT;
+	}
+
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE:
-		break;
-	case STATE_ALIVE_MOVE:
+	case STATE_ALIVE_MOVE: 
+		m_Sprite = sprite_main;
+		m_Sprite->getAnimationAction()->setIndexStart(0);
+		m_Sprite->getAnimationAction()->setIndexEnd(3);
+		m_Sprite->UpdateAnimation(400);
 		break;
 	case STATE_SHOOTING:
+		m_Sprite = sprite_main;
+		m_Sprite->getAnimationAction()->setIndexStart(4);
+		m_Sprite->getAnimationAction()->setIndexEnd(5);
+		m_Sprite->UpdateAnimation(400);
 		break;
-	case STATE_BEFORE_DEATH: 
-		break;
-	case STATE_EXPLOISION:
+	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
 		m_Sprite->UpdateAnimation(250);
 		break;
@@ -47,14 +94,18 @@ void EnemyRunShooting::UpdateAnimation()
 		break;
 	default:
 		break;
+	}	
+	if(m_Direction == eDirection::LEFT)
+	{
+		m_Sprite->setSpriteEffect(ESpriteEffect::None);
 	}
 
-	if(m_Direction == eDirection::LEFT)
-		m_Sprite->setSpriteEffect(ESpriteEffect::None);
 	else
 	{
 		if(m_Direction == eDirection::RIGHT)
+		{
 			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+		}
 	}
 }
 void EnemyRunShooting::UpdateCollision(Object* checkingObject)
@@ -143,19 +194,28 @@ void EnemyRunShooting::Update()
 {
 	switch (m_ObjectState)
 		{
-		case STATE_ALIVE_IDLE:
-			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 300)
+		case STATE_ALIVE_MOVE:
+			// do a realthing to detect jumb?
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 10000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_SHOOTING;
+				isShoot = true;
+			}
+			break;
+		case STATE_SHOOTING:
+			if(isShoot == true)
+			{
+				Shoot();
+				isShoot = false;
+			}
+			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 			}
-			break;
-		case STATE_ALIVE_MOVE:
-			// do a realthing to detect jumb?
-
-			break;
-		case STATE_SHOOTING:
 			break;
 		case STATE_BEFORE_DEATH:
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

@@ -75,7 +75,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
 
 	// End load EnemyContent
 
@@ -87,9 +87,9 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletS.png", eSpriteID::SPRITE_GIF_S, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletL.png", eSpriteID::SPRITE_GIF_L, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletM.png", eSpriteID::SPRITE_GIF_M, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBulle\\GifBulletTypet\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletTypet\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\RockFalling.png", eSpriteID::SPRITE_ROCK_FALLING, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\RockFalling.png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\RockFlying.png", eSpriteID::SPRITE_ROCK_FLYING, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
