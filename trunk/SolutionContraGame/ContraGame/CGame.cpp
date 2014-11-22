@@ -212,7 +212,7 @@ void CGame::Run()
 
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 
-			static float second;
+			static int second;
 			second += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 
 			if( m_fps >= 1000 / 60)
@@ -224,13 +224,12 @@ void CGame::Run()
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 				
-				if (second > 500)
+				if (second > 1000)
 				{
 					SetWindowText(m_handleWindow, fps);
-					OutputDebugString(fps);
 					second = 0;
 				}
-				
+
 				if(m_lpDirect3DDevice->BeginScene())
 				{
 					D3DXMATRIX oldMatrix;

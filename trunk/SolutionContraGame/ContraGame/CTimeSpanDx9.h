@@ -17,7 +17,7 @@ public:
 	
 	CTimeSpanDx9(UINT64 Ticks);
 	
-	float	getMilliseconds();
+	int	getMilliseconds();
 	
 	UINT64	getTicks();
 	
