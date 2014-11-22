@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "BulletPool.h"
 #include "BulletPoolManager.h"
+#include <unordered_set>
 
 using namespace std;
 
@@ -66,7 +67,7 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();
-	void Update(vector<Object*>);
+	void Update(std::unordered_set<Object*>);
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();

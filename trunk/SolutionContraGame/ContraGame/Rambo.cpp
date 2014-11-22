@@ -1216,7 +1216,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void Rambo::Update(vector<Object*> listObject)
+void Rambo::Update(std::unordered_set<Object*> listObject)
 {
 	//START UPDATE
 	//Update animation after handle input update state of Rambo

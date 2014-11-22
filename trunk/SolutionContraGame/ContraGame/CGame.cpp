@@ -210,7 +210,8 @@ void CGame::Run()
 			m_fps += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			static float second;
 			second += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if( m_fps >= (float)(1000 / 60))
+
+			if( m_fps >= float(1000) / (float) 60)
 			{
 				sprintf(fps, "FPS: %.3f \n", 1000.0 / m_fps);
 				
@@ -243,7 +244,6 @@ void CGame::Run()
 				}
 				m_lpDirect3DDevice->Present(0, 0, 0, 0);
 				m_fps = 0;
-				
 			}
 		}
 	}

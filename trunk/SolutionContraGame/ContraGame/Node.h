@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include "Tile.h"
 #include "VirtualObject.h"
+#include "LedObject.h"
 
 class Node
 {
@@ -19,11 +20,14 @@ public:
 	Node* mBl;
 	Node* mBr;
 	//std::list<Object*> mListObject;
-	std::vector<Object*> mListObject;
+	std::vector<int> mListObject;
+	std::vector<int> mListObjectCollision;
 	int getID() const { return this->mID; };
 	RECT getBound() const { return this->mBound; };
 	//std::list<Object*> getListObject() const { return this->mListObject; };
-	std::vector<Object*> getListObject() const { return this->mListObject; };
+	std::vector<int> getListObject() const { return this->mListObject; };
+	std::vector<int> getListObjectCollision() const { return this->mListObjectCollision; };
+
 	Node* getTl() const { return this->mTl; };
 	Node* getTr() const { return this->mTr; };
 	Node* getBl() const { return this->mBl; };
