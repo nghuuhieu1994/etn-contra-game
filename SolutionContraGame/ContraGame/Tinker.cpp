@@ -31,7 +31,7 @@ void Tinker::UpdateAnimation()
 	{
 		timeDelayGun += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 	}
-	if(timeDelayGun > 1300)
+	if(timeDelayGun > 1000)
 	{
 		isDelay = true;
 		timeDelayGun = 0;
