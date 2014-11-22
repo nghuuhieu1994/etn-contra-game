@@ -83,7 +83,6 @@
     <ClInclude Include="GifBulletSinStraight.h" />
     <ClInclude Include="RockFalling.h" />
     <ClInclude Include="RockFlying.h" />
-    <ClInclude Include="SniperShooting.h" />
     <ClInclude Include="SnipperWaterHiding.h" />
     <ClInclude Include="Tinker.h" />
     <ClInclude Include="FireBullet.h" />
@@ -163,7 +162,6 @@
     <ClCompile Include="GifBulletSinStraight.cpp" />
     <ClCompile Include="RockFalling.cpp" />
     <ClCompile Include="RockFlying.cpp" />
-    <ClCompile Include="SnipperShooting.cpp" />
     <ClCompile Include="SnipperWaterHiding.cpp" />
     <ClCompile Include="Tinker.cpp" />
     <ClCompile Include="FireBullet.cpp" />

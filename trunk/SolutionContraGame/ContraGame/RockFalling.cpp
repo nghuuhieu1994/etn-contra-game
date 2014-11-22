@@ -26,8 +26,14 @@ void RockFalling::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+		m_Sprite = sprite_main;
+		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_ALIVE_MOVE:
+		m_Sprite = sprite_main;
+		m_Sprite->getAnimationAction()->setIndexStart(0);
+		m_Sprite->getAnimationAction()->setIndexEnd(3);
+		m_Sprite->UpdateAnimation(400);
 		break;
 	case STATE_EXPLOISION:
 		m_Sprite = sprite_dead;
@@ -72,6 +78,12 @@ void RockFalling::Update()
 
 			break;
 		case STATE_BEFORE_DEATH:
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 300)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_EXPLOISION;
+			}
 			break;
 		case STATE_EXPLOISION:
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

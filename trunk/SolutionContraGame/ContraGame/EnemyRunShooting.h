@@ -2,6 +2,7 @@
 #define __ENEMY_RUN_SHOOTING_H__
 
 #include "DynamicObject.h"
+#include "BulletPoolManager.h"
 
 class EnemyRunShooting : public DynamicObject
 {
@@ -11,6 +12,8 @@ private:
 	bool isJumb;
 	bool isShoot;
 	bool isDead;
+	void Shoot();
+	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
 	EnemyRunShooting();
 	EnemyRunShooting(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
