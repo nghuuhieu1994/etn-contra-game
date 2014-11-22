@@ -22,6 +22,7 @@
 #include "BossGun.h"
 #include "BossCenter.h"
 #include "Bullet.h"
+#include "Tinker.h"
 #include "BulletPoolManager.h"
 #include "BulletPool.h"
 #include "LedObject.h"
@@ -37,6 +38,9 @@ class DemoState : public GameScene
 private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
+
+	Tinker*				m_myTinker;
+
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}
