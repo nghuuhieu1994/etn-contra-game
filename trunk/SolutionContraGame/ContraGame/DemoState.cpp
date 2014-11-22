@@ -29,6 +29,7 @@ void DemoState::Update()
 	m_Rambo->UpdateMovement();
 
 
+
 	m_myTinker->UpdateAnimation();
 }
 

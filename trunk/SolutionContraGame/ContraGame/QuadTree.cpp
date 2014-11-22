@@ -27,6 +27,11 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 		std::map<int, int>::iterator iMap;
 		for(int i = 0; i < node->mListObject.size(); ++i)
 		{
+			
+			//for(int i = 0; i < node->mListObject.size(); ++i)
+			//{
+			//	mListObjectInView.push_back(node->mListObject[i]);
+			//}
 			iMap = traceObject.find(node->mListObject[i]);
 			if(iMap == traceObject.end())
 			{
@@ -38,9 +43,24 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 			}
 		}
 
+			//for(std::list<Object*>::iterator i = node->mListObject.begin(); i != node->mListObject.end(); ++i)
+			//{
+			//	for(j = 0; j < mVectorListObjectInView.size(); ++j)
+			//	{
+			//		if((*i) == mVectorListObjectInView[j])
+			//		{
+			//			break;
+			//		}
+			//	}
 		for(int i = 0; i < node->mListObjectCollision.size(); ++i)
 			mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
 
+			//	if(j == mVectorListObjectInView.size())
+			//	{
+			//		mListObjectInView.push_back(*i);
+			//		mVectorListObjectInView.push_back(*i);
+			//	}
+			//}
 		if (node->getBl() != NULL)
 			InsertObjectIntoView(viewPort, node->getBl());
 		if (node->getBr() != NULL)
@@ -59,6 +79,7 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 		{
 			this->mListObjectInView.clear();
 			this->mListObjectCollisionInView.clear();
+>>>>>>> .r246
 		}
 	}
 
