@@ -24,7 +24,6 @@ public:
 	Node* getRootNode() const { return this->mRootNode; };
 	RECT getBoundWorld() const { return this->mBoundWorld; };
 	QuadTree();
-	void PreBuilding(const char* content);
 	void InsertObjectIntoView(RECT, Node*);
 	void BuildQuadtree(const char* content, Node*& node);
 	void Update();
