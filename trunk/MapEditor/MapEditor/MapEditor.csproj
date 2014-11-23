@@ -57,6 +57,7 @@
     <Compile Include="Framwork\ExportXml.cs" />
     <Compile Include="Framwork\GridLine.cs" />
     <Compile Include="Clone\OBJECT.cs" />
+    <Compile Include="Framwork\ListBoxCreater.cs" />
     <Compile Include="Framwork\Support.cs" />
     <Compile Include="TileMap\CMap.cs" />
     <Compile Include="TileMap\CTile.cs" />
@@ -144,6 +145,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\tilemap\tile_map.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Sniper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Enemy_run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Rambo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Big_gun_rotation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Gif_bullet_moving.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Boss_gun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Sniper_hiding_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Gun_rotation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Gif_bullet_static.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\interface\mouse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
         Background="Gray" ResizeMode="NoResize">
     <Grid>
 
-        <ScrollViewer Name="ScrollCanvas" Canvas.Left="354" Canvas.Top="338" Margin="185,100,36,22" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer Name="ScrollCanvas" Canvas.Left="354" Canvas.Top="338" Margin="221,96,0,26" HorizontalScrollBarVisibility="Auto">
             <Canvas Background="Black" Name="WorkspaceWorking" HorizontalAlignment="Left" Height="448" Width="886" VerticalAlignment="Top" MouseLeftButtonDown="down_to_define_start_position"
                   MouseMove="move_to_update_position">
                 
@@ -16,7 +16,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Menu Height="73" Name="menu1" Margin="10,0,499,0" VerticalAlignment="Top" BorderThickness="2"
+            <Menu Height="73" Name="menu1" Margin="10,0,-9,0" VerticalAlignment="Top" BorderThickness="2"
               Foreground="White" FontSize="16" FontWeight="Bold" Grid.RowSpan="2">
                 <Menu.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -29,22 +29,17 @@
                 <Menu.BitmapEffect>
                     <DropShadowBitmapEffect />
                 </Menu.BitmapEffect>
+                <MenuItem Width="73" Height="67" Click="click_to_back_pointer" RenderTransformOrigin="-1.356,0.284">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\mouse.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
                 <MenuItem Height="67" Width="73" Click="click_to_export_xml_file">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\save.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Width="73" Height="67">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="Resource\interface\undo.png" Stretch="Fill" />
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem Width="73" Height="67">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="Resource\interface\previous.png" Stretch="Fill" />
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem Width="73" Height="67">
+                <MenuItem Width="73" Height="67" Click="click_to_enable_eraser">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\eraser.png" Stretch="Fill" />
                     </MenuItem.Background>
@@ -59,22 +54,36 @@
                         <ImageBrush ImageSource="Resource\interface\background.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Width="73" Height="67">
-                    <MenuItem.Background>
-                        <ImageBrush ImageSource="Resource\interface\clearall.png" Stretch="Fill" />
-                    </MenuItem.Background>
-                </MenuItem>
-                <MenuItem Width="73" Height="67">
+                <MenuItem Width="73" Height="67" Click="click_to_align_background">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\align.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
             </Menu>
-            <ListBox HorizontalAlignment="Left" Height="442" Margin="20,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
-            <TextBox HorizontalAlignment="Left" Height="37" Margin="703,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" FontSize="20" Name="tbX"/>
-            <Label Content="X:" HorizontalAlignment="Left" Margin="667,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>
-            <Label Content="Y:" HorizontalAlignment="Left" Margin="852,15,0,0" VerticalAlignment="Top" Width="31" FontSize="20"/>
-            <TextBox HorizontalAlignment="Left" Height="37" Margin="883,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" FontSize="20" Name="tbY"/>
+            
+            <TabControl Grid.Row="1" HorizontalAlignment="Left" Width="214" Margin="10,78,0,30">
+                <TabItem Header="EnemyObject">
+                    <ListBox Name="lbEnemyObject" HorizontalAlignment="Left" Height="424"  Margin="0,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lbEnemyObject_SelectionChanged">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal">
+                                    
+                                </WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="LandScape">
+                    <ListBox Name="lbLandObject" HorizontalAlignment="Left" Height="403" Margin="0,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201">
+                        
+                    </ListBox>
+                </TabItem>
+            </TabControl>
+            
+            <TextBox HorizontalAlignment="Left" Height="52" Margin="583,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" FontSize="30" Name="tbX" Grid.RowSpan="2"/>
+            <Label Content="X:" HorizontalAlignment="Left" Margin="547,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" RenderTransformOrigin="-1.355,0.216" Grid.RowSpan="2" Height="52"/>
+            <Label Content="Y:" HorizontalAlignment="Left" Margin="773,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" Grid.RowSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="50" Margin="809,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" FontSize="30" Name="tbY" Grid.RowSpan="2"/>
         </Grid>
 
     </Grid>

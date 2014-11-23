@@ -125,11 +125,13 @@ namespace MapEditor.Algorithm
                 return ;
             }
 
-            if(rect.width < MAX_SIZE_OF_COLLISION && rect.height < MAX_SIZE_OF_COLLISION)
-            {
-                return;
-            }
-
+            //if (obj.Type != (int)ObjectType.LED_OBJECT)
+            //{
+            //    if (rect.width < MAX_SIZE_OF_COLLISION && rect.height < MAX_SIZE_OF_COLLISION)
+            //    {
+            //        return;
+            //    }
+            //}
             if (node.m_bound.width >= 2*MAX_WIDTH_SIZE_OF_NODE)
             {
                 if (node.m_tl == null)

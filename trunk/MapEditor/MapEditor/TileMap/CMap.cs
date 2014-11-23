@@ -136,13 +136,13 @@ namespace TileMap
                 {
                     _TempTile[_IndexI, _IndexJ] = Support.GetPixel(j, i, this.m_ArrColor, (int)(this.m_BitMap.Width + 0.9)* this.m_BitMap.Format.BitsPerPixel / 8);
 
-                    if (_TempTile[_IndexI, _IndexJ].A == 255 && _TempTile[_IndexI, _IndexJ].R == 60 && _TempTile[_IndexI, _IndexJ].G == 188 && _TempTile[_IndexI, _IndexJ].B == 253 && _OffSetY < 2)
-                    {
-                        tempNew = j;
-                        if(tempNew - tempOld != 1)
-                        this.m_ListLedPosition.Add(new Point(j, i));
-                        tempOld = j;
-                    }
+                    //if (_TempTile[_IndexI, _IndexJ].A == 255 && _TempTile[_IndexI, _IndexJ].R == 60 && _TempTile[_IndexI, _IndexJ].G == 188 && _TempTile[_IndexI, _IndexJ].B == 253 && _OffSetY < 2)
+                    //{
+                    //    tempNew = j;
+                    //    if(tempNew - tempOld != 1)
+                    //    this.m_ListLedPosition.Add(new Point(j, i));
+                    //}
+
                     ++_IndexJ;
                 }
                 ++_IndexI;

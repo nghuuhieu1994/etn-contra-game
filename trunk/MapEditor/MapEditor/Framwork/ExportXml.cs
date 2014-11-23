@@ -103,10 +103,12 @@ namespace MapEditor.Framwork
                         mWriter.WriteStartElement("Object");
                         mWriter.WriteAttributeString("Type", Convert.ToString(quadTree.ListObject[i].Type));
                         mWriter.WriteAttributeString("Id", Convert.ToString(quadTree.ListObject[i].ID));
+                        mWriter.WriteAttributeString("Index", Convert.ToString(quadTree.ListObject[i].Index));
                         mWriter.WriteAttributeString("X", Convert.ToString(quadTree.ListObject[i].Position.cX));
                         mWriter.WriteAttributeString("Y", Convert.ToString(quadTree.ListObject[i].Position.cY));
                         mWriter.WriteAttributeString("Width", Convert.ToString(quadTree.ListObject[i].Bound.width));
                         mWriter.WriteAttributeString("Height", Convert.ToString(quadTree.ListObject[i].Bound.height));
+
                         mWriter.WriteEndElement();
                     }
                     mWriter.WriteEndElement();

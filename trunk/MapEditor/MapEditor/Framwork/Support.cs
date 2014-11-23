@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using TileMap;
 
 namespace MapEditor
@@ -40,10 +41,99 @@ namespace MapEditor
         public static RECTANGLE Intersec(RECTANGLE r1, RECTANGLE r2)
         {
             RECTANGLE rect = new RECTANGLE(0, 0, 0, 0);
+
+            if (r1.cX <= r2.cX) // r1 ben trai r2
+            {
+                rect.cX = r2.cX;
+                if (r2.cX + r2.width < r1.cX + r1.width) // th r2 nho hon r1 va nam trong r1
+                {
+                    rect.width = r2.width;
+                }
+                else
+                {
+                    rect.width = (int)((r1.cX + r1.width) - r2.cX);
+                }
+            }
+            else
+            {
+                rect.cX = r1.cX;
+                if (r1.cX + r1.width < r2.cX + r2.width)
+                {
+                    rect.width = r1.width;
+                }
+                else
+                {
+                    rect.width = (int)((r2.cX + r2.width) - r1.cX);
+                }
+            }
+
+            //if (r2.cY <= r1.cY) // r1 ben tren r2
+            //{
+            //    rect.cY = r2.cY;
+            //    if (r1.cY + r1.height > r2.cY + r2.height)
+            //    {
+            //        rect.height = r1.height;
+            //    }
+            //    else
+            //    {
+            //        rect.height = (int)(r1.cY - (r2.cY + r2.height));
+            //    }
+            //}
+            //else
+            //{
+            //    rect.cY = r1.cY;
+            //    if (r2.cY + r2.height > r1.cY + r1.height)
+            //    {
+            //        rect.height = r2.height;
+            //    }
+            //    else
+            //    {
+            //        rect.height= (int)(r2.cY - (r1.cY + r1.height));
+            //    }
+            //}
+
+            if (r1.cY <= r2.cY)
+            {
+                rect.cY = r1.cY;
+                if (r1.cY - r1.height > r2.cY - r2.height)
+                {
+                    rect.height = r1.height;
+                }
+                else
+                {
+                    rect.height = (int)(r1.cY - (r2.cY - r2.height));
+                }
+            }
+            else
+            {
+                rect.cY = r2.cY;
+                if (r2.cY - r2.height > r1.cY - r1.height)
+                {
+                    rect.height = r2.height;
+                }
+                else
+                {
+                    rect.height = (int)(r2.cY - (r1.cY + r1.height));
+                }
+            }
+
+            if (rect.width <= 0 || rect.height <= 0)
+            {
+                return new RECTANGLE(0, 0, 0, 0);
+            }
+            else
+            {
+                return rect;
+            }
+        }
+
+        public static RECTANGLE IntersectCanvas(RECTANGLE r1, RECTANGLE r2)
+        {
+            RECTANGLE rect = new RECTANGLE(0, 0, 0, 0);
             if (r1.cX <= r2.cX)
             {
                 rect.cX = r2.cX;
-                if (r1.cX + r1.width >= r2.cX + r2.width)
+                if (r2.cX + r2.width < r1.cX + r1.width)
                 {
                     rect.width = r2.width;
                 }
@@ -55,64 +145,60 @@ namespace MapEditor
             else
             {
                 rect.cX = r1.cX;
-                if (r1.cX <= r2.cX + r2.width)
+                if (r1.cX + r1.width < r2.cX + r2.width)
                 {
-                    rect.width = (int)(r2.cX + r2.width - r1.cX);
+                    rect.width = r1.width;
+                }
+                else
+                {
+                    rect.width = (int)(r2.cX +  r2.width - r1.cX);
                 }
             }
 
-            if (r1.cY >= r2.cY)
+
+            if (r1.cY <= r2.cY)
             {
                 rect.cY = r2.cY;
-                if (r2.cY - r2.height >= r1.cY - r1.height)
+                if (r1.cY + r1.height > r2.cY + r2.height)
                 {
                     rect.height = r2.height;
                 }
                 else
                 {
-                    rect.height = (int)(r2.cY - r1.cY - r1.height);
+                    rect.height = (int)(r1.cY + r1.height - r2.cY);
                 }
             }
             else
             {
                 rect.cY = r1.cY;
-                if(r2.cY - r2.height < r1.cY)
+                if (r2.cY + r2.height > r1.cY + r1.height)
                 {
-                    rect.height = (int)(r1.cY - r2.cY - r2.height);
+                    rect.height = r1.height;
+                }
+                else
+                {
+                    rect.height = (int)(r2.cY + r2.height - r1.cY);
                 }
             }
 
-            //if (r1.cY >= r2.cY)
-            //{
-            //    rect.cY = r2.cY;
-            //    if (r1.cY + r1.height >= r2.cY + r2.height)
-            //    {
-            //        rect.height = r2.height;
-            //    }
-            //    else
-            //    {
-            //        rect.height = (int)(r1.cY + r1.height - r2.cY);
-            //    }
-            //}
-            //else
-            //{
-            //    rect.cY = r1.cY;
-            //    if (r1.cY <= r2.cY + r2.height)
-            //    {
-            //        rect.height = (int)(r2.cY + r2.height - r1.cY);
-            //    }
-            //}
-
-            if (rect.width > 0 && rect.height > 0)
-            {
-                return rect;
-            }
-            else
+            if (rect.width <= 0 || rect.height <= 0)
             {
                 return new RECTANGLE(0, 0, 0, 0);
             }
+            else
+            {
+                return rect;
+            }
         }
 
+        public bool IsContain(System.Windows.Point point)
+        {
+            if (cX <= point.X && cX + width >= point.X && cY <= point.Y && cY + height >= point.Y)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     public struct Point
@@ -127,11 +213,34 @@ namespace MapEditor
         }
     }
 
-    public enum ObjectID
+    public enum ObjectType
     {
         TILE_MAP = 0,
         VIRTUAL_OBJECT = 1,
         LED_OBJECT = 2,
+        GRID_LINE = 3,
+        NORMAL_OBJECT = 4,
+    }
+
+    public enum ObjectID
+    {
+        TILE_BASE = 0,
+        VIRTUAL_OBJECT_WATER = 1,
+        RAMBO = 2,
+        BULLET_RAMBO = 3,
+        BULLET_ENEMY = 4,
+        SNIPER_STANDING = 5,
+        SNIPER_HIDING = 6,
+        GIF_BULLET_STATIC = 7,
+        GIF_BULLET_MOVING = 8,
+        GUN_ROTATING = 9,
+        BIG_GUN_ROTATING = 10,
+        ENEMY_RUN = 11,
+        BOSS_GUN = 12,
+        BOSS_CENTER = 13,
+        BIG_BOSS_1 = 14, // Boss Map 1
+        BULLET = 15, //  Cai nay de lam gi???
+        LED_OBJECT_STAR = 16,
     }
 
     public partial class Support
@@ -152,7 +261,13 @@ namespace MapEditor
         public static int WIDHT_OF_VIRTUALOBJECT = 16;
         public static int HEIGHT_OF_VIRTUALOBJECT = 16;
         public static CNode quadTree = null;
-
+        public static int Count = -1;
+        public static Rectangle gridLine = new Rectangle();
+        public static Rectangle virtualObject = new Rectangle();
+        public static bool IsBackground = false;
+        public static bool IsEraser = false;
+        public static bool IsVirtualObject = false;
+        //public static bool IsPointer = true;
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
         {

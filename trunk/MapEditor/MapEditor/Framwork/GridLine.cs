@@ -50,6 +50,7 @@ namespace MapEditor.Framwork
                             {
                                 /* Create a element to add listElemet */
                                 Rectangle tempRect = new Rectangle();
+                                tempRect.Tag = Support.gridLine;
                                 tempRect.Width = Support.WIDTH_OF_TILE;
                                 tempRect.Height = Support.HEIGHT_OF_TILE;
                                 tempRect.Stroke = new SolidColorBrush(Colors.Yellow);
