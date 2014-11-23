@@ -224,8 +224,9 @@ void CGame::Run()
 
 				m_lpDirect3DDevice->Clear(0 , 0,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 				
-				if (second > 1000)
+				if (second > 500)
 				{
+					//OutputDebugString(fps);
 					SetWindowText(m_handleWindow, fps);
 					second = 0;
 				}

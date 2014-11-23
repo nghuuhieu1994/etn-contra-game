@@ -23,22 +23,22 @@ CGameTimeDx9* CGameTimeDx9::getInstance()
 
 void CGameTimeDx9::InitGameTime()
 {
-	QueryPerformanceFrequency(&this->m_Query);
+	QueryPerformanceFrequency(&m_Query);
 	m_FreQuency = (float)m_Query.QuadPart / 10000000;
-	QueryPerformanceCounter(&this->m_Query);
-	StartTicks = LastTicks = this->m_Query.QuadPart;
+	QueryPerformanceCounter(&m_Query);
+	StartTicks = LastTicks = m_Query.QuadPart;
 }
 void CGameTimeDx9::UpdateGameTime()
 {
-	QueryPerformanceCounter(&this->m_Query);
-	CurTicks = this->m_Query.QuadPart;
-	if(((CurTicks - LastTicks) / m_FreQuency) < CTimeSpanDx9::TicksPerMillisecond)
+	QueryPerformanceCounter(&m_Query);
+	CurTicks = m_Query.QuadPart;
+	if( (UINT64)((float)(CurTicks - LastTicks) / m_FreQuency) < CTimeSpanDx9::TicksPerMillisecond * 16)
 	{
 		return;
 	}
 	else
 		{
-			this->setElapsedGameTime( CTimeSpanDx9( ( (CurTicks - LastTicks) / m_FreQuency ) ));
+			this->setElapsedGameTime( CTimeSpanDx9( (UINT64)( (float)(CurTicks - LastTicks) / m_FreQuency ) ));
 			LastTicks = CurTicks;
 		}
 }
