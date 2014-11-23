@@ -11,8 +11,6 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 {
 	int j = 0;
 
-	std::map<int, int> traceObject;
-
 	if (node == this->mRootNode)
 	{
 		if (this->mListObjectInView.size() > 0 && this->mListObjectCollisionInView.size() > 0)
@@ -24,43 +22,23 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 
 	if (CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getBound())))
 	{
-		std::map<int, int>::iterator iMap;
 		for(int i = 0; i < node->mListObject.size(); ++i)
 		{
-			
-			//for(int i = 0; i < node->mListObject.size(); ++i)
-			//{
-			//	mListObjectInView.push_back(node->mListObject[i]);
-			//}
-			iMap = traceObject.find(node->mListObject[i]);
-			if(iMap == traceObject.end())
-			{
-			//if(j == 100)
-			//{
-				mListObjectInView.push_back(node->mListObject[i]);
-				traceObject[node->mListObject[i]] = 1;
-			//}
-			}
+			mListObjectInView.push_back(node->mListObject[i]);
 		}
 
-			//for(std::list<Object*>::iterator i = node->mListObject.begin(); i != node->mListObject.end(); ++i)
-			//{
-			//	for(j = 0; j < mVectorListObjectInView.size(); ++j)
-			//	{
-			//		if((*i) == mVectorListObjectInView[j])
-			//		{
-			//			break;
-			//		}
-			//	}
 		for(int i = 0; i < node->mListObjectCollision.size(); ++i)
-			mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
+		{
+			for( j = 0; j < mListObjectCollisionInView.size(); ++j)
+			{
+				if(node->mListObjectCollision[i] == mListObjectCollisionInView[j])
+					break;
+			}
 
-			//	if(j == mVectorListObjectInView.size())
-			//	{
-			//		mListObjectInView.push_back(*i);
-			//		mVectorListObjectInView.push_back(*i);
-			//	}
-			//}
+			if(j == mListObjectCollisionInView.size())
+				mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
+		}
+
 		if (node->getBl() != NULL)
 			InsertObjectIntoView(viewPort, node->getBl());
 		if (node->getBr() != NULL)
@@ -70,57 +48,6 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 		if (node->getTr() != NULL)
 			InsertObjectIntoView(viewPort, node->getTr());
 	}
-	/*int i = 0;
-	int j = 0;
-
-	if(node == this->mRootNode)
-	{
-		if(this->mListObjectInView.size() > 0 && this->mListObjectCollisionInView.size() > 0)
-		{
-			this->mListObjectInView.clear();
-			this->mListObjectCollisionInView.clear();
->>>>>>> .r246
-		}
-	}
-
-	if(node->getBl() == NULL)
-	{
-		if(CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getBound())))
-		{
-			mListObjectInView.insert(node->mListObject.begin(), node->mListObject.end());
-			mListObjectCollisionInView.insert(node->mListObjectCollision.begin(), node->mListObjectCollision.end());
-		}
-	}
-	else
-	{
-		if(CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getBl()->getBound())))
-		{
-			InsertObjectIntoView(viewPort, node->getBl());
-		}
-
-		if(CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getBr()->getBound())))
-		{
-			InsertObjectIntoView(viewPort, node->getBr());
-		}
-
-		if(CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getTl()->getBound())))
-		{
-			InsertObjectIntoView(viewPort, node->getTl());
-		}
-
-		if(CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getTr()->getBound())))
-		{
-			InsertObjectIntoView(viewPort, node->getTr());
-		}
-	}*/
-}
-
-
-void QuadTree::PreBuilding(const char* content)
-{
-	CMarkup xml;
-	xml.Load(content);
-	std::map<int, Object*>::iterator i;
 }
 
 void QuadTree::BuildQuadtree(const char* content, Node*& node)
@@ -199,11 +126,6 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Width").c_str()), 
 									atoi(xml.GetAttrib("Height").c_str()), (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 						}
-						//else if(atoi(xml.GetAttrib("Type").c_str()) == 2)
-						//{
-						//	mMapObjectInGame[atoi(xml.GetAttrib("Index").c_str())] = new LedObject(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-						//		atoi(xml.GetAttrib("Y").c_str()), 0.0f), (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
-						//}
 					}
 
 					if(atoi(xml.GetAttrib("Type").c_str()) == 0)
