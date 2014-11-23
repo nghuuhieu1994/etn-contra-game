@@ -26,6 +26,13 @@ namespace MapEditor.Framwork
         private RECTANGLE mBound;
         private Image mImage;
         private int mRangeOfMovement;
+        private int mIndex;
+
+        public int Index
+        {
+            get { return mIndex; }
+            set { mIndex = value; }
+        }
 
         public int Type
         {
@@ -62,10 +69,11 @@ namespace MapEditor.Framwork
             this.mImage = null;
         }
 
-        public OBJECT(int _type, int _id, VECTOR2D _position, RECTANGLE _bound)
+        public OBJECT(int _type, int _id, int _index, VECTOR2D _position, RECTANGLE _bound)
         {
             this.mType = _type;
             this.mID = _id;
+            this.mIndex = _index;
             this.mPosition = _position;
             this.mBound = _bound;
 

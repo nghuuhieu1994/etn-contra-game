@@ -22,76 +22,31 @@ namespace MapEditor
 {
     public partial class MainWindow : Window
     {
-        /* Properties for drag mouse */
+        #region.Variable drag 
+
         bool isDragged = false;
         System.Windows.Point startPosition;
         System.Windows.Point endPosition;
         System.Windows.Point finalPosition = new System.Windows.Point();
         Rectangle rect;
 
+        #endregion
+
+        #region.Variable for create object
+
+        Image selectedItemFromListbox = null;
+        Image tempSelectedItem;
+        Image newSelectedItem;
+        System.Windows.Point positionTempOfSelectedFromListbox;
+        System.Windows.Point positionFinalOfSelectedFromListBox;
+        bool isAdded;
+
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-
-            #region.Comment
-            /*
-            image.Source = carBitmap;
-            image.Width = carBitmap.Width;
-            image.Height = carBitmap.Height;
-            image.Clip = new RectangleGeometry(new Rect(0, 0, 100, 100));
-            Canvas.SetLeft(image, 10);
-            Canvas.SetRight(image, 10);
-            */
-
-            /*
-            rect.Stroke = new SolidColorBrush(Colors.Yellow);
-            rect.Width = Support.WIDTH_OF_TILE;
-            rect.Height = Support.HEIGHT_OF_TILE;
-            Canvas.SetLeft(rect, 0);
-            Canvas.SetTop(rect, 64);
-            WorkspaceWorking.Children.Add(rect);
-            WorkspaceWorking.Children.Add(image);
-            */
-
-            /*
-            WorkspaceWorking.Background = Brushes.Black;
-
-            Support.GRIDLINE = true;
-            GridLine.getInstance().CreateGridline();
-
-            foreach(Point point in GridLine.getInstance().mListElements.Keys)
-            {
-                Canvas.SetLeft(GridLine.getInstance().mListElements[point], point.cX);
-                Canvas.SetTop(GridLine.getInstance().mListElements[point], point.cY);
-                WorkspaceWorking.Children.Add(GridLine.getInstance().mListElements[point]);
-            }
-            */
-
-            /*
-            map = new CMap(rsTileMap);
-            map.CreateTileMap();
-            BitmapSource bmpSource;
-            JpegBitmapEncoder bmpCreate = new JpegBitmapEncoder();
-
-            byte[] arrPixel = new byte[((map.TileMap.Count * Support.WIDTH_OF_TILE * map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
-
-            int offsetX = 0;
-            int offsetY = 0;
-
-           for (int i = 0; i < map.TileMap.Count; ++i)
-           {
-                offsetX = map.TileMap[i].ID;
-                map.TileMap[i].ExportBitMap(offsetX, offsetY, arrPixel, (map.TileMap.Count * Support.WIDTH_OF_TILE * map.BitMap.Format.BitsPerPixel / 8));
-           }
-
-            FileStream stream = new FileStream("tile_map.bmp", FileMode.Create);
-            bmpSource = BitmapSource.Create(map.TileMap.Count * Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, map.BitMap.Format, null, arrPixel, ((map.TileMap.Count * Support.WIDTH_OF_TILE * map.BitMap.Format.BitsPerPixel) / 8));
-            bmpCreate.Frames.Add(BitmapFrame.Create(bmpSource));
-            bmpCreate.Save(stream);
-          
-            
-            */
-            #endregion
+            ListBoxCreater.getInstance().InitializeListBox(this.lbEnemyObject);
         }
 
         public bool CreateGridline()
@@ -122,8 +77,12 @@ namespace MapEditor
                 {
                     if (WorkspaceWorking.Children[i] is Rectangle)
                     {
-                        WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
-                        --i;
+                        Rectangle tempRect = (Rectangle)(WorkspaceWorking.Children[i]);
+                        if (tempRect.Tag == Support.gridLine)
+                        {
+                            WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
+                            --i;
+                        }
                     }
                 }
 
@@ -148,22 +107,27 @@ namespace MapEditor
                     Support.listObject.Clear();
                 }
 
+
                 for (int i = 0; i < (int)(Support.map.BitMap.Height + 0.9)/ Support.HEIGHT_OF_TILE; ++i)
                 {
                     for (int j = 0; j < (int)(Support.map.BitMap.Width + 0.9)/ Support.WIDTH_OF_TILE; ++j)
                     {
                         if (Support.listObject != null)
                         {
-                            OBJECT tempObject = new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE));
+                            ++Support.Count;
+                            OBJECT tempObject = new OBJECT((int)ObjectType.TILE_MAP, Support.map.ArrMap[i, j], Support.Count, new VECTOR2D(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE), new RECTANGLE(j * Support.WIDTH_OF_TILE, i * Support.HEIGHT_OF_TILE, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE));
                             VECTOR2D tempPosition = Support.ConvertCoordination(tempObject);
-                            Support.listObject.Add(new OBJECT((int)ObjectID.TILE_MAP, Support.map.ArrMap[i, j], tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
+                            Support.listObject.Add(new OBJECT((int)ObjectType.TILE_MAP, Support.map.ArrMap[i, j], Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE)));
                         }
                     }
                 }
 
                 for (int i = 0; i < Support.map.ListLedPosition.Count; ++i)
                 {
-                    Support.listObject.Add(new OBJECT((int)ObjectID.LED_OBJECT, 0, new VECTOR2D(Support.map.ListLedPosition[i].cX, Support.map.ListLedPosition[i].cY), new RECTANGLE(0, 0, 0, 0)));
+                    ++Support.Count;
+                    OBJECT tempObject = new OBJECT((int)ObjectType.LED_OBJECT, 0, Support.Count, new VECTOR2D(Support.map.ListLedPosition[i].cX, Support.map.ListLedPosition[i].cY), new RECTANGLE(Support.map.ListLedPosition[i].cX, Support.map.ListLedPosition[i].cY, 2, 2));
+                    VECTOR2D position = Support.ConvertCoordination(tempObject);
+                    Support.listObject.Add(new OBJECT((int)ObjectType.LED_OBJECT, 0, Support.Count, new VECTOR2D(position.cX, position.cY), new RECTANGLE(position.cX, position.cY, 2, 2)));
                 }
 
                 return true;
@@ -235,6 +199,21 @@ namespace MapEditor
         {
             if (Support.listObject != null && Support.IsExportXml == false)
             {
+                for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+                {
+                    if (WorkspaceWorking.Children[i] is Image)
+                    {
+                        Image tempRect = (Image)WorkspaceWorking.Children[i];
+                        if ((int)tempRect.Tag != (int)ObjectType.TILE_MAP)
+                        {
+                            ++Support.Count;
+                            OBJECT temp = new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, new VECTOR2D((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i])), new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking), (float)Canvas.GetTop(WorkspaceWorking), (int)tempRect.Width, (int)tempRect.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            Support.listObject.Add(new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempRect.Width, (int)tempRect.Height)));
+                        }
+                    }
+                }
+
                 if (Support.quadTree == null)
                 {
                     Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 6528, 6528, 6528));
@@ -247,6 +226,7 @@ namespace MapEditor
                 ExportXml.getInstance().writeQuadtreeToXml(Support.quadTree, ExportXml.getInstance().MWriter);
                 ExportXml.getInstance().MWriter.WriteEndDocument();
                 ExportXml.getInstance().MWriter.Close();
+
                 Support.IsExportXml = true;
                 MessageBox.Show("Export XML FILE SUCCESSFUL");
             }
@@ -258,14 +238,20 @@ namespace MapEditor
 
         public void down_to_define_start_position(object sender, MouseEventArgs m)
         {
-            if (isDragged == false)
+            if (true)
             {
-                isDragged = true;
-                startPosition = m.GetPosition(WorkspaceWorking);
-            }
+                #region.For drag to create virtual object
+                if (isDragged == false)
+                {
+                    isDragged = true;
+                    startPosition = m.GetPosition(WorkspaceWorking);
+                }
 
-            startPosition.X = ((int)m.GetPosition(WorkspaceWorking).X / (int)Support.WIDHT_OF_VIRTUALOBJECT) * Support.WIDHT_OF_VIRTUALOBJECT;
-            startPosition.Y = ((int)m.GetPosition(WorkspaceWorking).Y / Support.HEIGHT_OF_VIRTUALOBJECT) * Support.HEIGHT_OF_VIRTUALOBJECT;
+                startPosition.X = ((int)m.GetPosition(WorkspaceWorking).X / (int)Support.WIDHT_OF_VIRTUALOBJECT) * Support.WIDHT_OF_VIRTUALOBJECT;
+                startPosition.Y = ((int)m.GetPosition(WorkspaceWorking).Y / Support.HEIGHT_OF_VIRTUALOBJECT) * Support.HEIGHT_OF_VIRTUALOBJECT;
+
+                #endregion
+            }
         }
 
         public void move_to_update_position(object sender, MouseEventArgs m)
@@ -302,6 +288,7 @@ namespace MapEditor
 
 
                 rect = new Rectangle();
+                rect.Tag = Support.virtualObject;
                 rect.Width = (double)Math.Abs(endPosition.X - startPosition.X);
                 rect.Height = (double)Math.Abs(endPosition.Y - startPosition.Y);
                 rect.Stroke = new SolidColorBrush(Colors.Red);
@@ -329,7 +316,6 @@ namespace MapEditor
                     finalPosition.Y = endPosition.Y;
                 }
                 Canvas.SetZIndex(rect, 2);
-
                 WorkspaceWorking.Children.Add(rect);
             }
             else
@@ -339,9 +325,10 @@ namespace MapEditor
                     isDragged = false;
                     if (rect != null)
                     {
-                        OBJECT temp = new OBJECT((int)ObjectID.VIRTUAL_OBJECT, 0, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                        ++Support.Count;
+                        OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                         VECTOR2D tempPosition = Support.ConvertCoordination(temp);
-                        OBJECT obj = new OBJECT((int)ObjectID.VIRTUAL_OBJECT, 0, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
+                        OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
                         if (Support.listObject == null)
                         {
                             Support.listObject = new List<OBJECT>();
@@ -364,6 +351,115 @@ namespace MapEditor
                 this.tbX.Text = m.GetPosition(WorkspaceWorking).X.ToString();
                 this.tbY.Text = m.GetPosition(WorkspaceWorking).Y.ToString();
             }
+
+            if (Support.IsEraser == false)
+            {
+                #region.For to create enemyobject
+
+                if (selectedItemFromListbox != null && m.LeftButton != MouseButtonState.Pressed)
+                {
+                    isAdded = false;
+                    WorkspaceWorking.Children.Remove(tempSelectedItem);
+
+                    Image cursorImage = new Image();
+                    cursorImage.Tag = selectedItemFromListbox.Tag;
+                    cursorImage.Source = selectedItemFromListbox.Source;
+                    cursorImage.Width = selectedItemFromListbox.Width;
+                    cursorImage.Height = selectedItemFromListbox.Height;
+                    cursorImage.Opacity = 0.8f;
+
+                    positionTempOfSelectedFromListbox = m.GetPosition(WorkspaceWorking);
+
+                    tempSelectedItem = cursorImage;
+
+                    if (Support.IsAlign == true)
+                    {
+                        #region.Collision between rambo & virtualobject
+                        for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+                        {
+                            RECTANGLE cursor = new RECTANGLE((float)positionTempOfSelectedFromListbox.X, (float)positionTempOfSelectedFromListbox.Y, (int)cursorImage.Width, (int)cursorImage.Height);
+
+                            if (WorkspaceWorking.Children[i] is Rectangle)
+                            {
+                                Rectangle convertingObject = (Rectangle)(WorkspaceWorking.Children[i]);
+                                if (convertingObject.Tag == Support.virtualObject && ((int)cursorImage.Tag == (int)ObjectID.RAMBO ||
+                                                                (int)cursorImage.Tag == (int)ObjectID.SNIPER_STANDING))
+                                {
+                                    RECTANGLE tempRect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)convertingObject.Width, (int)convertingObject.Height);
+                                    RECTANGLE collisionRect = RECTANGLE.IntersectCanvas(tempRect, cursor);
+                                    if (collisionRect.width != 0 && collisionRect.height != 0)
+                                    {
+                                        positionTempOfSelectedFromListbox.Y = tempRect.cY - cursorImage.Height;
+                                    }
+                                }
+                                else if (convertingObject.Tag == Support.gridLine && ((int)cursorImage.Tag == (int)ObjectID.GUN_ROTATING ||
+                                                                     (int)cursorImage.Tag == (int)ObjectID.BIG_GUN_ROTATING))
+                                {
+                                    RECTANGLE tempRect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)convertingObject.Width, (int)convertingObject.Height);
+                                    RECTANGLE collisionRect = RECTANGLE.IntersectCanvas(tempRect, cursor);
+                                    if (collisionRect.width != 0 && collisionRect.height != 0)
+                                    {
+                                        positionTempOfSelectedFromListbox.X = tempRect.cX;
+                                        positionTempOfSelectedFromListbox.Y = tempRect.cY;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Canvas.SetLeft(cursorImage, (double)(positionTempOfSelectedFromListbox.X));
+                    Canvas.SetTop(cursorImage, (double)(positionTempOfSelectedFromListbox.Y));
+                    WorkspaceWorking.Children.Add(cursorImage);
+                        #endregion
+                }
+                
+                if (m.LeftButton == MouseButtonState.Pressed && selectedItemFromListbox != null && isAdded == false)
+                {
+                    WorkspaceWorking.Children.Remove(tempSelectedItem);
+                    Image finalSelectedItem = new Image();
+                    finalSelectedItem.Tag = selectedItemFromListbox.Tag;
+                    finalSelectedItem.Source = selectedItemFromListbox.Source;
+                    finalSelectedItem.Width = selectedItemFromListbox.Width;
+                    finalSelectedItem.Height = selectedItemFromListbox.Height;
+
+                    Canvas.SetLeft(finalSelectedItem, (double)(positionTempOfSelectedFromListbox.X));
+                    Canvas.SetTop(finalSelectedItem, (double)(positionTempOfSelectedFromListbox.Y));
+                    WorkspaceWorking.Children.Add(finalSelectedItem);
+                    isAdded = true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+                {
+                    if (WorkspaceWorking.Children[i] is Image)
+                    {
+                        Image tempSelected = (Image)(WorkspaceWorking.Children[i]);
+                        if ((int)tempSelected.Tag != (int)ObjectType.TILE_MAP)
+                        {
+                            RECTANGLE rect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempSelected.Width, (int)tempSelected.Height);
+                            System.Windows.Point tempPoint = new System.Windows.Point(m.GetPosition(WorkspaceWorking).X, m.GetPosition(WorkspaceWorking).Y);
+                            if (rect.IsContain(tempPoint) == true)
+                            {
+                                WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
+                            }
+                        }
+                    }
+                    else if (WorkspaceWorking.Children[i] is Rectangle)
+                    {
+                        Rectangle tempRect = (Rectangle)(WorkspaceWorking.Children[i]);
+                        if (tempRect.Tag == Support.virtualObject)
+                        {
+                            RECTANGLE rect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempRect.Width, (int)tempRect.Height);
+                            System.Windows.Point tempPoint = new System.Windows.Point(m.GetPosition(WorkspaceWorking).X, m.GetPosition(WorkspaceWorking).Y);
+                            if (rect.IsContain(tempPoint) == true)
+                            {
+                                WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
         }
 
         public void click_to_load_backgroundmap(object sender, RoutedEventArgs e)
@@ -387,9 +483,14 @@ namespace MapEditor
                     Support.map = new CMap(new BitmapImage(new Uri(openFileDialogSourcePicture.FileName, UriKind.Absolute)));
                     Support.WIDHT_MAP = (int)(Support.map.BitMap.Width + 0.9);
                     Support.HEIGHT_MAP = (int)(Support.map.BitMap.Height + 0.9);
-                    DestroyGridline();
-                    Support.GRIDLINE = true;
-                    CreateGridline();
+                    
+                    if (Support.GRIDLINE == true)
+                    {
+                        DestroyGridline();
+                        Support.GRIDLINE = true;
+                        CreateGridline();
+                    }
+
                     if (Support.IsExportXml == true)
                     {
                         Support.IsExportXml = false;
@@ -425,8 +526,59 @@ namespace MapEditor
 
                 ConvertFromTileToObject();
                 AddImageOfObjectToCanvas();
+
+                Support.IsBackground = true;
             }
 
+        }
+
+        private void lbEnemyObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Support.IsBackground == true)
+            {
+                Image temp = (Image)this.lbEnemyObject.SelectedItem;
+
+                selectedItemFromListbox = new Image();
+                selectedItemFromListbox.Tag = temp.Tag;
+                selectedItemFromListbox.Source = temp.Source;
+                selectedItemFromListbox.Width = temp.Width;
+                selectedItemFromListbox.Height = temp.Height;
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng thêm background cho game, trước khi chọn đối tượng");
+            }
+        }
+
+        public void click_to_align_background(object sender, RoutedEventArgs e)
+        {
+            if (Support.IsAlign == true)
+            {
+                Support.IsAlign = false;
+            }
+            else
+            {
+                Support.IsAlign = true;
+            }
+        }
+
+        public void click_to_back_pointer(object sender, RoutedEventArgs e)
+        {
+            WorkspaceWorking.Children.Remove(tempSelectedItem);
+            selectedItemFromListbox = null;
+        }
+
+        public void click_to_enable_eraser(object sender, RoutedEventArgs e)
+        {
+            if (Support.IsEraser == false)
+            {
+                WorkspaceWorking.Children.Remove(tempSelectedItem);
+                Support.IsEraser = true;
+            }
+            else
+            {
+                Support.IsEraser = false;
+            }
         }
         /* End Event Handler */
     }
