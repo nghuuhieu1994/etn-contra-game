@@ -27,10 +27,14 @@ void DemoState::Update()
 	m_Rambo->UpdateAnimation();
 	m_Rambo->UpdateMovement();
 
+
 	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
+
+	m_Quadtree->UpdateAnimation();
+	//m_Quadtree->UpdateCollision(m_Rambo);
 
 	m_myTinker->UpdateAnimation();
 }
