@@ -11,6 +11,8 @@
 
 #define SAFE_RELEASE(p)      if(p) { (p)->Release(); (p)=0; }
 
+#define DELAY_TIME_GUN_ROTATE 500
+
 #ifndef SPRITEHANDLE
 #define	SPRITEHANDLE LPD3DXSPRITE
 #endif // SPRITEHANDLE

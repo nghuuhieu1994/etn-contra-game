@@ -8,8 +8,8 @@ DynamicObject::DynamicObject(void)
 DynamicObject::DynamicObject(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : 
 Object(_position, _direction, _objectID)
 {
+	isDead = false;
 	m_Physic = new Physic();
-	
 	m_DirectAttack = eDirectAttack::AD_TOP;
 	this->m_Collision = new Collision();
 }

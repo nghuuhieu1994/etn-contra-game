@@ -35,10 +35,7 @@ public:
 	
 	CTimeSpanDx9	getElapsedGameTime();
 	
-	CTimeSpanDx9	getTotalGameTime();
-	
 	void			setElapsedGameTime(CTimeSpanDx9& elapsedGameTime);
 	
-	void			setTotalGameTime(CTimeSpanDx9& totalGameTime);
 };
 #endif
