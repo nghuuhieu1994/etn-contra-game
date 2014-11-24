@@ -113,7 +113,7 @@ namespace MapEditor
                 }
                 else
                 {
-                    rect.height = (int)(r2.cY - (r1.cY + r1.height));
+                    rect.height = (int)(r2.cY - (r1.cY - r1.height));
                 }
             }
 
@@ -318,17 +318,19 @@ namespace MapEditor
             return temp;
         }
 
-        public static bool IsDynamic(int typeObject)
+        public static bool IsDynamic(ObjectID id)
         {
-            switch (typeObject)
+            switch (id)
             {
-                case 0:
-                case 1:
-                case 2:
-                    return false;
+                case ObjectID.RAMBO:
+                case ObjectID.ENEMY_RUN:
+                case ObjectID.GIF_BULLET_MOVING:
+                    return true;
                 default:
                     return false;
             }
+
+            return false;
         }
     }
 }
