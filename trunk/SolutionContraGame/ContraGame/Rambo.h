@@ -4,14 +4,14 @@
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "RamboSprite.h"
-#include <list>
+
 #include "Bullet.h"
 #include "BulletPool.h"
 #include "BulletPoolManager.h"
-#include <unordered_set>
+
+#include <list>
 
 using namespace std;
-
 class Rambo : public DynamicObject
 {
 private:
@@ -67,7 +67,10 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();
-	void Update(std::unordered_set<Object*>);
+	//void Update(QuadTree* _quad);
+	void SetFlag();
+	void CleanIgnoreList();
+	void UpdatePreviousIgnoreList();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();

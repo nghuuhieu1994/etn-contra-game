@@ -23,18 +23,20 @@ void DemoState::Update()
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
-	m_Rambo->Update();
 	m_Rambo->UpdateAnimation();
+	m_Rambo->SetFlag();
+	
 	m_Rambo->UpdateMovement();
-
+	m_Rambo->CleanIgnoreList();
 
 	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
+	m_Rambo->UpdatePreviousIgnoreList();
 	m_Quadtree->UpdateAnimation();
-	//m_Quadtree->UpdateCollision(m_Rambo);
+	
 
 	m_myTinker->UpdateAnimation();
 }

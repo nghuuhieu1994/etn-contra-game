@@ -144,7 +144,7 @@ void Rambo::HandleInput()
 		default:
 			break;
 	}
-	//Shoot();
+	
 	if(isFall)
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
@@ -392,11 +392,7 @@ int Rambo::HandleInputRunState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
-	/*if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-	{
-		m_ObjectState = eObjectState::STATE_RAMBO_SHOOT_RUN;
-		return 0;
-	}*/
+	
 }
 
 bool Rambo::isAddBullet()
@@ -557,12 +553,7 @@ int Rambo::HandleInputShootRunState()
 		return 0;
 	}
 
-	/*if(!CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-	{
-		m_ObjectState = eObjectState::STATE_RAMBO_RUN;
-		
-		return 0;
-	}*/
+	
 	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightUp() || CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightDown())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
@@ -592,11 +583,7 @@ void Rambo::Shoot()
 	{
 	case AD_TOP:
 		{
-			/*BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), 1.7);
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, 0.0f), 3.7);
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), -1.7);
-			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);*/
+			
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
 		}
 		break;
@@ -607,7 +594,7 @@ void Rambo::Shoot()
 		break;
 	case AD_LEFT:
 		{
-			/*BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);*/
+			
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 		}
 		break;
@@ -822,7 +809,7 @@ int Rambo::HandleInputSwimShootState()
 	{
 		m_DirectAttack = eDirectAttack::AD_LEFT;
 	}
-	//TO DO: not shooting
+	
 	
 	if (CInputDx9::getInstance()->IsKeyUpDownAndKeyDownUp())
 	{
@@ -859,7 +846,7 @@ int Rambo::HandleInputSwimShootState()
 int Rambo::HandleInputSwimShootUpState()
 {
 	m_DirectAttack = eDirectAttack::AD_TOP;
-	if (//CInputDx9::getInstance()->IsKeyUp(DIK_Z) || //TO DO:not shooting
+	if (
 		CInputDx9::getInstance()->IsKeyUp(DIK_UP) || CInputDx9::getInstance()->IsKeyUpDownAndKeyDownDown())
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
@@ -936,16 +923,10 @@ int Rambo::HandleInputSwimShootTopRightState()
 void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
-	//THIS CODE MUST ADD IN STATE
-	/*if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-	{
-		m_RamboSprite->shakeBody();
-	}*/
-	//--------------------------
-	/*if (m_ObjectState != eObjectState::STATE_RAMBO_JUMP && m_ObjectState != eObjectState::STATE_RAMBO_SWIM && m_ObjectState != eObjectState::STATE_RAMBO_CLIMB && m_ObjectState != eObjectState::STATE_RAMBO_WATER_BOMB)
-	{
-		isFall = true; 
-	}*/
+	
+	
+	
+	
 	
 }
 
@@ -1216,34 +1197,45 @@ void Rambo::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void Rambo::Update(std::unordered_set<Object*> listObject)
-{
-	//START UPDATE
-	//Update animation after handle input update state of Rambo
-	this->UpdateAnimation();
 
-	//set fall flag for special state for simulate gravity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void Rambo::SetFlag()
+{
+	
 	SetFallFlag();
-	//set velocity to zero for dimesion X and Y for special state, if you add new state, remember to add it in 2 function
+	
 	SetVelocityXZero();
 	SetVelocityYZero();
-
-	this->UpdateMovement();
-
-	//clear object list below Rambo for add new element in check collision sequence
+}
+void Rambo::CleanIgnoreList()
+{
 	m_objectBelowCurrent.clear();
-	//checking collision with object in game
-	for (auto it = listObject.begin(); it != listObject.end(); ++it)
-	{
-		if ((*it)->getTypeObject() != ETypeObject::TILE_MAP)
-		{
-			this->UpdateCollision(*it); 
-		}
-	}
-	//clear list object of previous update and reference it to current object list
+}
+void Rambo::UpdatePreviousIgnoreList()
+{
 	m_objectBelowPrevious.clear();
 	m_objectBelowPrevious = m_objectBelowCurrent;
-	//END UPDATE
 }
 
 void Rambo::UpdateMovement()
@@ -1253,7 +1245,7 @@ void Rambo::UpdateMovement()
 	
 	if(getBound().left < 0)
 	{
-		m_Position.x = 32;//hard code for sure :) getBound in different state can return different value of frame resolution and cause bug >.<
+		m_Position.x = 32;
 	}
 
 	if (m_ObjectState == STATE_RAMBO_JUMP)
