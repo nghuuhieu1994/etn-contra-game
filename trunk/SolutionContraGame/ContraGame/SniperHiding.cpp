@@ -39,27 +39,40 @@ void SniperHiding::Initialize()
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION));
+	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
 }
 
 void SniperHiding::UpdateAnimation()
 {	
-	if(CGlobal::Rambo_X < m_Position.x)
-	{
-		m_Direction = eDirection::LEFT;
-		m_DirectAttack = eDirectAttack::AD_LEFT;
-	}
-	else
-	{
-		m_Direction = eDirection::RIGHT;
-		m_DirectAttack = eDirectAttack::AD_RIGHT;
-	}
-
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
+	case STATE_ALIVE_IDLE:
+		_distance_X = CGlobal::Rambo_X - getPositionVec2().x;
+		if(_distance_X > 0)
+		{
+			m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeDirectAttack > 700)
+			{
+				m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
+				m_Direction = eDirection::RIGHT;
+				m_TimeChangeDirectAttack = 0;
+			}
+		}
+		else
+		{
+			m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeDirectAttack > 700)
+			{
+				m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+				m_Direction = eDirection::LEFT;
+				m_TimeChangeDirectAttack = 0;
+			}
+		}
+		m_Sprite->getAnimationAction()->setCurrentFrame(1);
 		break;
 	case STATE_SHOOTING:
+		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -70,35 +83,23 @@ void SniperHiding::UpdateAnimation()
 	default:
 		break;
 	}	
-	if(m_Direction == eDirection::LEFT)
-	{
-		m_Sprite->setSpriteEffect(ESpriteEffect::None);
-	}
-
-	else
-	{
-		if(m_Direction == eDirection::RIGHT)
-		{
-			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
-		}
-	}
 }
 
 
 void SniperHiding::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if (!isDead)
 	{
-		switch (checkingObject->getID())
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+		if (collideDirection != IDDirection::DIR_NONE)
 		{
-			case eObjectID ::BULLET_RAMBO:
-				break;
+			switch (checkingObject->getID())
+			{
 			default:
 				break;
+			}
 		}
-
 	}
 }
 
@@ -108,13 +109,12 @@ void SniperHiding:: UpdateMovement()
 
 void SniperHiding::Update()
 {
-	_distance_X = abs(CGlobal::Rambo_X - this->getPositionVec2().x);
 	if(_distance_X < 300)
 	{
 		switch (m_ObjectState)
 		{
 		case STATE_ALIVE_IDLE:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if(m_TimeChangeState > 5000)
 			{
 				m_TimeChangeState = 0;
@@ -125,18 +125,26 @@ void SniperHiding::Update()
 		case STATE_SHOOTING:
 			if(isShoot == true)
 			{
-				Shoot();
-				isShoot = false;
+				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if (m_TimeChangeState > 600)
+				{
+					Shoot();
+					isShoot = false;
+					m_TimeChangeState = 0;
+				}
 			}
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 5000)
+			else
 			{
-				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if (m_TimeChangeState > 3500)
+				{
+					m_TimeChangeState = 0;
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+				}
 			}
 			break;
 		case STATE_BEFORE_DEATH:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if(m_TimeChangeState > 1000)
 			{
 				m_ObjectState = eObjectState::STATE_DEATH;
@@ -156,6 +164,12 @@ void SniperHiding::Render(SPRITEHANDLE spriteHandle)
 {
 	if(m_Sprite != 0)
 	{
+		if(m_Direction == eDirection::LEFT)
+			m_Sprite->setSpriteEffect(ESpriteEffect::None);
+		else
+		{
+			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
+		}
 		m_Sprite->Render(spriteHandle, 
 						getPositionVec2(), 
 						m_Sprite->getSpriteEffect(), 

@@ -14,6 +14,7 @@ protected:
 	Physic*			m_Physic;
 	eDirectAttack	m_DirectAttack;
 	Collision*		m_Collision;
+	bool isDead;
 public:
 	DynamicObject(void);
 	Physic*			getPhysic() const { return m_Physic; }

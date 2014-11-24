@@ -13,10 +13,10 @@ class BigGunRotating : public DynamicObject
 	CSpriteDx9* sprite_alive;
 	int _distance_X;
 	int _distance_Y;
-
 	bool isShoot;
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
+	eDirectAttack lastDirectAttack;
 public:
 	BigGunRotating();
 	//Physic*			getPhysic() const { return m_Physic; }

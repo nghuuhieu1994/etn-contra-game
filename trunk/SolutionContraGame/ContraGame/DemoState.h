@@ -38,9 +38,7 @@ class DemoState : public GameScene
 private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
-
-	Tinker*				m_myTinker;
-
+	BigGunRotating* m_gunRotate;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}

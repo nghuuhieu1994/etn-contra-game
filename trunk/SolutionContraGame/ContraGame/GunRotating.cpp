@@ -14,8 +14,6 @@ GunRotating::GunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID
 
 void GunRotating::Shoot()
 {
-	// type some fucking code to shoot 1 bullet to Game Screen
-	//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 3.0f), 1);
 	switch (m_DirectAttack)
 	{
 	case ZERO_CLOCK_DIRECTION:
@@ -86,6 +84,7 @@ void GunRotating::Initialize()
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_ROTATING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
+
 }
 
 void GunRotating::UpdateAnimation()
@@ -95,108 +94,266 @@ void GunRotating::UpdateAnimation()
 	case STATE_ALIVE_IDLE:
 		_distance_X = CGlobal::Rambo_X - this->getPositionVec2().x;
 		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
-
-		if (abs(_distance_Y) < 60)
+		
+		if (abs(_distance_Y) < 30)
 		{
+#pragma region AttackMid
 			if (_distance_X < 0)
 			{
-				m_Sprite->getAnimationAction()->setCurrentFrame(11);
-				m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+				if (lastDirectAttack != eDirectAttack::NINE_CLOCK_DIRECTION)
+				{
+					m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+					if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+					{
+						m_Sprite->getAnimationAction()->setCurrentFrame(11);
+						m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+						lastDirectAttack = m_DirectAttack;
+						m_TimeChangeDirectAttack = 0;
+					}
+				}
+				else
+				{
+					m_TimeChangeDirectAttack = 0;
+				}
 			}
 			else
 			{
-				m_Sprite->getAnimationAction()->setCurrentFrame(5);
-				m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
+				if (lastDirectAttack != eDirectAttack::THREE_CLOCK_DIRECTION)
+				{
+					m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+					if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+					{
+						m_Sprite->getAnimationAction()->setCurrentFrame(5);
+						m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
+						lastDirectAttack = m_DirectAttack;
+						m_TimeChangeDirectAttack = 0;
+					}
+				}
+				else
+				{
+					m_TimeChangeDirectAttack = 0;
+				}
 			}
+
+#pragma endregion AttackMid
 		}
 		else
 		{
-			int Dx = abs(_distance_X);
-			if (Dx > 350)
+			if (abs(_distance_X) < 20)
 			{
-				m_Sprite->getAnimationAction()->setIndexStart(0);
-				m_Sprite->getAnimationAction()->setIndexEnd(1);
-				m_Sprite->UpdateAnimation(1000);
+#pragma region AttackTopBot
+					if (_distance_Y < 0)
+					{
+						if (lastDirectAttack != eDirectAttack::SIX_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_Sprite->getAnimationAction()->setCurrentFrame(8);
+								m_DirectAttack = eDirectAttack::SIX_CLOCK_DIRECTION;
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
+					}
+					else
+					{
+						if (lastDirectAttack != eDirectAttack::ZERO_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_Sprite->getAnimationAction()->setCurrentFrame(2);
+								m_DirectAttack = eDirectAttack::ZERO_CLOCK_DIRECTION;
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
+					}
+#pragma endregion AttackTopBot
 			}
 			else
 			{
-				if (Dx < 350 && Dx > 100)
-				{
-					if (_distance_X < 0)
+				if (_distance_X > 0 && _distance_Y > 0)
+				{ 
+#pragma region AttackTopRight
+					// Goc phan tu thu nhat
+					if (_distance_Y - _distance_X > 0)
 					{
-						if (_distance_Y > 0)
+						if (lastDirectAttack != eDirectAttack::ONE_CLOCK_DIRECTION)
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(12);
-							m_DirectAttack = eDirectAttack::TEN_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::ONE_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(3);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
 						}
 						else
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(10);
-							m_DirectAttack = eDirectAttack::EIGHT_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack = 0;
 						}
 					}
 					else
 					{
-						if (_distance_Y > 0)
+						if (lastDirectAttack != eDirectAttack::TWO_CLOCK_DIRECTION)
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(4);
-							m_DirectAttack = eDirectAttack::TWO_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::TWO_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(4);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
 						}
 						else
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(6);
-							m_DirectAttack = eDirectAttack::FOUR_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack = 0;
 						}
 					}
+#pragma endregion AttackTopRight
 				}
-
-				if (Dx <= 100 && Dx > 50)
+				if (_distance_X > 0 && _distance_Y < 0)
 				{
-					if (_distance_X < 0)
+#pragma region AttackBotRight
+					if (_distance_X + _distance_Y > 0)
 					{
-						if (_distance_Y > 0)
+						if (lastDirectAttack != eDirectAttack::FOUR_CLOCK_DIRECTION)
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(13);
-							m_DirectAttack = eDirectAttack::ELEVEN_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::FOUR_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(6);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
 						}
 						else
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(9);
-							m_DirectAttack = eDirectAttack::SEVEN_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack = 0;
 						}
 					}
 					else
 					{
-						if (_distance_Y > 0)
+						if (lastDirectAttack != eDirectAttack::FIVE_CLOCK_DIRECTION)
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(3);
-							m_DirectAttack = eDirectAttack::ONE_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::FIVE_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(7);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
 						}
 						else
 						{
-							m_Sprite->getAnimationAction()->setCurrentFrame(7);
-							m_DirectAttack = eDirectAttack::FIVE_CLOCK_DIRECTION;
+							m_TimeChangeDirectAttack = 0;
 						}
 					}
+#pragma endregion AttackBotRight
 				}
-
-				if (Dx <= 50)
+				if (_distance_X < 0 && _distance_Y < 0)
 				{
-					if (_distance_Y > 0)
+#pragma region AttackBotLeft
+					if (_distance_Y - _distance_X > 0)
 					{
-						m_Sprite->getAnimationAction()->setCurrentFrame(2);
-						m_DirectAttack = eDirectAttack::ZERO_CLOCK_DIRECTION;
+						if (lastDirectAttack != eDirectAttack::EIGHT_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::EIGHT_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(10);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
 					}
 					else
 					{
-						m_Sprite->getAnimationAction()->setCurrentFrame(8);
-						m_DirectAttack = eDirectAttack::SIX_CLOCK_DIRECTION;
+						if (lastDirectAttack != eDirectAttack::SEVEN_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::SEVEN_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(9);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
 					}
+#pragma endregion AttackBotLeft
+				}
+				if (_distance_X < 0 && _distance_Y > 0)
+				{
+#pragma region AttackTopLeft
+					if (_distance_X + _distance_Y > 0)
+					{
+						if (lastDirectAttack != eDirectAttack::ELEVEN_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::ELEVEN_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(13);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
+					}
+					else
+					{
+						if (lastDirectAttack != eDirectAttack::TEN_CLOCK_DIRECTION)
+						{
+							m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+							if (m_TimeChangeDirectAttack > DELAY_TIME_GUN_ROTATE)
+							{
+								m_DirectAttack = eDirectAttack::TEN_CLOCK_DIRECTION;
+								m_Sprite->getAnimationAction()->setCurrentFrame(12);
+								lastDirectAttack = m_DirectAttack;
+								m_TimeChangeDirectAttack = 0;
+							}
+						}
+						else
+						{
+							m_TimeChangeDirectAttack = 0;
+						}
+					}
+#pragma endregion AttackToopLeft
 				}
 			}
 		}
-
+	
 		break;
+		case STATE_SHOOTING:
+
+			break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
 		m_Sprite->UpdateAnimation(300);
@@ -217,9 +374,8 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 	{
 		switch (checkingObject->getID())
 		{
-			case eObjectID ::BULLET_RAMBO:
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-				break;
+			// collision?
+
 			default:
 				break;
 		}
@@ -235,13 +391,14 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if (abs(_distance_X) < 300)
-		{
-			// in sert shoot funx
-		}
+
+		break;
+	case STATE_SHOOTING:
+		// some fucking code to shoot bullet, then change to state-alive-idle
 		break;
 	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		isDead = true;
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 1500)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
