@@ -8,6 +8,8 @@
 #include "Tile.h"
 #include "VirtualObject.h"
 #include "LedObject.h"
+#include "GunRotating.h"
+#include "SniperStanding.h"
 
 class Node
 {

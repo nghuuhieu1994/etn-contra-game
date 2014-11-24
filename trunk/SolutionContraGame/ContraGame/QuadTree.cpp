@@ -126,13 +126,25 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Width").c_str()), 
 									atoi(xml.GetAttrib("Height").c_str()), (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == 9)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new GunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == 5)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SniperStanding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
 					}
 
 					if(atoi(xml.GetAttrib("Type").c_str()) == 0)
 					{
 						node->mListObject.push_back(atoi(xml.GetAttrib("Index").c_str()));
 					}
-					else if(atoi(xml.GetAttrib("Type").c_str()) == 1)
+					else if(atoi(xml.GetAttrib("Type").c_str()) == 1 || atoi(xml.GetAttrib("Type").c_str()) == 4)
 					{
 						node->mListObjectCollision.push_back(atoi(xml.GetAttrib("Index").c_str()));
 					}
@@ -144,26 +156,23 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 
 void QuadTree::Update()
 {
-	//for(int i = 0; i < mListObjectInView.size(); ++i)
-	//{
-	//	mListObjectInView[i]->Update();
-	//}
+
 }
 
 void QuadTree::UpdateAnimation()
 {
-	//for(int i = 0; i < mListObjectInView.size(); ++i)
-	//{
-	//	mListObjectInView[i]->UpdateAnimation();
-	//}
+	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	{
+		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->UpdateAnimation();
+	}
 }
 
 void QuadTree::UpdateCollision(Object* checkingObject)
 {
-	//for(int i = 0; i < mListObjectInView.size(); ++i)
-	//{
-	//	mListObjectInView[i]->UpdateCollision(checkingObject);
-	//}
+	for(int i = 0 ; i < mListObjectCollisionInView.size(); ++i)
+	{
+		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->UpdateCollision(checkingObject);
+	}
 }
 
 void QuadTree::Render(SPRITEHANDLE spriteHandler)
@@ -171,6 +180,11 @@ void QuadTree::Render(SPRITEHANDLE spriteHandler)
 	for(int i = 0; i < mListObjectInView.size(); ++i)
 	{
 		mMapObjectInGame[mListObjectInView[i]]->Render(spriteHandler);
+	}
+
+	for(int j = 0; j < mListObjectCollisionInView.size(); ++j)
+	{
+		mMapObjectCollisionInGame[mListObjectCollisionInView[j]]->Render(spriteHandler);
 	}
 }
 
