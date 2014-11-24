@@ -25,7 +25,13 @@ namespace MapEditor.Framwork
         private VECTOR2D mPosition;
         private RECTANGLE mBound;
         private Image mImage;
-        private int mRangeOfMovement;
+        private RECTANGLE mRangeOfMovement;
+
+        public RECTANGLE RangeOfMovement
+        {
+            get { return mRangeOfMovement; }
+            set { mRangeOfMovement = value; }
+        }
         private int mIndex;
 
         public int Index
@@ -77,7 +83,7 @@ namespace MapEditor.Framwork
             this.mPosition = _position;
             this.mBound = _bound;
 
-            if (_type != 1)
+            if ((ObjectType)_type == ObjectType.TILE_MAP)
             {
                 this.mImage = new Image();
 
@@ -97,14 +103,13 @@ namespace MapEditor.Framwork
                 }
             }
 
-            if (Support.IsDynamic(this.mType))
+            if (Support.IsDynamic((ObjectID)this.mID) && (ObjectType)(this.mType) == (ObjectType.NORMAL_OBJECT))
             {
-                this.mRangeOfMovement = 600;
-                this.mBound = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width + this.mRangeOfMovement, this.mBound.height + this.mRangeOfMovement);
+                this.mRangeOfMovement = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width + 600, this.mBound.height + 600);
             }
             else
             {
-                this.mBound = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width, this.mBound.height);
+                this.mRangeOfMovement = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width, this.mBound.height);
             }
         }
 
