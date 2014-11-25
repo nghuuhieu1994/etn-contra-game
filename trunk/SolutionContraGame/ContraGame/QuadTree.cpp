@@ -29,14 +29,21 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 
 		for(int i = 0; i < node->mListObjectCollision.size(); ++i)
 		{
-			for( j = 0; j < mListObjectCollisionInView.size(); ++j)
+			if(mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_DEATH)
 			{
-				if(node->mListObjectCollision[i] == mListObjectCollisionInView[j])
-					break;
-			}
+				for( j = 0; j < mListObjectCollisionInView.size(); ++j)
+				{
+					if(node->mListObjectCollision[i] == mListObjectCollisionInView[j])
+						break;
+				}
 
-			if(j == mListObjectCollisionInView.size())
-				mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
+				if(j == mListObjectCollisionInView.size())
+					mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
+			}
+			else
+			{
+				node->mListObjectCollision.erase(node->mListObjectCollision.begin() + i);
+			}
 		}
 
 		if (node->getBl() != NULL)
@@ -156,7 +163,10 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 
 void QuadTree::Update()
 {
-
+	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	{
+		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->Update();
+	}
 }
 
 void QuadTree::UpdateAnimation()

@@ -24,7 +24,6 @@ void DemoState::Update()
 	BulletPoolManager::getInstance()->Update();
 	BulletPoolManager::getInstance()->UpdateMovement();
 	BulletPoolManager::getInstance()->UpdateAnimation();
-	//BulletPoolManager::getInstance()->UpdateCollision;
 
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
@@ -40,9 +39,14 @@ void DemoState::Update()
 	}
 
 	m_Rambo->UpdatePreviousIgnoreList();
-
+	
+	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
+	{
+		m_Quadtree->UpdateCollision(*i);
+	}
+	
 	m_Quadtree->UpdateAnimation();
-
+	m_Quadtree->Update();
 	
 }
 

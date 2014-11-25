@@ -16,6 +16,7 @@ Node::Node(int _ID, RECT _bound)
 	this->mBr = NULL;
 }
 
+
 Node::~Node()
 {
 
