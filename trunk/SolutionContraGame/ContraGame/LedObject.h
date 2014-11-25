@@ -5,6 +5,8 @@
 
 class LedObject : public Object
 {
+	float timeStar;
+	float delayStar;
 public:
 	LedObject();
 	LedObject(D3DXVECTOR3, eObjectID);
