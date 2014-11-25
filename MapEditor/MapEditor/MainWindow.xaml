@@ -34,6 +34,11 @@
                         <ImageBrush ImageSource="Resource\interface\mouse.png" Stretch="Fill" />
                     </MenuItem.Background>
                 </MenuItem>
+                <MenuItem Width="73" Height="67" Click="click_to_enable_water">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Resource\interface\water.png" Stretch="Fill" />
+                    </MenuItem.Background>
+                </MenuItem>
                 <MenuItem Height="67" Width="73" Click="click_to_export_xml_file">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Resource\interface\save.png" Stretch="Fill" />
@@ -80,10 +85,10 @@
                 </TabItem>
             </TabControl>
             
-            <TextBox HorizontalAlignment="Left" Height="52" Margin="583,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" FontSize="30" Name="tbX" Grid.RowSpan="2"/>
-            <Label Content="X:" HorizontalAlignment="Left" Margin="547,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" RenderTransformOrigin="-1.355,0.216" Grid.RowSpan="2" Height="52"/>
-            <Label Content="Y:" HorizontalAlignment="Left" Margin="773,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" Grid.RowSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="50" Margin="809,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" FontSize="30" Name="tbY" Grid.RowSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="52" Margin="693,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" FontSize="30" Name="tbX" Grid.RowSpan="2"/>
+            <Label Content="X:" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" RenderTransformOrigin="-1.355,0.216" Grid.RowSpan="2" Height="52"/>
+            <Label Content="Y:" HorizontalAlignment="Left" Margin="859,10,0,0" VerticalAlignment="Top" Width="31" FontSize="30" Grid.RowSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="50" Margin="895,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" FontSize="30" Name="tbY" Grid.RowSpan="2"/>
         </Grid>
 
     </Grid>

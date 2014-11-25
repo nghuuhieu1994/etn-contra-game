@@ -158,6 +158,47 @@ namespace MapEditor
             return false;
         }
 
+        public void SaveMap()
+        {
+            if (Support.listObject != null && Support.IsExportXml == false)
+            {
+                for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+                {
+                    if (WorkspaceWorking.Children[i] is Image)
+                    {
+                        Image tempRect = (Image)WorkspaceWorking.Children[i];
+                        if ((int)tempRect.Tag != (int)ObjectType.TILE_MAP)
+                        {
+                            ++Support.Count;
+                            OBJECT temp = new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, new VECTOR2D((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i])), new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempRect.Width, (int)tempRect.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            Support.listObject.Add(new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempRect.Width, (int)tempRect.Height)));
+                        }
+                    }
+                }
+
+                if (Support.quadTree == null)
+                {
+                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 6550, 6550, 6550));
+                    for (int i = 0; i < Support.listObject.Count; ++i)
+                    {
+                        Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
+                    }
+                }
+                ExportXml.getInstance().MWriter.WriteStartDocument();
+                ExportXml.getInstance().writeQuadtreeToXml(Support.quadTree, ExportXml.getInstance().MWriter);
+                ExportXml.getInstance().MWriter.WriteEndDocument();
+                ExportXml.getInstance().MWriter.Close();
+
+                Support.IsExportXml = true;
+                MessageBox.Show("Map đã được tạo thành công, dùng file map.xml để load game nhé ^^", "Thông báo");
+            }
+            else
+            {
+                MessageBox.Show("Có map đâu mà đòi lưu ! - Muốn lưu hãy tạo map mới ^^", "Thông báo");
+            }
+        }
+
         public bool RemoveAllTileInCanvas()
         {
             if (WorkspaceWorking.Children.Count != 0)
@@ -197,43 +238,7 @@ namespace MapEditor
 
         public void click_to_export_xml_file(object sender, RoutedEventArgs e)
         {
-            if (Support.listObject != null && Support.IsExportXml == false)
-            {
-                for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
-                {
-                    if (WorkspaceWorking.Children[i] is Image)
-                    {
-                        Image tempRect = (Image)WorkspaceWorking.Children[i];
-                        if ((int)tempRect.Tag != (int)ObjectType.TILE_MAP)
-                        {
-                            ++Support.Count;
-                            OBJECT temp = new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, new VECTOR2D((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i])), new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempRect.Width, (int)tempRect.Height));
-                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
-                            Support.listObject.Add(new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempRect.Width, (int)tempRect.Height)));
-                        }
-                    }
-                }
-
-                if (Support.quadTree == null)
-                {
-                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 6528, 6528, 6528));
-                    for (int i = 0; i < Support.listObject.Count; ++i)
-                    {
-                        Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
-                    }
-                }
-                ExportXml.getInstance().MWriter.WriteStartDocument();
-                ExportXml.getInstance().writeQuadtreeToXml(Support.quadTree, ExportXml.getInstance().MWriter);
-                ExportXml.getInstance().MWriter.WriteEndDocument();
-                ExportXml.getInstance().MWriter.Close();
-
-                Support.IsExportXml = true;
-                MessageBox.Show("Export XML FILE SUCCESSFUL");
-            }
-            else
-            {
-                MessageBox.Show("Can not export XML FILE");
-            }
+            SaveMap();
         }
 
         public void down_to_define_start_position(object sender, MouseEventArgs m)
@@ -291,7 +296,14 @@ namespace MapEditor
                 rect.Tag = Support.virtualObject;
                 rect.Width = (double)Math.Abs(endPosition.X - startPosition.X);
                 rect.Height = (double)Math.Abs(endPosition.Y - startPosition.Y);
-                rect.Stroke = new SolidColorBrush(Colors.Red);
+                if (Support.IsVirtualWater == true)
+                {
+                    rect.Stroke = new SolidColorBrush(Colors.Blue);
+                }
+                else
+                {
+                    rect.Stroke = new SolidColorBrush(Colors.Red);
+                }
                 rect.StrokeThickness = 3;
 
                 if (endPosition.X > startPosition.X)
@@ -326,19 +338,42 @@ namespace MapEditor
                     if (rect != null)
                     {
                         ++Support.Count;
-                        OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
-                        VECTOR2D tempPosition = Support.ConvertCoordination(temp);
-                        OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
-                        if (Support.listObject == null)
+                        if (Support.IsVirtualWater == false)
                         {
-                            Support.listObject = new List<OBJECT>();
+                            OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
+
+                            if (Support.listObject == null)
+                            {
+                                Support.listObject = new List<OBJECT>();
+                            }
+                            if (obj.Bound.width != 0 && obj.Bound.height != 0)
+                            {
+                                Support.listObject.Add(obj);
+                            }
+
+                            obj = null;
+
                         }
-                        if (obj.Bound.width != 0 && obj.Bound.height != 0)
+                        else
                         {
-                            Support.listObject.Add(obj);
+                            OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)ObjectID.VIRTUAL_OBJECT_WATER, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
+
+                            if (Support.listObject == null)
+                            {
+                                Support.listObject = new List<OBJECT>();
+                            }
+                            if (obj.Bound.width != 0 && obj.Bound.height != 0)
+                            {
+                                Support.listObject.Add(obj);
+                            }
+
+                            obj = null;
+
                         }
-                        
-                        obj = null;
                     }
                     rect = null;
                     startPosition = endPosition;
@@ -566,6 +601,7 @@ namespace MapEditor
         {
             WorkspaceWorking.Children.Remove(tempSelectedItem);
             selectedItemFromListbox = null;
+            Support.IsVirtualWater = false;
         }
 
         public void click_to_enable_eraser(object sender, RoutedEventArgs e)
@@ -578,6 +614,18 @@ namespace MapEditor
             else
             {
                 Support.IsEraser = false;
+            }
+        }
+
+        public void click_to_enable_water(object sender, RoutedEventArgs e)
+        {
+            if (Support.IsVirtualWater == false)
+            {
+                Support.IsVirtualWater = true;
+            }
+            else
+            {
+                Support.IsVirtualWater = false;
             }
         }
         /* End Event Handler */
