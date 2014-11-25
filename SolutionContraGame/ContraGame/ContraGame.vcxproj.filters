@@ -163,9 +163,6 @@
     <ClCompile Include="MapQuadtree.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="Explosion.cpp">
-      <Filter>GameObject\Bridge</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>GameObject\Bridge</Filter>
     </ClCompile>
@@ -189,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="EnemyRunShooting.cpp">
       <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeTile.cpp">
+      <Filter>GameObject\Bridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -396,9 +396,6 @@
     <ClInclude Include="MapQuadtree.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="Explosion.h">
-      <Filter>GameObject\Bridge</Filter>
-    </ClInclude>
     <ClInclude Include="Bridge.h">
       <Filter>GameObject\Bridge</Filter>
     </ClInclude>
@@ -425,6 +422,9 @@
     </ClInclude>
     <ClInclude Include="EIDSkillBullet.h">
       <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeTile.h">
+      <Filter>GameObject\Bridge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

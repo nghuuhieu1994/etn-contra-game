@@ -59,10 +59,15 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::SPRITE_GRID, 1, 1, 1);
+		
+	// start the fucking bridge
+
+
+
+	// end load the fucking bridge
 
 	// Start load EnemyContent
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Exploision.png", eSpriteID::SPRITE_EXPLOISION, 6, 1, 6);
-	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\explosion.png", eSpriteID::SPRITE_BRIDGE_EXPLOSION, 3, 1, 3);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\Sniper\\SniperStanding\\SniperStanding_bot.png", eSpriteID::SPRITE_SNIPER_STANDING_BOT, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\Sniper\\SniperStanding\\SniperStanding_top.png", eSpriteID::SPRITE_SNIPER_STANDING_TOP, 2, 1, 2);
@@ -87,7 +92,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletS.png", eSpriteID::SPRITE_GIF_S, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletL.png", eSpriteID::SPRITE_GIF_L, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletM.png", eSpriteID::SPRITE_GIF_M, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletTypet\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\RockFalling.png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\RockFlying.png", eSpriteID::SPRITE_ROCK_FLYING, 1, 1, 1);
@@ -111,7 +116,6 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
-	//LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBodyAlive.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBody.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
