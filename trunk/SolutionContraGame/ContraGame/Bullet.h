@@ -4,6 +4,7 @@
 #include "DynamicObject.h"
 #include "EIDTypeBullet.h"
 #include "EDirectAttack.h"
+#include "EIDSkillBullet.h"
 
 class Bullet : public DynamicObject
 {

@@ -22,7 +22,7 @@ void BulletPool::Initialize()
 	std::queue<Bullet*> queuDefaultBulletOfRambo;
 	for(int i = 0; i < QUALITY_OF_DEFAULT_BULLET_RAMBO; ++i)
 	{
-		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);	
+		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(0.0f, 0.0f, 0.5f), eDirection::TOP, eObjectID::BULLET_RAMBO);	
 		tempBullet->Initialize();
 		queuDefaultBulletOfRambo.push(tempBullet);
 	}
@@ -31,7 +31,7 @@ void BulletPool::Initialize()
 	std::queue<Bullet*> queueRedBulletOfRambo;
 	for(int i = 0; i < QUALITY_OF_RED_BULLET_RAMBO; ++i)
 	{
-		RedBullet* tempBullet = new RedBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);
+		RedBullet* tempBullet = new RedBullet(D3DXVECTOR3(0.0f, 0.0f, 0.5f), eDirection::TOP, eObjectID::BULLET_RAMBO);
 		tempBullet->Initialize();
 		queueRedBulletOfRambo.push(tempBullet);
 	}
@@ -40,11 +40,10 @@ void BulletPool::Initialize()
 	std::queue<Bullet*> queueFireBulletOfRambo;
 	for(int i = 0; i < QUALITY_OF_RED_BULLET_RAMBO; ++i)
 	{
-		FireBullet* tempBullet = new FireBullet(D3DXVECTOR3(0.0f, 0.0f, 0.0f), eDirection::TOP, eObjectID::BULLET_RAMBO);
+		FireBullet* tempBullet = new FireBullet(D3DXVECTOR3(0.0f, 0.0f, 0.5f), eDirection::TOP, eObjectID::BULLET_RAMBO);
 		tempBullet->Initialize();
 		queueFireBulletOfRambo.push(tempBullet);
 	}
-
 	m_BulletPool.push_back(queueFireBulletOfRambo);
 }
 

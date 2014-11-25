@@ -423,6 +423,9 @@
     <ClInclude Include="EnemyRunShooting.h">
       <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
     </ClInclude>
+    <ClInclude Include="EIDSkillBullet.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />

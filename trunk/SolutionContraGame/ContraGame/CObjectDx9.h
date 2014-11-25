@@ -65,7 +65,6 @@ public:
 	virtual void UpdateAnimation() = 0;
 
 	virtual void UpdateCollision(Object* checkingObject) = 0;
-
 	virtual void Update() = 0;
 	virtual void Render(SPRITEHANDLE spriteHandle) = 0;
 	virtual void Release() = 0;

@@ -29,6 +29,7 @@ public:
 	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object*);
+	void UpdateMovement();
 	void Render(SPRITEHANDLE);
 	~QuadTree();
 };

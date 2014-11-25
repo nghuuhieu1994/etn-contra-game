@@ -17,7 +17,8 @@ class Rambo : public DynamicObject
 private:
 	bool isFall;
 	bool isJump;
-	eIDTypeBullet m_TypeBullet;
+	//eIDTypeBullet m_TypeBullet;
+	eIDSkillBullet m_SkillBullet;
 	bool isLieDown;
 	float m_maxPositionY;
 	float m_timeClimb;
@@ -63,7 +64,7 @@ public:
 	void HandleInput();
 	void Initialize();
 	void Release();
-	void setTypeBullet(eIDTypeBullet _type){ m_TypeBullet = _type; }
+	//void setTypeBullet(eIDTypeBullet _type){ m_TypeBullet = _type; }
 	void Render(SPRITEHANDLE spriteHandle);
 	void setRectangleCheckingObjectBelow();
 	void Update();

@@ -175,6 +175,11 @@ void QuadTree::UpdateCollision(Object* checkingObject)
 	}
 }
 
+void QuadTree::UpdateMovement()
+{
+	// dkm, ke thua tu thang Object thi sao co ham UpdateMovement??? Them ID vao hoac la them ham UpdateMovement zo class Object di >:(
+}
+
 void QuadTree::Render(SPRITEHANDLE spriteHandler)
 {
 	for(int i = 0; i < mListObjectInView.size(); ++i)
