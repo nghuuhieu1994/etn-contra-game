@@ -38,6 +38,7 @@ class DemoState : public GameScene
 private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
+	LedObject			m_led;
 	BigGunRotating* m_gunRotate;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}

@@ -552,7 +552,7 @@ int Rambo::HandleInputShootRunState()
 	if (HandleInputShooting())
 	{
 		Shoot();
-		
+		m_timeDelayRunAndShootRun = 0;
 	}
 	if(m_RamboSprite->IsCompleteAnimation())
 	{
@@ -884,6 +884,7 @@ int Rambo::HandleInputSwimShootState()
 	if (HandleInputShooting())
 	{
 		Shoot();
+		m_timeDelayRunAndShootRun = 0;
 	}
 	if(m_RamboSprite->IsCompleteAnimation())
 	{
@@ -991,11 +992,6 @@ int Rambo::HandleInputSwimShootTopRightState()
 void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
-	
-	
-	
-	
-	
 }
 
 void Rambo::SetFallFlag()

@@ -115,6 +115,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBody.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\trick.png", eSpriteID::SPRITE_TRICK, 1, 1, 1);
+	
 }
 
 void SpriteManager::Release()
