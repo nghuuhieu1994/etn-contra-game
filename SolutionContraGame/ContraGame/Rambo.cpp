@@ -47,14 +47,15 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-	if(m_Physic->getAccelerate().y < -1.3f)
+	/*if(m_Physic->getVelocity().y < -0.1f)
 	{
-		m_Physic->setAccelerateY(-1.3f);
-	}
+		m_Physic->setVelocityY(-0.1f);
+	}*/
 
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE))
 	{
 		m_Position.y = 450;
+		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
 	}
 
 	switch (m_ObjectState)
@@ -313,15 +314,13 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::M_SKILL_BULLET:
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
-			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 2)
+			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 2 && isAddBullet())
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
 				return true;
 			}
 			return false;
 		}
-
-		return false;
 		break;
 	case eIDSkillBullet::S_SKILL_BULLET:
 
@@ -934,6 +933,7 @@ int Rambo::HandleInputSwimShootUpState()
 			}
 		}
 		Shoot();
+		m_timeDelayRunAndShootRun = 0;
 	}
 	if(m_RamboSprite->IsCompleteAnimation())
 	{
@@ -974,6 +974,7 @@ int Rambo::HandleInputSwimShootTopRightState()
 	if (HandleInputShooting())
 	{
 		Shoot();
+		m_timeDelayRunAndShootRun = 0;
 	}
 	if(m_RamboSprite->IsCompleteAnimation())
 	{
@@ -1234,7 +1235,6 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						{
 							if (m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
 							{
-								
 								this->m_Position.y += this->m_Collision->m_MoveY;
 							}
 							else
@@ -1242,12 +1242,12 @@ void Rambo::UpdateCollision(Object* checkingObject)
 								if (m_ObjectState == eObjectState::STATE_RAMBO_JUMP || m_ObjectState == eObjectState::STATE_RAMBO_FALL)
 								{
 									m_ObjectState = eObjectState::STATE_RAMBO_WATER_BOMB;
-									this->m_Position.y += this->m_Collision->m_MoveY - 1;
+									this->m_Position.y += this->m_Collision->m_MoveY;
 								}
 								else
 								{
 									m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
-									this->m_Position.y += this->m_Collision->m_MoveY - 1;
+									this->m_Position.y += this->m_Collision->m_MoveY;
 								}
 							}
 						}
@@ -1272,10 +1272,12 @@ void Rambo::SetFlag()
 	SetVelocityXZero();
 	SetVelocityYZero();
 }
+
 void Rambo::CleanIgnoreList()
 {
 	m_objectBelowCurrent.clear();
 }
+
 void Rambo::UpdatePreviousIgnoreList()
 {
 	m_objectBelowPrevious.clear();
