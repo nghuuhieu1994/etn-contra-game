@@ -268,6 +268,8 @@ namespace MapEditor
         public static bool IsEraser = false;
         public static bool IsVirtualObject = false;
         //public static bool IsPointer = true;
+        public static bool IsVirtualWater = false;
+        public static bool IsSave = false;
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
         {
