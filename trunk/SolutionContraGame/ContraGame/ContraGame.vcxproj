@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -74,13 +74,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BridgeTile.h" />
     <ClInclude Include="EIDSkillBullet.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="EnemyRunShooting.h" />
-    <ClInclude Include="Explosion.h" />
     <ClInclude Include="GifBulletSinStraight.h" />
     <ClInclude Include="RockFalling.h" />
     <ClInclude Include="RockFlying.h" />
@@ -154,12 +154,12 @@
     <ClInclude Include="VirtualObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BridgeTile.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="EnemyRunShooting.cpp" />
-    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GifBulletSinStraight.cpp" />
     <ClCompile Include="RockFalling.cpp" />
     <ClCompile Include="RockFlying.cpp" />
