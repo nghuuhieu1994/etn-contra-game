@@ -18,7 +18,8 @@ Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 void Bullet::reset()
 {
 	this->m_factor = 0;
-	this->getPhysic()->setVelocityX(2.0f);
+	//this->getPhysic()->setVelocityX(2.0f);
+	this->getPhysic()->setVelocityX(0.0f);
 	this->getPhysic()->setVelocityY(0.0f);
 }
 
@@ -49,6 +50,7 @@ void Bullet::Update()
 	if (m_livingTime > 4000)
 	{
 		m_ObjectState = eObjectState::STATE_DEATH;
+		reset();
 	}
 }
 
