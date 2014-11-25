@@ -206,7 +206,7 @@
           <Object Type="0" Id="25" Index="636" X="1568" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="25" Index="637" X="1632" Y="32" Width="64" Height="64" />
           <Object Type="1" Id="0" Index="714" X="320" Y="232" Width="512" Height="16" />
-          <Object Type="1" Id="1" Index="715" X="288" Y="44" Width="576" Height="8" />
+          <Object Type="1" Id="1" Index="715" X="280" Y="16" Width="560" Height="16" />
         </Objects>
       </Node>
     </Node>
