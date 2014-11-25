@@ -372,14 +372,17 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
-		switch (checkingObject->getID())
+		//switch (checkingObject->getID() == eObjectID::BULLET_RAMBO)
+		//{
+		//case eObjectState::STATE_BEFORE_DEATH:
+		//		
+		//	default:
+		//		break;
+		//}
+		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-			// collision?
-
-			default:
-				break;
+			m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 		}
-
 	}
 }
 

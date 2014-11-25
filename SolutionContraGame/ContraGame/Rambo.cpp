@@ -25,7 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	//m_TypeBullet = eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO;
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::M_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 }
 
 RECT Rambo::getBound()
@@ -303,7 +303,7 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::DEFAULT_SKILL_BULLET:
 			if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
 			{
-				if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 5)
+				if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 6)
 				{
 					m_RamboSprite->IncreaseTimesShake(2);
 					return true;

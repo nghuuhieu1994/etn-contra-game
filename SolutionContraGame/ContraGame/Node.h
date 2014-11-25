@@ -21,12 +21,10 @@ public:
 	Node* mTr;
 	Node* mBl;
 	Node* mBr;
-	//std::list<Object*> mListObject;
 	std::vector<int> mListObject;
 	std::vector<int> mListObjectCollision;
 	int getID() const { return this->mID; };
 	RECT getBound() const { return this->mBound; };
-	//std::list<Object*> getListObject() const { return this->mListObject; };
 	std::vector<int> getListObject() const { return this->mListObject; };
 	std::vector<int> getListObjectCollision() const { return this->mListObjectCollision; };
 
