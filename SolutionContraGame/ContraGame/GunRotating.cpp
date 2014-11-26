@@ -401,6 +401,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 			}
 			checkingObject->setObjectState(eObjectState::STATE_DEATH);
+			checkingObject->setObjectState(eObjectState::STATE_DEATH);
 		}
 	}
 }

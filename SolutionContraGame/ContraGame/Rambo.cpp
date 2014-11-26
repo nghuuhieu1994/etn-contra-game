@@ -23,9 +23,9 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeWaterBomb = 0;
 	m_timeAddBullet = 600;
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
-	//m_TypeBullet = eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO;
+	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::F_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::L_SKILL_BULLET;
 }
 
 RECT Rambo::getBound()
@@ -47,10 +47,7 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-	/*if(m_Physic->getVelocity().y < -0.1f)
-	{
-		m_Physic->setVelocityY(-0.1f);
-	}*/
+	
 
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE))
 	{
@@ -327,9 +324,24 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::S_SKILL_BULLET:
 
 		break;
-	//case eIDSkillBullet::F_SKILL_BULLET:
-
-	//	break;
+	case eIDSkillBullet::L_SKILL_BULLET:
+		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
+		{
+			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO);
+			m_RamboSprite->setShakeTime(0);
+			m_RamboSprite->IncreaseTimesShake(2);
+			return true;
+		}
+		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+		{
+			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 1)
+			{
+				m_RamboSprite->IncreaseTimesShake(2);
+				return true;
+			}
+			return false;
+		}
+		break;
 	default:
 		break;
 	}
@@ -672,6 +684,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 			}
 		}
 		break;
@@ -1422,7 +1438,7 @@ void Rambo::Render(SPRITEHANDLE spriteHandle)
 			ESpriteEffect::None, 
 			0.0f,
 			1.0f,
-			m_Position.z);
+			1.0f);
 		return;
 	}
 	if (m_Direction == eDirection::LEFT)
@@ -1432,7 +1448,7 @@ void Rambo::Render(SPRITEHANDLE spriteHandle)
 			ESpriteEffect::Horizontally,
 			0.0f,
 			1.0f,
-			m_Position.z);
+			1.0f);
 		return;
 	}
 }

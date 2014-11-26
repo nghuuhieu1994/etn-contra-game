@@ -5,6 +5,7 @@
 #include "EIDTypeBullet.h"
 #include "EDirectAttack.h"
 #include "EIDSkillBullet.h"
+#include "CCamera.h"
 
 class Bullet : public DynamicObject
 {

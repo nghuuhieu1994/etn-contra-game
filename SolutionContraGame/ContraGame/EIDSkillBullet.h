@@ -8,6 +8,7 @@ enum eIDSkillBullet
 	R_SKILL_BULLET = 2,
 	S_SKILL_BULLET = 3,
 	F_SKILL_BULLET = 4,
+	L_SKILL_BULLET = 5,
 };
 
 #endif
