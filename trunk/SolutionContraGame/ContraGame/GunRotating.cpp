@@ -352,7 +352,6 @@ void GunRotating::UpdateAnimation()
 	
 		break;
 		case STATE_SHOOTING:
-
 			break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -372,16 +371,10 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
-		//switch (checkingObject->getID() == eObjectID::BULLET_RAMBO)
-		//{
-		//case eObjectState::STATE_BEFORE_DEATH:
-		//		
-		//	default:
-		//		break;
-		//}
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
 			m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+			checkingObject->setObjectState(eObjectState::STATE_DEATH);
 		}
 	}
 }

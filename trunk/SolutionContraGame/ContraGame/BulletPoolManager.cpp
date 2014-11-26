@@ -14,7 +14,18 @@ void BulletPoolManager::Initialize()
 
 void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, D3DXVECTOR2 _velocity, float _factor)
 {
-	this->m_ListBulletInGame.push_back((DefaultBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+	if(typeBullet == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+	{
+		this->m_ListBulletInGame.push_back((DefaultBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+	}
+	else if(typeBullet == eIDTypeBullet::RED_BULLET_OF_RAMBO)
+	{
+		this->m_ListBulletInGame.push_back((RedBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+	}
+	else if(typeBullet == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
+	{
+		this->m_ListBulletInGame.push_back((FireBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+	}
 }
 
 void BulletPoolManager::popBulletFromList()
