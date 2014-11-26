@@ -5,8 +5,9 @@ enum eIDSkillBullet
 {
 	DEFAULT_SKILL_BULLET = 0,
 	M_SKILL_BULLET = 1,
-	S_SKILL_BULLET = 2,
-	F_SKILL_BULLET = 3,
+	R_SKILL_BULLET = 2,
+	S_SKILL_BULLET = 3,
+	F_SKILL_BULLET = 4,
 };
 
 #endif
