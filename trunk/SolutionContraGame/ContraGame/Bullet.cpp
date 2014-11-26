@@ -52,6 +52,11 @@ void Bullet::Update()
 		m_ObjectState = eObjectState::STATE_DEATH;
 		reset();
 	}
+	if (!Intersect(Camera::getInstance()->getBound(), this->getBound()))
+	{
+		m_ObjectState = eObjectState::STATE_DEATH;
+		reset();
+	}
 }
 
 void Bullet::UpdateAnimation()

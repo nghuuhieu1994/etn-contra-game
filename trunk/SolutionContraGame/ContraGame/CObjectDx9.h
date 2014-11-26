@@ -47,7 +47,7 @@ public:
 	CSpriteDx9*		getSprite() const { return m_Sprite; }
 
 	int				getIdentifyNumber(){ return this->m_identifyNumber; }
-
+	
 	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	void			setPositionX(float _X){ m_Position.x = _X;}
 	void			setPositionY(float _Y){ m_Position.y = _Y;}

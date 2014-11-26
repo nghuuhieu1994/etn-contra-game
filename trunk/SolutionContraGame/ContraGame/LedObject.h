@@ -5,6 +5,7 @@
 
 class LedObject : public Object
 {
+private:
 	float timeStar;
 	float delayStar;
 public:

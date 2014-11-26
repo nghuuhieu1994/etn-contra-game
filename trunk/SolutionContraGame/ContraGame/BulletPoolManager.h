@@ -41,6 +41,16 @@ public:
 		}
 		return result;
 	}
+	void KillBullet(eIDTypeBullet _type)
+	{
+		for (auto i = m_ListBulletInGame.begin(); i != m_ListBulletInGame.end(); ++i)
+		{
+			if ((*i)->getTypeBullet() == _type)
+			{
+				(*i)->setObjectState(eObjectState::STATE_DEATH);
+			}
+		}
+	}
 };
 
 #endif
