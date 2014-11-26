@@ -28,7 +28,7 @@
 #include "LedObject.h"
 #include <list>
 #include "QuadTree.h"
-
+#include "Bridge.h"
 //#define HIEU
 
 using namespace std;
@@ -39,7 +39,7 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	LedObject			m_led;
-	BigGunRotating* m_gunRotate;
+	Bridge*			m_tile;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}

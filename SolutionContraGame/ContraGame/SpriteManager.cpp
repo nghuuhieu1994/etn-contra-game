@@ -62,8 +62,10 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 		
 	// start the fucking bridge
 
-
-
+	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\BodyBridge.png", eSpriteID::SPRITE_BRIDGE_BODY, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\HeadBridge.png", eSpriteID::SPRITE_BRIDGE_HEAD, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\TailBridge.png", eSpriteID::SPRITE_BRIDGE_TAIL, 3, 1, 3);
+	
 	// end load the fucking bridge
 
 	// Start load EnemyContent
@@ -76,7 +78,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperHiding\\SniperHiding.png", eSpriteID::SPRITE_SNIPER_HIDING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperHiding\\SniperHidingDead.png", eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION, 4, 1, 4);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperWaterHiding\\SniperWaterHiding.png", eSpriteID::SPRITE_SNIPER_WATER_HIDING, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SnipperWaterHiding\\SnipperWaterHiding.png", eSpriteID::SPRITE_SNIPER_WATER_HIDING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
