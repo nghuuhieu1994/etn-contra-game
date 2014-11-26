@@ -14,8 +14,8 @@ protected:
 	Physic*			m_Physic;
 	eDirectAttack	m_DirectAttack;
 	Collision*		m_Collision;
-	bool isDead;
 public:
+	bool isDead;
 	DynamicObject(void);
 	Physic*			getPhysic() const { return m_Physic; }
 	DynamicObject(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
