@@ -76,7 +76,6 @@ void DemoState::Update()
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_led.Render(_lpDSpriteHandle);	

@@ -84,7 +84,7 @@ void GunRotating::Initialize()
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_ROTATING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
-
+	m_AttackCounter = 8;
 }
 
 void GunRotating::UpdateAnimation()
@@ -373,7 +373,33 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 	{
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-			m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+			Bullet* tempBullet = (Bullet*)(checkingObject);
+			if(tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+			{
+				if(m_AttackCounter > 0)
+				{
+					--m_AttackCounter;
+				}
+			}
+			else if(tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
+			{
+				if(m_AttackCounter >= 2)
+				{
+					m_AttackCounter -= 2;
+				}
+			}
+			else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
+			{
+				if(m_AttackCounter > 0)
+				{
+					m_AttackCounter = 0;
+				}
+			}
+
+			if(m_AttackCounter == 0)
+			{
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+			}
 			checkingObject->setObjectState(eObjectState::STATE_DEATH);
 		}
 	}
