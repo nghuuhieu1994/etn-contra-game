@@ -18,8 +18,8 @@ Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 void Bullet::reset()
 {
 	this->m_factor = 0;
-	//this->getPhysic()->setVelocityX(2.0f);
-	this->getPhysic()->setVelocityX(0.0f);
+	this->getPhysic()->setVelocityX(2.0f);
+	//this->getPhysic()->setVelocityX(0.0f);
 	this->getPhysic()->setVelocityY(0.0f);
 }
 
@@ -76,25 +76,28 @@ void Bullet::UpdateCollision(Object* checkingObject)
 
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
-		switch(collideDirection)
+		if(checkingObject->getTypeObject() != ETypeObject::VIRTUAL_OBJECT && checkingObject->getTypeObject() != ETypeObject::TILE_MAP)
 		{
-		case IDDirection::DIR_TOP:
-			break;
-		case IDDirection::DIR_BOTTOM:
-			break;
-		case IDDirection::DIR_LEFT:
-			break;
-		case IDDirection::DIR_RIGHT:
-			break;
-		default:
-			break;
+			if(this->getID() == eObjectID::BULLET_RAMBO)
+			{
+				if(checkingObject->getID() != eObjectID::RAMBO)
+				{
+					this->m_ObjectState = eObjectState::STATE_DEATH;
+				}
+			}
+			else if(this->getID() == eObjectID::BULLET_ENEMY)
+			{
+				if(checkingObject->getID() == eObjectID::RAMBO)
+				{
+					this->m_ObjectState = eObjectState::STATE_DEATH;
+				}
+			}
 		}
 	}
 }
 
 void Bullet::UpdateMovement()
 {
-	// Implement movement equation
 	this->m_Physic->UpdateMovement(&this->m_Position);
 }
 

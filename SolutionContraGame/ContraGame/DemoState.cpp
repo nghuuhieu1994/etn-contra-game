@@ -18,35 +18,55 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
+	#pragma region Update camera & insert object into quadtree
+
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
-	
+	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
+
+	#pragma endregion
+
+	#pragma region Update rambo
+
+	m_Rambo->UpdateAnimation();
+	m_Rambo->SetFlag();
+	m_Rambo->UpdateMovement();
+	m_Rambo->CleanIgnoreList();
+
+	#pragma endregion
+
+	#pragma region Update Bullet
+
 	BulletPoolManager::getInstance()->Update();
 	BulletPoolManager::getInstance()->UpdateMovement();
 	BulletPoolManager::getInstance()->UpdateAnimation();
 
-	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
+	#pragma endregion
 
-	m_Rambo->UpdateAnimation();
-	m_Rambo->SetFlag();
-	
-	m_Rambo->UpdateMovement();
-	m_Rambo->CleanIgnoreList();
+	#pragma region Update Collision for Rambo & Bullet with Object in quadtrere
 
-	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
-	{
-		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-	}
+	#pragma region UPdate Collision for object in quadtree with Bullet
 
-	m_Rambo->UpdatePreviousIgnoreList();
-	
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_Quadtree->UpdateCollision(*i);
 	}
+
+	#pragma endregion
+
+	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	{
+		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		//BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+	}
+
+	#pragma endregion
+
+	m_Rambo->UpdatePreviousIgnoreList();
 	
+
+
 	m_Quadtree->UpdateAnimation();
 	m_Quadtree->Update();
-	
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)

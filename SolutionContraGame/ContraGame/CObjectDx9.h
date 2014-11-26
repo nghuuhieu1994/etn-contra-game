@@ -60,6 +60,8 @@ public:
 	ETypeObject		getTypeObject() const { return m_TypeObject; }
 
 	eObjectState	getObjectState() const {return m_ObjectState;}
+	void			setObjectState(eObjectState _state) { this->m_ObjectState = _state;};
+
 	virtual RECT getBound();
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
