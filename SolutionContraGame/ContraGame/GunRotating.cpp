@@ -17,6 +17,7 @@ void GunRotating::Shoot()
 	switch (m_DirectAttack)
 	{
 	case ZERO_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
 		break;
 	case ONE_CLOCK_DIRECTION:
 		break;
@@ -352,6 +353,7 @@ void GunRotating::UpdateAnimation()
 	
 		break;
 		case STATE_SHOOTING:
+			
 			break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -414,9 +416,16 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-
+		//m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		//if(m_TimeChangeState > 3000)
+		//{
+		//	m_ObjectState = STATE_SHOOTING;
+		//	m_TimeChangeState = 0;
+		//}
 		break;
 	case STATE_SHOOTING:
+		Shoot();
+		m_ObjectState == eObjectState::STATE_ALIVE_IDLE;
 		// some fucking code to shoot bullet, then change to state-alive-idle
 		break;
 	case STATE_BEFORE_DEATH:
