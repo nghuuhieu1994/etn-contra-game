@@ -1,6 +1,6 @@
 #include "SpriteManager.h"
 
-#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\tile_map.png", eSpriteID::SPRITE_MAP_1, 44, 1, 44)
+#define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\tile_map.png", eSpriteID::SPRITE_MAP_1, 42, 1, 42)
 
 SpriteManager* SpriteManager::s_Instance = 0;
 
@@ -121,7 +121,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBody.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\trick.png", eSpriteID::SPRITE_EFFECT_MAP1_0, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.effect", eSpriteID::SPRITE_EFFECT_MAP1, 1, 2, 2);
 	
 }
 
