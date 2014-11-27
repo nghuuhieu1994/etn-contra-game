@@ -19,6 +19,8 @@ void Bridge::Initialize()
 	m_BodyTile[0]->Initialize();
 	m_BodyTile[1] = new BridgeTile(D3DXVECTOR3(m_Position.x + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
 	m_BodyTile[1]->Initialize();
+	m_HeadBreak = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_HEAD_BREAK);
+	m_TailBreak = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_TAIL_BREAK);
 }
 
 void Bridge::UpdateAnimation()
@@ -45,7 +47,7 @@ void Bridge:: UpdateMovement()
 void Bridge::Update()
 {
 	_distanceX = m_Position.x - CGlobal::Rambo_X;
-	if (_distanceX == 200)
+	if (_distanceX <= 200)
 	{
 		isDead = true;
 	}
@@ -85,19 +87,12 @@ void Bridge::Update()
 
 void Bridge::Render(SPRITEHANDLE spriteHandle)
 {
-	if (m_Sprite)
-	{
-		m_Sprite->Render(spriteHandle, 
-			getPositionVec2(), 
-			m_Sprite->getSpriteEffect(), 
-			m_Sprite->getRotate(), 
-			m_Sprite->getScale(), 
-			m_Position.z);
-	}
-	m_HeadTile->Render(spriteHandle);
-	m_BodyTile[0]->Render(spriteHandle);
-	m_BodyTile[1]->Render(spriteHandle);
+	m_HeadBreak->Render(spriteHandle, m_HeadTile->getPositionVec2(), ESpriteEffect::None, 0.0f, 1.0f, 1);
+	m_TailBreak->Render(spriteHandle, m_TailTile->getPositionVec2() , ESpriteEffect::None, 0.0f, 1.0f, 1);
 	m_TailTile->Render(spriteHandle);
+	m_BodyTile[1]->Render(spriteHandle);
+	m_BodyTile[0]->Render(spriteHandle);
+	m_HeadTile->Render(spriteHandle);
 }
 
 void Bridge::Release()

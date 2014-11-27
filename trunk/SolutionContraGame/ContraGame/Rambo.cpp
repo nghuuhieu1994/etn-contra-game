@@ -605,6 +605,9 @@ int Rambo::HandleInputShootRunState()
 
 void Rambo::Shoot()
 {
+	SoundBuffer* sound
+		= SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+	sound->Play();
 	switch (m_DirectAttack)
 	{
 	case AD_TOP:
