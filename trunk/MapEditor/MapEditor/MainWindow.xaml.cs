@@ -360,6 +360,7 @@ namespace MapEditor
                         {
                             OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                             VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            
                             OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)ObjectID.VIRTUAL_OBJECT_WATER, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
 
                             if (Support.listObject == null)
@@ -384,7 +385,7 @@ namespace MapEditor
             if (this.tbX != null && this.tbY != null)
             {
                 this.tbX.Text = m.GetPosition(WorkspaceWorking).X.ToString();
-                this.tbY.Text = m.GetPosition(WorkspaceWorking).Y.ToString();
+                this.tbY.Text = (Support.HEIGHT_MAP - m.GetPosition(WorkspaceWorking).Y).ToString();
             }
 
             if (Support.IsEraser == false)
