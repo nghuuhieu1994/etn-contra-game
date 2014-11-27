@@ -9,7 +9,7 @@ class BulletPoolManager
 {
 private:
 	//std::list<Bullet* > m_ListBulletInGame;
-
+	//LazerBullet* m_lazerShoot;
 	BulletPoolManager();
 	~BulletPoolManager();
 public:
@@ -50,6 +50,7 @@ public:
 				(*i)->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
+		//m_lazerShoot->setObjectState(eObjectState::STATE_DEATH);
 	}
 };
 
