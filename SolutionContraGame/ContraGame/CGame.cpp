@@ -183,7 +183,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 
 	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
-	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::INTRO));
+	SceneManagerDx9::getInstance()->AddElement(new MenuGame(eIDSceneGame::INTRO));
 	return true;
 }
 
@@ -238,7 +238,7 @@ void CGame::Run()
 				
 					m_lpSpriteDirect3DHandle->GetTransform(&oldMatrix);
 					m_lpSpriteDirect3DHandle->SetTransform(&Camera::getInstance()->GetMatrixTranslate());
-					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND);
+					m_lpSpriteDirect3DHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_DEPTH_BACKTOFRONT);
 
 					SceneManagerDx9::getInstance()->Render(m_lpSpriteDirect3DHandle);
 					

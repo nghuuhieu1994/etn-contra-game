@@ -5,13 +5,13 @@ void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG);
 	m_Icon = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON);
 
-	m_MenuPosition.x = (float)(SCREEN_WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300);
+	m_MenuPosition.x = (float)(SCREEN_WIDTH/2 + m_MenuBG->getMyTexture()->m_Width / 2);
 
 	//m_MenuPosition.x = 0;
 	m_MenuPosition.y = SCREEN_HEIGHT / 2;
 	m_MenuPosition.z = 0;
-	m_IconPosition.x = (float)(80 + SCREEN_WIDTH + m_MenuBG->getMyTexture()->m_Width / 2 - 300);
-	m_IconPosition.y = 215;
+	m_IconPosition.x = (float)(SCREEN_WIDTH/2 + m_MenuBG->getMyTexture()->m_Width / 2 + 88);
+	m_IconPosition.y = 140;
 	m_IconPosition.z = 1;
 
 	m_IsDone = false;
@@ -23,14 +23,14 @@ void MenuGame::HandleInput()
 	{
 		if(CInputDx9::getInstance()->IsKeyPress(DIK_DOWN))
 		{
-			if(m_IconPosition.y == 215)
+			if(m_IconPosition.y == 140)
 				m_IconPosition.y -= 32;
 			else
 				m_IconPosition.y += 32;
 		}
 		if(CInputDx9::getInstance()->IsKeyPress(DIK_UP))
 		{
-			if(m_IconPosition.y == 215)
+			if(m_IconPosition.y == 140)
 				m_IconPosition.y -= 32;
 			else
 				m_IconPosition.y += 32;
@@ -38,7 +38,7 @@ void MenuGame::HandleInput()
 
 		if(CInputDx9::getInstance()->IsKeyPress(DIK_SPACE))
 		{
-			if(m_IconPosition.y == 215)
+			if(m_IconPosition.y == 140)
 			{
 				SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::INTRO));
 			}
