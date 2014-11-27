@@ -10,7 +10,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Quadtree->BuildQuadtree("resources\\Map\\1\\map.xml", m_Quadtree->mRootNode);
 	BulletPoolManager::getInstance()->Initialize();
 
-	m_tile = new Bridge(D3DXVECTOR3(600, 100, 1), eDirection::LEFT, eObjectID::BRIDGE);
+	m_tile = new Bridge(D3DXVECTOR3(1664, 224, 1), eDirection::LEFT, eObjectID::BRIDGE);
 	m_tile->Initialize();
 }
 
@@ -77,10 +77,10 @@ void DemoState::Update()
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_Quadtree->Render(_lpDSpriteHandle);
-	m_Rambo->Render(_lpDSpriteHandle);
 	m_led.Render(_lpDSpriteHandle);	
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	m_tile->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
