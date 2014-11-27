@@ -11,11 +11,13 @@ GifL::GifL(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 	
 	m_startPosition = _position;
+	m_Position.z = 0.4f;
 	
 }
 
 void GifL::Initialize()
 {
+	m_Position.z = 0.4f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_L));
 }
 

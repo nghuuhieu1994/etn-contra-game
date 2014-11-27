@@ -10,11 +10,13 @@ GifBulletSinStraight::GifBulletSinStraight(D3DXVECTOR3 _position, eDirection _di
 {
 	
 	m_startPosition = _position;
+	m_Position.z = 0.4f;
 	
 }
 
 void GifBulletSinStraight::Initialize()
 {
+	m_Position.z = 0.4f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_BULLET_MOVING));
 }
 

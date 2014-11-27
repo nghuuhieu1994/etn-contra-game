@@ -5,7 +5,9 @@ SnipperWaterHiding::SnipperWaterHiding()
 
 SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
-{}
+{
+	m_Position.z = 0.4f;
+}
 
 void SnipperWaterHiding::Shoot()
 {
@@ -23,6 +25,7 @@ void SnipperWaterHiding::Initialize()
 	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_WATER_HIDING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	isShoot = false;
+	m_Position.z = 0.4f;
 }
 
 void SnipperWaterHiding::UpdateAnimation()

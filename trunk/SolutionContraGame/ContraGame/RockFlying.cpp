@@ -17,6 +17,7 @@ void RockFlying::Initialize()
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ROCK_FLYING));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
+	m_Position.z = 0.4f;
 	//this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	//this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 }

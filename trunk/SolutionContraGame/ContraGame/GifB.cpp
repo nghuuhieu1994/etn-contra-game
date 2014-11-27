@@ -11,12 +11,14 @@ GifB::GifB(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 	
 	m_startPosition = _position;
+	m_Position.z = 0.4f;
 	
 }
 
 void GifB::Initialize()
 {
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_F));
+	m_Position.z = 0.4f;
 }
 
 void GifB::UpdateAnimation()

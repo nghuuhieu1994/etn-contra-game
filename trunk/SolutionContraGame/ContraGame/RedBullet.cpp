@@ -8,14 +8,14 @@ RedBullet::RedBullet()
 
 RedBullet::RedBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : Bullet(_position, _direction, _objectID)
 {
-
+	m_Position.z = 0.4f;
 }
 
 void RedBullet::Initialize()
 {
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BULLET_BIG));
 	this->m_Sprite->setScale(0.7f);
-	this->m_Position.z = 1.0f;
+	this->m_Position.z = 0.4f;
 	this->m_Physic->setVelocityX(2.0f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
 	this->m_TypeBullet = eIDTypeBullet::RED_BULLET_OF_RAMBO;
