@@ -7,6 +7,7 @@ SniperStanding::SniperStanding()
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void SniperStanding::Shoot()
@@ -61,6 +62,7 @@ void SniperStanding::Initialize()
 	m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 	m_Sprite = sprite_mid;
+	m_Position.z = 0.4f;
 }
 
 void SniperStanding::UpdateAnimation()

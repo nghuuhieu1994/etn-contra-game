@@ -5,6 +5,7 @@
 
 EnemyRunShooting::EnemyRunShooting()
 {
+	m_Position.z = 0.4f;
 }
 
 EnemyRunShooting::EnemyRunShooting(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
@@ -25,6 +26,7 @@ void EnemyRunShooting::Initialize()
 	m_TimeChangeState = 0;
 	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
+	m_Position.z = 0.4f;
 }
 
 void EnemyRunShooting::Shoot()

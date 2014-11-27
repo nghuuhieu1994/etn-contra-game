@@ -10,7 +10,7 @@ BossCenter::BossCenter()
 BossCenter::BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-
+	m_Position.z = 0.4f;
 }
 
 void BossCenter::Initialize()
@@ -20,6 +20,7 @@ void BossCenter::Initialize()
 	sprite_alive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER);
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
+	m_Position.z = 0.4f;
 }
 
 void BossCenter::UpdateAnimation()

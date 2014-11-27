@@ -8,10 +8,12 @@ GifBulletStatic::GifBulletStatic()
 GifBulletStatic::GifBulletStatic(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void GifBulletStatic::Initialize()
 {
+	m_Position.z = 0.4f;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_BULLET_STATIC));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));

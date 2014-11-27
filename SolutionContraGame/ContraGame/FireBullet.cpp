@@ -8,7 +8,7 @@ FireBullet::FireBullet()
 
 FireBullet::FireBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : Bullet(_position, _direction, _objectID)
 {
-
+	m_Position.z = 0.4f;
 }
 
 void FireBullet::reset()
@@ -18,13 +18,14 @@ void FireBullet::reset()
 	this->m_VelocityOfOrigin = D3DXVECTOR2(0.0f, 0.0f);
 	this->m_Angle = 0.0f;
 	this->m_PositionOfOrigin = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+
 }
 
 void FireBullet::Initialize()
 {
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_FIRE_BULLET_RAMBO));
 	this->m_Sprite->setScale(0.5f);
-	this->m_Position.z = 1.0f;
+	m_Position.z = 0.4f;
 	this->m_Physic->setVelocityX(2.0f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
 	this->m_TypeBullet = eIDTypeBullet::FIRE_BULLET_OF_RAMBO;

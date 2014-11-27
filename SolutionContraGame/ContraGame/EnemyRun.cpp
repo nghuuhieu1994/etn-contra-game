@@ -9,6 +9,7 @@ EnemyRun::EnemyRun()
 EnemyRun::EnemyRun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void EnemyRun::Initialize()
@@ -21,6 +22,7 @@ void EnemyRun::Initialize()
 	m_TimeChangeState = 0;
 	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
+	m_Position.z = 0.4f;
 }
 
 void EnemyRun::UpdateAnimation()

@@ -5,7 +5,9 @@ SniperHiding::SniperHiding()
 
 SniperHiding::SniperHiding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
-{}
+{
+	m_Position.z = 0.4f;
+}
 
 void SniperHiding::Shoot()
 {
@@ -41,6 +43,7 @@ void SniperHiding::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION));
 	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
+	m_Position.z = 0.4f;
 }
 
 void SniperHiding::UpdateAnimation()
@@ -184,7 +187,6 @@ void SniperHiding::Release()
 {
 	m_Sprite = 0;
 	sprite_alive_hiding->Release();
-	//sprite_alive_shooting->Release();
 	sprite_dead->Release();
 }
 

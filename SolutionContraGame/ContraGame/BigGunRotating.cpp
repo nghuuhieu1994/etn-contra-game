@@ -8,6 +8,7 @@ BigGunRotating::BigGunRotating()
 BigGunRotating::BigGunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void BigGunRotating::Initialize()
@@ -18,6 +19,7 @@ void BigGunRotating::Initialize()
 	m_Sprite = sprite_alive;
 	isShoot = false;
 	lastDirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+	m_Position.z = 0.4f;
 }
 
 void BigGunRotating::Shoot()

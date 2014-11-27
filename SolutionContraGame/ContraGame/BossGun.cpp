@@ -10,6 +10,7 @@ BossGun::BossGun()
 BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void BossGun::Initialize()
@@ -19,7 +20,7 @@ void BossGun::Initialize()
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
-
+	m_Position.z = 0.4f;
 	isShoot = false;
 }
 

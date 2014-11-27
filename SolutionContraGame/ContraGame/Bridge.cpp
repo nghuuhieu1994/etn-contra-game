@@ -7,6 +7,7 @@ Bridge::Bridge()
 Bridge::Bridge(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_Position.z = 0.4f;
 }
 
 void Bridge::Initialize()
@@ -21,6 +22,7 @@ void Bridge::Initialize()
 	m_BodyTile[1]->Initialize();
 	m_HeadBreak = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_HEAD_BREAK);
 	m_TailBreak = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_TAIL_BREAK);
+	m_Position.z = 0.4f;
 }
 
 void Bridge::UpdateAnimation()
