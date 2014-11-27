@@ -190,6 +190,9 @@
     <ClCompile Include="BridgeTile.cpp">
       <Filter>GameObject\Bridge</Filter>
     </ClCompile>
+    <ClCompile Include="LazeBullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -426,6 +429,10 @@
     <ClInclude Include="BridgeTile.h">
       <Filter>GameObject\Bridge</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="LazeBullet.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -584,5 +591,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ContraGame.rc" />
   </ItemGroup>
 </Project>

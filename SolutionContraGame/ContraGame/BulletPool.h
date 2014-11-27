@@ -5,12 +5,14 @@
 #include "DefaultBullet.h"
 #include "RedBullet.h"
 #include "FireBullet.h"
+#include "LazeBullet.h"
 #include <vector>
 #include <queue>
 
 #define QUALITY_OF_DEFAULT_BULLET_RAMBO 100
 #define QUALITY_OF_RED_BULLET_RAMBO 100
 #define QUALITY_OF_FIRE_BULLET_RAMBO 100
+#define QUALITY_OF_LAZE_BULLET_RAMBO 100
 
 class BulletPool
 {

@@ -66,7 +66,7 @@ void Bullet::UpdateAnimation()
 	{
 	case eObjectState::STATE_ALIVE_MOVE:
 		this->m_Sprite->getAnimation()->setIndexStart(0);
-		this->m_Sprite->getAnimation()->setIndexEnd(0);
+		this->m_Sprite->getAnimation()->setIndexEnd(3);
 		break;
 	case eObjectState::STATE_DEATH:
 		break;
