@@ -11,9 +11,9 @@ Bridge::Bridge(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 
 void Bridge::Initialize()
 {
-	m_HeadTile = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2 - 62, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_HEAD);
+	m_HeadTile = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2 - 64, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_HEAD);
 	m_HeadTile->Initialize();
-	m_TailTile = new BridgeTile(D3DXVECTOR3(m_Position.x + 62 + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_TAIL);
+	m_TailTile = new BridgeTile(D3DXVECTOR3(m_Position.x + 64 + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_TAIL);
 	m_TailTile->Initialize();
 	m_BodyTile[0] = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
 	m_BodyTile[0]->Initialize();

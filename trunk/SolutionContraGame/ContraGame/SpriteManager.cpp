@@ -55,7 +55,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Landscape\\ledframe.png", eSpriteID::SPRITE_LED_OBJECT, 2, 1, 2);
 	INCLUDE_MAP1;
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\MenuBG.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\bg.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::SPRITE_GRID, 1, 1, 1);
