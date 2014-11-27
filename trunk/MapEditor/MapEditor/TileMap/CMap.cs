@@ -76,9 +76,9 @@ namespace TileMap
         {
             this.m_BitMap = _BitMap;
             this.m_TileMap = new List<CTile>();
-            this.m_ArrMap = new int[(int)(this.m_BitMap.Height + 0.9)/ Support.HEIGHT_OF_TILE, (int)(this.m_BitMap.Width + 0.9)/ Support.WIDTH_OF_TILE];
-            this.m_ArrColor = new byte[((int)(this.m_BitMap.Width + 0.9) * this.m_BitMap.Format.BitsPerPixel / 8) * (int)(this.m_BitMap.Height + 0.9)];
-            this.m_BitMap.CopyPixels(m_ArrColor, ((int)(this.m_BitMap.Width + 0.9) * this.m_BitMap.Format.BitsPerPixel) / 8, 0);
+            this.m_ArrMap = new int[(int)(this.m_BitMap.PixelHeight)/ Support.HEIGHT_OF_TILE, (int)(this.m_BitMap.PixelWidth)/ Support.WIDTH_OF_TILE];
+            this.m_ArrColor = new byte[((int)(this.m_BitMap.PixelWidth) * this.m_BitMap.Format.BitsPerPixel / 8) * (int)(this.m_BitMap.PixelHeight)];
+            this.m_BitMap.CopyPixels(m_ArrColor, ((int)(this.m_BitMap.PixelWidth) * this.m_BitMap.Format.BitsPerPixel) / 8, 0);
             this.m_WidthTileMap = Support.WIDTH_OF_TILE;
             this.m_HeightTileMap = Support.HEIGHT_OF_TILE;
             this.m_ListLedPosition = new List<Point>();
@@ -88,9 +88,9 @@ namespace TileMap
         {
             CTile _Tile = null;
 
-            for (int i = 0; i < (int)(this.m_BitMap.Height + 0.9)/ Support.HEIGHT_OF_TILE; ++i)
+            for (int i = 0; i < (int)(this.m_BitMap.PixelHeight)/ Support.HEIGHT_OF_TILE; ++i)
             {
-                for (int j = 0; j < (int)(this.m_BitMap.Width + 0.9) / Support.WIDTH_OF_TILE; ++j)
+                for (int j = 0; j < (int)(this.m_BitMap.PixelWidth) / Support.WIDTH_OF_TILE; ++j)
                 {
                     _Tile = new CTile(GetTile(j, i), CTile.CountID);
 
@@ -134,7 +134,7 @@ namespace TileMap
             {
                 for (int j = _OffSetX * Support.WIDTH_OF_TILE; j < _OffSetX * Support.WIDTH_OF_TILE + Support.WIDTH_OF_TILE; ++j)
                 {
-                    _TempTile[_IndexI, _IndexJ] = Support.GetPixel(j, i, this.m_ArrColor, (int)(this.m_BitMap.Width + 0.9)* this.m_BitMap.Format.BitsPerPixel / 8);
+                    _TempTile[_IndexI, _IndexJ] = Support.GetPixel(j, i, this.m_ArrColor, (int)(this.m_BitMap.PixelWidth)* this.m_BitMap.Format.BitsPerPixel / 8);
 
                     //if (_TempTile[_IndexI, _IndexJ].A == 255 && _TempTile[_IndexI, _IndexJ].R == 60 && _TempTile[_IndexI, _IndexJ].G == 188 && _TempTile[_IndexI, _IndexJ].B == 253 && _OffSetY < 2)
                     //{
