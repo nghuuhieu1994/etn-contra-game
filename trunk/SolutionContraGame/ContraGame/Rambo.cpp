@@ -25,7 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::L_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 }
 
 RECT Rambo::getBound()
@@ -303,6 +303,8 @@ bool Rambo::HandleInputShooting()
 				if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 6)
 				{
 					m_RamboSprite->IncreaseTimesShake(2);
+					SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+					sound->Play();
 					return true;
 				}
 				return false;
@@ -316,6 +318,8 @@ bool Rambo::HandleInputShooting()
 			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 2 && isAddBullet())
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
+				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+				sound->Play();
 				return true;
 			}
 			return false;
@@ -330,6 +334,8 @@ bool Rambo::HandleInputShooting()
 			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO);
 			m_RamboSprite->setShakeTime(0);
 			m_RamboSprite->IncreaseTimesShake(2);
+			SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+			sound->Play();
 			return true;
 		}
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
@@ -337,6 +343,8 @@ bool Rambo::HandleInputShooting()
 			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 1)
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
+				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+				sound->Play();
 				return true;
 			}
 			return false;
@@ -605,9 +613,6 @@ int Rambo::HandleInputShootRunState()
 
 void Rambo::Shoot()
 {
-	SoundBuffer* sound
-		= SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
-	sound->Play();
 	switch (m_DirectAttack)
 	{
 	case AD_TOP:
