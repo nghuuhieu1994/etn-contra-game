@@ -54,6 +54,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Algorithm\CNode.cs" />
+    <Compile Include="EditPosition.xaml.cs">
+      <DependentUpon>EditPosition.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Framwork\ExportXml.cs" />
     <Compile Include="Framwork\GridLine.cs" />
     <Compile Include="Clone\OBJECT.cs" />
@@ -61,6 +64,10 @@
     <Compile Include="Framwork\Support.cs" />
     <Compile Include="TileMap\CMap.cs" />
     <Compile Include="TileMap\CTile.cs" />
+    <Page Include="EditPosition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

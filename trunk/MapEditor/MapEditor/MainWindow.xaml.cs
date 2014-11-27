@@ -342,6 +342,8 @@ namespace MapEditor
                         {
                             OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                             VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+
+
                             OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
 
                             if (Support.listObject == null)
@@ -360,7 +362,11 @@ namespace MapEditor
                         {
                             OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                             VECTOR2D tempPosition = Support.ConvertCoordination(temp);
-                            
+
+                            EditPosition form = new EditPosition((int)tempPosition.cX, (int)tempPosition.cY);
+                            form.ShowDialog();
+                            tempPosition = new VECTOR2D(EditPosition.finalLocationX, EditPosition.finalLocationY);
+
                             OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)ObjectID.VIRTUAL_OBJECT_WATER, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
 
                             if (Support.listObject == null)
