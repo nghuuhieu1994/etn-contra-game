@@ -108,9 +108,9 @@ namespace MapEditor
                 }
 
 
-                for (int i = 0; i < (int)(Support.map.BitMap.Height + 0.9)/ Support.HEIGHT_OF_TILE; ++i)
+                for (int i = 0; i < (int)(Support.map.BitMap.PixelHeight)/ Support.HEIGHT_OF_TILE; ++i)
                 {
-                    for (int j = 0; j < (int)(Support.map.BitMap.Width + 0.9)/ Support.WIDTH_OF_TILE; ++j)
+                    for (int j = 0; j < (int)(Support.map.BitMap.PixelWidth)/ Support.WIDTH_OF_TILE; ++j)
                     {
                         if (Support.listObject != null)
                         {
@@ -516,8 +516,8 @@ namespace MapEditor
                 if (Support.map == null)
                 {
                     Support.map = new CMap(new BitmapImage(new Uri(openFileDialogSourcePicture.FileName, UriKind.Absolute)));
-                    Support.WIDHT_MAP = (int)(Support.map.BitMap.Width + 0.9);
-                    Support.HEIGHT_MAP = (int)(Support.map.BitMap.Height + 0.9);
+                    Support.WIDHT_MAP = (int)(Support.map.BitMap.PixelWidth);
+                    Support.HEIGHT_MAP = (int)(Support.map.BitMap.PixelHeight);
                     
                     if (Support.GRIDLINE == true)
                     {

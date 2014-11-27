@@ -313,7 +313,7 @@ namespace MapEditor
         public static VECTOR2D ConvertCoordination(OBJECT _object)
         {
             VECTOR2D temp = new VECTOR2D(_object.Position.cX, _object.Position.cY);
-            temp.cY = Support.HEIGHT_MAP - _object.Position.cY;
+            temp.cY = (int)(Support.HEIGHT_MAP - _object.Position.cY);
             temp.cX = temp.cX + _object.Bound.width / 2;
             temp.cY = temp.cY - _object.Bound.height / 2;
 
