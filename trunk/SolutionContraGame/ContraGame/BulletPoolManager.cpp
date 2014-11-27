@@ -28,8 +28,7 @@ void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 
 	}
 	else if(typeBullet == eIDTypeBullet::LAZER_BULLET_OF_RAMBO)
 	{
-		//m_lazerShoot = (LazerBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor);
-		//this->m_ListBulletInGame.push_back(m_lazerShoot);
+		this->m_ListBulletInGame.push_back((LazeBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
 	}
 }
 

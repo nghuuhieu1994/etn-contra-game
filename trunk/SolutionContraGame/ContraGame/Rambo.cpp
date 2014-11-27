@@ -25,7 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
 }
 
 RECT Rambo::getBound()
@@ -325,13 +325,11 @@ bool Rambo::HandleInputShooting()
 			return false;
 		}
 		break;
+	//case eIDSkillBullet::L_SKILL_BULLET:
 	case eIDSkillBullet::S_SKILL_BULLET:
-
-		break;
-	case eIDSkillBullet::L_SKILL_BULLET:
 		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
 		{
-			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO);
+			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::LAZER_BULLET_OF_RAMBO);
 			m_RamboSprite->setShakeTime(0);
 			m_RamboSprite->IncreaseTimesShake(2);
 			SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
@@ -340,7 +338,7 @@ bool Rambo::HandleInputShooting()
 		}
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
-			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 1)
+			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::LAZER_BULLET_OF_RAMBO) < 1)
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
 				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
@@ -633,6 +631,10 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
 			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+			}
 		}
 		break;
 	case AD_BOTTOM:
@@ -673,6 +675,10 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);	
+			}
 		}
 		break;
 	case AD_RIGHT:
@@ -692,10 +698,6 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
-			}
-			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
-			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 			}
 		}
 		break;

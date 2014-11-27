@@ -59,7 +59,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::SPRITE_GRID, 1, 1, 1);
-		
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\lazer.png", eSpriteID::SPRITE_LAZE_BULLET_RAMBO, 2, 2, 4);
 	// start the fucking bridge
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\BodyBridge.png", eSpriteID::SPRITE_BRIDGE_BODY, 3, 1, 3);

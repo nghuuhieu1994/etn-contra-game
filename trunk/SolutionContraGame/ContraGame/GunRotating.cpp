@@ -418,12 +418,12 @@ void GunRotating::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		//m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		//if(m_TimeChangeState > 3000)
-		//{
-		//	m_ObjectState = STATE_SHOOTING;
-		//	m_TimeChangeState = 0;
-		//}
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 10000)
+		{
+			m_ObjectState = STATE_SHOOTING;
+			m_TimeChangeState = 0;
+		}
 		break;
 	case STATE_SHOOTING:
 		Shoot();
