@@ -26,6 +26,19 @@ void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound)
 	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::BROKEN, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\e_broken.wav", eSoundID::THU_CUOI_SONG, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\s_Theme_S_1.wav", eSoundID::THEME_SONG_S_1, _lpDSound);
+
+	this->LoadSoundBuffer("resources\\Sound\\bullet_S_sfx.wav", eSoundID::bullet_S_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\bullet_M_sfx.wav", eSoundID::bullet_M_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\bridge_burn_sfx.wav", eSoundID::bridge_burn_sfx, _lpDSound);
+
+	this->LoadSoundBuffer("resources\\Sound\\bullet_default_sfx.wav", eSoundID::bullet_default_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\boss_dead_sfx.wav", eSoundID::boss_dead_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\enemy_attacked_sfx.wav", eSoundID::enemy_attacked_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\rambo_1up_sfx.wav", eSoundID::rambo_1up_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\rambo_dead_sfx.wav", eSoundID::rambo_dead_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\bullet_L_sfx.wav", eSoundID::bullet_L_sfx, _lpDSound);
+
+	
 	// need more and more sound rs
 
 }

@@ -7,10 +7,11 @@ class Bridge : public DynamicObject
 {
 private:
 	int _distanceX;
-
 	BridgeTile*		m_HeadTile;
 	BridgeTile*		m_BodyTile[2];
 	BridgeTile* 	m_TailTile;
+	CSpriteDx9*		m_HeadBreak;
+	CSpriteDx9*		m_TailBreak;
 public:
 	Bridge();
 	Bridge(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

@@ -67,7 +67,12 @@ void BridgeTile::Update()
 		}
 		break;
 	case STATE_DEATH:
-		this->Release();
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_TimeChangeState > 300)
+		{
+			this->Release();
+			m_TimeChangeState = 0;
+		}
 		break;
 	}
 }
@@ -75,12 +80,42 @@ void BridgeTile::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_Sprite)
 	{
-		m_Sprite->Render(spriteHandle, 
-										getPositionVec2(), 
-										m_Sprite->getSpriteEffect(), 
-										m_Sprite->getRotate(), 
-										m_Sprite->getScale(), 
-										m_Position.z);
+		if (m_Sprite != m_DeadSprite)
+		{
+			m_Sprite->Render(spriteHandle,
+				getPositionVec2(),
+				m_Sprite->getSpriteEffect(),
+				m_Sprite->getRotate(),
+				m_Sprite->getScale(),
+				m_Position.z);
+		}
+		else
+		{
+			m_Sprite->Render(spriteHandle,
+				D3DXVECTOR2(m_Position.x - 30, m_Position.y - 10),
+				m_Sprite->getSpriteEffect(),
+				m_Sprite->getRotate(),
+				m_Sprite->getScale(),
+				m_Position.z);
+			m_Sprite->Render(spriteHandle,
+				D3DXVECTOR2(m_Position.x + 30, m_Position.y + 10),
+				m_Sprite->getSpriteEffect(),
+				m_Sprite->getRotate(),
+				m_Sprite->getScale(),
+				m_Position.z);
+			m_Sprite->Render(spriteHandle,
+				D3DXVECTOR2(m_Position.x - 10, m_Position.y - 20),
+				m_Sprite->getSpriteEffect(),
+				m_Sprite->getRotate(),
+				m_Sprite->getScale(),
+				m_Position.z);
+			m_Sprite->Render(spriteHandle,
+				D3DXVECTOR2(m_Position.x - 10, m_Position.y + 20),
+				m_Sprite->getSpriteEffect(),
+				m_Sprite->getRotate(),
+				m_Sprite->getScale(),
+				m_Position.z);
+		}
 	}
 }
 void BridgeTile::Release()

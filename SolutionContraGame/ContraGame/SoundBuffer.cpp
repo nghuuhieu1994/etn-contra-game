@@ -88,13 +88,19 @@ bool SoundBuffer::LoadWaveToBuffer(LPDIRECTSOUND8 _lpDSound, const char* fileNam
 
 void SoundBuffer::Play()
 {
+	m_SoundBuffer->SetCurrentPosition(0);
 	if(!CSoundSwitch::IsMute)
+	{
+
 		m_SoundBuffer->Play(0, 0, 0);
+	}
 }
 void SoundBuffer::Repeat()
 {
 	if(!CSoundSwitch::IsMute)
+	{
 		m_SoundBuffer->Play(0, 0, DSBPLAY_LOOPING);
+	}
 }
 void SoundBuffer::Stop()
 {

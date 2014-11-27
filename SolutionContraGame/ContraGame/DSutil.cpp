@@ -740,13 +740,6 @@ HRESULT CSound::Stop()
     return hr;
 }
 
-
-
-
-
-
-
-
 HRESULT CSound::Reset()
 {
     if( m_apDSBuffer == 0 )
