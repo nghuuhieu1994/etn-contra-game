@@ -3,6 +3,7 @@
 CAnimationDx9::CAnimationDx9()
 {
 	this->m_columnFrame			= 0;
+	this->m_rowFrame			= 0;
 	this->m_heightFrame			= 0;
 	this->m_index_End			= 0;
 	this->m_index_Start			= 0;
@@ -18,6 +19,7 @@ CAnimationDx9::CAnimationDx9(int width, int height, int col, int total)
 	this->m_widthFrame				= width;
 	this->m_heightFrame				= height;
 	this->m_columnFrame				= col;
+	this->m_rowFrame				= (int)total/col;
 	this->m_totalFrame				= total;
 
 	this->m_index_Current			= 0;
@@ -37,6 +39,7 @@ CAnimationDx9::CAnimationDx9(int width, int height, int col, int total)
 CAnimationDx9::CAnimationDx9(const CAnimationDx9& Animation)
 {
 	this->m_columnFrame				= Animation.m_columnFrame;
+	this->m_rowFrame				= Animation.m_rowFrame;
 	this->m_heightFrame				= Animation.m_heightFrame;
 	this->m_index_End				= Animation.m_index_End;
 	this->m_index_Start				= Animation.m_index_Start;

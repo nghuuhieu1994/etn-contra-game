@@ -15,6 +15,8 @@ private:
 
 	int				m_columnFrame;
 
+	int				m_rowFrame;
+
 	int				m_totalFrame;
 
 	int				m_index_Start;
@@ -48,6 +50,9 @@ public:
 	int				getCurrentIndex(){ return this->m_index_Current; }
 	int				getStartIndex() { return this->m_index_Start; }
 	int				getEndIndex() { return this->m_index_End; }
+
+	int				getRowFrame(){ return this->m_rowFrame; }
+	int				getColumnFrame(){ return this->m_columnFrame; }
 
 	RECT*			getSourceRect();
 	void			setSourceRect(RECT _rect);
