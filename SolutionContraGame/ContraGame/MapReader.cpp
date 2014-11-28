@@ -1,7 +1,7 @@
 #include "MapReader.h"
 #include "Tile.h"
 #include "VirtualObject.h"
-#include "LedObject.h"
+#include "BackgroundEffect.h"
 
 void GameObjectXML::Deserialize(const char *childContent)
 {
@@ -97,15 +97,6 @@ void MapReader::ReadMap(const char* _filePath, list<Object*>* _listObject, list<
 				_GameObject->DeserializeVirtualObject(xml.GetSubDoc().c_str());
 				temp = new VirtualObject(D3DXVECTOR3((float)(_GameObject->GetX()), (float)(_GameObject->GetY()), 1), _GameObject->GetWidth(), _GameObject->GetHeight(), (eObjectID)_GameObject->GetID());
 				_listObject->push_back(temp); 
-			}
-			break;
-		case ETypeObject::LED_OBJECT:
-			{
-				Object* temp = 0;
-				_GameObject->DeserializeVirtualObject(xml.GetSubDoc().c_str());
-				temp = new LedObject(D3DXVECTOR3((float)(_GameObject->GetX()), (float)(_GameObject->GetY()), 0.0f), eObjectID::LED_OBJECT_STAR);
-				temp->Initialize();
-				_ledObject->push_back(temp); 
 			}
 			break;
 		case ETypeObject::STATIC_OBJECT:
