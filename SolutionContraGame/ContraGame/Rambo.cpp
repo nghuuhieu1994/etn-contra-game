@@ -1271,14 +1271,24 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 	{
 		isFall = false;
 
-		if (m_ObjectState == STATE_RAMBO_JUMP)
+		if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
 		{
-			if (m_Physic->getVelocity().y < 0 && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
+			if (m_Physic->getVelocity().y < 0)
 			{							
-				m_ObjectState = STATE_RAMBO_IDLE;
-				this->m_Position.y += this->m_Collision->m_MoveY;
-				m_Physic->setVelocityY(0.0f);
-				m_maxPositionY = 0;
+				if (m_ObjectState == STATE_RAMBO_JUMP && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
+				{
+					m_ObjectState = STATE_RAMBO_IDLE; 
+					this->m_Position.y += this->m_Collision->m_MoveY;
+					m_Physic->setVelocityY(0.0f);
+					m_maxPositionY = 0;
+				}
+				if (m_ObjectState == STATE_RAMBO_BEFORE_DEAD && m_maxPositionY - checkingObject->getPositionVec2().y > 60)
+				{
+					m_ObjectState = STATE_RAMBO_DEAD; 
+					this->m_Position.y += this->m_Collision->m_MoveY;
+					m_Physic->setVelocityY(0.0f);
+					m_maxPositionY = 0;
+				}				
 				return 0;
 			}
 		}
@@ -1326,18 +1336,9 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 						}
 						else
 						{
-							if (m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
-							{
-								this->m_ObjectState = eObjectState::STATE_RAMBO_DEAD;
-								this->m_Position.y += this->m_Collision->m_MoveY;
-								return 0;
-							}
-							else
-							{
-								this->m_Position.y += this->m_Collision->m_MoveY;
-								m_Physic->setVelocityY(0.0f);
-								return 0; 
-							}
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							m_Physic->setVelocityY(0.0f);
+							return 0;
 						}
 					}
 				}
@@ -1470,7 +1471,7 @@ void Rambo::UpdateMovement()
 		m_Position.x = 32;
 	}
 
-	if (m_ObjectState == STATE_RAMBO_JUMP)
+	if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
 	{
 		if (m_maxPositionY < m_Position.y)
 		{
