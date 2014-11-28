@@ -8,13 +8,13 @@ LazeBullet::LazeBullet()
 
 LazeBullet::LazeBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : Bullet(_position, _direction, _objectID)
 {
-	this->m_Position.z = 0.4f;
+	//this->m_Position.z = 0.4f;
 }
 
 void LazeBullet::Initialize()
 {
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_LAZE_BULLET_RAMBO));
-	this->m_Position.z = 0.4f;
+	this->m_Position.z = 1.0f;
 	this->getSprite()->setScale(0.5f);
 	this->m_Physic->setVelocityX(2.0f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
