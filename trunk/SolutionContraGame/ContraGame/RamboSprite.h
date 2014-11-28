@@ -16,6 +16,7 @@ class RamboSprite
 	bool	m_isFall;
 
 	CSpriteDx9* m_TopRight;
+	CSpriteDx9* m_Dead;
 	CSpriteDx9* m_BottomRight;
 	CSpriteDx9* m_Up;
 	CSpriteDx9* m_Run;

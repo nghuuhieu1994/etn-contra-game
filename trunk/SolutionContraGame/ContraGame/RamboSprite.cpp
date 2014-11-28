@@ -14,7 +14,7 @@ RamboSprite::RamboSprite(void)
 	m_Shoot			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_BODY));
 	m_Up			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SHOOT_UP_BODY));
 	m_Jump			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_JUMP));
-
+	m_Dead			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_BEFORE_DEAD));
 	m_Swim			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_SWIM));
 	m_Dive			= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_DIVE));
 	m_WaterBomb		= new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAMBO_WATER_BOMB));
@@ -216,6 +216,36 @@ void RamboSprite::UpdateAnimation(eObjectState _objectState)
 					m_Body			= m_WaterBomb;
 					resetInverseVariable();
 				}
+			}
+			break;
+		case STATE_RAMBO_BEFORE_DEAD:
+			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
+					m_frameSize		= D3DXVECTOR2(68, 12);
+					m_Leg			= 0;
+					m_Body			= m_Dead;
+					resetInverseVariable();
+					m_Body->getAnimation()->setCurrentFrame(0);
+				}
+				if (m_Body->getAnimation()->getCurrentIndex() != m_Body->getAnimation()->getEndIndex())
+				{
+					m_Body->UpdateAnimation(250); 
+				}
+			}
+			break;
+		case STATE_RAMBO_DEAD:
+			{
+				if (m_previousState != _objectState)
+				{
+					m_PositionBody	= D3DXVECTOR3(0, 0, 0);
+					m_frameSize		= D3DXVECTOR2(68, 12);
+					m_Leg			= 0;
+					m_Body			= m_Dead;
+					resetInverseVariable();
+				}
+				m_Body->getAnimation()->setSourceRectAtIndex(4);
 			}
 			break;
 		case STATE_RAMBO_DIVE:

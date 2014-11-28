@@ -26,6 +26,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 	m_timeDelayRunAndShootRun = 0;
 	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
+	isSetVelocityDeathState = false;
 }
 
 RECT Rambo::getBound()
@@ -47,12 +48,17 @@ void Rambo::Initialize()
 
 void Rambo::HandleInput()
 {
-	
-
 	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE))
 	{
 		m_Position.y = 450;
+		isSetVelocityDeathState = false;
 		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
+	}
+
+	if (CInputDx9::getInstance()->IsKeyPress(DIK_B))
+	{
+
+		m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 	}
 
 	switch (m_ObjectState)
@@ -139,6 +145,16 @@ void Rambo::HandleInput()
 				HandleInputSwimShootTopRightState();
 			}
 			break;
+		case STATE_RAMBO_DEAD:
+			{
+				
+			}
+			break;
+		case STATE_RAMBO_BEFORE_DEAD:
+			{
+				HandleInputBeforeDieState();
+			}
+			break;
 		default:
 			break;
 	}
@@ -167,6 +183,24 @@ void Rambo::HandleInput()
 			m_Direction = eDirection::LEFT;
 		}
 	}
+}
+
+int Rambo::HandleInputBeforeDieState()
+{
+	if (!isSetVelocityDeathState)
+	{
+		m_Physic->setVelocityY(3.5f);
+		if (m_Direction == eDirection::RIGHT)
+		{
+			m_Physic->setVelocityX(-0.5f);
+		}
+		if (m_Direction == eDirection::LEFT)
+		{
+			m_Physic->setVelocityX(0.5f);
+		}
+		isSetVelocityDeathState = true;
+	}
+	return 0;
 }
 
 int Rambo::HandleInputSwimState()
@@ -1143,6 +1177,7 @@ void Rambo::SetFallFlag()
 	case STATE_RAMBO_FALL:
 		isFall = true;
 		break;
+	case STATE_RAMBO_BEFORE_DEAD:
 	case STATE_RAMBO_WATER_BOMB:
 	case STATE_RAMBO_JUMP:
 	case STATE_RAMBO_DIVE:
@@ -1172,6 +1207,7 @@ void Rambo::SetVelocityXZero()
 	case STATE_RAMBO_SWIM:
 	case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
 	case STATE_RAMBO_SWIM_SHOOT:
+	
 		return;
 	case STATE_RAMBO_IDLE:
 	case STATE_RAMBO_SWIM_SHOOT_UP:
@@ -1181,6 +1217,7 @@ void Rambo::SetVelocityXZero()
 	case STATE_RAMBO_WATER_BOMB:
 	case STATE_RAMBO_AIM_UP:
 	case STATE_RAMBO_LIE:
+	case STATE_RAMBO_DEAD:
 		m_Physic->setVelocityX(0.0f);
 		return;
 	default:
@@ -1211,6 +1248,7 @@ void Rambo::SetVelocityYZero()
 	case STATE_RAMBO_WATER_BOMB:
 	case STATE_RAMBO_SWIM_SHOOT_UP:
 	case STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT:
+	case STATE_RAMBO_DEAD:
 		m_Physic->setVelocityY(0.0f);
 		return;
 	default:
@@ -1288,9 +1326,18 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 						}
 						else
 						{
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							return 0;
+							if (m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
+							{
+								this->m_ObjectState = eObjectState::STATE_RAMBO_DEAD;
+								this->m_Position.y += this->m_Collision->m_MoveY;
+								return 0;
+							}
+							else
+							{
+								this->m_Position.y += this->m_Collision->m_MoveY;
+								m_Physic->setVelocityY(0.0f);
+								return 0; 
+							}
 						}
 					}
 				}
