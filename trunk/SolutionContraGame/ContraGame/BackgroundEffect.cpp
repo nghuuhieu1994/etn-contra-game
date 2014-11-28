@@ -30,8 +30,8 @@ void BackgroundEffect::Render(SPRITEHANDLE _spriteHandler)
 {	
 
 	RECT sourceRect;
-	sourceRect.top = m_Sprite->getAnimation()->getFrameSize().y - Camera::getInstance()->getBound().top + m_Sprite->getAnimation()->getCurrentIndex() * m_Sprite->getAnimation()->getFrameSize().y;
-	sourceRect.bottom = m_Sprite->getAnimation()->getFrameSize().y - Camera::getInstance()->getBound().bottom + m_Sprite->getAnimation()->getCurrentIndex() * m_Sprite->getAnimation()->getFrameSize().y;
+	sourceRect.top = m_Sprite->getAnimation()->getFrameSize().y - Camera::getInstance()->getBound().top + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getRowFrame() * m_Sprite->getAnimation()->getFrameSize().y;
+	sourceRect.bottom = m_Sprite->getAnimation()->getFrameSize().y - Camera::getInstance()->getBound().bottom + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getRowFrame() * m_Sprite->getAnimation()->getFrameSize().y;
 	sourceRect.right = Camera::getInstance()->getBound().right + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getColumnFrame() * m_Sprite->getAnimation()->getFrameSize().x;
 	sourceRect.left = Camera::getInstance()->getBound().left + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getColumnFrame() * m_Sprite->getAnimation()->getFrameSize().x;
 
