@@ -39,7 +39,12 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 	}
 	else
 		m_matrixTranslate._41 = 0;
-
+	/*if (cameramanLocation->y > SCREEN_HEIGHT/2)
+	{
+		m_matrixTranslate._42 = (float)(SCREEN_HEIGHT + (int)((cameramanLocation->y - SCREEN_HEIGHT/2)));
+	}
+	else
+		m_matrixTranslate._42 = SCREEN_HEIGHT;*/
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()

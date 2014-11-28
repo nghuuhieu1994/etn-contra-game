@@ -1,17 +1,21 @@
 #include "DemoState.h"
 
-
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_Rambo = new Rambo(D3DXVECTOR3(200, 600, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	
 	m_Quadtree = new QuadTree();
-	m_Quadtree->BuildQuadtree("resources\\Map\\1\\map.xml", m_Quadtree->mRootNode);
+
+	string mapPath = "resources\\Map\\" + to_string(1) +"\\"+ to_string(1) +".xml";
+	m_led.Initialize(1);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(1));
+
 	BulletPoolManager::getInstance()->Initialize();
 
 	m_tile = new Bridge(D3DXVECTOR3(1664, 224, 1), eDirection::LEFT, eObjectID::BRIDGE);
 	m_tile->Initialize();
+	
 }
 
 void DemoState::HandleInput()
@@ -69,6 +73,7 @@ void DemoState::Update()
 	m_Quadtree->UpdateAnimation();
 	m_Quadtree->Update();
 	
+	m_led.UpdateAnimation();
 	m_tile->UpdateAnimation();
 	m_tile->Update();
 

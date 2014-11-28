@@ -36,7 +36,7 @@ void MenuGame::HandleInput()
 				m_IconPosition.y += 32;
 		}
 
-		if(CInputDx9::getInstance()->IsKeyPress(DIK_SPACE))
+		if(CInputDx9::getInstance()->IsKeyPress(DIK_RETURN))
 		{
 			if(m_IconPosition.y == 140)
 			{

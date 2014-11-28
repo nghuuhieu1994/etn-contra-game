@@ -57,7 +57,7 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 	}
 }
 
-void QuadTree::BuildQuadtree(const char* content, Node*& node)
+void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_map)
 {
 	if(this->mIsFirstLoadXml == true)
 	{
@@ -78,13 +78,13 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 		xml.IntoElem();
 		if(xml.FindElem("Node"))
 		{
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTl);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTl, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTr);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTr, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBl);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBl, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBr);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBr, _tile_map);
 		}
 	}
 	else
@@ -98,17 +98,17 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 		bound.bottom = bound.top - atoi(xml.GetAttrib("Height").c_str());
 		bound.right = bound.left + atoi(xml.GetAttrib("Width").c_str());
 		node = new Node(atoi(xml.GetAttrib("Id").c_str()), bound);
-
+		
 		xml.IntoElem();
 		if(xml.FindElem("Node"))
 		{
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTl);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTl, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTr);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mTr, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBl);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBl, _tile_map);
 			xml.FindElem("Node");
-			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBr);
+			this->BuildQuadtree(xml.GetSubDoc().c_str(), node->mBr, _tile_map);
 		}
 		else
 		{
@@ -125,7 +125,7 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node)
 						{
 							mMapObjectInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tile(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Id").c_str()),
-									eSpriteID::SPRITE_MAP_1);
+								_tile_map);
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 1)
 						{

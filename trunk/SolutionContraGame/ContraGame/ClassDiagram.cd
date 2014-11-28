@@ -389,7 +389,7 @@
     <Position X="69" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAIAAAQAAAAABAAAAAAIAAAAAABAAABAAAAA=</HashCode>
-      <FileName>LedObject.h</FileName>
+      <FileName>BackgroundEffect.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bridge" Collapsed="true">

@@ -95,7 +95,7 @@
     <ClInclude Include="GifM.h" />
     <ClInclude Include="GifR.h" />
     <ClInclude Include="GifS.h" />
-    <ClInclude Include="LedObject.h" />
+    <ClInclude Include="BackgroundEffect.h" />
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="BigGunRotating.h" />
     <ClInclude Include="BossCenter.h" />
@@ -175,7 +175,7 @@
     <ClCompile Include="GifM.cpp" />
     <ClCompile Include="GifR.cpp" />
     <ClCompile Include="GifS.cpp" />
-    <ClCompile Include="LedObject.cpp" />
+    <ClCompile Include="BackgroundEffect.cpp" />
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="BigGunRotating.cpp" />
     <ClCompile Include="BossCenter.cpp" />

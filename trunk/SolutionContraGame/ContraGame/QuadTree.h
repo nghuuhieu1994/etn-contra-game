@@ -25,7 +25,7 @@ public:
 	RECT getBoundWorld() const { return this->mBoundWorld; };
 	QuadTree();
 	void InsertObjectIntoView(RECT, Node*);
-	void BuildQuadtree(const char* content, Node*& node);
+	void BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_map);
 	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object*);

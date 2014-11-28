@@ -148,9 +148,6 @@
     <ClCompile Include="GifL.cpp">
       <Filter>GameObject\Items\GifBullet\GifL</Filter>
     </ClCompile>
-    <ClCompile Include="LedObject.cpp">
-      <Filter>GameObject\LedObject</Filter>
-    </ClCompile>
     <ClCompile Include="Tinker.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
@@ -192,6 +189,9 @@
     </ClCompile>
     <ClCompile Include="LazeBullet.cpp">
       <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundEffect.cpp">
+      <Filter>GameObject\Background Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -384,9 +384,6 @@
     <ClInclude Include="GifL.h">
       <Filter>GameObject\Items\GifBullet\GifL</Filter>
     </ClInclude>
-    <ClInclude Include="LedObject.h">
-      <Filter>GameObject\LedObject</Filter>
-    </ClInclude>
     <ClInclude Include="Tinker.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
@@ -432,6 +429,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="LazeBullet.h">
       <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundEffect.h">
+      <Filter>GameObject\Background Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -558,9 +558,6 @@
     <Filter Include="GameObject\Items\GifBullet\GifL">
       <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\LedObject">
-      <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="QuadTree">
       <UniqueIdentifier>{1d944e8e-3ab5-4d00-9f0e-7e4cc620296f}</UniqueIdentifier>
     </Filter>
@@ -587,6 +584,9 @@
     </Filter>
     <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunNormal">
       <UniqueIdentifier>{5e21e0a2-34c2-4ae8-95b8-4fc1091f9a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Background Effect">
+      <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

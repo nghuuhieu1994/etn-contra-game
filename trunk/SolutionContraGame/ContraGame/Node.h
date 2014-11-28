@@ -7,7 +7,7 @@
 #include "Collision.h"
 #include "Tile.h"
 #include "VirtualObject.h"
-#include "LedObject.h"
+#include "BackgroundEffect.h"
 #include "GunRotating.h"
 #include "SniperStanding.h"
 

@@ -25,7 +25,7 @@
 #include "Tinker.h"
 #include "BulletPoolManager.h"
 #include "BulletPool.h"
-#include "LedObject.h"
+#include "BackgroundEffect.h"
 #include <list>
 #include "QuadTree.h"
 #include "Bridge.h"
@@ -38,8 +38,8 @@ class DemoState : public GameScene
 private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
-	LedObject			m_led;
-	Bridge*			m_tile;
+	BackgroundEffect	m_led;
+	Bridge*				m_tile;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}
