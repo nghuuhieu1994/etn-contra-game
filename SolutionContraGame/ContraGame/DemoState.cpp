@@ -6,10 +6,10 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	
 	m_Quadtree = new QuadTree();
-
-	string mapPath = "resources\\Map\\" + to_string(1) +"\\"+ to_string(1) +".xml";
-	m_led.Initialize(1);
-	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(1));
+	Camera::getInstance()->setLockWidth(true);
+	string mapPath = "resources\\Map\\" + to_string(2) +"\\"+ to_string(2) +".xml";
+	m_led.Initialize(2);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(2));
 
 	BulletPoolManager::getInstance()->Initialize();
 
