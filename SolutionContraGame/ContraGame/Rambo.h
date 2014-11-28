@@ -19,6 +19,7 @@ private:
 	bool isJump;
 	//eIDTypeBullet m_TypeBullet;
 	eIDSkillBullet m_SkillBullet;
+	bool isSetVelocityDeathState;
 	bool isLieDown;
 	float m_maxPositionY;
 	float m_timeClimb;
@@ -46,7 +47,7 @@ private:
 	int HandleInputSwimShootState();
 	int HandleInputSwimShootUpState();
 	int HandleInputSwimShootTopRightState();
-
+	int HandleInputBeforeDieState();
 	bool HandleInputShooting();
 
 	void SetFallFlag();
