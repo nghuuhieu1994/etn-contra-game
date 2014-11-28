@@ -11,6 +11,7 @@
 class Camera
 {
 	static Camera*		s_Instance;
+	D3DXVECTOR2	m_previousPosition;
 	Camera();
 	D3DXMATRIX			m_matrixTranslate;
 public:

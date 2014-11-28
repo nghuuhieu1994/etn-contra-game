@@ -35,10 +35,13 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 {
 	if (cameramanLocation->x > SCREEN_WIDTH/2)
 	{
-		m_matrixTranslate._41 = (float)((int)(-(cameramanLocation->x - SCREEN_WIDTH/2)));
+		if (m_previousPosition.x > (float)((int)(-(cameramanLocation->x - SCREEN_WIDTH/2))))
+		{
+			m_matrixTranslate._41 = (float)((int)(-(cameramanLocation->x - SCREEN_WIDTH/2))); 
+		}
 	}
-	else
-		m_matrixTranslate._41 = 0;
+
+	this->m_previousPosition.x = m_matrixTranslate._41;
 	/*if (cameramanLocation->y > SCREEN_HEIGHT/2)
 	{
 		m_matrixTranslate._42 = (float)(SCREEN_HEIGHT + (int)((cameramanLocation->y - SCREEN_HEIGHT/2)));
