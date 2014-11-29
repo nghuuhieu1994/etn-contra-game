@@ -1410,6 +1410,10 @@ void Rambo::UpdateCollision(Object* checkingObject)
 					{
 						if (collideDirection == IDDirection::DIR_TOP)
 						{
+							if (m_ObjectState == eObjectState::STATE_RAMBO_DEAD || m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
+							{
+								return;
+							}
 							if (m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
 							{
 								this->m_Position.y += this->m_Collision->m_MoveY;

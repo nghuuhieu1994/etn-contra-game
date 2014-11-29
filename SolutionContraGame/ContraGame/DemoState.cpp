@@ -1,15 +1,17 @@
 #include "DemoState.h"
-
+#define MAP_1 1
+#define MAP_2 2
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	
 	m_Quadtree = new QuadTree();
-	Camera::getInstance()->setLockWidth(true);
-	string mapPath = "resources\\Map\\" + to_string(2) +"\\"+ to_string(2) +".xml";
-	m_led.Initialize(2);
-	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(2));
+	//Camera::getInstance()->setLockWidth(true);
+	Camera::getInstance()->setLockHeight(true);
+	string mapPath = "resources\\Map\\" + to_string(MAP_1) +"\\"+ to_string(MAP_1) +".xml";
+	m_led.Initialize(MAP_1);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 
 	BulletPoolManager::getInstance()->Initialize();
 
