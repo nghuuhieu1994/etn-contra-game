@@ -32,7 +32,7 @@ void Bridge::Initialize()
 
 RECT Bridge::getBound()
 {
-	for(int i = 0; i < mListTile.size(); ++i)
+	/*for(int i = 0; i < mListTile.size(); ++i)
 	{
 			RECT tempRect;
 			tempRect = mListTile[i]->getBound();
@@ -41,8 +41,8 @@ RECT Bridge::getBound()
 			tempRect.bottom += 32;
 			tempRect.right = tempRect.right;
 			return tempRect;
-	}
-
+	}*/
+	
 	if(mListTile.size() == 0)
 	{
 		RECT tempRect;
@@ -53,6 +53,17 @@ RECT Bridge::getBound()
 
 		return tempRect;
 	}
+	else
+	{
+		RECT rt;
+		rt.top = mListTile[0]->getBound().top;
+		rt.bottom = mListTile[mListTile.size() - 1]->getBound().bottom;
+		rt.left = mListTile[0]->getBound().left;
+		rt.right = mListTile[mListTile.size() - 1]->getBound().right;
+		return rt;
+	}
+
+
 }
 
 void Bridge::UpdateAnimation()
