@@ -10,13 +10,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//Camera::getInstance()->setLockWidth(true);
 	Camera::getInstance()->setLockHeight(true);
 	string mapPath = "resources\\Map\\" + to_string(MAP_1) +"\\"+ to_string(MAP_1) +".xml";
-	m_led.Initialize(MAP_1);
+	m_backgroundEffect.Initialize(MAP_1);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 
 	BulletPoolManager::getInstance()->Initialize();
 
-	m_tile = new Bridge(D3DXVECTOR3(1664, 224, 1), eDirection::LEFT, eObjectID::BRIDGE);
-	m_tile->Initialize();
 	
 }
 
@@ -75,18 +73,18 @@ void DemoState::Update()
 	m_Quadtree->UpdateAnimation();
 	m_Quadtree->Update();
 	
-	m_led.UpdateAnimation();
-	m_tile->UpdateAnimation();
-	m_tile->Update();
+	m_backgroundEffect.UpdateAnimation();
+	
+	
 
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_Quadtree->Render(_lpDSpriteHandle);
-	m_led.Render(_lpDSpriteHandle);	
+	m_backgroundEffect.Render(_lpDSpriteHandle);	
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	//m_tile->Render(_lpDSpriteHandle);
+	
 	m_Rambo->Render(_lpDSpriteHandle);
 }
 

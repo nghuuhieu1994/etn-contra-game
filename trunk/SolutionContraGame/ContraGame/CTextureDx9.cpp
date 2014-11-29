@@ -89,6 +89,9 @@ void CTextureDx9::RenderWithoutTransform(LPD3DXSPRITE _lpDSpriteHandle, D3DXVECT
 	D3DXVECTOR2 CamTransDistance;
 	CamTransDistance.x = -Camera::getInstance()->GetMatrixTranslate()._41;
 	CamTransDistance.y = Camera::getInstance()->GetMatrixTranslate()._42;
+
+	position.y += Camera::getInstance()->getBound().bottom;
+	Center.y += Camera::getInstance()->getBound().bottom;
 	D3DXVECTOR3 currentPosition(position.x + CamTransDistance.x, position.y, deep); //toa do trong the gioi thuc
 
 	D3DXMATRIX oldMatrix; //ma tran luu lai phep transform cua SpriteBatch

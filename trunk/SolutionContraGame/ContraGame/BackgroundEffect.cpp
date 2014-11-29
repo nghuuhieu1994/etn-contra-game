@@ -35,7 +35,7 @@ void BackgroundEffect::Render(SPRITEHANDLE _spriteHandler)
 	sourceRect.right = Camera::getInstance()->getBound().right + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getColumnFrame() * m_Sprite->getAnimation()->getFrameSize().x;
 	sourceRect.left = Camera::getInstance()->getBound().left + m_Sprite->getAnimation()->getCurrentIndex() % m_Sprite->getAnimation()->getColumnFrame() * m_Sprite->getAnimation()->getFrameSize().x;
 
-	m_Sprite->getMyTexture()->RenderWithoutTransform(_spriteHandler, D3DXVECTOR2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + Camera::getInstance()->getBound().bottom), D3DXVECTOR2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + Camera::getInstance()->getBound().bottom), D3DXVECTOR2(1.0f, -1.0f), 0.0f, 0xffffffff, &sourceRect, 0.9f);
+	m_Sprite->getMyTexture()->RenderWithoutTransform(_spriteHandler, D3DXVECTOR2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), D3DXVECTOR2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), D3DXVECTOR2(1.0f, -1.0f), 0.0f, 0xffffffff, &sourceRect, 0.9f);
 
 }
 
