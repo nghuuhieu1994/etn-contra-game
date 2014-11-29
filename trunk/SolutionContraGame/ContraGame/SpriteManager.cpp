@@ -69,6 +69,9 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\tail_bridge_broken.png", eSpriteID::SPRITE_TAIL_BREAK, 1, 1, 1);
 	// end load the fucking bridge
 
+	//Tank
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Tank\\Tank.png", eSpriteID::SPRITE_TANK, 24, 1, 24);
+	//end Tank
 	// Start load EnemyContent
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Exploision.png", eSpriteID::SPRITE_EXPLOISION, 6, 1, 6);
 
@@ -81,9 +84,12 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SnipperWaterHiding\\SnipperWaterHiding.png", eSpriteID::SPRITE_SNIPER_WATER_HIDING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyBigGunShooting\\EnemyBigGunShooting.png", eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN, 2, 1, 2);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boom\\Boom.png", eSpriteID::SPRITE_BOOM_FLYING, 8, 1, 8);
 
 	// End load EnemyContent
 
@@ -122,6 +128,9 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBody.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
 
+	//BOSS MAP 3
+		LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossMap3\\SpaceShip.png", eSpriteID::SPRITE_SPACE_SHIP, 3, 1, 3);
+	//END BOSSMAP3
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.effect", eSpriteID::SPRITE_EFFECT_MAP1, 1, 2, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.effect", eSpriteID::SPRITE_EFFECT_MAP2, 3, 1, 3);

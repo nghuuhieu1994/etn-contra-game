@@ -405,9 +405,9 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 			}
 			else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
 			{
-				if(m_AttackCounter > 0)
+				if(m_AttackCounter >= 4)
 				{
-					m_AttackCounter = 0;
+					m_AttackCounter -= 4;
 				}
 			}
 
@@ -438,7 +438,7 @@ void GunRotating::Update()
 		break;
 	case STATE_SHOOTING:
 		Shoot();
-		m_ObjectState == eObjectState::STATE_ALIVE_IDLE;
+		m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		// some fucking code to shoot bullet, then change to state-alive-idle
 		break;
 	case STATE_BEFORE_DEATH:

@@ -62,7 +62,7 @@
       <Filter>GameObject\Rambo</Filter>
     </ClCompile>
     <ClCompile Include="GifBulletStatic.cpp">
-      <Filter>GameObject\Items\GifBulletStatic</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletStatic</Filter>
     </ClCompile>
     <ClCompile Include="TestSpriteState.cpp">
       <Filter>GameScene</Filter>
@@ -131,22 +131,22 @@
       <Filter>GameObject\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="GifS.cpp">
-      <Filter>GameObject\Items\GifBullet\GifS</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifS</Filter>
     </ClCompile>
     <ClCompile Include="GifR.cpp">
-      <Filter>GameObject\Items\GifBullet\GifR</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifR</Filter>
     </ClCompile>
     <ClCompile Include="GifB.cpp">
-      <Filter>GameObject\Items\GifBullet\GifB</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifB</Filter>
     </ClCompile>
     <ClCompile Include="GifF.cpp">
-      <Filter>GameObject\Items\GifBullet\GifF</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifF</Filter>
     </ClCompile>
     <ClCompile Include="GifM.cpp">
-      <Filter>GameObject\Items\GifBullet\GifM</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifM</Filter>
     </ClCompile>
     <ClCompile Include="GifL.cpp">
-      <Filter>GameObject\Items\GifBullet\GifL</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifL</Filter>
     </ClCompile>
     <ClCompile Include="Tinker.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
@@ -167,16 +167,16 @@
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClCompile>
     <ClCompile Include="GifBulletSinStraight.cpp">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinStraight</Filter>
     </ClCompile>
     <ClCompile Include="RockFlying.cpp">
-      <Filter>GameObject\Items\RockFlying</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\RockFlying</Filter>
     </ClCompile>
     <ClCompile Include="RockFalling.cpp">
-      <Filter>GameObject\Items\RockFalling</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\RockFalling</Filter>
     </ClCompile>
     <ClCompile Include="GifBulletMoving.cpp">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinNormal</Filter>
     </ClCompile>
     <ClCompile Include="EnemyRun.cpp">
       <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
@@ -192,6 +192,21 @@
     </ClCompile>
     <ClCompile Include="BackgroundEffect.cpp">
       <Filter>GameObject\Background Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWithBugGun.cpp">
+      <Filter>GameObject\Enemy\EnemyWithBigGun</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>GameObject\Enemy\SniperStanding\Items\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="TankTile.cpp">
+      <Filter>GameObject\Enemy\SniperStanding\Items\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceShip.cpp">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClCompile>
+    <ClCompile Include="BoomFlying.cpp">
+      <Filter>GameObject\Enemy\SniperStanding\Items\BoomFlying</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +274,7 @@
       <Filter>GameObject\Rambo</Filter>
     </ClInclude>
     <ClInclude Include="GifBulletStatic.h">
-      <Filter>GameObject\Items\GifBulletStatic</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletStatic</Filter>
     </ClInclude>
     <ClInclude Include="TestSpriteState.h">
       <Filter>GameScene</Filter>
@@ -367,22 +382,22 @@
       <Filter>GameObject\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="GifS.h">
-      <Filter>GameObject\Items\GifBullet\GifS</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifS</Filter>
     </ClInclude>
     <ClInclude Include="GifR.h">
-      <Filter>GameObject\Items\GifBullet\GifR</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifR</Filter>
     </ClInclude>
     <ClInclude Include="GifB.h">
-      <Filter>GameObject\Items\GifBullet\GifB</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifB</Filter>
     </ClInclude>
     <ClInclude Include="GifF.h">
-      <Filter>GameObject\Items\GifBullet\GifF</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifF</Filter>
     </ClInclude>
     <ClInclude Include="GifM.h">
-      <Filter>GameObject\Items\GifBullet\GifM</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifM</Filter>
     </ClInclude>
     <ClInclude Include="GifL.h">
-      <Filter>GameObject\Items\GifBullet\GifL</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBullet\GifL</Filter>
     </ClInclude>
     <ClInclude Include="Tinker.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
@@ -403,16 +418,16 @@
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClInclude>
     <ClInclude Include="GifBulletSinStraight.h">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinStraight</Filter>
     </ClInclude>
     <ClInclude Include="RockFlying.h">
-      <Filter>GameObject\Items\RockFlying</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\RockFlying</Filter>
     </ClInclude>
     <ClInclude Include="RockFalling.h">
-      <Filter>GameObject\Items\RockFalling</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\RockFalling</Filter>
     </ClInclude>
     <ClInclude Include="GifBulletMoving.h">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
+      <Filter>GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinNormal</Filter>
     </ClInclude>
     <ClInclude Include="EnemyRun.h">
       <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
@@ -432,6 +447,21 @@
     </ClInclude>
     <ClInclude Include="BackgroundEffect.h">
       <Filter>GameObject\Background Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWithBigGun.h">
+      <Filter>GameObject\Enemy\EnemyWithBigGun</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>GameObject\Enemy\SniperStanding\Items\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="TankTile.h">
+      <Filter>GameObject\Enemy\SniperStanding\Items\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShip.h">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClInclude>
+    <ClInclude Include="BoomFlying.h">
+      <Filter>GameObject\Enemy\SniperStanding\Items\BoomFlying</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -489,15 +519,6 @@
     <Filter Include="GameObject\Rambo">
       <UniqueIdentifier>{a491e186-93ff-47cd-b4ec-1941d7aeb716}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items">
-      <UniqueIdentifier>{86e0d6db-57fb-4b92-9e4d-8021b95c309c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving">
-      <UniqueIdentifier>{83622fd0-a32d-4d40-b228-4b407613dfd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletStatic">
-      <UniqueIdentifier>{8890abc7-0875-4664-bc7b-2682612fbcfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Enemy\GunRotating">
       <UniqueIdentifier>{806044a0-c581-4652-a3e9-6e5d5706e24c}</UniqueIdentifier>
     </Filter>
@@ -537,27 +558,6 @@
     <Filter Include="Framework\Map Reader">
       <UniqueIdentifier>{f620d2bf-221a-4f9d-98d4-628b9f262ada}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBullet">
-      <UniqueIdentifier>{f2212de6-6de4-4f29-ac7e-c23112221f26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifS">
-      <UniqueIdentifier>{b04c12c8-a896-4037-8145-0c97ce060b62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifR">
-      <UniqueIdentifier>{83b5c345-0b47-47d6-8fe8-01d8d0e94dce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifB">
-      <UniqueIdentifier>{e849387b-a5be-418b-a1d9-a68b9998443b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifF">
-      <UniqueIdentifier>{e016559f-f511-400c-9830-524cb623c65a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifM">
-      <UniqueIdentifier>{7134e551-542a-4e77-b5da-aaee6e27b2a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifL">
-      <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
-    </Filter>
     <Filter Include="QuadTree">
       <UniqueIdentifier>{1d944e8e-3ab5-4d00-9f0e-7e4cc620296f}</UniqueIdentifier>
     </Filter>
@@ -567,18 +567,6 @@
     <Filter Include="GameObject\Enemy\SnipperWaterHiding">
       <UniqueIdentifier>{ad37125c-6525-4e0c-8d6b-cb4d18985d3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinStraight">
-      <UniqueIdentifier>{3bd874b3-488f-4b74-a8fb-67662779d225}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\RockFlying">
-      <UniqueIdentifier>{9f7a89df-e1aa-4418-88ce-b77956bccbee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\RockFalling">
-      <UniqueIdentifier>{1f94f8a4-5c6a-412d-beca-f82985bed2ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinNormal">
-      <UniqueIdentifier>{495b6cb9-37ba-4b85-980a-684ee3dc3881}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunShooting">
       <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>
     </Filter>
@@ -587,6 +575,60 @@
     </Filter>
     <Filter Include="GameObject\Background Effect">
       <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\EnemyWithBigGun">
+      <UniqueIdentifier>{63bba6df-6f80-4db2-93d4-8a8172205b55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Boss\BossMap3">
+      <UniqueIdentifier>{235340b4-143a-4ca0-b6a6-ebab4ac6e469}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items">
+      <UniqueIdentifier>{86e0d6db-57fb-4b92-9e4d-8021b95c309c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBulletMoving">
+      <UniqueIdentifier>{83622fd0-a32d-4d40-b228-4b407613dfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinStraight">
+      <UniqueIdentifier>{3bd874b3-488f-4b74-a8fb-67662779d225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBulletMoving\GifBulletSinNormal">
+      <UniqueIdentifier>{495b6cb9-37ba-4b85-980a-684ee3dc3881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBulletStatic">
+      <UniqueIdentifier>{8890abc7-0875-4664-bc7b-2682612fbcfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet">
+      <UniqueIdentifier>{f2212de6-6de4-4f29-ac7e-c23112221f26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifS">
+      <UniqueIdentifier>{b04c12c8-a896-4037-8145-0c97ce060b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifR">
+      <UniqueIdentifier>{83b5c345-0b47-47d6-8fe8-01d8d0e94dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifB">
+      <UniqueIdentifier>{e849387b-a5be-418b-a1d9-a68b9998443b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifF">
+      <UniqueIdentifier>{e016559f-f511-400c-9830-524cb623c65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifM">
+      <UniqueIdentifier>{7134e551-542a-4e77-b5da-aaee6e27b2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\GifBullet\GifL">
+      <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\RockFlying">
+      <UniqueIdentifier>{9f7a89df-e1aa-4418-88ce-b77956bccbee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\RockFalling">
+      <UniqueIdentifier>{1f94f8a4-5c6a-412d-beca-f82985bed2ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\Tank">
+      <UniqueIdentifier>{970a45db-64b5-4112-8aea-af316319cfdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\SniperStanding\Items\BoomFlying">
+      <UniqueIdentifier>{c2e5de31-8357-40ef-af2c-05bb9b94ffd3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
