@@ -34,8 +34,6 @@ RECT Bridge::getBound()
 {
 	for(int i = 0; i < mListTile.size(); ++i)
 	{
-		//if(mListTile[i]->getObjectState() != eObjectState::STATE_DEATH)
-		//{
 			RECT tempRect;
 			tempRect = mListTile[i]->getBound();
 			tempRect.top -= 16;
@@ -43,11 +41,6 @@ RECT Bridge::getBound()
 			tempRect.bottom += 32;
 			tempRect.right = tempRect.right;
 			return tempRect;
-		//}
-		//else
-		//{
-			break;
-		//}
 	}
 
 	if(mListTile.size() == 0)
@@ -60,23 +53,10 @@ RECT Bridge::getBound()
 
 		return tempRect;
 	}
-
-	////RECT tempRect;
-	////tempRect.top = 0;
-	////tempRect.left = 0;
-	////tempRect.bottom = 0;
-	////tempRect.right = 0;
-
-	////return tempRect;
 }
 
 void Bridge::UpdateAnimation()
 {
-	//m_HeadTile->UpdateAnimation();
-	//m_BodyTile[0]->UpdateAnimation();
-	//m_BodyTile[1]->UpdateAnimation();
-	//m_TailTile->UpdateAnimation();
-
 	for(int i = 0; i < mListTile.size(); ++i)
 	{
 		this->mListTile[i]->UpdateAnimation();
@@ -86,11 +66,6 @@ void Bridge::UpdateAnimation()
 
 void Bridge::UpdateCollision(Object* checkingObject)
 {
-	//m_HeadTile->UpdateCollision(checkingObject);
-	//m_BodyTile[0]->UpdateCollision(checkingObject);
-	//m_BodyTile[1]->UpdateCollision(checkingObject);
-	//m_TailTile->UpdateCollision(checkingObject);
-
 	for(int i = 0; i < mListTile.size(); ++i)
 	{
 		this->mListTile[i]->UpdateCollision(checkingObject);
@@ -122,52 +97,13 @@ void Bridge::Update()
 				this->mListTile[i]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
 				break;
 			}
-		}
-
-		//if (m_HeadTile->isDead == false)
-		//{
-		//	m_HeadTile->setObjectState(STATE_BEFORE_DEATH);
-		//}
-		//if (m_HeadTile->getObjectState() == STATE_DEATH)
-		//{
-		//	this->mListTile.erase(this->mListTile.begin());
-		//	if (m_BodyTile[0]->isDead != true)
-		//	{
-		//		m_BodyTile[0]->setObjectState(STATE_BEFORE_DEATH);
-		//	}
-		//}
-		//else if (m_BodyTile[0]->getObjectState() == STATE_DEATH)
-		//{
-		//	this->mListTile.erase(this->mListTile.begin());
-		//	if (m_BodyTile[1]->isDead != true)
-		//	{
-		//		m_BodyTile[1]->setObjectState(STATE_BEFORE_DEATH);
-		//	}
-		//}
-		//else if (m_BodyTile[1]->getObjectState() == STATE_DEATH)
-		//{
-		//	this->mListTile.erase(this->mListTile.begin());
-		//	if (m_TailTile->isDead != true)
-		//	{
-		//		m_TailTile->setObjectState(STATE_BEFORE_DEATH);
-		//	}
-		//}
+		}	
 	}
-
-	//m_HeadTile->Update();
-	//m_BodyTile[0]->Update();
-	//m_BodyTile[1]->Update();
-	//m_TailTile->Update();
 
 	for(int i = 0; i < mListTile.size(); ++i)
 	{
 		mListTile[i]->Update();
 	}
-
-	//if(mListTile.size() == 0)
-	//{
-	//	this->setObjectState(eObjectState::STATE_DEATH);
-	//}
 }
 
 void Bridge::Render(SPRITEHANDLE spriteHandle)
@@ -178,10 +114,10 @@ void Bridge::Render(SPRITEHANDLE spriteHandle)
 	{
 		this->mListTile[i]->Render(spriteHandle);
 	}
-	//m_TailTile->Render(spriteHandle);
-	//m_BodyTile[1]->Render(spriteHandle);
-	//m_BodyTile[0]->Render(spriteHandle);
-	//m_HeadTile->Render(spriteHandle);
+	
+	
+	
+	
 }
 
 void Bridge::Release()
