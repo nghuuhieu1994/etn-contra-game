@@ -1408,40 +1408,6 @@ void Rambo::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
-	//if(collideDirection != IDDirection::DIR_NONE)
-	//{
-	//	if(checkingObject->getID() == eObjectID::BRIDGE)
-	//	{
-	//		if(collideDirection == IDDirection::DIR_TOP)
-	//		{
-	//			if(this->m_ObjectState == eObjectState::STATE_RAMBO_FALL)
-	//			{
-	//				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-	//				this->m_Position.y += this->m_Collision->m_MoveY;
-	//				this->getPhysic()->setVelocityY(0.0f);
-	//				isFall = false;
-	//				return;
-	//			}
-	//			else if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
-	//			{
-	//				this->m_Position.y += this->m_Collision->m_MoveY;
-	//				this->getPhysic()->setVelocityY(0.0f);
-	//				isFall = false;
-	//				return;
-	//			}
-	//			else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
-	//			{
-	//				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-	//				this->m_Position.y += this->m_Collision->m_MoveY;
-	//				this->getPhysic()->setVelocityY(0.0f);
-	//				isFall = false;
-	//				isJump = false;
-	//				return;
-	//			}
-	//		}
-	//	}
-	//}
-
 	setRectangleCheckingObjectBelow();
 	if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
 	{
@@ -1508,11 +1474,12 @@ void Rambo::UpdateCollision(Object* checkingObject)
 				case eObjectID::BRIDGE:
 					if(collideDirection == IDDirection::DIR_TOP)
 					{ 
+						isFall = false;
 						if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
 						{
 							this->m_Position.y += this->m_Collision->m_MoveY;
 							this->getPhysic()->setVelocityY(0.0f);
-							isFall = false;
+							
 							return;
 						}
 						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
@@ -1520,15 +1487,13 @@ void Rambo::UpdateCollision(Object* checkingObject)
 							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 							this->m_Position.y += this->m_Collision->m_MoveY;
 							this->getPhysic()->setVelocityY(0.0f);
-							isJump = false;
+							
 							return;
 						}
-						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+						else
 						{
-							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
 							this->m_Position.y += this->m_Collision->m_MoveY;
-							this->getPhysic()->setVelocityY(0.0f);
-							isFall = false;
+							m_Physic->setVelocityY(0.0f);
 							return;
 						}
 					}
