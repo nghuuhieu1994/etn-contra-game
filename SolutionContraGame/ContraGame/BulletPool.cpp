@@ -54,9 +54,19 @@ void BulletPool::Initialize()
 		queueLazeBulletOfRambo.push(tempBullet);
 	}
 	m_BulletPool.push_back(queueLazeBulletOfRambo);
+
+	std::queue<Bullet*> queueDefaultBulletOfEnemy;
+	for(int i = 0; i < QUALITY_OF_DEFAULT_BULLET_ENEMY; ++i)
+	{
+		DefaultBullet* tempBullet = new DefaultBullet(D3DXVECTOR3(0.0f, 0.0f, 0.5f), eDirection::TOP, eObjectID::BULLET_ENEMY);
+		tempBullet->Initialize();
+		tempBullet->setTypeBullet(eIDTypeBullet::BULLET_OF_ENEMY);
+		queueDefaultBulletOfEnemy.push(tempBullet);
+	}
+	m_BulletPool.push_back(queueDefaultBulletOfEnemy);
 }
 
-Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity, float _factor)
+Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity, float _factor, float _rotationAngle)
 {
 	switch(_typebullet)
 	{
@@ -113,7 +123,21 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 			object->getPhysic()->setVelocity(_velocity);
 			object->setFactor(_factor);
 			object->ResetLivingTime();
+			object->getSprite()->setRotate(_rotationAngle);
 			m_BulletPool[eIDTypeBullet::LAZER_BULLET_OF_RAMBO].pop();
+
+			return object;
+		}
+	case eIDTypeBullet::BULLET_OF_ENEMY:
+		if(m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].empty() == false)
+		{
+			DefaultBullet* object = (DefaultBullet*) m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].front();
+			object->setPosition(_position);
+			object->setStartPosition(_position);
+			object->getPhysic()->setVelocity(_velocity);
+			object->setFactor(_factor);
+			object->ResetLivingTime();
+			m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].pop();
 
 			return object;
 		}

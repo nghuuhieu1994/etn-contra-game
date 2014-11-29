@@ -12,7 +12,7 @@ void BulletPoolManager::Initialize()
 	BulletPool::getInstance()->Initialize();
 }
 
-void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, D3DXVECTOR2 _velocity, float _factor)
+void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 position, D3DXVECTOR2 _velocity, float _factor, float _rotationAngle)
 {
 	if(typeBullet == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
 	{
@@ -28,7 +28,11 @@ void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 
 	}
 	else if(typeBullet == eIDTypeBullet::LAZER_BULLET_OF_RAMBO)
 	{
-		this->m_ListBulletInGame.push_back((LazeBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+		this->m_ListBulletInGame.push_back((LazeBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor, _rotationAngle));
+	}
+	else if(typeBullet == eIDTypeBullet::BULLET_OF_ENEMY)
+	{
+		this->m_ListBulletInGame.push_back((DefaultBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
 	}
 }
 

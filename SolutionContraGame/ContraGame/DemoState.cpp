@@ -68,7 +68,7 @@ void DemoState::Update()
 		//BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
-	#pragma endregion
+	#pragma endregion	
 
 	m_Rambo->UpdatePreviousIgnoreList();
 	
@@ -86,7 +86,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_led.Render(_lpDSpriteHandle);	
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	m_tile->Render(_lpDSpriteHandle);
+	//m_tile->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 }
 

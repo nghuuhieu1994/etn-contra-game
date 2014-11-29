@@ -32,8 +32,10 @@ void BridgeTile::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+		{
 		m_Sprite->UpdateAnimation(500);
 		break;
+		}
 	case STATE_BEFORE_DEATH:
 		if (isDead != true)
 		{
@@ -59,8 +61,9 @@ void BridgeTile::Update()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_BEFORE_DEATH:
+
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if (m_TimeChangeState > 1000)
+		if (m_TimeChangeState > 1500)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;
@@ -68,12 +71,17 @@ void BridgeTile::Update()
 		break;
 	case STATE_DEATH:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if (m_TimeChangeState > 300)
+		if (m_TimeChangeState > 400)
 		{
 			this->Release();
 			m_TimeChangeState = 0;
 		}
 		break;
+	}
+
+	if(this->m_ObjectState == eObjectState::STATE_BEFORE_DEATH)
+	{
+
 	}
 }
 void BridgeTile::Render(SPRITEHANDLE spriteHandle)
