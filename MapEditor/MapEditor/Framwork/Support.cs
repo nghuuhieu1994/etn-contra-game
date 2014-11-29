@@ -224,23 +224,23 @@ namespace MapEditor
 
     public enum ObjectID
     {
-        TILE_BASE = 0,
-        VIRTUAL_OBJECT_WATER = 1,
-        RAMBO = 2,
-        BULLET_RAMBO = 3,
-        BULLET_ENEMY = 4,
-        SNIPER_STANDING = 5,
-        SNIPER_HIDING = 6,
-        GIF_BULLET_STATIC = 7,
-        GIF_BULLET_MOVING = 8,
-        GUN_ROTATING = 9,
-        BIG_GUN_ROTATING = 10,
-        ENEMY_RUN = 11,
-        BOSS_GUN = 12,
-        BOSS_CENTER = 13,
-        BIG_BOSS_1 = 14, // Boss Map 1
-        BULLET = 15, //  Cai nay de lam gi???
-        LED_OBJECT_STAR = 16,
+        TILE_BASE,
+        VIRTUAL_OBJECT_WATER,
+        RAMBO,
+        BULLET_RAMBO,
+        BULLET_ENEMY,
+        SNIPER_STANDING,
+        SNIPER_HIDING,
+        GIF_BULLET_STATIC,
+        GIF_BULLET_MOVING,
+        GUN_ROTATING,
+        BIG_GUN_ROTATING,
+        ENEMY_RUN,
+        BOSS_GUN, BOSS_CENTER, BIG_BOSS_1, // Boss Map 1
+        BULLET, //  Cai nay de lam gi???
+        LED_OBJECT_STAR,
+        TILE_BACKGROUND,
+        BRIDGE_HEAD, BRIDGE_TAIL, BRIDGE_BODY, BRIDGE,
     }
 
     public partial class Support

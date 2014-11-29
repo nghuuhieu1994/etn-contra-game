@@ -109,7 +109,7 @@ namespace MapEditor.Framwork
             }
             else
             {
-                this.mRangeOfMovement = new RECTANGLE(this.mBound.cX, this.mBound.cY, this.mBound.width, this.mBound.height);
+                this.mRangeOfMovement = new RECTANGLE(this.mBound.cX - this.mBound.width / 2, this.mBound.cY + this.mBound.height / 2, this.mBound.width, this.mBound.height);
             }
         }
 

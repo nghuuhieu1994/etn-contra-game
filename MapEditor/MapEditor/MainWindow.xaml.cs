@@ -46,7 +46,7 @@ namespace MapEditor
         public MainWindow()
         {
             InitializeComponent();
-            ListBoxCreater.getInstance().InitializeListBox(this.lbEnemyObject);
+            ListBoxCreater.getInstance().InitializeListBox(this.lbEnemyObject, this.lbLandObject);
         }
 
         public bool CreateGridline()
@@ -435,7 +435,7 @@ namespace MapEditor
                                     }
                                 }
                                 else if (convertingObject.Tag == Support.gridLine && ((int)cursorImage.Tag == (int)ObjectID.GUN_ROTATING ||
-                                                                     (int)cursorImage.Tag == (int)ObjectID.BIG_GUN_ROTATING))
+                                                                     (int)cursorImage.Tag == (int)ObjectID.BIG_GUN_ROTATING) || (int)cursorImage.Tag == (int)ObjectID.BRIDGE)
                                 {
                                     RECTANGLE tempRect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)convertingObject.Width, (int)convertingObject.Height);
                                     RECTANGLE collisionRect = RECTANGLE.IntersectCanvas(tempRect, cursor);
@@ -443,6 +443,7 @@ namespace MapEditor
                                     {
                                         positionTempOfSelectedFromListbox.X = tempRect.cX;
                                         positionTempOfSelectedFromListbox.Y = tempRect.cY;
+                                        break;
                                     }
                                 }
                             }
@@ -633,6 +634,24 @@ namespace MapEditor
             else
             {
                 Support.IsVirtualWater = false;
+            }
+        }
+
+        private void lbLandObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Support.IsBackground == true)
+            {
+                Image temp = (Image)this.lbLandObject.SelectedItem;
+
+                selectedItemFromListbox = new Image();
+                selectedItemFromListbox.Tag = temp.Tag;
+                selectedItemFromListbox.Source = temp.Source;
+                selectedItemFromListbox.Width = temp.Width;
+                selectedItemFromListbox.Height = temp.Height;
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng thêm background cho game, trước khi chọn đối tượng");
             }
         }
         /* End Event Handler */

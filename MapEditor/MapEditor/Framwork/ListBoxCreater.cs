@@ -38,7 +38,7 @@ namespace MapEditor.Framwork
             return image;
         }
 
-        public void InitializeListBox(ListBox lbEnemyObject, ListBox lbLandObject = null)
+        public void InitializeListBox(ListBox lbEnemyObject, ListBox lbLandObject)
         {
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Rambo.png", UriKind.Relative)), ObjectID.RAMBO, 52, 70));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Sniper.png", UriKind.Relative)), ObjectID.SNIPER_STANDING, 48, 64));
@@ -49,6 +49,8 @@ namespace MapEditor.Framwork
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gun_rotation.png", UriKind.Relative)), ObjectID.GUN_ROTATING, 64, 64));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Big_gun_rotation.png", UriKind.Relative)), ObjectID.BIG_GUN_ROTATING, 64, 64));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Boss_gun.png", UriKind.Relative)), ObjectID.BOSS_GUN, 48, 62));
+
+            lbLandObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Bridge.png", UriKind.Relative)), ObjectID.BRIDGE, 256, 62));
         }
     }
 }
