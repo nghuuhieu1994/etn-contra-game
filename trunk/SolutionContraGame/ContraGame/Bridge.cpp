@@ -12,14 +12,14 @@ Bridge::Bridge(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 
 void Bridge::Initialize()
 {
-	m_HeadTile = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2 - 64, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_HEAD);
+	m_HeadTile = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2 - 65, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_HEAD);
 	m_HeadTile->Initialize();
 	RECT tempRect = m_HeadTile->getBound();
-	m_TailTile = new BridgeTile(D3DXVECTOR3(m_Position.x + 64 + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_TAIL);
+	m_TailTile = new BridgeTile(D3DXVECTOR3(m_Position.x + 65 + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_TAIL);
 	m_TailTile->Initialize();
-	m_BodyTile[0] = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
+	m_BodyTile[0] = new BridgeTile(D3DXVECTOR3(m_Position.x - 62 / 2 - 1, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
 	m_BodyTile[0]->Initialize();
-	m_BodyTile[1] = new BridgeTile(D3DXVECTOR3(m_Position.x + 62 / 2, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
+	m_BodyTile[1] = new BridgeTile(D3DXVECTOR3(m_Position.x + 62 / 2 + 1, m_Position.y, m_Position.z), eDirection::LEFT, eObjectID::BRIDGE_BODY);
 	m_BodyTile[1]->Initialize();
 	mListTile.push_back(m_HeadTile);
 	mListTile.push_back(m_BodyTile[0]);
@@ -43,23 +43,28 @@ RECT Bridge::getBound()
 			return tempRect;
 	}*/
 	
-	if(mListTile.size() == 0)
+	if((int)mListTile.size() == 0)
 	{
 		RECT tempRect;
 		tempRect.top = 0;
 		tempRect.left = 0;
 		tempRect.right = 0;
 		tempRect.bottom = 0;
-
+		char buff[100];
+		sprintf(buff, "%d, %d, %d, %d \n", (int)tempRect.top, (int)tempRect.bottom, (int)tempRect.left, (int)tempRect.right);
+		OutputDebugString(buff);
 		return tempRect;
 	}
 	else
 	{
 		RECT rt;
-		rt.top = mListTile[0]->getBound().top;
+		rt.top = (int)mListTile[0]->getBound().top - 16;
 		rt.bottom = mListTile[mListTile.size() - 1]->getBound().bottom;
 		rt.left = mListTile[0]->getBound().left;
 		rt.right = mListTile[mListTile.size() - 1]->getBound().right;
+		char buff[100];
+		sprintf(buff, "%d, %d, %d, %d \n", (int)rt.top, (int)rt.bottom, (int)rt.left, (int)rt.right);
+		OutputDebugString(buff);
 		return rt;
 	}
 
@@ -89,6 +94,10 @@ void Bridge:: UpdateMovement()
 
 void Bridge::Update()
 {
+	if ((int)mListTile.size() == 0)
+	{
+		m_ObjectState = eObjectState::STATE_DEATH;
+	}
 	_distanceX = m_Position.x - CGlobal::Rambo_X;
 	if (_distanceX <= 100)
 	{
