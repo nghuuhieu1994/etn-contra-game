@@ -38,8 +38,8 @@ class DemoState : public GameScene
 private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
-	BackgroundEffect	m_led;
-	Bridge*				m_tile;
+	BackgroundEffect	m_backgroundEffect;
+	
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}
