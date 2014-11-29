@@ -13,6 +13,7 @@
 #define QUALITY_OF_RED_BULLET_RAMBO 100
 #define QUALITY_OF_FIRE_BULLET_RAMBO 100
 #define QUALITY_OF_LAZE_BULLET_RAMBO 100
+#define QUALITY_OF_DEFAULT_BULLET_ENEMY 100
 
 class BulletPool
 {
@@ -24,7 +25,7 @@ private:
 public:
 	static BulletPool* getInstance();
 	void Initialize();
-	Bullet* popBulletFromBulletPool(eIDTypeBullet, D3DXVECTOR3, D3DXVECTOR2, float);
+	Bullet* popBulletFromBulletPool(eIDTypeBullet, D3DXVECTOR3, D3DXVECTOR2, float, float _rotationAngle = 0.0f);
 	void addBulleToBulletPool(Bullet*);
 	void releaseBulletPool();
 };

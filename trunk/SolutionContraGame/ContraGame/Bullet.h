@@ -16,6 +16,7 @@ protected:
 	float m_factor;
 public:
 	eIDTypeBullet getTypeBullet() const{return m_TypeBullet;};
+	void setTypeBullet(eIDTypeBullet _typeBullet) {this->m_TypeBullet = _typeBullet;};
 	void setDirectAttack(eDirectAttack _directAttack){ this->m_DirectAttack = _directAttack;};
 	void setStartPosition(D3DXVECTOR3 _position){ this->m_StartPosition = _position;};
 	void setFactor(float _factor){ this->m_factor = _factor;};

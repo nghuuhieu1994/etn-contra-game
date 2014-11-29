@@ -10,6 +10,7 @@
 #include "BackgroundEffect.h"
 #include "GunRotating.h"
 #include "SniperStanding.h"
+#include "Bridge.h"
 
 class Node
 {

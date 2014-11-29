@@ -158,6 +158,8 @@ IDDirection Collision::CheckCollision(DynamicObject *_DynamicObject, Object * _O
 	}
 
 	return IDDirection::DIR_NONE;
+
+
 }
 
 Collision::~Collision()

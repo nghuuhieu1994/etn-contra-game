@@ -25,7 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::M_SKILL_BULLET;
 	isSetVelocityDeathState = false;
 }
 
@@ -667,7 +667,7 @@ void Rambo::Shoot()
 			}
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100, 90.0f);
 			}
 		}
 		break;
@@ -688,6 +688,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100, -90.0f);
 			}
 		}
 		break;
@@ -733,6 +737,10 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+			}
 		}
 		break;
 	case AD_TOP_RIGHT:
@@ -752,6 +760,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1, 45.0f);
 			}
 		}
 		break;
@@ -773,6 +785,10 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
 			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1, 135.0f);
+			}
 		}
 		break;
 	case AD_BOTTOM_RIGHT:
@@ -793,6 +809,10 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1);
 			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1, -45.0f);
+			}
 		}
 		break;
 	case AD_BOTTOM_LEFT:
@@ -812,6 +832,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1, -135.0f);
 			}
 		}
 	default:
@@ -1382,8 +1406,43 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
-	setRectangleCheckingObjectBelow();
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+	//if(collideDirection != IDDirection::DIR_NONE)
+	//{
+	//	if(checkingObject->getID() == eObjectID::BRIDGE)
+	//	{
+	//		if(collideDirection == IDDirection::DIR_TOP)
+	//		{
+	//			if(this->m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+	//			{
+	//				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+	//				this->m_Position.y += this->m_Collision->m_MoveY;
+	//				this->getPhysic()->setVelocityY(0.0f);
+	//				isFall = false;
+	//				return;
+	//			}
+	//			else if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
+	//			{
+	//				this->m_Position.y += this->m_Collision->m_MoveY;
+	//				this->getPhysic()->setVelocityY(0.0f);
+	//				isFall = false;
+	//				return;
+	//			}
+	//			else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+	//			{
+	//				this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+	//				this->m_Position.y += this->m_Collision->m_MoveY;
+	//				this->getPhysic()->setVelocityY(0.0f);
+	//				isFall = false;
+	//				isJump = false;
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
+
+	setRectangleCheckingObjectBelow();
 	if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
 	{
 		if(Intersect(checkingObject->getBound(), m_RectangleCheckingObjectBelow))
@@ -1391,6 +1450,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			m_objectBelowCurrent.push_back(checkingObject);
 		} 
 	}
+
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
 		switch(checkingObject->getTypeObject())
@@ -1434,13 +1494,51 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						}
 						isFall = false;
 					}
+					break;
 				default:
 					break;
 				}
 			}
-
-		default:
 			break;
+		default:
+			{
+				#pragma region. Update Collision with Bridge
+				switch(checkingObject->getID())
+				{
+				case eObjectID::BRIDGE:
+					if(collideDirection == IDDirection::DIR_TOP)
+					{ 
+						if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
+						{
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							this->getPhysic()->setVelocityY(0.0f);
+							isFall = false;
+							return;
+						}
+						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+						{
+							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							this->getPhysic()->setVelocityY(0.0f);
+							isJump = false;
+							return;
+						}
+						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+						{
+							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							this->getPhysic()->setVelocityY(0.0f);
+							isFall = false;
+							return;
+						}
+					}
+					break;
+				default:
+					break;
+				}
+				#pragma endregion
+				break;
+			}
 		}
 	}
 }
