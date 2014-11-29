@@ -79,7 +79,7 @@
                     </ListBox>
                 </TabItem>
                 <TabItem Header="LandScape">
-                    <ListBox Name="lbLandObject" HorizontalAlignment="Left" Height="403" Margin="0,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201">
+                    <ListBox Name="lbLandObject" HorizontalAlignment="Left" Height="403" Margin="0,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201" SelectionChanged="lbLandObject_SelectionChanged">
                         
                     </ListBox>
                 </TabItem>
