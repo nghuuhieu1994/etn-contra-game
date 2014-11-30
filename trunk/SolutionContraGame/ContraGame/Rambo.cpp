@@ -1504,6 +1504,11 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						}
 					}
 					break;
+				case eObjectID::BULLET_ENEMY:
+					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
+					{
+						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD; 
+					}
 				default:
 					break;
 				}
