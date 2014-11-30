@@ -25,7 +25,7 @@ void FireBullet::Initialize()
 {
 	this->m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_FIRE_BULLET_RAMBO));
 	this->m_Sprite->setScale(0.5f);
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	this->m_Physic->setVelocityX(2.0f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.0f));
 	this->m_TypeBullet = eIDTypeBullet::FIRE_BULLET_OF_RAMBO;
