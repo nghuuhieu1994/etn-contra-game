@@ -1491,6 +1491,9 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						}
 						else if (m_ObjectState == eObjectState::STATE_RAMBO_FALL)
 						{
+							m_ObjectState = STATE_RAMBO_IDLE;
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							m_Physic->setVelocityY(0.0f);
 							return;
 						}
 						else
