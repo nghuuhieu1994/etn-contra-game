@@ -33,8 +33,10 @@ void EnemyRunShooting::Shoot()
 	switch (m_DirectAttack)
 	{
 	case AD_LEFT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-3.5f, 0.0f), 0);
 		break;
 	case AD_RIGHT:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 		break;
 	default:
 		break;	
