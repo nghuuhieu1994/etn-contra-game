@@ -66,6 +66,7 @@ void DemoState::Update()
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_Quadtree->UpdateCollision(*i);
+		m_Rambo->UpdateCollision(*i);
 	}
 
 	#pragma endregion
