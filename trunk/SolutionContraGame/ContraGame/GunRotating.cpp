@@ -436,10 +436,16 @@ void GunRotating::Update()
 		{
 			m_ObjectState = STATE_SHOOTING;
 			m_TimeChangeState = 0;
+			isShoot = true;
 		}
 		break;
 	case STATE_SHOOTING:
-		Shoot();
+		if(isShoot == true)
+		{
+			Shoot();
+			isShoot = false;
+		}
+		
 		m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		// some fucking code to shoot bullet, then change to state-alive-idle
 		break;
