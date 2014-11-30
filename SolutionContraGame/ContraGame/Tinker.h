@@ -11,10 +11,9 @@ private:
 	BossGun*		m_Left;
 	BossGun*		m_Right;
 	CSpriteDx9*		m_BossBody;
-
+	CSpriteDx9*		m_Explosion;
 	float timeDelayGun;
 	bool isDelay;
-
 public:
 	Tinker();
 	Tinker(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

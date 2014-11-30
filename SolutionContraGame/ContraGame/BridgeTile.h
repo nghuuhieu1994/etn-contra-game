@@ -8,6 +8,7 @@ class BridgeTile : public DynamicObject
 private:
 	CSpriteDx9*		m_BridgeSprite;
 	CSpriteDx9*		m_DeadSprite;
+	int timeExpl;
 public:
 	BridgeTile();
 	BridgeTile(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

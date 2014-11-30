@@ -7,7 +7,6 @@ Bridge::Bridge()
 Bridge::Bridge(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void Bridge::Initialize()
@@ -104,7 +103,12 @@ void Bridge::Update()
 	_distanceX = m_Position.x - CGlobal::Rambo_X;
 	if (_distanceX <= 100)
 	{
-		isDead = true;
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 1000)
+		{
+			isDead = true;
+			m_TimeChangeState = 0;
+		}	
 	}
 	if (isDead == true)
 	{
@@ -137,10 +141,6 @@ void Bridge::Render(SPRITEHANDLE spriteHandle)
 	{
 		this->mListTile[i]->Render(spriteHandle);
 	}
-	
-	
-	
-	
 }
 
 void Bridge::Release()

@@ -37,8 +37,11 @@ void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound)
 	this->LoadSoundBuffer("resources\\Sound\\rambo_1up_sfx.wav", eSoundID::rambo_1up_sfx, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\rambo_dead_sfx.wav", eSoundID::rambo_dead_sfx, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\bullet_L_sfx.wav", eSoundID::bullet_L_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\rambo_step_sfx.wav", eSoundID::rambo_step_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\enemy_dead_sfx.wav", eSoundID::enemy_dead_sfx, _lpDSound);
 
-	
+	this->LoadSoundBuffer("resources\\Sound\\bridge_exploision_sfx.wav", eSoundID::bridge_exploision_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\enemy_dead_sfx.wav", eSoundID::enemy_dead_sfx, _lpDSound);
 	// need more and more sound rs
 
 }

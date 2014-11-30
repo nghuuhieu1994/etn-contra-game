@@ -4,6 +4,7 @@ enum eIDSceneGame
 {
 	INTRO = 0,
 	TEST_SPRITE = 1,
+	DEMO,
 	MENUGAME
 };
 #endif

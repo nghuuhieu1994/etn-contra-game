@@ -10,7 +10,6 @@ BossCenter::BossCenter()
 BossCenter::BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void BossCenter::Initialize()
@@ -27,11 +26,15 @@ void BossCenter::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
+	case STATE_ALIVE_IDLE: 
 		m_Sprite->UpdateAnimation(800);
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
+		if(isDead == false)
+		{
+			isDead = true;
+			m_Sprite = sprite_dead;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
@@ -44,21 +47,7 @@ void BossCenter::UpdateAnimation()
 
 void BossCenter::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
-	{
-		/*
-			if(detectCollision with BulletRambo && stateObject == Alive)
-			{
-				m_attackCounter --;
-			}
-			if(m_AttackCounter == 0)
-			{
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-			}
-		*/
-	default:
-		break;
-	}
+
 }
 
 void BossCenter:: UpdateMovement()
@@ -71,7 +60,7 @@ void BossCenter::Update()
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1500)
+		if(m_TimeChangeState > 1000)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;

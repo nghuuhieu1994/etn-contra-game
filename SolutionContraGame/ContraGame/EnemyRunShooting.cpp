@@ -5,7 +5,6 @@
 
 EnemyRunShooting::EnemyRunShooting()
 {
-	m_Position.z = 0.4f;
 }
 
 EnemyRunShooting::EnemyRunShooting(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
@@ -34,10 +33,8 @@ void EnemyRunShooting::Shoot()
 	switch (m_DirectAttack)
 	{
 	case AD_LEFT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 		break;
 	case AD_RIGHT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 		break;
 	default:
 		break;	
@@ -77,13 +74,11 @@ void EnemyRunShooting::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE: 
-		m_Sprite = sprite_main;
 		m_Sprite->getAnimationAction()->setIndexStart(0);
 		m_Sprite->getAnimationAction()->setIndexEnd(3);
 		m_Sprite->UpdateAnimation(400);
 		break;
 	case STATE_SHOOTING:
-		m_Sprite = sprite_main;
 		m_Sprite->getAnimationAction()->setIndexStart(4);
 		m_Sprite->getAnimationAction()->setIndexEnd(5);
 		m_Sprite->UpdateAnimation(400);
@@ -119,7 +114,6 @@ void EnemyRunShooting::UpdateCollision(Object* checkingObject)
 		switch (checkingObject->getID())
 		{
 			case eObjectID ::BULLET_RAMBO:
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
@@ -141,45 +135,45 @@ void EnemyRunShooting::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
-		if (isJumb != true)
-		{
-			if (m_Direction == eDirection::LEFT)
-			{
-				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
-			}
-			else
-			{
-				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
-			}
-		}
-		else
-		{
-			if (m_Direction == eDirection::LEFT)
-			{
-				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
-			}
-			else
-			{
-				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
-			}
-			m_Physic->setVelocityY(VELOC_JUMB);
-			isJumb = false;
-		}
+		//if (isJumb != true)
+		//{
+		//	if (m_Direction == eDirection::LEFT)
+		//	{
+		//		m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+		//	}
+		//	else
+		//	{
+		//		m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+		//	}
+		//}
+		//else
+		//{
+		//	if (m_Direction == eDirection::LEFT)
+		//	{
+		//		m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+		//	}
+		//	else
+		//	{
+		//		m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+		//	}
+		//	m_Physic->setVelocityY(VELOC_JUMB);
+		//	isJumb = false;
+		//}
 		break;
 	case STATE_BEFORE_DEATH:
-		if (isDead == false)
-		{
-			if (m_Direction == eDirection::LEFT)
-			{
-				m_Physic->setVelocityX(-VELOC_MOVE_LEFT);
-			}
-			else
-			{
-				m_Physic->setVelocityX(-VELOC_MOVE_RIGHT);
-			}
-			m_Physic->setVelocityY(VELOC_JUMB);
-			isDead = true;
-		}
+		//if (isDead == false)
+		//{
+		//	if (m_Direction == eDirection::LEFT)
+		//	{
+		//		m_Physic->setVelocityX(-VELOC_MOVE_LEFT);
+		//	}
+		//	else
+		//	{
+		//		m_Physic->setVelocityX(-VELOC_MOVE_RIGHT);
+		//	}
+		//	m_Physic->setVelocityY(VELOC_JUMB);
+		//	isDead = true;
+		//}
 		break;
 	case STATE_EXPLOISION:
 		m_Physic->setVelocityX(0);
@@ -198,7 +192,7 @@ void EnemyRunShooting::Update()
 		{
 		case STATE_ALIVE_MOVE:
 			// do a realthing to detect jumb?
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if(m_TimeChangeState > 10000)
 			{
 				m_TimeChangeState = 0;

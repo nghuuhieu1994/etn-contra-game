@@ -67,6 +67,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\TailBridge.png", eSpriteID::SPRITE_BRIDGE_TAIL, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\head_bridge_broken.png", eSpriteID::SPRITE_HEAD_BREAK, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\tail_bridge_broken.png", eSpriteID::SPRITE_TAIL_BREAK, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\BridgeExploision.png", eSpriteID::SPRITE_BRIDGE_EXPLOISION, 5, 3, 15);
 	// end load the fucking bridge
 
 	//Tank
