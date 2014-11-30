@@ -7,7 +7,6 @@ SniperStanding::SniperStanding()
 SniperStanding::SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void SniperStanding::Shoot()
@@ -107,6 +106,7 @@ void SniperStanding::Initialize()
 	m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 	m_Sprite = sprite_mid;
+	countBullet = 0;
 	m_Position.z = 0.4f;
 }
 
@@ -237,7 +237,12 @@ void SniperStanding::UpdateAnimation()
 		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
+		if(isDead == false)
+		{
+			isDead = true;
+			m_Sprite = sprite_dead;
+			m_TimeChangeState = 0;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
@@ -266,6 +271,7 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 						this->m_Physic->setVelocityY(0);
 					}
 					break;
+					// add case Bullet
 				default:
 					break;
 			}
@@ -278,29 +284,36 @@ void SniperStanding::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		//m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		//if(m_TimeChangeState > 10000)
-		//{
-		//	m_TimeChangeState = 0;
-		//	m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-		//	isShoot = true;
-		//}
+		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 3000)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = eObjectState::STATE_SHOOTING;
+			isShoot = true;
+		}
 		break;
 	case STATE_SHOOTING:
-		/*if(isShoot == true && _distance_X < 300)
+		if(isShoot)
 		{
-			Shoot();
-			isShoot = false;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 500)
+			{
+				countBullet += 1;
+				m_TimeChangeState = 0;
+				Shoot();
+			}
+			if(countBullet == 3)
+			{
+				countBullet = 0;
+				isShoot = false;
+			}
 		}
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 2500)
+		else
 		{
-			m_TimeChangeState = 0;			
-			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-		}*/
+			m_ObjectState = STATE_ALIVE_IDLE;
+		}
 		break;
 	case STATE_BEFORE_DEATH:
-		isDead = true;
 		if(isDead)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

@@ -10,7 +10,8 @@ private:
 	BossCenter*		m_Center;
 	BossGun*		m_Left;
 	BossGun*		m_Right;
-	CSpriteDx9*		m_BossBody;
+	CSpriteDx9*		m_BossBodyAlive;
+	CSpriteDx9*		m_BossBodyDead;
 	CSpriteDx9*		m_Explosion;
 	float timeDelayGun;
 	bool isDelay;

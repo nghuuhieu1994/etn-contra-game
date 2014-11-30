@@ -11,18 +11,16 @@ void Tinker::Initialize()
 {
 	timeDelayGun = 0;
 	isDelay = false;
-
 	this->m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-
-	this->m_BossBody = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY);
-	m_Sprite = m_BossBody;
-
+	this->m_BossBodyAlive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY_ALIVE);
+	this->m_BossBodyDead = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY_DEAD);
 	m_Center = new BossCenter(D3DXVECTOR3(this->getPositionVec3().x - 80, this->getPositionVec3().y - 80, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_CENTER);
 	m_Center->Initialize();
 	m_Left = new BossGun(D3DXVECTOR3(this->getPositionVec3().x - 85, this->getPositionVec3().y + 13, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
 	m_Left->Initialize();
 	m_Right = new BossGun(D3DXVECTOR3(this->getPositionVec3().x - 30, this->getPositionVec3().y + 13, this->getPositionVec3().z), eDirection::LEFT, eObjectID::BOSS_GUN);
 	m_Right->Initialize();
+	m_Sprite = m_BossBodyAlive;
 }
 
 void Tinker::UpdateAnimation()
