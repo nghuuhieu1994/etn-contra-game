@@ -50,9 +50,7 @@ RECT Bridge::getBound()
 		tempRect.left = 0;
 		tempRect.right = 0;
 		tempRect.bottom = 0;
-		char buff[100];
-		sprintf(buff, "%d, %d, %d, %d \n", (int)tempRect.top, (int)tempRect.bottom, (int)tempRect.left, (int)tempRect.right);
-		OutputDebugString(buff);
+
 		return tempRect;
 	}
 	else
@@ -62,9 +60,7 @@ RECT Bridge::getBound()
 		rt.bottom = mListTile[mListTile.size() - 1]->getBound().bottom;
 		rt.left = mListTile[0]->getBound().left;
 		rt.right = mListTile[mListTile.size() - 1]->getBound().right;
-		char buff[100];
-		sprintf(buff, "%d, %d, %d, %d \n", (int)rt.top, (int)rt.bottom, (int)rt.left, (int)rt.right);
-		OutputDebugString(buff);
+		
 		return rt;
 	}
 
@@ -94,10 +90,10 @@ void Bridge:: UpdateMovement()
 
 void Bridge::Update()
 {
-	if ((int)mListTile.size() == 0)
+	/*if ((int)mListTile.size() == 0)
 	{
 		m_ObjectState = eObjectState::STATE_DEATH;
-	}
+	}*/
 	_distanceX = m_Position.x - CGlobal::Rambo_X;
 	if (_distanceX <= 100)
 	{
