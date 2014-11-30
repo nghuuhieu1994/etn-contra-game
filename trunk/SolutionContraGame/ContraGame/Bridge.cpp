@@ -56,9 +56,16 @@ RECT Bridge::getBound()
 	else
 	{
 		RECT rt;
-		rt.top = (int)mListTile[0]->getBound().top - 16;
+		for (int i = 0; i < (int)mListTile.size(); ++i)
+		{
+			if (mListTile[i]->getObjectState() != eObjectState::STATE_BEFORE_DEATH && mListTile[i]->getObjectState() != eObjectState::STATE_DEATH)
+			{
+				rt.top = (int)mListTile[i]->getBound().top - 16;
+				rt.left = mListTile[i]->getBound().left;
+				break;
+			}
+		}
 		rt.bottom = mListTile[mListTile.size() - 1]->getBound().bottom;
-		rt.left = mListTile[0]->getBound().left;
 		rt.right = mListTile[mListTile.size() - 1]->getBound().right;
 		
 		return rt;
