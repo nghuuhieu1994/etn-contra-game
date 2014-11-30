@@ -1,7 +1,7 @@
 #ifndef __DYNAMIC_OBJECT__
 #define __DYNAMIC_OBJECT__
 
-#include "cobjectdx9.h"
+#include "CObjectDx9.h"
 #include "Collision.h"
 #include "CGameTimeDx9.h"
 

@@ -1,16 +1,22 @@
-#ifndef __BULLET_MOVING_H__
-#define __BULLET_MOVING_H__
+#ifndef __WEAPON_CAPSULE_H__
+#define __WEAPON_CAPSULE_H__
 #include "DynamicObject.h"
-#include "CInputDx9.h"
+#include "Barrier.h"
+#include "FlameGun.h"
+#include "LaserGun.h"
+#include "MachineGun.h"
+#include "RapidFire.h"
+#include "SpreadGun.h"
 
 class WeaponCapsule : public DynamicObject
 {
-	//Physic*			m_Physic;
+	CSpriteDx9*		m_deadSprite;
 	D3DXVECTOR3		m_startPosition;
+	EIDWeaponry		m_IDWeaponry;
 public:
 	WeaponCapsule();
 	Physic*			getPhysic() const { return m_Physic; }
-	WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

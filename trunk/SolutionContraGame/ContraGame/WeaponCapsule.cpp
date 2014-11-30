@@ -5,61 +5,69 @@ WeaponCapsule::WeaponCapsule()
 
 }
 
-WeaponCapsule::WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+WeaponCapsule::WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry	idWeapon)
 	: DynamicObject(_position, _direction, _objectID)
 {
+	m_IDWeaponry = idWeapon;
 	m_startPosition = _position;
-	m_Position.z = 0.4f;
 }
 
 void WeaponCapsule::Initialize()
 {
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_CAPSULE));
+	m_deadSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
+	m_ObjectState = STATE_ALIVE_MOVE;
 }
 
 void WeaponCapsule::UpdateAnimation()
 {
-
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_MOVE:
+		break;
+	case STATE_BEFORE_DEATH:
+		if (!isDead)
+		{
+			isDead = true;
+			m_Sprite = m_deadSprite;
+		}
+		m_Sprite->UpdateAnimation(100);
+		break;
+	case STATE_DEATH:
+		break;
+	default:
+		break;
+	}
 }
 
 
 void WeaponCapsule::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if (!isDead)
 	{
-		switch (checkingObject->getID())
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+		if (collideDirection != IDDirection::DIR_NONE)
 		{
-			case eObjectID ::BULLET_RAMBO:
-				if(collideDirection == IDDirection::DIR_TOP)
+			switch (checkingObject->getID())
+			{
+			case BULLET_RAMBO:
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+				if (m_Sprite->getAnimationAction()->getCurrentIndex() > 3)
 				{
-					break;
-				}
-				else if(collideDirection == IDDirection::DIR_BOTTOM)
-				{
-					
-					break;
-				}
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 
-				else if(collideDirection == IDDirection::DIR_LEFT)
-				{
-					
-					break;
-				}
 
-				else if(collideDirection == IDDirection::DIR_RIGHT)
-				{
-					
-					break;
+
+					m_ObjectState = STATE_BEFORE_DEATH;
 				}
 				break;
-
 			default:
 				break;
-		}
+			}
 
+		}
 	}
 }
 

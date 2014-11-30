@@ -9,6 +9,7 @@
 #include "IDDirection.h"
 #include "EDirection.h"
 #include "EDirectAttack.h"
+#include "EIDWeaponry.h"
 #include "SpriteManager.h"
 #include "SoundMangerDx9.h"
 #include "Box.h"
