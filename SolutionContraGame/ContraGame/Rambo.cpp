@@ -723,11 +723,11 @@ void Rambo::Shoot()
 		{
 			if(m_SkillBullet == eIDSkillBullet::DEFAULT_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
 			}
 			else if(m_SkillBullet == eIDSkillBullet::M_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
 			}
 			else if(m_SkillBullet == eIDSkillBullet::R_SKILL_BULLET)
 			{
@@ -735,11 +735,11 @@ void Rambo::Shoot()
 			}
 			else if(m_SkillBullet == eIDSkillBullet::F_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
 			}
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
 			}
 		}
 		break;
