@@ -14,7 +14,6 @@ void SniperHiding::Shoot()
 	switch (m_DirectAttack)
 	{
 	case AD_LEFT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 		if(m_CountBullet < 4)
 		{
 			if(m_TimeToShoot >= 1000)
@@ -34,7 +33,6 @@ void SniperHiding::Shoot()
 		}
 		break;
 	case AD_RIGHT:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 		if(m_CountBullet < 4)
 		{
 			if(m_TimeToShoot >= 1000)
@@ -150,6 +148,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 				case eObjectID::BULLET_RAMBO:
 					if(m_ObjectState == eObjectState::STATE_SHOOTING)
 					{
+						checkingObject->setObjectState(eObjectState::STATE_DEATH);
 						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 						//isDead = true;
 						this->m_TimeChangeState = 0.0f;

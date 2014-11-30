@@ -72,6 +72,7 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 				case eObjectID ::BULLET_RAMBO:
+					checkingObject->setObjectState(eObjectState::STATE_DEATH);
 					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					this->isDead = true;
 					break;

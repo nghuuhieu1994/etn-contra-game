@@ -57,6 +57,16 @@ void DemoState::Update()
 	m_Quadtree->UpdateAnimation();
 	m_Quadtree->UpdateMovement();
 
+
+	#pragma endregion
+
+	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	{
+		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+	}
+
+	
 	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
@@ -67,14 +77,6 @@ void DemoState::Update()
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
-	}
-
-	#pragma endregion
-
-	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
-	{
-		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
 	#pragma endregion	

@@ -77,38 +77,38 @@ void Bullet::UpdateAnimation()
 
 void Bullet::UpdateCollision(Object* checkingObject)
 {
-	if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH)
-	{
-		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+	//if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
+	//{
+	//	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
-		if(collideDirection != IDDirection::DIR_NONE)
-		{
-			if(checkingObject->getTypeObject() != ETypeObject::VIRTUAL_OBJECT && checkingObject->getTypeObject() != ETypeObject::TILE_MAP)
-			{
-				if(this->getID() == eObjectID::BULLET_RAMBO)
-				{
-					if(checkingObject->getID() != eObjectID::RAMBO && checkingObject->getID() != eObjectID::SNIPER_HIDING)
-					{
-						this->m_ObjectState = eObjectState::STATE_DEATH;
-					}
-					else if(checkingObject->getID() == eObjectID::SNIPER_HIDING)
-					{
-						if(checkingObject->getObjectState() != eObjectState::STATE_ALIVE_IDLE)
-						{
-							this->m_ObjectState = eObjectState::STATE_DEATH;
-						}
-					}
-				}
-				else if(this->getID() == eObjectID::BULLET_ENEMY)
-				{
-					if(checkingObject->getID() == eObjectID::RAMBO)
-					{
-						this->m_ObjectState = eObjectState::STATE_DEATH;
-					}
-				}
-			}
-		}
-	}
+	//	if(collideDirection != IDDirection::DIR_NONE)
+	//	{
+	//		if(checkingObject->getTypeObject() != ETypeObject::VIRTUAL_OBJECT && checkingObject->getTypeObject() != ETypeObject::TILE_MAP)
+	//		{
+	//			if(this->getID() == eObjectID::BULLET_RAMBO)
+	//			{
+	//				if(checkingObject->getID() != eObjectID::RAMBO && checkingObject->getID() != eObjectID::SNIPER_HIDING)
+	//				{
+	//					//this->m_ObjectState = eObjectState::STATE_DEATH;
+	//				}
+	//				else if(checkingObject->getID() == eObjectID::SNIPER_HIDING)
+	//				{
+	//					if(checkingObject->getObjectState() != eObjectState::STATE_ALIVE_IDLE)
+	//					{
+	//						//this->m_ObjectState = eObjectState::STATE_DEATH;
+	//					}
+	//				}
+	//			}
+	//			else if(this->getID() == eObjectID::BULLET_ENEMY)
+	//			{
+	//				if(checkingObject->getID() == eObjectID::RAMBO)
+	//				{
+	//					//this->m_ObjectState = eObjectState::STATE_DEATH;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 void Bullet::UpdateMovement()
