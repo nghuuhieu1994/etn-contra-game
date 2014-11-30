@@ -13,12 +13,14 @@ void SniperHiding::Shoot()
 {
 	switch (m_DirectAttack)
 	{
-	case AD_LEFT:
+	case THREE_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
 		break;
-	case AD_RIGHT:
+	case NINE_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
 		break;
 	default:
-		break;	
+		break;
 	}
 }
 
@@ -26,9 +28,11 @@ D3DXVECTOR3 SniperHiding::GetStartPositionOfBullet()
 {
 	switch(m_DirectAttack)
 	{
-	case AD_LEFT:
+	case THREE_CLOCK_DIRECTION:
+		return D3DXVECTOR3(m_Position.x + 30, m_Position.y, 1);
 		break;
-	case AD_RIGHT:
+	case NINE_CLOCK_DIRECTION:
+		return D3DXVECTOR3(m_Position.x - 30, m_Position.y, 1);
 		break;
 	default:
 		break;	
@@ -99,6 +103,9 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 		{
 			switch (checkingObject->getID())
 			{
+			case eObjectID ::BULLET_RAMBO:
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+				break;
 			default:
 				break;
 			}

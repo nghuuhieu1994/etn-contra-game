@@ -16,7 +16,7 @@ EnemyRunShooting::EnemyRunShooting(D3DXVECTOR3 _position, eDirection _direction,
 void EnemyRunShooting::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	m_Direction = eDirection::RIGHT;
+	m_Direction = eDirection::LEFT;
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_RUN_SHOOTING));
 	m_Sprite = sprite_main;
