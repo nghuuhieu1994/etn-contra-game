@@ -1,26 +1,26 @@
-#include "GifBulletStatic.h"
+#include "WeaponSensor.h"
 
-GifBulletStatic::GifBulletStatic()
+WeaponSensor::WeaponSensor()
 {
 
 }
 
-GifBulletStatic::GifBulletStatic(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+WeaponSensor::WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
 	m_Position.z = 0.4f;
 }
 
-void GifBulletStatic::Initialize()
+void WeaponSensor::Initialize()
 {
 	m_Position.z = 0.4f;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_BULLET_STATIC));
+	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_SENSOR));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
 }
 
-void GifBulletStatic::UpdateAnimation()
+void WeaponSensor::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
@@ -53,7 +53,7 @@ void GifBulletStatic::UpdateAnimation()
 }
 
 
-void GifBulletStatic::UpdateCollision(Object* checkingObject)
+void WeaponSensor::UpdateCollision(Object* checkingObject)
 {
 	if (!isDead)
 	{
@@ -70,9 +70,9 @@ void GifBulletStatic::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void GifBulletStatic:: UpdateMovement()
+void WeaponSensor:: UpdateMovement()
 {}
-void GifBulletStatic::Update()
+void WeaponSensor::Update()
 {
 	switch (m_ObjectState)
 	{
@@ -93,7 +93,7 @@ void GifBulletStatic::Update()
 		break;
 	}
 }
-void GifBulletStatic::Render(SPRITEHANDLE spriteHandle)
+void WeaponSensor::Render(SPRITEHANDLE spriteHandle)
 {
 	if(m_Sprite != 0)
 	{
@@ -107,14 +107,14 @@ void GifBulletStatic::Render(SPRITEHANDLE spriteHandle)
 }
 
 
-void GifBulletStatic::Release()
+void WeaponSensor::Release()
 {
 	m_Sprite = 0;
 	sprite_alive->Release();
 	sprite_dead->Release();
 }
 
-GifBulletStatic::~GifBulletStatic()
+WeaponSensor::~WeaponSensor()
 {
 
 }

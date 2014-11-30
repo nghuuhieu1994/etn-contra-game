@@ -78,19 +78,6 @@ D3DXVECTOR3 SniperStanding::GetStartPositionOfBullet()
 		return D3DXVECTOR3(m_Position.x - 30, m_Position.y + 20, 1);
 	case ELEVEN_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 30, 1);
-
-	/*case AD_LEFT:
-		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 20, 0); 
-	case AD_RIGHT:
-		return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 20, 0);
-	case AD_TOP_LEFT:
-		return D3DXVECTOR3(m_Position.x - 10, m_Position.y + 25, 0);
-	case AD_TOP_RIGHT:
-		return D3DXVECTOR3(m_Position.x + 10, m_Position.y + 25, 0);
-	case AD_BOTTOM_LEFT:
-		return D3DXVECTOR3(m_Position.x - 15, m_Position.y  , 0); 
-	case AD_BOTTOM_RIGHT:
-		return D3DXVECTOR3(m_Position.x + 15, m_Position.y , 0); */
 	default:
 		break;	
 	}
@@ -271,7 +258,11 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 						this->m_Physic->setVelocityY(0);
 					}
 					break;
-					// add case Bullet
+				case eObjectID::BULLET_RAMBO:
+					checkingObject->setObjectState(eObjectState::STATE_DEATH);
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					break;
 				default:
 					break;
 			}

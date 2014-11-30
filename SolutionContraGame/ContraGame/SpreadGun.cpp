@@ -1,11 +1,11 @@
-#include "GifS.h"
+#include "SpreadGun.h"
 
-GifS::GifS()
+SpreadGun::SpreadGun()
 {
 
 }
 
-GifS::GifS(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+SpreadGun::SpreadGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
@@ -15,19 +15,19 @@ GifS::GifS(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 }
 
-void GifS::Initialize()
+void SpreadGun::Initialize()
 {
 	m_Position.z = 0.4f;
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_S));
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SPREAD_GUN));
 }
 
-void GifS::UpdateAnimation()
+void SpreadGun::UpdateAnimation()
 {
 
 }
 
 
-void GifS::UpdateCollision(Object* checkingObject)
+void SpreadGun::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -48,29 +48,29 @@ void GifS::UpdateCollision(Object* checkingObject)
 
 
 
-void GifS:: UpdateMovement()
+void SpreadGun:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
 	
 
 }
 
-void GifS::Update()
+void SpreadGun::Update()
 {
 
 }
 
-void GifS::Render(SPRITEHANDLE spriteHandle)
+void SpreadGun::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifS::Release()
+void SpreadGun::Release()
 {
 
 }
 
-GifS::~GifS()
+SpreadGun::~SpreadGun()
 {
 
 }

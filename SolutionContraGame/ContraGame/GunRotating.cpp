@@ -122,7 +122,7 @@ void GunRotating::UpdateAnimation()
 		_distance_X = CGlobal::Rambo_X - this->getPositionVec2().x;
 		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
 		
-		if (abs(_distance_Y) < 30)
+		if (abs(_distance_Y) < 50)
 		{
 #pragma region AttackMid
 			if (_distance_X < 0)
@@ -400,43 +400,43 @@ void GunRotating::UpdateAnimation()
 
 void GunRotating::UpdateCollision(Object* checkingObject)
 {
-	if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
+	if (isDead == false)
 	{
-		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-		if(collideDirection != IDDirection::DIR_NONE)
+		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-			if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			if (collideDirection != IDDirection::DIR_NONE)
 			{
-				Bullet* tempBullet = (Bullet*)(checkingObject);
-				if(tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+				Bullet* tempBullet = (Bullet*) (checkingObject);
+				if (tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
 				{
-					if(m_AttackCounter > 0)
+					if (m_AttackCounter > 0)
 					{
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						--m_AttackCounter;
 					}
 				}
-				else if(tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
 				{
 					checkingObject->setObjectState(eObjectState::STATE_DEATH);
-					if(m_AttackCounter >= 2)
+					if (m_AttackCounter >= 2)
 					{
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						m_AttackCounter -= 2;
 					}
 				}
-				else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
 				{
-					if(m_AttackCounter >= 4)
+					if (m_AttackCounter >= 4)
 					{
 						m_AttackCounter -= 4;
 					}
 				}
 
-				if(m_AttackCounter == 0)
+				if (m_AttackCounter <= 0)
 				{
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
 				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
@@ -445,7 +445,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void GunRotating:: UpdateMovement()
+void GunRotating::UpdateMovement()
 {}
 void GunRotating::Update()
 {
@@ -453,7 +453,7 @@ void GunRotating::Update()
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 3000)
+		if(m_TimeChangeState > 5000)
 		{
 			m_ObjectState = STATE_SHOOTING;
 			m_TimeChangeState = 0;
@@ -464,7 +464,7 @@ void GunRotating::Update()
 		if(isShoot == true)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 300)
+			if(m_TimeChangeState > 500)
 			{
 				countBullet += 1;
 				m_TimeChangeState = 0;

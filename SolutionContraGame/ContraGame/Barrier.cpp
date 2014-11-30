@@ -1,11 +1,11 @@
-#include "GifF.h"
+#include "Barrier.h"
 
-GifF::GifF()
+Barrier::Barrier()
 {
 
 }
 
-GifF::GifF(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+Barrier::Barrier(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
@@ -15,19 +15,19 @@ GifF::GifF(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 }
 
-void GifF::Initialize()
+void Barrier::Initialize()
 {
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BARRIER));
 	m_Position.z = 0.4f;
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_F));
 }
 
-void GifF::UpdateAnimation()
+void Barrier::UpdateAnimation()
 {
 
 }
 
 
-void GifF::UpdateCollision(Object* checkingObject)
+void Barrier::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -48,29 +48,28 @@ void GifF::UpdateCollision(Object* checkingObject)
 
 
 
-void GifF:: UpdateMovement()
+void Barrier:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
-	
 
 }
 
-void GifF::Update()
+void Barrier::Update()
 {
 
 }
 
-void GifF::Render(SPRITEHANDLE spriteHandle)
+void Barrier::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifF::Release()
+void Barrier::Release()
 {
 
 }
 
-GifF::~GifF()
+Barrier::~Barrier()
 {
 
 }

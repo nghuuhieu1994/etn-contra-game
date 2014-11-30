@@ -10,7 +10,6 @@ EnemyRun::EnemyRun()
 EnemyRun::EnemyRun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 1.0f;
 }
 
 void EnemyRun::Initialize()
@@ -72,6 +71,7 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 				case eObjectID ::BULLET_RAMBO:
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play(); // sound dead
 					checkingObject->setObjectState(eObjectState::STATE_DEATH);
 					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					this->isDead = true;

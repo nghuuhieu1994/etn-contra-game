@@ -238,67 +238,67 @@
       <FileName>RamboSprite.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifBulletSinStraight" Collapsed="true">
+  <Class Name="BarrierulletSinStraight" Collapsed="true">
     <Position X="30.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIAAAQAAAAAAAACEAAIAAAAAABAAABAiIAA=</HashCode>
-      <FileName>GifBulletSinStraight.h</FileName>
+      <FileName>BarrierulletSinStraight.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifBulletMoving" Collapsed="true">
+  <Class Name="WeaponCapsule" Collapsed="true">
     <Position X="37.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIIAAQAAAAAAAAAEAAIAAAAQABAAABAgIAA=</HashCode>
-      <FileName>GifBulletMoving.h</FileName>
+      <FileName>WeaponCapsule.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifBulletStatic" Collapsed="true">
+  <Class Name="WeaponSensor" Collapsed="true">
     <Position X="42" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAgIQAAQEAAAAAAAAEAAIAAAAAABAAABAAAEA=</HashCode>
-      <FileName>GifBulletStatic.h</FileName>
+      <FileName>WeaponSensor.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifS" Collapsed="true">
+  <Class Name="SpreadGun" Collapsed="true">
     <Position X="51" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIQAAQAAAAAAAAAEAAIAAAAAABAAABAgBAA=</HashCode>
-      <FileName>GifS.h</FileName>
+      <FileName>SpreadGun.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifR" Collapsed="true">
+  <Class Name="RapidFire" Collapsed="true">
     <Position X="60" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIQAAQAAAAAIAAAEAAIAAAAAABAAABAwAAA=</HashCode>
-      <FileName>GifR.h</FileName>
+      <FileName>RapidFire.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifB" Collapsed="true">
+  <Class Name="Barrier" Collapsed="true">
     <Position X="6" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIQAAQAAAAAAAAAEAAIAAAAACBAAEBAgAAA=</HashCode>
-      <FileName>GifB.h</FileName>
+      <FileName>Barrier.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifF" Collapsed="true">
+  <Class Name="FlameGun" Collapsed="true">
     <Position X="10.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIQAAQAAAAAAAAAEAAIAAAAAABACABEgAAA=</HashCode>
-      <FileName>GifF.h</FileName>
+      <FileName>FlameGun.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifM" Collapsed="true">
+  <Class Name="MachineGun" Collapsed="true">
     <Position X="21.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAABAIQAAQAAAAAAAAAEAAIAAAAAABAAABAoAAA=</HashCode>
-      <FileName>GifM.h</FileName>
+      <FileName>MachineGun.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GifL" Collapsed="true">
+  <Class Name="LaserGun" Collapsed="true">
     <Position X="26.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQAAAAAAIQAAQAAAAAAAAAEAAIAAAAACBAAABAkAAA=</HashCode>
-      <FileName>GifL.h</FileName>
+      <FileName>LaserGun.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RockFlying" Collapsed="true">

@@ -1,16 +1,17 @@
-#ifndef __BULLET_MOVING_H__
-#define __BULLET_MOVING_H__
+#ifndef __BARRIER_H__
+#define __BARRIER_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class GifBulletMoving : public DynamicObject
+class Barrier : public DynamicObject
 {
 	//Physic*			m_Physic;
 	D3DXVECTOR3		m_startPosition;
+	CSpriteDx9* sprite_dead;
 public:
-	GifBulletMoving();
+	Barrier();
 	Physic*			getPhysic() const { return m_Physic; }
-	GifBulletMoving(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	Barrier(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
@@ -18,8 +19,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	virtual ~GifBulletMoving();
-	float Moving();
+	virtual ~Barrier();
 };
 
 #endif

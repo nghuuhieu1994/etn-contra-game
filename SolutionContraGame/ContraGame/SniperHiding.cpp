@@ -80,7 +80,7 @@ void SniperHiding::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_HIDING_EXPLOISION));
 	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_CountBullet = 0;
 }
 
@@ -150,8 +150,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 					{
 						checkingObject->setObjectState(eObjectState::STATE_DEATH);
 						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-						//isDead = true;
-						this->m_TimeChangeState = 0.0f;
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 					}
 					break;
 				default:

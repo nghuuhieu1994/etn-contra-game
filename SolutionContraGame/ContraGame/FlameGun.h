@@ -1,17 +1,17 @@
-#ifndef __GIF_M_H__
-#define __GIF_M_H__
+#ifndef __FLAME_GUN_H__
+#define __FLAME_GUN_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class GifM : public DynamicObject
+class FlameGun : public DynamicObject
 {
 	//Physic*			m_Physic;
 	D3DXVECTOR3		m_startPosition;
 	CSpriteDx9* sprite_dead;
 public:
-	GifM();
+	FlameGun();
 	Physic*			getPhysic() const { return m_Physic; }
-	GifM(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	FlameGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
@@ -19,7 +19,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	virtual ~GifM();
+	virtual ~FlameGun();
 };
 
 #endif

@@ -1,17 +1,17 @@
-#ifndef __GIF_S_H__
-#define __GIF_S_H__
+#ifndef __GIF_BULLET_STATIC_H__
+#define __GIF_BULLET_STATIC_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class GifS : public DynamicObject
+class WeaponSensor : public DynamicObject
 {
 	//Physic*			m_Physic;
-	D3DXVECTOR3		m_startPosition;
 	CSpriteDx9* sprite_dead;
+	CSpriteDx9* sprite_alive;
 public:
-	GifS();
-	Physic*			getPhysic() const { return m_Physic; }
-	GifS(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	WeaponSensor();
+	//Physic*			getPhysic() const { return m_Physic; }
+	WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
@@ -19,7 +19,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	virtual ~GifS();
+	virtual ~WeaponSensor();
 };
 
 #endif

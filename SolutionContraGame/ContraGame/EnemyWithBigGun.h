@@ -1,8 +1,7 @@
-#ifndef __ENEMY_WITH_BIG_GUN_H__
+﻿#ifndef __ENEMY_WITH_BIG_GUN_H__ // Con này đâu cần đâu ta?
 #define __ENEMY_WITH_BIG_GUN_H__
 
 #include "DynamicObject.h"
-#include "Rambo.h"
 
 class EnemyWithBigGun : public DynamicObject
 {
