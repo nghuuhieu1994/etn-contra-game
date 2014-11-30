@@ -11,7 +11,7 @@ SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direct
 
 void SnipperWaterHiding::Shoot()
 {
-	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);		
+	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 0);		
 }
 
 D3DXVECTOR3 SnipperWaterHiding::GetStartPositionOfBullet()
