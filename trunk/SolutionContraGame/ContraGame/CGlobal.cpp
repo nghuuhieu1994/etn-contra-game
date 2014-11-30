@@ -7,10 +7,14 @@ bool CGlobal::IsMute		= false;
 int CGlobal::Rambo_X		= 0;
 int CGlobal::Rambo_Y		= 0;
 
-bool IsMovementObject(int type)
+bool IsMovementObject(eObjectID id)
 {
-
-	/* copde to detect movement object*/
-
+	switch(id)
+	{
+	case eObjectID::ENEMY_RUN:
+		return true;
+	default:
+		return false;
+	}
 	return false;
 }

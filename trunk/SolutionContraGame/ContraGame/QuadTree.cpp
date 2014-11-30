@@ -133,21 +133,33 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Width").c_str()), 
 									atoi(xml.GetAttrib("Height").c_str()), (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 						}
-						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == 9)
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::GUN_ROTATING)
 						{
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new GunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
-						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == 5)
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPER_STANDING)
 						{
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SniperStanding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
-						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == 21)
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BRIDGE)
 						{
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  Bridge(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ENEMY_RUN)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  EnemyRun(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPER_HIDING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  SniperHiding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
@@ -185,15 +197,21 @@ void QuadTree::UpdateAnimation()
 
 void QuadTree::UpdateCollision(Object* checkingObject)
 {
-	for(int i = 0 ; i < mListObjectCollisionInView.size(); ++i)
+	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
 	{
 		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->UpdateCollision(checkingObject);
 	}
 }
 
 void QuadTree::UpdateMovement()
-{
-	// dkm, ke thua tu thang Object thi sao co ham UpdateMovement??? Them ID vao hoac la them ham UpdateMovement zo class Object di >:(
+{	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	{
+		if(IsMovementObject(mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->getID()))
+		{
+			DynamicObject* tempObject = (DynamicObject*)mMapObjectCollisionInGame[mListObjectCollisionInView[i]];
+			tempObject->UpdateMovement();
+		}
+	}
 }
 
 void QuadTree::Render(SPRITEHANDLE spriteHandler)

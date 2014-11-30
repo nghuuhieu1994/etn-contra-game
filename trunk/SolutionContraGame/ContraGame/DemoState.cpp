@@ -3,7 +3,9 @@
 #define MAP_2 2
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(500, 600, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	
 	m_Quadtree = new QuadTree();
@@ -51,6 +53,16 @@ void DemoState::Update()
 
 	#pragma region UPdate Collision for object in quadtree with Bullet
 
+	m_Quadtree->Update();
+	m_Quadtree->UpdateAnimation();
+	m_Quadtree->UpdateMovement();
+
+	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	{
+		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+	}
+
+
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_Quadtree->UpdateCollision(*i);
@@ -61,16 +73,13 @@ void DemoState::Update()
 	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		//BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
 	#pragma endregion	
 
 	m_Rambo->UpdatePreviousIgnoreList();
-	
-	m_Quadtree->UpdateAnimation();
-	m_Quadtree->Update();
-	
+
 	m_backgroundEffect.UpdateAnimation();
 }
 

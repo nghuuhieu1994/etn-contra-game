@@ -2,6 +2,7 @@
 #define __ENEMYRUN_H__
 
 #include "DynamicObject.h"
+#include "VirtualObject.h"
 
 class EnemyRun : public DynamicObject
 {
@@ -16,6 +17,7 @@ public:
 	void UpdateCollision(Object* checkingObject);
 	void UpdateAnimation();
 	void UpdateMovement();
+	bool CanCollisionWithVirtualObject(VirtualObject* virtualObject);
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();

@@ -13,11 +13,46 @@ void SniperHiding::Shoot()
 {
 	switch (m_DirectAttack)
 	{
-	case THREE_CLOCK_DIRECTION:
+	case AD_LEFT:
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
+		if(m_CountBullet < 4)
+		{
+			if(m_TimeToShoot >= 1000)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(-2.0f, 0.0f), 0.0f);
+				m_TimeToShoot = 0;
+				++m_CountBullet;
+			}
+
+			m_TimeToShoot += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		}
+		else
+		{
+			this->isShoot = false;
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			m_CountBullet = 0;
+		}
 		break;
-	case NINE_CLOCK_DIRECTION:
+	case AD_RIGHT:
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		if(m_CountBullet < 4)
+		{
+			if(m_TimeToShoot >= 1000)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(2.0f, 0.0f), 0.0f);
+				m_TimeToShoot = 0;
+				++m_CountBullet;
+			}
+
+			m_TimeToShoot += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		}
+		else
+		{
+			this->isShoot = false;
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+			m_CountBullet = 0;
+		}
+		break;
 		break;
 	default:
 		break;
@@ -28,10 +63,10 @@ D3DXVECTOR3 SniperHiding::GetStartPositionOfBullet()
 {
 	switch(m_DirectAttack)
 	{
-	case THREE_CLOCK_DIRECTION:
+	case AD_LEFT:
 		return D3DXVECTOR3(m_Position.x + 30, m_Position.y, 1);
 		break;
-	case NINE_CLOCK_DIRECTION:
+	case AD_RIGHT:
 		return D3DXVECTOR3(m_Position.x - 30, m_Position.y, 1);
 		break;
 	default:
@@ -48,6 +83,7 @@ void SniperHiding::Initialize()
 	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
 	m_Position.z = 0.4f;
+	m_CountBullet = 0;
 }
 
 void SniperHiding::UpdateAnimation()
@@ -59,9 +95,9 @@ void SniperHiding::UpdateAnimation()
 		if(_distance_X > 0)
 		{
 			m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeDirectAttack > 700)
+			if(m_TimeChangeDirectAttack > 400)
 			{
-				m_DirectAttack = eDirectAttack::THREE_CLOCK_DIRECTION;
+				m_DirectAttack = eDirectAttack::AD_RIGHT;
 				m_Direction = eDirection::RIGHT;
 				m_TimeChangeDirectAttack = 0;
 			}
@@ -69,9 +105,9 @@ void SniperHiding::UpdateAnimation()
 		else
 		{
 			m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeDirectAttack > 700)
+			if(m_TimeChangeDirectAttack > 400)
 			{
-				m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+				m_DirectAttack = eDirectAttack::AD_LEFT;
 				m_Direction = eDirection::LEFT;
 				m_TimeChangeDirectAttack = 0;
 			}
@@ -82,10 +118,11 @@ void SniperHiding::UpdateAnimation()
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_BEFORE_DEATH:
-		if(isDead == false)
+		m_Sprite = sprite_dead;
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState >= 1000)
 		{
-			isDead = true;
-			m_Sprite = sprite_dead;
+			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;
 		}
 		m_Sprite->UpdateAnimation(250);
@@ -102,18 +139,25 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 {
 	if (!isDead)
 	{
-		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-		if (collideDirection != IDDirection::DIR_NONE)
+		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-			switch (checkingObject->getID())
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+			if (collideDirection != IDDirection::DIR_NONE)
 			{
-			case eObjectID ::BULLET_RAMBO:
-				// add attackcounter
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-				break;
-			default:
-				break;
+				switch (checkingObject->getID())
+				{
+				case eObjectID::BULLET_RAMBO:
+					if(m_ObjectState == eObjectState::STATE_SHOOTING)
+					{
+						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+						//isDead = true;
+						this->m_TimeChangeState = 0.0f;
+					}
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}
@@ -142,20 +186,11 @@ void SniperHiding::Update()
 			if(isShoot == true)
 			{
 				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-				if (m_TimeChangeState > 600)
+				if (m_TimeChangeState > 2000)
 				{
+					m_TimeToShoot = 1000;
 					Shoot();
-					isShoot = false;
 					m_TimeChangeState = 0;
-				}
-			}
-			else
-			{
-				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-				if (m_TimeChangeState > 1000)
-				{
-					m_TimeChangeState = 0;
-					m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 				}
 			}
 			break;

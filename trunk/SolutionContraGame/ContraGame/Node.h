@@ -11,6 +11,8 @@
 #include "GunRotating.h"
 #include "SniperStanding.h"
 #include "Bridge.h"
+#include "EnemyRun.h"
+#include "SniperHiding.h"
 
 class Node
 {
@@ -24,6 +26,7 @@ public:
 	Node* mBr;
 	std::vector<int> mListObject;
 	std::vector<int> mListObjectCollision;
+
 	int getID() const { return this->mID; };
 	RECT getBound() const { return this->mBound; };
 	std::vector<int> getListObject() const { return this->mListObject; };
