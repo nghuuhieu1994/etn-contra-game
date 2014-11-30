@@ -1,5 +1,6 @@
-#ifndef __SNIPER_HIDING_H_
+#ifndef __SNIPER_HIDING_H__
 #define __SNIPER_HIDING_H__
+
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "Bullet.h"
@@ -14,7 +15,8 @@ class SniperHiding : public DynamicObject
 	bool isShoot;
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
-
+	int m_TimeToShoot;
+	int m_CountBullet;
 public:
 	SniperHiding ();
 	SniperHiding (D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

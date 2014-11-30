@@ -66,7 +66,7 @@ void Bullet::UpdateAnimation()
 	{
 	case eObjectState::STATE_ALIVE_MOVE:
 		this->m_Sprite->getAnimation()->setIndexStart(0);
-		this->m_Sprite->getAnimation()->setIndexEnd(3);
+		this->m_Sprite->getAnimation()->setIndexEnd(0);
 		break;
 	case eObjectState::STATE_DEATH:
 		break;
@@ -77,24 +77,34 @@ void Bullet::UpdateAnimation()
 
 void Bullet::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH)
 	{
-		if(checkingObject->getTypeObject() != ETypeObject::VIRTUAL_OBJECT && checkingObject->getTypeObject() != ETypeObject::TILE_MAP)
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+		if(collideDirection != IDDirection::DIR_NONE)
 		{
-			if(this->getID() == eObjectID::BULLET_RAMBO)
+			if(checkingObject->getTypeObject() != ETypeObject::VIRTUAL_OBJECT && checkingObject->getTypeObject() != ETypeObject::TILE_MAP)
 			{
-				if(checkingObject->getID() != eObjectID::RAMBO)
+				if(this->getID() == eObjectID::BULLET_RAMBO)
 				{
-					this->m_ObjectState = eObjectState::STATE_DEATH;
+					if(checkingObject->getID() != eObjectID::RAMBO && checkingObject->getID() != eObjectID::SNIPER_HIDING)
+					{
+						this->m_ObjectState = eObjectState::STATE_DEATH;
+					}
+					else if(checkingObject->getID() == eObjectID::SNIPER_HIDING)
+					{
+						if(checkingObject->getObjectState() != eObjectState::STATE_ALIVE_IDLE)
+						{
+							this->m_ObjectState = eObjectState::STATE_DEATH;
+						}
+					}
 				}
-			}
-			else if(this->getID() == eObjectID::BULLET_ENEMY)
-			{
-				if(checkingObject->getID() == eObjectID::RAMBO)
+				else if(this->getID() == eObjectID::BULLET_ENEMY)
 				{
-					this->m_ObjectState = eObjectState::STATE_DEATH;
+					if(checkingObject->getID() == eObjectID::RAMBO)
+					{
+						this->m_ObjectState = eObjectState::STATE_DEATH;
+					}
 				}
 			}
 		}

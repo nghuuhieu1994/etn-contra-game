@@ -1,6 +1,8 @@
 #ifndef __CGLOBAL_H__
 #define __CGLOBAL_H__
 
+#include "EObjectID.h"
+
 class CGlobal
 {
 public:
@@ -11,6 +13,6 @@ public:
 	static int	Rambo_Y;
 };
 
-bool IsMovementObject(int type);
+bool IsMovementObject(eObjectID type);
 
 #endif

@@ -633,7 +633,7 @@ int Rambo::HandleInputShootRunState()
 	if (CInputDx9::getInstance()->IsKeyDown(DIK_DOWN))
 	{
 		m_ObjectState = eObjectState::STATE_RAMBO_AIM_BOTTOM_RIGHT;
-		return 0;
+		return 0;	
 	}
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_X))
 	{
