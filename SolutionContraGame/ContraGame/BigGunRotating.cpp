@@ -30,13 +30,13 @@ void BigGunRotating::Shoot()
 	switch (m_DirectAttack)
 	{
 	case NINE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 		break;
 	case TEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
 		break;
 	case ELEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);		
 		break;
 	default:
 		break;
@@ -70,7 +70,7 @@ void BigGunRotating::UpdateAnimation()
 		if(_distance_X > -250)
 		{
 			_isAddBullet = true;
-				if (abs(_distance_Y) < 30)
+			if (abs(_distance_Y) < 30)
 		{
 #pragma region MidAttack
 			if (lastDirectAttack != eDirectAttack::NINE_CLOCK_DIRECTION)
