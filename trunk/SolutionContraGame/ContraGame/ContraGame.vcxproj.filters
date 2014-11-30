@@ -61,9 +61,6 @@
     <ClCompile Include="Rambo.cpp">
       <Filter>GameObject\Rambo</Filter>
     </ClCompile>
-    <ClCompile Include="GifBulletStatic.cpp">
-      <Filter>GameObject\Items\GifBulletStatic</Filter>
-    </ClCompile>
     <ClCompile Include="TestSpriteState.cpp">
       <Filter>GameScene</Filter>
     </ClCompile>
@@ -130,24 +127,6 @@
     <ClCompile Include="FireBullet.cpp">
       <Filter>GameObject\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="GifS.cpp">
-      <Filter>GameObject\Items\GifBullet\GifS</Filter>
-    </ClCompile>
-    <ClCompile Include="GifR.cpp">
-      <Filter>GameObject\Items\GifBullet\GifR</Filter>
-    </ClCompile>
-    <ClCompile Include="GifB.cpp">
-      <Filter>GameObject\Items\GifBullet\GifB</Filter>
-    </ClCompile>
-    <ClCompile Include="GifF.cpp">
-      <Filter>GameObject\Items\GifBullet\GifF</Filter>
-    </ClCompile>
-    <ClCompile Include="GifM.cpp">
-      <Filter>GameObject\Items\GifBullet\GifM</Filter>
-    </ClCompile>
-    <ClCompile Include="GifL.cpp">
-      <Filter>GameObject\Items\GifBullet\GifL</Filter>
-    </ClCompile>
     <ClCompile Include="Tinker.cpp">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClCompile>
@@ -166,23 +145,11 @@
     <ClCompile Include="SnipperWaterHiding.cpp">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClCompile>
-    <ClCompile Include="GifBulletSinStraight.cpp">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
-    </ClCompile>
-    <ClCompile Include="RockFlying.cpp">
-      <Filter>GameObject\Items\RockFlying</Filter>
-    </ClCompile>
-    <ClCompile Include="RockFalling.cpp">
-      <Filter>GameObject\Items\RockFalling</Filter>
-    </ClCompile>
-    <ClCompile Include="GifBulletMoving.cpp">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyRun.cpp">
-      <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
+      <Filter>GameObject\Enemy\Soldier\SoldierNormal</Filter>
     </ClCompile>
     <ClCompile Include="EnemyRunShooting.cpp">
-      <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
+      <Filter>GameObject\Enemy\Soldier\SoldierShooting</Filter>
     </ClCompile>
     <ClCompile Include="BridgeTile.cpp">
       <Filter>GameObject\Bridge</Filter>
@@ -193,20 +160,32 @@
     <ClCompile Include="BackgroundEffect.cpp">
       <Filter>GameObject\Background Effect</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyWithBugGun.cpp">
-      <Filter>GameObject\Enemy\EnemyWithBigGun</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank.cpp">
-      <Filter>GameObject\Items\Tank</Filter>
-    </ClCompile>
-    <ClCompile Include="TankTile.cpp">
-      <Filter>GameObject\Items\Tank</Filter>
-    </ClCompile>
     <ClCompile Include="SpaceShip.cpp">
       <Filter>GameObject\Boss\BossMap3</Filter>
     </ClCompile>
-    <ClCompile Include="BoomFlying.cpp">
-      <Filter>GameObject\Items\BoomFlying</Filter>
+    <ClCompile Include="WeaponSensor.cpp">
+      <Filter>GameObject\Items\WeaponSensor</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponCapsule.cpp">
+      <Filter>GameObject\Items\WeaponCapsule</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineGun.cpp">
+      <Filter>GameObject\Items\Weaponry\MachineGun</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadGun.cpp">
+      <Filter>GameObject\Items\Weaponry\SpreadGun</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserGun.cpp">
+      <Filter>GameObject\Items\Weaponry\LaserGun</Filter>
+    </ClCompile>
+    <ClCompile Include="FlameGun.cpp">
+      <Filter>GameObject\Items\Weaponry\FlameGun</Filter>
+    </ClCompile>
+    <ClCompile Include="RapidFire.cpp">
+      <Filter>GameObject\Items\Weaponry\RapidFire</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>GameObject\Items\Weaponry\Barrier</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +251,6 @@
     </ClInclude>
     <ClInclude Include="Rambo.h">
       <Filter>GameObject\Rambo</Filter>
-    </ClInclude>
-    <ClInclude Include="GifBulletStatic.h">
-      <Filter>GameObject\Items\GifBulletStatic</Filter>
     </ClInclude>
     <ClInclude Include="TestSpriteState.h">
       <Filter>GameScene</Filter>
@@ -381,24 +357,6 @@
     <ClInclude Include="FireBullet.h">
       <Filter>GameObject\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="GifS.h">
-      <Filter>GameObject\Items\GifBullet\GifS</Filter>
-    </ClInclude>
-    <ClInclude Include="GifR.h">
-      <Filter>GameObject\Items\GifBullet\GifR</Filter>
-    </ClInclude>
-    <ClInclude Include="GifB.h">
-      <Filter>GameObject\Items\GifBullet\GifB</Filter>
-    </ClInclude>
-    <ClInclude Include="GifF.h">
-      <Filter>GameObject\Items\GifBullet\GifF</Filter>
-    </ClInclude>
-    <ClInclude Include="GifM.h">
-      <Filter>GameObject\Items\GifBullet\GifM</Filter>
-    </ClInclude>
-    <ClInclude Include="GifL.h">
-      <Filter>GameObject\Items\GifBullet\GifL</Filter>
-    </ClInclude>
     <ClInclude Include="Tinker.h">
       <Filter>GameObject\Boss\BossMap1</Filter>
     </ClInclude>
@@ -417,23 +375,11 @@
     <ClInclude Include="SnipperWaterHiding.h">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClInclude>
-    <ClInclude Include="GifBulletSinStraight.h">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinStraight</Filter>
-    </ClInclude>
-    <ClInclude Include="RockFlying.h">
-      <Filter>GameObject\Items\RockFlying</Filter>
-    </ClInclude>
-    <ClInclude Include="RockFalling.h">
-      <Filter>GameObject\Items\RockFalling</Filter>
-    </ClInclude>
-    <ClInclude Include="GifBulletMoving.h">
-      <Filter>GameObject\Items\GifBulletMoving\GifBulletSinNormal</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyRun.h">
-      <Filter>GameObject\Enemy\EnemyRun\EnemyRunNormal</Filter>
+      <Filter>GameObject\Enemy\Soldier\SoldierNormal</Filter>
     </ClInclude>
     <ClInclude Include="EnemyRunShooting.h">
-      <Filter>GameObject\Enemy\EnemyRun\EnemyRunShooting</Filter>
+      <Filter>GameObject\Enemy\Soldier\SoldierShooting</Filter>
     </ClInclude>
     <ClInclude Include="EIDSkillBullet.h">
       <Filter>Framework\Global</Filter>
@@ -448,20 +394,32 @@
     <ClInclude Include="BackgroundEffect.h">
       <Filter>GameObject\Background Effect</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWithBigGun.h">
-      <Filter>GameObject\Enemy\EnemyWithBigGun</Filter>
-    </ClInclude>
-    <ClInclude Include="Tank.h">
-      <Filter>GameObject\Items\Tank</Filter>
-    </ClInclude>
-    <ClInclude Include="TankTile.h">
-      <Filter>GameObject\Items\Tank</Filter>
-    </ClInclude>
     <ClInclude Include="SpaceShip.h">
       <Filter>GameObject\Boss\BossMap3</Filter>
     </ClInclude>
-    <ClInclude Include="BoomFlying.h">
-      <Filter>GameObject\Items\BoomFlying</Filter>
+    <ClInclude Include="WeaponSensor.h">
+      <Filter>GameObject\Items\WeaponSensor</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponCapsule.h">
+      <Filter>GameObject\Items\WeaponCapsule</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineGun.h">
+      <Filter>GameObject\Items\Weaponry\MachineGun</Filter>
+    </ClInclude>
+    <ClInclude Include="SpreadGun.h">
+      <Filter>GameObject\Items\Weaponry\SpreadGun</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserGun.h">
+      <Filter>GameObject\Items\Weaponry\LaserGun</Filter>
+    </ClInclude>
+    <ClInclude Include="FlameGun.h">
+      <Filter>GameObject\Items\Weaponry\FlameGun</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidFire.h">
+      <Filter>GameObject\Items\Weaponry\RapidFire</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
+      <Filter>GameObject\Items\Weaponry\Barrier</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -531,9 +489,6 @@
     <Filter Include="GameScene\Scene">
       <UniqueIdentifier>{509bd375-0179-4e0c-8251-06fc3ea72d40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Enemy\EnemyRun">
-      <UniqueIdentifier>{3b959c08-be49-4114-8b6e-fac5c0537d85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{b51c09b2-f018-47ea-9c04-4692fcdff4cb}</UniqueIdentifier>
     </Filter>
@@ -567,17 +522,8 @@
     <Filter Include="GameObject\Enemy\SnipperWaterHiding">
       <UniqueIdentifier>{ad37125c-6525-4e0c-8d6b-cb4d18985d3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunShooting">
-      <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Enemy\EnemyRun\EnemyRunNormal">
-      <UniqueIdentifier>{5e21e0a2-34c2-4ae8-95b8-4fc1091f9a59}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Background Effect">
       <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Enemy\EnemyWithBigGun">
-      <UniqueIdentifier>{63bba6df-6f80-4db2-93d4-8a8172205b55}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Boss\BossMap3">
       <UniqueIdentifier>{235340b4-143a-4ca0-b6a6-ebab4ac6e469}</UniqueIdentifier>
@@ -585,50 +531,41 @@
     <Filter Include="GameObject\Items">
       <UniqueIdentifier>{86e0d6db-57fb-4b92-9e4d-8021b95c309c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving">
-      <UniqueIdentifier>{83622fd0-a32d-4d40-b228-4b407613dfd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinStraight">
-      <UniqueIdentifier>{3bd874b3-488f-4b74-a8fb-67662779d225}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletMoving\GifBulletSinNormal">
-      <UniqueIdentifier>{495b6cb9-37ba-4b85-980a-684ee3dc3881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBulletStatic">
+    <Filter Include="GameObject\Items\WeaponSensor">
       <UniqueIdentifier>{8890abc7-0875-4664-bc7b-2682612fbcfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBullet">
+    <Filter Include="GameObject\Items\WeaponCapsule">
+      <UniqueIdentifier>{83622fd0-a32d-4d40-b228-4b407613dfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\Weaponry">
       <UniqueIdentifier>{f2212de6-6de4-4f29-ac7e-c23112221f26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifS">
-      <UniqueIdentifier>{b04c12c8-a896-4037-8145-0c97ce060b62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifR">
-      <UniqueIdentifier>{83b5c345-0b47-47d6-8fe8-01d8d0e94dce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifB">
-      <UniqueIdentifier>{e849387b-a5be-418b-a1d9-a68b9998443b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifF">
-      <UniqueIdentifier>{e016559f-f511-400c-9830-524cb623c65a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifM">
+    <Filter Include="GameObject\Items\Weaponry\MachineGun">
       <UniqueIdentifier>{7134e551-542a-4e77-b5da-aaee6e27b2a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\GifBullet\GifL">
+    <Filter Include="GameObject\Items\Weaponry\SpreadGun">
+      <UniqueIdentifier>{b04c12c8-a896-4037-8145-0c97ce060b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\Weaponry\LaserGun">
       <UniqueIdentifier>{8a5a3237-c292-4fc1-aa40-f7a523a55920}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\RockFlying">
-      <UniqueIdentifier>{9f7a89df-e1aa-4418-88ce-b77956bccbee}</UniqueIdentifier>
+    <Filter Include="GameObject\Items\Weaponry\FlameGun">
+      <UniqueIdentifier>{e016559f-f511-400c-9830-524cb623c65a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\RockFalling">
-      <UniqueIdentifier>{1f94f8a4-5c6a-412d-beca-f82985bed2ca}</UniqueIdentifier>
+    <Filter Include="GameObject\Items\Weaponry\RapidFire">
+      <UniqueIdentifier>{83b5c345-0b47-47d6-8fe8-01d8d0e94dce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\Tank">
-      <UniqueIdentifier>{970a45db-64b5-4112-8aea-af316319cfdc}</UniqueIdentifier>
+    <Filter Include="GameObject\Items\Weaponry\Barrier">
+      <UniqueIdentifier>{e849387b-a5be-418b-a1d9-a68b9998443b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\BoomFlying">
-      <UniqueIdentifier>{c2e5de31-8357-40ef-af2c-05bb9b94ffd3}</UniqueIdentifier>
+    <Filter Include="GameObject\Enemy\Soldier">
+      <UniqueIdentifier>{3b959c08-be49-4114-8b6e-fac5c0537d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\Soldier\SoldierNormal">
+      <UniqueIdentifier>{5e21e0a2-34c2-4ae8-95b8-4fc1091f9a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\Soldier\SoldierShooting">
+      <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

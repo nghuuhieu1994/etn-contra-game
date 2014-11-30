@@ -1,11 +1,11 @@
-#include "GifL.h"
+#include "RapidFire.h"
 
-GifL::GifL()
+RapidFire::RapidFire()
 {
 
 }
 
-GifL::GifL(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+RapidFire::RapidFire(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
@@ -15,19 +15,19 @@ GifL::GifL(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 }
 
-void GifL::Initialize()
+void RapidFire::Initialize()
 {
 	m_Position.z = 0.4f;
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_L));
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAPID_FIRE));
 }
 
-void GifL::UpdateAnimation()
+void RapidFire::UpdateAnimation()
 {
 
 }
 
 
-void GifL::UpdateCollision(Object* checkingObject)
+void RapidFire::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -48,28 +48,29 @@ void GifL::UpdateCollision(Object* checkingObject)
 
 
 
-void GifL:: UpdateMovement()
+void RapidFire:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
 	
+
 }
 
-void GifL::Update()
+void RapidFire::Update()
 {
 
 }
 
-void GifL::Render(SPRITEHANDLE spriteHandle)
+void RapidFire::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifL::Release()
+void RapidFire::Release()
 {
 
 }
 
-GifL::~GifL()
+RapidFire::~RapidFire()
 {
 
 }

@@ -1,11 +1,11 @@
-#include "GifM.h"
+#include "FlameGun.h"
 
-GifM::GifM()
+FlameGun::FlameGun()
 {
 
 }
 
-GifM::GifM(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+FlameGun::FlameGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
@@ -15,19 +15,19 @@ GifM::GifM(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 }
 
-void GifM::Initialize()
+void FlameGun::Initialize()
 {
 	m_Position.z = 0.4f;
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_M));
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_FLAME_GUN));
 }
 
-void GifM::UpdateAnimation()
+void FlameGun::UpdateAnimation()
 {
 
 }
 
 
-void GifM::UpdateCollision(Object* checkingObject)
+void FlameGun::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -48,29 +48,29 @@ void GifM::UpdateCollision(Object* checkingObject)
 
 
 
-void GifM:: UpdateMovement()
+void FlameGun:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
 	
 
 }
 
-void GifM::Update()
+void FlameGun::Update()
 {
 
 }
 
-void GifM::Render(SPRITEHANDLE spriteHandle)
+void FlameGun::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifM::Release()
+void FlameGun::Release()
 {
 
 }
 
-GifM::~GifM()
+FlameGun::~FlameGun()
 {
 
 }

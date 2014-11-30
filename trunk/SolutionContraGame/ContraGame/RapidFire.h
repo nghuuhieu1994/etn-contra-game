@@ -1,17 +1,17 @@
-#ifndef __GIF_R_H__
-#define __GIF_R_H__
+#ifndef __RAPID_FIRE_H__
+#define __RAPID_FIRE_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 
-class GifR : public DynamicObject
+class RapidFire : public DynamicObject
 {
 	//Physic*			m_Physic;
 	D3DXVECTOR3		m_startPosition;
 	CSpriteDx9* sprite_dead;
 public:
-	GifR();
+	RapidFire();
 	Physic*			getPhysic() const { return m_Physic; }
-	GifR(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	RapidFire(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
@@ -19,7 +19,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	virtual ~GifR();
+	virtual ~RapidFire();
 };
 
 #endif

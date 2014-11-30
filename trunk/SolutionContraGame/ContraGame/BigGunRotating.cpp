@@ -17,9 +17,10 @@ void BigGunRotating::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
 	_isShoot = false;
+	countBullet = 0;
 	_isAddBullet = false;
 	lastDirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
 }
 
@@ -168,41 +169,40 @@ void BigGunRotating::UpdateAnimation()
 
 void BigGunRotating::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if(!isDead) 
 	{
-		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+		if(collideDirection != IDDirection::DIR_NONE)
 		{
-			Bullet* tempBullet = (Bullet*)(checkingObject);
-			if(tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+			if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 			{
-				if(m_AttackCounter > 0)
+				Bullet* tempBullet = (Bullet*)(checkingObject);
+				if(tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
 				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 					--m_AttackCounter;
 				}
-			}
-			else if(tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
-			{
-				if(m_AttackCounter >= 2)
+				else if(tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
 				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 					m_AttackCounter -= 2;
 				}
-			}
-			else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
-			{
-				if(m_AttackCounter >= 4)
+				else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
 				{
+					// L Bullet
 					m_AttackCounter -= 4;
 				}
-			}
 
-			if(m_AttackCounter == 0)
-			{
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+				if(m_AttackCounter == 0)
+				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+				}
+
+				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
+				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
-			checkingObject->setObjectState(eObjectState::STATE_DEATH);
-			checkingObject->setObjectState(eObjectState::STATE_DEATH);
 		}
 	}
 }
@@ -228,8 +228,22 @@ void BigGunRotating::Update()
 	case STATE_SHOOTING:
 		if(_isShoot == true)
 		{
-			Shoot();
-			_isShoot = false;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 500)
+			{
+				countBullet += 1;
+				m_TimeChangeState = 0;
+				Shoot();
+			}
+			if(countBullet == 3)
+			{
+				countBullet = 0;
+				_isShoot = false;
+			}
+		}
+		else
+		{
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		}
 		break;
 	case STATE_BEFORE_DEATH:

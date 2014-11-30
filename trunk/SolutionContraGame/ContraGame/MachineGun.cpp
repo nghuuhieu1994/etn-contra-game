@@ -1,11 +1,11 @@
-#include "GifB.h"
+#include "MachineGun.h"
 
-GifB::GifB()
+MachineGun::MachineGun()
 {
 
 }
 
-GifB::GifB(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+MachineGun::MachineGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 	
@@ -15,19 +15,19 @@ GifB::GifB(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	
 }
 
-void GifB::Initialize()
+void MachineGun::Initialize()
 {
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_F));
 	m_Position.z = 0.4f;
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MACHINE_GUN));
 }
 
-void GifB::UpdateAnimation()
+void MachineGun::UpdateAnimation()
 {
 
 }
 
 
-void GifB::UpdateCollision(Object* checkingObject)
+void MachineGun::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -48,28 +48,29 @@ void GifB::UpdateCollision(Object* checkingObject)
 
 
 
-void GifB:: UpdateMovement()
+void MachineGun:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
+	
 
 }
 
-void GifB::Update()
+void MachineGun::Update()
 {
 
 }
 
-void GifB::Render(SPRITEHANDLE spriteHandle)
+void MachineGun::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifB::Release()
+void MachineGun::Release()
 {
 
 }
 
-GifB::~GifB()
+MachineGun::~MachineGun()
 {
 
 }

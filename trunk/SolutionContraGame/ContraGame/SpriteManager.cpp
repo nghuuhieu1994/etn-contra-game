@@ -70,9 +70,6 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\BridgeExploision.png", eSpriteID::SPRITE_BRIDGE_EXPLOISION, 5, 3, 15);
 	// end load the fucking bridge
 
-	//Tank
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Tank\\Tank.png", eSpriteID::SPRITE_TANK, 24, 1, 24);
-	//end Tank
 	// Start load EnemyContent
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Exploision.png", eSpriteID::SPRITE_EXPLOISION, 6, 1, 6);
 
@@ -85,27 +82,22 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SnipperWaterHiding\\SnipperWaterHiding.png", eSpriteID::SPRITE_SNIPER_WATER_HIDING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyBigGunShooting\\EnemyBigGunShooting.png", eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN, 2, 1, 2);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyBigGunShooting\\EnemyBigGunShooting.png", eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN, 2, 1, 2); 
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boom\\Boom.png", eSpriteID::SPRITE_BOOM_FLYING, 8, 1, 8);
-
 	// End load EnemyContent
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletStatic.png", eSpriteID::SPRITE_GIF_BULLET_STATIC, 7, 1, 7);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletMoving.png", eSpriteID::SPRITE_GIF_BULLET_MOVING, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\WeaponSensor.png", eSpriteID::SPRITE_WEAPON_SENSOR, 7, 1, 7);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\WeaponCapsule.png", eSpriteID::SPRITE_WEAPON_CAPSULE, 1, 1, 1);
 
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletB.png", eSpriteID::SPRITE_GIF_B, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletR.png", eSpriteID::SPRITE_GIF_R, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletS.png", eSpriteID::SPRITE_GIF_S, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletL.png", eSpriteID::SPRITE_GIF_L, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletM.png", eSpriteID::SPRITE_GIF_M, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\GifBullet\\GifBulletType\\GifBulletF.png", eSpriteID::SPRITE_GIF_F, 1, 1, 1);
-
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\RockFalling.png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\RockFlying.png", eSpriteID::SPRITE_ROCK_FLYING, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\Barrier.png", eSpriteID::SPRITE_BARRIER, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\RapidFire.png", eSpriteID::SPRITE_RAPID_FIRE, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\SpreadGun.png", eSpriteID::SPRITE_SPREAD_GUN, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\LaserGun.png", eSpriteID::SPRITE_LASER_GUN, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\MachineGun.png", eSpriteID::SPRITE_MACHINE_GUN, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\FlameGun.png", eSpriteID::SPRITE_FLAME_GUN, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 5, 15);

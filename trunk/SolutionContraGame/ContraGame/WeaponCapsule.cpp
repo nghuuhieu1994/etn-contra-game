@@ -1,34 +1,30 @@
-#include "GifBulletMoving.h"
+#include "WeaponCapsule.h"
 
-GifBulletMoving::GifBulletMoving()
+WeaponCapsule::WeaponCapsule()
 {
 
 }
 
-GifBulletMoving::GifBulletMoving(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+WeaponCapsule::WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	//m_Physic = new Physic();
-	//m_Physic->setPosition(_position);
-	
 	m_startPosition = _position;
 	m_Position.z = 0.4f;
-	
 }
 
-void GifBulletMoving::Initialize()
+void WeaponCapsule::Initialize()
 {
 	m_Position.z = 0.4f;
-	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GIF_BULLET_MOVING));
+	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_CAPSULE));
 }
 
-void GifBulletMoving::UpdateAnimation()
+void WeaponCapsule::UpdateAnimation()
 {
 
 }
 
 
-void GifBulletMoving::UpdateCollision(Object* checkingObject)
+void WeaponCapsule::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
@@ -67,12 +63,12 @@ void GifBulletMoving::UpdateCollision(Object* checkingObject)
 	}
 }
 
-float GifBulletMoving::Moving()
+float WeaponCapsule::Moving()
 {
 	return (float)((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y);
 }
 
-void GifBulletMoving:: UpdateMovement()
+void WeaponCapsule:: UpdateMovement()
 {
 	//
 	//m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
@@ -83,22 +79,22 @@ void GifBulletMoving:: UpdateMovement()
 	//Sin(m_Position);
 }
 
-void GifBulletMoving::Update()
+void WeaponCapsule::Update()
 {
 
 }
 
-void GifBulletMoving::Render(SPRITEHANDLE spriteHandle)
+void WeaponCapsule::Render(SPRITEHANDLE spriteHandle)
 {
 	m_Sprite->Render(spriteHandle, getPositionVec2() , m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 }
 
-void GifBulletMoving::Release()
+void WeaponCapsule::Release()
 {
 
 }
 
-GifBulletMoving::~GifBulletMoving()
+WeaponCapsule::~WeaponCapsule()
 {
 
 }
