@@ -421,6 +421,9 @@
     <ClInclude Include="Barrier.h">
       <Filter>GameObject\Items\Weaponry\Barrier</Filter>
     </ClInclude>
+    <ClInclude Include="EIDWeaponry.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />

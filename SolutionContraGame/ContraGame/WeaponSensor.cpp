@@ -5,15 +5,15 @@ WeaponSensor::WeaponSensor()
 
 }
 
-WeaponSensor::WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
+WeaponSensor::WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
+	m_IDWeapon = idWeaponry;
 }
 
 void WeaponSensor::Initialize()
 {
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_SENSOR));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -24,8 +24,8 @@ void WeaponSensor::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 100)
+	case STATE_ALIVE_IDLE: 
+		if(abs(CGlobal::Rambo_X - this->getPositionVec2().x) > 200)
 		{
 			 this->getSprite()->getAnimation()->setCurrentFrame(0);
 		}
@@ -62,6 +62,15 @@ void WeaponSensor::UpdateCollision(Object* checkingObject)
 		{
 			switch (checkingObject->getID())
 			{
+			case BULLET_RAMBO:
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+				if (m_Sprite->getAnimationAction()->getCurrentIndex() > 3)
+				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+
+					m_ObjectState = STATE_BEFORE_DEATH;
+				}
+				break;
 			default:
 				break;
 			}
@@ -79,11 +88,14 @@ void WeaponSensor::Update()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		if (isDead)
 		{
-			m_TimeChangeState = 0;
-			m_ObjectState = eObjectState::STATE_DEATH;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 1000)
+			{
+				m_TimeChangeState = 0;
+				m_ObjectState = eObjectState::STATE_DEATH;
+			}
 		}
 		break;
 	case STATE_DEATH:

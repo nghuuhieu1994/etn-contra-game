@@ -105,7 +105,7 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 
 void GunRotating::Initialize()
 {
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_ROTATING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
