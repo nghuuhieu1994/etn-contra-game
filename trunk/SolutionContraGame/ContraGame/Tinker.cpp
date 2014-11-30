@@ -27,70 +27,72 @@ void Tinker::Initialize()
 
 void Tinker::UpdateAnimation()
 {
-	if(isDelay == false)
+	switch (m_ObjectState)
 	{
-		timeDelayGun += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	case STATE_ALIVE_IDLE:
+		if(isDelay == false)
+		{
+			timeDelayGun += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		}
+		if(timeDelayGun > 1000)
+		{
+			isDelay = true;
+			timeDelayGun = 0;
+		}
+		if(isDelay)
+		{
+			m_Left->UpdateAnimation();
+		}
+		m_Right->UpdateAnimation();
+		m_Center->UpdateAnimation();
+		break;
+	case STATE_BEFORE_DEATH:
+		break;
+	case STATE_DEATH:
+		break;
+	default:
+		break;
 	}
-	if(timeDelayGun > 1000)
-	{
-		isDelay = true;
-		timeDelayGun = 0;
-	}
-	if(isDelay)
-	{
-		m_Left->UpdateAnimation();
-	}
-	m_Right->UpdateAnimation();
-	m_Center->UpdateAnimation();
+
 }
 
 void Tinker::UpdateCollision(Object* checkingObject)
 {
-	if(m_Left->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		m_Left->UpdateCollision(checkingObject);
-	}
-	if(m_Right->getObjectState()  != eObjectState::STATE_DEATH)
-	{
-		m_Right->UpdateCollision(checkingObject);
-	}
-	if(m_Center->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		m_Center->UpdateCollision(checkingObject);
-	}
+	m_Left->UpdateCollision(checkingObject);
+	m_Right->UpdateCollision(checkingObject);
+	m_Center->UpdateCollision(checkingObject);
 }
 
 void Tinker::UpdateMovement(){}
 
 void Tinker::Update()
 {
-	if(m_Center->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		m_Center->Update();
-	}
-	if(m_Left->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		m_Left->Update();
-	}
-	if(m_Right->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		m_Right->Update();
-	}
-
 	switch (this->m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
+		m_Center->Update();
+		m_Left->Update();
+		m_Right->Update();
+
 		if(m_Center->getObjectState() == eObjectState::STATE_DEATH)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1000)
+			if(m_TimeChangeState > 500)
 			{
 				m_TimeChangeState = 0;
 				this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+				//Burn!!!!! Sound
 			}
 		}
 		break;
 	case STATE_BEFORE_DEATH:
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 3000)
+			{
+				m_TimeChangeState = 0;
+				this->m_ObjectState = eObjectState::STATE_DEATH;
+				//Burn!!!!! Sound
+			}
 		break;
 	case STATE_DEATH:
 		break;
@@ -117,10 +119,9 @@ void Tinker::Render(SPRITEHANDLE spriteHandle)
 
 void Tinker::Release()
 {
-	m_Center = NULL;
-	m_Sprite = NULL;
-	m_Left = NULL;
-	m_Right = NULL;
+	SAFE_DELETE(m_Right);
+	SAFE_DELETE(m_Left);
+	SAFE_DELETE(m_Center);
 }
 
 Tinker::~Tinker()

@@ -12,6 +12,6 @@ int WINAPI WinMain(
 	Run->Initialize(hInstance, true);
 	Run->Run();
 	Run->Exit();
-	
+	//SAFE_DELETE(Run);
 	return 0;
 }

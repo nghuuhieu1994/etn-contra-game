@@ -393,6 +393,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 			{
 				if(m_AttackCounter > 0)
 				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 					--m_AttackCounter;
 				}
 			}
@@ -400,6 +401,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 			{
 				if(m_AttackCounter >= 2)
 				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 					m_AttackCounter -= 2;
 				}
 			}
@@ -430,7 +432,7 @@ void GunRotating::Update()
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 10000)
+		if(m_TimeChangeState > 5000)
 		{
 			m_ObjectState = STATE_SHOOTING;
 			m_TimeChangeState = 0;

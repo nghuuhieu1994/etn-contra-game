@@ -10,12 +10,11 @@ BossGun::BossGun()
 BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void BossGun::Initialize()
 {
-	m_AttackCounter = 20;
+	m_AttackCounter = 50;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -26,7 +25,6 @@ void BossGun::Initialize()
 
 void BossGun::Shoot()
 {
-	// typesome fucking code to add bullet ---> pollBullet
 }
 
 D3DXVECTOR3 BossGun::GetStartPositionOfBullet()
@@ -45,7 +43,11 @@ void BossGun::UpdateAnimation()
 	case STATE_SHOOTING:
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
+		if(!isDead)
+		{
+			isDead = true;
+			m_Sprite = sprite_dead;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
@@ -58,18 +60,9 @@ void BossGun::UpdateAnimation()
 
 void BossGun::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
+	if(isDead == false)
 	{
-		// checking collision with Bullet
-		//m_AttackCounter--;
-		/*
-		if(m_AttackCounter == 0)
-		{
-			this->m_ObjectState == eObjectState::STATE_BEFORE_DETH;
-		}
-		*/
-	default:
-		break;
+		
 	}
 }
 
@@ -106,7 +99,7 @@ void BossGun::Update()
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1500)
+		if(m_TimeChangeState > 1000)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;

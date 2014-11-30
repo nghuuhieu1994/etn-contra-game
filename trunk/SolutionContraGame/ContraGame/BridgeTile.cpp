@@ -23,7 +23,7 @@ void BridgeTile::Initialize()
 	{
 		m_BridgeSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BRIDGE_BODY));
 	}
-	m_DeadSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
+	m_DeadSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BRIDGE_EXPLOISION));
 	m_Sprite = m_BridgeSprite; 
 	m_ObjectState = STATE_ALIVE_IDLE;
 }
@@ -32,17 +32,16 @@ void BridgeTile::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		{
 		m_Sprite->UpdateAnimation(500);
 		break;
-		}
 	case STATE_BEFORE_DEATH:
 		if (isDead != true)
 		{
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bridge_exploision_sfx)->Play();
 			m_Sprite = m_DeadSprite;
 			isDead = true;
 		}
-		m_Sprite->UpdateAnimation(250);
+		m_Sprite->UpdateAnimation(100);
 		break;
 	case STATE_DEATH:
 		break;
@@ -71,7 +70,7 @@ void BridgeTile::Update()
 		break;
 	case STATE_DEATH:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if (m_TimeChangeState > 400)
+		if (m_TimeChangeState > 800)
 		{
 			this->Release();
 			m_TimeChangeState = 0;
@@ -100,29 +99,11 @@ void BridgeTile::Render(SPRITEHANDLE spriteHandle)
 		else
 		{
 			m_Sprite->Render(spriteHandle,
-				D3DXVECTOR2(m_Position.x - 30, m_Position.y - 10),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				m_Position.z);
-			m_Sprite->Render(spriteHandle,
-				D3DXVECTOR2(m_Position.x + 30, m_Position.y + 10),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				m_Position.z);
-			m_Sprite->Render(spriteHandle,
-				D3DXVECTOR2(m_Position.x - 10, m_Position.y - 20),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				m_Position.z);
-			m_Sprite->Render(spriteHandle,
-				D3DXVECTOR2(m_Position.x - 10, m_Position.y + 20),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				m_Position.z);
+							D3DXVECTOR2(m_Position.x, m_Position.y),
+							m_Sprite->getSpriteEffect(),
+							m_Sprite->getRotate(),
+							m_Sprite->getScale(),
+							1);
 		}
 	}
 }

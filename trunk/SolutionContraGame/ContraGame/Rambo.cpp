@@ -1516,9 +1516,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 void Rambo::SetFlag()
 {
-	
-	SetFallFlag();
-	
+	SetFallFlag();	
 	SetVelocityXZero();
 	SetVelocityYZero();
 }
