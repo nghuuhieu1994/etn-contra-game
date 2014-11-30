@@ -10,52 +10,10 @@ GunRotating::GunRotating()
 GunRotating::GunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void GunRotating::Shoot()
 {
-	/*switch (m_DirectAttack)
-	{
-	case ZERO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case ONE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case TWO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case THREE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case FOUR_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case FIVE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case SIX_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case SEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case EIGHT_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case NINE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case TEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	case ELEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(0.0f, 2.0f), 0);
-		break;
-	default:
-		break;
-	}*/
 	switch (m_DirectAttack)
 	{
 	case ONE_CLOCK_DIRECTION:
@@ -101,35 +59,6 @@ void GunRotating::Shoot()
 
 D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 {
-	/*switch(m_DirectAttack)
-	{
-	case ZERO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x, m_Position.y + 30, 1);
-	case ONE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 20, m_Position.y + 30, 1);
-	case TWO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 30, m_Position.y + 20, 1);
-	case THREE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 30, m_Position.y, 1);
-	case FOUR_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 30, m_Position.y - 20, 1);
-	case FIVE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 20, m_Position.y - 30, 1);
-	case SIX_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x, m_Position.y - 30, 1);
-	case SEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 20, m_Position.y - 30, 1);
-	case EIGHT_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 30, m_Position.y - 20, 1);
-	case NINE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 30, m_Position.y, 1);
-	case TEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 30, m_Position.y + 20, 1);
-	case ELEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 30, 1);
-	default:
-		break;	
-	}*/
 	switch(m_DirectAttack)
 	{
 	case ONE_CLOCK_DIRECTION:
@@ -182,6 +111,7 @@ void GunRotating::Initialize()
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
 	m_AttackCounter = 8;
+	countBullet = 0;
 }
 
 void GunRotating::UpdateAnimation()
@@ -452,7 +382,12 @@ void GunRotating::UpdateAnimation()
 			
 			break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
+		if(isDead == false)
+		{
+			isDead = true;
+			m_TimeChangeState = 0;
+			m_Sprite = sprite_dead;
+		}
 		m_Sprite->UpdateAnimation(300);
 		break;
 	case STATE_DEATH:
@@ -510,12 +445,11 @@ void GunRotating:: UpdateMovement()
 {}
 void GunRotating::Update()
 {
-	
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 5000)
+		if(m_TimeChangeState > 3000)
 		{
 			m_ObjectState = STATE_SHOOTING;
 			m_TimeChangeState = 0;
@@ -525,20 +459,33 @@ void GunRotating::Update()
 	case STATE_SHOOTING:
 		if(isShoot == true)
 		{
-			Shoot();
-			isShoot = false;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 300)
+			{
+				countBullet += 1;
+				m_TimeChangeState = 0;
+				Shoot();
+			}
+			if(countBullet == 3)
+			{
+				countBullet = 0;
+				isShoot = false;
+			}
 		}
-		
-		m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-		// some fucking code to shoot bullet, then change to state-alive-idle
+		else
+		{
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+		}
 		break;
 	case STATE_BEFORE_DEATH:
-		isDead = true;
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1500)
+		if(isDead)
 		{
-			m_ObjectState = eObjectState::STATE_DEATH;
-			m_TimeChangeState = 0;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if(m_TimeChangeState > 1500)
+			{
+				m_ObjectState = eObjectState::STATE_DEATH;
+				m_TimeChangeState = 0;
+			}
 		}
 		break;
 	case STATE_DEATH:

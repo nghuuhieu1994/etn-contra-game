@@ -127,8 +127,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\GunBoss\\BossGun.png", eSpriteID::SPRITE_GUN_BOSS, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossCenter\\BossCenter.png", eSpriteID::SPRITE_BOSS_CENTER, 3, 1, 3);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBody.png", eSpriteID::SPRITE_BOSS_BODY, 1, 1, 1);
-
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBodyDead.png", eSpriteID::SPRITE_BOSS_BODY_DEAD, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossBodyAlive.png", eSpriteID::SPRITE_BOSS_BODY_ALIVE, 1, 1, 1);
 	//BOSS MAP 3
 		LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boss\\BossMap3\\SpaceShip.png", eSpriteID::SPRITE_SPACE_SHIP, 3, 1, 3);
 	//END BOSSMAP3

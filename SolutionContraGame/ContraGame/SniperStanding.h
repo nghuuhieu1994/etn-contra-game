@@ -19,6 +19,7 @@ private:
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 
+	int countBullet;
 public:
 	SniperStanding();
 	SniperStanding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

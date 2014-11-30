@@ -8,7 +8,6 @@ BigGunRotating::BigGunRotating()
 BigGunRotating::BigGunRotating(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void BigGunRotating::Initialize()
@@ -153,6 +152,7 @@ void BigGunRotating::UpdateAnimation()
 	case STATE_BEFORE_DEATH:
 		if (!isDead)
 		{
+			m_TimeChangeState = 0;
 			m_Sprite = sprite_dead;
 			isDead = true;
 		}
@@ -234,7 +234,7 @@ void BigGunRotating::Update()
 		break;
 	case STATE_BEFORE_DEATH:
 		m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		if(m_TimeChangeState > 1500)
 		{
 			m_ObjectState = eObjectState::STATE_DEATH;
 			m_TimeChangeState = 0;

@@ -13,9 +13,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_backgroundEffect.Initialize(MAP_1);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 
-	BulletPoolManager::getInstance()->Initialize();
-
-	
+	BulletPoolManager::getInstance()->Initialize();	
 }
 
 void DemoState::HandleInput()
@@ -74,9 +72,6 @@ void DemoState::Update()
 	m_Quadtree->Update();
 	
 	m_backgroundEffect.UpdateAnimation();
-	
-	
-
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)

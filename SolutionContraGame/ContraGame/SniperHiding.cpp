@@ -82,7 +82,12 @@ void SniperHiding::UpdateAnimation()
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
+		if(isDead == false)
+		{
+			isDead = true;
+			m_Sprite = sprite_dead;
+			m_TimeChangeState = 0;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
@@ -104,6 +109,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID ::BULLET_RAMBO:
+				// add attackcounter
 				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 				break;
 			default:
@@ -146,19 +152,22 @@ void SniperHiding::Update()
 			else
 			{
 				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-				if (m_TimeChangeState > 3500)
+				if (m_TimeChangeState > 1000)
 				{
 					m_TimeChangeState = 0;
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 				}
 			}
 			break;
 		case STATE_BEFORE_DEATH:
-			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1000)
+			if(isDead)
 			{
-				m_ObjectState = eObjectState::STATE_DEATH;
-				m_TimeChangeState = 0;
+				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if(m_TimeChangeState > 1000)
+				{
+					m_ObjectState = eObjectState::STATE_DEATH;
+					m_TimeChangeState = 0;
+				}
 			}
 			break;
 		case STATE_DEATH:
