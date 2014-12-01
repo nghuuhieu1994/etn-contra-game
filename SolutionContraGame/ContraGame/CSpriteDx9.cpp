@@ -48,6 +48,11 @@ void CSpriteDx9::UpdateAnimation(int timeAnimation)
 	m_AnimationAction->UpdateAnimation(timeAnimation);
 }
 
+void CSpriteDx9::UpdateAnimationInverse(int timeAnimation)
+{
+	m_AnimationAction->UpdateAnimationInverse(timeAnimation);
+}
+
 CAnimationDx9* CSpriteDx9::getAnimation()
 {
 	return m_AnimationAction;
