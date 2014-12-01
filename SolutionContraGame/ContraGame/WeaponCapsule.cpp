@@ -81,7 +81,7 @@ void WeaponCapsule:: UpdateMovement()
 	//
 	//m_Physic->setVelocity(D3DXVECTOR2(1.5f, m_Physic->getVelocity().y));
 	m_Physic->UpdateMovement(&m_Position);
-	m_Physic->setVelocityY((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y);
+	m_Physic->setVelocityY((float)((sin(m_Position.x * 3.14/80.0 ) * 100 + m_startPosition.y) - m_Position.y));
 	m_Physic->setVelocityX(1.5f);
 	
 	//Sin(m_Position);

@@ -81,6 +81,7 @@ D3DXVECTOR3 SniperStanding::GetStartPositionOfBullet()
 	default:
 		break;	
 	}
+	return D3DXVECTOR3(0, 0, 0);
 }
 
 void SniperStanding::Initialize()
@@ -103,8 +104,8 @@ void SniperStanding::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE:
 
-		_distance_X = CGlobal::Rambo_X - this->getPositionVec2().x;
-		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
+		_distance_X = (int)(CGlobal::Rambo_X - this->getPositionVec2().x);
+		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
 
 #pragma region AttackMid
 		if(abs(_distance_Y) < 10)

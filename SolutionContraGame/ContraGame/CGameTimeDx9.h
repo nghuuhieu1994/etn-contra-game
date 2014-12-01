@@ -30,7 +30,7 @@ public:
 	static CGameTimeDx9* getInstance();
 	
 	void InitGameTime();
-	
+	void ResetLastTick();
 	void UpdateGameTime();
 	
 	CTimeSpanDx9	getElapsedGameTime();

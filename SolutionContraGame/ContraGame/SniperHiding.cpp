@@ -89,7 +89,7 @@ void SniperHiding::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		_distance_X = CGlobal::Rambo_X - getPositionVec2().x;
+		_distance_X = (int)(CGlobal::Rambo_X - getPositionVec2().x);
 		if(_distance_X > 0)
 		{
 			m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

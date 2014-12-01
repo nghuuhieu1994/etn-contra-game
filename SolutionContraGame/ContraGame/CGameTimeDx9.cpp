@@ -43,11 +43,21 @@ void CGameTimeDx9::UpdateGameTime()
 		}
 }
 
+void CGameTimeDx9::ResetLastTick()
+{
+	LastTicks = 0;
+	CurTicks = 0;
+}
+
 void CGameTimeDx9::setElapsedGameTime(CTimeSpanDx9 &elapsedGameTime)
 {
 	this->m_ElapsedGameTime = elapsedGameTime;
 }
 CTimeSpanDx9 CGameTimeDx9::getElapsedGameTime()
 {
+	if (m_ElapsedGameTime.getMilliseconds() > 1000/30)
+	{
+		return CTimeSpanDx9(1000/60);
+	}
 	return m_ElapsedGameTime;
 }

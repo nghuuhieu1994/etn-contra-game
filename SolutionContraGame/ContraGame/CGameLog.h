@@ -2,7 +2,7 @@
 #define __GAME_LOG__
 
 #include <string>
-
+#include "FrameworkDefineMacro.h"
 using namespace std;
 
 class CGameLog

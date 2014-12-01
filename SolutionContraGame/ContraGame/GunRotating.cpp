@@ -101,6 +101,7 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 	default:
 		break;	
 	}
+	return D3DXVECTOR3(0, 0, 0);
 }
 
 void GunRotating::Initialize()
@@ -120,8 +121,8 @@ void GunRotating::UpdateAnimation()
 	{
 
 	case STATE_ALIVE_IDLE:
-		_distance_X = CGlobal::Rambo_X - this->getPositionVec2().x;
-		_distance_Y = CGlobal::Rambo_Y - this->getPositionVec2().y;
+		_distance_X = (int)(CGlobal::Rambo_X - this->getPositionVec2().x);
+		_distance_Y = (int)(CGlobal::Rambo_Y - this->getPositionVec2().y);
 		if (abs(_distance_Y) < 50)
 		{
 #pragma region AttackMid

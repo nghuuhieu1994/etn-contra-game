@@ -253,6 +253,7 @@ int Rambo::HandleInputSwimState()
 		m_Physic->setVelocityX(VELOCITY_Y_MOVE_TO_LEFT);
 		return 0;
 	}
+	return 0;
 }
 
 int Rambo::HandleInputIdleState()
@@ -417,6 +418,7 @@ int Rambo::HandleInputLieState()
 		m_Position.y += 20;
 		return 0;
 	}
+	return 0;
 }
 
 int Rambo::HandleInputRunState()
@@ -458,7 +460,7 @@ int Rambo::HandleInputRunState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
-	
+	return 0;
 }
 
 bool Rambo::isAddBullet()
@@ -506,6 +508,7 @@ int Rambo::HandleInputAimBottomRightState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
+	return 0;
 }
 
 int Rambo::HandleInputAimTopRightState()
@@ -540,7 +543,7 @@ int Rambo::HandleInputAimTopRightState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
-	
+	return 0;
 }
 
 int Rambo::HandleInputAimUpState()
@@ -566,6 +569,7 @@ int Rambo::HandleInputAimUpState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
+	return 0;
 }
 
 int Rambo::HandleInputWaterBombState()
@@ -641,6 +645,7 @@ int Rambo::HandleInputShootRunState()
 		m_Physic->setVelocityY(VELOCITY_Y_JUMP);
 		return 0;
 	}
+	return 0;
 }
 
 void Rambo::Shoot()
@@ -1001,6 +1006,7 @@ D3DXVECTOR3	Rambo::GetStartPositionOfBullet()
 			}
 			break;
 	}
+	return D3DXVECTOR3(0, 0, 0);
 }
 
 int Rambo::HandleInputJumpState()
@@ -1178,6 +1184,7 @@ int Rambo::HandleInputSwimShootTopRightState()
 		}
 		return 0;
 	}
+	return 0;
 }
 
 void Rambo::UpdateAnimation()
@@ -1539,13 +1546,14 @@ void Rambo::UpdatePreviousIgnoreList()
 
 void Rambo::UpdateMovement()
 {
+	if(getBound().left < Camera::getInstance()->getBound().left)
+	{
+		m_Physic->setVelocityX(0.0f);
+	}
 	
 	this->m_Physic->UpdateMovement(&m_Position);
 	
-	if(getBound().left < 0)
-	{
-		m_Position.x = 32;
-	}
+	
 
 	if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
 	{
