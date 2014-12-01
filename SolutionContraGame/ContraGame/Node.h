@@ -13,6 +13,9 @@
 #include "Bridge.h"
 #include "EnemyRun.h"
 #include "SniperHiding.h"
+#include "BigGunRotating.h"
+#include "WeaponCapsule.h"
+#include "WeaponSensor.h"
 
 class Node
 {

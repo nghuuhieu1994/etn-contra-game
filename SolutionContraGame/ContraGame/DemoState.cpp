@@ -1,11 +1,12 @@
 #include "DemoState.h"
 #define MAP_1 1
 #define MAP_2 2
+
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
-	m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
-	m_Rambo = new Rambo(D3DXVECTOR3(500, 600, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	//m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	//m_Rambo = new Rambo(D3DXVECTOR3(500, 600, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	
 	m_Quadtree = new QuadTree();
@@ -14,7 +15,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	string mapPath = "resources\\Map\\" + to_string(MAP_1) +"\\"+ to_string(MAP_1) +".xml";
 	m_backgroundEffect.Initialize(MAP_1);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
-
 	BulletPoolManager::getInstance()->Initialize();	
 }
 
