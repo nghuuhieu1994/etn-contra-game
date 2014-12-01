@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClInclude Include="BridgeTile.h" />
     <ClInclude Include="EIDSkillBullet.h" />
+    <ClInclude Include="EIDWeaponry.h" />
     <ClInclude Include="LazeBullet.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />

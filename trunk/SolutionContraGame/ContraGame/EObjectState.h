@@ -4,6 +4,7 @@ enum eObjectState
 {
 	STATE_ALIVE_IDLE = 0,
 	STATE_ALIVE_MOVE = 1,
+	STATE_POPUP,
 	STATE_SHOOTING, // dm deo them cai nay sao xet cho no ban?
 	STATE_JUMP,
 	STATE_BEFORE_DEATH,

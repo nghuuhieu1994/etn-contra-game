@@ -11,6 +11,7 @@ class BigGunRotating : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive;
+	CSpriteDx9*	sprite_popup;
 	int _distance_X;
 	int _distance_Y;
 	bool _isShoot;

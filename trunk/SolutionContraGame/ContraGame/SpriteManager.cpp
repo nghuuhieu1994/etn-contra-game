@@ -82,8 +82,6 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SnipperWaterHiding\\SnipperWaterHiding.png", eSpriteID::SPRITE_SNIPER_WATER_HIDING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyBigGunShooting\\EnemyBigGunShooting.png", eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN, 2, 1, 2); 
-
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
 
@@ -100,7 +98,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\FlameGun.png", eSpriteID::SPRITE_FLAME_GUN, 1, 1, 1);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 5, 15);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 3, 9);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotatingPopup.png", eSpriteID::SPRITE_BIG_GUN_ROTAING_POPUP, 3, 2, 6);
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_BODY, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Leg\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_LEG, 3, 1, 3);
