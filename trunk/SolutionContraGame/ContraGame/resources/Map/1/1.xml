@@ -101,15 +101,12 @@
           <Object Type="0" Id="36" Index="622" X="672" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="37" Index="623" X="736" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="38" Index="624" X="800" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" Index="714" X="112" Y="248" Width="64" Height="16" />
-          <Object Type="1" Id="0" Index="715" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="1" Id="0" Index="716" X="416" Y="168" Width="192" Height="16" />
-          <Object Type="1" Id="0" Index="718" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="4" Id="16" Index="719" X="736" Y="160" Width="64" Height="64" />
-          <Object Type="4" Id="16" Index="720" X="800" Y="288" Width="64" Height="64" />
-          <Object Type="4" Id="16" Index="721" X="544" Y="288" Width="64" Height="64" />
-          <Object Type="4" Id="16" Index="722" X="672" Y="288" Width="64" Height="64" />
-          <Object Type="4" Id="16" Index="723" X="352" Y="288" Width="64" Height="64" />
+          <Object Type="1" Id="0" Index="714" X="800" Y="232" Width="1472" Height="16" />
+          <Object Type="1" Id="0" Index="715" X="416" Y="168" Width="192" Height="16" />
+          <Object Type="1" Id="0" Index="716" X="544" Y="104" Width="64" Height="16" />
+          <Object Type="1" Id="0" Index="718" X="640" Y="40" Width="128" Height="16" />
+          <Object Type="1" Id="0" Index="719" X="736" Y="104" Width="64" Height="16" />
+          <Object Type="4" Id="15" Index="723" X="672" Y="160" Width="64" Height="64" />
         </Objects>
       </Node>
       <Node Id="1334" X="818" Y="820" Width="818" Height="818">
@@ -212,9 +209,11 @@
           <Object Type="0" Id="39" Index="635" X="1504" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="23" Index="636" X="1568" Y="32" Width="64" Height="64" />
           <Object Type="0" Id="23" Index="637" X="1632" Y="32" Width="64" Height="64" />
-          <Object Type="1" Id="0" Index="715" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="1" Id="0" Index="718" X="800" Y="232" Width="1472" Height="16" />
-          <Object Type="4" Id="16" Index="720" X="800" Y="288" Width="64" Height="64" />
+          <Object Type="1" Id="0" Index="714" X="800" Y="232" Width="1472" Height="16" />
+          <Object Type="1" Id="0" Index="720" X="896" Y="168" Width="128" Height="16" />
+          <Object Type="1" Id="0" Index="721" X="1376" Y="136" Width="192" Height="16" />
+          <Object Type="1" Id="0" Index="722" X="1280" Y="40" Width="128" Height="16" />
+          <Object Type="4" Id="16" Index="724" X="864" Y="288" Width="64" Height="64" />
         </Objects>
       </Node>
     </Node>
