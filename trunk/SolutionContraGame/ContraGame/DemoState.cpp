@@ -15,7 +15,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	string mapPath = "resources\\Map\\" + to_string(MAP_1) +"\\"+ to_string(MAP_1) +".xml";
 	m_backgroundEffect.Initialize(MAP_1);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
-	BulletPoolManager::getInstance()->Initialize();	
+	BulletPoolManager::getInstance()->Initialize();
 }
 
 void DemoState::HandleInput()
