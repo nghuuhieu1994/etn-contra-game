@@ -231,8 +231,8 @@ namespace MapEditor
         BULLET_ENEMY,
         SNIPER_STANDING,
         SNIPER_HIDING,
-        GIF_BULLET_STATIC,
-        GIF_BULLET_MOVING,
+        WEAPON_SENSOR, WEAPON_CAPSULE,
+        OBJECT_BARRIER, OBJECT_FLAME_GUN, OBJECT_LASER_GUN, OBJECT_MACHINE_GUN, OBJECT_RAPID_GUN, OBJECT_SPREAD_GUN,
         GUN_ROTATING,
         BIG_GUN_ROTATING,
         ENEMY_RUN,
@@ -241,6 +241,7 @@ namespace MapEditor
         LED_OBJECT_STAR,
         TILE_BACKGROUND,
         BRIDGE_HEAD, BRIDGE_TAIL, BRIDGE_BODY, BRIDGE,
+        VIRTUAL_OBJECT_JUMP,
     }
 
     public partial class Support
@@ -270,6 +271,7 @@ namespace MapEditor
         //public static bool IsPointer = true;
         public static bool IsVirtualWater = false;
         public static bool IsSave = false;
+        public static bool IsJump = false;
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
         {
@@ -326,7 +328,7 @@ namespace MapEditor
             {
                 case ObjectID.RAMBO:
                 case ObjectID.ENEMY_RUN:
-                case ObjectID.GIF_BULLET_MOVING:
+                case ObjectID.WEAPON_CAPSULE:
                     return true;
                 default:
                     return false;
