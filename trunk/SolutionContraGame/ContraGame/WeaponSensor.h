@@ -7,7 +7,7 @@
 #include "MachineGun.h"
 #include "RapidFire.h"
 #include "SpreadGun.h"
-
+#include "WeaponryManager.h"
 class WeaponSensor : public DynamicObject
 {
 	EIDWeaponry		m_IDWeapon;
@@ -15,7 +15,7 @@ class WeaponSensor : public DynamicObject
 	CSpriteDx9*		sprite_alive;
 public:
 	WeaponSensor();
-	WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry);
+	WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry = EIDWeaponry::BARRIER);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

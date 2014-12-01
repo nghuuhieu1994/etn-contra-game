@@ -5,9 +5,6 @@
 
 class SpreadGun : public DynamicObject
 {
-	//Physic*			m_Physic;
-	D3DXVECTOR3		m_startPosition;
-	CSpriteDx9* sprite_dead;
 public:
 	SpreadGun();
 	Physic*			getPhysic() const { return m_Physic; }

@@ -135,6 +135,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="CObjectDx9.h" />
     <ClInclude Include="CPhysicDx9.h" />
+    <ClInclude Include="WeaponryManager.h" />
     <ClInclude Include="WeaponSensor.h" />
     <ClInclude Include="GunRotating.h" />
     <ClInclude Include="IDDirection.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="WeaponCapsule.cpp" />
     <ClCompile Include="CObjectDx9.cpp" />
     <ClCompile Include="CPhysicDx9.cpp" />
+    <ClCompile Include="WeaponryManager.cpp" />
     <ClCompile Include="WeaponSensor.cpp" />
     <ClCompile Include="GunRotating.cpp" />
     <ClCompile Include="Markup.cpp" />

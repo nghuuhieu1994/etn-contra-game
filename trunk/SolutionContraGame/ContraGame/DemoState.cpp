@@ -5,10 +5,7 @@
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
-	//m_Rambo = new Rambo(D3DXVECTOR3(1500, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
-	//m_Rambo = new Rambo(D3DXVECTOR3(500, 600, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
-	
 	m_Quadtree = new QuadTree();
 	//Camera::getInstance()->setLockWidth(true);
 	Camera::getInstance()->setLockHeight(true);
@@ -70,6 +67,8 @@ void DemoState::Update()
 	for(int i = 0; i < m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+
+		WeaponryManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
 
@@ -81,8 +80,9 @@ void DemoState::Update()
 
 	#pragma endregion	
 
+	WeaponryManager::getInstance()->Update();
+	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
-
 	m_backgroundEffect.UpdateAnimation();
 }
 
@@ -91,7 +91,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);	
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	
+	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 }
 

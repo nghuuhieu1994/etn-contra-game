@@ -342,6 +342,10 @@ void SniperStanding::Release()
 	sprite_dead->Release();
 	sprite_top->Release();
 	sprite_mid->Release();
+	SAFE_DELETE(sprite_bot);
+	SAFE_DELETE(sprite_top);
+	SAFE_DELETE(sprite_dead);
+	SAFE_DELETE(sprite_mid);
 }
 SniperStanding::~SniperStanding()
 {

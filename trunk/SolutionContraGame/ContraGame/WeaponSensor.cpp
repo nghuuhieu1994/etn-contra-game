@@ -33,9 +33,8 @@ void WeaponSensor::UpdateAnimation()
 		{
 			 this->getSprite()->getAnimation()->setIndexStart(0);
 			 this->getSprite()->getAnimation()->setIndexEnd(6);
+			 m_Sprite->UpdateAnimation(500);
 		}
-
-		m_Sprite->UpdateAnimation(500);
 		break;
 	case STATE_BEFORE_DEATH:
 		if (!isDead)
@@ -67,19 +66,43 @@ void WeaponSensor::UpdateCollision(Object* checkingObject)
 				if (m_Sprite->getAnimationAction()->getCurrentIndex() > 3)
 				{
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
-
 					m_ObjectState = STATE_BEFORE_DEATH;
+
+					if (m_IDWeapon == EIDWeaponry::BARRIER)
+					{
+						WeaponryManager::getInstance()->AddElement(new Barrier(m_Position, eDirection::RIGHT, eObjectID::OBJECT_BARRIER));
+					}
+					if (m_IDWeapon == EIDWeaponry::FLAME_GUN)
+					{
+						WeaponryManager::getInstance()->AddElement(new FlameGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_FLAME_GUN));
+					}
+					if (m_IDWeapon == EIDWeaponry::LASER_GUN)
+					{
+						WeaponryManager::getInstance()->AddElement(new LaserGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_LASER_GUN));
+					}
+					if (m_IDWeapon == EIDWeaponry::MACHINE_GUN)
+					{
+						WeaponryManager::getInstance()->AddElement(new MachineGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_MACHINE_GUN));
+					}
+					if (m_IDWeapon == EIDWeaponry::RAPID_FIRE)
+					{
+						WeaponryManager::getInstance()->AddElement(new RapidFire(m_Position, eDirection::RIGHT, eObjectID::OBJECT_RAPID_GUN));
+					}
+					if (m_IDWeapon == EIDWeaponry::SPREAD_GUN)
+					{
+						WeaponryManager::getInstance()->AddElement(new SpreadGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_SPREAD_GUN));
+					}
 				}
+				checkingObject->setObjectState(STATE_DEATH);
 				break;
 			default:
 				break;
 			}
-
 		}
 	}
 }
 
-void WeaponSensor:: UpdateMovement()
+void WeaponSensor::UpdateMovement()
 {}
 void WeaponSensor::Update()
 {
@@ -124,6 +147,8 @@ void WeaponSensor::Release()
 	m_Sprite = 0;
 	sprite_alive->Release();
 	sprite_dead->Release();
+	SAFE_DELETE(sprite_alive);
+	SAFE_DELETE(sprite_dead);
 }
 
 WeaponSensor::~WeaponSensor()
