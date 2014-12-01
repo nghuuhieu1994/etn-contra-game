@@ -1546,8 +1546,9 @@ void Rambo::UpdatePreviousIgnoreList()
 
 void Rambo::UpdateMovement()
 {
-	if(getBound().left < Camera::getInstance()->getBound().left)
+	if(Camera::getInstance()->getBound().left > this->m_Position.x - m_RamboSprite->GetFrameSize().x/2)
 	{
+		m_Position.x = Camera::getInstance()->getBound().left + 1 + m_RamboSprite->GetFrameSize().x/2;
 		m_Physic->setVelocityX(0.0f);
 	}
 	
