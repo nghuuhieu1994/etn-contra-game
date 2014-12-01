@@ -8,11 +8,6 @@ Barrier::Barrier()
 Barrier::Barrier(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	
-	
-	m_startPosition = _position;
-	m_Position.z = 0.4f;
-	
 }
 
 void Barrier::Initialize()
@@ -30,15 +25,16 @@ void Barrier::UpdateAnimation()
 void Barrier::UpdateCollision(Object* checkingObject)
 {
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
 	if(collideDirection != IDDirection::DIR_NONE)
 	{
 		switch (checkingObject->getID())
 		{
-			case eObjectID ::RAMBO:
+		case eObjectID::TILE_BASE:
+
+			break;
+		case eObjectID::RAMBO:
 				this->Release();
 				break;
-
 			default:
 				break;
 		}
