@@ -163,6 +163,30 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_GUN_ROTATING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_CAPSULE)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponCapsule(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()), EIDWeaponry::MACHINE_GUN);
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_SENSOR)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponSensor(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()), EIDWeaponry::MACHINE_GUN);
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_GUN_ROTATING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
 					}
 
 					if(atoi(xml.GetAttrib("Type").c_str()) == 0)
