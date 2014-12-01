@@ -300,9 +300,13 @@ namespace MapEditor
                 {
                     rect.Stroke = new SolidColorBrush(Colors.Blue);
                 }
-                else
+                else if(Support.IsJump == false)
                 {
                     rect.Stroke = new SolidColorBrush(Colors.Red);
+                }
+                else if (Support.IsJump == true)
+                {
+                    rect.Stroke = new SolidColorBrush(Colors.Green);
                 }
                 rect.StrokeThickness = 3;
 
@@ -338,7 +342,7 @@ namespace MapEditor
                     if (rect != null)
                     {
                         ++Support.Count;
-                        if (Support.IsVirtualWater == false)
+                        if (Support.IsVirtualWater == false && Support.IsJump == false)
                         {
                             OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                             VECTOR2D tempPosition = Support.ConvertCoordination(temp);
@@ -358,7 +362,7 @@ namespace MapEditor
                             obj = null;
 
                         }
-                        else
+                        else if(Support.IsVirtualWater == true)
                         {
                             OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
                             VECTOR2D tempPosition = Support.ConvertCoordination(temp);
@@ -380,6 +384,28 @@ namespace MapEditor
 
                             obj = null;
 
+                        }
+                        else if (Support.IsJump == true)
+                        {
+                            OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, 0, Support.Count, new VECTOR2D((float)finalPosition.X, (float)finalPosition.Y), new RECTANGLE((float)finalPosition.X, (float)finalPosition.Y, (int)rect.Width, (int)rect.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+
+                            EditPosition form = new EditPosition((int)tempPosition.cX, (int)tempPosition.cY);
+                            form.ShowDialog();
+                            tempPosition = new VECTOR2D(EditPosition.finalLocationX, EditPosition.finalLocationY);
+
+                            OBJECT obj = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)ObjectID.VIRTUAL_OBJECT_JUMP, Support.Count, new VECTOR2D((float)tempPosition.cX, (float)tempPosition.cY), new RECTANGLE((float)tempPosition.cX, (float)tempPosition.cY, (int)rect.Width, (int)rect.Height));
+
+                            if (Support.listObject == null)
+                            {
+                                Support.listObject = new List<OBJECT>();
+                            }
+                            if (obj.Bound.width != 0 && obj.Bound.height != 0)
+                            {
+                                Support.listObject.Add(obj);
+                            }
+
+                            obj = null;
                         }
                     }
                     rect = null;
@@ -652,6 +678,18 @@ namespace MapEditor
             else
             {
                 MessageBox.Show("Vui lòng thêm background cho game, trước khi chọn đối tượng");
+            }
+        }
+
+        public void click_to_enable_jump(object sender, RoutedEventArgs e)
+        {
+            if (Support.IsJump == false)
+            {
+                Support.IsJump = true;
+            }
+            else
+            {
+                Support.IsJump = false;
             }
         }
         /* End Event Handler */

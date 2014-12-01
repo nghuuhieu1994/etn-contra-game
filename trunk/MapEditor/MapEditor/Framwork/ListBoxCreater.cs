@@ -43,8 +43,8 @@ namespace MapEditor.Framwork
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Rambo.png", UriKind.Relative)), ObjectID.RAMBO, 52, 70));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Sniper.png", UriKind.Relative)), ObjectID.SNIPER_STANDING, 48, 64));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Enemy_run.png", UriKind.Relative)), ObjectID.ENEMY_RUN, 36, 66));
-            lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gif_bullet_moving.png", UriKind.Relative)), ObjectID.GIF_BULLET_MOVING, 48, 30));
-            lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gif_bullet_static.png", UriKind.Relative)), ObjectID.GIF_BULLET_STATIC, 64, 64));
+            lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gif_bullet_moving.png", UriKind.Relative)), ObjectID.WEAPON_CAPSULE, 48, 30));
+            lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gif_bullet_static.png", UriKind.Relative)), ObjectID.WEAPON_SENSOR, 64, 64));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Sniper_hiding_up.png", UriKind.Relative)), ObjectID.SNIPER_HIDING, 48, 34));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Gun_rotation.png", UriKind.Relative)), ObjectID.GUN_ROTATING, 64, 64));
             lbEnemyObject.Items.Add(getImageForListBox(new BitmapImage(new Uri(@"\Resource\object\Big_gun_rotation.png", UriKind.Relative)), ObjectID.BIG_GUN_ROTATING, 64, 64));
