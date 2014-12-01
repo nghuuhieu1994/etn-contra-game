@@ -22,6 +22,7 @@ void BigGunRotating::Initialize()
 	_isAddBullet = false;
 	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
+	_timeAnimation = 0;
 }
 
 void BigGunRotating::Shoot()
@@ -64,12 +65,14 @@ void BigGunRotating::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_POPUP:
-		m_Sprite->UpdateAnimation(1000);
+		m_Sprite->UpdateAnimation(500);
 		if (m_Sprite->getAnimationAction()->getCurrentIndex() == 5)
 		{
 			m_Sprite = sprite_alive;
 			m_ObjectState = STATE_ALIVE_IDLE;
 		}
+		break;
+	case STATE_SHUTDOWN:
 		break;
 	case STATE_ALIVE_IDLE:
 		if (m_Sprite != sprite_alive)
@@ -98,6 +101,7 @@ void BigGunRotating::UpdateAnimation()
 				}
 				else
 				{
+					m_Sprite->UpdateAnimation(500);
 					m_TimeChangeDirectAttack = 0;
 				}
 #pragma endregion MidAttack
@@ -123,6 +127,7 @@ void BigGunRotating::UpdateAnimation()
 						}
 						else
 						{
+							m_Sprite->UpdateAnimation(500);
 							m_TimeChangeDirectAttack = 0;
 						}
 					}
@@ -142,13 +147,13 @@ void BigGunRotating::UpdateAnimation()
 						}
 						else
 						{
+							m_Sprite->UpdateAnimation(500);
 							m_TimeChangeDirectAttack = 0;
 						}
 					}
 #pragma endregion TopLeftAttack
 				}
 			}
-			m_Sprite->UpdateAnimation(500);
 		}
 		break;
 	case STATE_SHOOTING:
@@ -161,7 +166,7 @@ void BigGunRotating::UpdateAnimation()
 			m_Sprite = sprite_dead;
 			isDead = true;
 		}
-		m_Sprite->UpdateAnimation(300);
+		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
 		break;
@@ -213,6 +218,16 @@ void BigGunRotating:: UpdateMovement()
 {}
 void BigGunRotating::Update()
 {
+	if (CGlobal::Rambo_X - m_Position.x > 100)
+	{ 
+		if (m_ObjectState != STATE_SHUTDOWN)
+		{
+			m_Sprite = sprite_popup;
+			m_Sprite->getAnimationAction()->setCurrentFrame(5);
+			m_ObjectState = STATE_SHUTDOWN;
+		}
+	}
+
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
@@ -246,6 +261,22 @@ void BigGunRotating::Update()
 		else
 		{
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+		}
+		break;
+	case STATE_SHUTDOWN:
+		_timeAnimation += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (_timeAnimation > 250)
+		{
+			_timeAnimation = 0;
+			int index = m_Sprite->getAnimationAction()->getCurrentIndex() - 1;
+			if (index < 0)
+			{
+				m_ObjectState = STATE_DEATH;
+			}
+			else
+			{
+				m_Sprite->getAnimationAction()->setCurrentFrame(index);
+			}
 		}
 		break;
 	case STATE_BEFORE_DEATH:

@@ -13,7 +13,7 @@ Barrier::Barrier(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 void Barrier::Initialize()
 {
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BARRIER));
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 }
 
 void Barrier::UpdateAnimation()

@@ -14,6 +14,7 @@ class BigGunRotating : public DynamicObject
 	CSpriteDx9*	sprite_popup;
 	int _distance_X;
 	int _distance_Y;
+	int _timeAnimation;
 	bool _isShoot;
 	bool _isAddBullet;
 	int	countBullet;
