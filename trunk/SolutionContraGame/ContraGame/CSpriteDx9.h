@@ -51,6 +51,7 @@ public:
 	void					RenderWithoutTransform(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color = 0xffffffff);
 	void					RenderAtFrame(LPD3DXSPRITE spriteHandle, D3DXVECTOR2 position, ESpriteEffect effect, float rotateAngle, float scale, float deep, D3DCOLOR color, int frameIndex);
 	void					UpdateAnimation(int timeAnimation);
+	void					UpdateAnimationInverse(int timeAnimation);
 };
 
 #endif

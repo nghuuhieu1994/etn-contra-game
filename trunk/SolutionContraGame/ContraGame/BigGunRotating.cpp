@@ -19,7 +19,7 @@ void BigGunRotating::Initialize()
 	_isShoot = false;
 	countBullet = 0;
 	_isAddBullet = false;
-	lastDirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
+	//lastDirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
 	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
 }
@@ -67,7 +67,7 @@ void BigGunRotating::UpdateAnimation()
 
 		_distance_X = CGlobal::Rambo_X - m_Position.x;
 		_distance_Y = CGlobal::Rambo_Y - m_Position.y;
-		if(_distance_X > -250)
+		if(_distance_X > -250 && _distance_X < 0)
 		{
 			_isAddBullet = true;
 			if (abs(_distance_Y) < 30)
@@ -80,7 +80,7 @@ void BigGunRotating::UpdateAnimation()
 				{
 					m_Sprite->getAnimationAction()->setIndexStart(6);
 					m_Sprite->getAnimationAction()->setIndexEnd(8);
-					m_DirectAttack = eDirectAttack::AD_LEFT;
+					m_DirectAttack = eDirectAttack::NINE_CLOCK_DIRECTION;
 					m_TimeChangeDirectAttack = 0;
 					lastDirectAttack = m_DirectAttack;
 				}
@@ -141,8 +141,20 @@ void BigGunRotating::UpdateAnimation()
 		else
 		{
 			_isAddBullet = false;
-			m_Sprite->getAnimationAction()->setIndexStart(0);
-			m_Sprite->getAnimationAction()->setIndexEnd(5);
+			if(_distance_X < -250)
+			{
+				_isAddBullet = false;
+				m_Sprite->getAnimationAction()->setIndexStart(0);
+				m_Sprite->getAnimationAction()->setIndexEnd(6);
+			}
+			else if(_distance_X > 100)
+			{
+				_isAddBullet = false;
+				m_Sprite->getAnimationAction()->setIndexStart(0);
+				m_Sprite->getAnimationAction()->setIndexEnd(6);
+				m_Sprite->UpdateAnimationInverse(500);
+			}
+			
 		}
 	
 		m_Sprite->UpdateAnimation(500);
@@ -226,10 +238,10 @@ void BigGunRotating::Update()
 		}
 		break;
 	case STATE_SHOOTING:
-		if(_isShoot == true)
+		if(_isShoot == true && _isAddBullet == true)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 500)
+			if(m_TimeChangeState > 300)
 			{
 				countBullet += 1;
 				m_TimeChangeState = 0;
