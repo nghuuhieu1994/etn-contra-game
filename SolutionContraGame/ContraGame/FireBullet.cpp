@@ -14,7 +14,6 @@ FireBullet::FireBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _
 void FireBullet::reset()
 {
 	Bullet::reset();
-
 	this->m_VelocityOfOrigin = D3DXVECTOR2(0.0f, 0.0f);
 	this->m_Angle = 0.0f;
 	this->m_PositionOfOrigin = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
