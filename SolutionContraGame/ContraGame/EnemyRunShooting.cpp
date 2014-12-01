@@ -252,6 +252,8 @@ void EnemyRunShooting::Release()
 	m_Sprite = 0;
 	sprite_dead->Release();
 	sprite_main->Release();
+	SAFE_DELETE(sprite_dead);
+	SAFE_DELETE(sprite_main);
 }
 EnemyRunShooting::~EnemyRunShooting()
 {

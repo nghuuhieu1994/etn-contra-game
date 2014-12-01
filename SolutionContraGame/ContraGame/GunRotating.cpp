@@ -529,6 +529,8 @@ void GunRotating::Release()
 	m_Sprite = 0;
 	sprite_alive->Release();
 	sprite_dead->Release();
+	SAFE_DELETE(sprite_alive);
+	SAFE_DELETE(sprite_dead);
 }
 
 GunRotating::~GunRotating()

@@ -282,7 +282,7 @@ void BigGunRotating::Update()
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{
-			m_TimeChangeState += (int) CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if (m_TimeChangeState > 1500)
 			{
 				m_ObjectState = eObjectState::STATE_DEATH;
@@ -316,6 +316,8 @@ void BigGunRotating::Release()
 	m_Sprite = 0;
 	sprite_alive->Release();
 	sprite_dead->Release();
+	SAFE_DELETE(sprite_alive);
+	SAFE_DELETE(sprite_dead);
 }
 
 BigGunRotating::~BigGunRotating()

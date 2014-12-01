@@ -29,6 +29,7 @@
 #include <list>
 #include "QuadTree.h"
 #include "Bridge.h"
+#include "WeaponryManager.h"
 //#define HIEU
 
 using namespace std;

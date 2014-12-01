@@ -187,6 +187,9 @@
     <ClCompile Include="Barrier.cpp">
       <Filter>GameObject\Items\Weaponry\Barrier</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponryManager.cpp">
+      <Filter>GameObject\Items\WeaponryManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -424,6 +427,9 @@
     <ClInclude Include="EIDWeaponry.h">
       <Filter>Framework\Global</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponryManager.h">
+      <Filter>GameObject\Items\WeaponryManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -569,6 +575,9 @@
     </Filter>
     <Filter Include="GameObject\Enemy\Soldier\SoldierShooting">
       <UniqueIdentifier>{f9e4dc4b-3d4c-41c2-afca-4942a1881ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\WeaponryManager">
+      <UniqueIdentifier>{a2f4ba24-b73c-410a-a566-87b7c8c800f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -7,11 +7,11 @@
 #include "MachineGun.h"
 #include "RapidFire.h"
 #include "SpreadGun.h"
+#include "WeaponryManager.h"
 
 class WeaponCapsule : public DynamicObject
 {
 	CSpriteDx9*		m_deadSprite;
-	D3DXVECTOR3		m_startPosition;
 	EIDWeaponry		m_IDWeaponry;
 public:
 	WeaponCapsule();
@@ -25,7 +25,6 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
 	virtual ~WeaponCapsule();
-	float Moving();
 };
 
 #endif
