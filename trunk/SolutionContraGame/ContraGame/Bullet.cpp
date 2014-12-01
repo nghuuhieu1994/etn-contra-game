@@ -3,7 +3,7 @@
 
 Bullet::Bullet()
 {
-
+	m_Position.z = 1.0f;
 }
 
 Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
@@ -13,11 +13,12 @@ Bullet::Bullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 	this->m_Direction = _direction;
 	this->m_eObjectID = _objectID;
 	this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-	m_Position.z = 1.0f;
+	this->m_Position.z = 1.0f;
 }
 
 void Bullet::reset()
 {
+	this->m_Position.z = 1.0f;
 	this->m_factor = 0;
 	this->getPhysic()->setVelocityX(2.0f);
 	//this->getPhysic()->setVelocityX(0.0f);

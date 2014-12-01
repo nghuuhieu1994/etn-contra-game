@@ -7,7 +7,7 @@ DefaultBullet::DefaultBullet()
 }
 DefaultBullet::DefaultBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : Bullet(_position, _direction, _objectID)
 {
-
+	this->m_Position.z = 1.0f;
 }
 
 void DefaultBullet::Initialize()

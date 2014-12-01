@@ -8,7 +8,7 @@ FireBullet::FireBullet()
 
 FireBullet::FireBullet(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : Bullet(_position, _direction, _objectID)
 {
-	//m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 }
 
 void FireBullet::reset()
