@@ -8,6 +8,7 @@ enum eIDTypeBullet
 	FIRE_BULLET_OF_RAMBO = 2, 
 	LAZER_BULLET_OF_RAMBO = 3, 
 	BULLET_OF_ENEMY = 4,
+	SPREAD_BULLET_OF_RAMBO = 5,
 };
 
 #endif
