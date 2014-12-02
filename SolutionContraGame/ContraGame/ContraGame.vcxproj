@@ -164,7 +164,6 @@
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="EnemyRunShooting.cpp" />
     <ClCompile Include="SnipperWaterHiding.cpp" />
-    <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Tinker.cpp" />
     <ClCompile Include="FireBullet.cpp" />
     <ClCompile Include="Barrier.cpp" />
