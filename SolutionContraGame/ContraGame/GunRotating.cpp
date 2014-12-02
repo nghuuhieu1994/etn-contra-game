@@ -16,41 +16,41 @@ void GunRotating::Shoot()
 {
 	switch (m_DirectAttack)
 	{
+	case ZERO_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+		break;
 	case ONE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 3.0f), 1);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 4.0f), 1.73);
 		break;
-	case FIVE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, -4.0f), -1);
-		break;
-	case SEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-0.9f, -11.0f), 1);
-		break;
-	case ELEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, -0.5f), -1);
-		break;
-	case NINE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+	case TWO_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.5f, 4.0f), 0.57);
 		break;
 	case THREE_CLOCK_DIRECTION:
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 0);
 		break;
-	case ZERO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+	case FOUR_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(7.0f, 0.0f), -0.83);
+		break;
+	case FIVE_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, -7.0f), -1.42);
 		break;
 	case SIX_CLOCK_DIRECTION:
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100); 
 		break;
-	case TEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-3.5f, 0.0f), -1);
-		break;
-	case TWO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.5f, 4.0f), 1);
+	case SEVEN_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, -7.0f), 1.43);
 		break;
 	case EIGHT_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0.7);
 		break;
-	case FOUR_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(6.0f, 0.0f), -1);
+	case NINE_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
+		break;
+	case TEN_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-3.5f, 0.0f), -0.7);
+		break;
+	case ELEVEN_CLOCK_DIRECTION:
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, -0.5f), -3.7);
 		break;
 	default:
 		break;	
@@ -61,6 +61,9 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 {
 	switch(m_DirectAttack)
 	{
+	case ZERO_CLOCK_DIRECTION:
+		return D3DXVECTOR3(m_Position.x, m_Position.y + 8, 0); 
+		break;
 	case ONE_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x + 5, m_Position.y + 20, 0);
 		break;
@@ -82,9 +85,6 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 	case THREE_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x + 8, m_Position.y, 0);
 		break;
-	case ZERO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x, m_Position.y + 8, 0); 
-		break;
 	case SIX_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x, m_Position.y - 8, 0); 
 		break;
@@ -92,10 +92,10 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 10, 0);
 		break;
 	case EIGHT_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 15, m_Position.y  , 0); 
+		return D3DXVECTOR3(m_Position.x - 10, m_Position.y  , 0); 
 		break;
 	case FOUR_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 15, m_Position.y , 0); 
+		return D3DXVECTOR3(m_Position.x + 10, m_Position.y , 0); 
 		break;
 
 	default:
