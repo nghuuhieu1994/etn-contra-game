@@ -21,11 +21,11 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	isLieDown = false;
 	m_timeClimb = 0;
 	m_timeWaterBomb = 0;
-	m_timeAddBullet = 600;
+	m_timeAddBullet = 1000;
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::M_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
 	isSetVelocityDeathState = false;
 }
 
@@ -364,7 +364,7 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::S_SKILL_BULLET:
 		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
 		{
-			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::LAZER_BULLET_OF_RAMBO);
+			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::RED_BULLET_OF_RAMBO);
 			m_RamboSprite->setShakeTime(0);
 			m_RamboSprite->IncreaseTimesShake(2);
 			SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
@@ -373,7 +373,7 @@ bool Rambo::HandleInputShooting()
 		}
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
-			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::LAZER_BULLET_OF_RAMBO) < 1)
+			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::RED_BULLET_OF_RAMBO) < 1)
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
 				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
@@ -670,9 +670,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100, 90.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 3.7);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), -3.7);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 1);
 			}
 		}
 		break;
@@ -694,9 +702,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100, -90.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), -3.7);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 100);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 3.7);
 			}
 		}
 		break;
@@ -718,9 +734,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 0);	
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -0.5);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.5);
 			}
 		}
 		break;
@@ -742,9 +766,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0.5);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -0.5);
 			}
 		}
 		break;
@@ -766,9 +798,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), 1, 45.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -2.14f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0.17);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -0.36);
 			}
 		}
 		break;
@@ -790,9 +830,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1, 135.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -0.17);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.36);
 			}
 		}
 		break;
@@ -814,9 +862,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, 0.0f), -1, -45.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 0.36);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -0.17);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -5.67);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 5.67);
 			}
 		}
 		break;
@@ -838,9 +894,17 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::FIRE_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1);
 			}
-			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			else if(m_SkillBullet == eIDSkillBullet::L_SKILL_BULLET)
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::LAZER_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), 1, -135.0f);
+			}
+			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
+			{
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -5.67);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 3.7);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.17);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -0.36);
 			}
 		}
 	default:
