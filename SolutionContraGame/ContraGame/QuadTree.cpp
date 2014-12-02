@@ -22,16 +22,16 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 
 	if (CheckAABB(ConvertToBox(viewPort), ConvertToBox(node->getBound())))
 	{
-		for(int i = 0; i < node->mListObject.size(); ++i)
+		for(int i = 0; i < (int)node->mListObject.size(); ++i)
 		{
 			mListObjectInView.push_back(node->mListObject[i]);
 		}
 
-		for(int i = 0; i < node->mListObjectCollision.size(); ++i)
+		for(int i = 0; i < (int)node->mListObjectCollision.size(); ++i)
 		{
 			if(mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_DEATH)
 			{
-				for( j = 0; j < mListObjectCollisionInView.size(); ++j)
+				for( j = 0; j < (int)mListObjectCollisionInView.size(); ++j)
 				{
 					if(node->mListObjectCollision[i] == mListObjectCollisionInView[j])
 						break;
@@ -123,77 +123,121 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 					{
 						if(atoi(xml.GetAttrib("Type").c_str()) == 0)
 						{
-							mMapObjectInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tile(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Id").c_str()),
+							mMapObjectInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tile(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f), atoi(xml.GetAttrib("Id").c_str()),
 								_tile_map);
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 1)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new VirtualObject(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), atoi(xml.GetAttrib("Width").c_str()), 
-									atoi(xml.GetAttrib("Height").c_str()), (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new VirtualObject(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								atoi(xml.GetAttrib("Width").c_str()), 
+								atoi(xml.GetAttrib("Height").c_str()),
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::GUN_ROTATING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new GunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new GunRotating(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPER_STANDING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SniperStanding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SniperStanding(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BRIDGE)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  Bridge(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  Bridge(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f), 
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ENEMY_RUN)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  EnemyRun(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  EnemyRun(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPER_HIDING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  SniperHiding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new  SniperHiding(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_GUN_ROTATING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_CAPSULE)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponCapsule(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()), EIDWeaponry::MACHINE_GUN);
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponCapsule(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()),
+								EIDWeaponry::MACHINE_GUN);
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_SENSOR)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponSensor(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()), EIDWeaponry::MACHINE_GUN);
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponSensor(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()),
+								EIDWeaponry::MACHINE_GUN);
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_GUN_ROTATING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigGunRotating(D3DXVECTOR3(
+								(float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())),
+								1.0f),
+								eDirection::LEFT,
+								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 					}
 
-					if(atoi(xml.GetAttrib("Type").c_str()) == 0)
+					if(atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::TILE_MAP)
 					{
 						node->mListObject.push_back(atoi(xml.GetAttrib("Index").c_str()));
 					}
-					else if(atoi(xml.GetAttrib("Type").c_str()) == 1 || atoi(xml.GetAttrib("Type").c_str()) == 4)
+					else if(atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::VIRTUAL_OBJECT || atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::DYNAMIC_OBJECT)
 					{
 						node->mListObjectCollision.push_back(atoi(xml.GetAttrib("Index").c_str()));
 					}
@@ -205,7 +249,7 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 
 void QuadTree::Update()
 {
-	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	for(int i = 0; i < (int)mListObjectCollisionInView.size(); ++i)
 	{
 		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->Update();
 	}
@@ -213,7 +257,7 @@ void QuadTree::Update()
 
 void QuadTree::UpdateAnimation()
 {
-	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	for(int i = 0; i < (int)mListObjectCollisionInView.size(); ++i)
 	{
 		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->UpdateAnimation();
 	}
@@ -221,14 +265,14 @@ void QuadTree::UpdateAnimation()
 
 void QuadTree::UpdateCollision(Object* checkingObject)
 {
-	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+	for(int i = 0; i < (int)mListObjectCollisionInView.size(); ++i)
 	{
 		mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->UpdateCollision(checkingObject);
 	}
 }
 
 void QuadTree::UpdateMovement()
-{	for(int i = 0; i < mListObjectCollisionInView.size(); ++i)
+{	for(int i = 0; i < (int)mListObjectCollisionInView.size(); ++i)
 	{
 		if(IsMovementObject(mMapObjectCollisionInGame[mListObjectCollisionInView[i]]->getID()))
 		{
@@ -240,12 +284,12 @@ void QuadTree::UpdateMovement()
 
 void QuadTree::Render(SPRITEHANDLE spriteHandler)
 {
-	for(int i = 0; i < mListObjectInView.size(); ++i)
+	for(int i = 0; i < (int)mListObjectInView.size(); ++i)
 	{
 		mMapObjectInGame[mListObjectInView[i]]->Render(spriteHandler);
 	}
 
-	for(int j = 0; j < mListObjectCollisionInView.size(); ++j)
+	for(int j = 0; j < (int)mListObjectCollisionInView.size(); ++j)
 	{
 		mMapObjectCollisionInGame[mListObjectCollisionInView[j]]->Render(spriteHandler);
 	}

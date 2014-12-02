@@ -27,10 +27,10 @@ RECT Camera::getBound()
 {
 	RECT tempRect = RECT();
 
-	tempRect.top = m_matrixTranslate._42;
-	tempRect.left = -m_matrixTranslate._41;
-	tempRect.right = tempRect.left + SCREEN_WIDTH;
-	tempRect.bottom = tempRect.top - SCREEN_HEIGHT;
+	tempRect.top = (long)(m_matrixTranslate._42);
+	tempRect.left = (long)(-m_matrixTranslate._41);
+	tempRect.right = (long)(tempRect.left + SCREEN_WIDTH);
+	tempRect.bottom = (long)(tempRect.top - SCREEN_HEIGHT);
 
 	return tempRect;
 }

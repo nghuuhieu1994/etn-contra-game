@@ -48,19 +48,19 @@ void SpaceShip::UpdateAnimation()
 
 void SpaceShip::UpdateCollision(Object* checkingObject)
 {
-	switch (checkingObject->getID())
-	{
-		// checking collision with Bullet
-		//m_AttackCounter--;
-		/*
-		if(m_AttackCounter == 0)
-		{
-			this->m_ObjectState == eObjectState::STATE_BEFORE_DETH;
-		}
-		*/
-	default:
-		break;
-	}
+	//switch (checkingObject->getID())
+	//{
+	//	// checking collision with Bullet
+	//	//m_AttackCounter--;
+	//	/*
+	//	if(m_AttackCounter == 0)
+	//	{
+	//		this->m_ObjectState == eObjectState::STATE_BEFORE_DETH;
+	//	}
+	//	*/
+	//default:
+	//	break;
+	//}
 }
 
 void SpaceShip:: UpdateMovement()

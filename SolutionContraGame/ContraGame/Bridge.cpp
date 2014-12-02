@@ -75,7 +75,7 @@ RECT Bridge::getBound()
 
 void Bridge::UpdateAnimation()
 {
-	for(int i = 0; i < mListTile.size(); ++i)
+	for(int i = 0; i < (int)mListTile.size(); ++i)
 	{
 		this->mListTile[i]->UpdateAnimation();
 	}
@@ -84,7 +84,7 @@ void Bridge::UpdateAnimation()
 
 void Bridge::UpdateCollision(Object* checkingObject)
 {
-	for(int i = 0; i < mListTile.size(); ++i)
+	for(int i = 0; i < (int)mListTile.size(); ++i)
 	{
 		this->mListTile[i]->UpdateCollision(checkingObject);
 	}
@@ -100,7 +100,7 @@ void Bridge::Update()
 	{
 		m_ObjectState = eObjectState::STATE_DEATH;
 	}*/
-	_distanceX = m_Position.x - CGlobal::Rambo_X;
+	_distanceX = (int)(m_Position.x - CGlobal::Rambo_X);
 	if (_distanceX <= 100)
 	{
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -112,7 +112,7 @@ void Bridge::Update()
 	}
 	if (isDead == true)
 	{
-		for(int i = 0; i < this->mListTile.size(); ++i)
+		for(int i = 0; i < (int)this->mListTile.size(); ++i)
 		{
 			if(mListTile[i]->getObjectState() == eObjectState::STATE_DEATH)
 			{
@@ -127,7 +127,7 @@ void Bridge::Update()
 		}	
 	}
 
-	for(int i = 0; i < mListTile.size(); ++i)
+	for(int i = 0; i < (int)mListTile.size(); ++i)
 	{
 		mListTile[i]->Update();
 	}
@@ -137,7 +137,7 @@ void Bridge::Render(SPRITEHANDLE spriteHandle)
 {
 	m_HeadBreak->Render(spriteHandle, m_HeadTile->getPositionVec2(), ESpriteEffect::None, 0.0f, 1.0f, 1);
 	m_TailBreak->Render(spriteHandle, m_TailTile->getPositionVec2() , ESpriteEffect::None, 0.0f, 1.0f, 1);
-	for(int i = 0; i < mListTile.size(); ++i)
+	for(int i = 0; i < (int)mListTile.size(); ++i)
 	{
 		this->mListTile[i]->Render(spriteHandle);
 	}
