@@ -144,6 +144,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 	default:
 		return 0;
 	}
+	return 0;
 }
 
 void BulletPool::addBulleToBulletPool(Bullet* _object)

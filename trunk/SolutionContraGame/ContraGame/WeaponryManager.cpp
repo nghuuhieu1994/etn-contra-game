@@ -23,7 +23,7 @@ void WeaponryManager::Update()
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < m_ListWeaponry.size(); i++)
+		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
 		{
 			m_ListWeaponry[i]->UpdateAnimation();
 			m_ListWeaponry[i]->UpdateMovement();
@@ -36,7 +36,7 @@ void WeaponryManager::UpdateCollision(Object* checkingObject)
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < m_ListWeaponry.size(); i++)
+		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
 		{
 			m_ListWeaponry[i]->UpdateCollision(checkingObject);
 		}
@@ -47,7 +47,7 @@ void WeaponryManager::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < m_ListWeaponry.size(); i++)
+		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
 		{
 			m_ListWeaponry[i]->Render(spriteHandle);
 		}
@@ -56,7 +56,7 @@ void WeaponryManager::Render(SPRITEHANDLE spriteHandle)
 
 void WeaponryManager::Release()
 {
-	for (int i = 0; i < m_ListWeaponry.size(); i++)
+	for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
 	{
 		m_ListWeaponry[i]->Release();
 	}

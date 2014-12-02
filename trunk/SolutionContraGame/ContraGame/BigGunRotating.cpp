@@ -37,7 +37,7 @@ void BigGunRotating::Shoot()
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 0.0f), -1);
 		break;
 	case ELEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7);		
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 0.0f), -3.7f);		
 		break;
 	default:
 		break;
@@ -79,8 +79,8 @@ void BigGunRotating::UpdateAnimation()
 		{
 			m_Sprite = sprite_alive;
 		}
-		_distance_X = CGlobal::Rambo_X - m_Position.x;
-		_distance_Y = CGlobal::Rambo_Y - m_Position.y;
+		_distance_X = (int)(CGlobal::Rambo_X - m_Position.x);
+		_distance_Y = (int)(CGlobal::Rambo_Y - m_Position.y);
 		if(_distance_X > -250)
 		{
 			_isAddBullet = true;

@@ -13,9 +13,9 @@
 
 #define DELAY_TIME_GUN_ROTATE 500
 
-#define VELOC_WEAPONRY_X		1
-#define VELOC_WEAPONRY_Y		5
-#define ACCEL_WEAPONRY_Y		-0.07
+#define VELOC_WEAPONRY_X		1.0f
+#define VELOC_WEAPONRY_Y		5.0f
+#define ACCEL_WEAPONRY_Y		-0.07f
 
 
 

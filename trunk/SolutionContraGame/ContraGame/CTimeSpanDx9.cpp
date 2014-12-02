@@ -12,7 +12,7 @@ CTimeSpanDx9::~CTimeSpanDx9()
 {}
 int CTimeSpanDx9::getMilliseconds()
 {
-	return m_Ticks / TicksPerMillisecond;
+	return (int)(m_Ticks / TicksPerMillisecond);
 }
 UINT64	CTimeSpanDx9::getTicks()
 {

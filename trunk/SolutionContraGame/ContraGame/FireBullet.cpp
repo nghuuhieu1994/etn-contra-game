@@ -42,27 +42,27 @@ void FireBullet::UpdateMovement()
 	if(this->m_factor == 100)
 	{
 		this->m_VelocityOfOrigin.x = 0.0f;
-		tempPosition = D3DXVECTOR3(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle), this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle), 1.0f);
-		this->getPhysic()->setVelocityX(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x);
-		this->getPhysic()->setVelocityY(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y);
+		tempPosition = D3DXVECTOR3((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle)), (float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle)), 1.0f);
+		this->getPhysic()->setVelocityX((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x));
+		this->getPhysic()->setVelocityY((float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y));
 		this->m_PositionOfOrigin.y += this->m_VelocityOfOrigin.y;
 		this->m_Angle += 0.2f;
 	}
 	else if(this->m_factor == 0)
 	{
 		this->m_VelocityOfOrigin.y = 0.0f;
-		tempPosition = D3DXVECTOR3(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle), this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle), 1.0f);
-		this->getPhysic()->setVelocityX(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x);
-		this->getPhysic()->setVelocityY(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y);
+		tempPosition = D3DXVECTOR3((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle)), (float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle)), 1.0f);
+		this->getPhysic()->setVelocityX((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x));
+		this->getPhysic()->setVelocityY((float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y));
 		this->m_PositionOfOrigin.x += this->m_VelocityOfOrigin.x;
 		this->m_Angle += 0.2f;
 	}
 	else
 	{
 		//this->m_VelocityOfOrigin.y = 0.0f;
-		tempPosition = D3DXVECTOR3(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle), this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle), 1.0f);
-		this->getPhysic()->setVelocityX(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x);
-		this->getPhysic()->setVelocityY(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y);
+		tempPosition = D3DXVECTOR3((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle)), (float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle)), 1.0f);
+		this->getPhysic()->setVelocityX((float)(this->m_PositionOfOrigin.x + 40 * cos(this->m_Angle) - this->m_Position.x));
+		this->getPhysic()->setVelocityY((float)(this->m_PositionOfOrigin.y + 40 * sin(this->m_Angle) - this->m_Position.y));
 		this->m_PositionOfOrigin.x += this->m_VelocityOfOrigin.x;
 		float tempValue = this->m_PositionOfOrigin.x - this->m_StartPosition.x;
 		this->m_PositionOfOrigin.y = this->m_factor * tempValue + this->m_StartPosition.y;
