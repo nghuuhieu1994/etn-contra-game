@@ -121,7 +121,7 @@ namespace MapEditor.Algorithm
         {
             
             RECTANGLE rect = RECTANGLE.Intersec(node.m_bound, obj.RangeOfMovement);
-
+                    
             if (rect.cX == 0 && rect.cY == 0 && rect.width == 0 && rect.height == 0)
             {
                 return ;

@@ -46,7 +46,7 @@ namespace MapEditor
         public MainWindow()
         {
             InitializeComponent();
-            ListBoxCreater.getInstance().InitializeListBox(this.lbEnemyObject, this.lbLandObject);
+            ListBoxCreater.getInstance().InitializeListBox(this.lbEnemyObject, this.lbLandObject, this.lbBoss1);
         }
 
         public bool CreateGridline()
@@ -612,6 +612,8 @@ namespace MapEditor
                 selectedItemFromListbox.Source = temp.Source;
                 selectedItemFromListbox.Width = temp.Width;
                 selectedItemFromListbox.Height = temp.Height;
+
+                //Support.
             }
             else
             {
@@ -691,6 +693,34 @@ namespace MapEditor
             {
                 Support.IsJump = false;
             }
+        }
+
+        private void lbBoss1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Support.IsBackground == true)
+            {
+                Image temp = (Image)this.lbBoss1.SelectedItem;
+
+                selectedItemFromListbox = new Image();
+                selectedItemFromListbox.Tag = temp.Tag;
+                selectedItemFromListbox.Source = temp.Source;
+                selectedItemFromListbox.Width = temp.Width;
+                selectedItemFromListbox.Height = temp.Height;
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng thêm background cho game, trước khi chọn đối tượng");
+            }
+        }
+
+        private void lbBoss2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lbBoss3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
         /* End Event Handler */
     }
