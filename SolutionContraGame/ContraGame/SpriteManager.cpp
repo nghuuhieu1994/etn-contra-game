@@ -85,25 +85,25 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
 
-	// End load EnemyContent
-
+	// Weapon
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\WeaponSensor.png", eSpriteID::SPRITE_WEAPON_SENSOR, 7, 1, 7);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\WeaponCapsule.png", eSpriteID::SPRITE_WEAPON_CAPSULE, 1, 1, 1);
-
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\Barrier.png", eSpriteID::SPRITE_BARRIER, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\RapidFire.png", eSpriteID::SPRITE_RAPID_FIRE, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\SpreadGun.png", eSpriteID::SPRITE_SPREAD_GUN, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\LaserGun.png", eSpriteID::SPRITE_LASER_GUN, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\MachineGun.png", eSpriteID::SPRITE_MACHINE_GUN, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\Weaponry\\FlameGun.png", eSpriteID::SPRITE_FLAME_GUN, 1, 1, 1);
+	// End Weapon
 
+	// Gunrotating
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\GunRotating.png", eSpriteID::SPRITE_GUN_ROTATING, 14, 1, 14);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotating.png", eSpriteID::SPRITE_BIG_GUN_ROATING, 3, 3, 9);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Gun\\bigGunRotatingPopup.png", eSpriteID::SPRITE_BIG_GUN_ROTAING_POPUP, 3, 2, 6);
+	// End Gunrotating
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_BODY, 3, 1, 3);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Leg\\Move\\move.png", eSpriteID::SPRITE_RAMBO_MOVE_LEG, 3, 1, 3);
-
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveUp\\top_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_TOP_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\MoveDown\\bottom_right.png", eSpriteID::SPRITE_RAMBO_SHOOT_BOTTOM_RIGHT_BODY, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\RamboSplit\\Body\\shoot.png", eSpriteID::SPRITE_RAMBO_SHOOT_BODY, 1, 1, 1);
