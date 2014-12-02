@@ -160,9 +160,6 @@
     <ClCompile Include="BackgroundEffect.cpp">
       <Filter>GameObject\Background Effect</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceShip.cpp">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClCompile>
     <ClCompile Include="WeaponSensor.cpp">
       <Filter>GameObject\Items\WeaponSensor</Filter>
     </ClCompile>
