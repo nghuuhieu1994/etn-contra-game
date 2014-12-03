@@ -7,37 +7,37 @@ Physic::Physic()
 	m_Accelerate	= D3DXVECTOR2(0, 0);
 }
 
-bool Physic::CheckMovementRangeWidth()
+bool Physic::CheckMovementRangeWidth(D3DXVECTOR3* _position)
 {
-	/*if(m_MovementRange != 0)
+	if(m_MovementRange != 0)
 	{
-		if(m_Position.x < m_MovementRange->left || m_Position.x > m_MovementRange->right)
+		if(_position->x < m_MovementRange->left || _position->x > m_MovementRange->right)
 		{
 			return true;
 		}
-	}*/
+	}
 	return false;
 }
 
-bool Physic::CheckMovementRangeHeight()
+bool Physic::CheckMovementRangeHeight(D3DXVECTOR3* _position)
 {
-	/*if(m_MovementRange != 0)
+	if(m_MovementRange != 0)
 	{
-		if(m_Position.y < m_MovementRange->bottom || m_Position.y > m_MovementRange->top)
+		if(_position->y < m_MovementRange->bottom || _position->y > m_MovementRange->top)
 		{
 			return true;
 		}
-	}*/
+	}
 	return false;
 }
 
 void Physic::UpdateMovement(D3DXVECTOR3* _position)
 {
-	if(CheckMovementRangeWidth())
+	if(CheckMovementRangeWidth(_position))
 	{
 		m_Velocity.x *= -1.0f;
 	}
-	if(CheckMovementRangeHeight())
+	if(CheckMovementRangeHeight(_position))
 	{
 		m_Velocity.y *= -1.0f;
 	}

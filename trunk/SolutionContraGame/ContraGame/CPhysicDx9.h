@@ -64,8 +64,8 @@ public:
 		m_MovementRange->bottom	= maxBottom;
 	}
 
-	bool CheckMovementRangeWidth();
-	bool CheckMovementRangeHeight();
+	bool CheckMovementRangeWidth(D3DXVECTOR3* _position);
+	bool CheckMovementRangeHeight(D3DXVECTOR3* _position);
 
 	void UpdateMovement(D3DXVECTOR3* _position);
 	void CheckCollision(Object* _object);

@@ -126,6 +126,11 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.effect", eSpriteID::SPRITE_EFFECT_MAP1, 1, 2, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.effect", eSpriteID::SPRITE_EFFECT_MAP2, 3, 1, 3);
+
+	//Rock
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\magic_rock.png", eSpriteID::SPRITE_MAGIC_ROCK, 1, 1, 1);
+	//End rock
+
 	
 }
 
