@@ -19,7 +19,7 @@ void BossCenter::Initialize()
 	sprite_alive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER);
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_Sprite = sprite_alive;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 }
 
 void BossCenter::UpdateAnimation()
@@ -90,8 +90,16 @@ void BossCenter::Render(SPRITEHANDLE spriteHandle)
 void BossCenter::Release()
 {
 	m_Sprite = 0;
-	sprite_alive->Release();
-	sprite_dead->Release();
+	if (sprite_alive)
+	{
+		sprite_alive->Release();
+	}
+	SAFE_DELETE(sprite_alive);
+	if (sprite_dead)
+	{
+		sprite_dead->Release();
+	}
+	SAFE_DELETE(sprite_dead);
 }
 
 BossCenter::~BossCenter()

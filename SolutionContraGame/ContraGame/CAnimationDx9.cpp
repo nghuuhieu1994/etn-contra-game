@@ -60,7 +60,7 @@ CAnimationDx9::CAnimationDx9(const CAnimationDx9& Animation)
 
 CAnimationDx9::~CAnimationDx9()
 {
-	SAFE_DELETE(this->m_sourceRect);
+	//SAFE_DELETE(this->m_sourceRect);
 }
 
 void CAnimationDx9::setIndexStart(int _start)

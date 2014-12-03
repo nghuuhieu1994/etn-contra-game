@@ -129,8 +129,16 @@ void BossGun::Render(SPRITEHANDLE spriteHandle)
 void BossGun::Release()
 {
 	m_Sprite = 0;
-	sprite_alive->Release();
-	sprite_dead->Release();
+	if (sprite_alive)
+	{
+		sprite_alive->Release();
+	}
+	SAFE_DELETE(sprite_alive);
+	if (sprite_dead)
+	{
+		sprite_dead->Release();
+	}
+	SAFE_DELETE(sprite_dead);
 }
 
 BossGun::~BossGun()
