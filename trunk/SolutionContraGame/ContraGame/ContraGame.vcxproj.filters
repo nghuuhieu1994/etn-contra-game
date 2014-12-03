@@ -397,9 +397,6 @@
     <ClInclude Include="BackgroundEffect.h">
       <Filter>GameObject\Background Effect</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceShip.h">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClInclude>
     <ClInclude Include="WeaponSensor.h">
       <Filter>GameObject\Items\WeaponSensor</Filter>
     </ClInclude>
@@ -536,9 +533,6 @@
     </Filter>
     <Filter Include="GameObject\Background Effect">
       <UniqueIdentifier>{3c5076b3-db9f-45c4-b688-ab502e4fd4bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Boss\BossMap3">
-      <UniqueIdentifier>{235340b4-143a-4ca0-b6a6-ebab4ac6e469}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Items">
       <UniqueIdentifier>{86e0d6db-57fb-4b92-9e4d-8021b95c309c}</UniqueIdentifier>

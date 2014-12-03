@@ -13,6 +13,7 @@ private:
 	CSpriteDx9*		m_BossBodyAlive;
 	CSpriteDx9*		m_BossBodyDead;
 	CSpriteDx9*		m_Explosion;
+	CSpriteDx9*		m_BossDie;
 	float timeDelayGun;
 	bool isDelay;
 public:

@@ -43,6 +43,8 @@ private:
 	BackgroundEffect	m_backgroundEffect;
 	MagicRock*			m_MagicRock;
 	
+	Tinker*				m_Tinker;
+
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}

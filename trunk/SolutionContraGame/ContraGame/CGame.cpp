@@ -258,11 +258,11 @@ void CGame::Exit()
 {
 	SAFE_RELEASE(m_lpDirect3D)
 	SAFE_RELEASE(m_lpDirect3DDevice)
-	//SAFE_DELETE(m_GameTime);
+
 	CInputDx9::getInstance()->Release();
-	//SoundManagerDx9::getInstance()->Release();
+	SoundManagerDx9::getInstance()->Release();
 	SpriteManager::getInstance()->Release();
-	SceneManagerDx9::getInstance()->ClearAll();;
+	SceneManagerDx9::getInstance()->ClearAll();
 }
 
 LRESULT CALLBACK CGame::WndProceduce(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

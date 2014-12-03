@@ -86,7 +86,6 @@
     <ClInclude Include="EnemyRunShooting.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SnipperWaterHiding.h" />
-    <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Tinker.h" />
     <ClInclude Include="FireBullet.h" />
     <ClInclude Include="Barrier.h" />
