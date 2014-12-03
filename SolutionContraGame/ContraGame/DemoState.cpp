@@ -4,6 +4,8 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+	m_MagicRock = new MagicRock(D3DXVECTOR3( 200, 30, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
+	m_MagicRock->Initialize();
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
@@ -28,6 +30,9 @@ void DemoState::Update()
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
 	#pragma endregion
+	m_MagicRock->UpdateAnimation();
+	m_MagicRock->UpdateMovement();
+	m_MagicRock->Update();
 
 	#pragma region Update rambo
 
@@ -93,6 +98,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
+	m_MagicRock->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

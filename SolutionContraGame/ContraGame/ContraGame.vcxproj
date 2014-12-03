@@ -78,6 +78,7 @@
     <ClInclude Include="EIDSkillBullet.h" />
     <ClInclude Include="EIDWeaponry.h" />
     <ClInclude Include="LazeBullet.h" />
+    <ClInclude Include="MagicRock.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QuadTree.h" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="BridgeTile.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
+    <ClCompile Include="MagicRock.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="QuadTree.cpp" />

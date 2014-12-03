@@ -30,6 +30,7 @@
 #include "QuadTree.h"
 #include "Bridge.h"
 #include "WeaponryManager.h"
+#include "MagicRock.h"
 //#define HIEU
 
 using namespace std;
@@ -40,6 +41,7 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
+	MagicRock*			m_MagicRock;
 	
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}

@@ -18,7 +18,7 @@ void SniperHiding::Shoot()
 		{
 			if(m_TimeToShoot >= 1000)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(-2.0f, 0.0f), 0.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(-1.0f, 0.0f), 0.0f);
 				m_TimeToShoot = 0;
 				++m_CountBullet;
 			}
@@ -37,7 +37,7 @@ void SniperHiding::Shoot()
 		{
 			if(m_TimeToShoot >= 1000)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(2.0f, 0.0f), 0.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, this->m_Position, D3DXVECTOR2(1.0f, 0.0f), 0.0f);
 				m_TimeToShoot = 0;
 				++m_CountBullet;
 			}
