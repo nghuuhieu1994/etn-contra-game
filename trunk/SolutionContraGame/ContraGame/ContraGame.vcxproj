@@ -85,6 +85,7 @@
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="EnemyRunShooting.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RockFalling.h" />
     <ClInclude Include="SnipperWaterHiding.h" />
     <ClInclude Include="Tinker.h" />
     <ClInclude Include="FireBullet.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="EnemyRunShooting.cpp" />
+    <ClCompile Include="RockFalling.cpp" />
     <ClCompile Include="SnipperWaterHiding.cpp" />
     <ClCompile Include="Tinker.cpp" />
     <ClCompile Include="FireBullet.cpp" />
