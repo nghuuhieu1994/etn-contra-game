@@ -190,6 +190,9 @@
     <ClCompile Include="MagicRock.cpp">
       <Filter>GameObject\Items\MagicRock</Filter>
     </ClCompile>
+    <ClCompile Include="RockFalling.cpp">
+      <Filter>GameObject\Items\RockFalling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -430,6 +433,9 @@
     <ClInclude Include="MagicRock.h">
       <Filter>GameObject\Items\MagicRock</Filter>
     </ClInclude>
+    <ClInclude Include="RockFalling.h">
+      <Filter>GameObject\Items\RockFalling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -578,6 +584,9 @@
     </Filter>
     <Filter Include="GameObject\Items\MagicRock">
       <UniqueIdentifier>{d253fb13-6ceb-49be-83c1-6b21e9f3dfb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\RockFalling">
+      <UniqueIdentifier>{c9f5e761-f6c0-425f-81dd-20dad95d77ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
