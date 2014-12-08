@@ -6,7 +6,6 @@ SniperHiding::SniperHiding()
 SniperHiding::SniperHiding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void SniperHiding::Shoot()

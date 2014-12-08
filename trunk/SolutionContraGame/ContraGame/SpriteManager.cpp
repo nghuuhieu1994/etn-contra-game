@@ -131,6 +131,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	//Rock
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\magic_rock.png", eSpriteID::SPRITE_MAGIC_ROCK, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\Rockfalling .png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
 	//End rock
 
 	

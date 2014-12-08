@@ -80,10 +80,10 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 		return D3DXVECTOR3(m_Position.x - 3 , m_Position.y -5 , 0); 
 		break;
 	case SIX_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x , m_Position.y - 8, 0); 
+		return D3DXVECTOR3(m_Position.x - 5 , m_Position.y - 15, 0); 
 		break;
 	case SEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x , m_Position.y - 10 , 0); 
+		return D3DXVECTOR3(m_Position.x  - 5, m_Position.y - 20 , 0); 
 		break;
 	case EIGHT_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x - 10, m_Position.y  , 0); 

@@ -1,18 +1,21 @@
-#ifndef _ROCK_FALLING_H_
-#define _ROCK_FALLING_H_
+#ifndef _STONE_H_
+#define _STONE_H_
 
 #include "DynamicObject.h"
 #include "Bullet.h"
 
-class RockFalling: public DynamicObject
+class Stone: public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_main;
 	CSpriteDx9* sprite_exploision;
 	bool m_isJump;
+	int m_TimeToJump;
+	int m_TimeForUpdate;
+	int flag;
 public:
-	RockFalling();
-	RockFalling(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	Stone();
+	Stone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void Update();
 	void UpdateAnimation();
@@ -20,7 +23,7 @@ public:
 	void UpdateCollision(Object* checkingObject);
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	~RockFalling();
+	~Stone();
 	
 };
 #endif

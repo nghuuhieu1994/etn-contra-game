@@ -4,8 +4,10 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_MagicRock = new MagicRock(D3DXVECTOR3( 200, 30, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
-	m_MagicRock->Initialize();
+	m_SnipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3( 350, 70, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
+	m_SnipperWaterHiding->Initialize();
+	m_Stone = new Stone(D3DXVECTOR3( 400, 300, 1), eDirection::RIGHT, eObjectID::STONE);
+	m_Stone->Initialize();
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
@@ -19,6 +21,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Tinker = new Tinker(D3DXVECTOR3(200, 300, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
 	m_Tinker->Initialize();
 }
+
 
 void DemoState::HandleInput()
 {
@@ -34,9 +37,13 @@ void DemoState::Update()
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
 	#pragma endregion
-	m_MagicRock->UpdateAnimation();
-	m_MagicRock->UpdateMovement();
-	m_MagicRock->Update();
+	m_SnipperWaterHiding->UpdateAnimation();
+	m_SnipperWaterHiding->Update();
+
+	m_Stone->UpdateAnimation();
+	m_Stone->Update();
+	m_Stone->UpdateMovement();
+
 
 	#pragma region Update rambo
 
@@ -69,6 +76,7 @@ void DemoState::Update()
 	for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		m_Stone->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
@@ -85,6 +93,8 @@ void DemoState::Update()
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
+		m_Stone->UpdateCollision(*i);
+		m_SnipperWaterHiding->UpdateCollision(*i);
 	}
 
 	#pragma endregion	
@@ -94,19 +104,20 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 	
-	m_Tinker->UpdateAnimation();
-	m_Tinker->Update();
+	//m_Tinker->UpdateAnimation();
+	//m_Tinker->Update();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	/*m_Quadtree->Render(_lpDSpriteHandle);
-	m_backgroundEffect.Render(_lpDSpriteHandle);*/
+	m_Quadtree->Render(_lpDSpriteHandle);
+	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	//m_Rambo->Render(_lpDSpriteHandle);
-	m_Tinker->Render(_lpDSpriteHandle);
-	//m_MagicRock->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+	//m_Tinker->Render(_lpDSpriteHandle);
+	m_SnipperWaterHiding->Render(_lpDSpriteHandle);
+	m_Stone->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

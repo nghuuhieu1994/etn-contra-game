@@ -1,16 +1,16 @@
-#include "RockFalling.h"
+#include "Stone.h"
 
-RockFalling::RockFalling()
+Stone::Stone()
 {
 }
 
-RockFalling::RockFalling(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : DynamicObject(_position, _direction, _objectID)
+Stone::Stone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : DynamicObject(_position, _direction, _objectID)
 {
 }
 
-void RockFalling::Initialize()
+void Stone::Initialize()
 {
-	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 	m_Direction = eDirection::BOTTOM;
 	sprite_exploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ROCK_FALLING));
@@ -18,30 +18,30 @@ void RockFalling::Initialize()
 	m_TimeChangeState = 0;
 	m_Position.z = 0.4f;
 	m_AttackCounter = 8;
-	m_Physic->setVelocityY(-0.3f);
 	m_isJump = false;
+	m_TimeToJump = 0;
+	m_UpdateFlag = true;
+	m_TimeForUpdate = 0;
+	flag = 1;
 
 }
 
-void RockFalling::UpdateAnimation()
+void Stone::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_Sprite = sprite_main;
 		m_Sprite->getAnimation()->setCurrentFrame(0);
 		break;
 	case STATE_ALIVE_MOVE:
-		m_Sprite = sprite_main;
 		m_Sprite->getAnimation()->setIndexStart(0);
 		m_Sprite->getAnimation()->setIndexEnd(3);
-		m_Sprite->UpdateAnimation(500);
+		m_Sprite->UpdateAnimation(100);
 		break;
 	case STATE_JUMP:
-		m_Sprite = sprite_main;
 		m_Sprite->getAnimation()->setIndexStart(0);
 		m_Sprite->getAnimation()->setIndexEnd(3);
-		m_Sprite->UpdateAnimation(500);
+		m_Sprite->UpdateAnimation(100);
 		break;
 	case STATE_EXPLOISION:
 		m_Sprite = sprite_exploision;
@@ -54,7 +54,7 @@ void RockFalling::UpdateAnimation()
 	}
 }
 
-void RockFalling::UpdateCollision(Object* checkingObject)
+void Stone::UpdateCollision(Object* checkingObject)
 {
 	if(isDead != true)
 	{
@@ -109,10 +109,20 @@ void RockFalling::UpdateCollision(Object* checkingObject)
 			case eObjectID::TILE_BASE:
 				if(collisionDirection == IDDirection::DIR_TOP)
 				{
-					m_ObjectState = eObjectState::STATE_JUMP;
-					m_isJump = true;
+					flag++;
+					if(flag % 2 == 0)
+					{
 					
+						if(collisionDirection == IDDirection::DIR_TOP)
+						{
+							m_ObjectState = eObjectState::STATE_JUMP;
+							m_isJump = true;
+						}
+					}
 				}
+				
+				
+				
 				break;
 			default:
 				break;
@@ -121,27 +131,42 @@ void RockFalling::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void RockFalling::UpdateMovement()
+void Stone::UpdateMovement()
 {
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
+		m_Physic->setVelocityY(-0.5f);
 		m_Physic->UpdateMovement(&m_Position);
-		m_Physic->setVelocityY(-0.3f);
+		/*m_TimeForUpdate  += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeForUpdate > 4500)
+			m_UpdateFlag = true;*/
 		break;
 	case STATE_JUMP:
-		m_Physic->UpdateMovement(&m_Position);
-		m_Physic->setVelocityY(0.5f);
 		if(m_isJump == true)
-			m_isJump = false;
+		{
+			m_TimeToJump += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_Physic->setVelocityY(0.5f);
+			m_Physic->UpdateMovement(&m_Position);
+			if(m_TimeToJump > 1500)
+			{
+				m_isJump = false;
+				//flag += 2;
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+				m_TimeToJump = 0;
+			}
+		}
+		
+		break;
+		
 	default:
 		break;
 	}
 }
 
-void RockFalling::Update()
+void Stone::Update()
 {
 	switch (m_ObjectState)
 		{
@@ -165,7 +190,7 @@ void RockFalling::Update()
 		}
 }
 
-void RockFalling::Render(SPRITEHANDLE _lpSpriteHandle)
+void Stone::Render(SPRITEHANDLE _lpSpriteHandle)
 {
 	if(m_Sprite != 0)
 	{
@@ -174,13 +199,13 @@ void RockFalling::Render(SPRITEHANDLE _lpSpriteHandle)
 	
 }
 
-void RockFalling::Release()
+void Stone::Release()
 {
 	m_Sprite = 0;
 	sprite_exploision->Release();
 	sprite_main->Release();
 }
 
-RockFalling::~RockFalling()
+Stone::~Stone()
 {
 }
