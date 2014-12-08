@@ -57,6 +57,7 @@ private:
 	bool isAddBullet();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 public:
+	void setSkillBullet(eIDSkillBullet _skillBullet){ this->m_SkillBullet = _skillBullet;};
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

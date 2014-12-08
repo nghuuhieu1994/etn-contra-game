@@ -1,7 +1,7 @@
 #include "EnemyRun.h"
 #define VELOC_MOVE_RIGHT 1.0f
 #define VELOC_MOVE_LEFT -1.0f
-#define VELOC_JUMB	0.5f
+#define VELOC_JUMB	0.8f
 
 EnemyRun::EnemyRun()
 {
@@ -74,8 +74,11 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play(); // sound dead
 					checkingObject->setObjectState(eObjectState::STATE_DEATH);
 					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					this->getPhysic()->setVelocityY(2.0f);
+					this->getPhysic()->setVelocityX(0.0f);
 					this->isDead = true;
 					break;
+				case eObjectID::BRIDGE:
 				case eObjectID::TILE_BASE:
 					if (collideDirection == IDDirection::DIR_TOP)
 						{

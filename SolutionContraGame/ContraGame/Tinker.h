@@ -4,7 +4,7 @@
 #include "BossGun.h"
 #include "SpriteManager.h"
 
-class Tinker : DynamicObject
+class Tinker : public DynamicObject
 {
 private:
 	BossCenter*		m_Center;
@@ -15,11 +15,11 @@ private:
 	CSpriteDx9*		m_Explosion;
 	CSpriteDx9*		m_BossDie;
 	float timeDelayGun;
-	bool isDelay;
 public:
 	Tinker();
 	Tinker(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
+	//void Shoot();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();

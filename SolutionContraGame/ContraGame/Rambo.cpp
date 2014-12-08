@@ -23,9 +23,8 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeWaterBomb = 0;
 	m_timeAddBullet = 1000;
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
-	
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 	isSetVelocityDeathState = false;
 }
 
@@ -656,7 +655,7 @@ void Rambo::Shoot()
 		{
 			if(m_SkillBullet == eIDSkillBullet::DEFAULT_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, -2.0f), 3.7f);
 			}
 			else if(m_SkillBullet == eIDSkillBullet::M_SKILL_BULLET)
 			{
@@ -1477,6 +1476,8 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
+	if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
+	{
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 	setRectangleCheckingObjectBelow();
@@ -1542,6 +1543,14 @@ void Rambo::UpdateCollision(Object* checkingObject)
 				#pragma region. Update Collision with Bridge
 				switch(checkingObject->getID())
 				{
+				case eObjectID::ENEMY_RUN:
+				case eObjectID::GUN_ROTATING:
+				case eObjectID::BIG_GUN_ROTATING:
+					if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
+					{
+						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+					}
+					break;
 				case eObjectID::BRIDGE:
 					if(collideDirection == IDDirection::DIR_TOP)
 					{ 
@@ -1579,13 +1588,17 @@ void Rambo::UpdateCollision(Object* checkingObject)
 					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD; 
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 					}
+					//case eObjectID::W
+					break;
 				default:
 					break;
 				}
 				#pragma endregion
 				break;
 			}
+		}
 		}
 	}
 }

@@ -10,8 +10,8 @@ Tinker::Tinker(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID
 void Tinker::Initialize()
 {
 	timeDelayGun = 0;
-	isDelay = false;
 	this->m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+	this->isDead = false;
 	this->m_BossBodyAlive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY_ALIVE);
 	this->m_BossBodyDead = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_BODY_DEAD);
 	this->m_Explosion = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_EXPLOISION);
@@ -61,13 +61,13 @@ void Tinker::UpdateAnimation()
 		if (isDead != true)
 		{
 			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
-			m_Sprite = m_BossBodyDead;
 			isDead = true;
 		}
 		m_BossDie->UpdateAnimation(750);
 		m_Explosion->UpdateAnimation(150);
 		break;
-	case STATE_DEATH:
+	case STATE_BOSS_DEATH:
+		m_Sprite = m_BossBodyDead;
 		break;
 	default:
 		break;
@@ -86,13 +86,13 @@ void Tinker::UpdateMovement(){}
 
 void Tinker::Update()
 {
+
 	switch (this->m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
 		m_Center->Update();
-		m_Left->Update();
+		m_Left->Update();		
 		m_Right->Update();
-
 		if (m_Center->getObjectState() == eObjectState::STATE_DEATH)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -103,6 +103,7 @@ void Tinker::Update()
 			}
 		}
 		break;
+
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{

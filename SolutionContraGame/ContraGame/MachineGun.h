@@ -2,6 +2,7 @@
 #define __MACHINE_GUN_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "Rambo.h"
 
 class MachineGun : public DynamicObject
 {

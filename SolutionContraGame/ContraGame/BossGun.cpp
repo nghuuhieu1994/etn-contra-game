@@ -25,6 +25,7 @@ void BossGun::Initialize()
 
 void BossGun::Shoot()
 {
+	//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 3.0f));
 }
 
 D3DXVECTOR3 BossGun::GetStartPositionOfBullet()
@@ -73,12 +74,20 @@ void BossGun::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		/*m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 800)
 		{
 			m_TimeChangeState = 0;
 			m_ObjectState = eObjectState::STATE_SHOOTING;
 			isShoot = true;
+		}*/
+		if(isShoot == false)
+		{
+			if(m_Sprite->getAnimationAction()->getCurrentIndex() == 0)
+			{
+				m_ObjectState = eObjectState::STATE_SHOOTING;
+				isShoot = true;
+			}
 		}
 		break;
 	case STATE_SHOOTING:

@@ -31,8 +31,13 @@ void MachineGun::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::RAMBO:
-				this->Release();
-				break;
+				{
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
+					Rambo* tempRambo = (Rambo*)checkingObject;
+					tempRambo->setSkillBullet(eIDSkillBullet::M_SKILL_BULLET);
+					this->Release();
+					break;
+				}
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
 				{

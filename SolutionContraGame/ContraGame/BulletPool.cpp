@@ -64,6 +64,16 @@ void BulletPool::Initialize()
 		queueDefaultBulletOfEnemy.push(tempBullet);
 	}
 	m_BulletPool.push_back(queueDefaultBulletOfEnemy);
+
+	std::queue<Bullet*> queueBulletBoss1;
+	for(int i = 0; i < QUALITY_OF_BULLET_BOSS1; ++i)
+	{
+		BulletBoss1* tempBullet = new BulletBoss1(D3DXVECTOR3(0.0f, 0.0f, 0.5f), eDirection::TOP, eObjectID::BULLET_BOSS1);
+		tempBullet->Initialize();
+		tempBullet->setTypeBullet(eIDTypeBullet::BULLET_OF_BOSS1);
+		queueBulletBoss1.push(tempBullet);
+	}
+	m_BulletPool.push_back(queueBulletBoss1);
 }
 
 Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTOR3 _position, D3DXVECTOR2 _velocity, float _factor, float _rotationAngle)
@@ -74,6 +84,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 		if(m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].empty() == false)
 		{
 			DefaultBullet* object = (DefaultBullet*) m_BulletPool[eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO].front();
+			_position.z = 1.0f;
 			object->setPosition(_position);
 			object->setStartPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
@@ -88,6 +99,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 		if(m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].empty() == false)
 		{
 			RedBullet* object = (RedBullet*) m_BulletPool[eIDTypeBullet::RED_BULLET_OF_RAMBO].front();
+			_position.z = 1.0f;
 			object->setPosition(_position);
 			object->setStartPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
@@ -102,6 +114,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 		if(m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].empty() == false)
 		{
 			FireBullet* object = (FireBullet*) m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].front();
+			_position.z = 1.0f;
 			object->setPosition(_position);
 			object->setStartPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
@@ -118,6 +131,7 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 		if(m_BulletPool[eIDTypeBullet::LAZER_BULLET_OF_RAMBO].empty() == false)
 		{
 			LazeBullet* object = (LazeBullet*) m_BulletPool[eIDTypeBullet::LAZER_BULLET_OF_RAMBO].front();
+			_position.z = 1.0f;
 			object->setPosition(_position);
 			object->setStartPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
@@ -128,10 +142,12 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 
 			return object;
 		}
+		break;
 	case eIDTypeBullet::BULLET_OF_ENEMY:
 		if(m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].empty() == false)
 		{
 			DefaultBullet* object = (DefaultBullet*) m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].front();
+			_position.z = 1.0f;
 			object->setPosition(_position);
 			object->setStartPosition(_position);
 			object->getPhysic()->setVelocity(_velocity);
@@ -141,6 +157,23 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 
 			return object;
 		}
+		break;
+	case eIDTypeBullet::BULLET_OF_BOSS1:
+		if(m_BulletPool[eIDTypeBullet::BULLET_OF_BOSS1].empty() == false)
+		{
+			BulletBoss1* object = (BulletBoss1*) m_BulletPool[eIDTypeBullet::BULLET_OF_BOSS1].front();
+			_position.z = 1.0f;
+			object->setPosition(_position);
+			object->setStartPosition(_position);
+			object->getPhysic()->setVelocity(_velocity);
+			object->setFactor(_factor);
+			object->ResetLivingTime();
+			object->getPhysic()->setAccelerateY(-0.1f);
+			m_BulletPool[eIDTypeBullet::BULLET_OF_BOSS1].pop();
+
+			return object;
+		}
+		break;
 	default:
 		return 0;
 	}
@@ -149,8 +182,8 @@ Bullet* BulletPool::popBulletFromBulletPool(eIDTypeBullet _typebullet, D3DXVECTO
 
 void BulletPool::addBulleToBulletPool(Bullet* _object)
 {
-	if(_object->getID() == eObjectID::BULLET_RAMBO)
-	{
+	//if(_object->getID() == eObjectID::BULLET_RAMBO)
+	//{
 		switch(_object->getTypeBullet())
 		{
 		case eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO:
@@ -165,10 +198,22 @@ void BulletPool::addBulleToBulletPool(Bullet* _object)
 			_object->reset();
 			m_BulletPool[eIDTypeBullet::FIRE_BULLET_OF_RAMBO].push((RedBullet*) _object);
 			break;
+		case eIDTypeBullet::LAZER_BULLET_OF_RAMBO:
+			_object->reset();
+			m_BulletPool[eIDTypeBullet::LAZER_BULLET_OF_RAMBO].push((LazeBullet*) _object);
+			break;
+		case eIDTypeBullet::BULLET_OF_ENEMY:
+			_object->reset();
+			m_BulletPool[eIDTypeBullet::BULLET_OF_ENEMY].push((DefaultBullet*) _object);
+			break;
+		case eIDTypeBullet::BULLET_OF_BOSS1:
+			_object->reset();
+			m_BulletPool[eIDTypeBullet::BULLET_OF_BOSS1].push((BulletBoss1*) _object);
+			break;
 		default:
 			break;
 		}
-	}
+	//}
 }
 
 void BulletPool::releaseBulletPool()

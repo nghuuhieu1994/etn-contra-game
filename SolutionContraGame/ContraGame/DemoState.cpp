@@ -27,7 +27,7 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
-	/*
+	
 	#pragma region Update camera & insert object into quadtree
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
@@ -93,20 +93,20 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	*/
+	
 	m_Tinker->UpdateAnimation();
 	m_Tinker->Update();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	/*m_Quadtree->Render(_lpDSpriteHandle);
+	m_Quadtree->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);	
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	m_Rambo->Render(_lpDSpriteHandle);*/
-	m_Tinker->Render(_lpDSpriteHandle);
-	m_MagicRock->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+	//m_Tinker->Render(_lpDSpriteHandle);
+	//m_MagicRock->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
