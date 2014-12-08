@@ -439,7 +439,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
-				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
+				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}

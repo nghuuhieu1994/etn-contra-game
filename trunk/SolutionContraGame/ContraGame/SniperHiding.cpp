@@ -152,7 +152,7 @@ void SniperHiding::UpdateCollision(Object* checkingObject)
 						checkingObject->setObjectState(eObjectState::STATE_DEATH);
 						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
-						this->m_TimeChangeState = 0.0f;
+						this->m_TimeChangeState = 0;
 					}
 					break;
 				default:
