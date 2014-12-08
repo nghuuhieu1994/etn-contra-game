@@ -30,7 +30,8 @@
 #include "QuadTree.h"
 #include "Bridge.h"
 #include "WeaponryManager.h"
-#include "MagicRock.h"
+#include "SnipperWaterHiding.h"
+#include "Stone.h"
 //#define HIEU
 
 using namespace std;
@@ -41,7 +42,8 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
-	MagicRock*			m_MagicRock;
+	SnipperWaterHiding* m_SnipperWaterHiding;
+	Stone*              m_Stone;
 	
 	Tinker*				m_Tinker;
 

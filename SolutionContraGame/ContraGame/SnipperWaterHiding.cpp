@@ -6,12 +6,11 @@ SnipperWaterHiding::SnipperWaterHiding()
 SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) 
 	: DynamicObject(_position, _direction, _objectID)
 {
-	m_Position.z = 0.4f;
 }
 
 void SnipperWaterHiding::Shoot()
 {
-	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 0);		
+	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 3.0f), 100);
 }
 
 D3DXVECTOR3 SnipperWaterHiding::GetStartPositionOfBullet()
@@ -24,6 +23,7 @@ void SnipperWaterHiding::Initialize()
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive_hiding = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_SNIPER_WATER_HIDING));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
+	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
 	m_Position.z = 0.4f;
 }
@@ -32,16 +32,20 @@ void SnipperWaterHiding::UpdateAnimation()
 {	
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_IDLE: 
-		m_Sprite = sprite_alive_hiding;
+	case STATE_ALIVE_IDLE:
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		break;
 	case STATE_SHOOTING:
-		m_Sprite = sprite_alive_hiding;
 		m_Sprite->getAnimationAction()->setCurrentFrame(1);
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState >= 1000)
+		{
+			m_ObjectState = eObjectState::STATE_DEATH;
+			m_TimeChangeState = 0;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
@@ -49,25 +53,35 @@ void SnipperWaterHiding::UpdateAnimation()
 	default:
 		break;
 	}	
-	m_Sprite->UpdateAnimation(500);
 }
 
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if (isDead != true)
 	{
-		switch (checkingObject->getID())
+		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-			case eObjectID ::BULLET_RAMBO:
-				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-				break;
-			default:
-				break;
-		}
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
+			if (collideDirection != IDDirection::DIR_NONE)
+			{
+				switch (checkingObject->getID())
+				{
+				case eObjectID::BULLET_RAMBO:
+					if(m_ObjectState == eObjectState::STATE_SHOOTING)
+					{
+						checkingObject->setObjectState(eObjectState::STATE_DEATH);
+						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+						this->m_TimeChangeState = 0;
+					}
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 }
 
@@ -83,7 +97,7 @@ void SnipperWaterHiding::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 5000)
+			if(m_TimeChangeState > 2000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -97,7 +111,7 @@ void SnipperWaterHiding::Update()
 				isShoot = false;
 			}
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 5000)
+			if(m_TimeChangeState > 1000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;

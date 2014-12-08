@@ -1,15 +1,15 @@
-#include "MagicRock.h"
+#include "MagicStone.h"
 
-MagicRock::MagicRock()
+MagicStone::MagicStone()
 {
 }
 
-MagicRock::MagicRock(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+MagicStone::MagicStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
 }
 
-void MagicRock::Initialize()
+void MagicStone::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 	m_Direction = eDirection::RIGHT;
@@ -21,7 +21,7 @@ void MagicRock::Initialize()
 	m_Physic->setVelocityX(0.3f);
 }
 
-void MagicRock::UpdateAnimation()
+void MagicStone::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
@@ -34,11 +34,11 @@ void MagicRock::UpdateAnimation()
 		break;
 	}
 }
-void MagicRock::UpdateCollision(Object* checkingObject)
+void MagicStone::UpdateCollision(Object* checkingObject)
 {
 }
 
-void MagicRock::UpdateMovement()
+void MagicStone::UpdateMovement()
 {
 	switch (m_ObjectState)
 	{
@@ -51,11 +51,11 @@ void MagicRock::UpdateMovement()
 		break;
 	}
 }
-void MagicRock::Update()
+void MagicStone::Update()
 {
 }
 
-void MagicRock::Render(SPRITEHANDLE spriteHandle)
+void MagicStone::Render(SPRITEHANDLE spriteHandle)
 {
 	if(m_Sprite != 0)
 	{
@@ -63,11 +63,11 @@ void MagicRock::Render(SPRITEHANDLE spriteHandle)
 	}
 }
 
-void MagicRock::Release()
+void MagicStone::Release()
 {
 	m_Sprite = 0;
 	sprite_main->Release();
 }
-MagicRock::~MagicRock()
+MagicStone::~MagicStone()
 {
 }

@@ -1,15 +1,15 @@
-#ifndef __MAGIC_ROCK_H__
-#define __MGIC_ROCK_H__
+#ifndef __MAGIC_STONE_H__
+#define __MGIC_STONE_H__
 
 #include "DynamicObject.h"
 
-class MagicRock : public DynamicObject
+class MagicStone : public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_main;
 public:
-	MagicRock();
-	MagicRock(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	MagicStone();
+	MagicStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateAnimation();
@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	~MagicRock();
+	~MagicStone();
 };
 
 #endif
