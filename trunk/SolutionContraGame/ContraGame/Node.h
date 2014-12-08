@@ -16,6 +16,7 @@
 #include "BigGunRotating.h"
 #include "WeaponCapsule.h"
 #include "WeaponSensor.h"
+#include "Tinker.h"
 
 class Node
 {

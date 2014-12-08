@@ -16,8 +16,8 @@ void WeaponCapsule::Initialize()
 	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_CAPSULE));
 	m_deadSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	m_Physic->setVelocity(D3DXVECTOR2(1.0, 1.0));
-	m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.03f));
+	m_Physic->setVelocity(D3DXVECTOR2(2.0f, 2.0f));
+	m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.08f));
 	m_ObjectState = STATE_ALIVE_MOVE;
 }
 
@@ -55,7 +55,7 @@ void WeaponCapsule::UpdateCollision(Object* checkingObject)
 			{
 			case BULLET_RAMBO:
 				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
-				if (m_Sprite->getAnimationAction()->getCurrentIndex() > 3)
+				//if (m_Sprite->getAnimationAction()->getCurrentIndex() > 3)
 				{
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 					m_ObjectState = STATE_BEFORE_DEATH;
@@ -95,9 +95,9 @@ void WeaponCapsule::UpdateCollision(Object* checkingObject)
 }
 
 
-void WeaponCapsule:: UpdateMovement()
+void WeaponCapsule::UpdateMovement()
 {
-	if (m_Physic->getVelocity().y <= -1.0f || m_Physic->getVelocity().y >= 1.0f )
+	if (m_Physic->getVelocity().y <= -2.0f || m_Physic->getVelocity().y >= 2.0f )
 	{
 		m_Physic->setAccelerateY(m_Physic->getAccelerate().y * -1);
 	}

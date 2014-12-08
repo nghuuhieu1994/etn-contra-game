@@ -184,11 +184,14 @@
     <ClCompile Include="Barrier.cpp">
       <Filter>GameObject\Items\Weaponry\Barrier</Filter>
     </ClCompile>
-    <ClCompile Include="WeaponryManager.cpp">
-      <Filter>GameObject\Items\WeaponryManager</Filter>
+    <ClCompile Include="BulletBoss1.cpp">
+      <Filter>GameObject\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="MagicRock.cpp">
       <Filter>GameObject\Items\MagicRock</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponryManager.cpp">
+      <Filter>GameObject\Items\WeaponryManager</Filter>
     </ClCompile>
     <ClCompile Include="RockFalling.cpp">
       <Filter>GameObject\Items\RockFalling</Filter>
@@ -426,6 +429,9 @@
     </ClInclude>
     <ClInclude Include="EIDWeaponry.h">
       <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBoss1.h">
+      <Filter>GameObject\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="WeaponryManager.h">
       <Filter>GameObject\Items\WeaponryManager</Filter>

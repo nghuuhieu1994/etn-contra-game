@@ -1,7 +1,9 @@
 #ifndef __BOSS_GUN_H__
 #define __BOSS_GUN_H__
+
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "BulletPoolManager.h"
 
 class BossGun : public DynamicObject
 {

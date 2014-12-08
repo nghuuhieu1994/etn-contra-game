@@ -8,12 +8,14 @@
 #include "LazeBullet.h"
 #include <vector>
 #include <queue>
+#include "BulletBoss1.h"
 
 #define QUALITY_OF_DEFAULT_BULLET_RAMBO 100
 #define QUALITY_OF_RED_BULLET_RAMBO 100
 #define QUALITY_OF_FIRE_BULLET_RAMBO 100
 #define QUALITY_OF_LAZE_BULLET_RAMBO 100
 #define QUALITY_OF_DEFAULT_BULLET_ENEMY 100
+#define QUALITY_OF_BULLET_BOSS1 100
 
 class BulletPool
 {

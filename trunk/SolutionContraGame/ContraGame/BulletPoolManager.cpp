@@ -33,6 +33,10 @@ void BulletPoolManager::addBulletIntoList(eIDTypeBullet typeBullet, D3DXVECTOR3 
 	else if(typeBullet == eIDTypeBullet::BULLET_OF_ENEMY)
 	{
 		this->m_ListBulletInGame.push_back((DefaultBullet*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
+	}	
+	else if(typeBullet == eIDTypeBullet::BULLET_OF_BOSS1)
+	{
+		this->m_ListBulletInGame.push_back((BulletBoss1*)BulletPool::getInstance()->popBulletFromBulletPool(typeBullet, position, _velocity,_factor));
 	}
 }
 
@@ -96,7 +100,7 @@ void BulletPoolManager::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void BulletPoolManager::Render(SPRITEHANDLE spriteHandler)
+void BulletPoolManager::Render(SPRITEHANDLE spriteHandler)	
 {
 	for(std::list<Bullet*>::iterator i = this->m_ListBulletInGame.begin(); i != this->m_ListBulletInGame.end(); ++i)
 	{

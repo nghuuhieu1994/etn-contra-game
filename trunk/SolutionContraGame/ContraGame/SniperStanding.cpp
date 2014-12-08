@@ -244,6 +244,9 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 {
 	if( !isDead )
 	{
+		if(checkingObject->getID() != eObjectID::SNIPER_HIDING && checkingObject->getID() != eObjectID::SNIPER_STANDING
+			&& checkingObject->getID() != eObjectID::ENEMY_RUN)
+		{
 		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
 		if(collideDirection != IDDirection::DIR_NONE)
@@ -264,6 +267,7 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 				default:
 					break;
 			}
+		}
 		}
 	}
 }

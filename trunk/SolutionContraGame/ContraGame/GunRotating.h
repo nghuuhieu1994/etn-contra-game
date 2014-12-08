@@ -14,7 +14,6 @@ class GunRotating : public DynamicObject
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
 	eDirectAttack lastDirectAttack;
-
 	int countBullet;
 public:
 	GunRotating();

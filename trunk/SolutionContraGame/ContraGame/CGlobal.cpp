@@ -12,6 +12,8 @@ bool IsMovementObject(eObjectID id)
 	switch(id)
 	{
 	case eObjectID::ENEMY_RUN:
+	case eObjectID::SNIPER_STANDING:
+	case eObjectID::WEAPON_CAPSULE:
 		return true;
 	default:
 		return false;
