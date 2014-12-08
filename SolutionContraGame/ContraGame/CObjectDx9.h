@@ -26,8 +26,8 @@ protected:
 	CSpriteDx9*		m_Sprite;
 	eObjectState	m_ObjectState;
 	ETypeObject		m_TypeObject;
-	int			m_TimeChangeState;
-	int			m_TimeChangeDirectAttack;
+	int				m_TimeChangeState;
+	int				m_TimeChangeDirectAttack;
 	int				m_AttackCounter;
 	static int		m_identifyNumber;
 	int				m_ObjectIdentifyNumber;

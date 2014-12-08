@@ -18,6 +18,8 @@
 #include <d3d9.h>
 #include <dsound.h>
 
+// Factory designPattern
+
 class CGame
 {
 private:

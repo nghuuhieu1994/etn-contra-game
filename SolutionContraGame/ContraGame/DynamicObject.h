@@ -7,6 +7,7 @@
 
 
 class Collision;
+
 class DynamicObject :
 	public Object 
 {

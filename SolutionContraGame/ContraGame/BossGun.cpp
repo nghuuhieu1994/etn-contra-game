@@ -25,7 +25,7 @@ void BossGun::Initialize()
 
 void BossGun::Shoot()
 {
-	//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 3.0f));
+	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 3.0f));
 }
 
 D3DXVECTOR3 BossGun::GetStartPositionOfBullet()
@@ -39,7 +39,7 @@ void BossGun::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE: // cant be attack by rambo bullet
-		m_Sprite->UpdateAnimation(1000);
+		//m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_SHOOTING:
 		break;
@@ -61,9 +61,47 @@ void BossGun::UpdateAnimation()
 
 void BossGun::UpdateCollision(Object* checkingObject)
 {
-	if(isDead == false)
+	if (isDead == false)
 	{
-		
+		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
+		{
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			if (collideDirection != IDDirection::DIR_NONE)
+			{
+				Bullet* tempBullet = (Bullet*) (checkingObject);
+				if (tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+				{
+					if (m_AttackCounter > 0)
+					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+						--m_AttackCounter;
+					}
+				}
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
+				{
+					checkingObject->setObjectState(eObjectState::STATE_DEATH);
+					if (m_AttackCounter >= 2)
+					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+						m_AttackCounter -= 2;
+					}
+				}
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
+				{
+					if (m_AttackCounter >= 4)
+					{
+						m_AttackCounter -= 4;
+					}
+				}
+
+				if (m_AttackCounter <= 0)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+				}
+				checkingObject->setObjectState(eObjectState::STATE_DEATH);
+			}
+		}
 	}
 }
 
@@ -99,7 +137,7 @@ void BossGun::Update()
 		else
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 200)
+			if(m_TimeChangeState > 1000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
