@@ -12,13 +12,12 @@ Fire::Fire(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 void Fire::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-	m_Direction = eDirection::RIGHT;
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_FIRE));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
 	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 100, m_Position.x + 100, this->getBound().bottom);
-	m_Physic->setVelocityX(0.3f);
+	//m_Physic->setVelocityX(0.3f);
 }
 
 void Fire::UpdateAnimation()
@@ -45,6 +44,14 @@ void Fire::UpdateMovement()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE:
+		if(m_Direction == eDirection::LEFT)
+		{
+			m_Physic->setVelocityX(-0.3f);
+		}
+		if(m_Direction == eDirection::RIGHT)
+		{
+			m_Physic->setVelocityX(0.3f);
+		}
 		m_Physic->UpdateMovement(&m_Position);
 		break;
 	case STATE_DEATH:
