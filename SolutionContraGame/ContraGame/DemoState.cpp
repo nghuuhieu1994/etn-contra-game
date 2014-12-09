@@ -32,8 +32,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 	BulletPoolManager::getInstance()->Initialize();
 
-	m_Tinker = new Tinker(D3DXVECTOR3(200, 300, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
-	m_Tinker->Initialize();
+	//m_Tinker = new Tinker(D3DXVECTOR3(200, 300, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
+	//m_Tinker->Initialize();
 	m_capsuleBoss = new BigCapsuleBoss(D3DXVECTOR3(300, 300, 1), eDirection::RIGHT, eObjectID::BIG_CAPSULE_BOSS);
 	m_capsuleBoss->Initialize();
 	m_EnemyRunShooting = new EnemyRunShooting(D3DXVECTOR3(500, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN_SHOOTING);
@@ -135,7 +135,7 @@ void DemoState::Update()
 		m_Rambo->UpdateCollision(*i);
 		m_Stone->UpdateCollision(*i);
 		m_SnipperWaterHiding->UpdateCollision(*i);
-		m_Tinker->UpdateCollision(*i);
+		//m_Tinker->UpdateCollision(*i);
 		m_EnemyRunShooting->UpdateCollision(*i);
 		m_EnemyBigGunShooting->UpdateCollision(*i);
 		//m_Tank->UpdateCollision(*i);
@@ -148,8 +148,8 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 
-	m_Tinker->UpdateAnimation();
-	m_Tinker->Update();
+	//m_Tinker->UpdateAnimation();
+	//m_Tinker->Update();
 
 	m_capsuleBoss->Update();
 	m_capsuleBoss->UpdateAnimation();
@@ -174,7 +174,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_FireBridge->Render(_lpDSpriteHandle);
 	//m_Tank->Render(_lpDSpriteHandle);
 	
-	m_Tinker->Render(_lpDSpriteHandle);
+	//m_Tinker->Render(_lpDSpriteHandle);
 	///*m_MagicRock*/->Render(_lpDSpriteHandle);
 	m_capsuleBoss->Render(_lpDSpriteHandle);
 	m_EnemyRunShooting->Render(_lpDSpriteHandle);
