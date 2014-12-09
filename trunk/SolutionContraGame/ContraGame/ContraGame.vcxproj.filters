@@ -199,6 +199,12 @@
     <ClCompile Include="Stone.cpp">
       <Filter>GameObject\Items\Stone</Filter>
     </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>GameObject\Bridge\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletSnipperWaterHiding.cpp">
+      <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -448,6 +454,12 @@
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Stone</Filter>
     </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>GameObject\Bridge\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletSnipperWaterHiding.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -602,6 +614,9 @@
     </Filter>
     <Filter Include="GameObject\Items\Stone">
       <UniqueIdentifier>{c9f5e761-f6c0-425f-81dd-20dad95d77ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Bridge\Fire">
+      <UniqueIdentifier>{b989f620-7d9f-4563-82db-4899daf8c56a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeAddBullet = 1000;
 	m_DirectAttack = eDirectAttack::AD_RIGHT;
 	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
+	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
 	isSetVelocityDeathState = false;
 }
 
