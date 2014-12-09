@@ -34,6 +34,9 @@
 #include "Stone.h"
 #include "Fire.h"
 #include "MagicStone.h"
+#include "EnemyBigGunShooting.h"
+#include "Tank.h"
+#include "FireBridge.h"
 #include "BigCapsuleBoss.h"
 #include "EnemyRunShooting.h"
 //#define HIEU
@@ -50,6 +53,9 @@ private:
 	Stone*              m_Stone;
 	Fire*				m_Fire;
 	MagicStone*			m_MagicStone;
+	EnemyBigGunShooting* m_EnemyBigGunShooting;
+	Tank*				m_Tank;
+	FireBridge*			m_FireBridge;
 	
 	Tinker*				m_Tinker;
 

@@ -66,6 +66,8 @@ enum eSpriteID
 	SPRITE_LAZE_BULLET_RAMBO,
 	COUNT_SPRITE,
 	SPRITE_FIRE,
+	SPRITE_TANK,
+	SPRITE_FIRE_BRIDGE,
 	// End all ID Enemy Sprite
 };
 #endif

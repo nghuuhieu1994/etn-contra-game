@@ -21,7 +21,6 @@ void Stone::Initialize()
 	m_isJump = false;
 	m_TimeToJump = 0;
 	m_UpdateFlag = false;
-	m_TimeForUpdate = 0;
 	flag = 1;
 
 }
@@ -36,12 +35,12 @@ void Stone::UpdateAnimation()
 	case STATE_ALIVE_MOVE:
 		m_Sprite->getAnimation()->setIndexStart(0);
 		m_Sprite->getAnimation()->setIndexEnd(3);
-		m_Sprite->UpdateAnimation(100);
+		m_Sprite->UpdateAnimation(150);
 		break;
 	case STATE_JUMP:
 		m_Sprite->getAnimation()->setIndexStart(0);
 		m_Sprite->getAnimation()->setIndexEnd(3);
-		m_Sprite->UpdateAnimation(100);
+		m_Sprite->UpdateAnimation(150);
 		break;
 	case STATE_EXPLOISION:
 		m_Sprite = sprite_exploision;
@@ -118,7 +117,7 @@ void Stone::UpdateCollision(Object* checkingObject)
 					}
 					else
 					{
-						m_Physic->setVelocityY(-4.0f);
+						m_Physic->setVelocityY(-7.0f);
 						m_Physic->UpdateMovement(&m_Position);
 						m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 						m_isJump = false;
@@ -140,19 +139,16 @@ void Stone::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
-		m_Physic->setVelocityY(-0.5f);
+		m_Physic->setVelocityY(-1.5f);
 		m_Physic->UpdateMovement(&m_Position);
-		/*m_TimeForUpdate  += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeForUpdate > 4500)
-			m_UpdateFlag = true;*/
 		break;
 	case STATE_JUMP:
 		if(m_isJump == true)
 		{
 			m_TimeToJump += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			m_Physic->setVelocityY(0.5f);
+			m_Physic->setVelocityY(1.5f);
 			m_Physic->UpdateMovement(&m_Position);
-			if(m_TimeToJump > 1500)
+			if(m_TimeToJump > 700)
 			{
 				m_isJump = false;
 				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;

@@ -84,6 +84,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\SniperShooting\\SniperShooting.png", eSpriteID::SPRITE_SNIPER_SHOOTING, 2, 1, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRun\\EnemyRun.png", eSpriteID::SPRITE_ENEMY_RUN, 6, 1, 6);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyRunShooting\\EnemyRunShooting.png", eSpriteID::SPRITE_ENEMY_RUN_SHOOTING, 6, 1, 6);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Enemy\\EnemyBigGunShooting\\EnemyBigGunShooting.png", eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN, 2, 1, 2);
 
 	// Weapon
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Weapon\\WeaponSensor.png", eSpriteID::SPRITE_WEAPON_SENSOR, 7, 1, 7);
@@ -137,6 +138,10 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	//End rock
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Fire\\fire.png", eSpriteID::SPRITE_FIRE, 2, 1, 2);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Tank\\Tank.png", eSpriteID::SPRITE_TANK, 24, 1, 24);
+
+	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\Bridge2\\Bridge2.png", eSpriteID::SPRITE_FIRE_BRIDGE, 1, 1, 1);
 
 	
 }

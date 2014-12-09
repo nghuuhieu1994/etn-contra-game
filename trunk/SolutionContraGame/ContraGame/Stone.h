@@ -11,7 +11,6 @@ private:
 	CSpriteDx9* sprite_exploision;
 	bool m_isJump;
 	int m_TimeToJump;
-	int m_TimeForUpdate;
 	int flag;
 public:
 	Stone();
