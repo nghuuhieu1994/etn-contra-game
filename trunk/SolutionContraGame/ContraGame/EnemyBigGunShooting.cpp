@@ -109,7 +109,7 @@ void EnemyBigGunShooting::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			if(m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -124,7 +124,7 @@ void EnemyBigGunShooting::Update()
 			}
 			
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			if(m_TimeChangeState > 300)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
