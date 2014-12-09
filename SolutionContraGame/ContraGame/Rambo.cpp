@@ -1546,9 +1546,11 @@ void Rambo::UpdateCollision(Object* checkingObject)
 				case eObjectID::ENEMY_RUN:
 				case eObjectID::GUN_ROTATING:
 				case eObjectID::BIG_GUN_ROTATING:
+				case eObjectID::ENEMY_RUN_SHOOTING:
 					if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 					}
 					break;
 				case eObjectID::BRIDGE:

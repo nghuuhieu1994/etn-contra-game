@@ -4,9 +4,9 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	/*
-	m_MagicRock = new MagicRock(D3DXVECTOR3( 200, 30, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
-	m_MagicRock->Initialize();
+	
+	//m_MagicRock = new MagicRock(D3DXVECTOR3( 200, 30, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
+	//m_MagicRock->Initialize();
 	m_SnipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3( 350, 70, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
 	m_SnipperWaterHiding->Initialize();
 	m_Stone = new Stone(D3DXVECTOR3( 400, 300, 1), eDirection::RIGHT, eObjectID::STONE);
@@ -26,30 +26,31 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 	BulletPoolManager::getInstance()->Initialize();
 
-<<<<<<< .mine
 	m_Tinker = new Tinker(D3DXVECTOR3(200, 300, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
-	m_Tinker->Initialize();*/
+	m_Tinker->Initialize();
 	m_capsuleBoss = new BigCapsuleBoss(D3DXVECTOR3(300, 300, 1), eDirection::RIGHT, eObjectID::BIG_CAPSULE_BOSS);
 	m_capsuleBoss->Initialize();
+	m_EnemyRunShooting = new EnemyRunShooting(D3DXVECTOR3(500, 400, 1), eDirection::LEFT, eObjectID::ENEMY_RUN_SHOOTING);
+	m_EnemyRunShooting->Initialize();
 }
 
 
 void DemoState::HandleInput()
 {
-	//m_Rambo->HandleInput();
+	m_Rambo->HandleInput();
 }
 
 void DemoState::Update()
 {
 	
-	/*#pragma region Update camera & insert object into quadtree
+	#pragma region Update camera & insert object into quadtree
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
 	#pragma endregion
-	//m_SnipperWaterHiding->UpdateAnimation();
-	//m_SnipperWaterHiding->Update();
+	m_SnipperWaterHiding->UpdateAnimation();
+	m_SnipperWaterHiding->Update();
 
 	m_Stone->UpdateAnimation();
 	m_Stone->Update();
@@ -87,14 +88,19 @@ void DemoState::Update()
 	m_Quadtree->UpdateAnimation();
 	m_Quadtree->UpdateMovement();
 
+	m_EnemyRunShooting->Update();
+	m_EnemyRunShooting->UpdateAnimation();
+	m_EnemyRunShooting->UpdateMovement();
 
 	#pragma endregion
 
 	for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		m_Rambo->UpdateCollision(m_EnemyRunShooting);
 		m_Stone->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		m_EnemyRunShooting->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
 	
@@ -103,6 +109,7 @@ void DemoState::Update()
 		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 
 		WeaponryManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+
 	}
 
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
@@ -111,7 +118,8 @@ void DemoState::Update()
 		m_Rambo->UpdateCollision(*i);
 		m_Stone->UpdateCollision(*i);
 		m_SnipperWaterHiding->UpdateCollision(*i);
-		//m_Tinker->UpdateCollision(*i);
+		m_Tinker->UpdateCollision(*i);
+		m_EnemyRunShooting->UpdateCollision(*i);
 	}
 
 	#pragma endregion	
@@ -120,28 +128,29 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	
-<<<<<<< .mine
-<<<<<<< .mine
+
 	m_Tinker->UpdateAnimation();
-	m_Tinker->Update();*/
+	m_Tinker->Update();
 
 	m_capsuleBoss->Update();
 	m_capsuleBoss->UpdateAnimation();
 	m_capsuleBoss->UpdateMovement();
 	m_capsuleBoss->UpdateCollision(NULL);
+
+
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	///*m_Quadtree->Render(_lpDSpriteHandle);
-	//m_backgroundEffect.Render(_lpDSpriteHandle);*/
-	//BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	//WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	////m_Rambo->Render(_lpDSpriteHandle);
-	//m_Tinker->Render(_lpDSpriteHandle);
-	////m_MagicRock->Render(_lpDSpriteHandle);
+	m_Quadtree->Render(_lpDSpriteHandle);
+	m_backgroundEffect.Render(_lpDSpriteHandle);
+	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+	m_Tinker->Render(_lpDSpriteHandle);
+	///*m_MagicRock*/->Render(_lpDSpriteHandle);
 	m_capsuleBoss->Render(_lpDSpriteHandle);
+	m_EnemyRunShooting->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

@@ -35,6 +35,7 @@
 #include "Fire.h"
 #include "MagicStone.h"
 #include "BigCapsuleBoss.h"
+#include "EnemyRunShooting.h"
 //#define HIEU
 
 using namespace std;
@@ -53,6 +54,7 @@ private:
 	Tinker*				m_Tinker;
 
 	BigCapsuleBoss*		m_capsuleBoss;
+	EnemyRunShooting*	m_EnemyRunShooting;
 public:
 	DemoState(eIDSceneGame ID) : GameScene(ID){}
 	~DemoState(){}
