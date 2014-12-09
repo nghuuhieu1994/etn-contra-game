@@ -76,8 +76,10 @@
   <ItemGroup>
     <ClInclude Include="BridgeTile.h" />
     <ClInclude Include="BulletBoss1.h" />
+    <ClInclude Include="BulletSnipperWaterHiding.h" />
     <ClInclude Include="EIDSkillBullet.h" />
     <ClInclude Include="EIDWeaponry.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="LazeBullet.h" />
     <ClInclude Include="MagicStone.h" />
     <ClInclude Include="MapQuadtree.h" />
@@ -161,6 +163,8 @@
   <ItemGroup>
     <ClCompile Include="BridgeTile.cpp" />
     <ClCompile Include="BulletBoss1.cpp" />
+    <ClCompile Include="BulletSnipperWaterHiding.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
     <ClCompile Include="MagicStone.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />

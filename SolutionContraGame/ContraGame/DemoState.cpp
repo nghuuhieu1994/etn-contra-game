@@ -110,14 +110,16 @@ void DemoState::Update()
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
+	
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);
+	m_Stone->Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	//m_Tinker->Render(_lpDSpriteHandle);
 	m_SnipperWaterHiding->Render(_lpDSpriteHandle);
-	m_Stone->Render(_lpDSpriteHandle);
+	
 }
 
 void DemoState::Pause()

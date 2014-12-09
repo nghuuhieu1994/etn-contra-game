@@ -16,11 +16,11 @@ void Stone::Initialize()
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ROCK_FALLING));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
 	m_isJump = false;
 	m_TimeToJump = 0;
-	m_UpdateFlag = true;
+	m_UpdateFlag = false;
 	m_TimeForUpdate = 0;
 	flag = 1;
 
@@ -109,20 +109,21 @@ void Stone::UpdateCollision(Object* checkingObject)
 			case eObjectID::TILE_BASE:
 				if(collisionDirection == IDDirection::DIR_TOP)
 				{
-					flag++;
-					if(flag % 2 == 0)
+					m_UpdateFlag = !m_UpdateFlag;
+					if(m_UpdateFlag == true)
 					{
-					
-						if(collisionDirection == IDDirection::DIR_TOP)
-						{
-							m_ObjectState = eObjectState::STATE_JUMP;
-							m_isJump = true;
-						}
+						m_ObjectState = eObjectState::STATE_JUMP;
+						m_isJump = true;
 					}
+					else
+					{
+						m_Physic->setVelocityY(-4.0f);
+						m_Physic->UpdateMovement(&m_Position);
+						m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+						m_isJump = false;
+					}
+
 				}
-				
-				
-				
 				break;
 			default:
 				break;
@@ -153,7 +154,6 @@ void Stone::UpdateMovement()
 			if(m_TimeToJump > 1500)
 			{
 				m_isJump = false;
-				//flag += 2;
 				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 				m_TimeToJump = 0;
 			}
