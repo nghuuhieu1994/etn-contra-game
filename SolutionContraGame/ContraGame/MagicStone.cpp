@@ -16,7 +16,7 @@ void MagicStone::Initialize()
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MAGIC_ROCK));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 50, m_Position.x + 50, this->getBound().bottom);
 	m_Physic->setVelocityX(0.3f);
 }

@@ -65,6 +65,7 @@ enum eSpriteID
 	SPRITE_EFFECT_MAP2,
 	SPRITE_LAZE_BULLET_RAMBO,
 	COUNT_SPRITE,
+	SPRITE_FIRE,
 	// End all ID Enemy Sprite
 };
 #endif
