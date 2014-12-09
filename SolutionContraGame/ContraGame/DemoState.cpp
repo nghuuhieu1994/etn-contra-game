@@ -23,8 +23,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(MAP_1));
 	BulletPoolManager::getInstance()->Initialize();
 
-	m_Tinker = new Tinker(D3DXVECTOR3(200, 300, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
-	m_Tinker->Initialize();
+	//m_Tinker = new Tinker(D3DXVECTOR3(400, 350, 1), eDirection::LEFT, eObjectID::BIG_BOSS_1);
+	//m_Tinker->Initialize();
 }
 
 
@@ -42,8 +42,8 @@ void DemoState::Update()
 	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
 
 	#pragma endregion
-	m_SnipperWaterHiding->UpdateAnimation();
-	m_SnipperWaterHiding->Update();
+	//m_SnipperWaterHiding->UpdateAnimation();
+	//m_SnipperWaterHiding->Update();
 
 	m_Stone->UpdateAnimation();
 	m_Stone->Update();
@@ -99,13 +99,13 @@ void DemoState::Update()
 		WeaponryManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
-
 	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
 		m_Stone->UpdateCollision(*i);
 		m_SnipperWaterHiding->UpdateCollision(*i);
+		//m_Tinker->UpdateCollision(*i);
 	}
 
 	#pragma endregion	
@@ -115,8 +115,8 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 	
-	//m_Tinker->UpdateAnimation();
 	//m_Tinker->Update();
+	//m_Tinker->UpdateAnimation();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)

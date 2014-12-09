@@ -92,7 +92,7 @@ void SniperStanding::Initialize()
 	m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 	m_Sprite = sprite_mid;
 	countBullet = 0;
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
 }
 
 void SniperStanding::UpdateAnimation()
@@ -244,8 +244,7 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 {
 	if( !isDead )
 	{
-		if(checkingObject->getID() != eObjectID::SNIPER_HIDING && checkingObject->getID() != eObjectID::SNIPER_STANDING
-			&& checkingObject->getID() != eObjectID::ENEMY_RUN)
+		if(checkingObject->getID() == eObjectID::BULLET_RAMBO || checkingObject->getID() == eObjectID::TILE_BASE)
 		{
 		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 

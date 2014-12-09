@@ -10,12 +10,12 @@
 #include "WeaponryManager.h"
 class WeaponSensor : public DynamicObject
 {
-	EIDWeaponry		m_IDWeapon;
+	eObjectID		m_IDWeapon;
 	CSpriteDx9*		sprite_dead;
 	CSpriteDx9*		sprite_alive;
 public:
 	WeaponSensor();
-	WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry = EIDWeaponry::BARRIER);
+	WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, eObjectID idWeaponry);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

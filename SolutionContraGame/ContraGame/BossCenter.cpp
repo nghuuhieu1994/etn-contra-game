@@ -14,7 +14,7 @@ BossCenter::BossCenter(D3DXVECTOR3 _position, eDirection _direction, eObjectID _
 
 void BossCenter::Initialize()
 {
-	m_AttackCounter = 50;
+	m_AttackCounter = 1;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_CENTER);
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -47,7 +47,49 @@ void BossCenter::UpdateAnimation()
 
 void BossCenter::UpdateCollision(Object* checkingObject)
 {
+	if (isDead == false)
+	{
+		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
+		{
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			if (collideDirection != IDDirection::DIR_NONE)
+			{
+				Bullet* tempBullet = (Bullet*) (checkingObject);
+				if (tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
+				{
+					if (m_AttackCounter > 0)
+					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+						--m_AttackCounter;
+					}
+				}
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
+				{
+					checkingObject->setObjectState(eObjectState::STATE_DEATH);
+					if (m_AttackCounter >= 2)
+					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+						m_AttackCounter -= 2;
+					}
+				}
+				else if (tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
+				{
+					if (m_AttackCounter >= 4)
+					{
+						m_AttackCounter -= 4;
+					}
+				}
 
+				if (m_AttackCounter <= 0)
+				{
+					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					//this->isDead = true;
+				}
+				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
+			}
+		}
+	}
 }
 
 void BossCenter:: UpdateMovement()

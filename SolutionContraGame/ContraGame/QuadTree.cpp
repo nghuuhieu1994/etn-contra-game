@@ -154,7 +154,7 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SniperStanding(D3DXVECTOR3(
 								(float)(atoi(xml.GetAttrib("X").c_str())),
 								(float)(atoi(xml.GetAttrib("Y").c_str())),
-								1.0f),
+								0.0f),
 								eDirection::LEFT,
 								(eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
@@ -201,25 +201,37 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_CAPSULE)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponCapsule(D3DXVECTOR3(
-								(float)(atoi(xml.GetAttrib("X").c_str())),
-								(float)(atoi(xml.GetAttrib("Y").c_str())),
+							int tempIndex = atoi(xml.GetAttrib("Index").c_str());
+							float tempPositionX = (float)(atoi(xml.GetAttrib("X").c_str()));
+							float tempPositionY = (float)(atoi(xml.GetAttrib("Y").c_str()));
+							int tempId = atoi(xml.GetAttrib("Id").c_str());
+							xml.FindElem("Object");
+							int temp = atoi(xml.GetAttrib("Id").c_str());
+							mMapObjectCollisionInGame[tempIndex] = new WeaponCapsule(D3DXVECTOR3(
+								tempPositionX,
+								tempPositionY,
 								1.0f),
 								eDirection::LEFT,
-								(eObjectID)atoi(xml.GetAttrib("Id").c_str()),
-								EIDWeaponry::MACHINE_GUN);
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+								(eObjectID)tempId,
+								(eObjectID)temp);
+							mMapObjectCollisionInGame[tempIndex]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_SENSOR)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new WeaponSensor(D3DXVECTOR3(
-								(float)(atoi(xml.GetAttrib("X").c_str())),
-								(float)(atoi(xml.GetAttrib("Y").c_str())),
+							int tempIndex = atoi(xml.GetAttrib("Index").c_str());
+							float tempPositionX = (float)(atoi(xml.GetAttrib("X").c_str()));
+							float tempPositionY = (float)(atoi(xml.GetAttrib("Y").c_str()));
+							int tempId = atoi(xml.GetAttrib("Id").c_str());
+							xml.FindElem("Object");
+							int temp = atoi(xml.GetAttrib("Id").c_str());
+							mMapObjectCollisionInGame[tempIndex] = new WeaponSensor(D3DXVECTOR3(
+								tempPositionX,
+								tempPositionY,
 								1.0f),
 								eDirection::LEFT,
-								(eObjectID)atoi(xml.GetAttrib("Id").c_str()),
-								EIDWeaponry::MACHINE_GUN);
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+								(eObjectID)tempId,
+								(eObjectID)temp);
+							mMapObjectCollisionInGame[tempIndex]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_GUN_ROTATING)
 						{
@@ -245,6 +257,14 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 					}
 					else if(atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::VIRTUAL_OBJECT || atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::DYNAMIC_OBJECT)
 					{
+						if(atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_BARRIER
+							|| atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_FLAME_GUN
+							|| atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_LASER_GUN
+							|| atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_MACHINE_GUN
+							|| atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_RAPID_GUN
+							|| atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::OBJECT_SPREAD_GUN)
+						node->mListObjectCollision.push_back(atoi(xml.GetAttrib("Index").c_str()) - 1);
+						else
 						node->mListObjectCollision.push_back(atoi(xml.GetAttrib("Index").c_str()));
 					}
 				}

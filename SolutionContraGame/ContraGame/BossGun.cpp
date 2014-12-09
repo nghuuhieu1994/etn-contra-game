@@ -14,7 +14,7 @@ BossGun::BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 
 void BossGun::Initialize()
 {
-	m_AttackCounter = 50;
+	m_AttackCounter = 1;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	sprite_alive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_GUN_BOSS));
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -25,7 +25,23 @@ void BossGun::Initialize()
 
 void BossGun::Shoot()
 {
-	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 3.0f));
+	float disX = this->m_Position.x - CGlobal::Rambo_X;
+	float disY = this->m_Position.y - CGlobal::Rambo_Y;
+
+	if(disX < 0)
+		disX = -disX;
+
+	if(disY < 0)
+		disY = -disY;
+
+	if(disX < 224)
+	{
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 4.0f));
+	}
+	else if(disX > 224 & disX < 448)
+	{
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-3.0f, 4.0f));
+	}
 }
 
 D3DXVECTOR3 BossGun::GetStartPositionOfBullet()
@@ -98,8 +114,9 @@ void BossGun::UpdateCollision(Object* checkingObject)
 				{
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					//this->isDead = true;
 				}
-				checkingObject->setObjectState(eObjectState::STATE_DEATH);
+				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
 	}
