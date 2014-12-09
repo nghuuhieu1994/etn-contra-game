@@ -102,9 +102,10 @@ void Stone::UpdateCollision(Object* checkingObject)
 				{
 					m_ObjectState = eObjectState::STATE_EXPLOISION;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					checkingObject->setObjectState(eObjectState::STATE_DEATH);
+					isDead = true;
 				}
-				checkingObject->setObjectState(eObjectState::STATE_DEATH);
-				break;
+			break;
 				}
 			case eObjectID::TILE_BASE:
 				if(collisionDirection == IDDirection::DIR_TOP)

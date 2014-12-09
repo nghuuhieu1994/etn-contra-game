@@ -12,11 +12,11 @@
 class WeaponCapsule : public DynamicObject
 {
 	CSpriteDx9*		m_deadSprite;
-	EIDWeaponry		m_IDWeaponry;
+	eObjectID		m_IDWeaponry;
 public:
 	WeaponCapsule();
 	Physic*			getPhysic() const { return m_Physic; }
-	WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry);
+	WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, eObjectID idWeaponry);
 	void Initialize();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

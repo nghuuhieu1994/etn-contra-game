@@ -36,26 +36,46 @@ void Tinker::UpdateAnimation()
 		timeDelayGun += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if (timeDelayGun > 1000)
 		{
-			if (m_Left->getSprite()->getAnimationAction()->getCurrentIndex() == 0)
+			// Khoa coding
+			if(m_Left->getObjectState() != eObjectState::STATE_DEATH)
 			{
-				m_Left->getSprite()->getAnimationAction()->setCurrentFrame(1);
-			}
-			else
-			{
-				m_Left->getSprite()->getAnimationAction()->setCurrentFrame(0);
+				if (m_Left->getSprite()->getAnimationAction()->getCurrentIndex() == 0)
+				{
+					m_Left->getSprite()->getAnimationAction()->setCurrentFrame(1);
+				}
+				else
+				{
+					m_Left->getSprite()->getAnimationAction()->setCurrentFrame(0);
+				}
 			}
 
-			if (m_Right->getSprite()->getAnimationAction()->getCurrentIndex() == 0)
+			if(m_Right->getObjectState() != eObjectState::STATE_DEATH)
 			{
-				m_Right->getSprite()->getAnimationAction()->setCurrentFrame(1);
+				if (m_Right->getSprite()->getAnimationAction()->getCurrentIndex() == 0)
+				{
+					m_Right->getSprite()->getAnimationAction()->setCurrentFrame(1);
+				}
+				else
+				{
+					m_Right->getSprite()->getAnimationAction()->setCurrentFrame(0);
+				}
 			}
-			else
-			{
-				m_Right->getSprite()->getAnimationAction()->setCurrentFrame(0);
-			}
+
 			timeDelayGun = 0;
 		}
-		m_Center->UpdateAnimation();
+		if(m_Left->getObjectState() != eObjectState::STATE_DEATH)
+		{
+			m_Left->UpdateAnimation();
+		}
+		if(m_Right->getObjectState() != eObjectState::STATE_DEATH)
+		{
+			m_Right->UpdateAnimation();
+		}
+
+		if(m_Center->getObjectState() != eObjectState::STATE_DEATH)
+		{
+			m_Center->UpdateAnimation();
+		}
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead != true)
@@ -77,9 +97,12 @@ void Tinker::UpdateAnimation()
 
 void Tinker::UpdateCollision(Object* checkingObject)
 {
-	m_Left->UpdateCollision(checkingObject);
-	m_Right->UpdateCollision(checkingObject);
-	m_Center->UpdateCollision(checkingObject);
+	if(this->isDead == false)
+	{
+		m_Left->UpdateCollision(checkingObject);
+		m_Right->UpdateCollision(checkingObject);
+		m_Center->UpdateCollision(checkingObject);
+	}
 }
 
 void Tinker::UpdateMovement(){}

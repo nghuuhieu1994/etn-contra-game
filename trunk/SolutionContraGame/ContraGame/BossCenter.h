@@ -1,7 +1,9 @@
 #ifndef __BOSS_CENTER_H__
 #define __BOSS_CENTER_H__
+
 #include "DynamicObject.h"
 #include "CInputDx9.h"
+#include "BulletPool.h"
 
 class BossCenter : public DynamicObject
 {

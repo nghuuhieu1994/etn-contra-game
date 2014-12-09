@@ -3,6 +3,7 @@
 
 enum EIDWeaponry
 {
+	FLAG,
 	BARRIER,
 	FLAME_GUN,
 	LASER_GUN,

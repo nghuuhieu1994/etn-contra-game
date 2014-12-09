@@ -46,6 +46,11 @@ void BulletPoolManager::popBulletFromList()
 	{
 		if((*i)->getObjectState() == eObjectState::STATE_DEATH)
 		{
+			if((*i)->getID() == eObjectID::BULLET_BOSS1)
+			{
+				(*i)->Release();
+				(*i)->Initialize();
+			}
 			BulletPool::getInstance()->addBulleToBulletPool((*i));
 			//this->m_ListBulletInGame.remove((*i));
 			i = this->m_ListBulletInGame.erase(i);

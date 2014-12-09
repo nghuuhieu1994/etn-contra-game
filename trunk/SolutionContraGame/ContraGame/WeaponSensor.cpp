@@ -5,7 +5,7 @@ WeaponSensor::WeaponSensor()
 
 }
 
-WeaponSensor::WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, EIDWeaponry idWeaponry) 
+WeaponSensor::WeaponSensor(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, eObjectID idWeaponry) 
 	: DynamicObject(_position, _direction, _objectID)
 {
 	m_IDWeapon = idWeaponry;
@@ -68,27 +68,27 @@ void WeaponSensor::UpdateCollision(Object* checkingObject)
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 					m_ObjectState = STATE_BEFORE_DEATH;
 
-					if (m_IDWeapon == EIDWeaponry::BARRIER)
+					if (m_IDWeapon == eObjectID::OBJECT_BARRIER)
 					{
 						WeaponryManager::getInstance()->AddElement(new Barrier(m_Position, eDirection::RIGHT, eObjectID::OBJECT_BARRIER));
 					}
-					if (m_IDWeapon == EIDWeaponry::FLAME_GUN)
+					if (m_IDWeapon == eObjectID::OBJECT_FLAME_GUN)
 					{
 						WeaponryManager::getInstance()->AddElement(new FlameGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_FLAME_GUN));
 					}
-					if (m_IDWeapon == EIDWeaponry::LASER_GUN)
+					if (m_IDWeapon == eObjectID::OBJECT_LASER_GUN)
 					{
 						WeaponryManager::getInstance()->AddElement(new LaserGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_LASER_GUN));
 					}
-					if (m_IDWeapon == EIDWeaponry::MACHINE_GUN)
+					if (m_IDWeapon == eObjectID::OBJECT_MACHINE_GUN)
 					{
 						WeaponryManager::getInstance()->AddElement(new MachineGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_MACHINE_GUN));
 					}
-					if (m_IDWeapon == EIDWeaponry::RAPID_FIRE)
+					if (m_IDWeapon == eObjectID::OBJECT_RAPID_GUN)
 					{
 						WeaponryManager::getInstance()->AddElement(new RapidFire(m_Position, eDirection::RIGHT, eObjectID::OBJECT_RAPID_GUN));
 					}
-					if (m_IDWeapon == EIDWeaponry::SPREAD_GUN)
+					if (m_IDWeapon == eObjectID::OBJECT_SPREAD_GUN)
 					{
 						WeaponryManager::getInstance()->AddElement(new SpreadGun(m_Position, eDirection::RIGHT, eObjectID::OBJECT_SPREAD_GUN));
 					}
