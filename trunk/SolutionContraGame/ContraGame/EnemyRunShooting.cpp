@@ -1,7 +1,8 @@
 #include "EnemyRunShooting.h"
-#define VELOC_MOVE_RIGHT 0
-#define VELOC_MOVE_LEFT 0
-#define VELOC_JUMB		5
+
+#define VELOC_MOVE_RIGHT 1.0f
+#define VELOC_MOVE_LEFT -1.0f
+#define VELOC_JUMB		0.8f
 
 EnemyRunShooting::EnemyRunShooting()
 {
@@ -14,18 +15,17 @@ EnemyRunShooting::EnemyRunShooting(D3DXVECTOR3 _position, eDirection _direction,
 
 void EnemyRunShooting::Initialize()
 {
-	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
-	m_Direction = eDirection::LEFT;
+	m_ObjectState = eObjectState::STATE_JUMP;
 	sprite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_RUN_SHOOTING));
 	m_Sprite = sprite_main;
 	isJumb = false;
-	isShoot = false;
-	isDead = false;
 	m_TimeChangeState = 0;
 	this->m_Physic->setVelocity(D3DXVECTOR2(0, 0));
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
-	m_Position.z = 0.4f;
+	m_Position.z = 1.0f;
+	m_Direction = eDirection::LEFT;
+	this->isDead = false;
 }
 
 void EnemyRunShooting::Shoot()
@@ -48,10 +48,10 @@ D3DXVECTOR3  EnemyRunShooting::GetStartPositionOfBullet()
 	switch(m_DirectAttack)
 	{
 	case AD_LEFT:
-		return D3DXVECTOR3(m_Position.x + 8, m_Position.y, 0);
+		return D3DXVECTOR3(m_Position.x + 8, m_Position.y + 15, 0);
 		break;
 	case AD_RIGHT:
-		return D3DXVECTOR3(m_Position.x - 8, m_Position.y , 0); 
+		return D3DXVECTOR3(m_Position.x - 8, m_Position.y + 15, 0); 
 		break;
 	default:
 		break;	
@@ -62,72 +62,79 @@ D3DXVECTOR3  EnemyRunShooting::GetStartPositionOfBullet()
 
 void EnemyRunShooting::UpdateAnimation()
 {
-	if(CGlobal::Rambo_X < m_Position.x)
-	{
-		m_Direction = eDirection::LEFT;
-		m_DirectAttack = eDirectAttack::AD_LEFT;
-	}
-	else
-	{
-		m_Direction = eDirection::RIGHT;
-		m_DirectAttack = eDirectAttack::AD_RIGHT;
-	}
-
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_MOVE: 
-		m_Sprite->getAnimationAction()->setIndexStart(0);
-		m_Sprite->getAnimationAction()->setIndexEnd(3);
-		m_Sprite->UpdateAnimation(400);
+	case STATE_ALIVE_IDLE:
+		this->m_Sprite->getAnimationAction()->setCurrentFrame(3);
 		break;
-	case STATE_SHOOTING:
-		m_Sprite->getAnimationAction()->setIndexStart(4);
-		m_Sprite->getAnimationAction()->setIndexEnd(5);
-		m_Sprite->UpdateAnimation(400);
+	case STATE_ALIVE_MOVE:
+		this->m_Sprite->getAnimationAction()->setIndexStart(0);
+		this->m_Sprite->getAnimationAction()->setIndexEnd(2);
+		m_Sprite->UpdateAnimation(250);
 		break;
-	case STATE_BEFORE_DEATH:
+	case STATE_BEFORE_DEATH: 
 		m_Sprite = sprite_dead;
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
 		break;
+	case STATE_JUMP:
+		this->m_Sprite->getAnimation()->setCurrentFrame(1);
+		break;
+	case STATE_SHOOTING:
+		this->m_Sprite->getAnimation()->setCurrentFrame(5);
+		break;
 	default:
 		break;
-	}	
-	if(m_Direction == eDirection::LEFT)
-	{
-		m_Sprite->setSpriteEffect(ESpriteEffect::None);
-	}
-
-	else
-	{
-		if(m_Direction == eDirection::RIGHT)
-		{
-			m_Sprite->setSpriteEffect(ESpriteEffect::Horizontally);
-		}
 	}
 }
 void EnemyRunShooting::UpdateCollision(Object* checkingObject)
 {
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-	if(collideDirection != IDDirection::DIR_NONE)
+	if( isDead != true )
 	{
-		switch (checkingObject->getID())
-		{
-			case eObjectID ::BULLET_RAMBO:
-				break;
-			case eObjectID::TILE_BASE:
-				if (collideDirection == IDDirection::DIR_TOP)
-				{
-					m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-					this->m_Physic->setVelocityY(0);
-				}
-				break;
-			default:
-				break;
-		}
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
+		if(collideDirection != IDDirection::DIR_NONE)
+		{
+			switch (checkingObject->getID())
+			{
+				case eObjectID ::BULLET_RAMBO:
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					this->getPhysic()->setVelocityY(2.0f);
+					this->getPhysic()->setVelocityX(0.0f);
+					this->isDead = true;
+					break;
+				case eObjectID::BRIDGE:
+				case eObjectID::TILE_BASE:
+					if (collideDirection == IDDirection::DIR_TOP)
+						{
+							if(m_ObjectState == eObjectState::STATE_JUMP)
+							{
+								m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+								this->isJumb = false;
+							}
+							this->m_Position.y += this->m_Collision->m_MoveY;
+							this->m_Physic->setVelocityY(0.0f);
+						}
+					else
+					{
+						m_ObjectState = eObjectState::STATE_JUMP;
+						this->isJumb = true;
+					}
+					break;
+				case eObjectID::VIRTUAL_OBJECT_JUMP:
+						if((collideDirection == IDDirection::DIR_LEFT || collideDirection == IDDirection::DIR_RIGHT) && m_ObjectState != eObjectState::STATE_JUMP)
+						{
+							this->isJumb = true;
+							m_ObjectState = eObjectState::STATE_JUMP;
+							m_Physic->setVelocityY(VELOC_JUMB);
+						}	
+					break;
+				default:
+					break;
+			}
+		}
 	}
 }
 void EnemyRunShooting::UpdateMovement()
@@ -137,55 +144,58 @@ void EnemyRunShooting::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
-		//if (isJumb != true)
-		//{
-		//	if (m_Direction == eDirection::LEFT)
-		//	{
-		//		m_Physic->setVelocityX(VELOC_MOVE_LEFT);
-		//	}
-		//	else
-		//	{
-		//		m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
-		//	}
-		//}
-		//else
-		//{
-		//	if (m_Direction == eDirection::LEFT)
-		//	{
-		//		m_Physic->setVelocityX(VELOC_MOVE_LEFT);
-		//	}
-		//	else
-		//	{
-		//		m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
-		//	}
-		//	m_Physic->setVelocityY(VELOC_JUMB);
-		//	isJumb = false;
-		//}
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+			}
+		break;
+	case STATE_JUMP:
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
+			}
+			if(isJumb == true)
+			{
+				isJumb = false;
+			}
 		break;
 	case STATE_BEFORE_DEATH:
-		//if (isDead == false)
-		//{
-		//	if (m_Direction == eDirection::LEFT)
-		//	{
-		//		m_Physic->setVelocityX(-VELOC_MOVE_LEFT);
-		//	}
-		//	else
-		//	{
-		//		m_Physic->setVelocityX(-VELOC_MOVE_RIGHT);
-		//	}
-		//	m_Physic->setVelocityY(VELOC_JUMB);
-		//	isDead = true;
-		//}
-		break;
-	case STATE_EXPLOISION:
-		m_Physic->setVelocityX(0);
-		m_Physic->setVelocityY(0);
+		if (isDead == false)
+		{
+			if (m_Direction == eDirection::LEFT)
+			{
+				m_Physic->setVelocityX(-VELOC_MOVE_LEFT);
+			}
+			else
+			{
+				m_Physic->setVelocityX(-VELOC_MOVE_RIGHT);
+			}
+			setPositionY(getPositionVec2().y + 2);
+			m_Physic->setVelocityY(VELOC_JUMB);
+			m_Physic->setAccelerate(D3DXVECTOR2(0, 0));
+			isDead = true;
+		}
 		break;
 	case STATE_DEATH:
+		break;
+	case STATE_SHOOTING:
+		if(isDead == false)
+		{
+			m_Physic->setVelocityX(0.0f);
+		}
 		break;
 	default:
 		break;
 	}
+
 	m_Physic->UpdateMovement(&m_Position);
 }
 void EnemyRunShooting::Update()
@@ -193,9 +203,8 @@ void EnemyRunShooting::Update()
 	switch (m_ObjectState)
 		{
 		case STATE_ALIVE_MOVE:
-			// do a realthing to detect jumb?
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 10000)
+			if(m_TimeChangeState > 2000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -203,6 +212,10 @@ void EnemyRunShooting::Update()
 			}
 			break;
 		case STATE_SHOOTING:
+			if(m_Direction == eDirection::LEFT)
+				this->m_DirectAttack = eDirectAttack::AD_LEFT;
+			else
+				this->m_DirectAttack = eDirectAttack::AD_RIGHT;
 			if(isShoot == true)
 			{
 				Shoot();
@@ -220,18 +233,11 @@ void EnemyRunShooting::Update()
 			if (m_TimeChangeState > 300)
 			{
 				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_EXPLOISION;
-			}
-			break;
-		case STATE_EXPLOISION:
-			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 1000)
-			{
-				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_DEATH;
 			}
 			break;
 		case STATE_DEATH:
+			if(this->m_Sprite != 0)
 			this->Release();
 			break;
 		default:
@@ -243,6 +249,14 @@ void EnemyRunShooting::Render(SPRITEHANDLE spriteHandle)
 {
 	if(m_Sprite != 0)
 	{
+		if(m_Direction == eDirection::RIGHT)
+		{
+			this->getSprite()->setSpriteEffect(ESpriteEffect::None);
+		}
+		else
+		{
+			this->getSprite()->setSpriteEffect(ESpriteEffect::Horizontally);
+		}
 		m_Sprite->Render(spriteHandle, getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
 	}
 }
