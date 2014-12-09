@@ -31,11 +31,11 @@ void FireBridge::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE:
 		m_Sprite->getAnimation()->setCurrentFrame(0);
-		if(m_fire_1 != NULL && m_fire_2 != NULL)
-		{
+		//if(m_fire_1 != NULL && m_fire_2 != NULL)
+		//{
 			m_fire_1->UpdateAnimation();
 			m_fire_2->UpdateAnimation();
-		}
+		//}
 		
 		break;
 	case STATE_DEATH:
@@ -53,12 +53,12 @@ void FireBridge::UpdateMovement()
 {
 	switch (m_ObjectState)
 	{
-	case STATE_ALIVE_MOVE:
-		if(m_fire_1 != NULL && m_fire_2 != NULL)
-		{
+	case STATE_ALIVE_IDLE:
+		//if(m_fire_1 != NULL && m_fire_2 != NULL)
+		//{
 			m_fire_1->UpdateMovement();
 			m_fire_2->UpdateMovement();
-		}
+		//}
 		break;
 	case STATE_DEATH:
 		break;
@@ -69,6 +69,7 @@ void FireBridge::UpdateMovement()
 void FireBridge::Update()
 {
 	m_distanceY = m_Position.x - CGlobal::Rambo_Y;
+
 	if(m_distanceY <= 70)
 	{
 		m_fire_1 = new Fire(this->m_Position, eDirection::LEFT, eObjectID::FIRE);
