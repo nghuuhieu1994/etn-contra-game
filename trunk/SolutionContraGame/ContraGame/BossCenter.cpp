@@ -86,7 +86,7 @@ void BossCenter::UpdateCollision(Object* checkingObject)
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 					//this->isDead = true;
 				}
-				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
+				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
 	}

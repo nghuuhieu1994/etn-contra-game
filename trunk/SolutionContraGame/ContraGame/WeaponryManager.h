@@ -1,6 +1,7 @@
 #ifndef __WEAPONRY_MANAGER_H__
 #define __WEAPONRY_MANAGER_H__
 #include "DynamicObject.h"
+#include <list>
 using namespace std;
 
 
@@ -10,7 +11,7 @@ private:
 	WeaponryManager(){}
 	~WeaponryManager(){}
 	static WeaponryManager*		_instance; 
-	vector<DynamicObject*>		m_ListWeaponry;
+	list<DynamicObject*>		m_ListWeaponry;
 
 public:
 	static WeaponryManager*	getInstance();
