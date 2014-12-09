@@ -32,6 +32,8 @@
 #include "WeaponryManager.h"
 #include "SnipperWaterHiding.h"
 #include "Stone.h"
+#include "Fire.h"
+#include "MagicStone.h"
 //#define HIEU
 
 using namespace std;
@@ -44,6 +46,8 @@ private:
 	BackgroundEffect	m_backgroundEffect;
 	SnipperWaterHiding* m_SnipperWaterHiding;
 	Stone*              m_Stone;
+	Fire*				m_Fire;
+	MagicStone*			m_MagicStone;
 	
 	Tinker*				m_Tinker;
 

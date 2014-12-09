@@ -134,6 +134,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\Rockfalling .png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
 	//End rock
 
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Fire\\fire.png", eSpriteID::SPRITE_FIRE, 2, 1, 2);
+
 	
 }
 

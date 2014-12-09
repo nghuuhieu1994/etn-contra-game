@@ -8,6 +8,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_SnipperWaterHiding->Initialize();
 	m_Stone = new Stone(D3DXVECTOR3( 400, 300, 1), eDirection::RIGHT, eObjectID::STONE);
 	m_Stone->Initialize();
+	m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
+	m_Fire->Initialize();
+	m_MagicStone = new MagicStone(D3DXVECTOR3(200, 200, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
+	m_MagicStone->Initialize();
+
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
@@ -43,6 +48,12 @@ void DemoState::Update()
 	m_Stone->UpdateAnimation();
 	m_Stone->Update();
 	m_Stone->UpdateMovement();
+
+	m_Fire->UpdateAnimation();
+	m_Fire->UpdateMovement();
+
+	m_MagicStone->UpdateAnimation();
+	m_MagicStone->UpdateMovement();
 
 
 	#pragma region Update rambo
@@ -119,6 +130,8 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Rambo->Render(_lpDSpriteHandle);
 	//m_Tinker->Render(_lpDSpriteHandle);
 	m_SnipperWaterHiding->Render(_lpDSpriteHandle);
+	m_Fire->Render(_lpDSpriteHandle);
+	m_MagicStone->Render(_lpDSpriteHandle);
 	
 }
 
