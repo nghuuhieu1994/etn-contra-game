@@ -81,7 +81,9 @@
     <ClInclude Include="BulletSnipperWaterHiding.h" />
     <ClInclude Include="EIDSkillBullet.h" />
     <ClInclude Include="EIDWeaponry.h" />
+    <ClInclude Include="EnemyBigGunShooting.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="FireBridge.h" />
     <ClInclude Include="LazeBullet.h" />
     <ClInclude Include="MagicStone.h" />
     <ClInclude Include="MapQuadtree.h" />
@@ -168,7 +170,9 @@
     <ClCompile Include="BulletBoss1.cpp" />
     <ClCompile Include="CapsuleBoss.cpp" />
     <ClCompile Include="BulletSnipperWaterHiding.cpp" />
+    <ClCompile Include="EnemyBigGunShooting.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="FireBridge.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
     <ClCompile Include="MagicStone.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />

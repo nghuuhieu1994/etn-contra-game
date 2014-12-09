@@ -1,23 +1,20 @@
-#ifndef __TANK_H__
-#define __TANK_H__
+#ifndef __ENEMY_BIG_GUN_H__
+#define __ENEMY_BIG_GUN_H__
 
 #include "DynamicObject.h"
+#include "Bullet.h"
 #include "BulletPoolManager.h"
 
-class Tank : public DynamicObject
+class EnemyBigGunShooting : public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_main;
 	CSpriteDx9* sprite_dead;
 	bool m_isShoot;
-	int m_distance_X;
 	void Shoot();
-	D3DXVECTOR3 GetStartPosition();
-	int m_TimeToShoot;
-	int m_CountBullet;
 public:
-	Tank();
-	Tank(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	EnemyBigGunShooting();
+	EnemyBigGunShooting(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateAnimation();
@@ -25,7 +22,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	~Tank();
+	~EnemyBigGunShooting();
 };
 
 #endif

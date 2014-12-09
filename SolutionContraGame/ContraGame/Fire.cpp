@@ -38,26 +38,6 @@ void Fire::UpdateAnimation()
 }
 void Fire::UpdateCollision(Object* checkingObject)
 {
-	if (!isDead)
-	{
-		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
-		{
-			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
-			if (collideDirection != IDDirection::DIR_NONE)
-			{
-				switch (checkingObject->getID())
-				{
-				case eObjectID::RAMBO:
-						checkingObject->setObjectState(eObjectState::STATE_DEATH);
-						this->m_TimeChangeState = 0;
-					break;
-				default:
-					break;
-				}
-			}
-		}
-	}
 }
 
 void Fire::UpdateMovement()

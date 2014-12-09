@@ -15,6 +15,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Fire->Initialize();
 	m_MagicStone = new MagicStone(D3DXVECTOR3(200, 200, 1), eDirection::RIGHT, eObjectID::MAGIC_ROCK);
 	m_MagicStone->Initialize();
+	m_FireBridge = new FireBridge(D3DXVECTOR3(200, 50, 1), eDirection::RIGHT, eObjectID::FIRE_BRIDGE);
+	m_FireBridge->Initialize();
+	//m_Tank = new Tank(D3DXVECTOR3(500, 200, 1), eDirection::RIGHT, eObjectID::TANK);
+	//m_Tank->Initialize();
+	m_EnemyBigGunShooting = new EnemyBigGunShooting(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::ENEMY_BIG_GUN_SHOOTING);
+	m_EnemyBigGunShooting->Initialize();
 
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
@@ -61,6 +67,17 @@ void DemoState::Update()
 
 	m_MagicStone->UpdateAnimation();
 	m_MagicStone->UpdateMovement();
+
+	m_EnemyBigGunShooting->UpdateAnimation();
+	m_EnemyBigGunShooting->Update();
+
+	m_FireBridge->UpdateAnimation();
+	m_FireBridge->UpdateMovement();
+	m_FireBridge->Update();
+
+	/*m_Tank->Update();
+	m_Tank->UpdateAnimation();
+	m_Tank->UpdateMovement();*/
 
 
 	#pragma region Update rambo
@@ -120,6 +137,8 @@ void DemoState::Update()
 		m_SnipperWaterHiding->UpdateCollision(*i);
 		m_Tinker->UpdateCollision(*i);
 		m_EnemyRunShooting->UpdateCollision(*i);
+		m_EnemyBigGunShooting->UpdateCollision(*i);
+		//m_Tank->UpdateCollision(*i);
 	}
 
 	#pragma endregion	
@@ -147,6 +166,14 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
+	//m_Tinker->Render(_lpDSpriteHandle);
+	m_SnipperWaterHiding->Render(_lpDSpriteHandle);
+	m_Fire->Render(_lpDSpriteHandle);
+	m_MagicStone->Render(_lpDSpriteHandle);
+	m_EnemyBigGunShooting->Render(_lpDSpriteHandle);
+	m_FireBridge->Render(_lpDSpriteHandle);
+	//m_Tank->Render(_lpDSpriteHandle);
+	
 	m_Tinker->Render(_lpDSpriteHandle);
 	///*m_MagicRock*/->Render(_lpDSpriteHandle);
 	m_capsuleBoss->Render(_lpDSpriteHandle);
