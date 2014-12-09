@@ -181,11 +181,11 @@ void Tinker::Render(SPRITEHANDLE spriteHandle)
 
 void Tinker::Release()
 {
-	//m_Right->Release();
+	m_Right->Release();
 	SAFE_DELETE(m_Right);
-	//m_Left->Release();
+	m_Left->Release();
 	SAFE_DELETE(m_Left);
-	//m_Center->Release();
+	m_Center->Release();
 	SAFE_DELETE(m_Center);
 
 	m_BossDie = 0;

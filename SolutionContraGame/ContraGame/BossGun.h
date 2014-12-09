@@ -2,7 +2,6 @@
 #define __BOSS_GUN_H__
 
 #include "DynamicObject.h"
-#include "CInputDx9.h"
 #include "BulletPoolManager.h"
 
 class BossGun : public DynamicObject
@@ -13,7 +12,6 @@ class BossGun : public DynamicObject
 	bool isShoot;
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
-
 public:
 	BossGun();
 	BossGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

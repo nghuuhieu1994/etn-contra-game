@@ -23,11 +23,18 @@ void WeaponryManager::Update()
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
+		for (list<DynamicObject*>::iterator i = m_ListWeaponry.begin(); i != m_ListWeaponry.end(); i++)
 		{
-			m_ListWeaponry[i]->UpdateAnimation();
-			m_ListWeaponry[i]->UpdateMovement();
-			m_ListWeaponry[i]->Update();
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+			(*i)->Update();
+			
+			if (CGlobal::Rambo_X - (*i)->getPositionVec2().x > SCREEN_WIDTH / 2)
+			{
+				(*i)->Release();
+				SAFE_DELETE(*i);
+				m_ListWeaponry.remove(*i);
+			}
 		}
 	}
 }
@@ -36,9 +43,9 @@ void WeaponryManager::UpdateCollision(Object* checkingObject)
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
+		for (list<DynamicObject*>::iterator i = m_ListWeaponry.begin(); i != m_ListWeaponry.end(); i++)
 		{
-			m_ListWeaponry[i]->UpdateCollision(checkingObject);
+			(*i)->UpdateCollision(checkingObject);
 		}
 	}
 }
@@ -47,18 +54,18 @@ void WeaponryManager::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_ListWeaponry.empty() != true)
 	{
-		for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
+		for (list<DynamicObject*>::iterator i = m_ListWeaponry.begin(); i != m_ListWeaponry.end(); i++)
 		{
-			m_ListWeaponry[i]->Render(spriteHandle);
+			(*i)->Render(spriteHandle);
 		}
 	}
 }
 
 void WeaponryManager::Release()
 {
-	for (int i = 0; i < (int)m_ListWeaponry.size(); i++)
+	for (list<DynamicObject*>::iterator i = m_ListWeaponry.begin(); i != m_ListWeaponry.end(); i++)
 	{
-		m_ListWeaponry[i]->Release();
+		(*i)->Release();
 	}
 	while (m_ListWeaponry.empty() != true)
 	{

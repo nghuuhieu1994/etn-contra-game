@@ -123,7 +123,8 @@ void BossGun::UpdateCollision(Object* checkingObject)
 }
 
 void BossGun:: UpdateMovement()
-{}
+{
+}
 void BossGun::Update()
 {
 	switch (m_ObjectState)
@@ -162,11 +163,14 @@ void BossGun::Update()
 		}
 		break;
 	case STATE_BEFORE_DEATH:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 1000)
+		if (isDead)
 		{
-			m_ObjectState = eObjectState::STATE_DEATH;
-			m_TimeChangeState = 0;
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 1000)
+			{
+				m_ObjectState = eObjectState::STATE_DEATH;
+				m_TimeChangeState = 0;
+			}
 		}
 		break;
 	case STATE_DEATH:

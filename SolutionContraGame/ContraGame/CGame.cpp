@@ -1,4 +1,5 @@
 #include "CGame.h"
+#include <time.h>
 
 CGame::CGame() :
 	m_handleWindow(0),
@@ -6,6 +7,7 @@ CGame::CGame() :
 	m_lpDirect3DDevice(0),
 	m_lpSpriteDirect3DHandle(0)
 {
+	srand(time(0));
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
