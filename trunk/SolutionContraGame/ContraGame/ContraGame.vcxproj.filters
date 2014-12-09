@@ -139,9 +139,6 @@
     <ClCompile Include="MapQuadtree.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="Bridge.cpp">
-      <Filter>GameObject\Bridge</Filter>
-    </ClCompile>
     <ClCompile Include="SnipperWaterHiding.cpp">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClCompile>
@@ -150,9 +147,6 @@
     </ClCompile>
     <ClCompile Include="EnemyRunShooting.cpp">
       <Filter>GameObject\Enemy\Soldier\SoldierShooting</Filter>
-    </ClCompile>
-    <ClCompile Include="BridgeTile.cpp">
-      <Filter>GameObject\Bridge</Filter>
     </ClCompile>
     <ClCompile Include="LazeBullet.cpp">
       <Filter>GameObject\Bullet</Filter>
@@ -206,10 +200,20 @@
       <Filter>GameObject\Items\Stone</Filter>
     </ClCompile>
     <ClCompile Include="Fire.cpp">
-      <Filter>GameObject\Bridge\Fire</Filter>
+      <Filter>GameObject\Bridge\FireBridge</Filter>
     </ClCompile>
     <ClCompile Include="BulletSnipperWaterHiding.cpp">
       <Filter>GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBigGunShooting.cpp" />
+    <ClCompile Include="FireBridge.cpp">
+      <Filter>GameObject\Bridge\FireBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>GameObject\Bridge\BridgeExploision</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeTile.cpp">
+      <Filter>GameObject\Bridge\BridgeExploision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -393,9 +397,6 @@
     <ClInclude Include="MapQuadtree.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="Bridge.h">
-      <Filter>GameObject\Bridge</Filter>
-    </ClInclude>
     <ClInclude Include="SnipperWaterHiding.h">
       <Filter>GameObject\Enemy\SnipperWaterHiding</Filter>
     </ClInclude>
@@ -407,9 +408,6 @@
     </ClInclude>
     <ClInclude Include="EIDSkillBullet.h">
       <Filter>Framework\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="BridgeTile.h">
-      <Filter>GameObject\Bridge</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="LazeBullet.h">
@@ -467,10 +465,20 @@
       <Filter>GameObject\Items\Stone</Filter>
     </ClInclude>
     <ClInclude Include="Fire.h">
-      <Filter>GameObject\Bridge\Fire</Filter>
+      <Filter>GameObject\Bridge\FireBridge</Filter>
     </ClInclude>
     <ClInclude Include="BulletSnipperWaterHiding.h">
       <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBigGunShooting.h" />
+    <ClInclude Include="FireBridge.h">
+      <Filter>GameObject\Bridge\FireBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>GameObject\Bridge\BridgeExploision</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeTile.h">
+      <Filter>GameObject\Bridge\BridgeExploision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -630,8 +638,11 @@
     <Filter Include="GameObject\Boss\BossMap3">
       <UniqueIdentifier>{3a325bb1-ca6b-4e8d-84d2-d820b632a7e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Bridge\Fire">
+    <Filter Include="GameObject\Bridge\FireBridge">
       <UniqueIdentifier>{b989f620-7d9f-4563-82db-4899daf8c56a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Bridge\BridgeExploision">
+      <UniqueIdentifier>{be061267-7fe6-438d-824d-0029b1d01df5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

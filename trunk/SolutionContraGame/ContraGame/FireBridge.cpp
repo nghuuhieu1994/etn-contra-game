@@ -17,8 +17,10 @@ void FireBridge::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	m_fire_1 = NULL;
-	m_fire_2 = NULL;
+	//m_fire_1 = NULL;
+	//m_fire_2 = NULL;
+	m_fire_1 = new Fire(this->m_Position, eDirection::LEFT, eObjectID::FIRE);
+	m_fire_2 = new Fire(this->m_Position, eDirection::RIGHT, eObjectID::FIRE);
 
 
 }
