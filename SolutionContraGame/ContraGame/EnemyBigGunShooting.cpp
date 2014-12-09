@@ -35,7 +35,7 @@ void EnemyBigGunShooting::UpdateAnimation()
 		/*this->m_Sprite->getAnimationAction()->setIndexStart(0);
 		this->m_Sprite->getAnimationAction()->setIndexEnd(1);*/
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
-		m_Sprite->UpdateAnimation(700);
+		m_Sprite->UpdateAnimation(10000);
 		break;
 	case STATE_BEFORE_DEATH: 
 		m_Sprite = sprite_dead;
