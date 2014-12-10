@@ -63,7 +63,6 @@ int Rambo::HandleInputDeadState()
 			m_Position.x			= (float)(Camera::getInstance()->getBound().left + 128);
 			m_Position.y			= (float)(Camera::getInstance()->getBound().top);
 			isInvulnerable = true;
-			
 			--m_life;
 		}
 	}
