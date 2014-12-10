@@ -15,7 +15,7 @@ void SnipperWaterHiding::Shoot()
 
 D3DXVECTOR3 SnipperWaterHiding::GetStartPositionOfBullet()
 {
-	return D3DXVECTOR3(m_Position.x, m_Position.y + 8, 0); 
+	return D3DXVECTOR3(m_Position.x + 10, m_Position.y + 14, 0); 
 }
 
 void SnipperWaterHiding::Initialize()
@@ -48,6 +48,7 @@ void SnipperWaterHiding::UpdateAnimation()
 	default:
 		break;
 	}	
+	//m_Sprite->UpdateAnimation(5000);
 }
 
 
@@ -93,7 +94,7 @@ void SnipperWaterHiding::Update()
 		{
 		case STATE_ALIVE_IDLE:
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 2000)
+			if(m_TimeChangeState > 5000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_SHOOTING;
@@ -107,7 +108,7 @@ void SnipperWaterHiding::Update()
 				isShoot = false;
 			}
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1000)
+			if(m_TimeChangeState > 1300)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_ALIVE_IDLE;

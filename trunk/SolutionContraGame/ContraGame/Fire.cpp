@@ -16,8 +16,9 @@ void Fire::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 100, m_Position.x + 100, this->getBound().bottom);
-	//m_Physic->setVelocityX(0.3f);
+	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 70 , m_Position.x + 70, this->getBound().bottom);
+	m_Physic->setVelocityX(0.5f);
+
 }
 
 void Fire::UpdateAnimation()
@@ -44,14 +45,16 @@ void Fire::UpdateMovement()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE:
-		if(m_Direction == eDirection::LEFT)
+	/*	if(m_Direction == eDirection::LEFT)
 		{
-			m_Physic->setVelocityX(-0.3f);
+			m_Physic->setVelocityX(0.3f);
+			
 		}
 		if(m_Direction == eDirection::RIGHT)
 		{
-			m_Physic->setVelocityX(0.3f);
-		}
+			m_Physic->setVelocityX(-0.3f);
+			
+		}*/
 		m_Physic->UpdateMovement(&m_Position);
 		break;
 	case STATE_DEATH:

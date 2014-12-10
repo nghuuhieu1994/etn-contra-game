@@ -11,6 +11,7 @@ private:
 	int m_distanceY;
 	Fire* m_fire_1;
 	Fire* m_fire_2;
+	//Fire* fireObject[2];
 
 public:
 	FireBridge();
