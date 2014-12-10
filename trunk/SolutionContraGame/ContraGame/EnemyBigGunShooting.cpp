@@ -149,7 +149,15 @@ void EnemyBigGunShooting::Update()
 
 void EnemyBigGunShooting::Render(SPRITEHANDLE spriteHandle)
 {
-	m_Sprite->Render(spriteHandle, getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
+	if (!m_Sprite)
+	{
+		m_Sprite->Render(spriteHandle, 
+			getPositionVec2(), 
+			m_Sprite->getSpriteEffect(), 
+			m_Sprite->getRotate(), 
+			m_Sprite->getScale(), 
+			m_Position.z);
+	}
 }
 
 void EnemyBigGunShooting::Release()

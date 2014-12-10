@@ -69,5 +69,9 @@ enum eSpriteID
 	SPRITE_TANK,
 	SPRITE_FIRE_BRIDGE,
 	// End all ID Enemy Sprite
+	
+	SPRITE_BOSS_MAP2_BODY_ALIVE,
+	SPRITE_BOSS_HEAD,
+	SPRITE_BULLET_BOSS,
 };
 #endif
