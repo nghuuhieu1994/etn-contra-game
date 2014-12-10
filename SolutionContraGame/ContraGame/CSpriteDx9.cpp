@@ -23,13 +23,14 @@ CSpriteDx9::CSpriteDx9(const CSpriteDx9& Sprite)
 
 CSpriteDx9::~CSpriteDx9()
 {
-	this->Release();
+	//this->Release();
 }
 
 void CSpriteDx9::Release()
 {
 	//m_MyTexture->UnLoadTexture();
 	m_AnimationAction->Release();
+	SAFE_DELETE(m_AnimationAction);
 }
 
 void CSpriteDx9::LoadContent(LPDIRECT3DDEVICE9 _lpDirectDevice, LPCSTR fileName, int Column, int Row, int Total, D3DXCOLOR TransparentColor)

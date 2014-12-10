@@ -12,6 +12,7 @@ LaserGun::LaserGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _obje
 
 void LaserGun::Initialize()
 {
+	m_ObjectState == STATE_ALIVE_IDLE;
 	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_LASER_GUN));
 }
@@ -32,7 +33,9 @@ void LaserGun::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::RAMBO:
-				this->Release();
+				isDead = true;
+				this->m_ObjectState = STATE_DEATH;
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
 				break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
@@ -60,7 +63,13 @@ void LaserGun:: UpdateMovement()
 
 void LaserGun::Update()
 {
-
+	if (m_ObjectState == STATE_DEATH)
+	{
+		if (isDead)
+		{
+			Release();
+		}
+	}
 }
 
 void LaserGun::Render(SPRITEHANDLE spriteHandle)
