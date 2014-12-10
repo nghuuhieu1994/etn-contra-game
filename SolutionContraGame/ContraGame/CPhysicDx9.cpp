@@ -13,7 +13,7 @@ bool Physic::CheckMovementRangeWidth(D3DXVECTOR3* _position)
 	{
 		if(_position->x < m_MovementRange->left || _position->x > m_MovementRange->right)
 		{
-			return true;
+			return true; 
 		}
 	}
 	return false;

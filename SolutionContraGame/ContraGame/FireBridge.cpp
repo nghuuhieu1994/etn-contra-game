@@ -19,6 +19,15 @@ void FireBridge::Initialize()
 	m_Position.z = 1.0f;
 	//m_fire_1 = NULL;
 	//m_fire_2 = NULL;
+	/*m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x, m_Position.y + 5, 1), eDirection::LEFT, eObjectID::FIRE);
+	m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x, m_Position.y + 5, 1), eDirection::RIGHT, eObjectID::FIRE);
+	m_fire_1->Initialize();
+	m_fire_2->Initialize();*/
+
+	/*m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x - 50, m_Position.y + 10, 1), eDirection::LEFT, eObjectID::FIRE);
+	m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x + 50, m_Position.y + 10, 1), eDirection::RIGHT, eObjectID::FIRE);
+	m_fire_1->Initialize();
+	m_fire_2->Initialize();*/
 }
 
 void FireBridge::UpdateAnimation()
@@ -50,7 +59,7 @@ void FireBridge::UpdateMovement()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(m_fire_1 != NULL && m_fire_2 != NULL )
+		if(m_fire_2 != NULL && m_fire_1  != NULL  )
 		{
 			m_fire_1->UpdateMovement();
 			m_fire_2->UpdateMovement();
@@ -64,12 +73,12 @@ void FireBridge::UpdateMovement()
 }
 void FireBridge::Update()
 {
-	m_distanceY = m_Position.x - CGlobal::Rambo_Y  ;
+	m_distanceY = m_Position.y - CGlobal::Rambo_Y  ;
 
-	if(m_distanceY <= 100)
+	if(abs(m_distanceY) <= 100)
 	{
-		m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x - 10, m_Position.y + 10, 1), eDirection::LEFT, eObjectID::FIRE);
-	    m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x + 10, m_Position.y + 10, 1), eDirection::RIGHT, eObjectID::FIRE);
+		m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x - 45, m_Position.y + 10, 1), eDirection::RIGHT, eObjectID::FIRE);
+		m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x + 45, m_Position.y + 10, 1), eDirection::LEFT, eObjectID::FIRE);
 		m_fire_1->Initialize();
 		m_fire_2->Initialize();
 	}
@@ -80,7 +89,7 @@ void FireBridge::Render(SPRITEHANDLE spriteHandle)
 	if(m_Sprite != 0 )
 	{
 		m_Sprite->Render(spriteHandle, getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
-		if(m_fire_1 != NULL && m_fire_2 != NULL)
+		if(m_fire_1 != NULL && m_fire_2  != NULL  && m_distanceY <= 100)
 		{
 			m_fire_1->Render(spriteHandle);
 			m_fire_2->Render(spriteHandle);
