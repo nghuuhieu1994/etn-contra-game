@@ -52,20 +52,11 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
-	SnipperWaterHiding* m_SnipperWaterHiding;
-	Stone*              m_Stone;
-	Fire*				m_Fire;
-	MagicStone*			m_MagicStone;
-	EnemyBigGunShooting* m_EnemyBigGunShooting;
-	Tank*				m_Tank;
-	FireBridge*			m_FireBridge;
 	
-	Tinker*				m_Tinker;
-	int m_currentMap;
-	BigCapsuleBoss*		m_capsuleBoss;
-	EnemyRunShooting*	m_EnemyRunShooting;
+	int					map;
+
 public:
-	DemoState(eIDSceneGame ID) : GameScene(ID){}
+	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
