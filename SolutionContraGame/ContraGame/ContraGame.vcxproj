@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,9 +76,10 @@
   <ItemGroup>
     <ClInclude Include="BigCapsuleBoss.h" />
     <ClInclude Include="BridgeTile.h" />
+    <ClInclude Include="BossBullet.h" />
     <ClInclude Include="BulletBoss1.h" />
-    <ClInclude Include="CapsuleBoss.h" />
     <ClInclude Include="BulletSnipperWaterHiding.h" />
+    <ClInclude Include="CapsuleBoss.h" />
     <ClInclude Include="EIDSkillBullet.h" />
     <ClInclude Include="EIDWeaponry.h" />
     <ClInclude Include="EnemyBigGunShooting.h" />
@@ -88,10 +89,14 @@
     <ClInclude Include="MagicStone.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="BossPunch.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="EnemyRunShooting.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RoShan.h" />
+    <ClInclude Include="RoshanHand.h" />
+    <ClInclude Include="RoshanHead.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="SnipperWaterHiding.h" />
     <ClInclude Include="Tank.h" />
@@ -167,9 +172,10 @@
   <ItemGroup>
     <ClCompile Include="BigCapsuleBoss.cpp" />
     <ClCompile Include="BridgeTile.cpp" />
+    <ClCompile Include="BossBullet.cpp" />
     <ClCompile Include="BulletBoss1.cpp" />
-    <ClCompile Include="CapsuleBoss.cpp" />
     <ClCompile Include="BulletSnipperWaterHiding.cpp" />
+    <ClCompile Include="CapsuleBoss.cpp" />
     <ClCompile Include="EnemyBigGunShooting.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBridge.cpp" />
@@ -177,9 +183,12 @@
     <ClCompile Include="MagicStone.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="BossPunch.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="EnemyRunShooting.cpp" />
+    <ClCompile Include="Roshan.cpp" />
+    <ClCompile Include="RoshanHead.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="SnipperWaterHiding.cpp" />
     <ClCompile Include="Tank.cpp" />

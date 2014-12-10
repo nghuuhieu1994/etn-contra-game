@@ -1,5 +1,7 @@
 #include "BigCapsuleBoss.h"
+#ifndef BOSS_ANIMATION_TIME
 #define BOSS_ANIMATION_TIME 800
+#endif
 
 BigCapsuleBoss::BigCapsuleBoss(){
 
@@ -110,7 +112,7 @@ void BigCapsuleBoss::UpdateCollision(Object* checkingObject)
 				(*i)->Update();
 				(*i)->UpdateAnimation();
 				(*i)->UpdateMovement();
-				//(*i)->UpdateCollision(checkingObject); // Ham nay tam tho`i tat' di.
+				(*i)->UpdateCollision(checkingObject); // Ham nay tam tho`i tat' di.
 			}
 		}
 #pragma endregion UpdateListEnemy
@@ -169,13 +171,17 @@ void BigCapsuleBoss::Update()
 {
 	if (m_ListEnemy.empty() == false)
 	{
-		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); i++)
+		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); )
 		{
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
 				(*i)->Release();
 				SAFE_DELETE(*i);
-				m_ListEnemy.remove(*i);
+				i = m_ListEnemy.erase(i);
+			}
+			else
+			{
+				i++;
 			}
 		}
 	}
@@ -257,6 +263,7 @@ void BigCapsuleBoss::Render(SPRITEHANDLE spriteHandle)
 			m_Position.z,
 			D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
 	}
+
 }
 
 void BigCapsuleBoss::Release()

@@ -187,12 +187,6 @@
     <ClCompile Include="Tank.cpp">
       <Filter>GameObject\Enemy\Tank</Filter>
     </ClCompile>
-    <ClCompile Include="CapsuleBoss.cpp">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClCompile>
-    <ClCompile Include="BigCapsuleBoss.cpp">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClCompile>
     <ClCompile Include="MagicStone.cpp">
       <Filter>GameObject\Items\MagicStone</Filter>
     </ClCompile>
@@ -214,6 +208,24 @@
     </ClCompile>
     <ClCompile Include="BridgeTile.cpp">
       <Filter>GameObject\Bridge\BridgeExploision</Filter>
+    </ClCompile>
+    <ClCompile Include="RoshanHead.cpp">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClCompile>
+    <ClCompile Include="Roshan.cpp">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClCompile>
+    <ClCompile Include="BigCapsuleBoss.cpp">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClCompile>
+    <ClCompile Include="CapsuleBoss.cpp">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBullet.cpp">
+      <Filter>GameObject\Boss\BossBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BossPunch.cpp">
+      <Filter>GameObject\Boss\BossMap2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,12 +467,6 @@
     <ClInclude Include="MagicStone.h">
       <Filter>GameObject\Items\MagicStone</Filter>
     </ClInclude>
-    <ClInclude Include="CapsuleBoss.h">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClInclude>
-    <ClInclude Include="BigCapsuleBoss.h">
-      <Filter>GameObject\Boss\BossMap3</Filter>
-    </ClInclude>
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Stone</Filter>
     </ClInclude>
@@ -479,6 +485,27 @@
     </ClInclude>
     <ClInclude Include="BridgeTile.h">
       <Filter>GameObject\Bridge\BridgeExploision</Filter>
+    </ClInclude>
+    <ClInclude Include="RoshanHead.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClInclude>
+    <ClInclude Include="RoShan.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClInclude>
+    <ClInclude Include="BigCapsuleBoss.h">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClInclude>
+    <ClInclude Include="CapsuleBoss.h">
+      <Filter>GameObject\Boss\BossMap3</Filter>
+    </ClInclude>
+    <ClInclude Include="RoshanHand.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBullet.h">
+      <Filter>GameObject\Boss\BossBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BossPunch.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -643,6 +670,12 @@
     </Filter>
     <Filter Include="GameObject\Bridge\BridgeExploision">
       <UniqueIdentifier>{be061267-7fe6-438d-824d-0029b1d01df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Boss\BossMap2">
+      <UniqueIdentifier>{909076ef-6150-43a5-ba48-2ccdfc7297bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Boss\BossBullet">
+      <UniqueIdentifier>{1566d0de-248c-4f04-9576-de5e989586ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

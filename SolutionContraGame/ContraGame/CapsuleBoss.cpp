@@ -1,10 +1,17 @@
 #include "CapsuleBoss.h"
 
+#ifndef VELOC_X_CAPSULE_BOSS
 #define VELOC_X_CAPSULE_BOSS 2
+#endif
+#ifndef VELOC_Y_CAPSULE_BOSS
 #define VELOC_Y_CAPSULE_BOSS -2
+#endif
+#ifndef ACEL_Y_CAPSULE_BOSS
 #define ACEL_Y_CAPSULE_BOSS -0.03f
+#endif
+#ifndef TIME_CAPSULE_BOSS_FALL
 #define TIME_CAPSULE_BOSS_FALL 1500
-
+#endif
 CapsuleBoss::CapsuleBoss(){
 }
 CapsuleBoss::CapsuleBoss(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
