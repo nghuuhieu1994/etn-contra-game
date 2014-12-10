@@ -45,7 +45,7 @@ void Fire::UpdateMovement()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE:
-	/*	if(m_Direction == eDirection::LEFT)
+		/*if(m_Direction == eDirection::LEFT)
 		{
 			m_Physic->setVelocityX(0.3f);
 			

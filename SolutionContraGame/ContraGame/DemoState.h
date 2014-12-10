@@ -52,7 +52,8 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
-	
+	FireBridge*			m_fireBridge;
+	Fire*				m_Fire;
 	int					map;
 
 public:
