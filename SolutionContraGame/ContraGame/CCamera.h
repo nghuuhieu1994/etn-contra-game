@@ -18,7 +18,7 @@ class Camera
 	D3DXMATRIX			m_matrixTranslate;
 public:
 	RECT getBound();
-	
+	void Reset();
 	void setLockWidth(bool _isLock){ m_isLockWidth = _isLock; }
 	void setLockHeight(bool _isLock){ m_isLockHeight = _isLock; }
 

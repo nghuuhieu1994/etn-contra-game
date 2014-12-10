@@ -11,7 +11,14 @@ Camera::Camera()
 	m_matrixTranslate._41 = 0;
 	m_matrixTranslate._42 = SCREEN_HEIGHT;
 	m_matrixTranslate._22 = -1.0f;
+}
 
+void Camera::Reset()
+{
+	D3DXMatrixIdentity(&m_matrixTranslate);
+	m_matrixTranslate._41 = 0;
+	m_matrixTranslate._42 = SCREEN_HEIGHT;
+	m_matrixTranslate._22 = -1.0f;
 }
 
 Camera* Camera::getInstance()
