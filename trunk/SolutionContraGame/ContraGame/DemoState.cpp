@@ -25,6 +25,7 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Rambo = new Rambo(D3DXVECTOR3(200, 500, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
+	m_currentMap = 1;
 	//Camera::getInstance()->setLockWidth(true);
 	Camera::getInstance()->setLockHeight(true);
 	string mapPath = "resources\\Map\\" + to_string(MAP_1) +"\\"+ to_string(MAP_1) +".xml";
@@ -40,7 +41,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_EnemyRunShooting->Initialize();
 }
 
-
 void DemoState::HandleInput()
 {
 	m_Rambo->HandleInput();
@@ -49,6 +49,11 @@ void DemoState::HandleInput()
 void DemoState::Update()
 {
 	
+	if (m_Rambo->getRamboLife() == 0)
+	{
+		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
+	}
+
 	#pragma region Update camera & insert object into quadtree
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());

@@ -32,6 +32,9 @@
 #include "WeaponryManager.h"
 #include "SnipperWaterHiding.h"
 #include "Stone.h"
+
+
+#include "MenuGame.h"
 #include "Fire.h"
 #include "MagicStone.h"
 #include "EnemyBigGunShooting.h"
@@ -58,7 +61,7 @@ private:
 	FireBridge*			m_FireBridge;
 	
 	Tinker*				m_Tinker;
-
+	int m_currentMap;
 	BigCapsuleBoss*		m_capsuleBoss;
 	EnemyRunShooting*	m_EnemyRunShooting;
 public:
