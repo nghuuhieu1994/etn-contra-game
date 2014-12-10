@@ -12,6 +12,7 @@ MachineGun::MachineGun(D3DXVECTOR3 _position, eDirection _direction, eObjectID _
 
 void MachineGun::Initialize()
 {
+	m_ObjectState == STATE_ALIVE_IDLE;
 	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MACHINE_GUN));
 }
@@ -31,13 +32,14 @@ void MachineGun::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::RAMBO:
-				{
-					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
-					Rambo* tempRambo = (Rambo*)checkingObject;
-					tempRambo->setSkillBullet(eIDSkillBullet::M_SKILL_BULLET);
-					this->Release();
-					break;
-				}
+			{
+									 SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
+									 Rambo* tempRambo = (Rambo*) checkingObject;
+									 tempRambo->setSkillBullet(eIDSkillBullet::M_SKILL_BULLET);
+									 isDead = true;
+									 this->m_ObjectState = STATE_DEATH;
+									 SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
+			}break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
 				{
@@ -56,7 +58,6 @@ void MachineGun::UpdateCollision(Object* checkingObject)
 }
 
 
-
 void MachineGun:: UpdateMovement()
 {
 	m_Physic->UpdateMovement(&m_Position);
@@ -64,7 +65,13 @@ void MachineGun:: UpdateMovement()
 
 void MachineGun::Update()
 {
-
+	if (m_ObjectState == STATE_DEATH)
+	{
+		if (isDead)
+		{
+			Release();
+		}
+	}
 }
 
 void MachineGun::Render(SPRITEHANDLE spriteHandle)

@@ -13,6 +13,7 @@ Barrier::Barrier(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 void Barrier::Initialize()
 {
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BARRIER));
+	m_ObjectState == STATE_ALIVE_IDLE;
 	m_Position.z = 1.0f;
 }
 
@@ -31,7 +32,9 @@ void Barrier::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::RAMBO:
-				this->Release();
+				isDead = true;
+				this->m_ObjectState = STATE_DEATH;
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
 				break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
@@ -58,6 +61,13 @@ void Barrier:: UpdateMovement()
 
 void Barrier::Update()
 {
+	if (m_ObjectState == STATE_DEATH)
+	{
+		if (isDead)
+		{
+			Release();
+		}
+	}
 }
 
 void Barrier::Render(SPRITEHANDLE spriteHandle)
