@@ -199,6 +199,9 @@
     <ClCompile Include="BulletSnipperWaterHiding.cpp">
       <Filter>GameObject\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBigGunShooting.cpp">
+      <Filter>GameObject\Enemy\Soldier\SoldierBigGunShooting</Filter>
+    </ClCompile>
     <ClCompile Include="EnemyBigGunShooting.cpp" />
     <ClCompile Include="FireBridge.cpp">
       <Filter>GameObject\Bridge\FireBridge</Filter>
@@ -476,6 +479,9 @@
     <ClInclude Include="BulletSnipperWaterHiding.h">
       <Filter>GameObject\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyBigGunShooting.h">
+      <Filter>GameObject\Enemy\Soldier\SoldierBigGunShooting</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyBigGunShooting.h" />
     <ClInclude Include="FireBridge.h">
       <Filter>GameObject\Bridge\FireBridge</Filter>
@@ -667,6 +673,9 @@
     </Filter>
     <Filter Include="GameObject\Bridge\FireBridge">
       <UniqueIdentifier>{b989f620-7d9f-4563-82db-4899daf8c56a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\Soldier\SoldierBigGunShooting">
+      <UniqueIdentifier>{7fad28df-7d12-4618-8e30-2c6bb0b05e83}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Bridge\BridgeExploision">
       <UniqueIdentifier>{be061267-7fe6-438d-824d-0029b1d01df5}</UniqueIdentifier>
