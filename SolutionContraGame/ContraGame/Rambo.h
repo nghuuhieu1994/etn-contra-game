@@ -15,68 +15,72 @@ using namespace std;
 class Rambo : public DynamicObject
 {
 private:
+	bool HandleInputShooting();
+	bool isAddBullet();
 	bool isFall;
 	bool isJump;
-	//eIDTypeBullet m_TypeBullet;
-	eIDSkillBullet m_SkillBullet;
-	bool isSetVelocityDeathState;
 	bool isLieDown;
+	bool isSetVelocityDeathState;
+	bool isInvulnerable;
+	unsigned char m_colorAlpha;
+	int m_inverseColorAlpha;
+	D3DXVECTOR3 GetStartPositionOfBullet();
+	eIDSkillBullet m_SkillBullet;
 	float m_maxPositionY;
-	float m_timeClimb;
-	float m_timeWaterBomb;
 	float m_timeAddBullet;
+	float m_timeClimb;
+	float m_timeDeath;
 	float m_timeDelayRunAndShootRun;
-	list<Object*> m_objectBelowCurrent;
-	list<Object*> m_objectBelowPrevious;
-	Object*				m_ignoreCollisionObject;
-	RamboSprite* m_RamboSprite;
-	RECT	m_RectangleCheckingObjectBelow;
-
+	float m_timeWaterBomb;
+	int m_timeInvulnerable;
+	int UpdateInvulnerableAnimation();
 	int HandleInputAimBottomRightState();
 	int HandleInputAimTopRightState();
 	int HandleInputAimUpState();
+	int HandleInputBeforeDieState();
 	int HandleInputClimbState();
+	int HandleInputDeadState();
+	int HandleInputDiveState();
 	int HandleInputIdleState();
 	int HandleInputJumpState();
 	int HandleInputLieState();
 	int HandleInputRunState();
 	int HandleInputShootRunState();
+	int HandleInputSwimShootState();
+	int HandleInputSwimShootTopRightState();
+	int HandleInputSwimShootUpState();
 	int HandleInputSwimState();
 	int HandleInputWaterBombState();
-	int HandleInputDiveState();
-	int HandleInputSwimShootState();
-	int HandleInputSwimShootUpState();
-	int HandleInputSwimShootTopRightState();
-	int HandleInputBeforeDieState();
-	bool HandleInputShooting();
-
+	int m_life;
+	list<Object*> m_objectBelowCurrent;
+	list<Object*> m_objectBelowPrevious;
+	Object* m_ignoreCollisionObject;
+	RamboSprite* m_RamboSprite;
+	RECT m_RectangleCheckingObjectBelow;
 	void SetFallFlag();
-	void Shoot();
 	void SetVelocityXZero();
 	void SetVelocityYZero();
-	bool isAddBullet();
-	D3DXVECTOR3	GetStartPositionOfBullet();
+	void Shoot();
 public:
-	void setSkillBullet(eIDSkillBullet _skillBullet){ this->m_SkillBullet = _skillBullet;};
+	int getRamboLife(){ return m_life; }
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	RECT getBound();
 	virtual ~Rambo();
+	void CleanIgnoreList();
 	void HandleInput();
 	void Initialize();
 	void Release();
-	//void setTypeBullet(eIDTypeBullet _type){ m_TypeBullet = _type; }
 	void Render(SPRITEHANDLE spriteHandle);
-	void setRectangleCheckingObjectBelow();
-	void Update();
-	//void Update(QuadTree* _quad);
 	void SetFlag();
-	void CleanIgnoreList();
-	void UpdatePreviousIgnoreList();
+	void setRectangleCheckingObjectBelow();
+	void setSkillBullet(eIDSkillBullet _skillBullet){ this->m_SkillBullet = _skillBullet; };
+	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateMovement();
+	void UpdatePreviousIgnoreList();
 };
 
 #endif

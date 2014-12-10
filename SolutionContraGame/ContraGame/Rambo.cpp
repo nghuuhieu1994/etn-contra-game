@@ -1,5 +1,5 @@
 ﻿#include "Rambo.h"
-#define VELOCITY_Y_JUMP 4.8f
+#define VELOCITY_Y_JUMP				4.8f
 #define VELOCITY_X_MOVE_TO_RIGHT	1.1f
 #define VELOCITY_Y_MOVE_TO_LEFT		-1.1f
 
@@ -11,21 +11,26 @@ Rambo::Rambo()
 Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	: DynamicObject(_position, _direction, _objectID)
 {
-	
-	m_ObjectState = eObjectState::STATE_RAMBO_JUMP;
-	m_RamboSprite = new RamboSprite();
-	m_Position.z = 1.0f;
+	m_ObjectState				= eObjectState::STATE_RAMBO_JUMP;
+	m_RamboSprite				= new RamboSprite();
+	m_Position.z				= 1.0f;
+	isJump						= false;
+	isFall						= false;
+	isLieDown					= false;
+	m_timeClimb					= 0;
+	m_timeWaterBomb				= 0;
+	m_timeAddBullet				= 1000;
+	m_DirectAttack				= eDirectAttack::AD_RIGHT;
+	m_timeDelayRunAndShootRun	= 0;
+	m_SkillBullet				= eIDSkillBullet::DEFAULT_SKILL_BULLET;
+	isSetVelocityDeathState		= false;
+	m_life						= 3;
+	m_timeDeath					= 0;
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
-	isJump = false;
-	isFall = false;
-	isLieDown = false;
-	m_timeClimb = 0;
-	m_timeWaterBomb = 0;
-	m_timeAddBullet = 1000;
-	m_DirectAttack = eDirectAttack::AD_RIGHT;
-	m_timeDelayRunAndShootRun = 0;
-	m_SkillBullet = eIDSkillBullet::S_SKILL_BULLET;
-	isSetVelocityDeathState = false;
+	isInvulnerable = true;
+	m_colorAlpha = 255;
+	m_inverseColorAlpha = 1;
+	m_timeInvulnerable = 0;
 }
 
 RECT Rambo::getBound()
@@ -45,14 +50,37 @@ void Rambo::Initialize()
 
 }
 
+int Rambo::HandleInputDeadState()
+{
+	if (m_ObjectState == eObjectState::STATE_RAMBO_DEAD)
+	{
+		m_timeDeath += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_timeDeath > 2000)
+		{
+			m_timeDeath				= 0;
+			isSetVelocityDeathState	= false;
+			m_ObjectState			= eObjectState::STATE_RAMBO_JUMP;
+			m_Position.x			= (float)(Camera::getInstance()->getBound().left + 128);
+			m_Position.y			= (float)(Camera::getInstance()->getBound().top);
+			isInvulnerable = true;
+			
+			--m_life;
+		}
+	}
+	return 0;
+}
+
 void Rambo::HandleInput()
 {
-	if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE))
-	{
-		m_Position.y = 450;
-		isSetVelocityDeathState = false;
-		m_ObjectState = eObjectState::STATE_RAMBO_FALL;
-	}
+	//if(CInputDx9::getInstance()->IsKeyDown(DIK_SPACE))
+	//{
+	//	m_Position.y = 450;
+	//	isSetVelocityDeathState = false;
+	//	m_ObjectState = eObjectState::STATE_RAMBO_FALL;
+	//}
+
+	HandleInputDeadState();
+
 
 	if (CInputDx9::getInstance()->IsKeyPress(DIK_B))
 	{
@@ -171,16 +199,19 @@ void Rambo::HandleInput()
 		m_timeWaterBomb = 0;
 	}
 
-	if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
+	if (m_ObjectState != eObjectState::STATE_RAMBO_DEAD)
 	{
-		m_Direction = eDirection::RIGHT;
-	}
-	else
-	{
-		if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+		if(CInputDx9::getInstance()->IsKeyLeftUpAndKeyRightDown())
 		{
-			m_Direction = eDirection::LEFT;
+			m_Direction = eDirection::RIGHT;
 		}
+		else
+		{
+			if(CInputDx9::getInstance()->IsKeyLeftDownAndKeyRightUp())
+			{
+				m_Direction = eDirection::LEFT;
+			}
+		} 
 	}
 }
 
@@ -675,10 +706,10 @@ void Rambo::Shoot()
 			}
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-1.3f, 2.0f), -1.73);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 2.0f), -5.67);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, 2.0f), 5.67);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.3f, 2.0f), 1.73);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-1.3f, 2.0f), -1.73f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, 2.0f), -5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, 2.0f), 5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.3f, 2.0f), 1.73f);
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 1);
 			}
 		}
@@ -707,10 +738,10 @@ void Rambo::Shoot()
 			}
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-1.3f, -2.0f), 1.73);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, -2.0f), 5.67);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, -2.0f), -5.67);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.3f, -2.0f), -1.73);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-1.3f, -2.0f), 1.73f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-0.5f, -2.0f), 5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.5f, -2.0f), -5.67f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(1.3f, -2.0f), -1.73f);
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -2.0f), 3.7);
 			}
 		}
@@ -740,10 +771,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -0.5);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -1);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.5);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.5f);
 			}
 		}
 		break;
@@ -805,8 +836,8 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.2f), 1.73f);
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.5f), 0.57f);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.7f), 1);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 1.0f), 0.26);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.7f), 1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 1.0f), 0.26f);
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), -0.36);
 			}
 		}
@@ -837,8 +868,8 @@ void Rambo::Shoot()
 			{
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 4.0f), -1.73f);
 				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 3.5f), -0.57f);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 3.0f), -1);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 2.0f), -0.26);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 3.0f), -1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 2.0f), -0.26f);
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.36);
 			}
 		}
@@ -867,10 +898,10 @@ void Rambo::Shoot()
 			}
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.2f), 0.087);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 1.5f), -0.46);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 3.0f), -1);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 4.5f), -2.14);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.2f), 0.087f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 1.5f), -0.46f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 3.0f), -1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 4.5f), -2.14f);
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(3.0f, 0.0f), 5.67);
 			}
 		}
@@ -900,10 +931,10 @@ void Rambo::Shoot()
 			else if(m_SkillBullet == eIDSkillBullet::S_SKILL_BULLET)
 			{
 				//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), -5.67);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.267);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.7);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1.0);
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 2.14);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.267f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 0.7f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 1.0f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::RED_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(-3.0f, 0.0f), 2.14f);
 			}
 		}
 	default:
@@ -1253,6 +1284,34 @@ int Rambo::HandleInputSwimShootTopRightState()
 void Rambo::UpdateAnimation()
 {
 	m_RamboSprite->UpdateAnimation(m_ObjectState);
+	if (isInvulnerable)
+	{
+		UpdateInvulnerableAnimation(); 
+	}
+}
+
+int Rambo::UpdateInvulnerableAnimation()
+{
+	m_colorAlpha -= 2 * m_inverseColorAlpha;
+	if (m_colorAlpha < 0 + 2|| m_colorAlpha > 255 - 2)
+	{
+		m_inverseColorAlpha *= -1;
+		m_timeInvulnerable++;
+	}
+	if (m_colorAlpha < 0)
+	{
+		m_colorAlpha = 0;
+	}
+	if (m_colorAlpha > 255)
+	{
+		m_colorAlpha = 255;
+	}
+	if (m_timeInvulnerable > 6)
+	{
+		m_timeInvulnerable = 0;
+		isInvulnerable = false;
+	}
+	return 0;
 }
 
 void Rambo::SetFallFlag()
@@ -1476,10 +1535,18 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
-	if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
+	if( checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
 	{
+		D3DXVECTOR3 curPos;
+		if (isInvulnerable)
+		{
+			curPos = this->m_Position;
+		}
 	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-
+	if (isInvulnerable)
+	{
+		m_Position = curPos;
+	}
 	setRectangleCheckingObjectBelow();
 	if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
 	{
@@ -1540,19 +1607,24 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			break;
 		default:
 			{
-				#pragma region. Update Collision with Bridge
+				
 				switch(checkingObject->getID())
 				{
 				case eObjectID::ENEMY_RUN:
 				case eObjectID::GUN_ROTATING:
 				case eObjectID::BIG_GUN_ROTATING:
 				case eObjectID::ENEMY_RUN_SHOOTING:
+					if (isInvulnerable)
+					{
+						break;
+					}
 					if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
 					{
 						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 					}
 					break;
+				#pragma region Update Collision with Bridge
 				case eObjectID::BRIDGE:
 					if(collideDirection == IDDirection::DIR_TOP)
 					{ 
@@ -1586,19 +1658,22 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						}
 					}
 					break;
+				#pragma endregion
 				case eObjectID::BULLET_ENEMY:
 				//case eObjectID::BULLET_BOSS1:
+					if (isInvulnerable)
+					{
+						break;
+					}
 					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
 					{
-						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD; 
+						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 					}
-					//case eObjectID::W
 					break;
 				default:
 					break;
 				}
-				#pragma endregion
 				break;
 			}
 		}
@@ -1633,8 +1708,6 @@ void Rambo::UpdateMovement()
 	}
 	
 	this->m_Physic->UpdateMovement(&m_Position);
-	
-	
 
 	if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
 	{
@@ -1654,6 +1727,26 @@ void Rambo::Update()
 
 void Rambo::Render(SPRITEHANDLE spriteHandle)
 {
+
+	for (int i = 1; i < m_life; i++)
+	{
+		SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MEDAL)->RenderWithoutTransform(
+			spriteHandle,
+			D3DXVECTOR2((float)(32 * i), 408),
+			ESpriteEffect::None,
+			0.0f,
+			1.0f,
+			1.0f);
+	}
+	D3DXCOLOR color;
+	if (isInvulnerable)
+	{
+		color = D3DCOLOR_ARGB(m_colorAlpha, 0xff, 0xff, 0xff);
+	}
+	else
+	{
+		color = D3DCOLOR_ARGB(0xff, 0xff, 0xff, 0xff);
+	}
 	if (m_Direction == eDirection::RIGHT)
 	{
 		m_RamboSprite->Render(spriteHandle,
@@ -1661,7 +1754,8 @@ void Rambo::Render(SPRITEHANDLE spriteHandle)
 			ESpriteEffect::None, 
 			0.0f,
 			1.0f,
-			1.0f);
+			1.0f,
+			color);
 		return;
 	}
 	if (m_Direction == eDirection::LEFT)
@@ -1671,7 +1765,8 @@ void Rambo::Render(SPRITEHANDLE spriteHandle)
 			ESpriteEffect::Horizontally,
 			0.0f,
 			1.0f,
-			1.0f);
+			1.0f,
+			color);
 		return;
 	}
 }
