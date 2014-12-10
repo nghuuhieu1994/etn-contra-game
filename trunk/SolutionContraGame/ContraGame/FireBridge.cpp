@@ -17,17 +17,7 @@ void FireBridge::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	//m_fire_1 = NULL;
-	//m_fire_2 = NULL;
-	/*m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x, m_Position.y + 5, 1), eDirection::LEFT, eObjectID::FIRE);
-	m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x, m_Position.y + 5, 1), eDirection::RIGHT, eObjectID::FIRE);
-	m_fire_1->Initialize();
-	m_fire_2->Initialize();*/
-
-	/*m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x - 50, m_Position.y + 10, 1), eDirection::LEFT, eObjectID::FIRE);
-	m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x + 50, m_Position.y + 10, 1), eDirection::RIGHT, eObjectID::FIRE);
-	m_fire_1->Initialize();
-	m_fire_2->Initialize();*/
+	
 }
 
 void FireBridge::UpdateAnimation()
@@ -41,7 +31,7 @@ void FireBridge::UpdateAnimation()
 			m_fire_1->UpdateAnimation();
 			m_fire_2->UpdateAnimation();
 		}
-			m_Sprite->UpdateAnimation(1000);
+		m_Sprite->UpdateAnimation(1000);
 		break;
 	case STATE_DEATH:
 		break;
@@ -59,7 +49,7 @@ void FireBridge::UpdateMovement()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		if(m_fire_2 != NULL && m_fire_1  != NULL  )
+		if(m_fire_1 != NULL &&  m_fire_2 != NULL)
 		{
 			m_fire_1->UpdateMovement();
 			m_fire_2->UpdateMovement();
@@ -75,7 +65,7 @@ void FireBridge::Update()
 {
 	m_distanceY = m_Position.y - CGlobal::Rambo_Y  ;
 
-	if(abs(m_distanceY) <= 100)
+	if(m_distanceY <= 100)
 	{
 		m_fire_1 = new Fire(D3DXVECTOR3(m_Position.x - 45, m_Position.y + 10, 1), eDirection::RIGHT, eObjectID::FIRE);
 		m_fire_2 = new Fire(D3DXVECTOR3(m_Position.x + 45, m_Position.y + 10, 1), eDirection::LEFT, eObjectID::FIRE);
