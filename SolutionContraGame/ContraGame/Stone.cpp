@@ -19,9 +19,8 @@ void Stone::Initialize()
 	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
 	m_isJump = false;
-	m_TimeToJump = 0;
 	m_UpdateFlag = false;
-	flag = 1;
+	m_TimeToJump = 0;
 
 }
 

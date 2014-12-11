@@ -17,7 +17,7 @@ void Fire::Initialize()
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
 	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 110 , m_Position.x + 110, this->getBound().bottom);
-	m_Physic->setVelocityX(0.5f);
+	m_Physic->setVelocityX(0.3f);
 
 }
 

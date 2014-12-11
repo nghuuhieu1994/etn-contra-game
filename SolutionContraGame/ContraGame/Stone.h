@@ -11,7 +11,6 @@ private:
 	CSpriteDx9* sprite_exploision;
 	bool m_isJump;
 	int m_TimeToJump;
-	int flag;
 public:
 	Stone();
 	Stone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

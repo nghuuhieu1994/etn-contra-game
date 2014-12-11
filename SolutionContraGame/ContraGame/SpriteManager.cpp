@@ -149,6 +149,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\bridge\\Bridge2\\Bridge2.png", eSpriteID::SPRITE_FIRE_BRIDGE, 1, 1, 1);
 
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boom\\Boom.png", eSpriteID::SPRITE_BOOM, 1, 1, 1);
+
 	
 }
 
