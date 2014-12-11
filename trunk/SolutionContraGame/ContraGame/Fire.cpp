@@ -16,7 +16,7 @@ void Fire::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 70 , m_Position.x + 70, this->getBound().bottom);
+	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - 110 , m_Position.x + 110, this->getBound().bottom);
 	m_Physic->setVelocityX(0.5f);
 
 }
@@ -79,6 +79,7 @@ void Fire::Release()
 {
 	m_Sprite = 0;
 	sprite_main->Release();
+	SAFE_DELETE(sprite_main);
 }
 Fire::~Fire()
 {
