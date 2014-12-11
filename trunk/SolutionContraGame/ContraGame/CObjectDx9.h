@@ -52,7 +52,7 @@ public:
 	void			setPosition(D3DXVECTOR3 _position){ m_Position = _position; }
 	void			setPositionX(float _X){ m_Position.x = _X;}
 	void			setPositionY(float _Y){ m_Position.y = _Y;}
-
+	void			setPositionZ(float _Z){ m_Position.z = _Z;}
 	D3DXVECTOR3		getPositionVec3(){ return m_Position; }
 	D3DXVECTOR2		getPositionVec2(){ return D3DXVECTOR2(m_Position.x, m_Position.y); }
 
