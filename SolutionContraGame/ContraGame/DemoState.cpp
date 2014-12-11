@@ -8,8 +8,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_fireBridge = new FireBridge(D3DXVECTOR3(200, 30, 1), eDirection::RIGHT, eObjectID::FIRE_BRIDGE);
 	m_fireBridge->Initialize();
 
-	m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
-	m_Fire->Initialize();
+	/*m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
+	m_Fire->Initialize();*/
 
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
@@ -48,8 +48,8 @@ void DemoState::Update()
 	m_fireBridge->UpdateMovement();
 	m_fireBridge->Update();
 	
-	m_Fire->UpdateAnimation();
-	m_Fire->UpdateMovement();
+	/*m_Fire->UpdateAnimation();
+	m_Fire->UpdateMovement();*/
 	
 	if (m_Rambo->getRamboLife() == 0)
 	{
@@ -139,7 +139,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
-	m_Fire->Render(_lpDSpriteHandle);
+	//m_Fire->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
