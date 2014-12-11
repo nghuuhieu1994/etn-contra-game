@@ -35,9 +35,12 @@ void SnipperWaterHiding::Initialize()
 
 void SnipperWaterHiding::UpdateAnimation()
 {	
-	for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+	if(m_ListBullet.empty() != false)
 	{
-		(*i)->UpdateAnimation();
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->UpdateAnimation();
+		}
 	}
 	switch (m_ObjectState)
 	{
@@ -63,11 +66,13 @@ void SnipperWaterHiding::UpdateAnimation()
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
-	
+	if(m_ListBullet.empty() != true)
+	{
 		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
 		{
 			(*i)->UpdateCollision(checkingObject); 
 		}	
+	}
 	
 	if (isDead != true)
 	{
@@ -99,11 +104,13 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 
 void SnipperWaterHiding:: UpdateMovement()
 {
-	for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+	if(m_ListBullet.empty() != true)
 	{
-		(*i)->UpdateMovement();
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->UpdateMovement();
+		}
 	}
-
 }
 
 void SnipperWaterHiding::Update()
@@ -113,6 +120,7 @@ void SnipperWaterHiding::Update()
 		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); )
 		{
 			(*i)->Update();
+
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
 				(*i)->Release();
@@ -142,7 +150,6 @@ void SnipperWaterHiding::Update()
 			if(isShoot == true)
 			{
 				Shoot();
-				//bullet->Update();
 				isShoot = false;
 			}
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();

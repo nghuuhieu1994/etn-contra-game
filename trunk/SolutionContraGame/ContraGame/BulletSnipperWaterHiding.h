@@ -5,15 +5,14 @@
 #include "BulletPoolManager.h"
 #include "DynamicObject.h"
 
-class BulletSnipperWaterHiding : public Bullet
+class BulletSnipperWaterHiding : public DynamicObject
 {
 private:
 	CSpriteDx9* m_sprite_main;
 	CSpriteDx9* m_spite_dead;
-	BulletSnipperWaterHiding* bullet1;
-	BulletSnipperWaterHiding* bullet2;
-	BulletSnipperWaterHiding* bullet3;
-	bool m_isDead;
+	BulletBoss1* bullet1;
+	BulletBoss1* bullet2;
+	BulletBoss1* bullet3;
 	int m_TimeToBoom;
 public:
 	BulletSnipperWaterHiding();

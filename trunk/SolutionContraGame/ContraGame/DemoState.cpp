@@ -11,11 +11,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_snipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3(400, 30, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
 	m_snipperWaterHiding->Initialize();
 
-	m_boom = new Boom(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::BOOM);
-	m_boom->Initialize();
+	//m_boom = new Boom(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::BOOM);
+	//m_boom->Initialize();
 
-	m_Tank = new Tank(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT, eObjectID::TANK);
-	m_Tank->Initialize();
+	//m_Tank = new Tank(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT, eObjectID::TANK);
+	//m_Tank->Initialize();
 
 	/*m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
 	m_Fire->Initialize();*/
@@ -62,14 +62,14 @@ void DemoState::Update()
 	m_snipperWaterHiding->UpdateMovement();
 	m_snipperWaterHiding->Update();
 
-	m_boom->UpdateAnimation();
+	/*m_boom->UpdateAnimation();
 	m_boom->UpdateMovement();
 	m_boom->Update();
 	
 	m_Tank->UpdateAnimation();
 	m_Tank->UpdateMovement();
 	m_Tank->Update();
-	
+	*/
 	
 	/*m_Fire->UpdateAnimation();
 	m_Fire->UpdateMovement();*/
@@ -128,7 +128,7 @@ void DemoState::Update()
 			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
 		}
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		m_boom->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		//m_boom->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		m_snipperWaterHiding->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
@@ -147,7 +147,7 @@ void DemoState::Update()
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
 		m_snipperWaterHiding->UpdateCollision(*i);
-		m_Tank->UpdateCollision(*i);
+		//m_Tank->UpdateCollision(*i);
 		
 	}
 
@@ -180,8 +180,8 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	//m_Roshan->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
 	m_snipperWaterHiding->Render(_lpDSpriteHandle);
-	m_boom->Render(_lpDSpriteHandle);
-	m_Tank->Render(_lpDSpriteHandle);
+	//m_boom->Render(_lpDSpriteHandle);
+	//m_Tank->Render(_lpDSpriteHandle);
 	//m_Fire->Render(_lpDSpriteHandle);
 }
 
