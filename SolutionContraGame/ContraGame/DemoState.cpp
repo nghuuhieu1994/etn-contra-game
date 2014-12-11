@@ -32,7 +32,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_backgroundEffect.Initialize(map);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
-
+	this->m_Roshan = new Roshan(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
+	this->m_Roshan->Initialize();
 	
 
 }
@@ -95,7 +96,14 @@ void DemoState::Update()
 	{
 		if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
 		{
-			SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
+			for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
+			{
+				if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
+				{
+					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(0.8f);
+				}
+			}
+			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
 		}
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
@@ -123,6 +131,10 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 
+	m_Roshan->Update();
+	m_Roshan->UpdateAnimation();
+	m_Roshan->UpdateMovement();
+
 	//m_Tinker->UpdateAnimation();
 	//m_Tinker->Update();
 	
@@ -138,6 +150,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
+	m_Roshan->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
 	//m_Fire->Render(_lpDSpriteHandle);
 }

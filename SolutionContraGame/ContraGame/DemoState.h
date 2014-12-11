@@ -42,6 +42,7 @@
 #include "FireBridge.h"
 #include "BigCapsuleBoss.h"
 #include "EnemyRunShooting.h"
+#include "RoShan.h"
 //#define HIEU
 
 using namespace std;
@@ -55,7 +56,7 @@ private:
 	FireBridge*			m_fireBridge;
 	Fire*				m_Fire;
 	int					map;
-
+	Roshan*				m_Roshan;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}

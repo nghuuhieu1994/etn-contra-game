@@ -22,7 +22,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeAddBullet				= 1000;
 	m_DirectAttack				= eDirectAttack::AD_RIGHT;
 	m_timeDelayRunAndShootRun	= 0;
-	m_SkillBullet				= eIDSkillBullet::L_SKILL_BULLET;
+	m_SkillBullet				= eIDSkillBullet::DEFAULT_SKILL_BULLET;
 	isSetVelocityDeathState		= false;
 	m_life						= 3;
 	m_timeDeath					= 0;
@@ -1680,7 +1680,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 					break;
 				#pragma endregion
 				case eObjectID::BULLET_ENEMY:
-				//case eObjectID::BULLET_BOSS1:
+				case eObjectID::BULLET_BOSS1:
 					if (isInvulnerable)
 					{
 						break;
