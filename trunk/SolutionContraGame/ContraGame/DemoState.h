@@ -42,6 +42,7 @@
 #include "FireBridge.h"
 #include "BigCapsuleBoss.h"
 #include "EnemyRunShooting.h"
+#include "Boom.h"
 #include "RoShan.h"
 //#define HIEU
 
@@ -54,7 +55,8 @@ private:
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
 	FireBridge*			m_fireBridge;
-	Fire*				m_Fire;
+	SnipperWaterHiding* m_snipperWaterHiding;
+	Boom*				m_boom;
 	int					map;
 	Roshan*				m_Roshan;
 public:

@@ -10,7 +10,9 @@ SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direct
 
 void SnipperWaterHiding::Shoot()
 {
-	BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 3.0f), 100);
+	//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_SNIPPER_WATER_HIDING, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 3.0f), 100);
+	m_ListBullet.push_back(new BulletSnipperWaterHiding( D3DXVECTOR3(m_Position.x, m_Position.y + 14, m_Position.z - 0.5f), eDirection::TOP, eObjectID::BULLET_SNIPPER_WATER_HIDING));
+	m_ListBullet.back()->Initialize();
 }
 
 D3DXVECTOR3 SnipperWaterHiding::GetStartPositionOfBullet()
@@ -26,6 +28,9 @@ void SnipperWaterHiding::Initialize()
 	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
 	m_Position.z = 0.4f;
+	//bullet = new BulletSnipperWaterHiding(D3DXVECTOR3(m_Position.x + 10, m_Position.y + 14, 1), eDirection::RIGHT, eObjectID::BULLET_SNIPPER_WATER_HIDING);
+	//bullet->Initialize();
+	
 }
 
 void SnipperWaterHiding::UpdateAnimation()
@@ -37,6 +42,7 @@ void SnipperWaterHiding::UpdateAnimation()
 		break;
 	case STATE_SHOOTING:
 		m_Sprite->getAnimationAction()->setCurrentFrame(1);
+		//bullet->UpdateAnimation();
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
@@ -47,13 +53,22 @@ void SnipperWaterHiding::UpdateAnimation()
 		break;
 	default:
 		break;
-	}	
-	//m_Sprite->UpdateAnimation(5000);
+	}
 }
 
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
+	if(isDead == false)
+	{
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+			{
+				(*i)->Update();
+				(*i)->UpdateAnimation();
+				(*i)->UpdateMovement();
+				//(*i)->UpdateCollision(checkingObject); 
+			}
+	}
 	if (isDead != true)
 	{
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
@@ -84,10 +99,28 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 
 void SnipperWaterHiding:: UpdateMovement()
 {
+	//bullet->UpdateMovement();
+
 }
 
 void SnipperWaterHiding::Update()
 {
+	if (m_ListBullet.empty() == false)
+	{
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); )
+		{
+			if ((*i)->getObjectState() == STATE_DEATH)
+			{
+				(*i)->Release();
+				SAFE_DELETE(*i);
+				i = m_ListBullet.erase(i);
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
 	if(CGlobal::Rambo_Y > m_Position.y)
 	{
 		switch (m_ObjectState)
@@ -105,7 +138,8 @@ void SnipperWaterHiding::Update()
 			if(isShoot == true)
 			{
 				Shoot();
-				isShoot = false;
+				//bullet->Update();
+				//isShoot = false;
 			}
 			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if(m_TimeChangeState > 1300)
@@ -133,6 +167,13 @@ void SnipperWaterHiding::Update()
 }
 void SnipperWaterHiding::Render(SPRITEHANDLE spriteHandle)
 {
+	if (m_ListBullet.empty() != true)
+	{
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->Render(spriteHandle);
+		}
+	}
 	if(m_Sprite != 0)
 	{
 		m_Sprite->Render(spriteHandle, 
@@ -142,14 +183,29 @@ void SnipperWaterHiding::Render(SPRITEHANDLE spriteHandle)
 						m_Sprite->getScale(), 
 						m_Position.z);
 	}
+	//bullet->Render(spriteHandle);
+	/*if(isShoot == true)
+	{
+		bullet->Render(spriteHandle);
+	}*/
 }
 
 
 void SnipperWaterHiding::Release()
 {
+	if (m_ListBullet.empty() == false)
+	{
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->Release();
+			SAFE_DELETE((*i));
+		}
+		m_ListBullet.clear();
+	}
 	m_Sprite = 0;
 	sprite_alive_hiding->Release();
 	sprite_dead->Release();
+	//bullet->Release();
 	SAFE_DELETE(sprite_alive_hiding);
 	SAFE_DELETE(sprite_dead);
 }

@@ -5,11 +5,14 @@
 #include "Bullet.h"
 #include "BulletPool.h"
 #include "BulletPoolManager.h"
+#include "BulletSnipperWaterHiding.h"
 
 class SnipperWaterHiding : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive_hiding;
+	//BulletSnipperWaterHiding* bullet;
+	list<BulletSnipperWaterHiding*> m_ListBullet;
 
 	int _distance_Y;
 	int _distance_X;

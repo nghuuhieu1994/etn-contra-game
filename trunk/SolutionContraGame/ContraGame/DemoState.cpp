@@ -8,6 +8,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_fireBridge = new FireBridge(D3DXVECTOR3(200, 30, 1), eDirection::RIGHT, eObjectID::FIRE_BRIDGE);
 	m_fireBridge->Initialize();
 
+	m_snipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3(400, 30, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
+	m_snipperWaterHiding->Initialize();
+
+	m_boom = new Boom(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::BOOM);
+	m_boom->Initialize();
+
 	/*m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
 	m_Fire->Initialize();*/
 
@@ -48,6 +54,15 @@ void DemoState::Update()
 	m_fireBridge->UpdateAnimation();
 	m_fireBridge->UpdateMovement();
 	m_fireBridge->Update();
+
+	m_snipperWaterHiding->UpdateAnimation();
+	m_snipperWaterHiding->UpdateMovement();
+	m_snipperWaterHiding->Update();
+
+	m_boom->UpdateAnimation();
+	m_boom->UpdateMovement();
+	m_boom->Update();
+	
 	
 	/*m_Fire->UpdateAnimation();
 	m_Fire->UpdateMovement();*/
@@ -106,6 +121,7 @@ void DemoState::Update()
 			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
 		}
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		m_boom->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
@@ -122,6 +138,7 @@ void DemoState::Update()
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
+		
 	}
 
 	#pragma endregion	
@@ -152,6 +169,8 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_Roshan->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
+	m_snipperWaterHiding->Render(_lpDSpriteHandle);
+	m_boom->Render(_lpDSpriteHandle);
 	//m_Fire->Render(_lpDSpriteHandle);
 }
 

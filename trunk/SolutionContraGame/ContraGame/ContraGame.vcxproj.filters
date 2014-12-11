@@ -230,6 +230,9 @@
     <ClCompile Include="BossPunch.cpp">
       <Filter>GameObject\Boss\BossMap2</Filter>
     </ClCompile>
+    <ClCompile Include="Boom.cpp">
+      <Filter>GameObject\Items\Boom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -513,6 +516,9 @@
     <ClInclude Include="BossPunch.h">
       <Filter>GameObject\Boss\BossMap2</Filter>
     </ClInclude>
+    <ClInclude Include="Boom.h">
+      <Filter>GameObject\Items\Boom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -685,6 +691,9 @@
     </Filter>
     <Filter Include="GameObject\Boss\BossBullet">
       <UniqueIdentifier>{1566d0de-248c-4f04-9576-de5e989586ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\Boom">
+      <UniqueIdentifier>{952c675b-388a-4386-b0ee-1e841b214dd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
