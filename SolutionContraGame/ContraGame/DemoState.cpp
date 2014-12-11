@@ -14,6 +14,9 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_boom = new Boom(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::BOOM);
 	m_boom->Initialize();
 
+	m_Tank = new Tank(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT, eObjectID::TANK);
+	m_Tank->Initialize();
+
 	/*m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
 	m_Fire->Initialize();*/
 
@@ -38,8 +41,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_backgroundEffect.Initialize(map);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
-	this->m_Roshan = new Roshan(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
-	this->m_Roshan->Initialize();
+	//this->m_Roshan = new Roshan(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
+	//this->m_Roshan->Initialize();
 	
 
 }
@@ -62,6 +65,10 @@ void DemoState::Update()
 	m_boom->UpdateAnimation();
 	m_boom->UpdateMovement();
 	m_boom->Update();
+	
+	m_Tank->UpdateAnimation();
+	m_Tank->UpdateMovement();
+	m_Tank->Update();
 	
 	
 	/*m_Fire->UpdateAnimation();
@@ -122,6 +129,7 @@ void DemoState::Update()
 		}
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		m_boom->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		m_snipperWaterHiding->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
@@ -138,6 +146,8 @@ void DemoState::Update()
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
+		m_snipperWaterHiding->UpdateCollision(*i);
+		m_Tank->UpdateCollision(*i);
 		
 	}
 
@@ -148,9 +158,9 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 
-	m_Roshan->Update();
+	/*m_Roshan->Update();
 	m_Roshan->UpdateAnimation();
-	m_Roshan->UpdateMovement();
+	m_Roshan->UpdateMovement();*/
 
 	//m_Tinker->UpdateAnimation();
 	//m_Tinker->Update();
@@ -167,10 +177,11 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
-	m_Roshan->Render(_lpDSpriteHandle);
+	//m_Roshan->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
 	m_snipperWaterHiding->Render(_lpDSpriteHandle);
 	m_boom->Render(_lpDSpriteHandle);
+	m_Tank->Render(_lpDSpriteHandle);
 	//m_Fire->Render(_lpDSpriteHandle);
 }
 
