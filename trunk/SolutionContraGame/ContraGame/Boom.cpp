@@ -12,7 +12,7 @@ void Boom::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 	m_Direction = eDirection::BOTTOM;
-	sprite_exploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
+	sprite_exploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOOM_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOOM));
 	rotate = 10.0;
 	sprite_main->setRotate(rotate);
@@ -39,6 +39,8 @@ void Boom::UpdateAnimation()
 		break;
 	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_exploision;
+		m_Sprite->getAnimation()->setIndexStart(0);
+		m_Sprite->getAnimation()->setIndexEnd(2);
 		m_Sprite->UpdateAnimation(250);
 		break;
 	default:
@@ -76,7 +78,6 @@ void Boom::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
-		//m_Physic->setVelocityY(-1.5f);
 		m_Physic->UpdateMovement(&m_Position);
 		break;
 		

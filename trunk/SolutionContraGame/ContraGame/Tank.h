@@ -11,6 +11,7 @@ private:
 	CSpriteDx9* sprite_dead;
 	bool m_isShoot;
 	int m_distance_X;
+	float GetAnpla();
 	void Shoot();
 	D3DXVECTOR3 GetStartPosition();
 	int m_TimeToShoot;
