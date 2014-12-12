@@ -44,6 +44,7 @@
 #include "EnemyRunShooting.h"
 #include "Boom.h"
 #include "RoShan.h"
+#include "WeaponCapsuleVer2.h"
 //#define HIEU
 
 using namespace std;

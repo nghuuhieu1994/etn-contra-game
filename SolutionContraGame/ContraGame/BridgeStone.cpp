@@ -38,14 +38,6 @@ void BridgeStone::UpdateAnimation()
 }
 void BridgeStone::UpdateCollision(Object* checkingObject)
 {
-	/*if (checkingObject->getID() == eObjectID::RAMBO)
-	{ 
-		IDDirection collisionDirection = this->m_Collision->CheckCollision(this, checkingObject);
-		if (collisionDirection == IDDirection::DIR_BOTTOM)
-		{
-
-		}
-	}*/
 }
 
 void BridgeStone::UpdateMovement()

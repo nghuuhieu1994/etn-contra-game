@@ -19,7 +19,7 @@ void BigStone::Initialize()
 	m_Position.z = 1.0f;
 	m_AttackCounter = 8;
 	m_isJump = false;
-	m_UpdateFlag = false;
+	m_flag = false;
 	m_TimeToJump = 0;
 }
 
@@ -107,8 +107,8 @@ void BigStone::UpdateCollision(Object* checkingObject)
 			case eObjectID::TILE_BASE:
 				if(collisionDirection == IDDirection::DIR_TOP)
 				{
-					m_UpdateFlag = !m_UpdateFlag;
-					if(m_UpdateFlag == true)
+					m_flag = !m_flag;
+					if(m_flag == true)
 					{
 						m_ObjectState = eObjectState::STATE_JUMP;
 						m_isJump = true;

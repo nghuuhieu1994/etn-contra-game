@@ -14,13 +14,10 @@ void Boom::Initialize()
 	m_Direction = eDirection::BOTTOM;
 	sprite_exploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOOM_EXPLOISION));
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOOM));
-	rotate = 10.0;
+	rotate = 10.0f;
 	sprite_main->setRotate(rotate);
 	m_Sprite = sprite_main;
-	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	m_isJump = false;
-	m_UpdateFlag = false;
 	m_Physic->setVelocityX(0.3f);
 	m_Physic->setVelocityY(0.6f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));

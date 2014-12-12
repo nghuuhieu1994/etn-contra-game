@@ -10,6 +10,7 @@ private:
 	CSpriteDx9* sprite_main;
 	CSpriteDx9* sprite_exploision;
 	bool m_isJump;
+	bool m_flag;
 	int m_TimeToJump;
 public:
 	BigStone();
