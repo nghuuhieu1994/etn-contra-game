@@ -17,14 +17,14 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	fLog >> RamboStartPosition.x;
 	fLog >> RamboStartPosition.y;
 
-	m_Rambo = new Rambo(D3DXVECTOR3(RamboStartPosition.x, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(20, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	Camera::getInstance()->Reset();
 	Camera::getInstance()->setLockWidth(lockWidth);
 	Camera::getInstance()->setLockHeight(lockHeight);
 
-	string mapPath = "resources\\Map\\" + to_string(map) +"\\"+ to_string(map) +".xml";
-	m_backgroundEffect.Initialize(map);
-	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
+	string mapPath = "resources\\Map\\" + to_string(1) +"\\"+ to_string(1) +".xml";
+	m_backgroundEffect.Initialize(1);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(1));
 	BulletPoolManager::getInstance()->Initialize();
 }
 
@@ -83,11 +83,21 @@ void DemoState::Update()
 			{
 				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
 				{
-					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(0.8f);
+					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(1.0f);
 				}
 			}
 			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
 		}
+		if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::WEAPON_CAPSULE)
+		{
+			WeaponCapsule* temp = (WeaponCapsule*)m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]];
+			if(temp->m_IsUpdated == false)
+			{
+				(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionX(m_Rambo->getPositionVec2().x - 200);
+				temp->m_IsUpdated = true;
+			}
+		}
+
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}

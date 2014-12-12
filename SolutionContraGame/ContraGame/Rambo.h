@@ -58,6 +58,10 @@ private:
 	Object* m_ignoreCollisionObject;
 	RamboSprite* m_RamboSprite;
 	RECT m_RectangleCheckingObjectBelow;
+
+	float prePosX;
+	float finalPosX;
+
 	void SetFallFlag();
 	void SetVelocityXZero();
 	int CheckOutBottomCamera();

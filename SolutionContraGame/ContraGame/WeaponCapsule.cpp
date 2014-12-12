@@ -19,6 +19,7 @@ void WeaponCapsule::Initialize()
 	m_Physic->setVelocity(D3DXVECTOR2(2.0f, 2.0f));
 	m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.08f));
 	m_ObjectState = STATE_ALIVE_MOVE;
+	m_IsUpdated = false;
 }
 
 void WeaponCapsule::UpdateAnimation()

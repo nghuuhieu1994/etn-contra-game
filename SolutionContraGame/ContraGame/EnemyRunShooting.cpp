@@ -230,7 +230,7 @@ void EnemyRunShooting::Update()
 			break;
 		case STATE_BEFORE_DEATH:
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 300)
+			if (m_TimeChangeState > 1500)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_DEATH;

@@ -29,7 +29,7 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 
 		for(int i = 0; i < (int)node->mListObjectCollision.size(); ++i)
 		{
-			if(mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_DEATH)
+			if(mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_DEATH && mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_BOSS_DEATH)
 			{
 				for( j = 0; j < (int)mListObjectCollisionInView.size(); ++j)
 				{
@@ -86,6 +86,8 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 	{
 		CMarkup xml;
 		xml.Load(content);
+		xml.FindElem("Map");
+		xml.IntoElem();
 		xml.FindElem("Node");
 		xml.FindElem();
 		if(node == NULL)
@@ -299,6 +301,24 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BOOM)
 						{
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Boom(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_CAPSULE_BOSS)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigCapsuleBoss(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::FIRE_BRIDGE)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new FireBridge(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ENEMY_RUN_SHOOTING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new EnemyRunShooting(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}

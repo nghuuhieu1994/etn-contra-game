@@ -13,8 +13,10 @@ class WeaponCapsule : public DynamicObject
 {
 	CSpriteDx9*		m_deadSprite;
 	eObjectID		m_IDWeaponry;
+
 public:
 	WeaponCapsule();
+	bool			m_IsUpdated;
 	Physic*			getPhysic() const { return m_Physic; }
 	WeaponCapsule(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, eObjectID idWeaponry);
 	void Initialize();

@@ -22,7 +22,9 @@
 #include "BridgeStone.h"
 #include "BigStone.h"
 #include "Boom.h"
-
+#include "BigCapsuleBoss.h"
+#include "FireBridge.h"
+#include "EnemyRunShooting.h"
 class Node
 {
 private:
