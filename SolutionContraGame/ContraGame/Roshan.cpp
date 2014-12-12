@@ -60,7 +60,7 @@ void Roshan::UpdateCollision(Object* checkingObject)
 {
 	if (!isDead)
 	{
-
+		mRoshanHead->UpdateCollision(checkingObject);
 	}
 }
 

@@ -233,6 +233,12 @@
     <ClCompile Include="Boom.cpp">
       <Filter>GameObject\Items\Boom</Filter>
     </ClCompile>
+    <ClCompile Include="BossArm.cpp">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHand.cpp">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -518,6 +524,12 @@
     </ClInclude>
     <ClInclude Include="Boom.h">
       <Filter>GameObject\Items\Boom</Filter>
+    </ClInclude>
+    <ClInclude Include="BossArm.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHand.h">
+      <Filter>GameObject\Boss\BossMap2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

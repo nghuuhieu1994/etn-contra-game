@@ -1,22 +1,23 @@
-#include "BossPunch.h"
+#include "BossArm.h"
 
-BossPunch::BossPunch(){}
-BossPunch::BossPunch(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+BossArm::BossArm() {}
+
+BossArm::BossArm(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 : DynamicObject(_position, _direction, _objectID)
 {
 	angle = 0.0f;
 }
 
-void BossPunch::Initialize()
+void BossArm::Initialize()
 {
-	m_AttackCounter = 100;
-	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_PUNCH_BOSS));
+	m_AttackCounter = 0;
+	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ARM_BOSS));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 	m_Sprite = spriteAlive;
 }
 
-void BossPunch::UpdateAnimation()
+void BossArm::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
@@ -38,7 +39,7 @@ void BossPunch::UpdateAnimation()
 	}
 }
 
-void BossPunch::UpdateCollision(Object* checkingObject)
+void BossArm::UpdateCollision(Object* checkingObject)
 {
 	if (!isDead)
 	{
@@ -48,7 +49,8 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 			if (collideDirection != IDDirection::DIR_NONE)
 			{
-				Bullet* tempBullet = (Bullet*) (checkingObject);
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();				
+				/*Bullet* tempBullet = (Bullet*) (checkingObject);
 				if (tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
 				{
 					if (m_AttackCounter > 0)
@@ -79,18 +81,19 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
+				*/
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
 	}
 }
 
-void BossPunch::UpdateMovement()
+void BossArm::UpdateMovement()
 {
 
 }
 
-void BossPunch::Update()
+void BossArm::Update()
 {
 	switch (m_ObjectState)
 	{
@@ -115,7 +118,7 @@ void BossPunch::Update()
 	}
 }
 
-void BossPunch::Render(SPRITEHANDLE spriteHandle)
+void BossArm::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_Sprite)
 	{
@@ -128,7 +131,7 @@ void BossPunch::Render(SPRITEHANDLE spriteHandle)
 	}
 }
 
-void BossPunch::Release()
+void BossArm::Release()
 {
 	spriteAlive->Release();
 	spriteDead->Release();
@@ -137,7 +140,4 @@ void BossPunch::Release()
 	m_Sprite = 0;
 }
 
-BossPunch::~BossPunch()
-{
-
-}
+BossArm::~BossArm(){}

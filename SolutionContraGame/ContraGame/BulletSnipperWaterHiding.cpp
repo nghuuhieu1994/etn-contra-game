@@ -71,7 +71,7 @@ void BulletSnipperWaterHiding::Update()
 	case STATE_BEFORE_DEATH:
 		if(isDead)
 		{
-			m_TimeChangeState = CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if(m_TimeChangeState > 1500)
 			{
 				m_ObjectState = eObjectState::STATE_DEATH;

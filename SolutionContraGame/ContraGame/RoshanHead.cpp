@@ -158,7 +158,7 @@ void RoshanHead::Update()
 		{
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
-				(*i)->Release();
+				//(*i)->Release();
 				SAFE_DELETE(*i);
 				i = mListRoshanBullet.erase(i);
 				//mListRoshanBullet.remove( (BossBullet*)*i );

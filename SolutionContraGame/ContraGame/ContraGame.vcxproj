@@ -76,6 +76,8 @@
   <ItemGroup>
     <ClInclude Include="BigCapsuleBoss.h" />
     <ClInclude Include="Boom.h" />
+    <ClInclude Include="BossArm.h" />
+    <ClInclude Include="BossHand.h" />
     <ClInclude Include="BridgeTile.h" />
     <ClInclude Include="BossBullet.h" />
     <ClInclude Include="BulletBoss1.h" />
@@ -173,6 +175,8 @@
   <ItemGroup>
     <ClCompile Include="BigCapsuleBoss.cpp" />
     <ClCompile Include="Boom.cpp" />
+    <ClCompile Include="BossArm.cpp" />
+    <ClCompile Include="BossHand.cpp" />
     <ClCompile Include="BridgeTile.cpp" />
     <ClCompile Include="BossBullet.cpp" />
     <ClCompile Include="BulletBoss1.cpp" />
