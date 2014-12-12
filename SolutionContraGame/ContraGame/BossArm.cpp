@@ -90,7 +90,7 @@ void BossArm::UpdateCollision(Object* checkingObject)
 
 void BossArm::UpdateMovement()
 {
-
+	m_Physic->UpdateMovement(&m_Position);
 }
 
 void BossArm::Update()
@@ -133,11 +133,11 @@ void BossArm::Render(SPRITEHANDLE spriteHandle)
 
 void BossArm::Release()
 {
+	m_Sprite = 0;
 	spriteAlive->Release();
 	spriteDead->Release();
 	SAFE_DELETE(spriteAlive);
 	SAFE_DELETE(spriteDead);
-	m_Sprite = 0;
 }
 
 BossArm::~BossArm(){}

@@ -59,17 +59,6 @@ void SnipperWaterHiding::UpdateAnimation()
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
-	if (m_ListBullet.empty() != true)
-	{
-		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
-		{
-			(*i)->UpdateAnimation();
-			(*i)->UpdateMovement();
-			(*i)->Update();
-			(*i)->UpdateCollision(checkingObject);
-		}
-	}
-
 	if (isDead != true)
 	{
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
@@ -108,6 +97,10 @@ void SnipperWaterHiding::Update()
 	{
 		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); )
 		{
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+			(*i)->Update();
+			
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
 				SAFE_DELETE(*i);

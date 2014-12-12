@@ -98,7 +98,6 @@
     <ClInclude Include="EnemyRunShooting.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RoShan.h" />
-    <ClInclude Include="RoshanHand.h" />
     <ClInclude Include="RoshanHead.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="SnipperWaterHiding.h" />

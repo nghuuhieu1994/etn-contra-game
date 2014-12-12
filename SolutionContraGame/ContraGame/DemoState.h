@@ -56,11 +56,8 @@ private:
 	BackgroundEffect	m_backgroundEffect;
 	FireBridge*			m_fireBridge;
 	SnipperWaterHiding* m_snipperWaterHiding;
-	Boom*				m_boom;
-	Tank*				m_Tank;
 
 	int					map;
-	Roshan*				m_Roshan;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}

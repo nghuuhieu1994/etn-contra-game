@@ -3,8 +3,9 @@
 
 #include "DynamicObject.h"
 #include "RoshanHead.h"
+#include "BossHand.h"
 
-class Roshan : DynamicObject
+class Roshan : public DynamicObject
 {
 private:
 	RoshanHead*		mRoshanHead;
@@ -12,6 +13,7 @@ private:
 	CSpriteDx9*		spriteDead;
 	CSpriteDx9*		spriteExploision;
 	float mOpacity;
+
 public:
 	Roshan();
 	Roshan(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

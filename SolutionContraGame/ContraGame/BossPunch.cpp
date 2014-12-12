@@ -87,7 +87,7 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 
 void BossPunch::UpdateMovement()
 {
-
+	m_Physic->UpdateMovement(&m_Position);
 }
 
 void BossPunch::Update()
@@ -130,11 +130,11 @@ void BossPunch::Render(SPRITEHANDLE spriteHandle)
 
 void BossPunch::Release()
 {
+	m_Sprite = 0;
 	spriteAlive->Release();
 	spriteDead->Release();
 	SAFE_DELETE(spriteAlive);
 	SAFE_DELETE(spriteDead);
-	m_Sprite = 0;
 }
 
 BossPunch::~BossPunch()

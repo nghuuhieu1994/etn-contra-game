@@ -5,20 +5,17 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_fireBridge = new FireBridge(D3DXVECTOR3(200, 30, 1), eDirection::RIGHT, eObjectID::FIRE_BRIDGE);
-	m_fireBridge->Initialize();
+	//Punch = new BossPunch(D3DXVECTOR3(100, 100, 1), eDirection::LEFT, eObjectID::ROSHAN_HAND);
+	//Punch->Initialize();
+
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	Arm[i] = new BossArm(D3DXVECTOR3(100, 100, 1), eDirection::LEFT, eObjectID::ROSHAN_HAND);
+	//	Arm[i]->Initialize();
+	//}
 
 	m_snipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3(400, 30, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
 	m_snipperWaterHiding->Initialize();
-
-	//m_boom = new Boom(D3DXVECTOR3(300, 400, 1), eDirection::RIGHT, eObjectID::BOOM);
-	//m_boom->Initialize();
-
-	//m_Tank = new Tank(D3DXVECTOR3(400, 300, 1), eDirection::RIGHT, eObjectID::TANK);
-	//m_Tank->Initialize();
-
-	/*m_Fire = new Fire(D3DXVECTOR3(300, 50, 1), eDirection::RIGHT, eObjectID::FIRE);
-	m_Fire->Initialize();*/
 
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
@@ -41,11 +38,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_backgroundEffect.Initialize(map);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
-
-	this->m_Roshan = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
-	this->m_Roshan->Initialize();
-	//this->m_Roshan = new Roshan(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
-	//this->m_Roshan->Initialize();
 }
 
 void DemoState::HandleInput()
@@ -55,10 +47,6 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
-	m_fireBridge->UpdateAnimation();
-	m_fireBridge->UpdateMovement();
-	m_fireBridge->Update();
-
 	m_snipperWaterHiding->UpdateAnimation();
 	m_snipperWaterHiding->UpdateMovement();
 	m_snipperWaterHiding->Update();
@@ -104,13 +92,13 @@ void DemoState::Update()
 
 	#pragma endregion
 
-	for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
 		{
-			for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
+			for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 			{
-				if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
+				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
 				{
 					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(0.8f);
 				}
@@ -118,13 +106,12 @@ void DemoState::Update()
 			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
 		}
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		//m_boom->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		m_snipperWaterHiding->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 	}
 
 	
-	for(int i = 0; i < (int)m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 	{
 		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 
@@ -132,13 +119,11 @@ void DemoState::Update()
 
 	}
 
-	for(std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
+	for (std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
 	{
 		m_Quadtree->UpdateCollision(*i);
 		m_Rambo->UpdateCollision(*i);
 		m_snipperWaterHiding->UpdateCollision(*i);
-		//m_Tank->UpdateCollision(*i);
-		
 	}
 
 	#pragma endregion	
@@ -148,28 +133,69 @@ void DemoState::Update()
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
 
-	/*m_Roshan->Update();
-	m_Roshan->UpdateAnimation();
-	m_Roshan->UpdateMovement();*/
-	m_Roshan->UpdateCollision(m_Rambo);
+	/*Punch->getPhysic()->setVelocityX(0.5f);
+	Punch->getPhysic()->setVelocityY(0.5f);
+	if (Distance(Punch, Arm[3]) >= 32)
+	{
+		Arm[3]->getPhysic()->setVelocityX(Punch->getPhysic()->getVelocity().x);
+		Arm[3]->getPhysic()->setVelocityY(Punch->getPhysic()->getVelocity().y);
+	}
+	if (Distance(Arm[3], Arm[2]) > 32)
+	{
+		Arm[2]->getPhysic()->setVelocityX(Punch->getPhysic()->getVelocity().x);
+		Arm[2]->getPhysic()->setVelocityY(Punch->getPhysic()->getVelocity().y);
+	}
+	if (Distance(Arm[2], Arm[1]) >= 32)
+	{
+		Arm[1]->getPhysic()->setVelocityX(Punch->getPhysic()->getVelocity().x);
+		Arm[1]->getPhysic()->setVelocityY(Punch->getPhysic()->getVelocity().y);
+	}
+
+	if (Distance(Arm[1], Arm[0]) >= 32)
+	{
+		//isPopupDone = true;
+		Punch->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+		Punch->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+		for (int i = 0; i < 4; i++)
+		{
+			Arm[i]->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+			Arm[i]->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+		}
+	}
+
+
+
+	for (int i = 0; i < 4; i++)
+	{
+		Arm[i]->UpdateMovement();
+	}
+	Punch->UpdateMovement();
+	*/
+
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	//m_Quadtree->Render(_lpDSpriteHandle);
-	//m_backgroundEffect.Render(_lpDSpriteHandle);
+	m_Quadtree->Render(_lpDSpriteHandle);
+	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	//WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	//m_Rambo->Render(_lpDSpriteHandle);
-	m_Roshan->Render(_lpDSpriteHandle);
+	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+	//m_Roshan->Render(_lpDSpriteHandle);
 	//m_fireBridge->Render(_lpDSpriteHandle);
-	//m_snipperWaterHiding->Render(_lpDSpriteHandle);
+	m_snipperWaterHiding->Render(_lpDSpriteHandle);
 	//m_boom->Render(_lpDSpriteHandle);
-	m_fireBridge->Render(_lpDSpriteHandle);
+	//m_fireBridge->Render(_lpDSpriteHandle);
 	m_snipperWaterHiding->Render(_lpDSpriteHandle);
 	//m_boom->Render(_lpDSpriteHandle);
 	//m_Tank->Render(_lpDSpriteHandle);
-	//m_Fire->Render(_lpDSpriteHandle);
+	
+
+	/*for (int i = 0; i < 4; i++)
+	{
+		Arm[i]->Render(_lpDSpriteHandle);
+	}
+	Punch->Render(_lpDSpriteHandle);*/
 }
 
 void DemoState::Pause()

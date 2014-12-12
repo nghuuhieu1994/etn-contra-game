@@ -20,3 +20,11 @@ bool IsMovementObject(eObjectID id)
 	}
 	return false;
 }
+
+float Distance(Object* a, Object* b)
+{
+	float dx = abs(a->getPositionVec2().x - b->getPositionVec2().x);
+	float dy = abs(a->getPositionVec2().y - b->getPositionVec2().y);
+
+	return sqrtf(dx * dx + dy * dy);
+}
