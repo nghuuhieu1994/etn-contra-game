@@ -61,10 +61,10 @@ D3DXVECTOR3 SniperHiding::GetStartPositionOfBullet()
 	switch(m_DirectAttack)
 	{
 	case AD_LEFT:
-		return D3DXVECTOR3(m_Position.x + 40, m_Position.y + 24, 1);
+		return D3DXVECTOR3(m_Position.x - 30, m_Position.y + 8, 1);
 		break;
 	case AD_RIGHT:
-		return D3DXVECTOR3(m_Position.x - 40, m_Position.y + 24, 1);
+		return D3DXVECTOR3(m_Position.x + 30, m_Position.y + 8, 1);
 		break;
 	default:
 		break;	

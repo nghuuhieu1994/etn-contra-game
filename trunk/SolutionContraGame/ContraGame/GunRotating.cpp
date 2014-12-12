@@ -62,40 +62,40 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 	switch(m_DirectAttack)
 	{
 	case ZERO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 3, m_Position.y + 8, 0); 
+		return D3DXVECTOR3(m_Position.x , m_Position.y + 27, 0); 
 		break;
 	case ONE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 5, m_Position.y + 20, 0);
+		return D3DXVECTOR3(m_Position.x + 23, m_Position.y + 20, 0);
 		break;
 	case TWO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 15, m_Position.y + 5, 0);
+		return D3DXVECTOR3(m_Position.x + 20, m_Position.y + 18, 0);
 		break;
 	case THREE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 8, m_Position.y, 0);
+		return D3DXVECTOR3(m_Position.x + 27, m_Position.y , 0);
 		break;
 	case FOUR_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 10, m_Position.y , 0); 
+		return D3DXVECTOR3(m_Position.x + 10, m_Position.y - 7 , 0); 
 		break;
 	case FIVE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 3 , m_Position.y -5 , 0); 
+		return D3DXVECTOR3(m_Position.x + 10 , m_Position.y - 10 , 0); 
 		break;
 	case SIX_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 5 , m_Position.y - 15, 0); 
+		return D3DXVECTOR3(m_Position.x , m_Position.y - 27, 0); 
 		break;
 	case SEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x  - 5, m_Position.y - 20 , 0); 
+		return D3DXVECTOR3(m_Position.x  - 20, m_Position.y - 10 , 0); 
 		break;
 	case EIGHT_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 10, m_Position.y  , 0); 
+		return D3DXVECTOR3(m_Position.x - 20, m_Position.y - 7  , 0); 
 		break;
 	case NINE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 8, m_Position.y , 0); 
+		return D3DXVECTOR3(m_Position.x - 27 , m_Position.y , 0); 
 		break;
 	case TEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 10, 0);
+		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 18, 0);
 		break;
 	case ELEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 15, m_Position.y + 30, 0);
+		return D3DXVECTOR3(m_Position.x - 23, m_Position.y + 20, 0);
 		break;
 
 	default:
@@ -430,6 +430,7 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 				{
 					if (m_AttackCounter >= 4)
 					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						m_AttackCounter -= 4;
 					}
 				}
@@ -440,7 +441,6 @@ void GunRotating::UpdateCollision(Object* checkingObject)
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
-				//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
 	}

@@ -729,7 +729,7 @@ void Rambo::Shoot()
 		{
 			if(m_SkillBullet == eIDSkillBullet::DEFAULT_SKILL_BULLET)
 			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(2.0f, -2.0f), 3.7f);
+				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 2.0f), 100);
 			}
 			else if(m_SkillBullet == eIDSkillBullet::M_SKILL_BULLET)
 			{

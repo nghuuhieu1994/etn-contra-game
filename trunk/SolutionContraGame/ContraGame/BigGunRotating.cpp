@@ -200,6 +200,7 @@ void BigGunRotating::UpdateCollision(Object* checkingObject)
 				else if(tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
 				{
 					// L Bullet
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 					m_AttackCounter -= 4;
 				}
 
@@ -246,7 +247,7 @@ void BigGunRotating::Update()
 		if(_isShoot == true && _isAddBullet == true)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 300)
+			if(m_TimeChangeState > 500)
 			{
 				countBullet += 1;
 				m_TimeChangeState = 0;

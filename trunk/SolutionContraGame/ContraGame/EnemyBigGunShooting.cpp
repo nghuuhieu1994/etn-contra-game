@@ -32,8 +32,6 @@ void EnemyBigGunShooting::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
-		/*this->m_Sprite->getAnimationAction()->setIndexStart(0);
-		this->m_Sprite->getAnimationAction()->setIndexEnd(1);*/
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
 		m_Sprite->UpdateAnimation(10000);
 		break;
@@ -85,6 +83,7 @@ void EnemyBigGunShooting::UpdateCollision(Object* checkingObject)
 				{
 					if (m_AttackCounter >= 4)
 					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						m_AttackCounter -= 4;
 					}
 				}
