@@ -51,6 +51,8 @@ namespace MapEditor
 
         public bool CreateGridline()
         {
+            //ImportXml.getInstance().loadCanvas("map.xml", WorkspaceWorking);
+
             if (Support.GRIDLINE == true)
             {
                 GridLine.getInstance().CreateGridline();
@@ -175,17 +177,32 @@ namespace MapEditor
                             Support.listObject.Add(new OBJECT((int)ObjectType.NORMAL_OBJECT, (int)tempRect.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempRect.Width, (int)tempRect.Height)));
                         }
                     }
+                    else if (WorkspaceWorking.Children[i] is Rectangle && Support.IsImport == true)
+                    {
+                        ++Support.Count;
+                        Rectangle tempImage = (Rectangle)WorkspaceWorking.Children[i];
+
+                        if (tempImage.Tag != Support.gridLine)
+                        {
+                            OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)tempImage.Tag, Support.Count, new VECTOR2D((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i])), new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempImage.Width, (int)tempImage.Height));
+                            VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                            Support.listObject.Add(new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)tempImage.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempImage.Width, (int)tempImage.Height)));
+                        }
+                    }
                 }
+
+                Support.IsImport = false;
 
                 if (Support.quadTree == null)
                 {
-                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 6550, 6550, 6550));
+                    Support.quadTree = new CNode(0, PositionOfNode.TopLeft, new RECTANGLE(0, 8192, 8192, 8192));
                     for (int i = 0; i < Support.listObject.Count; ++i)
                     {
                         Support.quadTree.InsertObject(Support.quadTree, Support.listObject[i]);
                     }
                 }
                 ExportXml.getInstance().MWriter.WriteStartDocument();
+                ExportXml.getInstance().WriteInfomationForMap();
                 ExportXml.getInstance().writeQuadtreeToXml(Support.quadTree, ExportXml.getInstance().MWriter);
                 ExportXml.getInstance().MWriter.WriteEndDocument();
                 ExportXml.getInstance().MWriter.Close();
@@ -199,6 +216,24 @@ namespace MapEditor
             }
         }
 
+        public void ConvertToCanvasForFileExisted()
+        {
+            for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+            {
+                if (WorkspaceWorking.Children[i] is Rectangle)
+                {
+                    Rectangle tempRect = (Rectangle)WorkspaceWorking.Children[i];
+                    if ((int)tempRect.Tag == (int)ObjectID.TILE_BASE)
+                    {
+                        ++Support.Count;
+                        OBJECT temp = new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)tempRect.Tag, Support.Count, new VECTOR2D((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i])), new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempRect.Width, (int)tempRect.Height));
+                        VECTOR2D tempPosition = Support.ConvertCoordination(temp);
+                        Support.listObject.Add(new OBJECT((int)ObjectType.VIRTUAL_OBJECT, (int)tempRect.Tag, Support.Count, tempPosition, new RECTANGLE(tempPosition.cX, tempPosition.cY, (int)tempRect.Width, (int)tempRect.Height)));
+                    }
+                }
+            }
+        }
+
         public bool RemoveAllTileInCanvas()
         {
             if (WorkspaceWorking.Children.Count != 0)
@@ -209,15 +244,30 @@ namespace MapEditor
                     {
                         Image temp = new Image();
                         temp = (Image)(WorkspaceWorking.Children[i]);
-                        if ((int)temp.Tag == 0)
-                        {
+                        //if ((int)temp.Tag == 0)
+                        //{
                             WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
                             --i;
-                        }
+                        //}
                     }
                 }
 
                 return true;
+            }
+
+            if (WorkspaceWorking.Children.Count != 0)
+            {
+                for (int i = 0; i < WorkspaceWorking.Children.Count; ++i)
+                {
+                    if (WorkspaceWorking.Children[i] is Rectangle)
+                    {
+                        Rectangle rect = new Rectangle();
+                        rect = (Rectangle)(WorkspaceWorking.Children[i]);
+
+                        WorkspaceWorking.Children.Remove(WorkspaceWorking.Children[i]);
+                        --i;
+                    }
+                }
             }
             return false;
         }
@@ -261,7 +311,7 @@ namespace MapEditor
 
         public void move_to_update_position(object sender, MouseEventArgs m)
         {
-            if (isDragged == true && m.LeftButton == MouseButtonState.Pressed)
+            if (isDragged == true && m.LeftButton == MouseButtonState.Pressed && (Support.IsVirtualObject == true || Support.IsJump == true || Support.IsVirtualWater == true))
             {
                 if (rect != null)
                 {
@@ -451,7 +501,8 @@ namespace MapEditor
                             {
                                 Rectangle convertingObject = (Rectangle)(WorkspaceWorking.Children[i]);
                                 if (convertingObject.Tag == Support.virtualObject && ((int)cursorImage.Tag == (int)ObjectID.RAMBO ||
-                                                                (int)cursorImage.Tag == (int)ObjectID.SNIPER_STANDING))
+                                                                (int)cursorImage.Tag == (int)ObjectID.SNIPER_STANDING) ||  (int)cursorImage.Tag == (int)ObjectID.TANK
+                                ||  (int)cursorImage.Tag == (int)ObjectID.ENEMY_BIG_GUN_SHOOTING ||  (int)cursorImage.Tag == (int)ObjectID.ENEMY_RUN)
                                 {
                                     RECTANGLE tempRect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)convertingObject.Width, (int)convertingObject.Height);
                                     RECTANGLE collisionRect = RECTANGLE.IntersectCanvas(tempRect, cursor);
@@ -461,7 +512,8 @@ namespace MapEditor
                                     }
                                 }
                                 else if (convertingObject.Tag == Support.gridLine && ((int)cursorImage.Tag == (int)ObjectID.GUN_ROTATING ||
-                                                                     (int)cursorImage.Tag == (int)ObjectID.BIG_GUN_ROTATING) || (int)cursorImage.Tag == (int)ObjectID.BRIDGE)
+                                                                     (int)cursorImage.Tag == (int)ObjectID.BIG_GUN_ROTATING) || (int)cursorImage.Tag == (int)ObjectID.BRIDGE
+                                    || (int)cursorImage.Tag == (int)ObjectID.WEAPON_SENSOR || (int)cursorImage.Tag == (int)ObjectID.FIRE_BRIDGE || (int)cursorImage.Tag == (int)ObjectID.BIG_BOSS_1 || (int)cursorImage.Tag == (int)ObjectID.BIG_CAPSULE_BOSS)
                                 {
                                     RECTANGLE tempRect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)convertingObject.Width, (int)convertingObject.Height);
                                     RECTANGLE collisionRect = RECTANGLE.IntersectCanvas(tempRect, cursor);
@@ -494,6 +546,12 @@ namespace MapEditor
                     Canvas.SetTop(finalSelectedItem, (double)(positionTempOfSelectedFromListbox.Y));
                     WorkspaceWorking.Children.Add(finalSelectedItem);
                     isAdded = true;
+
+                    if ((int)finalSelectedItem.Tag == (int)ObjectID.WEAPON_CAPSULE || (int)finalSelectedItem.Tag == (int)ObjectID.WEAPON_SENSOR)
+                    {
+                        ItemList itemList = new ItemList(WorkspaceWorking, positionTempOfSelectedFromListbox);
+                        itemList.ShowDialog();
+                    }
                 }
             }
             else
@@ -516,7 +574,7 @@ namespace MapEditor
                     else if (WorkspaceWorking.Children[i] is Rectangle)
                     {
                         Rectangle tempRect = (Rectangle)(WorkspaceWorking.Children[i]);
-                        if (tempRect.Tag == Support.virtualObject)
+                        if (tempRect.Tag == Support.virtualObject && tempRect.Tag != Support.gridLine)
                         {
                             RECTANGLE rect = new RECTANGLE((float)Canvas.GetLeft(WorkspaceWorking.Children[i]), (float)Canvas.GetTop(WorkspaceWorking.Children[i]), (int)tempRect.Width, (int)tempRect.Height);
                             System.Windows.Point tempPoint = new System.Windows.Point(m.GetPosition(WorkspaceWorking).X, m.GetPosition(WorkspaceWorking).Y);
@@ -533,10 +591,19 @@ namespace MapEditor
 
         public void click_to_load_backgroundmap(object sender, RoutedEventArgs e)
         {
-
             if (Support.map != null)
             {
-                Support.map = null;
+                if (Support.IsSave == false)
+                {
+                    MessageBox.Show("Map hiện tại sẽ bị xóa, vui lòng save trước khi tạo mới", "Thông Báo");
+                }
+                else
+                {
+                    Support.IsSave = false;
+                    Support.map = null;
+                    RemoveAllTileInCanvas();
+                }
+
             }
 
             OpenFileDialog openFileDialogSourcePicture = new OpenFileDialog();
@@ -637,7 +704,19 @@ namespace MapEditor
         {
             WorkspaceWorking.Children.Remove(tempSelectedItem);
             selectedItemFromListbox = null;
-            Support.IsVirtualWater = false;
+
+            if (Support.IsVirtualObject == false)
+            {
+                Support.IsVirtualObject = true;
+                Support.IsVirtualWater = false;
+                Support.IsJump = false;
+            }
+            else if (Support.IsVirtualObject == true)
+            {
+                Support.IsVirtualObject = false;
+                Support.IsVirtualWater = false;
+                Support.IsJump = false;
+            }
         }
 
         public void click_to_enable_eraser(object sender, RoutedEventArgs e)
@@ -655,6 +734,9 @@ namespace MapEditor
 
         public void click_to_enable_water(object sender, RoutedEventArgs e)
         {
+            WorkspaceWorking.Children.Remove(tempSelectedItem);
+            selectedItemFromListbox = null;
+
             if (Support.IsVirtualWater == false)
             {
                 Support.IsVirtualWater = true;
@@ -663,6 +745,8 @@ namespace MapEditor
             {
                 Support.IsVirtualWater = false;
             }
+            Support.IsJump = false;
+            Support.IsVirtualObject = false;
         }
 
         private void lbLandObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -685,6 +769,9 @@ namespace MapEditor
 
         public void click_to_enable_jump(object sender, RoutedEventArgs e)
         {
+            WorkspaceWorking.Children.Remove(tempSelectedItem);
+            selectedItemFromListbox = null;
+
             if (Support.IsJump == false)
             {
                 Support.IsJump = true;
@@ -693,6 +780,8 @@ namespace MapEditor
             {
                 Support.IsJump = false;
             }
+            Support.IsVirtualWater = false;
+            Support.IsVirtualObject = false;
         }
 
         private void lbBoss1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -706,6 +795,9 @@ namespace MapEditor
                 selectedItemFromListbox.Source = temp.Source;
                 selectedItemFromListbox.Width = temp.Width;
                 selectedItemFromListbox.Height = temp.Height;
+
+                //this.lbBoss1.SelectedIndex = -1;
+                //this.lbBoss1.Se
             }
             else
             {
@@ -719,6 +811,91 @@ namespace MapEditor
         }
 
         private void lbBoss3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void click_to_load_file(object sender, RoutedEventArgs e)
+        {
+            Support.IsImport = true;
+
+            OpenFileDialog openFileDialogSourcePicture = new OpenFileDialog();
+            openFileDialogSourcePicture.Filter = "XML (*.xml)|*.xml| All File (*.*)|*.*";
+            openFileDialogSourcePicture.FilterIndex = 1;
+            openFileDialogSourcePicture.RestoreDirectory = true;
+            String pathToImage = "";
+
+            if (openFileDialogSourcePicture.ShowDialog() == true)
+            {
+                CTile.CountID = 0;
+                if (Support.map == null)
+                {
+                    
+                    if (Support.MAPNAME == "1")
+                    {
+                        pathToImage = @"..\..\Resource\map\map1.png";
+                    }
+                    else if (Support.MAPNAME == "2")
+                    {
+                        pathToImage = @"..\..\Resource\map\map2.png";
+                    }
+                    else if (Support.MAPNAME == "3")
+                    {
+                        pathToImage = @"..\..\Resource\map\map3.png";
+                    }
+
+                    Support.map = new CMap(new BitmapImage(new Uri(pathToImage, UriKind.Relative)));
+                    Support.WIDHT_MAP = (int)(Support.map.BitMap.PixelWidth);
+                    Support.HEIGHT_MAP = (int)(Support.map.BitMap.PixelHeight);
+
+                    if (Support.GRIDLINE == true)
+                    {
+                        DestroyGridline();
+                        Support.GRIDLINE = true;
+                        CreateGridline();
+                    }
+
+                    if (Support.IsExportXml == true)
+                    {
+                        Support.IsExportXml = false;
+                        ExportXml.getInstance().DestroyWriter();
+                    }
+                    WorkspaceWorking.Width = Support.WIDHT_MAP;
+                    WorkspaceWorking.Height = Support.HEIGHT_MAP;
+                    Support.map.CreateTileMap();
+                }
+            }
+
+            if (Support.map != null)
+            {
+                BitmapSource bmpSource;
+                PngBitmapEncoder bmpCreate = new PngBitmapEncoder();
+
+                byte[] arrPixel = new byte[((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8) * Support.HEIGHT_OF_TILE];
+
+                int offsetX = 0;
+                int offsetY = 0;
+
+                for (int i = 0; i < Support.map.TileMap.Count; ++i)
+                {
+                    offsetX = Support.map.TileMap[i].ID;
+                    Support.map.TileMap[i].ExportBitMap(offsetX, offsetY, arrPixel, (Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel / 8));
+                }
+
+                FileStream stream = new FileStream(@"..\..\Resource\tilemap\tile_map.png", FileMode.Create);
+                bmpSource = BitmapSource.Create(Support.map.TileMap.Count * Support.WIDTH_OF_TILE, Support.HEIGHT_OF_TILE, 96, 96, Support.map.BitMap.Format, null, arrPixel, ((Support.map.TileMap.Count * Support.WIDTH_OF_TILE * Support.map.BitMap.Format.BitsPerPixel) / 8));
+                bmpCreate.Frames.Add(BitmapFrame.Create(bmpSource));
+                bmpCreate.Save(stream);
+                stream.Close();
+
+                ConvertFromTileToObject();
+                AddImageOfObjectToCanvas();
+                ImportXml.getInstance().loadCanvas(openFileDialogSourcePicture.FileName, WorkspaceWorking);
+                Support.IsBackground = true;
+            }
+        }
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }

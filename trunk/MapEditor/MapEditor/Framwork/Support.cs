@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using TileMap;
@@ -242,6 +243,30 @@ namespace MapEditor
         TILE_BACKGROUND,
         BRIDGE_HEAD, BRIDGE_TAIL, BRIDGE_BODY, BRIDGE,
         VIRTUAL_OBJECT_JUMP,
+        BULLET_BOSS1,
+        MAGIC_ROCK,
+        CAPSULE_BOSS, BIG_CAPSULE_BOSS,
+        SNIPPER_WATER_HIDING,
+        STONE,
+        FIRE,
+        ENEMY_BIG_GUN_SHOOTING,
+        TANK,
+        FIRE_BRIDGE,
+        ENEMY_RUN_SHOOTING,
+        ROSHAN_HEAD, ROSHAN,
+        BULLET_SNIPPER_WATER_HIDING,
+        BOOM,
+    }
+
+    public enum EIDWeaponry
+    {
+        FLAG,
+        BARRIER,
+        FLAME_GUN,
+        LASER_GUN,
+        MACHINE_GUN,
+        RAPID_FIRE,
+        SPREAD_GUN
     }
 
     public partial class Support
@@ -272,6 +297,9 @@ namespace MapEditor
         public static bool IsVirtualWater = false;
         public static bool IsSave = false;
         public static bool IsJump = false;
+        public static String MAPNAME = "1";
+        public static List<Image> ListItem = new List<Image>();
+        public static bool IsImport = false;
         /* Implement Function For Bitmap */
         public static Color GetPixel(int _x, int _y, byte[] _buffer, int _stride)
         {
@@ -316,8 +344,8 @@ namespace MapEditor
         {
             VECTOR2D temp = new VECTOR2D(_object.Position.cX, _object.Position.cY);
             temp.cY = (int)(Support.HEIGHT_MAP - _object.Position.cY);
-            temp.cX = temp.cX + _object.Bound.width / 2;
-            temp.cY = temp.cY - _object.Bound.height / 2;
+            temp.cX = (int)(temp.cX + _object.Bound.width / 2);
+            temp.cY = (int)(temp.cY - _object.Bound.height / 2);
 
             return temp;
         }
@@ -329,12 +357,27 @@ namespace MapEditor
                 case ObjectID.RAMBO:
                 case ObjectID.ENEMY_RUN:
                 case ObjectID.WEAPON_CAPSULE:
+                case ObjectID.OBJECT_BARRIER:
+                case ObjectID.OBJECT_FLAME_GUN:
+                case ObjectID.OBJECT_MACHINE_GUN:
+                case ObjectID.OBJECT_RAPID_GUN:
+                case ObjectID.OBJECT_SPREAD_GUN:
+                case ObjectID.OBJECT_LASER_GUN:
                     return true;
                 default:
                     return false;
             }
 
             return false;
+        }
+
+        public static VECTOR2D ConvertCoordinationOfCanvas(VECTOR2D _position, int width, int height)
+        {
+            VECTOR2D temp = new VECTOR2D(_position.cX, _position.cY);
+            temp.cX = (int)(temp.cX - width / 2);
+            temp.cY = (int)(Support.HEIGHT_MAP - temp.cY - height / 2);
+
+            return temp;
         }
     }
 }

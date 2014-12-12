@@ -47,8 +47,8 @@ namespace MapEditor.Algorithm
         private int m_id;
         private RECTANGLE m_bound;
         private List<OBJECT> m_listObject;
-        private static int MAX_WIDTH_SIZE_OF_NODE = 520;
-        private static int MAX_HEIGHT_SIZE_OF_NODE = 450;
+        private static int MAX_WIDTH_SIZE_OF_NODE = 512;
+        private static int MAX_HEIGHT_SIZE_OF_NODE = 512;
 
         #region.Properties
         public int ID
@@ -127,15 +127,7 @@ namespace MapEditor.Algorithm
                 return ;
             }
 
-            //if (obj.Type != (int)ObjectType.LED_OBJECT)
-            //{
-            //    if (rect.width < MAX_SIZE_OF_COLLISION && rect.height < MAX_SIZE_OF_COLLISION)
-            //    {
-            //        return;
-            //    }
-            //}
-
-            if (node.m_bound.width >= 2*MAX_WIDTH_SIZE_OF_NODE && node.m_bound.width >= 2*MAX_HEIGHT_SIZE_OF_NODE)
+            if (node.m_bound.width >= (MAX_HEIGHT_SIZE_OF_NODE + 10) && node.m_bound.height > (MAX_HEIGHT_SIZE_OF_NODE + 10))
             {
                 if (node.m_tl == null)
                 {
