@@ -19,8 +19,8 @@
 #include "Tinker.h"
 #include "SnipperWaterHiding.h"
 #include "Tank.h"
-#include "MagicStone.h"
-#include "Stone.h"
+#include "BridgeStone.h"
+#include "BigStone.h"
 #include "Boom.h"
 
 class Node

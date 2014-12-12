@@ -89,7 +89,7 @@
     <ClInclude Include="Fire.h" />
     <ClInclude Include="FireBridge.h" />
     <ClInclude Include="LazeBullet.h" />
-    <ClInclude Include="MagicStone.h" />
+    <ClInclude Include="BridgeStone.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="BossPunch.h" />
@@ -99,7 +99,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="RoShan.h" />
     <ClInclude Include="RoshanHead.h" />
-    <ClInclude Include="Stone.h" />
+    <ClInclude Include="BigStone.h" />
     <ClInclude Include="SnipperWaterHiding.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Tinker.h" />
@@ -185,7 +185,7 @@
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBridge.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
-    <ClCompile Include="MagicStone.cpp" />
+    <ClCompile Include="BridgeStone.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="BossPunch.cpp" />
@@ -194,7 +194,7 @@
     <ClCompile Include="EnemyRunShooting.cpp" />
     <ClCompile Include="Roshan.cpp" />
     <ClCompile Include="RoshanHead.cpp" />
-    <ClCompile Include="Stone.cpp" />
+    <ClCompile Include="BigStone.cpp" />
     <ClCompile Include="SnipperWaterHiding.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Tinker.cpp" />

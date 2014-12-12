@@ -11,22 +11,22 @@ Tank::Tank(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 
 void Tank::Shoot()
 {
-	if(m_CountBullet < 4)
+	if (m_CountBullet < 4)
+	{
+		if (m_TimeToShoot >= 500)
 		{
-			if(m_TimeToShoot >= 500)
-			{
-				BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPosition(), D3DXVECTOR2(-1.0f, 0.0f), GetAnpla());
-				m_TimeToShoot = 0;
-				++m_CountBullet;
-			}
+			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPosition(), D3DXVECTOR2(-1.0f, 0.0f), GetAnpla());
+			m_TimeToShoot = 0;
+			++m_CountBullet;
+		}
 
-			m_TimeToShoot += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		}
-		else
-		{
-			m_isShoot = false;
-			m_CountBullet = 0;
-		}
+		m_TimeToShoot += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	}
+	else
+	{
+		m_isShoot = false;
+		m_CountBullet = 0;
+	}
 }
 
 float Tank::GetAnpla()
@@ -40,7 +40,7 @@ float Tank::GetAnpla()
 	case 12:
 	case 13:
 	case 18:
-    case 19:
+	case 19:
 		return 0.0f;
 		break;
 	case 2:
@@ -50,7 +50,7 @@ float Tank::GetAnpla()
 	case 14:
 	case 15:
 	case 20:
-    case 21:
+	case 21:
 		return 0.57f;
 		break;
 	case 4:
@@ -60,7 +60,7 @@ float Tank::GetAnpla()
 	case 16:
 	case 17:
 	case 22:
-    case 24:
+	case 24:
 		return 1.19f;
 		break;
 
@@ -80,7 +80,7 @@ D3DXVECTOR3 Tank::GetStartPosition()
 	case 12:
 	case 13:
 	case 18:
-    case 19:
+	case 19:
 		return D3DXVECTOR3(m_Position.x - 100, m_Position.y + 37, 1);
 		break;
 	case 2:
@@ -90,7 +90,7 @@ D3DXVECTOR3 Tank::GetStartPosition()
 	case 14:
 	case 15:
 	case 20:
-    case 21:
+	case 21:
 		return D3DXVECTOR3(m_Position.x - 87, m_Position.y + 18, 1);
 		break;
 	case 4:
@@ -100,10 +100,9 @@ D3DXVECTOR3 Tank::GetStartPosition()
 	case 16:
 	case 17:
 	case 22:
-    case 24:
+	case 24:
 		return D3DXVECTOR3(m_Position.x - 77, m_Position.y + 7, 1);
 		break;
-
 	default:
 		break;
 	}
@@ -117,6 +116,7 @@ void Tank::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Physic->setVelocity(D3DXVECTOR2(0, 0));
+	m_Physic->setAccelerateY(-0.01f);
 	m_Position.z = 1.0f;
 	m_Direction = eDirection::LEFT;
 	m_AttackCounter = 80;
@@ -157,6 +157,7 @@ void Tank::UpdateCollision(Object* checkingObject)
 	{
 		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
+#pragma region BulletRambo
 			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 			if (collideDirection != IDDirection::DIR_NONE)
 			{
@@ -229,25 +230,33 @@ void Tank::UpdateCollision(Object* checkingObject)
 				}
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
+#pragma endregion
+		}
+
+		if (checkingObject->getID() == eObjectID::TILE_BASE)
+		{
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			if (collideDirection == IDDirection::DIR_TOP)
+			{
+				this->m_Physic->setVelocityY(0);
+			}
 		}
 	}
 }
 void Tank::UpdateMovement()
 {
-		switch (m_ObjectState)
-		{
-		case STATE_ALIVE_MOVE:
-			m_Physic->setVelocityX(-0.2f);
-			break;
-		case STATE_SHOOTING:
-			m_Physic->setVelocityX(0);
-			break;
-		default:
-			break;
-		}
-		m_Physic->UpdateMovement(&m_Position);
-	
-	
+	switch (m_ObjectState)
+	{
+	case STATE_ALIVE_MOVE:
+		m_Physic->setVelocityX(-0.2f);
+		break;
+	case STATE_SHOOTING:
+		m_Physic->setVelocityX(0);
+		break;
+	default:
+		break;
+	}
+	m_Physic->UpdateMovement(&m_Position);
 }
 void Tank::Update()
 {
