@@ -2,7 +2,7 @@
 #define __SPREAD_GUN_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
-
+#include "Rambo.h"
 class SpreadGun : public DynamicObject
 {
 public:

@@ -2,7 +2,7 @@
 #define __LASER_GUN_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
-
+#include "Rambo.h"
 class LaserGun : public DynamicObject
 {
 public:

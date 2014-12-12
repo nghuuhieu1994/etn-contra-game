@@ -32,9 +32,13 @@ void Barrier::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::RAMBO:
+			{
 				isDead = true;
+				Rambo* temp = (Rambo*)checkingObject;
+				temp->SetInvulnerable(true);
 				this->m_ObjectState = STATE_DEATH;
-				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
+			}
 				break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)

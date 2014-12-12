@@ -22,7 +22,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeAddBullet				= 1000;
 	m_DirectAttack				= eDirectAttack::AD_RIGHT;
 	m_timeDelayRunAndShootRun	= 0;
-	m_SkillBullet				= eIDSkillBullet::S_SKILL_BULLET;
+	m_SkillBullet				= eIDSkillBullet::DEFAULT_SKILL_BULLET;
 	isSetVelocityDeathState		= false;
 	m_life						= 3;
 	m_timeDeath					= 0;
@@ -377,6 +377,7 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::M_SKILL_BULLET:
 	case eIDSkillBullet::R_SKILL_BULLET:
 	case eIDSkillBullet::F_SKILL_BULLET:
+	case eIDSkillBullet::S_SKILL_BULLET:
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
 			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO) < 2 && isAddBullet())
@@ -389,29 +390,27 @@ bool Rambo::HandleInputShooting()
 			return false;
 		}
 		break;
+		//if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
+		//{
+		//	BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::LAZER_BULLET_OF_RAMBO);
+		//	m_RamboSprite->setShakeTime(0);
+		//	m_RamboSprite->IncreaseTimesShake(2);
+		//	SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+		//	sound->Play();
+		//	return true;
+		//}
+		//if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
+		//{
+		//	if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::LAZER_BULLET_OF_RAMBO) < 1)
+		//	{
+		//		m_RamboSprite->IncreaseTimesShake(2);
+		//		SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
+		//		sound->Play();
+		//		return true;
+		//	}
+		//	return false;
+		//}
 	case eIDSkillBullet::L_SKILL_BULLET:
-		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
-		{
-			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::LAZER_BULLET_OF_RAMBO);
-			m_RamboSprite->setShakeTime(0);
-			m_RamboSprite->IncreaseTimesShake(2);
-			SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
-			sound->Play();
-			return true;
-		}
-		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
-		{
-			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::LAZER_BULLET_OF_RAMBO) < 1)
-			{
-				m_RamboSprite->IncreaseTimesShake(2);
-				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
-				sound->Play();
-				return true;
-			}
-			return false;
-		}
-		break;
-	case eIDSkillBullet::S_SKILL_BULLET:
 		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
 		{
 			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::RED_BULLET_OF_RAMBO);
@@ -1680,7 +1679,20 @@ void Rambo::UpdateCollision(Object* checkingObject)
 					break;
 				#pragma endregion
 				case eObjectID::BULLET_ENEMY:
+					if (isInvulnerable)
+					{
+						break;
+					}
+					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
+					{
+						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
+						checkingObject->setObjectState(eObjectState::STATE_DEATH);
+					}
+					break;
 				case eObjectID::BULLET_BOSS1:
+				case eObjectID::TANK:
+				case eObjectID::BOOM:
 					if (isInvulnerable)
 					{
 						break;

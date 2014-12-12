@@ -38,10 +38,14 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 				}
 
 				if(j == mListObjectCollisionInView.size())
+				{
+					
 					mListObjectCollisionInView.push_back(node->mListObjectCollision[i]);
+				}
 			}
 			else
 			{
+				//mMapObjectCollisionInGame[node->mListObjectCollision[i]]->Release();
 				node->mListObjectCollision.erase(node->mListObjectCollision.begin() + i);
 			}
 		}
@@ -54,6 +58,25 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 			InsertObjectIntoView(viewPort, node->getTl());
 		if (node->getTr() != NULL)
 			InsertObjectIntoView(viewPort, node->getTr());
+	}
+}
+
+void QuadTree::Release(Node* node)
+{
+	if(node->getBl() != NULL)
+	{
+		// de quy
+		Release(node->getBl());
+		Release(node->getBr());
+		Release(node->getTl());
+		Release(node->getTr());
+	}
+	else // neu khong con node con, thi tien hanh release cac object
+	{
+		node->mListObjectCollision.clear();
+		node->mListObjectCollision.clear();
+		delete node;
+		node = NULL;
 	}
 }
 
