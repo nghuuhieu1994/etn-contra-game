@@ -1,5 +1,6 @@
-#ifndef __SNIPER_WATER_HIDING_H_
+#ifndef __SNIPER_WATER_HIDING_H__
 #define __SNIPER_WATER_HIDING_H__
+
 #include "DynamicObject.h"
 #include "CInputDx9.h"
 #include "Bullet.h"

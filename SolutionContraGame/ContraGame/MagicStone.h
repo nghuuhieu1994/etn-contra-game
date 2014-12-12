@@ -1,5 +1,5 @@
 #ifndef __MAGIC_STONE_H__
-#define __MGIC_STONE_H__
+#define __MAGIC_STONE_H__
 
 #include "DynamicObject.h"
 

@@ -17,6 +17,11 @@
 #include "WeaponCapsule.h"
 #include "WeaponSensor.h"
 #include "Tinker.h"
+#include "SnipperWaterHiding.h"
+#include "Tank.h"
+#include "MagicStone.h"
+#include "Stone.h"
+#include "Boom.h"
 
 class Node
 {
