@@ -31,6 +31,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_colorAlpha = 255;
 	m_inverseColorAlpha = 1;
 	m_timeInvulnerable = 0;
+	m_timeBeforeDeadBottom = 0;
 }
 
 RECT Rambo::getBound()
@@ -64,7 +65,30 @@ int Rambo::HandleInputDeadState()
 			m_Position.y			= (float)(Camera::getInstance()->getBound().top);
 			isInvulnerable = true;
 			m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
+			this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
+			this->m_Physic->setVelocityX(0.0f);
+			this->m_Physic->setVelocityY(0.0f);
 			--m_life;
+		}
+	}
+	return 0;
+}
+
+int Rambo::CheckOutBottomCamera()
+{
+	if (m_Position.y < Camera::getInstance()->getBound().bottom)
+	{
+		if (m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD && m_ObjectState != eObjectState::STATE_RAMBO_DEAD)
+		{
+			m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD; 
+		}
+		isFall = false;
+		m_timeBeforeDeadBottom += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_timeBeforeDeadBottom > 3000)
+		{
+			m_timeBeforeDeadBottom = 0;
+			m_ObjectState = eObjectState::STATE_RAMBO_DEAD;
+			m_timeDeath = 3000;
 		}
 	}
 	return 0;
@@ -78,13 +102,12 @@ void Rambo::HandleInput()
 	//	isSetVelocityDeathState = false;
 	//	m_ObjectState = eObjectState::STATE_RAMBO_FALL;
 	//}
-
+	CheckOutBottomCamera();
 	HandleInputDeadState();
 
 
 	if (CInputDx9::getInstance()->IsKeyPress(DIK_B))
 	{
-
 		m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 	}
 

@@ -32,6 +32,7 @@ private:
 	float m_timeDeath;
 	float m_timeDelayRunAndShootRun;
 	float m_timeWaterBomb;
+	float m_timeBeforeDeadBottom;
 	int m_timeInvulnerable;
 	int UpdateInvulnerableAnimation();
 	int HandleInputAimBottomRightState();
@@ -59,6 +60,7 @@ private:
 	RECT m_RectangleCheckingObjectBelow;
 	void SetFallFlag();
 	void SetVelocityXZero();
+	int CheckOutBottomCamera();
 	void SetVelocityYZero();
 	void Shoot();
 public:
