@@ -21,7 +21,6 @@ void Stone::Initialize()
 	m_isJump = false;
 	m_UpdateFlag = false;
 	m_TimeToJump = 0;
-
 }
 
 void Stone::UpdateAnimation()

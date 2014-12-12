@@ -249,6 +249,36 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPPER_WATER_HIDING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SnipperWaterHiding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::TANK)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tank(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::MAGIC_ROCK)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new MagicStone(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::STONE)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Stone(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BOOM)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Boom(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
+								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
 					}
 
 					if(atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::TILE_MAP)

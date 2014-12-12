@@ -14,6 +14,11 @@ bool IsMovementObject(eObjectID id)
 	case eObjectID::ENEMY_RUN:
 	case eObjectID::SNIPER_STANDING:
 	case eObjectID::WEAPON_CAPSULE:
+	case eObjectID::BOOM:
+	case eObjectID::TANK:
+	case eObjectID::SNIPPER_WATER_HIDING:
+	case eObjectID::MAGIC_ROCK:
+	case eObjectID::STONE:
 		return true;
 	default:
 		return false;
