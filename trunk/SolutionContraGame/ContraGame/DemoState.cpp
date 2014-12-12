@@ -17,8 +17,10 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	fLog >> RamboStartPosition.x;
 	fLog >> RamboStartPosition.y;
 
-	m_Rambo = new Rambo(D3DXVECTOR3(20, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	m_Rambo = new Rambo(D3DXVECTOR3(RamboStartPosition.x, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
+	string cameraPath = "resources\\Map\\" + to_string(map) +"\\camera";
 	Camera::getInstance()->Reset();
+	Camera::getInstance()->readAutoRunScript(cameraPath.c_str());
 	Camera::getInstance()->setLockWidth(lockWidth);
 	Camera::getInstance()->setLockHeight(lockHeight);
 

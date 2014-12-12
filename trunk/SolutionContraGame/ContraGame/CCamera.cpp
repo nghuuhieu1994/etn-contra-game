@@ -1,9 +1,6 @@
 #include "CCamera.h"
 
 Camera* Camera::s_Instance = 0;
-bool	Camera::m_isLockWidth = false;
-bool	Camera::m_isLockHeight = false;
-
 
 Camera::Camera()
 {
@@ -11,6 +8,23 @@ Camera::Camera()
 	m_matrixTranslate._41 = 0;
 	m_matrixTranslate._42 = SCREEN_HEIGHT;
 	m_matrixTranslate._22 = -1.0f;
+	m_isLockWidth = false;
+	m_isLockHeight = false;
+	m_isCheckFlagX = false;
+	m_isCheckFlagY = false;
+	m_flagStartAutoRun = D3DXVECTOR2(0, 0);
+	m_flagStopAutoRun = D3DXVECTOR2(0, 0);
+}
+
+void Camera::readAutoRunScript(const char* filePath)
+{
+	fstream fLog(filePath, ios::in);
+	fLog >> m_isCheckFlagX;
+	fLog >> m_isCheckFlagY;
+	fLog >> m_flagStartAutoRun.x;
+	fLog >> m_flagStartAutoRun.y;
+	fLog >> m_flagStopAutoRun.x;
+	fLog >> m_flagStopAutoRun.y;
 }
 
 void Camera::Reset()
@@ -19,6 +33,12 @@ void Camera::Reset()
 	m_matrixTranslate._41 = 0;
 	m_matrixTranslate._42 = SCREEN_HEIGHT;
 	m_matrixTranslate._22 = -1.0f;
+	m_isLockWidth = false;
+	m_isLockHeight = false;
+	m_isCheckFlagX = false;
+	m_isCheckFlagY = false;
+	m_flagStartAutoRun = D3DXVECTOR2(0, 0);
+	m_flagStopAutoRun = D3DXVECTOR2(0, 0);
 }
 
 Camera* Camera::getInstance()
@@ -62,6 +82,18 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 	}
 	this->m_previousPosition.x = m_matrixTranslate._41;
 	this->m_previousPosition.y = m_matrixTranslate._42;
+	if (m_isCheckFlagX)
+	{
+		if ((getBound().right - SCREEN_WIDTH/2) > m_flagStartAutoRun.x)
+		{
+			m_matrixTranslate._41 -= 1;
+		}
+		if ((getBound().right - SCREEN_WIDTH/2) >= m_flagStopAutoRun.x)
+		{
+			m_isCheckFlagX = false;
+			m_isLockWidth = true;
+		}
+	}
 }
 
 D3DXMATRIX Camera::GetMatrixTranslate()
