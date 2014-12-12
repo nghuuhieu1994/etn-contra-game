@@ -8,7 +8,6 @@ class Boom: public DynamicObject
 private:
 	CSpriteDx9* sprite_main;
 	CSpriteDx9* sprite_exploision;
-	bool m_isJump;
 	float rotate;
 public:
 	Boom();

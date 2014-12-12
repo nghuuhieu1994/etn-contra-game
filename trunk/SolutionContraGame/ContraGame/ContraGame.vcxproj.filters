@@ -239,6 +239,9 @@
     <ClCompile Include="BigStone.cpp">
       <Filter>GameObject\Items\BigStone</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponCapsuleVer2.cpp">
+      <Filter>GameObject\Items\WeaponCapsuleVer2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -528,6 +531,9 @@
     <ClInclude Include="BigStone.h">
       <Filter>GameObject\Items\BigStone</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponCapsuleVer2.h">
+      <Filter>GameObject\Items\WeaponCapsuleVer2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
@@ -703,6 +709,9 @@
     </Filter>
     <Filter Include="GameObject\Items\BigStone">
       <UniqueIdentifier>{c9f5e761-f6c0-425f-81dd-20dad95d77ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\WeaponCapsuleVer2">
+      <UniqueIdentifier>{b9d889e1-584f-4062-b08c-ca3334218299}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
