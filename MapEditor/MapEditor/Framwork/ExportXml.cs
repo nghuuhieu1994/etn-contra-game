@@ -25,6 +25,7 @@ namespace MapEditor.Framwork
         {
             mWriterXmlSettings = new XmlWriterSettings();
             mWriterXmlSettings.Indent = true;
+            mWriterXmlSettings.ConformanceLevel = ConformanceLevel.Document;
             mWriter = XmlWriter.Create("map.xml", mWriterXmlSettings);
         }
 
@@ -126,6 +127,15 @@ namespace MapEditor.Framwork
                 return true;
             }
             return false;
+        }
+
+        public void WriteInfomationForMap()
+        {
+            mWriter.WriteStartElement("Map");
+            mWriter.WriteAttributeString("Name", "1");
+            mWriter.WriteAttributeString("Width", Support.WIDHT_MAP.ToString());
+            mWriter.WriteAttributeString("Height", Support.HEIGHT_MAP.ToString());
+            //mWriter.WriteEndElement();
         }
     }
 }

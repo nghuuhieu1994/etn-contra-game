@@ -60,11 +60,19 @@
     <Compile Include="Framwork\ExportXml.cs" />
     <Compile Include="Framwork\GridLine.cs" />
     <Compile Include="Clone\OBJECT.cs" />
+    <Compile Include="Framwork\ImportXml.cs" />
     <Compile Include="Framwork\ListBoxCreater.cs" />
     <Compile Include="Framwork\Support.cs" />
+    <Compile Include="ItemList.xaml.cs">
+      <DependentUpon>ItemList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TileMap\CMap.cs" />
     <Compile Include="TileMap\CTile.cs" />
     <Page Include="EditPosition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +202,41 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\object\boss_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\interface\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\map\map1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\item\Barrier.png" />
+    <Resource Include="Resource\item\FlameGun.png" />
+    <Resource Include="Resource\item\LaserGun.png" />
+    <Resource Include="Resource\item\MachineGun.png" />
+    <Resource Include="Resource\item\RapidFire.png" />
+    <Resource Include="Resource\item\SpreadGun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Enemy_big_gun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Rock_falling.png" />
+    <Resource Include="Resource\object\Rock_flying.png" />
+    <Resource Include="Resource\object\Snipper_water_hiding.png" />
+    <Resource Include="Resource\object\Tank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Boom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Big_capsule_boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Bridge_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\object\Enemy_run_shooting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
