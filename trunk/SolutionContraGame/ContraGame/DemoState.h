@@ -31,12 +31,12 @@
 #include "Bridge.h"
 #include "WeaponryManager.h"
 #include "SnipperWaterHiding.h"
-#include "Stone.h"
+#include "BigStone.h"
 
 
 #include "MenuGame.h"
 #include "Fire.h"
-#include "MagicStone.h"
+#include "BridgeStone.h"
 #include "EnemyBigGunShooting.h"
 #include "Tank.h"
 #include "FireBridge.h"
@@ -54,9 +54,6 @@ private:
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
-	FireBridge*			m_fireBridge;
-	SnipperWaterHiding* m_snipperWaterHiding;
-
 	int					map;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }

@@ -187,12 +187,6 @@
     <ClCompile Include="Tank.cpp">
       <Filter>GameObject\Enemy\Tank</Filter>
     </ClCompile>
-    <ClCompile Include="MagicStone.cpp">
-      <Filter>GameObject\Items\MagicStone</Filter>
-    </ClCompile>
-    <ClCompile Include="Stone.cpp">
-      <Filter>GameObject\Items\Stone</Filter>
-    </ClCompile>
     <ClCompile Include="Fire.cpp">
       <Filter>GameObject\Bridge\FireBridge</Filter>
     </ClCompile>
@@ -238,6 +232,12 @@
     </ClCompile>
     <ClCompile Include="BossHand.cpp">
       <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeStone.cpp">
+      <Filter>GameObject\Items\BridgeStone</Filter>
+    </ClCompile>
+    <ClCompile Include="BigStone.cpp">
+      <Filter>GameObject\Items\BigStone</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -476,12 +476,6 @@
     <ClInclude Include="Tank.h">
       <Filter>GameObject\Enemy\Tank</Filter>
     </ClInclude>
-    <ClInclude Include="MagicStone.h">
-      <Filter>GameObject\Items\MagicStone</Filter>
-    </ClInclude>
-    <ClInclude Include="Stone.h">
-      <Filter>GameObject\Items\Stone</Filter>
-    </ClInclude>
     <ClInclude Include="Fire.h">
       <Filter>GameObject\Bridge\FireBridge</Filter>
     </ClInclude>
@@ -527,6 +521,12 @@
     </ClInclude>
     <ClInclude Include="BossHand.h">
       <Filter>GameObject\Boss\BossMap2</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeStone.h">
+      <Filter>GameObject\Items\BridgeStone</Filter>
+    </ClInclude>
+    <ClInclude Include="BigStone.h">
+      <Filter>GameObject\Items\BigStone</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -677,12 +677,6 @@
     <Filter Include="GameObject\Enemy\Tank">
       <UniqueIdentifier>{32bb020b-60f0-4b8d-a81d-9f87e30dd1cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Items\MagicStone">
-      <UniqueIdentifier>{d253fb13-6ceb-49be-83c1-6b21e9f3dfb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Items\Stone">
-      <UniqueIdentifier>{c9f5e761-f6c0-425f-81dd-20dad95d77ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Boss\BossMap3">
       <UniqueIdentifier>{3a325bb1-ca6b-4e8d-84d2-d820b632a7e2}</UniqueIdentifier>
     </Filter>
@@ -703,6 +697,12 @@
     </Filter>
     <Filter Include="GameObject\Items\Boom">
       <UniqueIdentifier>{952c675b-388a-4386-b0ee-1e841b214dd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\BridgeStone">
+      <UniqueIdentifier>{d253fb13-6ceb-49be-83c1-6b21e9f3dfb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Items\BigStone">
+      <UniqueIdentifier>{c9f5e761-f6c0-425f-81dd-20dad95d77ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

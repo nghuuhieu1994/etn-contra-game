@@ -141,10 +141,10 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.effect", eSpriteID::SPRITE_EFFECT_MAP1, 1, 2, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.effect", eSpriteID::SPRITE_EFFECT_MAP2, 3, 1, 3);
 
-	//Rock
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFlying\\magic_rock.png", eSpriteID::SPRITE_MAGIC_ROCK, 1, 1, 1);
-	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rock\\RockFalling\\Rockfalling .png", eSpriteID::SPRITE_ROCK_FALLING, 4, 1, 4);
-	//End rock
+	//Stone
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Stone\\BridgeStone\\BridgeStone.png", eSpriteID::SPRITE_BRIGDE_STONE, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Stone\\BigStone\\BigStone.png", eSpriteID::SPRITE_BIG_STONE, 4, 1, 4);
+	//EndBigStone
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Fire\\fire.png", eSpriteID::SPRITE_FIRE, 2, 1, 2);
 

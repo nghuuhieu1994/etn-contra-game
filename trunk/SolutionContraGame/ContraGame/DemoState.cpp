@@ -5,9 +5,6 @@
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_snipperWaterHiding = new SnipperWaterHiding(D3DXVECTOR3(400, 30, 1), eDirection::RIGHT, eObjectID::SNIPPER_WATER_HIDING);
-	m_snipperWaterHiding->Initialize();
-
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
 	fstream fLog("resources\\Map\\" + to_string(map) +"\\setting", ios::in);
@@ -38,6 +35,9 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
+
+
+	/*
 	if (m_Rambo->getRamboLife() == 0)
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
@@ -115,15 +115,20 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
+	*/
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
+
+
+	/*
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	*/
 }
 
 void DemoState::Pause()
