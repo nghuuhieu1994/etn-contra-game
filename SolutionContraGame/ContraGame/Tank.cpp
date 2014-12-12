@@ -183,6 +183,7 @@ void Tank::UpdateCollision(Object* checkingObject)
 				{
 					if (m_AttackCounter >= 4)
 					{
+						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						m_AttackCounter -= 4;
 					}
 				}
