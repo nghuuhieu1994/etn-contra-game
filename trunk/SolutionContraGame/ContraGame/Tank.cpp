@@ -143,8 +143,8 @@ void Tank::UpdateAnimation()
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
-		if(this->m_Sprite != 0)
-			this->Release();
+		//if(this->m_Sprite != 0)
+		//	this->Release();
 		break;	
 	default:
 		break;

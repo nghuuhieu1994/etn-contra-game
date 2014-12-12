@@ -1,7 +1,7 @@
 #ifndef __BARRIER_H__
 #define __BARRIER_H__
 #include "DynamicObject.h"
-
+#include "Rambo.h"
 class Barrier : public DynamicObject
 {
 public:

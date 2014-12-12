@@ -2,7 +2,7 @@
 #define __RAPID_FIRE_H__
 #include "DynamicObject.h"
 #include "CInputDx9.h"
-
+#include "Rambo.h"
 class RapidFire : public DynamicObject
 {
 public:

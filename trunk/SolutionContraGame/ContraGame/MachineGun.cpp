@@ -33,13 +33,13 @@ void MachineGun::UpdateCollision(Object* checkingObject)
 			{
 			case eObjectID::RAMBO:
 			{
-									 SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
-									 Rambo* tempRambo = (Rambo*) checkingObject;
-									 tempRambo->setSkillBullet(eIDSkillBullet::M_SKILL_BULLET);
-									 isDead = true;
-									 this->m_ObjectState = STATE_DEATH;
-									 SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::BROKEN)->Play();
-			}break;
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
+				Rambo* tempRambo = (Rambo*) checkingObject;
+				tempRambo->setSkillBullet(eIDSkillBullet::M_SKILL_BULLET);
+				isDead = true;
+				this->m_ObjectState = STATE_DEATH;
+			}
+				break;
 			case eObjectID::TILE_BASE:
 				if (collideDirection == IDDirection::DIR_TOP)
 				{

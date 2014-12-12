@@ -65,6 +65,7 @@ public:
 	int getRamboLife(){ return m_life; }
 	int UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject);
 	Rambo();
+	void SetInvulnerable(bool para){ this->isInvulnerable = para;};
 	Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	RECT getBound();
 	virtual ~Rambo();

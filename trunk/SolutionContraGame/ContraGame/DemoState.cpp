@@ -35,9 +35,6 @@ void DemoState::HandleInput()
 
 void DemoState::Update()
 {
-
-
-	/*
 	if (m_Rambo->getRamboLife() == 0)
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
@@ -115,20 +112,16 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	*/
+	
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-
-
-	/*
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	*/
 }
 
 void DemoState::Pause()
@@ -143,5 +136,5 @@ void DemoState::Resume()
 
 void DemoState::Release()
 {
-
+	m_Quadtree->Release(m_Quadtree->getRootNode());
 }
