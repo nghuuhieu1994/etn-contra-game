@@ -33,7 +33,6 @@ void RoshanHead::Initialize()
 	m_AttackCounter = 100;
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_HEAD));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	//m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	m_ObjectState = eObjectState::STATE_POPUP;
 	m_Sprite = spriteAlive;
 	m_Position.z = 1.0f;
@@ -78,17 +77,6 @@ void RoshanHead::UpdateAnimation()
 }
 void RoshanHead::UpdateCollision(Object* checkingObject)
 {
-	if (mListRoshanBullet.empty() != true)
-	{
-		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
-		{
-			(*i)->UpdateAnimation();
-			(*i)->UpdateMovement();
-			(*i)->Update();
-			(*i)->UpdateCollision(checkingObject);
-		}
-	}
-
 	if (isDead == false)
 	{
 
@@ -158,11 +146,8 @@ void RoshanHead::Update()
 		{
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
-				//(*i)->Release();
 				SAFE_DELETE(*i);
-				i = mListRoshanBullet.erase(i);
-				//mListRoshanBullet.remove( (BossBullet*)*i );
-				//mListRoshanBullet.
+				i = mListRoshanBullet.erase(i);				
 			}
 			else
 			{

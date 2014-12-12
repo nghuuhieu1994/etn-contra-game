@@ -10,6 +10,7 @@ class BossHand: public DynamicObject
 private:
 	BossPunch*	mPunch;
 	BossArm*	mArm[4];
+	bool isPopupDone;
 public:
 	BossHand();
 	BossHand(D3DXVECTOR3, eDirection, eObjectID);

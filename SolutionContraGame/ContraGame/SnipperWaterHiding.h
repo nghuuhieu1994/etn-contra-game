@@ -11,7 +11,6 @@ class SnipperWaterHiding : public DynamicObject
 {
 	CSpriteDx9* sprite_dead;
 	CSpriteDx9* sprite_alive_hiding;
-	//BulletSnipperWaterHiding* bullet;
 	list<BulletSnipperWaterHiding*> m_ListBullet;
 
 	int _distance_Y;
@@ -19,7 +18,6 @@ class SnipperWaterHiding : public DynamicObject
 	bool isShoot;
 	void Shoot();
 	D3DXVECTOR3	GetStartPositionOfBullet();
-
 public:
 	SnipperWaterHiding ();
 	SnipperWaterHiding (D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

@@ -64,7 +64,8 @@ void BulletSnipperWaterHiding::Update()
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, D3DXVECTOR3(m_Position.x, m_Position.y + 50, 1), D3DXVECTOR2(-0.1, -0.5),-11.4f);
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, D3DXVECTOR3(m_Position.x - 30, m_Position.y + 50, 1), D3DXVECTOR2(-0.3, -0.5),2.7f);
 			m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-			m_Sprite = 0;
+			m_Physic->setAccelerateY(0);
+			m_Physic->setVelocityY(0);
 			m_TimeChangeState = 0;
 		}
 		break;
@@ -79,8 +80,7 @@ void BulletSnipperWaterHiding::Update()
 		}
 		break;
 	case STATE_DEATH:
-		if(this->m_Sprite != 0)
-			this->Release();
+		this->Release();
 		break;
 	default:
 		break;

@@ -41,10 +41,11 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_backgroundEffect.Initialize(map);
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
+
+	this->m_Roshan = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
+	this->m_Roshan->Initialize();
 	//this->m_Roshan = new Roshan(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN);
 	//this->m_Roshan->Initialize();
-	
-
 }
 
 void DemoState::HandleInput()
@@ -62,18 +63,7 @@ void DemoState::Update()
 	m_snipperWaterHiding->UpdateMovement();
 	m_snipperWaterHiding->Update();
 
-	/*m_boom->UpdateAnimation();
-	m_boom->UpdateMovement();
-	m_boom->Update();
-	
-	m_Tank->UpdateAnimation();
-	m_Tank->UpdateMovement();
-	m_Tank->Update();
-	*/
-	
-	/*m_Fire->UpdateAnimation();
-	m_Fire->UpdateMovement();*/
-	
+
 	if (m_Rambo->getRamboLife() == 0)
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
@@ -161,23 +151,20 @@ void DemoState::Update()
 	/*m_Roshan->Update();
 	m_Roshan->UpdateAnimation();
 	m_Roshan->UpdateMovement();*/
-
-	//m_Tinker->UpdateAnimation();
-	//m_Tinker->Update();
-	
-	
-
-
+	m_Roshan->UpdateCollision(m_Rambo);
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	m_Quadtree->Render(_lpDSpriteHandle);
-	m_backgroundEffect.Render(_lpDSpriteHandle);
+	//m_Quadtree->Render(_lpDSpriteHandle);
+	//m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-	m_Rambo->Render(_lpDSpriteHandle);
-	//m_Roshan->Render(_lpDSpriteHandle);
+	//WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	//m_Rambo->Render(_lpDSpriteHandle);
+	m_Roshan->Render(_lpDSpriteHandle);
+	//m_fireBridge->Render(_lpDSpriteHandle);
+	//m_snipperWaterHiding->Render(_lpDSpriteHandle);
+	//m_boom->Render(_lpDSpriteHandle);
 	m_fireBridge->Render(_lpDSpriteHandle);
 	m_snipperWaterHiding->Render(_lpDSpriteHandle);
 	//m_boom->Render(_lpDSpriteHandle);

@@ -1,5 +1,13 @@
 #include "BossHand.h"
 
+#ifndef VELOC_POPUP_X 
+#define VELOC_POPUP_X 0.5f
+#endif
+
+#ifndef VELOC_POPUP_Y
+#define VELOC_POPUP_Y 1.0f
+#endif
+
 BossHand::BossHand(){  }
 
 BossHand::BossHand(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
@@ -19,6 +27,8 @@ void BossHand::Initialize()
 		mArm[i]->Initialize();
 	}
 	m_ObjectState = STATE_POPUP;
+
+	isPopupDone = false;
 }
 
 void BossHand::UpdateAnimation()
@@ -47,7 +57,21 @@ void BossHand::UpdateCollision(Object* checkingObject)
 
 void BossHand::UpdateMovement()
 {
+	switch (m_ObjectState)
+	{
+	case STATE_POPUP:
+		if (isPopupDone == false)
+		{
 
+		}
+		break;
+	case STATE_ALIVE_MOVE:
+		break;
+	case STATE_BEFORE_DEATH:
+		break;
+	case STATE_DEATH:
+		break;
+	}
 }
 
 void BossHand::Update()
