@@ -63,6 +63,7 @@ int Rambo::HandleInputDeadState()
 			m_Position.x			= (float)(Camera::getInstance()->getBound().left + 128);
 			m_Position.y			= (float)(Camera::getInstance()->getBound().top);
 			isInvulnerable = true;
+			m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 			--m_life;
 		}
 	}
@@ -1312,20 +1313,20 @@ void Rambo::UpdateAnimation()
 int Rambo::UpdateInvulnerableAnimation()
 {
 	m_colorAlpha -= 2 * m_inverseColorAlpha;
-	if (m_colorAlpha < 0 + 2|| m_colorAlpha > 255 - 2)
+	if (m_colorAlpha < 100 + 2|| m_colorAlpha > 255 - 2)
 	{
 		m_inverseColorAlpha *= -1;
 		m_timeInvulnerable++;
 	}
-	if (m_colorAlpha < 0)
+	if (m_colorAlpha < 100)
 	{
-		m_colorAlpha = 0;
+		m_colorAlpha = 100;
 	}
 	if (m_colorAlpha > 255)
 	{
 		m_colorAlpha = 255;
 	}
-	if (m_timeInvulnerable > 6)
+	if (m_timeInvulnerable > 6 && m_colorAlpha == 255)
 	{
 		m_timeInvulnerable = 0;
 		isInvulnerable = false;

@@ -36,7 +36,6 @@ void Tile::Update()
 
 void Tile::Render(SPRITEHANDLE spriteHandle)
 {
-	//m_Sprite->Render(spriteHandle, D3DXVECTOR2(getPositionVec2().x - (getPositionVec2().x - 32)/64, getPositionVec2().y), ESpriteEffect::None, 0.0f, 1.0f, getPositionVec3().z);
 	m_Sprite->Render(spriteHandle, getPositionVec2(), ESpriteEffect::None, 0.0f, 1.0f, 0.4f);
 }
 
