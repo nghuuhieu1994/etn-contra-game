@@ -4,7 +4,7 @@
 #include "DynamicObject.h"
 #include "Bullet.h"
 
-class Stone: public DynamicObject
+class BigStone: public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_main;
@@ -12,8 +12,8 @@ private:
 	bool m_isJump;
 	int m_TimeToJump;
 public:
-	Stone();
-	Stone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	BigStone();
+	BigStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void Update();
 	void UpdateAnimation();
@@ -21,7 +21,7 @@ public:
 	void UpdateCollision(Object* checkingObject);
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	~Stone();
+	~BigStone();
 	
 };
 #endif

@@ -1,15 +1,15 @@
-#ifndef __MAGIC_STONE_H__
-#define __MAGIC_STONE_H__
+#ifndef __BRIGDE_STONE_H__
+#define __BRIGDE_STONE_H__
 
 #include "DynamicObject.h"
 
-class MagicStone : public DynamicObject
+class BridgeStone : public DynamicObject
 {
 private:
 	CSpriteDx9* sprite_main;
 public:
-	MagicStone();
-	MagicStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
+	BridgeStone();
+	BridgeStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Initialize();
 	void UpdateCollision(Object* checkingObject);
 	void UpdateAnimation();
@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render(SPRITEHANDLE spriteHandle);
 	void Release();
-	~MagicStone();
+	~BridgeStone();
 };
 
 #endif

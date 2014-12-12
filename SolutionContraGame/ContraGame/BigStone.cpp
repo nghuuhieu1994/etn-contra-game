@@ -1,19 +1,19 @@
-#include "Stone.h"
+#include "BigStone.h"
 
-Stone::Stone()
+BigStone::BigStone()
 {
 }
 
-Stone::Stone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : DynamicObject(_position, _direction, _objectID)
+BigStone::BigStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : DynamicObject(_position, _direction, _objectID)
 {
 }
 
-void Stone::Initialize()
+void BigStone::Initialize()
 {
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
 	m_Direction = eDirection::BOTTOM;
 	sprite_exploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ROCK_FALLING));
+	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_STONE));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
@@ -23,7 +23,7 @@ void Stone::Initialize()
 	m_TimeToJump = 0;
 }
 
-void Stone::UpdateAnimation()
+void BigStone::UpdateAnimation()
 {
 	switch (m_ObjectState)
 	{
@@ -51,7 +51,7 @@ void Stone::UpdateAnimation()
 	}
 }
 
-void Stone::UpdateCollision(Object* checkingObject)
+void BigStone::UpdateCollision(Object* checkingObject)
 {
 	if(isDead != true)
 	{
@@ -130,7 +130,7 @@ void Stone::UpdateCollision(Object* checkingObject)
 	}
 }
 
-void Stone::UpdateMovement()
+void BigStone::UpdateMovement()
 {
 	switch (m_ObjectState)
 	{
@@ -161,7 +161,7 @@ void Stone::UpdateMovement()
 	}
 }
 
-void Stone::Update()
+void BigStone::Update()
 {
 	switch (m_ObjectState)
 		{
@@ -185,7 +185,7 @@ void Stone::Update()
 		}
 }
 
-void Stone::Render(SPRITEHANDLE _lpSpriteHandle)
+void BigStone::Render(SPRITEHANDLE _lpSpriteHandle)
 {
 	if(m_Sprite != 0)
 	{
@@ -194,13 +194,13 @@ void Stone::Render(SPRITEHANDLE _lpSpriteHandle)
 	
 }
 
-void Stone::Release()
+void BigStone::Release()
 {
 	m_Sprite = 0;
 	sprite_exploision->Release();
 	sprite_main->Release();
 }
 
-Stone::~Stone()
+BigStone::~BigStone()
 {
 }
