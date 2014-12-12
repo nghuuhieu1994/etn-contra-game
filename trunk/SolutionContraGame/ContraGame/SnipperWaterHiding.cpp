@@ -123,7 +123,7 @@ void SnipperWaterHiding::Update()
 
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
-				(*i)->Release();
+				//(*i)->Release();
 				SAFE_DELETE(*i);
 				i = m_ListBullet.erase(i);
 			}

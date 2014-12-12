@@ -1,7 +1,7 @@
 #include "BossBullet.h"
 
 #ifndef ACCEL_Y_BULLET_BOSS
-#define ACCEL_Y_BULLET_BOSS -0.01f
+#define ACCEL_Y_BULLET_BOSS -0.005f
 #endif
 
 BossBullet::BossBullet()
