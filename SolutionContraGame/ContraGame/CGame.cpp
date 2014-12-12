@@ -7,7 +7,7 @@ CGame::CGame() :
 	m_lpDirect3DDevice(0),
 	m_lpSpriteDirect3DHandle(0)
 {
-	srand(time(0));
+	srand((unsigned int)time(0));
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)
@@ -185,7 +185,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 
 	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
-	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::DEMO, 1));
+	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::DEMO, 3));
 	return true;
 }
 

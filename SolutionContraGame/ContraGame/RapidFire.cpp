@@ -12,7 +12,7 @@ RapidFire::RapidFire(D3DXVECTOR3 _position, eDirection _direction, eObjectID _ob
 
 void RapidFire::Initialize()
 {
-	m_ObjectState == STATE_ALIVE_IDLE;
+	m_ObjectState = STATE_ALIVE_IDLE;
 	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_RAPID_FIRE));
 }

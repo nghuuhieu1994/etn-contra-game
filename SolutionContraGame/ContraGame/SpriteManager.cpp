@@ -2,6 +2,7 @@
 
 #define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 42, 1, 42)
 #define INCLUDE_MAP2 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.png", eSpriteID::SPRITE_MAP_2, 46, 1, 46)
+#define INCLUDE_MAP3 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\3\\3.png", eSpriteID::SPRITE_MAP_3, 115, 1, 115)
 SpriteManager* SpriteManager::s_Instance = 0;
 
 SpriteManager::SpriteManager(void)
@@ -55,6 +56,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Landscape\\ledframe.png", eSpriteID::SPRITE_LED_OBJECT, 2, 1, 2);
 	INCLUDE_MAP1;
 	INCLUDE_MAP2;
+	INCLUDE_MAP3;
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\bg.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
 
@@ -140,6 +142,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	LoadSpriteContent(_lpDirectDevice, "resources\\Items\\medal.png", eSpriteID::SPRITE_MEDAL, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.effect", eSpriteID::SPRITE_EFFECT_MAP1, 1, 2, 2);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.effect", eSpriteID::SPRITE_EFFECT_MAP2, 3, 1, 3);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\3\\3.effect", eSpriteID::SPRITE_EFFECT_MAP3, 1, 2, 2);
 
 	//Stone
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Stone\\BridgeStone\\BridgeStone.png", eSpriteID::SPRITE_BRIGDE_STONE, 1, 1, 1);
