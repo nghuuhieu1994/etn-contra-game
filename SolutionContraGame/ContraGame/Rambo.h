@@ -82,7 +82,9 @@ public:
 	void Render(SPRITEHANDLE spriteHandle);
 	void SetFlag();
 	void setRectangleCheckingObjectBelow();
+	void setRamboLife(int _life){ m_life = _life; }
 	void setSkillBullet(eIDSkillBullet _skillBullet){ this->m_SkillBullet = _skillBullet; };
+	eIDSkillBullet getSkillBullet(){ return m_SkillBullet; };
 	void Update();
 	void UpdateAnimation();
 	void UpdateCollision(Object* checkingObject);

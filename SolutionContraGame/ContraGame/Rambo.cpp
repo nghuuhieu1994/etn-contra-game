@@ -84,7 +84,7 @@ int Rambo::HandleInputDeadState()
 			isSetVelocityDeathState	= false;
 			m_ObjectState			= eObjectState::STATE_RAMBO_JUMP;
 			m_Position.x			= (float)(Camera::getInstance()->getBound().left + 128);
-			m_Position.y			= (float)(Camera::getInstance()->getBound().top);
+			m_Position.y			= (float)(Camera::getInstance()->getBound().top - 32);
 			this->m_Physic->setAccelerate(D3DXVECTOR2(0.0f, -0.1f));
 			m_Physic->setVelocityX(0.0f);
 			m_Physic->setVelocityY(0.0f);

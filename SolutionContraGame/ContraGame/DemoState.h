@@ -56,6 +56,8 @@ private:
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
 	int					map;
+	static int					m_RamboLife;
+	static eIDSkillBullet		m_RamboBullet;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}
