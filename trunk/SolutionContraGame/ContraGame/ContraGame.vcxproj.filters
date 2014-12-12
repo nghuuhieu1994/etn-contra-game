@@ -513,9 +513,6 @@
     <ClInclude Include="CapsuleBoss.h">
       <Filter>GameObject\Boss\BossMap3</Filter>
     </ClInclude>
-    <ClInclude Include="RoshanHand.h">
-      <Filter>GameObject\Boss\BossMap2</Filter>
-    </ClInclude>
     <ClInclude Include="BossBullet.h">
       <Filter>GameObject\Boss\BossBullet</Filter>
     </ClInclude>

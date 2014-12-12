@@ -80,7 +80,7 @@ void BulletSnipperWaterHiding::Update()
 		}
 		break;
 	case STATE_DEATH:
-		this->Release();
+		Release();
 		break;
 	default:
 		break;
@@ -89,6 +89,7 @@ void BulletSnipperWaterHiding::Update()
 
 void BulletSnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
+
 }
 
 void BulletSnipperWaterHiding::Render(SPRITEHANDLE spriteHandle)
@@ -106,11 +107,11 @@ void BulletSnipperWaterHiding::Render(SPRITEHANDLE spriteHandle)
 
 void BulletSnipperWaterHiding::Release()
 {
+	m_Sprite = NULL;
 	m_spite_dead->Release();
 	m_sprite_main->Release();
 	SAFE_DELETE(m_spite_dead);
 	SAFE_DELETE(m_sprite_main);
-	m_Sprite = 0;
 }
 
 BulletSnipperWaterHiding::~BulletSnipperWaterHiding()

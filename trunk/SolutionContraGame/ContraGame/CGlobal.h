@@ -2,6 +2,7 @@
 #define __CGLOBAL_H__
 
 #include "EObjectID.h"
+#include "CObjectDx9.h"
 
 class CGlobal
 {
@@ -14,5 +15,6 @@ public:
 };
 
 bool IsMovementObject(eObjectID type);
+float Distance(Object*, Object*);
 
 #endif

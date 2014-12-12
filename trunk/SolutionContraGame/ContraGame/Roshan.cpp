@@ -19,6 +19,7 @@ void Roshan::Initialize()
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_MAP2_BODY_ALIVE));
 	spriteExploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	//spriteDead = 
+
 	m_ObjectState = eObjectState::STATE_POPUP;
 	m_Sprite = spriteAlive;
 }
@@ -66,7 +67,6 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
-
 }
 
 void Roshan::Update()
