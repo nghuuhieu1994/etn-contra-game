@@ -50,7 +50,7 @@ void BigCapsuleBoss::Shoot()
 
 void BigCapsuleBoss::Initialize()
 {
-	m_AttackCounter = 100;
+	m_AttackCounter = 1;
 	BulletCounter = 0;
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_CAPSULE_BOSS));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
@@ -109,14 +109,11 @@ void BigCapsuleBoss::UpdateCollision(Object* checkingObject)
 		{
 			for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); i++)
 			{
-				(*i)->Update();
-				(*i)->UpdateAnimation();
-				(*i)->UpdateMovement();
 				(*i)->UpdateCollision(checkingObject); // Ham nay tam tho`i tat' di.
 			}
 		}
 #pragma endregion UpdateListEnemy
-		/*
+		
 		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
 #pragma region BulletCollision
@@ -154,11 +151,12 @@ void BigCapsuleBoss::UpdateCollision(Object* checkingObject)
 				{
 					m_ObjectState = eObjectState::STATE_EXPLOISION;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
+					//this->isDead = true;
+					//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 				}
-				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 #pragma endregion BulletCollision
-		}*/
+		}
 		// when AttackCounter == 0; ObjectState = STATE_EXPLOISION;
 	}
 }
@@ -173,6 +171,12 @@ void BigCapsuleBoss::Update()
 	{
 		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); )
 		{
+
+				(*i)->Update();
+				(*i)->UpdateAnimation();
+				(*i)->UpdateMovement();
+
+
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
 				(*i)->Release();
@@ -228,10 +232,11 @@ void BigCapsuleBoss::Update()
 		if (isDead)
 		{
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 5000)
+			if (m_TimeChangeState > 1500)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = STATE_BOSS_DEATH;
+				this->isDead = true;
 			}
 		}
 		break;

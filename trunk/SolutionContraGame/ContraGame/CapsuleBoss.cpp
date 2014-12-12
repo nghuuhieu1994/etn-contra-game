@@ -112,13 +112,20 @@ void CapsuleBoss::UpdateCollision(Object* checkingObject)
 		if (checkingObject->getID() == eObjectID::TILE_BASE)
 		{
 			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-			if (collideDirection == IDDirection::DIR_BOTTOM)
+			if (collideDirection == IDDirection::DIR_TOP)
 			{
 				if (isChangeDirect == false)
 				{
 					isChangeDirect = true;
-					float VeclocX = m_Physic->getVelocity().x;
-					m_Physic->setVelocityX(-VeclocX);
+					//float VeclocX = m_Physic->getVelocity().x;
+					if(m_Direction == eDirection::LEFT)
+					{
+						m_Physic->setVelocityX(VELOC_X_CAPSULE_BOSS);
+					}
+					else
+					{
+						m_Physic->setVelocityX(-VELOC_X_CAPSULE_BOSS);
+					}
 					m_Physic->setAccelerateY(0);
 					m_Physic->setVelocityY(0);
 				}
