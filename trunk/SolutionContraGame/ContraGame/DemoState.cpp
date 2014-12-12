@@ -2,6 +2,8 @@
 #define MAP_1 1
 #define MAP_2 2
 #include <fstream>
+int DemoState::m_RamboLife = 10;
+eIDSkillBullet DemoState::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
@@ -24,10 +26,12 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	Camera::getInstance()->setLockWidth(lockWidth);
 	Camera::getInstance()->setLockHeight(lockHeight);
 
-	string mapPath = "resources\\Map\\" + to_string(1) +"\\"+ to_string(1) +".xml";
-	m_backgroundEffect.Initialize(1);
-	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(1));
+	string mapPath = "resources\\Map\\" + to_string(map) +"\\"+ to_string(map) +".xml";
+	m_backgroundEffect.Initialize(map);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
+	m_Rambo->setRamboLife(DemoState::m_RamboLife);
+	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);
 }
 
 void DemoState::HandleInput()
@@ -41,6 +45,8 @@ void DemoState::Update()
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
 	}
+
+
 
 	#pragma region Update camera & insert object into quadtree
 
@@ -102,6 +108,15 @@ void DemoState::Update()
 
 		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+		if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
+		{
+			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+			{
+				DemoState::m_RamboBullet = m_Rambo->getSkillBullet();
+				DemoState::m_RamboLife = m_Rambo->getRamboLife();
+				SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2)); 
+			}
+		}
 	}
 
 	
