@@ -10,7 +10,6 @@ SnipperWaterHiding::SnipperWaterHiding(D3DXVECTOR3 _position, eDirection _direct
 
 void SnipperWaterHiding::Shoot()
 {
-	//BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_SNIPPER_WATER_HIDING, GetStartPositionOfBullet(), D3DXVECTOR2(-2.0f, 3.0f), 100);
 	m_ListBullet.push_back(new BulletSnipperWaterHiding( D3DXVECTOR3(m_Position.x + 8, m_Position.y + 23, m_Position.z - 0.5f), eDirection::TOP, eObjectID::BULLET_SNIPPER_WATER_HIDING));
 	m_ListBullet.back()->Initialize();
 }
@@ -28,20 +27,10 @@ void SnipperWaterHiding::Initialize()
 	m_Sprite = sprite_alive_hiding;
 	isShoot = false;
 	m_Position.z = 0.4f;
-	//bullet = new BulletSnipperWaterHiding(D3DXVECTOR3(m_Position.x + 10, m_Position.y + 14, 1), eDirection::RIGHT, eObjectID::BULLET_SNIPPER_WATER_HIDING);
-	//bullet->Initialize();
-	
 }
 
 void SnipperWaterHiding::UpdateAnimation()
 {	
-	if(m_ListBullet.empty() != false)
-	{
-		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
-		{
-			(*i)->UpdateAnimation();
-		}
-	}
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
@@ -52,8 +41,12 @@ void SnipperWaterHiding::UpdateAnimation()
 		//bullet->UpdateAnimation();
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_dead;
-		m_Sprite->UpdateAnimation(250);
+		if (isDead == false)
+		{
+			isDead = true;
+			m_Sprite = sprite_dead;
+			m_Sprite->UpdateAnimation(250);
+		}
 		break;
 	case STATE_DEATH:
 		this->Release();
@@ -66,14 +59,17 @@ void SnipperWaterHiding::UpdateAnimation()
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
-	if(m_ListBullet.empty() != true)
+	if (m_ListBullet.empty() != true)
 	{
 		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
 		{
-			(*i)->UpdateCollision(checkingObject); 
-		}	
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+			(*i)->Update();
+			(*i)->UpdateCollision(checkingObject);
+		}
 	}
-	
+
 	if (isDead != true)
 	{
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
@@ -90,7 +86,6 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 						checkingObject->setObjectState(eObjectState::STATE_DEATH);
 						m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
-						isDead = true;
 						this->m_TimeChangeState = 0;
 					}
 					break;
@@ -104,13 +99,7 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 
 void SnipperWaterHiding:: UpdateMovement()
 {
-	if(m_ListBullet.empty() != true)
-	{
-		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
-		{
-			(*i)->UpdateMovement();
-		}
-	}
+	
 }
 
 void SnipperWaterHiding::Update()
@@ -119,11 +108,8 @@ void SnipperWaterHiding::Update()
 	{
 		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); )
 		{
-			(*i)->Update();
-
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
-				//(*i)->Release();
 				SAFE_DELETE(*i);
 				i = m_ListBullet.erase(i);
 			}
@@ -160,11 +146,14 @@ void SnipperWaterHiding::Update()
 			}
 			break;
 		case STATE_BEFORE_DEATH:
-			m_TimeChangeState += (int)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if(m_TimeChangeState > 1000)
+			if (isDead)
 			{
-				m_ObjectState = eObjectState::STATE_DEATH;
-				m_TimeChangeState = 0;
+				m_TimeChangeState += (int) CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if (m_TimeChangeState > 1000)
+				{
+					m_ObjectState = eObjectState::STATE_DEATH;
+					m_TimeChangeState = 0;
+				}
 			}
 			break;
 		case STATE_DEATH:
@@ -194,11 +183,6 @@ void SnipperWaterHiding::Render(SPRITEHANDLE spriteHandle)
 						m_Sprite->getScale(), 
 						m_Position.z);
 	}
-	//bullet->Render(spriteHandle);
-	/*if(isShoot == true)
-	{
-		bullet->Render(spriteHandle);
-	}*/
 }
 
 
@@ -216,7 +200,6 @@ void SnipperWaterHiding::Release()
 	m_Sprite = 0;
 	sprite_alive_hiding->Release();
 	sprite_dead->Release();
-	//bullet->Release();
 	SAFE_DELETE(sprite_alive_hiding);
 	SAFE_DELETE(sprite_dead);
 }
