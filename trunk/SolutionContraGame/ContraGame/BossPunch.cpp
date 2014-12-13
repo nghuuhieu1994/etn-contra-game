@@ -87,6 +87,7 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 
 void BossPunch::UpdateMovement()
 {
+
 	m_Physic->UpdateMovement(&m_Position);
 }
 
@@ -119,6 +120,7 @@ void BossPunch::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_Sprite)
 	{
+		angle += 0.2f;
 		m_Sprite->Render(spriteHandle,
 			getPositionVec2(),
 			ESpriteEffect::None,
