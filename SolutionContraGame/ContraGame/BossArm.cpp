@@ -50,38 +50,6 @@ void BossArm::UpdateCollision(Object* checkingObject)
 			if (collideDirection != IDDirection::DIR_NONE)
 			{
 				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();				
-				/*Bullet* tempBullet = (Bullet*) (checkingObject);
-				if (tempBullet->getTypeBullet() == eIDTypeBullet::DEFAULT_BULLET_OF_RAMBO)
-				{
-					if (m_AttackCounter > 0)
-					{
-						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
-						--m_AttackCounter;
-					}
-				}
-				else if (tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
-				{
-					checkingObject->setObjectState(eObjectState::STATE_DEATH);
-					if (m_AttackCounter >= 2)
-					{
-						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
-						m_AttackCounter -= 2;
-					}
-				}
-				else if (tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
-				{
-					if (m_AttackCounter >= 4)
-					{
-						m_AttackCounter -= 4;
-					}
-				}
-
-				if (m_AttackCounter <= 0)
-				{
-					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
-				}
-				*/
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 		}
@@ -90,6 +58,7 @@ void BossArm::UpdateCollision(Object* checkingObject)
 
 void BossArm::UpdateMovement()
 {
+	angle += 0.1f;
 	m_Physic->UpdateMovement(&m_Position);
 }
 

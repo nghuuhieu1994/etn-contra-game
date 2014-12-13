@@ -7,7 +7,7 @@ eIDSkillBullet DemoState::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
 	m_Quadtree = new QuadTree();
 	fstream fLog("resources\\Map\\" + to_string(map) +"\\setting", ios::in);
 
@@ -31,17 +31,25 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
 	BulletPoolManager::getInstance()->Initialize();
 	m_Rambo->setRamboLife(DemoState::m_RamboLife);
-	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);
+	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);*/
+
+	mPunch = new BossPunch(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_PUNCH);
+	mPunch->Initialize();
+	for (int i = 0; i < 4; i++)
+	{
+		mArm[i] = new BossArm(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_ARM);
+		mArm[i]->Initialize();
+	}
 }
 
 void DemoState::HandleInput()
 {
-	m_Rambo->HandleInput();
+	//m_Rambo->HandleInput();
 }
 
 void DemoState::Update()
 {
-	if (m_Rambo->getRamboLife() == 0)
+	/*if (m_Rambo->getRamboLife() == 0)
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
 	}
@@ -139,16 +147,59 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	
+	*/
+
+	// Popup action
+	mPunch->getPhysic()->setVelocityX(0.3f); // VELOC_POPUP_X
+	mPunch->getPhysic()->setVelocityY(0.4f); // VELOC_POPUP_Y
+	if (Distance(mPunch, mArm[3]) >= 32)
+	{
+		mArm[3]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+		mArm[3]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+	}
+	if (Distance(mArm[3], mArm[2]) > 32)
+	{
+		mArm[2]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+		mArm[2]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+	}
+	if (Distance(mArm[2], mArm[1]) >= 32)
+	{
+		mArm[1]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+		mArm[1]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+	}
+
+	if (Distance(mArm[1], mArm[0]) >= 32)
+	{
+		//isPopupDone = true;
+		mPunch->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+		mPunch->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+		for (int i = 0; i < 4; i++)
+		{
+			mArm[i]->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+			mArm[i]->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+		}
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		mArm[i]->UpdateMovement();
+	}
+	mPunch->UpdateMovement();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	m_Quadtree->Render(_lpDSpriteHandle);
+	/*m_Quadtree->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);*/
+
+	for (int i = 0; i < 4; i++)
+	{
+		mArm[i]->Render(_lpDSpriteHandle);
+	}
+	mPunch->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
@@ -163,5 +214,5 @@ void DemoState::Resume()
 
 void DemoState::Release()
 {
-	m_Quadtree->Release(m_Quadtree->getRootNode());
+	//m_Quadtree->Release(m_Quadtree->getRootNode());
 }

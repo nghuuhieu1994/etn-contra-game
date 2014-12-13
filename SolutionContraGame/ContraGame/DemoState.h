@@ -52,12 +52,16 @@ using namespace std;
 class DemoState : public GameScene
 {
 private:
-	Rambo*				m_Rambo;
+	/*Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
-	BackgroundEffect	m_backgroundEffect;
+	BackgroundEffect	m_backgroundEffect;*/
 	int					map;
 	static int					m_RamboLife;
 	static eIDSkillBullet		m_RamboBullet;
+
+	BossPunch*	mPunch;
+	BossArm*	mArm[4];
+
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}
