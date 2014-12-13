@@ -126,4 +126,5 @@ void CTextureDx9::RenderTexture(LPD3DXSPRITE _lpDSpriteHandle,const RECT* source
 void CTextureDx9::UnLoadTexture()
 {
 	SAFE_RELEASE(m_lpTexture);
+	m_lpTexture = 0;
 }

@@ -15,6 +15,7 @@
 #include "SpriteManager.h"
 #include "SceneManagerDx9.h"
 #include "TestSpriteState.h"
+#include "HighscoreState.h"
 #include <d3d9.h>
 #include <dsound.h>
 
