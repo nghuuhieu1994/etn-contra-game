@@ -157,9 +157,7 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boom\\Boom.png", eSpriteID::SPRITE_BOOM, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Boom\\BoomExploision.png", eSpriteID::SPRITE_BOOM_EXPLOISION, 3, 1, 3);
-
-
-	
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\black.png", eSpriteID::SPRITE_BLACK_BACKGROUND, 1, 1, 1);
 }
 
 void SpriteManager::Release()

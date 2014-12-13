@@ -88,6 +88,7 @@
     <ClInclude Include="EnemyBigGunShooting.h" />
     <ClInclude Include="Fire.h" />
     <ClInclude Include="FireBridge.h" />
+    <ClInclude Include="HighscoreState.h" />
     <ClInclude Include="LazeBullet.h" />
     <ClInclude Include="BridgeStone.h" />
     <ClInclude Include="MapQuadtree.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="EnemyBigGunShooting.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBridge.cpp" />
+    <ClCompile Include="HighscoreState.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
     <ClCompile Include="BridgeStone.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />

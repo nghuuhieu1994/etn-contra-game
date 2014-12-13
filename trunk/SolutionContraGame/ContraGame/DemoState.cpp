@@ -1,4 +1,5 @@
 #include "DemoState.h"
+#include "HighScoreState.h"
 #define MAP_1 1
 #define MAP_2 2
 #include <fstream>
@@ -7,7 +8,7 @@ eIDSkillBullet DemoState::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	/*SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+
 	m_Quadtree = new QuadTree();
 	fstream fLog("resources\\Map\\" + to_string(map) +"\\setting", ios::in);
 
@@ -44,7 +45,8 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 void DemoState::HandleInput()
 {
-	//m_Rambo->HandleInput();
+	//string scriptPath = "resources\\Map\\" + to_string(map) +"\\autorun";
+	//m_Rambo->RunScript(scriptPath.c_str());
 }
 
 void DemoState::Update()
@@ -53,8 +55,6 @@ void DemoState::Update()
 	{
 		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
 	}
-
-
 
 	#pragma region Update camera & insert object into quadtree
 
@@ -122,7 +122,7 @@ void DemoState::Update()
 			{
 				DemoState::m_RamboBullet = m_Rambo->getSkillBullet();
 				DemoState::m_RamboLife = m_Rambo->getRamboLife();
-				SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2)); 
+				SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2)); 
 			}
 		}
 	}

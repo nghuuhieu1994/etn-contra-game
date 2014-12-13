@@ -242,6 +242,9 @@
     <ClCompile Include="WeaponCapsuleVer2.cpp">
       <Filter>GameObject\Items\WeaponCapsuleVer2</Filter>
     </ClCompile>
+    <ClCompile Include="HighscoreState.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -533,6 +536,9 @@
     </ClInclude>
     <ClInclude Include="WeaponCapsuleVer2.h">
       <Filter>GameObject\Items\WeaponCapsuleVer2</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreState.h">
+      <Filter>GameScene\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

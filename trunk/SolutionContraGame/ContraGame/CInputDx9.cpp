@@ -188,6 +188,16 @@ bool CInputDx9::IsKeyUp(int keyCode)
 	return true;
 }
 
+void CInputDx9::SetKeyDown(int keyCode)
+{
+	m_currentBuffer[keyCode] |= 0x00000080;
+}
+
+void CInputDx9::SetKeyUp(int keyCode)
+{
+	m_currentBuffer[keyCode] &= 0x00000000;
+}
+
 bool CInputDx9::IsKeyLeftUpAndKeyRightDown()
 {
 	return IsKeyUp(DIK_LEFT) && IsKeyDown(DIK_RIGHT);

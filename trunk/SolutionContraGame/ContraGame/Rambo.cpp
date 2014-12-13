@@ -1,4 +1,5 @@
 ﻿#include "Rambo.h"
+
 #define VELOCITY_Y_JUMP				4.8f
 #define VELOCITY_X_MOVE_TO_RIGHT	1.1f
 #define VELOCITY_Y_MOVE_TO_LEFT		-1.1f
@@ -107,10 +108,8 @@ void Rambo::HandleInput()
 	CheckOutBottomCamera();
 	HandleInputDeadState();
 
-
 	if (CInputDx9::getInstance()->IsKeyPress(DIK_B))
 	{
-
 		m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 	}
 
@@ -1357,6 +1356,41 @@ int Rambo::UpdateInvulnerableAnimation()
 		m_timeInvulnerable = 0;
 		isInvulnerable = false;
 	}
+	return 0;
+}
+
+int Rambo::RunScript(const char* scriptPath)
+{
+	fstream fScript(scriptPath, ios::in);
+	string buffer;
+	fScript >> buffer;
+	if (buffer == "RUNTO")
+	{
+		int DestinationX;
+		fScript >> DestinationX;
+		m_Position.x = (float)(int)m_Position.x;
+		if (DestinationX > m_Position.x)
+		{
+			CInputDx9::getInstance()->SetKeyDown(DIK_RIGHT);
+		}
+		if (DestinationX < m_Position.x)
+		{
+			CInputDx9::getInstance()->SetKeyDown(DIK_LEFT);
+		}
+	}
+	fScript >> buffer;
+	if (buffer == "JUMP")
+	{
+		int location = 0;
+		fScript >> location;
+		if (m_Position.x == location)
+		{
+			CInputDx9::getInstance()->SetKeyDown(DIK_RIGHT);
+			CInputDx9::getInstance()->SetKeyDown(DIK_X); 
+		}
+	}
+
+	fScript.close();
 	return 0;
 }
 

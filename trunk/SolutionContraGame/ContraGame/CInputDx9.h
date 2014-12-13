@@ -47,6 +47,8 @@ public:
 	void					InitializeKeyBoardDevice(HWND handleWindow);
 	void					InitializeMouseDevice(HWND handleWindow);
 	void					Release();
+	void					SetKeyDown(int keyCode);
+	void					SetKeyUp(int keyCode);
 	void					UpdateKeyBoard();
 	void					UpdateMouse();
 	~CInputDx9();

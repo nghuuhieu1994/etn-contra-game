@@ -8,7 +8,7 @@
 #include "Bullet.h"
 #include "BulletPool.h"
 #include "BulletPoolManager.h"
-
+#include <fstream>
 #include <list>
 
 using namespace std;
@@ -34,6 +34,7 @@ private:
 	float m_timeWaterBomb;
 	float m_timeBeforeDeadBottom;
 	int m_timeInvulnerable;
+	
 	int UpdateInvulnerableAnimation();
 	int HandleInputAimBottomRightState();
 	int HandleInputAimTopRightState();
@@ -77,6 +78,7 @@ public:
 	virtual ~Rambo();
 	void CleanIgnoreList();
 	void HandleInput();
+	int RunScript(const char* scriptPath);
 	void Initialize();
 	void Release();
 	void Render(SPRITEHANDLE spriteHandle);
