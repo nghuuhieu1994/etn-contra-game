@@ -59,6 +59,8 @@ void SpriteManager::InitializeListSprite(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	INCLUDE_MAP3;
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\bg.png", eSpriteID::SPRITE_MENUBG, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\icon.png", eSpriteID::SPRITE_ICON, 1, 1, 1);
+	LoadSpriteContent(_lpDirectDevice, "resources\\Map\\MenuGame\\WinScene.png", eSpriteID::SPRITE_WINSCENE, 1, 1, 1);
+
 
 	LoadSpriteContent(_lpDirectDevice, "resources\\grid.png", eSpriteID::SPRITE_GRID, 1, 1, 1);
 	LoadSpriteContent(_lpDirectDevice, "resources\\Character\\Rambo\\lazer.png", eSpriteID::SPRITE_LAZE_BULLET_RAMBO, 1, 2, 4);
