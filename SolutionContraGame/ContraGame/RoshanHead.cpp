@@ -84,9 +84,6 @@ void RoshanHead::UpdateCollision(Object* checkingObject)
 		{
 			for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
 			{
-				(*i)->UpdateAnimation();
-				(*i)->UpdateMovement();
-				(*i)->Update();
 				(*i)->UpdateCollision(checkingObject);				
 			}
 		}
@@ -144,8 +141,14 @@ void RoshanHead::Update()
 	{
 		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); )
 		{
+
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+			(*i)->Update();
+
 			if ((*i)->getObjectState() == STATE_DEATH)
 			{
+
 				SAFE_DELETE(*i);
 				i = mListRoshanBullet.erase(i);				
 			}
@@ -218,20 +221,13 @@ void RoshanHead::Render(SPRITEHANDLE spriteHandle)
 	if (m_Sprite != 0)
 	{
 		short colorA = 255 * mOpacity;
-		if (isDead == false)
-		{
-			m_Sprite->Render(spriteHandle,
-				getPositionVec2(),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				m_Position.z,
-				D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
-		}
-		else
-		{
-			// implement Deadstate->render
-		}
+		m_Sprite->Render(spriteHandle,
+			getPositionVec2(),
+			m_Sprite->getSpriteEffect(),
+			m_Sprite->getRotate(),
+			m_Sprite->getScale(),
+			m_Position.z,
+			D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
 	}
 	if (mListRoshanBullet.empty() != true)
 	{
@@ -245,16 +241,16 @@ void RoshanHead::Render(SPRITEHANDLE spriteHandle)
 void RoshanHead::Release()
 {
 	m_Sprite = 0;
-	spriteAlive->Release();
-	SAFE_DELETE(spriteAlive);
-	spriteDead->Release();
-	SAFE_DELETE(spriteDead);
+	//spriteAlive->Release();
+	//SAFE_DELETE(spriteAlive);
+	//spriteDead->Release();
+	//SAFE_DELETE(spriteDead);
 	if (mListRoshanBullet.empty() != true)
 	{
 		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
 		{
 			(*i)->Release();
-			SAFE_DELETE(*i);
+			//SAFE_DELETE(*i);
 			mListRoshanBullet.clear();
 		}
 	}

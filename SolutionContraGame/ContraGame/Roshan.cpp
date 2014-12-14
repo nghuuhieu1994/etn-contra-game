@@ -18,7 +18,7 @@ void Roshan::Initialize()
 	mRoshanHead->Initialize();
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_MAP2_BODY_ALIVE));
 	spriteExploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	//spriteDead = 
+	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_MAP2_DEATH));
 
 	m_ObjectState = eObjectState::STATE_POPUP;
 	m_Sprite = spriteAlive;
@@ -26,7 +26,10 @@ void Roshan::Initialize()
 
 void Roshan::UpdateAnimation()
 {
-	mRoshanHead->UpdateAnimation();
+	if (mRoshanHead)
+	{
+		mRoshanHead->UpdateAnimation();
+	}
 	switch (m_ObjectState)
 	{
 	case STATE_POPUP:
@@ -41,7 +44,12 @@ void Roshan::UpdateAnimation()
 		}
 		break;
 	case STATE_ALIVE_IDLE:
-
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_TimeChangeState > 5000)
+		{
+			m_TimeChangeState = 0;
+			mRoshanHead->setObjectState(STATE_BEFORE_DEATH);
+		}
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
@@ -49,6 +57,7 @@ void Roshan::UpdateAnimation()
 			isDead = true;
 			m_Sprite = spriteDead;
 		}
+		spriteExploision->UpdateAnimation(250);
 		break;
 	case STATE_BOSS_DEATH:
 		break;
@@ -67,11 +76,15 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
+
 }
 
 void Roshan::Update()
 {
-	mRoshanHead->Update();
+	if (mRoshanHead)
+	{
+		mRoshanHead->Update();
+	}
 	
 	switch (m_ObjectState)
 	{
@@ -86,8 +99,9 @@ void Roshan::Update()
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 2000)
+			if (m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_BOSS_DEATH;
@@ -102,24 +116,66 @@ void Roshan::Update()
 	}
 }
 
+void Roshan::Release()
+{
+	if (spriteAlive)
+	{
+		spriteAlive->Release();
+		SAFE_DELETE(spriteAlive);
+		spriteExploision->Release();
+		SAFE_DELETE(spriteExploision);
+		mRoshanHead->Release();
+		SAFE_DELETE(mRoshanHead);
+	}
+}
+
 void Roshan::Render(SPRITEHANDLE spriteHandle)
 {
 	if (m_Sprite)
 	{
 		short colorA = 255 * mOpacity;
-		if (isDead == false)
+		m_Sprite->Render(spriteHandle,
+			getPositionVec2(),
+			m_Sprite->getSpriteEffect(),
+			m_Sprite->getRotate(),
+			m_Sprite->getScale(),
+			0.5f,
+			D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
+
+		if (m_ObjectState == STATE_BEFORE_DEATH)
 		{
-			m_Sprite->Render(spriteHandle,
-				getPositionVec2(),
-				m_Sprite->getSpriteEffect(),
-				m_Sprite->getRotate(),
-				m_Sprite->getScale(),
-				0.5f,
-				D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
-		}
-		else
-		{
-			// implement Deadstate->render
+			for (int i = 0; i < 4; i++)
+			{
+				spriteExploision->Render(spriteHandle,
+					D3DXVECTOR2(m_Position.x - 70 + i * 50, m_Position.y + 150),
+					m_Sprite->getSpriteEffect(),
+					m_Sprite->getRotate(),
+					m_Sprite->getScale(),
+					1.0f,
+					D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
+				spriteExploision->Render(spriteHandle,
+					D3DXVECTOR2(m_Position.x - 70 + i * 50, m_Position.y + 100),
+					m_Sprite->getSpriteEffect(),
+					m_Sprite->getRotate(),
+					m_Sprite->getScale(),
+					1.0f,
+					D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
+
+				spriteExploision->Render(spriteHandle,
+					D3DXVECTOR2(m_Position.x - 30, m_Position.y + 120 - i * 50),
+					m_Sprite->getSpriteEffect(),
+					m_Sprite->getRotate(),
+					m_Sprite->getScale(),
+					1.0f,
+					D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
+				spriteExploision->Render(spriteHandle,
+					D3DXVECTOR2(m_Position.x + 30, m_Position.y + 120 - i * 50),
+					m_Sprite->getSpriteEffect(),
+					m_Sprite->getRotate(),
+					m_Sprite->getScale(),
+					1.0f,
+					D3DCOLOR_ARGB(colorA, 0xff, 0xff, 0xff));
+			}
 		}
 	}
 	if (mRoshanHead)
@@ -128,6 +184,3 @@ void Roshan::Render(SPRITEHANDLE spriteHandle)
 	}
 }
 
-void Roshan::Release()
-{
-}
