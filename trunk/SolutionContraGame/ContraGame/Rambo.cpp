@@ -439,7 +439,7 @@ bool Rambo::HandleInputShooting()
 	case eIDSkillBullet::L_SKILL_BULLET:
 		if (CInputDx9::getInstance()->IsKeyPress(DIK_Z))
 		{
-			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::RED_BULLET_OF_RAMBO);
+			BulletPoolManager::getInstance()->KillBullet(eIDTypeBullet::LAZER_BULLET_OF_RAMBO);
 			m_RamboSprite->setShakeTime(0);
 			m_RamboSprite->IncreaseTimesShake(2);
 			SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
@@ -448,7 +448,7 @@ bool Rambo::HandleInputShooting()
 		}
 		if(CInputDx9::getInstance()->IsKeyDown(DIK_Z))
 		{
-			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::RED_BULLET_OF_RAMBO) < 1)
+			if (BulletPoolManager::getInstance()->GetAmountBulletOfType(eIDTypeBullet::LAZER_BULLET_OF_RAMBO) < 1)
 			{
 				m_RamboSprite->IncreaseTimesShake(2);
 				SoundBuffer* sound = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_default_sfx);
