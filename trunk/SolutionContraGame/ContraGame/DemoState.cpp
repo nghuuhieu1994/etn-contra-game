@@ -9,7 +9,7 @@ eIDSkillBullet DemoState::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 
-	m_Quadtree = new QuadTree();
+	/*m_Quadtree = new QuadTree();
 	fstream fLog("resources\\Map\\" + to_string(map) +"\\setting", ios::in);
 
 	bool lockWidth;
@@ -41,6 +41,10 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 		mArm[i] = new BossArm(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_ARM);
 		mArm[i]->Initialize();
 	}
+
+	rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
+	rs->Initialize();
+
 }
 
 void DemoState::HandleInput()
@@ -185,6 +189,10 @@ void DemoState::Update()
 		mArm[i]->UpdateMovement();
 	}
 	mPunch->UpdateMovement();
+
+	rs->Update();
+	rs->UpdateAnimation();
+	rs->UpdateMovement();
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -200,6 +208,8 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		mArm[i]->Render(_lpDSpriteHandle);
 	}
 	mPunch->Render(_lpDSpriteHandle);
+
+	rs->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

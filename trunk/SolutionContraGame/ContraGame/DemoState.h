@@ -61,7 +61,7 @@ private:
 
 	BossPunch*	mPunch;
 	BossArm*	mArm[4];
-
+	Roshan* rs;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}
