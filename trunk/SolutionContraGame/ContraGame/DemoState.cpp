@@ -240,7 +240,7 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	//mArm[1]->Render(_lpDSpriteHandle);
 	//mArm[2]->Render(_lpDSpriteHandle);
 
-	//mPunch->Render(_lpDSpriteHandle);
+	mPunch->Render(_lpDSpriteHandle);
 
 	//rs->Render(_lpDSpriteHandle);
 }
