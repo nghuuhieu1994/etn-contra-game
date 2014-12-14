@@ -36,14 +36,16 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Rambo->setRamboLife(DemoState::m_RamboLife);
 	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);
 
-	mPunch = new BossPunch(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_PUNCH);
-	mPunch->Initialize();
+	m_BossHand = new BossHand(D3DXVECTOR3(300, 300, 1.0f), eDirection::LEFT, eObjectID::ROSHAN_HAND);
+	m_BossHand->Initialize();
+
+	//mPunch = new BossPunch(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_PUNCH);
+	//mPunch->Initialize();
 	//for (int i = 0; i < 4; i++)
 	//{
 	countBossArmUpdate = 0;
 	mArm[0] = new BossArm(D3DXVECTOR3(100, 100, 1), eDirection::RIGHT, eObjectID::ROSHAN_ARM, D3DXVECTOR3(100, 100, 1), 0.0f);
 	mArm[0]->Initialize();
-	mArm[0]->setFactorR(0.0f);
 	mArm[0]->setAngleVeclocity(0.00f);
 	//mArm[0]->setAngle(0.0f);
 	mArm[1] = new BossArm(D3DXVECTOR3(100 + 32, 100 + 16, 1), eDirection::RIGHT, eObjectID::ROSHAN_ARM, D3DXVECTOR3(100, 100, 1), 0.1f);
@@ -64,7 +66,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 	//rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
 	//rs->Initialize();
-
 }
 
 void DemoState::HandleInput()
@@ -175,8 +176,8 @@ void DemoState::Update()
 	
 
 	// Popup action
-	mPunch->getPhysic()->setVelocityX(0.3f); // VELOC_POPUP_X
-	mPunch->getPhysic()->setVelocityY(0.4f); // VELOC_POPUP_Y
+	//mPunch->getPhysic()->setVelocityX(0.3f); // VELOC_POPUP_X
+	//mPunch->getPhysic()->setVelocityY(0.4f); // VELOC_POPUP_Y
 
 	//if (Distance(mPunch, mArm[3]) >= 32)
 	//{
@@ -206,17 +207,19 @@ void DemoState::Update()
 	//	}
 	//}
 
-	for (int i = 1; i < 4; i++)
-	{
-		if(i > 1)
-		{
-			mArm[i]->setPositionOfOring(mArm[i-1]->getPositionVec3());
-			mArm[i]->setAngle(mArm[i-1]->getAngle());
-		}	
-		mArm[i]->UpdateMovement();
-	}
+	//for (int i = 1; i < 4; i++)
+	//{
+	//	if(i > 1)
+	//	{
+	//		mArm[i]->setPositionOfOring(mArm[i-1]->getPositionVec3());
+	//		mArm[i]->setAngle(mArm[i-1]->getAngle());
+	//	}	
+	//	mArm[i]->UpdateMovement();
+	//}
 
-	mPunch->UpdateMovement();
+	m_BossHand->UpdateMovement();
+
+	//mPunch->UpdateMovement();
 
 	//rs->Update();
 	//rs->UpdateAnimation();
@@ -231,17 +234,18 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	//BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	//WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 
-	for (int i = 0; i < 4; i++)
-	{
-		mArm[i]->Render(_lpDSpriteHandle);
-	}
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	mArm[i]->Render(_lpDSpriteHandle);
+	//}
 
 	//mArm[0]->Render(_lpDSpriteHandle);
 	//mArm[1]->Render(_lpDSpriteHandle);
 	//mArm[2]->Render(_lpDSpriteHandle);
 
-	mPunch->Render(_lpDSpriteHandle);
+	//mPunch->Render(_lpDSpriteHandle);
 
+	m_BossHand->Render(_lpDSpriteHandle);
 	//rs->Render(_lpDSpriteHandle);
 }
 

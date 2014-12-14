@@ -10,7 +10,7 @@
 
 BossHand::BossHand(){  }
 
-BossHand::BossHand(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+BossHand::BossHand(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID) : DynamicObject(_position, _direction, _objectID)
 { 
 
 }
@@ -19,15 +19,45 @@ BossHand::~BossHand(){}
 
 void BossHand::Initialize()
 {
-	mPunch = new BossPunch(m_Position, m_Direction, m_eObjectID);
-	mPunch->Initialize();
+	m_ObjectState = eObjectState::STATE_POPUP;
+	isPopupDone = false;
+	this->m_CountRotation = 0;
+	this->m_AngleOfTarget = 0.0f;
 
 	for (int i = 0; i < 4; i++)
 	{
-		mArm[i] = new BossArm(m_Position, m_Direction, m_eObjectID, D3DXVECTOR3(0.0f, 0.0f, 1.0f), 0.1f);
+		mArm[i] = new BossArm(m_Position, m_Direction, eObjectID::ROSHAN_ARM, m_Position, 0.1f);
 		mArm[i]->Initialize();
 	}
 
+	mPunch = new BossPunch(m_Position, m_Direction, eObjectID::ROSHAN_PUNCH, m_Position);
+	mPunch->Initialize();
+
+	#pragma region. Init for arm of hand
+
+	/*mArm[0] = new BossArm(m_Position, eDirection::RIGHT, eObjectID::ROSHAN_ARM, m_Position, 0.1f);
+	mArm[0]->Initialize();
+	mArm[0]->setAngleVeclocity(0.0f);
+	mArm[0]->setAngle(0.0f);
+
+	mArm[1] = new BossArm(D3DXVECTOR3(m_Position.x + 32, m_Position.y + 16, 1.0f), eDirection::RIGHT, eObjectID::ROSHAN_ARM, m_Position, 0.1f);
+	mArm[1]->Initialize();
+	mArm[1]->setAngleVeclocity(4.0f);
+	mArm[1]->setAngle(30.0f);
+
+	mArm[2] = new BossArm(D3DXVECTOR3(m_Position.x + 64, m_Position.y + 32, 1.0f), eDirection::RIGHT, eObjectID::ROSHAN_ARM, D3DXVECTOR3(m_Position.x + 32, m_Position.y + 16, 1.0f), 0.1f);
+	mArm[2]->Initialize();
+	mArm[2]->setAngleVeclocity(-60.0f);
+
+	mArm[3] = new BossArm(D3DXVECTOR3(m_Position.x + 96, m_Position.y + 48, 1.0f), eDirection::RIGHT, eObjectID::ROSHAN_ARM, D3DXVECTOR3(m_Position.x + 64, m_Position.y + 32, 1.0f), 0.1f);
+	mArm[3]->Initialize();
+	mArm[3]->setAngleVeclocity(-50.0f);
+
+	mPunch = new BossPunch(D3DXVECTOR3(m_Position.x + 128, m_Position.y + 64, 1.0f), m_Direction, m_eObjectID, D3DXVECTOR3(m_Position.x + 96, m_Position.y + 48, 1.0f));
+	mPunch->Initialize();
+	mPunch->setAngleVeclocity(-40.0f);
+	*/
+	//#pragma endregion
 }
 
 /*
@@ -71,51 +101,166 @@ void BossHand::UpdateMovement()
 	{
 	case STATE_POPUP:
 
-		/*
-		if (isPopupDone == false)
-		{
-			mPunch->getPhysic()->setVelocityX(VELOC_POPUP_X);
-			mPunch->getPhysic()->setVelocityY(VELOC_POPUP_Y);
-			if (Distance(mPunch, mArm[3]) >= 32)
-			{
-				mArm[3]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
-				mArm[3]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
-			}
-			if (Distance(mArm[3], mArm[2]) > 32)
-			{
-				mArm[2]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
-				mArm[2]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
-			}
-			if (Distance(mArm[2], mArm[1]) >= 32)
-			{
-				mArm[1]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
-				mArm[1]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
-			}
-
-			if (Distance(mArm[1], mArm[0] ) >= 32)
-			{
-				isPopupDone = true;
-				mPunch->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
-				mPunch->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
-				for (int i = 0; i < 4; i++)
+		#pragma region. ARM_LEFT
+				if (isPopupDone == false)
 				{
-					mArm[i]->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
-					mArm[i]->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
-				}
-			}
+					if(m_Direction == eDirection::RIGHT)
+					{
+						mPunch->getPhysic()->setVelocityX(VELOC_POPUP_X);
+					}
+					else
+					{
+						mPunch->getPhysic()->setVelocityX(-VELOC_POPUP_X);
+					}
+					mPunch->getPhysic()->setVelocityY(VELOC_POPUP_Y);
+					if (Distance(mPunch, mArm[3]) >= 32)
+					{
+						mArm[3]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+						mArm[3]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+					}
+					if (Distance(mArm[3], mArm[2]) > 32)
+					{
+						mArm[2]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+						mArm[2]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+					}
+					if (Distance(mArm[2], mArm[1]) >= 32)
+					{
+						mArm[1]->getPhysic()->setVelocityX(mPunch->getPhysic()->getVelocity().x);
+						mArm[1]->getPhysic()->setVelocityY(mPunch->getPhysic()->getVelocity().y);
+					}
+
+					if (Distance(mArm[1], mArm[0] ) >= 32)
+					{
+						isPopupDone = true;
+						mPunch->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+						mPunch->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+						for (int i = 0; i < 4; i++)
+						{
+							mArm[i]->getPhysic()->setVelocity(D3DXVECTOR2(0, 0));
+							mArm[i]->getPhysic()->setAccelerate(D3DXVECTOR2(0, 0));
+						}
+						this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+
+					}
+
+					for (int i = 0; i < 4; i++)
+					{
+						mArm[i]->UpdateMovement();
+					}
+					mPunch->UpdateMovement();
+
+					if(this->m_ObjectState == eObjectState::STATE_ALIVE_MOVE)
+					{
+						mArm[0]->setAngleVeclocity(0.0f);
+						mArm[0]->setAngle(0.0f);
+
+						mArm[1]->setPositionOfOring(mArm[0]->getPositionVec3());
+						if(m_Direction == eDirection::RIGHT)
+						{
+							mArm[1]->setAngleVeclocity(4.0f);
+							mArm[1]->setAngle(85.0f);
+
+							mArm[2]->setAngleVeclocity(-40.0f);
+							mArm[3]->setAngleVeclocity(-50.0f);
+
+							mPunch->setAngleVeclocity(-50.0f);
+						}
+						else
+						{
+							mArm[1]->setAngleVeclocity(-4.0f);
+							mArm[1]->setAngle(95.0f);
+
+							mArm[2]->setAngleVeclocity(40.0f);
+							mArm[3]->setAngleVeclocity(50.0f);
+
+							mPunch->setAngleVeclocity(50.0f);
+						}
+					}
+		#pragma endregion
 
 
 
-			for (int i = 0; i < 4; i++)
-			{
-				mArm[i]->UpdateMovement();
-			}
-			mPunch->UpdateMovement();
-		}*/
-
+		}
 		break;
 	case STATE_ALIVE_MOVE:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 3200)
+		{
+			mArm[0]->setAngleVeclocity(-mArm[0]->getAngleVeclocity());
+			mArm[1]->setAngleVeclocity(-mArm[1]->getAngleVeclocity());
+			mArm[1]->setAngle(0);
+			mArm[2]->setAngleVeclocity(-mArm[2]->getAngleVeclocity());
+			mArm[3]->setAngleVeclocity(-mArm[3]->getAngleVeclocity());
+
+			mPunch->setAngleVeclocity(-mPunch->getAngleVeclocity());
+			m_TimeChangeState = 0.0f;
+			++m_CountRotation;
+			if(m_CountRotation == 2)
+			{
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE_A_LINE;
+			}
+		}
+
+		for (int i = 1; i < 4; i++)
+		{
+			if(i > 1)
+			{
+				mArm[i]->setPositionOfOring(mArm[i-1]->getPositionVec3());
+				mArm[i]->setAngle(mArm[i-1]->getAngle());
+			}
+
+			mArm[i]->UpdateMovement();
+		}
+
+		mPunch->setPositionOfOring(mArm[3]->getPositionVec3());
+		mPunch->setAngle(mArm[3]->getAngle());
+		mPunch->UpdateMovement();
+
+
 		break;
+	case eObjectState::STATE_ALIVE_MOVE_A_LINE:
+		{
+			m_AngleOfTarget = atan2(-10, 10) * 180 / PI;
+
+			if(mArm[1]->getAngle() > m_AngleOfTarget)
+			{
+				mArm[0]->setAngleVeclocity(-1.0f);
+				mArm[1]->setAngleVeclocity(-1.0f);
+				mArm[2]->setAngleVeclocity(-1.0f);
+				mArm[3]->setAngleVeclocity(-1.0f);
+				mPunch->setAngleVeclocity(-1.0f);
+			}
+			else if(mArm[1]->getAngle() < m_AngleOfTarget)
+			{
+				mArm[0]->setAngleVeclocity(10.0f);
+				mArm[1]->setAngleVeclocity(10.0f);
+				mArm[2]->setAngleVeclocity(10.0f);
+				mArm[3]->setAngleVeclocity(10.0f);
+				mPunch->setAngleVeclocity(10.0f);
+			}
+
+			for (int i = 1; i < 4; i++)
+			{
+				if(i > 1)
+				{
+					mArm[i]->setPositionOfOring(mArm[i-1]->getPositionVec3());
+					mArm[i]->setAngle(mArm[i-1]->getAngle());
+				}
+
+				mArm[i]->UpdateMovement();
+			}
+
+			mPunch->setPositionOfOring(mArm[3]->getPositionVec3());
+			mPunch->setAngle(mArm[3]->getAngle());
+			mPunch->UpdateMovement();
+
+			if((int)mArm[1]->getAngle() <= m_AngleOfTarget + 5 && (int)mArm[1]->getAngle() >= m_AngleOfTarget - 5)
+			{
+				m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+			}
+
+			break;
+		}
 	case STATE_BEFORE_DEATH:
 		break;
 	case STATE_DEATH:
@@ -142,10 +287,10 @@ void BossHand::Render(SPRITEHANDLE spriteHandle)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (mArm[i])
-		{
-			mArm[0]->Render(spriteHandle);
-		}
+		//if (mArm[i])
+		//{
+			mArm[i]->Render(spriteHandle);
+		//}
 	}
 	if (mPunch)
 	{

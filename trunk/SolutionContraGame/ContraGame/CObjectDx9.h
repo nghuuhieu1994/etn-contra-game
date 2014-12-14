@@ -63,6 +63,7 @@ public:
 	eObjectState	getObjectState() const {return m_ObjectState;}
 	void			setObjectState(eObjectState _state) { this->m_ObjectState = _state;};
 
+	eDirection		getDirection() const{ return this->m_Direction;};
 	virtual RECT getBound();
 	virtual void Initialize() = 0;
 	virtual void UpdateAnimation() = 0;
