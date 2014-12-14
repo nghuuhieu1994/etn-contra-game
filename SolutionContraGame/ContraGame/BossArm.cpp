@@ -65,9 +65,7 @@ void BossArm::UpdateCollision(Object* checkingObject)
 void BossArm::UpdateMovement()
 {
 	//m_Physic->UpdateMovement(&m_Position);
-	 
 	//D3DXVECTOR3 tempPosition;
-
 	//if(factorAngle != 0)
 	//{
 	//	tempPosition = D3DXVECTOR3((float)(this->m_PositionOfOrigin.x + factorR * cos(this->angle)), (float)(this->m_PositionOfOrigin.y + factorR * sin(this->angle)), 1.0f);

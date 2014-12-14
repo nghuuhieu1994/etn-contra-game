@@ -1,4 +1,4 @@
-#include "BossHand.h"
+﻿#include "BossHand.h"
 
 #ifndef VELOC_POPUP_X 
 #define VELOC_POPUP_X 0.5f
@@ -28,10 +28,18 @@ void BossHand::Initialize()
 		mArm[i]->Initialize();
 	}
 
-	m_ObjectState = STATE_POPUP;
-
-	isPopupDone = false;
 }
+
+/*
+	- Trạng thái của tay gồm có 3 trạng thái cơ bản:
+		+ Popup: Mọc ra cái tay
+		+ Xoay vòng tròn xuôi, sau đó xoay ngược
+		+ Chĩa tay vào Rambo
+
+		Sau 1 delta time nhất định thì bắn ra 1 bullet --> Cái này để tao làm cũng được.
+		Việc mày làm là tích hợp action của 4 cái Arm và 1 cái Punch vào Object BossHand này.
+		Sao cho khi gọi: BossHand->Update()... là được
+*/
 
 void BossHand::UpdateAnimation()
 {
