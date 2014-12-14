@@ -24,7 +24,7 @@ void BossHand::Initialize()
 
 	for (int i = 0; i < 4; i++)
 	{
-		mArm[i] = new BossArm(m_Position, m_Direction, m_eObjectID);
+		mArm[i] = new BossArm(m_Position, m_Direction, m_eObjectID, D3DXVECTOR3(0.0f, 0.0f, 1.0f), 0.1f);
 		mArm[i]->Initialize();
 	}
 

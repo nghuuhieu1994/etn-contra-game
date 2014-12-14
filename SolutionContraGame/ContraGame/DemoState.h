@@ -45,6 +45,8 @@
 #include "Boom.h"
 #include "RoShan.h"
 #include "WeaponCapsuleVer2.h"
+#include "BossPunch.h"
+#include "BossArm.h"
 //#define HIEU
 
 using namespace std;
@@ -52,16 +54,17 @@ using namespace std;
 class DemoState : public GameScene
 {
 private:
-	/*Rambo*				m_Rambo;
+	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
-	BackgroundEffect	m_backgroundEffect;*/
+	BackgroundEffect	m_backgroundEffect;
 	int					map;
 	static int					m_RamboLife;
 	static eIDSkillBullet		m_RamboBullet;
 
 	BossPunch*	mPunch;
 	BossArm*	mArm[4];
-	Roshan* rs;
+	int countBossArmUpdate;
+	D3DXVECTOR3 m_OldPosition;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}

@@ -2,10 +2,16 @@
 
 BossArm::BossArm() {}
 
-BossArm::BossArm(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+BossArm::BossArm(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, D3DXVECTOR3 _positionOfOrigin, float _factorAngle)
 : DynamicObject(_position, _direction, _objectID)
 {
-	angle = 0.0f;
+	m_PositionOfOrigin = _positionOfOrigin;
+	angle = 0;
+	factorAngle = _factorAngle;
+	this->m_StartPosition = this->m_Position;
+	deltaX = 0.0f;
+	deltaY = 0.0f;
+	isRootNode = false;
 }
 
 void BossArm::Initialize()
@@ -58,8 +64,53 @@ void BossArm::UpdateCollision(Object* checkingObject)
 
 void BossArm::UpdateMovement()
 {
-	angle += 0.1f;
-	m_Physic->UpdateMovement(&m_Position);
+	//m_Physic->UpdateMovement(&m_Position);
+	 
+	//D3DXVECTOR3 tempPosition;
+
+	//if(factorAngle != 0)
+	//{
+	//	tempPosition = D3DXVECTOR3((float)(this->m_PositionOfOrigin.x + factorR * cos(this->angle)), (float)(this->m_PositionOfOrigin.y + factorR * sin(this->angle)), 1.0f);
+	//	/*this->getPhysic()->setVelocityX((float)(this->m_PositionOfOrigin.x + factorR * cos(this->angle) - this->m_Position.x));
+	//	this->getPhysic()->setVelocityY((float)(this->m_PositionOfOrigin.y + factorR * sin(this->angle) - this->m_Position.y));*/
+	//	deltaX = tempPosition.x - m_Position.x;
+	//	deltaY = tempPosition.y - m_Position.y;
+	//	this->m_Position = tempPosition;
+	//}
+
+	//if(angle >= 3.14 * 2)
+	//{
+	//	angle = 0;
+	//}
+	//angle += factorAngle;
+
+	// xet van toc goc 
+
+	float deltaTime = (float)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
+	deltaTime = deltaTime/((float)1/FRAME_RATE);
+	angle += this->m_AngleVeclocity;
+
+	//if(isRootNode == false)
+	//{
+	//	if(angleBlend> 2.8f)
+	//	{
+	//		angleBlend = 0.0f;
+	//		this->m_StartPosition = this->m_Position;
+	//		this->m_Position = D3DXVECTOR3((float)(100 + factorR * cos(this->angle)), (float)(100 + factorR * sin(this->angle)), 1.0f);
+	//	}
+		//else
+		//{
+			//angleBlend = angle;
+
+	this->m_Position = D3DXVECTOR3((float)(m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float)(m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
+
+	//}
+	//}
+	//else
+	//{
+	//this->m_StartPosition = this->m_Position;
+	//this->m_Position = D3DXVECTOR3((float)(100 + factorR * cos(this->angle)), (float)(100 + factorR * sin(this->angle)), 1.0f);
+	//}
 }
 
 void BossArm::Update()
