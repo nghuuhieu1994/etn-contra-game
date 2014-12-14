@@ -1,10 +1,12 @@
 #include "BossPunch.h"
 
 BossPunch::BossPunch(){}
-BossPunch::BossPunch(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
+BossPunch::BossPunch(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID, D3DXVECTOR3 _positionOfOrigin)
 : DynamicObject(_position, _direction, _objectID)
 {
+	this->m_PositionOfOrigin = _positionOfOrigin;
 	angle = 0.0f;
+	this->m_AngleVeclocity = -100.0f;
 }
 
 void BossPunch::Initialize()
@@ -87,8 +89,18 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 
 void BossPunch::UpdateMovement()
 {
+	if(this->m_AngleVeclocity != -100.0f)
+	{
+	float deltaTime = (float)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
+	deltaTime = deltaTime/((float)1/FRAME_RATE);
+	angle += this->m_AngleVeclocity;
 
-	m_Physic->UpdateMovement(&m_Position);
+	this->m_Position = D3DXVECTOR3((float)(m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float)(m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
+	}
+	else
+	{
+		this->getPhysic()->UpdateMovement(&m_Position);
+	}
 }
 
 void BossPunch::Update()

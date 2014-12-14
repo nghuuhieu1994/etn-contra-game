@@ -65,6 +65,7 @@ private:
 	BossArm*	mArm[4];
 	int countBossArmUpdate;
 	D3DXVECTOR3 m_OldPosition;
+	BossHand* m_BossHand;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}

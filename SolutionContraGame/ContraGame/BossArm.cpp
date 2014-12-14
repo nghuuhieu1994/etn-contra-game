@@ -12,6 +12,7 @@ BossArm::BossArm(D3DXVECTOR3 _position, eDirection _direction, eObjectID _object
 	deltaX = 0.0f;
 	deltaY = 0.0f;
 	isRootNode = false;
+	this->m_AngleVeclocity = -100.0f;
 }
 
 void BossArm::Initialize()
@@ -84,24 +85,30 @@ void BossArm::UpdateMovement()
 
 	// xet van toc goc 
 
-	float deltaTime = (float)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
-	deltaTime = deltaTime/((float)1/FRAME_RATE);
-	angle += this->m_AngleVeclocity;
+	if(m_AngleVeclocity != -100)
+	{
+		float deltaTime = (float)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
+		deltaTime = deltaTime/((float)1/FRAME_RATE);
+		angle += this->m_AngleVeclocity;
 
-	//if(isRootNode == false)
-	//{
-	//	if(angleBlend> 2.8f)
-	//	{
-	//		angleBlend = 0.0f;
-	//		this->m_StartPosition = this->m_Position;
-	//		this->m_Position = D3DXVECTOR3((float)(100 + factorR * cos(this->angle)), (float)(100 + factorR * sin(this->angle)), 1.0f);
-	//	}
-		//else
+		//if(isRootNode == false)
 		//{
-			//angleBlend = angle;
+		//	if(angleBlend> 2.8f)
+		//	{
+		//		angleBlend = 0.0f;
+		//		this->m_StartPosition = this->m_Position;
+		//		this->m_Position = D3DXVECTOR3((float)(100 + factorR * cos(this->angle)), (float)(100 + factorR * sin(this->angle)), 1.0f);
+		//	}
+			//else
+			//{
+				//angleBlend = angle;
 
-	this->m_Position = D3DXVECTOR3((float)(m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float)(m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
-
+		this->m_Position = D3DXVECTOR3((float)(m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float)(m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
+	}
+	else
+	{
+		this->getPhysic()->UpdateMovement(&m_Position);
+	}
 	//}
 	//}
 	//else
