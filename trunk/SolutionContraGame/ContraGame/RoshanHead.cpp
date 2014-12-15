@@ -247,11 +247,12 @@ void RoshanHead::Release()
 	//SAFE_DELETE(spriteDead);
 	if (mListRoshanBullet.empty() != true)
 	{
-		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
+		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); )
 		{
 			(*i)->Release();
 			SAFE_DELETE(*i);
-			mListRoshanBullet.clear();
+			//mListRoshanBullet.clear();
+			i = mListRoshanBullet.erase(i);
 		}
 	}
 }
