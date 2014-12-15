@@ -19,12 +19,15 @@ class PlayScene :
 	Rambo*				m_Rambo;
 	QuadTree*			m_Quadtree;
 	BackgroundEffect	m_backgroundEffect;
-	
+	static int m_score;
 	static int					m_RamboLife;
 	static eIDSkillBullet		m_RamboBullet;
 public:
 	PlayScene(eIDSceneGame ID, int _mapIndex);
 	virtual ~PlayScene();
+	static void IncreaseScore(){ m_score += 1; }
+	static void setScore(int _score){ m_score = _score; }
+	void SaveHighScore();
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
 	void Update();

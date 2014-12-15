@@ -1,10 +1,24 @@
 #include "PlayScene.h"
 int PlayScene::m_RamboLife = 10;
+int PlayScene::m_score = 0;
 eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
 PlayScene::PlayScene(eIDSceneGame ID, int _mapIndex) : GameScene(ID)
 {
 	m_mapIndex = _mapIndex;
+}
+
+void PlayScene::SaveHighScore()
+{
+	fstream fLog("resources\\Map\\MenuGame\\highscore", ios::in | ios::out | ios::app);
+	int oldHighScore;
+	fLog >> oldHighScore;
+	fLog.close();
+	if (m_score > oldHighScore)
+	{
+		fstream fLog("resources\\Map\\MenuGame\\highscore", ios::out | ios::trunc);
+		fLog << m_score;
+	}
 }
 
 void PlayScene::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
@@ -44,7 +58,8 @@ void PlayScene::Update()
 {
 	if (m_Rambo->getRamboLife() == 0)
 	{
-		SceneManagerDx9::getInstance()->ReplaceBy(new MenuGame(eIDSceneGame::INTRO));
+		SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::INTRO, 0));
+		SaveHighScore();
 	}
 
 	#pragma region Update camera & insert object into quadtree
@@ -116,7 +131,28 @@ void PlayScene::Update()
 				{
 					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
 					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
-					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2)); 
+					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2));
+					SaveHighScore();
+				}
+			}
+			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::ROSHAN)
+			{
+				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
+					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
+					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 3));
+					SaveHighScore();
+				}
+			}
+			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_CAPSULE_BOSS)
+			{
+				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
+					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
+					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, -1));
+					SaveHighScore();
 				}
 			}
 		}

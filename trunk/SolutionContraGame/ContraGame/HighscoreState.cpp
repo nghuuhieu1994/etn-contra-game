@@ -21,7 +21,14 @@ void HighScoreState::Update()
 	coolDonwChange += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 	if (coolDonwChange > 5000)
 	{
-		SceneManagerDx9::getInstance()->AddElement(new PlayScene(eIDSceneGame::DEMO, NextStage));
+		if (NextStage > 0)
+		{
+			SceneManagerDx9::getInstance()->AddElement(new PlayScene(eIDSceneGame::DEMO, NextStage)); 
+		}
+		else
+		{
+			SceneManagerDx9::getInstance()->AddElement(new MenuGame(eIDSceneGame::DEMO)); 
+		}
 	}
 }
 
@@ -33,7 +40,7 @@ void HighScoreState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	RECT rect;
 	rect.left = 100;
 	rect.top = 100;
-	rect.right = 200;
+	rect.right = 400;
 	rect.bottom = 250;
 	D3DXMATRIX oldMatrix;
 	D3DXMATRIX newMatrix;
@@ -52,11 +59,26 @@ void HighScoreState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	score = buff;
 	rect.left = 150;
 	rect.top = 100;
-	rect.right = 250;
+	rect.right = 448;
 	rect.bottom = 250;
 
 	m_Font->DrawTextA(_lpDSpriteHandle, score, -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
-
+	if (NextStage == -1)
+	{
+		rect.left = 200;
+		rect.top = 250;
+		rect.right = 400;
+		rect.bottom = 350;
+		m_Font->DrawTextA(_lpDSpriteHandle, "TO BE CONTINUED", -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
+	}
+	if (NextStage == 0)
+	{
+		rect.left = 200;
+		rect.top = 250;
+		rect.right = 400;
+		rect.bottom = 350;
+		m_Font->DrawTextA(_lpDSpriteHandle, "LOSE", -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
+	}
 	if (NextStage == 1)
 	{
 		rect.left = 200;
