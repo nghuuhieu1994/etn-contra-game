@@ -38,14 +38,15 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 
 
 
-	rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
-	rs->Initialize();
+	//rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
+	//rs->Initialize();
 }
 
 void DemoState::HandleInput()
 {
 	string scriptPath = "resources\\Map\\" + to_string(map) +"\\autorun";
 	m_Rambo->RunScript(scriptPath.c_str());
+	m_Rambo->HandleInput();
 }
 
 void DemoState::Update()
@@ -150,25 +151,26 @@ void DemoState::Update()
 	
 
 
-	rs->Update();
-	rs->UpdateAnimation();
-	rs->UpdateMovement();
+	//rs->Update();
+	//rs->UpdateAnimation();
+	//rs->UpdateMovement();
+	//rs->UpdateCollision(m_Rambo);
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
-	//m_Quadtree->Render(_lpDSpriteHandle);
-	//m_Rambo->Render(_lpDSpriteHandle);
-	//m_backgroundEffect.Render(_lpDSpriteHandle);
-	//BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
-	//WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
+	m_Quadtree->Render(_lpDSpriteHandle);
+	m_Rambo->Render(_lpDSpriteHandle);
+	m_backgroundEffect.Render(_lpDSpriteHandle);
+	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
+	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
 
 	//for (int i = 0; i < 4; i++)
 	//{
 	//	mArm[i]->Render(_lpDSpriteHandle);
 	//}
 
-	rs->Render(_lpDSpriteHandle);
+	//rs->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()

@@ -52,13 +52,16 @@ void BossArm::UpdateCollision(Object* checkingObject)
 	{
 		if (checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
-#pragma region BulletCollision
+
+			#pragma region BulletCollision
 			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 			if (collideDirection != IDDirection::DIR_NONE)
 			{
 				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();				
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
+			#pragma endregion
+
 		}
 	}
 }
@@ -109,6 +112,7 @@ void BossArm::UpdateMovement()
 	{
 		this->getPhysic()->UpdateMovement(&m_Position);
 	}
+
 	//}
 	//}
 	//else
