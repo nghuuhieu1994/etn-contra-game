@@ -60,6 +60,8 @@ void BigStone::UpdateCollision(Object* checkingObject)
 		{
 			switch (checkingObject->getID())
 			{
+			case eObjectID::RAMBO:
+				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			case eObjectID::BULLET_RAMBO:
 				{
 				Bullet* tempBullet = (Bullet*) (checkingObject);
@@ -132,32 +134,36 @@ void BigStone::UpdateCollision(Object* checkingObject)
 
 void BigStone::UpdateMovement()
 {
-	switch (m_ObjectState)
+	_distanceX = m_Position.y - CGlobal::Rambo_Y;
+	if(_distanceX < 130)
 	{
-	case STATE_ALIVE_IDLE:
-		break;
-	case STATE_ALIVE_MOVE:
-		m_Physic->setVelocityY(-1.5f);
-		m_Physic->UpdateMovement(&m_Position);
-		break;
-	case STATE_JUMP:
-		if(m_isJump == true)
+		switch (m_ObjectState)
 		{
-			m_TimeToJump += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			m_Physic->setVelocityY(1.5f);
+		case STATE_ALIVE_IDLE:
+			break;
+		case STATE_ALIVE_MOVE:
+			m_Physic->setVelocityY(-1.5f);
 			m_Physic->UpdateMovement(&m_Position);
-			if(m_TimeToJump > 700)
+			break;
+		case STATE_JUMP:
+			if(m_isJump == true)
 			{
-				m_isJump = false;
-				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-				m_TimeToJump = 0;
+				m_TimeToJump += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				m_Physic->setVelocityY(1.5f);
+				m_Physic->UpdateMovement(&m_Position);
+				if(m_TimeToJump > 700)
+				{
+					m_isJump = false;
+					m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+					m_TimeToJump = 0;
+				}
 			}
+		
+			break;
+		
+		default:
+			break;
 		}
-		
-		break;
-		
-	default:
-		break;
 	}
 }
 
