@@ -89,13 +89,13 @@ void BossPunch::UpdateCollision(Object* checkingObject)
 
 void BossPunch::UpdateMovement()
 {
-	if(this->m_AngleVeclocity != -100.0f)
+	if (this->m_AngleVeclocity != -100.0f)
 	{
-	float deltaTime = (float)CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
-	deltaTime = deltaTime/((float)1/FRAME_RATE);
-	angle += this->m_AngleVeclocity;
+		float deltaTime = (float) CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds() / 1000;
+		deltaTime = deltaTime / ((float) 1 / FRAME_RATE);
+		angle += this->m_AngleVeclocity;
 
-	this->m_Position = D3DXVECTOR3((float)(m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float)(m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
+		this->m_Position = D3DXVECTOR3((float) (m_PositionOfOrigin.x + 32 * cos(angle * PI / 180)), (float) (m_PositionOfOrigin.y + 32 * sin(angle * PI / 180)), 1.0f);
 	}
 	else
 	{
@@ -108,6 +108,12 @@ void BossPunch::Update()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_TimeChangeState > 10000)
+		{
+			m_TimeChangeState = 0;
+			m_ObjectState = STATE_BEFORE_DEATH;
+		}
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead)
@@ -145,10 +151,16 @@ void BossPunch::Render(SPRITEHANDLE spriteHandle)
 void BossPunch::Release()
 {
 	m_Sprite = 0;
-	spriteAlive->Release();
-	spriteDead->Release();
-	SAFE_DELETE(spriteAlive);
-	SAFE_DELETE(spriteDead);
+	if (spriteAlive)
+	{
+		spriteAlive->Release();
+		SAFE_DELETE(spriteAlive);
+	}
+	if (spriteDead)
+	{
+		spriteDead->Release();
+		SAFE_DELETE(spriteDead);
+	}
 }
 
 BossPunch::~BossPunch()

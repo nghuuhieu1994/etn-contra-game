@@ -250,7 +250,7 @@ void RoshanHead::Release()
 		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
 		{
 			(*i)->Release();
-			//SAFE_DELETE(*i);
+			SAFE_DELETE(*i);
 			mListRoshanBullet.clear();
 		}
 	}
