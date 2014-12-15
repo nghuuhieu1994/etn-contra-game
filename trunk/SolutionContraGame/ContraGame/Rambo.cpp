@@ -1,5 +1,6 @@
 ﻿#include "Rambo.h"
 #include "RoShan.h"
+#include "BigCapsuleBoss.h"
 
 #define VELOCITY_Y_JUMP				4.8f
 #define VELOCITY_X_MOVE_TO_RIGHT	1.1f
@@ -1745,6 +1746,27 @@ void Rambo::UpdateCollision(Object* checkingObject)
 													 }
 						   }
 							   break;
+						   case eObjectID::BIG_CAPSULE_BOSS:
+						   {
+															   BigCapsuleBoss* bigCapsule = (BigCapsuleBoss*) checkingObject;
+															   if (bigCapsule->m_ListEnemy.empty() != true)
+															   {
+																   for (list<CapsuleBoss*>::iterator i = bigCapsule->m_ListEnemy.begin();
+																	   i != bigCapsule->m_ListEnemy.end(); i++)
+																   {
+																	   UpdateCollision((*i));
+																   }
+															   }
+															   if (bigCapsule->m_ListBullet.empty() != true)
+															   {
+																   for (list<BossBullet*>::iterator i = bigCapsule->m_ListBullet.begin();
+																	   i != bigCapsule->m_ListBullet.end(); i++)
+																   {
+																	   UpdateCollision((*i));
+																   }
+															   }
+						   }
+							   break;
 						   case eObjectID::ROSHAN_HEAD:
 						   case eObjectID::ROSHAN_PUNCH:
 						   case eObjectID::ENEMY_RUN:
@@ -1843,6 +1865,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 							   }
 							   break;
+						   case eObjectID::CAPSULE_BOSS:
 						   case eObjectID::BULLET_ENEMY:
 						   case eObjectID::STONE:
 						   case eObjectID::FIRE:

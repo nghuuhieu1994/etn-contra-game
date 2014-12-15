@@ -64,6 +64,7 @@ void RoshanHead::UpdateAnimation()
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
 		{
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
 			isDead = true;
 			m_Sprite = spriteDead;
 		}

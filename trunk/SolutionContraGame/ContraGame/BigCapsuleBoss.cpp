@@ -1,4 +1,4 @@
-#include "BigCapsuleBoss.h"
+﻿#include "BigCapsuleBoss.h"
 #ifndef BOSS_ANIMATION_TIME
 #define BOSS_ANIMATION_TIME 800
 #endif
@@ -34,6 +34,10 @@ void BigCapsuleBoss::Shoot()
 {
 	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bullet_S_sfx)->Play();
 
+	m_ListBullet.push_back(new BossBullet(getPositionVec3(), m_Direction, eObjectID::BULLET_ENEMY));
+	m_ListBullet.back()->Initialize();
+	m_ListBullet.back()->getPhysic()->setVelocity(D3DXVECTOR2(0, -1.5f));
+
 	if (m_Direction == eDirection::RIGHT)
 	{
 		m_ListEnemy.push_back(new CapsuleBoss( D3DXVECTOR3(m_Position.x, m_Position.y + 20, m_Position.z - 0.5f), m_Direction, eObjectID::CAPSULE_BOSS));
@@ -54,7 +58,7 @@ void BigCapsuleBoss::Initialize()
 	BulletCounter = 0;
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BIG_CAPSULE_BOSS));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	//spriteDead = Need Hieu 
+
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 	m_Position.z = 1.0f;
 	m_Sprite = spriteAlive;
@@ -73,7 +77,7 @@ void BigCapsuleBoss::UpdateAnimation()
 		m_Sprite->getAnimationAction()->setIndexEnd(11);
 		m_Sprite->UpdateAnimation(BOSS_ANIMATION_TIME);
 		break;
-	case STATE_BEFORE_DEATH:
+	case STATE_BEFORE_DEATH: // thật ra cái này là invi chứ không có chết đâu nha >:(
 		if (mOpacity > 0.0f)
 		{
 			mOpacity -= 0.005f;
@@ -110,6 +114,13 @@ void BigCapsuleBoss::UpdateCollision(Object* checkingObject)
 			for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); i++)
 			{
 				(*i)->UpdateCollision(checkingObject); // Ham nay tam tho`i tat' di.
+			}
+		}
+		if (m_ListBullet.empty() != true)
+		{
+			for (list<BossBullet*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+			{
+				(*i)->UpdateCollision(checkingObject); 
 			}
 		}
 #pragma endregion UpdateListEnemy
@@ -151,9 +162,8 @@ void BigCapsuleBoss::UpdateCollision(Object* checkingObject)
 				{
 					m_ObjectState = eObjectState::STATE_EXPLOISION;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
-					//this->isDead = true;
-					//checkingObject->setObjectState(eObjectState::STATE_DEATH);
 				}
+				checkingObject->setObjectState(eObjectState::STATE_DEATH);
 			}
 #pragma endregion BulletCollision
 		}
@@ -182,6 +192,29 @@ void BigCapsuleBoss::Update()
 				(*i)->Release();
 				SAFE_DELETE(*i);
 				i = m_ListEnemy.erase(i);
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
+
+	if (m_ListBullet.empty() == false)
+	{
+		for (list<BossBullet*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end();)
+		{
+
+			(*i)->Update();
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+
+
+			if ((*i)->getObjectState() == STATE_DEATH)
+			{
+				(*i)->Release();
+				SAFE_DELETE(*i);
+				i = m_ListBullet.erase(i);
 			}
 			else
 			{
@@ -257,6 +290,13 @@ void BigCapsuleBoss::Render(SPRITEHANDLE spriteHandle)
 			(*i)->Render(spriteHandle);
 		}
 	}
+	if (m_ListBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->Render(spriteHandle);
+		}
+	}
 	if (m_Sprite != 0)
 	{
 		short colorA = (short)(255 * mOpacity);
@@ -275,13 +315,32 @@ void BigCapsuleBoss::Release()
 {
 	if (m_ListEnemy.empty() == false)
 	{
-		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); i++)
+		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end();)
 		{
 			(*i)->Release();
 			SAFE_DELETE((*i));
+			i = m_ListEnemy.erase(i);
 		}
-		m_ListEnemy.clear();
+	}
+	if (m_ListBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		{
+			(*i)->Release();
+			SAFE_DELETE(*i);
+			i = m_ListBullet.erase(i);
+		}
 	}
 	m_Sprite = 0;
+	if (spriteAlive)
+	{
+		spriteAlive->Release();
+		SAFE_DELETE(spriteAlive);
+	}
+	if (spriteDead)
+	{
+		spriteDead->Release();
+		SAFE_DELETE(spriteDead);
+	}
 	// release 1 sprite alive and dead. we're w8ing for Right's SpriteDead
 }

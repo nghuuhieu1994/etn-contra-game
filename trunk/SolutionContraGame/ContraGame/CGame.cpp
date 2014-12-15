@@ -169,6 +169,9 @@ bool CGame::InitializeDirectSound()
 #include "PlayScene.h"
 bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 {
+	SetWindowText(m_handleWindow, "ConTra Game - ETN");
+
+
 	this->InitializeHandleWindow(hInstance);
 	this->InitializeDirect3DEnvironment();
 	this->InitializeDirect3DDevice(isWindowed);
@@ -229,12 +232,12 @@ void CGame::Run()
 
 				m_lpDirect3DDevice->Clear(0 , 0, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 				
-				if (second > 500)
+				/*if (second > 500)
 				{
 					//OutputDebugString(fps);
 					SetWindowText(m_handleWindow, fps);
 					second = 0;
-				}
+				}*/
 
 				if(m_lpDirect3DDevice->BeginScene())
 				{
