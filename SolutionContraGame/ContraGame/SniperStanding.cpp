@@ -242,20 +242,20 @@ void SniperStanding::UpdateMovement()
 }
 void SniperStanding::UpdateCollision(Object* checkingObject)
 {
-	if( !isDead )
+	if (!isDead)
 	{
-		if(checkingObject->getID() == eObjectID::BULLET_RAMBO || checkingObject->getID() == eObjectID::TILE_BASE)
+		if (checkingObject->getID() == eObjectID::BULLET_RAMBO || checkingObject->getID() == eObjectID::TILE_BASE)
 		{
-		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 
-		if(collideDirection != IDDirection::DIR_NONE)
-		{
-			switch (checkingObject->getID())
+			if (collideDirection != IDDirection::DIR_NONE)
 			{
+				switch (checkingObject->getID())
+				{
 				case eObjectID::TILE_BASE:
 					if (collideDirection == IDDirection::DIR_TOP)
 					{
-						this->m_Physic->setVelocityY(0);
+						this->m_Physic->setVelocityY(0.0f);
 					}
 					break;
 				case eObjectID::BULLET_RAMBO:
@@ -265,8 +265,8 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 					break;
 				default:
 					break;
+				}
 			}
-		}
 		}
 	}
 }
