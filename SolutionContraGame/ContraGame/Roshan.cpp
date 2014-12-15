@@ -62,7 +62,6 @@ void Roshan::UpdateAnimation()
 		if (isDead == false)
 		{
 			isDead = true;
-			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
 			m_Sprite = spriteDead;
 		}
 		spriteExploision->UpdateAnimation(250);
