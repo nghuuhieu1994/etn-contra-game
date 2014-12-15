@@ -71,7 +71,6 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 			m_matrixTranslate._41 = (float)((int)(-(cameramanLocation->x - SCREEN_WIDTH/2))); 
 		}
 	}
-
 	
 	if (cameramanLocation->y > SCREEN_HEIGHT/2 && !m_isLockHeight)
 	{
@@ -92,6 +91,18 @@ void Camera::UpdateCamera(D3DXVECTOR3* cameramanLocation)
 		{
 			m_isCheckFlagX = false;
 			m_isLockWidth = true;
+		}
+	}
+	if (m_isCheckFlagY)
+	{
+		if ((getBound().top - SCREEN_HEIGHT/2) > m_flagStartAutoRun.y)
+		{
+			m_matrixTranslate._42 += 1;
+		}
+		if ((getBound().top - SCREEN_HEIGHT/2) >= m_flagStopAutoRun.y)
+		{
+			m_isCheckFlagY = false;
+			m_isLockHeight = true;
 		}
 	}
 }

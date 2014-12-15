@@ -1,16 +1,16 @@
-#include "DemoState.h"
-#include "HighScoreState.h"
-#define MAP_1 1
-#define MAP_2 2
-#include <fstream>
+#include "PlayScene.h"
+int PlayScene::m_RamboLife = 10;
+eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
-int DemoState::m_RamboLife = 10;
-eIDSkillBullet DemoState::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
+PlayScene::PlayScene(eIDSceneGame ID, int _mapIndex) : GameScene(ID)
+{
+	m_mapIndex = _mapIndex;
+}
 
-void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
+void PlayScene::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 	m_Quadtree = new QuadTree();
-	fstream fLog("resources\\Map\\" + to_string(map) +"\\setting", ios::in);
+	fstream fLog("resources\\Map\\" + to_string(m_mapIndex) +"\\setting", ios::in);
 
 	bool lockWidth;
 	bool lockHeight;
@@ -19,36 +19,28 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	fLog >> lockHeight;
 	fLog >> RamboStartPosition.x;
 	fLog >> RamboStartPosition.y;
-
-	//m_Rambo = new Rambo(D3DXVECTOR3(50, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
 	m_Rambo = new Rambo(D3DXVECTOR3(RamboStartPosition.x, RamboStartPosition.y, 1), eDirection::RIGHT, eObjectID::RAMBO);
-	string cameraPath = "resources\\Map\\" + to_string(map) +"\\camera";
+
+	string cameraPath = "resources\\Map\\" + to_string(m_mapIndex) +"\\camera";
 	Camera::getInstance()->Reset();
 	Camera::getInstance()->readAutoRunScript(cameraPath.c_str());
 	Camera::getInstance()->setLockWidth(lockWidth);
 	Camera::getInstance()->setLockHeight(lockHeight);
 
-	string mapPath = "resources\\Map\\" + to_string(map) +"\\"+ to_string(map) +".xml";
-	m_backgroundEffect.Initialize(map);
-	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(map));
+	string mapPath = "resources\\Map\\" + to_string(m_mapIndex) +"\\"+ to_string(m_mapIndex) +".xml";
+	m_backgroundEffect.Initialize(m_mapIndex);
+	m_Quadtree->BuildQuadtree(mapPath.c_str(), m_Quadtree->mRootNode, (eSpriteID)(m_mapIndex));
 	BulletPoolManager::getInstance()->Initialize();
-	m_Rambo->setRamboLife(DemoState::m_RamboLife);
-	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);
-
-
-
-	//rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
-	//rs->Initialize();
+	m_Rambo->setRamboLife(PlayScene::m_RamboLife);
+	m_Rambo->setSkillBullet(PlayScene::m_RamboBullet);
 }
 
-void DemoState::HandleInput()
+void PlayScene::HandleInput()
 {
-	string scriptPath = "resources\\Map\\" + to_string(map) +"\\autorun";
-	m_Rambo->RunScript(scriptPath.c_str());
 	m_Rambo->HandleInput();
 }
 
-void DemoState::Update()
+void PlayScene::Update()
 {
 	if (m_Rambo->getRamboLife() == 0)
 	{
@@ -120,8 +112,8 @@ void DemoState::Update()
 		{
 			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
 			{
-				DemoState::m_RamboBullet = m_Rambo->getSkillBullet();
-				DemoState::m_RamboLife = m_Rambo->getRamboLife();
+				PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
+				PlayScene::m_RamboLife = m_Rambo->getRamboLife();
 				SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2)); 
 			}
 		}
@@ -147,42 +139,32 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	
-
-
-	//rs->Update();
-	//rs->UpdateAnimation();
-	//rs->UpdateMovement();
-	//rs->UpdateCollision(m_Rambo);
 }
 
-void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
+void PlayScene::Render(LPD3DXSPRITE _lpDSpriteHandle)
 {
 	m_Quadtree->Render(_lpDSpriteHandle);
 	m_Rambo->Render(_lpDSpriteHandle);
 	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	mArm[i]->Render(_lpDSpriteHandle);
-	//}
-
-	//rs->Render(_lpDSpriteHandle);
 }
 
-void DemoState::Pause()
+void PlayScene::Pause()
 {
 
 }
 
-void DemoState::Resume()
+void PlayScene::Resume()
 {
 
 }
 
-void DemoState::Release()
+void PlayScene::Release()
 {
-	//m_Quadtree->Release(m_Quadtree->getRootNode());
+	m_Quadtree->Release(m_Quadtree->getRootNode());
+}
+
+PlayScene::~PlayScene()
+{
 }
