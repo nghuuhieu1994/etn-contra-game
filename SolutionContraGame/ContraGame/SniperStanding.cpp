@@ -255,6 +255,11 @@ void SniperStanding::UpdateCollision(Object* checkingObject)
 				case eObjectID::TILE_BASE:
 					if (collideDirection == IDDirection::DIR_TOP)
 					{
+						/*this->m_Position.y = 
+							checkingObject->getPositionVec2().y + 
+							(checkingObject->getBound().top - checkingObject->getBound().bottom) / 2 + 
+							m_Sprite->getMyTexture()->m_Height / 2;
+*/
 						this->m_Physic->setVelocityY(0.0f);
 					}
 					break;

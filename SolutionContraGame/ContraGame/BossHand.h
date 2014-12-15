@@ -4,17 +4,18 @@
 #include "DynamicObject.h"
 #include "BossArm.h"
 #include "BossPunch.h"
-
+#include "BossBullet.h"
+#include <list>
 class BossHand: public DynamicObject
 {
 private:
-	BossPunch*	mPunch;
 	BossArm*	mArm[4];
-
 	bool	isPopupDone;
 	int		m_CountRotation;
 	float	m_AngleOfTarget;
 public:
+	list<BossBullet*> mListRoshanBullet;
+	BossPunch*	mPunch;
 	BossHand();
 	BossHand(D3DXVECTOR3, eDirection, eObjectID);
 	~BossHand();

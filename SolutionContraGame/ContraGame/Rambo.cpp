@@ -1,4 +1,5 @@
 ﻿#include "Rambo.h"
+#include "RoShan.h"
 
 #define VELOCITY_Y_JUMP				4.8f
 #define VELOCITY_X_MOVE_TO_RIGHT	1.1f
@@ -1502,28 +1503,28 @@ void Rambo::setRectangleCheckingObjectBelow()
 
 int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkingObject)
 {
-	if(collideDirection == IDDirection::DIR_TOP && checkingObject != m_ignoreCollisionObject)
+	if (collideDirection == IDDirection::DIR_TOP && checkingObject != m_ignoreCollisionObject)
 	{
 		isFall = false;
 
 		if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
 		{
 			if (m_Physic->getVelocity().y < 0)
-			{							
+			{
 				if (m_ObjectState == STATE_RAMBO_JUMP && m_maxPositionY - checkingObject->getPositionVec2().y > 37)
 				{
-					m_ObjectState = STATE_RAMBO_IDLE; 
+					m_ObjectState = STATE_RAMBO_IDLE;
 					this->m_Position.y += this->m_Collision->m_MoveY;
 					m_Physic->setVelocityY(0.0f);
 					m_maxPositionY = 0;
 				}
 				if (m_ObjectState == STATE_RAMBO_BEFORE_DEAD && m_maxPositionY - checkingObject->getPositionVec2().y > 60)
 				{
-					m_ObjectState = STATE_RAMBO_DEAD; 
+					m_ObjectState = STATE_RAMBO_DEAD;
 					this->m_Position.y += this->m_Collision->m_MoveY;
 					m_Physic->setVelocityY(0.0f);
 					m_maxPositionY = 0;
-				}				
+				}
 				return 0;
 			}
 		}
@@ -1538,7 +1539,7 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 			}
 			else
 			{
-				if(m_ObjectState == STATE_RAMBO_LIE)
+				if (m_ObjectState == STATE_RAMBO_LIE)
 				{
 					this->m_Position.y += this->m_Collision->m_MoveY;
 					m_Physic->setVelocityY(0.0f);
@@ -1551,7 +1552,7 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 				}
 				else
 				{
-					if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT || 
+					if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT ||
 						m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT_UP || m_ObjectState == eObjectState::STATE_RAMBO_SWIM_SHOOT_TOP_RIGHT)
 					{
 						if ((m_Position.x >= checkingObject->getBound().left && m_Physic->getVelocity().x > 0) ||
@@ -1564,7 +1565,7 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 					}
 					else
 					{
-						if(m_ObjectState == eObjectState::STATE_RAMBO_CLIMB)
+						if (m_ObjectState == eObjectState::STATE_RAMBO_CLIMB)
 						{
 							m_Physic->setVelocityX(0.0f);
 							return 0;
@@ -1579,13 +1580,13 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 				}
 			}
 		}
-		
-		
+
+
 		return 0;
 	}
-	else if(collideDirection == IDDirection::DIR_BOTTOM)
+	else if (collideDirection == IDDirection::DIR_BOTTOM)
 	{
-		
+
 		if (m_ignoreCollisionObject == checkingObject)
 		{
 			m_ignoreCollisionObject = 0;
@@ -1593,9 +1594,9 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 		return 0;
 	}
 
-	else if(collideDirection == IDDirection::DIR_LEFT)
+	else if (collideDirection == IDDirection::DIR_LEFT)
 	{
-		
+
 		if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
 		{
 			m_Position.x += 1;
@@ -1603,9 +1604,9 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 		return 0;
 	}
 
-	else if(collideDirection == IDDirection::DIR_RIGHT)
+	else if (collideDirection == IDDirection::DIR_RIGHT)
 	{
-		
+
 		if (m_ObjectState == eObjectState::STATE_RAMBO_SWIM)
 		{
 			m_Position.x -= 1;
@@ -1617,229 +1618,270 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
-	if(checkingObject->getID() == eObjectID::FIRE_BRIDGE)
+	if (checkingObject->getID() == eObjectID::FIRE_BRIDGE)
 	{
-		FireBridge* fireBridge = (FireBridge*)checkingObject;
-		IDDirection collideDirection1 = this->m_Collision->CheckCollision(this, (Object*)fireBridge->m_fire_1);
-		IDDirection collideDirection2 = this->m_Collision->CheckCollision(this, (Object*)fireBridge->m_fire_2);
-		if(collideDirection1 != IDDirection::DIR_NONE || collideDirection2 != IDDirection::DIR_NONE)
+		FireBridge* fireBridge = (FireBridge*) checkingObject;
+		IDDirection collideDirection1 = this->m_Collision->CheckCollision(this, (Object*) fireBridge->m_fire_1);
+		IDDirection collideDirection2 = this->m_Collision->CheckCollision(this, (Object*) fireBridge->m_fire_2);
+		if (collideDirection1 != IDDirection::DIR_NONE || collideDirection2 != IDDirection::DIR_NONE)
 		{
 			m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 		}
 	}
 	else
 	{
-	if( checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
-	{
-		D3DXVECTOR3 curPos;
-		if (isInvulnerable)
+		if (checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
 		{
-			curPos = this->m_Position;
-		}
-	IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
-	if (isInvulnerable)
-	{
-		m_Position = curPos;
-	}
-	setRectangleCheckingObjectBelow();
-	if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
-	{
-		if(Intersect(checkingObject->getBound(), m_RectangleCheckingObjectBelow))
-		{
-			m_objectBelowCurrent.push_back(checkingObject);
-		} 
-	}
-
-	if(collideDirection != IDDirection::DIR_NONE)
-	{
-		switch(checkingObject->getTypeObject())
-		{
-		case ETypeObject::VIRTUAL_OBJECT:
+			D3DXVECTOR3 curPos;
+			if (isInvulnerable)
 			{
-				switch (checkingObject->getID())
+				curPos = this->m_Position;
+			}
+			IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+			if (isInvulnerable)
+			{
+				m_Position = curPos;
+			}
+			setRectangleCheckingObjectBelow();
+			if (checkingObject->getTypeObject() == ETypeObject::VIRTUAL_OBJECT)
+			{
+				if (Intersect(checkingObject->getBound(), m_RectangleCheckingObjectBelow))
 				{
-				case eObjectID::TILE_BASE:
-				//case eObjectID::MAGIC_ROCK:
-								#pragma region TILE_BASE
-					{
-						UpdateCollisionTileBase(collideDirection, checkingObject);
-					} 
-					break;
-								#pragma endregion
-				case eObjectID::VIRTUAL_OBJECT_WATER:
-					{
-						if (collideDirection == IDDirection::DIR_TOP)
-						{
-							if (m_ObjectState == eObjectState::STATE_RAMBO_DEAD || m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
-							{
-								return;
-							}
-							if (m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
-							{
-								this->m_Position.y += this->m_Collision->m_MoveY;
-							}
-							else
-							{
-								if (m_ObjectState == eObjectState::STATE_RAMBO_JUMP || m_ObjectState == eObjectState::STATE_RAMBO_FALL)
-								{
-									m_ObjectState = eObjectState::STATE_RAMBO_WATER_BOMB;
-									this->m_Position.y += this->m_Collision->m_MoveY;
-								}
-								else
-								{
-									m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
-									this->m_Position.y += this->m_Collision->m_MoveY;
-								}
-							}
-						}
-						isFall = false;
-					}
-					break;
-				default:
-					break;
+					m_objectBelowCurrent.push_back(checkingObject);
 				}
 			}
-			break;
-		default:
+
+			if (collideDirection != IDDirection::DIR_NONE)
 			{
-				
-				switch(checkingObject->getID())
+				switch (checkingObject->getTypeObject())
 				{
-				case eObjectID::ENEMY_RUN:
-				case eObjectID::GUN_ROTATING:
-				case eObjectID::BIG_GUN_ROTATING:
-				case eObjectID::ENEMY_RUN_SHOOTING:
-					if (isInvulnerable)
-					{
-						break;
-					}
-					if(checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
-					{
-						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
-						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
-					}
-					break;
-				#pragma region Update Collision with Bridge
-				case eObjectID::BRIDGE:
-					if(collideDirection == IDDirection::DIR_TOP)
-					{ 
-						isFall = false;
-						if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
-						{
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							this->getPhysic()->setVelocityY(0.0f);
-							return;
-						}
-						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
-						{
-							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							this->getPhysic()->setVelocityY(0.0f);
-							
-							return;
-						}
-						else if (m_ObjectState == eObjectState::STATE_RAMBO_FALL)
-						{
-							m_ObjectState = STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							return;
-						}
-						else
-						{
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							return;
-						}
-					}
-					break;
-				#pragma endregion
-					case eObjectID::MAGIC_ROCK:
-						if(collideDirection == IDDirection::DIR_TOP && this->getPhysic()->getVelocity().y < 0)
-					{ 
-						isFall = false;
-						if(this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
-						{
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							this->getPhysic()->setVelocityY(0.0f);
-							prePosX = 0;
-							finalPosX = 0;
-							return;
-						}
-						else if(this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
-						{
-							this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							this->getPhysic()->setVelocityY(0.0f);
-							prePosX = 0;
-							finalPosX = 0;
-							return;
-						}
-						else if (m_ObjectState == eObjectState::STATE_RAMBO_FALL)
-						{
-							m_ObjectState = STATE_RAMBO_IDLE;
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							prePosX = 0;
-							finalPosX = 0;
-							return;
-						}
-						else
-						{
-							finalPosX = checkingObject->getPositionVec2().x;
-							if(prePosX == 0)
-							{
-								prePosX = finalPosX;
-							}
-							this->m_Position.y += this->m_Collision->m_MoveY;
-							m_Physic->setVelocityY(0.0f);
-							this->m_Position.x += finalPosX - prePosX;
-							prePosX = checkingObject->getPositionVec2().x;
-							return;
-						}
-
-						
-					}
-					break;
-				case eObjectID::BULLET_ENEMY:
-				case eObjectID::STONE:
-				case eObjectID::FIRE:
-					if (isInvulnerable)
-					{
-						break;
-					}
-					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
-					{
-						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
-						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
-						checkingObject->setObjectState(eObjectState::STATE_DEATH);
-					}
-					break;
-				case eObjectID::BULLET_BOSS1:
-				case eObjectID::TANK:
-				case eObjectID::BOOM:
-					if (isInvulnerable)
-					{
-						break;
-					}
-					if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
-					{
-						m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
-						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
-					}
-					break;
-				case eObjectID::FIRE_BRIDGE:
-
-
+				case ETypeObject::VIRTUAL_OBJECT:
+				{
+													switch (checkingObject->getID())
+													{
+													case eObjectID::TILE_BASE:
+														//case eObjectID::MAGIC_ROCK:
+#pragma region TILE_BASE
+													{
+																				 UpdateCollisionTileBase(collideDirection, checkingObject);
+													}
+														break;
+#pragma endregion
+													case eObjectID::VIRTUAL_OBJECT_WATER:
+													{
+																							if (collideDirection == IDDirection::DIR_TOP)
+																							{
+																								if (m_ObjectState == eObjectState::STATE_RAMBO_DEAD || m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
+																								{
+																									return;
+																								}
+																								if (m_ObjectState == eObjectState::STATE_RAMBO_WATER_BOMB)
+																								{
+																									this->m_Position.y += this->m_Collision->m_MoveY;
+																								}
+																								else
+																								{
+																									if (m_ObjectState == eObjectState::STATE_RAMBO_JUMP || m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+																									{
+																										m_ObjectState = eObjectState::STATE_RAMBO_WATER_BOMB;
+																										this->m_Position.y += this->m_Collision->m_MoveY;
+																									}
+																									else
+																									{
+																										m_ObjectState = eObjectState::STATE_RAMBO_SWIM;
+																										this->m_Position.y += this->m_Collision->m_MoveY;
+																									}
+																								}
+																							}
+																							isFall = false;
+													}
+														break;
+													default:
+														break;
+													}
+				}
 					break;
 				default:
-					break;
+				{
+
+						   switch (checkingObject->getID())
+						   {
+						   case eObjectID::ROSHAN:
+						   {
+													 Roshan* roshan = (Roshan*) checkingObject;
+													 this->UpdateCollision(roshan->mRoshanHead);
+													 if (roshan->mLeftHand->mPunch)
+													 {
+														 this->UpdateCollision(roshan->mLeftHand->mPunch);
+													 }
+													 if (roshan->mRightHand->mPunch)
+													 {
+														 this->UpdateCollision(roshan->mRightHand->mPunch);
+													 }
+													 if (roshan->mRoshanHead->mListRoshanBullet.empty() != true)
+													 {
+														 for (list<BossBullet*>::iterator i = roshan->mRoshanHead->mListRoshanBullet.begin();
+															 i != roshan->mRoshanHead->mListRoshanBullet.end(); i++)
+														 {
+															 UpdateCollision((*i));
+														 }
+													 }
+													 if (roshan->mLeftHand->mListRoshanBullet.empty() != true)
+													 {
+														 for (list<BossBullet*>::iterator i = roshan->mLeftHand->mListRoshanBullet.begin();
+															 i != roshan->mLeftHand->mListRoshanBullet.end(); i++)
+														 {
+															 UpdateCollision((*i));
+														 }
+													 }
+													 if (roshan->mRightHand->mListRoshanBullet.empty() != true)
+													 {
+														 for (list<BossBullet*>::iterator i = roshan->mRightHand->mListRoshanBullet.begin();
+															 i != roshan->mRightHand->mListRoshanBullet.end(); i++)
+														 {
+															 UpdateCollision((*i));
+														 }
+													 }
+						   }
+							   break;
+						   case eObjectID::ROSHAN_HEAD:
+						   case eObjectID::ROSHAN_PUNCH:
+						   case eObjectID::ENEMY_RUN:
+						   case eObjectID::GUN_ROTATING:
+						   case eObjectID::BIG_GUN_ROTATING:
+						   case eObjectID::ENEMY_RUN_SHOOTING:
+							   if (isInvulnerable)
+							   {
+								   break;
+							   }
+							   if (checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
+							   {
+								   m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+								   SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
+							   }
+							   break;
+#pragma region Update Collision with Bridge
+						   case eObjectID::BRIDGE:
+							   if (collideDirection == IDDirection::DIR_TOP)
+							   {
+								   isFall = false;
+								   if (this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
+								   {
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   this->getPhysic()->setVelocityY(0.0f);
+									   return;
+								   }
+								   else if (this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+								   {
+									   this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   this->getPhysic()->setVelocityY(0.0f);
+
+									   return;
+								   }
+								   else if (m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+								   {
+									   m_ObjectState = STATE_RAMBO_IDLE;
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   m_Physic->setVelocityY(0.0f);
+									   return;
+								   }
+								   else
+								   {
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   m_Physic->setVelocityY(0.0f);
+									   return;
+								   }
+							   }
+							   break;
+#pragma endregion
+						   case eObjectID::MAGIC_ROCK:
+							   if (collideDirection == IDDirection::DIR_TOP && this->getPhysic()->getVelocity().y < 0)
+							   {
+								   isFall = false;
+								   if (this->m_ObjectState == eObjectState::STATE_RAMBO_RUN)
+								   {
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   this->getPhysic()->setVelocityY(0.0f);
+									   prePosX = 0;
+									   finalPosX = 0;
+									   return;
+								   }
+								   else if (this->m_ObjectState == eObjectState::STATE_RAMBO_JUMP)
+								   {
+									   this->m_ObjectState = eObjectState::STATE_RAMBO_IDLE;
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   this->getPhysic()->setVelocityY(0.0f);
+									   prePosX = 0;
+									   finalPosX = 0;
+									   return;
+								   }
+								   else if (m_ObjectState == eObjectState::STATE_RAMBO_FALL)
+								   {
+									   m_ObjectState = STATE_RAMBO_IDLE;
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   m_Physic->setVelocityY(0.0f);
+									   prePosX = 0;
+									   finalPosX = 0;
+									   return;
+								   }
+								   else
+								   {
+									   finalPosX = checkingObject->getPositionVec2().x;
+									   if (prePosX == 0)
+									   {
+										   prePosX = finalPosX;
+									   }
+									   this->m_Position.y += this->m_Collision->m_MoveY;
+									   m_Physic->setVelocityY(0.0f);
+									   this->m_Position.x += finalPosX - prePosX;
+									   prePosX = checkingObject->getPositionVec2().x;
+									   return;
+								   }
+
+
+							   }
+							   break;
+						   case eObjectID::BULLET_ENEMY:
+						   case eObjectID::STONE:
+						   case eObjectID::FIRE:
+							   if (isInvulnerable)
+							   {
+								   break;
+							   }
+							   if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
+							   {
+								   m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+								   SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
+								   checkingObject->setObjectState(eObjectState::STATE_DEATH);
+							   }
+							   break;
+						   case eObjectID::BULLET_BOSS1:
+						   case eObjectID::TANK:
+						   case eObjectID::BOOM:
+							   if (isInvulnerable)
+							   {
+								   break;
+							   }
+							   if (this->m_ObjectState != eObjectState::STATE_RAMBO_DEAD && this->m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD)
+							   {
+								   m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+								   SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
+							   }
+							   break;
+						   case eObjectID::FIRE_BRIDGE:
+
+
+							   break;
+						   default:
+							   break;
+						   }
+						   break;
 				}
-				break;
+				}
 			}
 		}
-		}
-	}
 	}
 }
 
