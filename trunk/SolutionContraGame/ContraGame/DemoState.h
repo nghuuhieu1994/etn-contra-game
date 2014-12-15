@@ -60,12 +60,7 @@ private:
 	int					map;
 	static int					m_RamboLife;
 	static eIDSkillBullet		m_RamboBullet;
-
-	BossPunch*	mPunch;
-	BossArm*	mArm[4];
-	int countBossArmUpdate;
-	D3DXVECTOR3 m_OldPosition;
-	BossHand* m_BossHand;
+	Roshan*			rs;
 public:
 	DemoState(eIDSceneGame ID, int _map) : GameScene(ID){ map = _map; }
 	~DemoState(){}

@@ -159,10 +159,16 @@ void BossArm::Render(SPRITEHANDLE spriteHandle)
 void BossArm::Release()
 {
 	m_Sprite = 0;
-	spriteAlive->Release();
-	spriteDead->Release();
-	SAFE_DELETE(spriteAlive);
-	SAFE_DELETE(spriteDead);
+	if (spriteAlive)
+	{
+		spriteAlive->Release();
+		SAFE_DELETE(spriteAlive);
+	}
+	if (spriteDead)
+	{
+		spriteDead->Release();
+		SAFE_DELETE(spriteDead);
+	}
 }
 
 BossArm::~BossArm(){}

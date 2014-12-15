@@ -13,7 +13,8 @@ private:
 	CSpriteDx9*		spriteDead;
 	CSpriteDx9*		spriteExploision;
 	float mOpacity;
-
+	BossHand*		mLeftHand;
+	BossHand*		mRightHand;
 public:
 	Roshan();
 	Roshan(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

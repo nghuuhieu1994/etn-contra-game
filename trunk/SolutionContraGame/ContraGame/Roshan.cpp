@@ -20,6 +20,11 @@ void Roshan::Initialize()
 	spriteExploision = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOSS_MAP2_DEATH));
 
+	mLeftHand = new BossHand(D3DXVECTOR3(m_Position.x - 100, m_Position.y + 80, 1.0f), eDirection::LEFT, eObjectID::ROSHAN_HAND);
+	mLeftHand->Initialize();
+	mRightHand = new BossHand(D3DXVECTOR3(m_Position.x + 100, m_Position.y + 80, 1.0f), eDirection::RIGHT, eObjectID::ROSHAN_HAND);
+	mRightHand->Initialize();
+
 	m_ObjectState = eObjectState::STATE_POPUP;
 	m_Sprite = spriteAlive;
 }
@@ -44,12 +49,12 @@ void Roshan::UpdateAnimation()
 		}
 		break;
 	case STATE_ALIVE_IDLE:
-		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		/*m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if (m_TimeChangeState > 5000)
 		{
 			m_TimeChangeState = 0;
 			mRoshanHead->setObjectState(STATE_BEFORE_DEATH);
-		}
+		}*/
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
@@ -68,6 +73,15 @@ void Roshan::UpdateAnimation()
 
 void Roshan::UpdateCollision(Object* checkingObject)
 {
+
+	if (mRightHand)
+	{
+		mRightHand->UpdateCollision(checkingObject);
+	}
+	if (mLeftHand)
+	{
+		mLeftHand->UpdateCollision(checkingObject);
+	}
 	if (!isDead)
 	{
 		mRoshanHead->UpdateCollision(checkingObject);
@@ -76,7 +90,14 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
-
+	if (mRightHand)
+	{
+		mRightHand->UpdateMovement();
+	}
+	if (mLeftHand)
+	{
+		mLeftHand->UpdateMovement();
+	}
 }
 
 void Roshan::Update()
@@ -86,6 +107,14 @@ void Roshan::Update()
 		mRoshanHead->Update();
 	}
 	
+	if (mLeftHand)
+	{
+		mLeftHand->Update();
+	}
+	if (mRightHand)
+	{
+		mRightHand->Update();
+	}
 	switch (m_ObjectState)
 	{
 	case STATE_POPUP:
@@ -127,6 +156,16 @@ void Roshan::Release()
 		mRoshanHead->Release();
 		SAFE_DELETE(mRoshanHead);
 	}
+	/*if (mLeftHand)
+	{
+		mLeftHand->Release();
+		SAFE_DELETE(mLeftHand);
+	}
+	if (mRightHand)
+	{
+		mRightHand->Release();
+		SAFE_DELETE(mRightHand);
+	}*/
 }
 
 void Roshan::Render(SPRITEHANDLE spriteHandle)
@@ -182,5 +221,7 @@ void Roshan::Render(SPRITEHANDLE spriteHandle)
 	{
 		mRoshanHead->Render(spriteHandle);
 	}
+	if (mRightHand) mRightHand->Render(spriteHandle);
+	if (mLeftHand) mLeftHand->Render(spriteHandle);
 }
 
