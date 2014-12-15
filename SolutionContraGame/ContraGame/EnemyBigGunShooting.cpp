@@ -21,7 +21,7 @@ void EnemyBigGunShooting::Initialize()
 	sprite_main = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ENEMY_WITH_BIG_GUN));
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
-	m_Position.z = 1.0f;
+	m_Position.z = 0.5f;
 	m_Direction = eDirection::LEFT;
 	m_AttackCounter = 8;
 	m_isShoot = false;
@@ -131,7 +131,7 @@ void EnemyBigGunShooting::Update()
 			break;
 		case STATE_BEFORE_DEATH:
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 1500)
+			if (m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
 				m_ObjectState = eObjectState::STATE_DEATH;
@@ -148,7 +148,7 @@ void EnemyBigGunShooting::Update()
 
 void EnemyBigGunShooting::Render(SPRITEHANDLE spriteHandle)
 {
-	if (!m_Sprite)
+	if (m_Sprite != NULL)
 	{
 		m_Sprite->Render(spriteHandle, 
 			getPositionVec2(), 

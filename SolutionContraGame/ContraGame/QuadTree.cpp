@@ -329,6 +329,12 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
+						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ENEMY_BIG_GUN_SHOOTING)
+						{
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new EnemyBigGunShooting(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
+						}
 					}
 
 					if(atoi(xml.GetAttrib("Type").c_str()) == (int)ETypeObject::TILE_MAP)
