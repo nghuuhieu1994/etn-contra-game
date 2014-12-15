@@ -22,6 +22,7 @@ bool IsMovementObject(eObjectID id)
 	case eObjectID::BIG_CAPSULE_BOSS:
 	case eObjectID::ENEMY_RUN_SHOOTING:
 	case eObjectID::FIRE_BRIDGE:
+	case eObjectID::ROSHAN:
 		return true;
 	default:
 		return false;

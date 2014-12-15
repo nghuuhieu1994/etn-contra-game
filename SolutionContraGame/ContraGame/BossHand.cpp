@@ -250,7 +250,7 @@ void BossHand::UpdateMovement()
 		break;
 	case eObjectState::STATE_ALIVE_MOVE_A_LINE:
 
-		m_AngleOfTarget = (float)(atan2(-10, 10) * 180 / PI);
+		m_AngleOfTarget = (float)(atan2(CGlobal::Rambo_Y - m_Position.y, CGlobal::Rambo_X - m_Position.x) * 180 / PI);
 
 		if (mArm[1]->getAngle() > m_AngleOfTarget)
 		{
