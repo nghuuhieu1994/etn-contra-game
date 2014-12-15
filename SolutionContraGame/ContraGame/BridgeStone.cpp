@@ -20,7 +20,7 @@ void BridgeStone::Initialize()
 	m_Sprite = sprite_main;
 	m_TimeChangeState = 0;
 	m_Position.z = 1.0f;
-	this->m_Physic->SetMovementRange(this->getBound().top, m_Position.x - MOVEMENT_RANGE_BRIGDE_STONE, m_Position.x + MOVEMENT_RANGE_BRIGDE_STONE, this->getBound().bottom);
+	this->m_Physic->SetMovementRange((int)(this->getBound().top), (int)(m_Position.x - MOVEMENT_RANGE_BRIGDE_STONE), (int)(m_Position.x + MOVEMENT_RANGE_BRIGDE_STONE), (int)(this->getBound().bottom));
 	m_Physic->setVelocityX(0.3f);
 }
 

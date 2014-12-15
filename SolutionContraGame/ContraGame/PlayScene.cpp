@@ -50,95 +50,98 @@ void PlayScene::Update()
 	#pragma region Update camera & insert object into quadtree
 
 	Camera::getInstance()->UpdateCamera(&m_Rambo->getPositionVec3());
-	m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
-
-	#pragma endregion
-
-	#pragma region Update rambo
-
-	//m_Rambo->HandleInput();
-	m_Rambo->UpdateAnimation();
-	m_Rambo->SetFlag();
-	m_Rambo->UpdateMovement();
-	m_Rambo->CleanIgnoreList();
-
-	#pragma endregion
-
-	#pragma region Update Bullet
-
-	BulletPoolManager::getInstance()->Update();
-	BulletPoolManager::getInstance()->UpdateMovement();
-	BulletPoolManager::getInstance()->UpdateAnimation();
-
-	#pragma endregion
-
-	#pragma region Update Collision for Rambo & Bullet with Object in quadtrere
-
-	#pragma region UPdate Collision for object in quadtree with Bullet
-
-	m_Quadtree->Update();
-	m_Quadtree->UpdateAnimation();
-	m_Quadtree->UpdateMovement();
-
-
-	#pragma endregion
-
-	for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
+	if (!Camera::getInstance()->IsGamePause())
 	{
-		if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
+		m_Quadtree->InsertObjectIntoView(Camera::getInstance()->getBound(), m_Quadtree->mRootNode);
+
+#pragma endregion
+
+#pragma region Update rambo
+
+		//m_Rambo->HandleInput();
+		m_Rambo->UpdateAnimation();
+		m_Rambo->SetFlag();
+		m_Rambo->UpdateMovement();
+		m_Rambo->CleanIgnoreList();
+
+#pragma endregion
+
+#pragma region Update Bullet
+
+		BulletPoolManager::getInstance()->Update();
+		BulletPoolManager::getInstance()->UpdateMovement();
+		BulletPoolManager::getInstance()->UpdateAnimation();
+
+#pragma endregion
+
+#pragma region Update Collision for Rambo & Bullet with Object in quadtrere
+
+#pragma region UPdate Collision for object in quadtree with Bullet
+
+		m_Quadtree->Update();
+		m_Quadtree->UpdateAnimation();
+		m_Quadtree->UpdateMovement();
+
+
+#pragma endregion
+
+		for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 		{
-			for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
+			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
 			{
-				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
+				for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 				{
-					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(1.0f);
+					if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::SNIPER_STANDING)
+					{
+						(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionZ(1.0f);
+					}
+				}
+				//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
+			}
+			if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::WEAPON_CAPSULE)
+			{
+				WeaponCapsule* temp = (WeaponCapsule*)m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]];
+				if(temp->m_IsUpdated == false)
+				{
+					(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionX(m_Rambo->getPositionVec2().x - 200);
+					temp->m_IsUpdated = true;
 				}
 			}
-			//SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 2));
-		}
-		if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::WEAPON_CAPSULE)
-		{
-			WeaponCapsule* temp = (WeaponCapsule*)m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]];
-			if(temp->m_IsUpdated == false)
+
+			m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+			BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
 			{
-				(*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).setPositionX(m_Rambo->getPositionVec2().x - 200);
-				temp->m_IsUpdated = true;
+				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
+					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
+					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2)); 
+				}
 			}
 		}
 
-		m_Rambo->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
+
+		for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
 		{
-			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
-			{
-				PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
-				PlayScene::m_RamboLife = m_Rambo->getRamboLife();
-				SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2)); 
-			}
+			m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+			WeaponryManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
+
 		}
+
+		for (std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
+		{
+			m_Quadtree->UpdateCollision(*i);
+			m_Rambo->UpdateCollision(*i);
+		}
+
+#pragma endregion	
+
+		WeaponryManager::getInstance()->Update();
+		WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
+		m_Rambo->UpdatePreviousIgnoreList();
+		m_backgroundEffect.UpdateAnimation(); 
 	}
-
-	
-	for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
-	{
-		m_Quadtree->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-		WeaponryManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
-
-	}
-
-	for (std::list<Bullet*>::iterator i = BulletPoolManager::getInstance()->m_ListBulletInGame.begin(); i != BulletPoolManager::getInstance()->m_ListBulletInGame.end(); ++i)
-	{
-		m_Quadtree->UpdateCollision(*i);
-		m_Rambo->UpdateCollision(*i);
-	}
-
-	#pragma endregion	
-
-	WeaponryManager::getInstance()->Update();
-	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
-	m_Rambo->UpdatePreviousIgnoreList();
-	m_backgroundEffect.UpdateAnimation();
 }
 
 void PlayScene::Render(LPD3DXSPRITE _lpDSpriteHandle)

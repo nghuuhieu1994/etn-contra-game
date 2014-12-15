@@ -270,62 +270,62 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_BOSS_1)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tinker(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tinker(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::SNIPPER_WATER_HIDING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SnipperWaterHiding(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new SnipperWaterHiding(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::TANK)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tank(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Tank(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::MAGIC_ROCK)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BridgeStone(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BridgeStone(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::STONE)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigStone(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigStone(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BOOM)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Boom(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Boom(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::BIG_CAPSULE_BOSS)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigCapsuleBoss(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new BigCapsuleBoss(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::FIRE_BRIDGE)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new FireBridge(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new FireBridge(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ENEMY_RUN_SHOOTING)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new EnemyRunShooting(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new EnemyRunShooting(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::ROSHAN)
 						{
-							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Roshan(D3DXVECTOR3(atoi(xml.GetAttrib("X").c_str()),
-								atoi(xml.GetAttrib("Y").c_str()), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
+							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())] = new Roshan(D3DXVECTOR3((float)(atoi(xml.GetAttrib("X").c_str())),
+								(float)(atoi(xml.GetAttrib("Y").c_str())), 1.0f), eDirection::LEFT, (eObjectID)atoi(xml.GetAttrib("Id").c_str()));
 							mMapObjectCollisionInGame[atoi(xml.GetAttrib("Index").c_str())]->Initialize();
 						}
 					}

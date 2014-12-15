@@ -135,7 +135,7 @@ void BigStone::UpdateCollision(Object* checkingObject)
 
 void BigStone::UpdateMovement()
 {
-	_distanceX = m_Position.y - CGlobal::Rambo_Y;
+	_distanceX = (int)(m_Position.y - CGlobal::Rambo_Y);
 	if(_distanceX < 130)
 	{
 		switch (m_ObjectState)

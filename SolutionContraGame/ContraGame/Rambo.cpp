@@ -92,6 +92,7 @@ int Rambo::HandleInputDeadState()
 			isInvulnerable = true;
 			m_SkillBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 			--m_life;
+			Camera::getInstance()->SetTempLockHeight(true);
 		}
 	}
 	return 0;
@@ -108,9 +109,10 @@ void Rambo::HandleInput()
 	CheckOutBottomCamera();
 	HandleInputDeadState();
 
-	if (CInputDx9::getInstance()->IsKeyPress(DIK_B))
+	if (CInputDx9::getInstance()->IsKeyPress(DIK_X))
 	{
-		m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+		//m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+		Camera::getInstance()->SetTempLockHeight(false);
 	}
 
 	switch (m_ObjectState)

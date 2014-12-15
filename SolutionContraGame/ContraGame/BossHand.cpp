@@ -224,7 +224,7 @@ void BossHand::UpdateMovement()
 			mArm[3]->setAngleVeclocity(-mArm[3]->getAngleVeclocity());
 
 			mPunch->setAngleVeclocity(-mPunch->getAngleVeclocity());
-			m_TimeChangeState = 0.0f;
+			m_TimeChangeState = 0;
 			++m_CountRotation;
 			if (m_CountRotation == 2)
 			{
@@ -250,7 +250,7 @@ void BossHand::UpdateMovement()
 		break;
 	case eObjectState::STATE_ALIVE_MOVE_A_LINE:
 
-		m_AngleOfTarget = atan2(-10, 10) * 180 / PI;
+		m_AngleOfTarget = (float)(atan2(-10, 10) * 180 / PI);
 
 		if (mArm[1]->getAngle() > m_AngleOfTarget)
 		{
@@ -318,8 +318,8 @@ void BossHand::Update()
 		if(m_TimeChangeState > 3000)
 		{
 			m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
-			m_TimeChangeState = 0.0f;
-			m_CountRotation = 0.0f;
+			m_TimeChangeState = 0;
+			m_CountRotation = 0;
 
 			if(m_Direction == eDirection::RIGHT)
 			{
