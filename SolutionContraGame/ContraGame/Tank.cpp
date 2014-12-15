@@ -187,6 +187,12 @@ void Tank::UpdateCollision(Object* checkingObject)
 						m_AttackCounter -= 4;
 					}
 				}
+				else if(tempBullet->getTypeBullet() == eIDTypeBullet::LAZER_BULLET_OF_RAMBO)
+				{
+					// L Bullet
+					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
+					m_AttackCounter -= 5;
+				}
 
 				if(m_AttackCounter >= 65 && m_AttackCounter <= 80)
 				{

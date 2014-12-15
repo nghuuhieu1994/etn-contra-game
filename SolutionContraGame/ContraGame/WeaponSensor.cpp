@@ -56,6 +56,8 @@ void WeaponSensor::UpdateCollision(Object* checkingObject)
 {
 	if (!isDead)
 	{
+		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
+		{
 		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 		if (collideDirection != IDDirection::DIR_NONE)
 		{
@@ -98,6 +100,7 @@ void WeaponSensor::UpdateCollision(Object* checkingObject)
 			default:
 				break;
 			}
+		}
 		}
 	}
 }

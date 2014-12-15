@@ -122,6 +122,10 @@ void EnemyRun::UpdateMovement()
 			{
 				m_Physic->setVelocityX(VELOC_MOVE_RIGHT);
 			}
+			if(m_Position.x < 0 || m_Position.x > Camera::getInstance()->getBound().right)
+			{
+				m_ObjectState = eObjectState::STATE_DEATH;
+			}
 		break;
 	case STATE_JUMP:
 			if (m_Direction == eDirection::LEFT)

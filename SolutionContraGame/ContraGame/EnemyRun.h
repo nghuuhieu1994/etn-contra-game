@@ -3,6 +3,7 @@
 
 #include "DynamicObject.h"
 #include "VirtualObject.h"
+#include "CCamera.h"
 
 class EnemyRun : public DynamicObject
 {

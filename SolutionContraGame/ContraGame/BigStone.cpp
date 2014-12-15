@@ -21,6 +21,7 @@ void BigStone::Initialize()
 	m_isJump = false;
 	m_flag = false;
 	m_TimeToJump = 0;
+	this->m_StartPosition = this->m_Position;
 }
 
 void BigStone::UpdateAnimation()
@@ -144,6 +145,12 @@ void BigStone::UpdateMovement()
 		case STATE_ALIVE_MOVE:
 			m_Physic->setVelocityY(-1.5f);
 			m_Physic->UpdateMovement(&m_Position);
+			
+			if(m_Position.y < Camera::getInstance()->getBound().bottom)
+			{
+				m_Position = this->m_StartPosition;
+			}
+		break;
 			break;
 		case STATE_JUMP:
 			if(m_isJump == true)
@@ -180,11 +187,15 @@ void BigStone::Update()
 			if (m_TimeChangeState > 1500)
 			{
 				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_DEATH;
+				m_Position = this->m_StartPosition;
+				this->m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+				this->m_Sprite = sprite_main;
+				isDead = false;
 			}
 			break;
 		case STATE_DEATH:
-			this->Release();
+
+			//this->Release();
 			break;
 		default:
 			break;

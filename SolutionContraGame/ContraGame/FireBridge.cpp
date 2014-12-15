@@ -48,6 +48,20 @@ void FireBridge::UpdateAnimation()
 
 void FireBridge::UpdateCollision(Object* checkingObject)
 {
+	if(!isDead) 
+	{
+		if(checkingObject->getID() == eObjectID::RAMBO)
+		{
+			//IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+			//if(collideDirection != IDDirection::DIR_NONE)
+			//{
+
+			//}
+			m_fire_1->UpdateCollision(checkingObject);
+			m_fire_2->UpdateCollision(checkingObject);
+		}
+	}
 }
 
 void FireBridge::UpdateMovement()

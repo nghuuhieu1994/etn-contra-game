@@ -38,6 +38,15 @@ void Fire::UpdateAnimation()
 }
 void Fire::UpdateCollision(Object* checkingObject)
 {
+	if(!isDead) 
+	{
+		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
+
+		if(collideDirection != IDDirection::DIR_NONE)
+		{
+			checkingObject->setObjectState(eObjectState::STATE_BEFORE_DEATH);
+		}
+	}
 }
 
 void Fire::UpdateMovement()

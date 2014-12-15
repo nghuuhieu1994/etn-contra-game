@@ -1615,6 +1615,18 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
+	if(checkingObject->getID() == eObjectID::FIRE_BRIDGE)
+	{
+		FireBridge* fireBridge = (FireBridge*)checkingObject;
+		IDDirection collideDirection1 = this->m_Collision->CheckCollision(this, (Object*)fireBridge->m_fire_1);
+		IDDirection collideDirection2 = this->m_Collision->CheckCollision(this, (Object*)fireBridge->m_fire_2);
+		if(collideDirection1 != IDDirection::DIR_NONE || collideDirection2 != IDDirection::DIR_NONE)
+		{
+			m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+		}
+	}
+	else
+	{
 	if( checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
 	{
 		D3DXVECTOR3 curPos;
@@ -1788,6 +1800,8 @@ void Rambo::UpdateCollision(Object* checkingObject)
 					}
 					break;
 				case eObjectID::BULLET_ENEMY:
+				case eObjectID::STONE:
+				case eObjectID::FIRE:
 					if (isInvulnerable)
 					{
 						break;
@@ -1812,6 +1826,10 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 					}
 					break;
+				case eObjectID::FIRE_BRIDGE:
+
+
+					break;
 				default:
 					break;
 				}
@@ -1819,6 +1837,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			}
 		}
 		}
+	}
 	}
 }
 
