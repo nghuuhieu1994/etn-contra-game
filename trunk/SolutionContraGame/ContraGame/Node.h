@@ -26,6 +26,7 @@
 #include "FireBridge.h"
 #include "EnemyRunShooting.h"
 #include "RoShan.h"
+#include "EnemyBigGunShooting.h"
 
 class Node
 {

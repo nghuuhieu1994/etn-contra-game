@@ -2,7 +2,7 @@
 
 #define INCLUDE_MAP1 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\1\\1.png", eSpriteID::SPRITE_MAP_1, 42, 1, 42)
 #define INCLUDE_MAP2 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\2\\2.png", eSpriteID::SPRITE_MAP_2, 46, 1, 46)
-#define INCLUDE_MAP3 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\3\\3.png", eSpriteID::SPRITE_MAP_3, 115, 1, 115)
+#define INCLUDE_MAP3 LoadSpriteContent(_lpDirectDevice, "resources\\Map\\3\\3.png", eSpriteID::SPRITE_MAP_3, 122, 1, 122)
 SpriteManager* SpriteManager::s_Instance = 0;
 
 SpriteManager::SpriteManager(void)
