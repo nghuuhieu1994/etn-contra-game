@@ -10,6 +10,7 @@
 #include "BulletPoolManager.h"
 #include <fstream>
 #include <list>
+#include "FireBridge.h"
 
 using namespace std;
 class Rambo : public DynamicObject

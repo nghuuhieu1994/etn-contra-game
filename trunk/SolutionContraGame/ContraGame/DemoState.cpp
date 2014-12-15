@@ -36,7 +36,6 @@ void DemoState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 	m_Rambo->setSkillBullet(DemoState::m_RamboBullet);
 
 
-
 	//rs = new Roshan(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1), eDirection::RIGHT, eObjectID::ROSHAN);
 	//rs->Initialize();
 }
@@ -147,13 +146,7 @@ void DemoState::Update()
 	WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 	m_Rambo->UpdatePreviousIgnoreList();
 	m_backgroundEffect.UpdateAnimation();
-	
 
-
-	//rs->Update();
-	//rs->UpdateAnimation();
-	//rs->UpdateMovement();
-	//rs->UpdateCollision(m_Rambo);
 }
 
 void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
@@ -163,13 +156,6 @@ void DemoState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 	m_backgroundEffect.Render(_lpDSpriteHandle);
 	BulletPoolManager::getInstance()->Render(_lpDSpriteHandle);
 	WeaponryManager::getInstance()->Render(_lpDSpriteHandle);
-
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	mArm[i]->Render(_lpDSpriteHandle);
-	//}
-
-	//rs->Render(_lpDSpriteHandle);
 }
 
 void DemoState::Pause()
