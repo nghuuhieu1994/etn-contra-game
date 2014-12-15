@@ -17,40 +17,40 @@ void GunRotating::Shoot()
 	switch (m_DirectAttack)
 	{
 	case ZERO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 1.0f), 100);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, 1.0f), 100.0f);
 		break;
 	case ONE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 1.0f), 1.73);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 1.0f), 1.73f);
 		break;
 	case TWO_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 1.0f), 0.57);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 1.0f), 0.57f);
 		break;
 	case THREE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), 0);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), 0.0f);
 		break;
 	case FOUR_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), -0.7);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), -0.7f);
 		break;
 	case FIVE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), -1.73);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(1.0f, 0.0f), -1.73f);
 		break;
 	case SIX_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -1.0f), 100); 
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(0.0f, -1.0f), 100.0f); 
 		break;
 	case SEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 1.43);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 1.43f);
 		break;
 	case EIGHT_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 0.7);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 0.7f);
 		break;
 	case NINE_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 0);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, 0.0f), 0.0f);
 		break;
 	case TEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.5f, 0.0f), -0.7);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.5f, 0.0f), -0.7f);
 		break;
 	case ELEVEN_CLOCK_DIRECTION:
-		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, -0.5f), -3.7);
+		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_ENEMY, GetStartPositionOfBullet(), D3DXVECTOR2(-1.0f, -0.5f), -3.7f);
 		break;
 	default:
 		break;	

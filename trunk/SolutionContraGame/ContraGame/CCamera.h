@@ -20,11 +20,16 @@ class Camera
 	bool m_isCheckFlagY;
 	D3DXVECTOR2 m_flagStartAutoRun;
 	D3DXVECTOR2 m_flagStopAutoRun;
+	bool m_isPause;
+	bool m_tempLockHeight;
 	Camera();
 	D3DXMATRIX			m_matrixTranslate;
 public:
 	RECT getBound();
 	void Reset();
+	void SetTempLockHeight(bool _isLock){ m_tempLockHeight = _isLock; }
+	bool GetTempLockHeight(){ return m_tempLockHeight; }
+	bool IsGamePause(){ return m_isPause; }
 	void setLockWidth(bool _isLock){ m_isLockWidth = _isLock; }
 	void setLockHeight(bool _isLock){ m_isLockHeight = _isLock; }
 	void readAutoRunScript(const char* filePath);

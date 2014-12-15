@@ -38,7 +38,7 @@ void BossGun::Shoot()
 	{
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-2.0f, 4.0f));
 	}
-	else if(disX > 224 & disX < 448)
+	else if(disX > 224 && disX < 448)
 	{
 		BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, this->m_Position, D3DXVECTOR2(-3.0f, 4.0f));
 	}

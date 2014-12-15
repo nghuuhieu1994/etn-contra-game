@@ -259,7 +259,7 @@ void BigCapsuleBoss::Render(SPRITEHANDLE spriteHandle)
 	}
 	if (m_Sprite != 0)
 	{
-		short colorA = 255 * mOpacity;
+		short colorA = (short)(255 * mOpacity);
 		m_Sprite->Render(spriteHandle,
 			getPositionVec2(),
 			m_Sprite->getSpriteEffect(),

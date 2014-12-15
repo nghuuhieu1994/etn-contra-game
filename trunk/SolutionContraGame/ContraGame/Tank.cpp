@@ -63,10 +63,10 @@ float Tank::GetAnpla()
 	case 24:
 		return 1.19f;
 		break;
-
 	default:
 		break;
 	}
+	return 0.0f;
 }
 
 D3DXVECTOR3 Tank::GetStartPosition()
@@ -106,6 +106,7 @@ D3DXVECTOR3 Tank::GetStartPosition()
 	default:
 		break;
 	}
+	return D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 }
 
 void Tank::Initialize()
@@ -267,7 +268,7 @@ void Tank::UpdateMovement()
 }
 void Tank::Update()
 {
-	m_distance_X = CGlobal::Rambo_X - m_Position.x;
+	m_distance_X = (int)(CGlobal::Rambo_X - m_Position.x);
 	switch (m_ObjectState)
 		{
 		case STATE_ALIVE_MOVE:

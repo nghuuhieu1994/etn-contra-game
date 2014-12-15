@@ -87,7 +87,7 @@ void FireBridge::Update()
 
 void FireBridge::Render(SPRITEHANDLE spriteHandle)
 {
-	m_distanceY = m_Position.y - CGlobal::Rambo_Y  ;
+	m_distanceY = (int)(m_Position.y - CGlobal::Rambo_Y);
 	if(m_Sprite != 0 )
 	{
 		m_Sprite->Render(spriteHandle, getPositionVec2(), m_Sprite->getSpriteEffect(), m_Sprite->getRotate(), m_Sprite->getScale(), m_Position.z);
