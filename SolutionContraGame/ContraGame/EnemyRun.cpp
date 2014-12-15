@@ -80,6 +80,8 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 					break;
 				case eObjectID::BRIDGE:
 				case eObjectID::TILE_BASE:
+					if(m_Position.y > checkingObject->getPositionVec3().y)
+					{
 					if (collideDirection == IDDirection::DIR_TOP)
 						{
 							m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
@@ -91,6 +93,7 @@ void EnemyRun::UpdateCollision(Object* checkingObject)
 					{
 						m_ObjectState = eObjectState::STATE_JUMP;
 						this->isJumb = true;
+					}
 					}
 					break;
 				case eObjectID::VIRTUAL_OBJECT_JUMP:
