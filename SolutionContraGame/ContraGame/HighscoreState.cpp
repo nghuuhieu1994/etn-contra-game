@@ -1,5 +1,5 @@
 #include "HighScoreState.h"
-#include "DemoState.h"
+#include "PlayScene.h"
 
 #include <fstream>
 
@@ -21,7 +21,7 @@ void HighScoreState::Update()
 	coolDonwChange += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 	if (coolDonwChange > 5000)
 	{
-		SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::DEMO, NextStage));
+		SceneManagerDx9::getInstance()->AddElement(new PlayScene(eIDSceneGame::DEMO, NextStage));
 	}
 }
 
@@ -77,7 +77,7 @@ void HighScoreState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		rect.right = 400;
 		rect.bottom = 300;
 		m_Font->DrawTextA(_lpDSpriteHandle, "STAGE 2", -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
-		rect.left = 200;
+		rect.left = 180;
 		rect.top = 250;
 		rect.right = 400;
 		rect.bottom = 350;

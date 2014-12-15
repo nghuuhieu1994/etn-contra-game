@@ -1,5 +1,7 @@
 #include "MenuGame.h"
 #include "DemoState.h"
+#include "PlayScene.h"
+
 void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
 	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG);
@@ -40,7 +42,7 @@ void MenuGame::HandleInput()
 		{
 			if(m_IconPosition.y == 140)
 			{
-				SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::INTRO, 1));
+				SceneManagerDx9::getInstance()->ReplaceBy(new PlayScene(eIDSceneGame::INTRO, 1));
 			}
 		}
 

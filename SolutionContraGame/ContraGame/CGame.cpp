@@ -166,6 +166,7 @@ bool CGame::InitializeDirectSound()
 	return true;
 }
 
+#include "PlayScene.h"
 bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 {
 	this->InitializeHandleWindow(hInstance);
@@ -185,7 +186,8 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 	SoundManagerDx9::getInstance()->LoadAllSoundBuffer(m_lpDirectSound);
 
 	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
-	SceneManagerDx9::getInstance()->AddElement(new DemoState(eIDSceneGame::DEMO, 2));
+
+	SceneManagerDx9::getInstance()->AddElement(new PlayScene(eIDSceneGame::DEMO, 2));
 	return true;
 }
 

@@ -117,7 +117,7 @@ void Rambo::HandleInput()
 	{
 		case STATE_RAMBO_IDLE:
 			{
-				HandleInputIdleState();				
+				HandleInputIdleState();
 			}
 			break;
 		case STATE_RAMBO_JUMP:
