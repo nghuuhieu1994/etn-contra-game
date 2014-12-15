@@ -127,6 +127,14 @@ void Roshan::Update()
 	case STATE_ALIVE_IDLE:
 		if (mRoshanHead->getObjectState() == STATE_BEFORE_DEATH)
 		{
+			if (mLeftHand->isDead == false)
+			{
+				mLeftHand->mPunch->setObjectState(STATE_BEFORE_DEATH);
+			}
+			if (mRightHand->isDead == false)
+			{
+				mRightHand->mPunch->setObjectState(STATE_BEFORE_DEATH);
+			}
 			m_ObjectState = STATE_BEFORE_DEATH;
 		}
 		break;

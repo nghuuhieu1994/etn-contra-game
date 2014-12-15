@@ -13,5 +13,6 @@ enum eSoundID
 	rambo_step_sfx,
 	enemy_dead_sfx,
 	bridge_exploision_sfx,
+	boom_sfx
 };
 #endif

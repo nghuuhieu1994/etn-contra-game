@@ -42,6 +42,7 @@ void SoundManagerDx9::LoadAllSoundBuffer(LPDIRECTSOUND8 _lpDSound)
 
 	this->LoadSoundBuffer("resources\\Sound\\bridge_exploision_sfx.wav", eSoundID::bridge_exploision_sfx, _lpDSound);
 	this->LoadSoundBuffer("resources\\Sound\\enemy_dead_sfx.wav", eSoundID::enemy_dead_sfx, _lpDSound);
+	this->LoadSoundBuffer("resources\\Sound\\boom_sfx.wav", eSoundID::boom_sfx, _lpDSound);
 	// need more and more sound rs
 
 }

@@ -22,7 +22,7 @@ void Boom::Initialize()
 	m_Physic->setVelocityY(0.6f);
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 	m_TimeChangeState = 0;
-
+	isPlaySound = false;
 }
 
 void Boom::UpdateAnimation()
@@ -30,14 +30,23 @@ void Boom::UpdateAnimation()
 	switch (m_ObjectState)
 	{
 	case STATE_ALIVE_MOVE:
+		if (isPlaySound == false)
+		{
+			isPlaySound = true;
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boom_sfx)->Play();
+		}
 		m_Sprite->getAnimation()->setCurrentFrame(0);
-		rotate += 9.0f;
+		rotate += 0.1f;
 		m_Sprite->setRotate(rotate);
 		break;
 	case STATE_BEFORE_DEATH:
-		m_Sprite = sprite_exploision;
-		m_Sprite->getAnimation()->setIndexStart(0);
-		m_Sprite->getAnimation()->setIndexEnd(2);
+		if (isDead == false)
+		{
+			isDead = true;
+			m_Sprite = sprite_exploision;
+			m_Sprite->getAnimation()->setIndexStart(0);
+			m_Sprite->getAnimation()->setIndexEnd(2);
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	default:
@@ -59,7 +68,6 @@ void Boom::UpdateCollision(Object* checkingObject)
 					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					this->getPhysic()->setVelocityY(2.0f);
 					this->getPhysic()->setVelocityX(0.0f);
-					this->isDead = true;
 					break;
 			default:
 				break;
@@ -75,7 +83,6 @@ void Boom::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
-		SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
 		m_Physic->UpdateMovement(&m_Position);
 		break;
 		
@@ -101,7 +108,6 @@ void Boom::Update()
 			}
 			break;
 		case STATE_DEATH:
-			if(this->m_Sprite != 0)
 			this->Release();
 			break;
 		default:
