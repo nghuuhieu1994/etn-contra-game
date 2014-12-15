@@ -1,5 +1,5 @@
 #include "QuadTree.h"
-
+#include "PlayScene.h"
 
 QuadTree::QuadTree()
 {
@@ -31,6 +31,7 @@ void QuadTree::InsertObjectIntoView(RECT viewPort, Node* node)
 		{
 			if(mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_DEATH && mMapObjectCollisionInGame[node->mListObjectCollision[i]]->getObjectState() != eObjectState::STATE_BOSS_DEATH)
 			{
+				PlayScene::IncreaseScore();
 				for( j = 0; j < (int)mListObjectCollisionInView.size(); ++j)
 				{
 					if(node->mListObjectCollision[i] == mListObjectCollisionInView[j])

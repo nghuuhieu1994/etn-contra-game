@@ -42,7 +42,8 @@ void MenuGame::HandleInput()
 		{
 			if(m_IconPosition.y == 140)
 			{
-				SceneManagerDx9::getInstance()->ReplaceBy(new PlayScene(eIDSceneGame::INTRO, 1));
+				SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::INTRO, 1));
+				PlayScene::setScore(0);
 			}
 		}
 
