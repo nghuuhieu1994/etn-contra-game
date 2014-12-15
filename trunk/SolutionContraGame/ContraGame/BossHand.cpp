@@ -119,6 +119,13 @@ void BossHand::UpdateCollision(Object* checkingObject)
 			mArm[0]->UpdateCollision(checkingObject);
 		}
 		mPunch->UpdateCollision(checkingObject);
+		if(mPunch->getObjectState() == eObjectState::STATE_BEFORE_DEATH)
+		{
+			for(int i = 0; i < 4; ++i)
+			{
+				mArm[i]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
+			}
+		}
 	}
 }
 
@@ -240,8 +247,6 @@ void BossHand::UpdateMovement()
 		mPunch->setAngle(mArm[3]->getAngle());
 		mPunch->UpdateMovement();
 
-
-
 		break;
 	case eObjectState::STATE_ALIVE_MOVE_A_LINE:
 
@@ -281,10 +286,16 @@ void BossHand::UpdateMovement()
 
 		if ((int) mArm[1]->getAngle() <= m_AngleOfTarget + 5 && (int) mArm[1]->getAngle() >= m_AngleOfTarget - 5)
 		{
-			 m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
-			//mPunch->setObjectState(STATE_BEFORE_DEATH);
+			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
 		}
 
+		break;
+	case eObjectState::STATE_ALIVE_IDLE:
+		this->mArm[0]->setAngleVeclocity(0.0f);
+		this->mArm[1]->setAngleVeclocity(0.0f);
+		this->mArm[2]->setAngleVeclocity(0.0f);
+		this->mArm[3]->setAngleVeclocity(0.0f);
+		this->mPunch->setAngleVeclocity(0.0f);
 		break;
 	case STATE_BEFORE_DEATH:
 		break;
@@ -299,8 +310,32 @@ void BossHand::Update()
 	case STATE_POPUP:
 		break;
 	case STATE_ALIVE_MOVE:
-	case STATE_ALIVE_MOVE_A_LINE:		
 		break;
+	case STATE_ALIVE_MOVE_A_LINE:
+		break;
+	case eObjectState::STATE_ALIVE_IDLE:
+		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if(m_TimeChangeState > 3000)
+		{
+			m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			m_TimeChangeState = 0.0f;
+			m_CountRotation = 0.0f;
+
+			if(m_Direction == eDirection::RIGHT)
+			{
+				mArm[1]->setAngleVeclocity(4.0f);
+				mArm[2]->setAngleVeclocity(-40.0f);
+				mArm[3]->setAngleVeclocity(-50.0f);
+				mPunch->setAngleVeclocity(-50.0f);
+			}
+			else
+			{
+				mArm[1]->setAngleVeclocity(-4.0f);
+				mArm[2]->setAngleVeclocity(40.0f);
+				mArm[3]->setAngleVeclocity(50.0f);
+				mPunch->setAngleVeclocity(50.0f);
+			}
+		}
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{

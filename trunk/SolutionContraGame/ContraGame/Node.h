@@ -25,6 +25,8 @@
 #include "BigCapsuleBoss.h"
 #include "FireBridge.h"
 #include "EnemyRunShooting.h"
+#include "RoShan.h"
+
 class Node
 {
 private:

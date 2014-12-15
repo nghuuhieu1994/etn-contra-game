@@ -35,6 +35,14 @@ void Roshan::UpdateAnimation()
 	{
 		mRoshanHead->UpdateAnimation();
 	}
+	if(mLeftHand)
+	{
+		mLeftHand->UpdateAnimation();
+	}
+	if(mRightHand)
+	{
+		mRightHand->UpdateAnimation();
+	}
 	switch (m_ObjectState)
 	{
 	case STATE_POPUP:
