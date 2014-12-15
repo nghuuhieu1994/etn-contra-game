@@ -13,9 +13,9 @@ private:
 	CSpriteDx9*	spriteDead;
 	bool isShoot;
 	float mOpacity;
-	list<BossBullet*> mListRoshanBullet;
 
 public:
+	list<BossBullet*> mListRoshanBullet;
 	RoshanHead();
 	RoshanHead(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
 	void Shoot();

@@ -11,7 +11,7 @@ BossPunch::BossPunch(D3DXVECTOR3 _position, eDirection _direction, eObjectID _ob
 
 void BossPunch::Initialize()
 {
-	m_AttackCounter = 100;
+	m_AttackCounter = 10;
 	spriteAlive = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_PUNCH_BOSS));
 	spriteDead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
 	m_ObjectState = eObjectState::STATE_ALIVE_MOVE;

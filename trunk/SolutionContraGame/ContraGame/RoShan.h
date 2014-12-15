@@ -8,13 +8,15 @@
 class Roshan : public DynamicObject
 {
 private:
-	RoshanHead*		mRoshanHead;
 	CSpriteDx9*		spriteAlive;
 	CSpriteDx9*		spriteDead;
 	CSpriteDx9*		spriteExploision;
 	float mOpacity;
+public:
 	BossHand*		mLeftHand;
 	BossHand*		mRightHand;
+	RoshanHead*		mRoshanHead;
+
 public:
 	Roshan();
 	Roshan(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

@@ -90,14 +90,14 @@ void BossHand::UpdateAnimation()
 		break;
 	case STATE_ALIVE_MOVE:
 	case STATE_ALIVE_MOVE_A_LINE:
-		if (mPunch->getObjectState() == STATE_BEFORE_DEATH)
+		/*if (mPunch->getObjectState() == STATE_BEFORE_DEATH)
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				mArm[i]->setObjectState(STATE_BEFORE_DEATH);
 			}
 			m_ObjectState = STATE_BEFORE_DEATH;
-		}
+		}*/
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
@@ -112,6 +112,15 @@ void BossHand::UpdateAnimation()
 
 void BossHand::UpdateCollision(Object* checkingObject)
 {
+
+	if (mListRoshanBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
+		{
+			(*i)->UpdateCollision(checkingObject);
+		}
+	}
+
 	if (isDead == false)
 	{
 		for (int i = 0; i < 4; i++)
@@ -125,6 +134,8 @@ void BossHand::UpdateCollision(Object* checkingObject)
 			{
 				mArm[i]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
 			}
+			m_ObjectState = STATE_BEFORE_DEATH;
+			m_TimeChangeState = 0;
 		}
 	}
 }
@@ -305,6 +316,29 @@ void BossHand::UpdateMovement()
 }
 void BossHand::Update()
 {
+
+	if (mListRoshanBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end();)
+		{
+
+			(*i)->UpdateAnimation();
+			(*i)->UpdateMovement();
+			(*i)->Update();
+
+			if ((*i)->getObjectState() == STATE_DEATH)
+			{
+
+				SAFE_DELETE(*i);
+				i = mListRoshanBullet.erase(i);
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
+
 	switch (m_ObjectState)
 	{
 	case STATE_POPUP:
@@ -314,6 +348,16 @@ void BossHand::Update()
 	case STATE_ALIVE_MOVE_A_LINE:
 		break;
 	case eObjectState::STATE_ALIVE_IDLE:
+
+		m_TimeChangeDirectAttack += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+		if (m_TimeChangeDirectAttack > 3000)
+		{
+			m_TimeChangeDirectAttack = 0;
+			mListRoshanBullet.push_back(new BossBullet(mPunch->getPositionVec3(), m_Direction, eObjectID::BULLET_ENEMY));
+			mListRoshanBullet.back()->Initialize();
+			mListRoshanBullet.back()->getPhysic()->setVelocity(D3DXVECTOR2(0, -1.0f));
+		}
+
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 		if(m_TimeChangeState > 3000)
 		{
@@ -366,10 +410,31 @@ void BossHand::Render(SPRITEHANDLE spriteHandle)
 	{
 		mPunch->Render(spriteHandle);
 	}
+
+	if (mListRoshanBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end(); i++)
+		{
+			(*i)->Render(spriteHandle);
+		}
+	}
+
 }
 
 void BossHand::Release()
 {
+
+	if (mListRoshanBullet.empty() != true)
+	{
+		for (list<BossBullet*>::iterator i = mListRoshanBullet.begin(); i != mListRoshanBullet.end();)
+		{
+			(*i)->Release();
+			SAFE_DELETE(*i);
+			//mListRoshanBullet.clear();
+			i = mListRoshanBullet.erase(i);
+		}
+	}
+
 	if (mPunch)
 	{
 		mPunch->Release();

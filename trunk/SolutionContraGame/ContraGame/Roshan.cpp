@@ -48,7 +48,7 @@ void Roshan::UpdateAnimation()
 	case STATE_POPUP:
 		//if (m_Position.y - CGlobal::Rambo_Y <= 100)
 		{
-			mOpacity += 0.003f;
+			mOpacity += 0.01f;
 			if (mOpacity > 1.0f)
 			{
 				mOpacity = 1.0f;
@@ -57,17 +57,12 @@ void Roshan::UpdateAnimation()
 		}
 		break;
 	case STATE_ALIVE_IDLE:
-		/*m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if (m_TimeChangeState > 5000)
-		{
-			m_TimeChangeState = 0;
-			mRoshanHead->setObjectState(STATE_BEFORE_DEATH);
-		}*/
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
 		{
 			isDead = true;
+			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
 			m_Sprite = spriteDead;
 		}
 		spriteExploision->UpdateAnimation(250);
@@ -98,16 +93,16 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
-	if(abs(m_Position.y - CGlobal::Rambo_Y) < 200)
+	if (abs(m_Position.y - CGlobal::Rambo_Y) < 200)
 	{
-	if (mRightHand)
-	{
-		mRightHand->UpdateMovement();
-	}
-	if (mLeftHand)
-	{
-		mLeftHand->UpdateMovement();
-	}
+		if (mRightHand)
+		{
+			mRightHand->UpdateMovement();
+		}
+		if (mLeftHand)
+		{
+			mLeftHand->UpdateMovement();
+		}
 	}
 }
 
@@ -117,7 +112,7 @@ void Roshan::Update()
 	{
 		mRoshanHead->Update();
 	}
-	
+
 	if (mLeftHand)
 	{
 		mLeftHand->Update();
@@ -139,7 +134,6 @@ void Roshan::Update()
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{
-			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boss_dead_sfx)->Play();
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if (m_TimeChangeState > 3000)
 			{
