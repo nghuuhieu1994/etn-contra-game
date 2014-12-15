@@ -12,6 +12,7 @@ private:
 	bool m_isJump;
 	bool m_flag;
 	int m_TimeToJump;
+	int _distanceX;
 public:
 	BigStone();
 	BigStone(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);
