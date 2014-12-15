@@ -55,7 +55,7 @@ void Boom::UpdateCollision(Object* checkingObject)
 			switch (checkingObject->getID())
 			{
 			case eObjectID::TILE_BASE:
-				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::bridge_exploision_sfx)->Play();
 					this->m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
 					this->getPhysic()->setVelocityY(2.0f);
 					this->getPhysic()->setVelocityX(0.0f);
@@ -75,6 +75,7 @@ void Boom::UpdateMovement()
 	case STATE_ALIVE_IDLE:
 		break;
 	case STATE_ALIVE_MOVE:
+		SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_1up_sfx)->Play();
 		m_Physic->UpdateMovement(&m_Position);
 		break;
 		
