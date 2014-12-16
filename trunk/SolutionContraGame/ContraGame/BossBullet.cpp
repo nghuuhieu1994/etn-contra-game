@@ -68,7 +68,7 @@ void BossBullet::UpdateCollision(Object* checkingObject)
 				else if (tempBullet->getTypeBullet() == eIDTypeBullet::RED_BULLET_OF_RAMBO)
 				{
 					checkingObject->setObjectState(eObjectState::STATE_DEATH);
-					if (m_AttackCounter >= 2)
+					//if (m_AttackCounter >= 2)
 					{
 						SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_attacked_sfx)->Play();
 						m_AttackCounter -= 2;
@@ -76,7 +76,7 @@ void BossBullet::UpdateCollision(Object* checkingObject)
 				}
 				else if (tempBullet->getTypeBullet() == eIDTypeBullet::FIRE_BULLET_OF_RAMBO)
 				{
-					if (m_AttackCounter >= 4)
+					//if (m_AttackCounter >= 4)
 					{
 						m_AttackCounter -= 4;
 					}
@@ -85,6 +85,7 @@ void BossBullet::UpdateCollision(Object* checkingObject)
 				if (m_AttackCounter <= 0)
 				{
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					m_TimeChangeState = 0;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
@@ -146,8 +147,14 @@ void BossBullet::Render(SPRITEHANDLE spriteHandle)
 void BossBullet::Release()
 {
 	m_Sprite = NULL;
-	spriteAlive->Release();
-	SAFE_DELETE(spriteAlive);
-	spriteDead->Release();
-	SAFE_DELETE(spriteDead);
+	if (spriteAlive)
+	{
+		spriteAlive->Release();
+		SAFE_DELETE(spriteAlive);
+	}
+	if (spriteDead)
+	{
+		spriteDead->Release();
+		SAFE_DELETE(spriteDead);
+	}
 }
