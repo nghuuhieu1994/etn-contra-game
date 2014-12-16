@@ -91,6 +91,7 @@
     <ClInclude Include="HighscoreState.h" />
     <ClInclude Include="LazeBullet.h" />
     <ClInclude Include="BridgeStone.h" />
+    <ClInclude Include="LoseState.h" />
     <ClInclude Include="MapQuadtree.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="BossPunch.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="HighscoreState.cpp" />
     <ClCompile Include="LazeBullet.cpp" />
     <ClCompile Include="BridgeStone.cpp" />
+    <ClCompile Include="LoseState.cpp" />
     <ClCompile Include="MapQuadtree.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="BossPunch.cpp" />

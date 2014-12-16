@@ -249,6 +249,7 @@
       <Filter>GameScene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="LoseState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -548,6 +549,7 @@
       <Filter>GameScene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="LoseState.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />
