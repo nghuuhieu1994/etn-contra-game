@@ -1,7 +1,7 @@
 #include "PlayScene.h"
 #include "LoseState.h"
 
-int PlayScene::m_RamboLife = 1;
+int PlayScene::m_RamboLife = 100;
 int PlayScene::m_score = 0;
 eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
@@ -30,6 +30,25 @@ void PlayScene::SaveHighScore()
 
 void PlayScene::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+	switch (m_mapIndex)
+	{
+	case 1:
+		//SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::THEME_SONG_S_1)->Repeat();
+		this->m_SoundBackGround = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_s2);
+		//this->m_SoundBackGround = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_fall);
+
+		break;
+	case 2:
+		this->m_SoundBackGround = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_fall);
+		break;
+	case 3:
+		this->m_SoundBackGround = SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_s3);
+		break;
+	default:
+		break;
+	}
+
+	m_SoundBackGround->Repeat();
 	m_Quadtree = new QuadTree();
 	fstream fLog("resources\\Map\\" + to_string(m_mapIndex) +"\\setting", ios::in);
 
@@ -65,6 +84,7 @@ void PlayScene::Update()
 {
 	if (m_Rambo->getRamboLife() == 0)
 	{
+		m_SoundBackGround->Stop();
 		SceneManagerDx9::getInstance()->ReplaceBy(new LoseState(eIDSceneGame::INTRO, m_mapIndex));
 		SaveHighScore();
 	}
@@ -232,6 +252,8 @@ void PlayScene::ChangeStateBossDie(int _nextStage)
 	if (m_timeChangeStage > 2000)
 	{
 		m_timeChangeStage = 0;
+		
+		m_SoundBackGround->Stop();
 		SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, _nextStage)); 
 	}
 }
