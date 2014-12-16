@@ -36,7 +36,7 @@ void Boom::UpdateAnimation()
 			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::boom_sfx)->Play();
 		}
 		m_Sprite->getAnimation()->setCurrentFrame(0);
-		rotate += 0.1f;
+		rotate += 9.0f;
 		m_Sprite->setRotate(rotate);
 		break;
 	case STATE_BEFORE_DEATH:
