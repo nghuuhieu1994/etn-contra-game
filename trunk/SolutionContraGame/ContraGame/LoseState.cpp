@@ -16,6 +16,7 @@ LoseState::LoseState(eIDSceneGame _ID, int _currentStage) : GameScene(_ID)
 
 void LoseState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_gameover)->Repeat();
 	D3DXCreateFont(_lpDirectDevice, 30, 16, 1, D3DX_DEFAULT, false, 0, 0, 0, 0, "Arial", &m_Font);
 }
 
@@ -42,6 +43,8 @@ void LoseState::Update()
 	}
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_RETURN))
 	{
+		SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_theme_gameover)->Stop();
+
 		if(m_IconPosition.y == 184)
 		{
 			SceneManagerDx9::getInstance()->ReplaceBy(new PlayScene(eIDSceneGame::INTRO, m_currentStage));

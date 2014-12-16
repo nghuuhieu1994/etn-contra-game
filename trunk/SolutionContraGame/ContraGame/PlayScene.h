@@ -25,6 +25,7 @@ class PlayScene :
 	bool isWin;
 	int nextStage;
 	float m_timeChangeStage;
+	SoundBuffer*		m_SoundBackGround;
 public:
 	PlayScene(eIDSceneGame ID, int _mapIndex);
 	virtual ~PlayScene();

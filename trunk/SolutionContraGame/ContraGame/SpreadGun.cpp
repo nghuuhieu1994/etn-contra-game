@@ -42,6 +42,7 @@ void SpreadGun::UpdateCollision(Object* checkingObject)
 			}
 							break;
 			case eObjectID::TILE_BASE:
+			case eObjectID::BRIDGE:
 				if (collideDirection == IDDirection::DIR_TOP)
 				{
 					if (getPhysic()->getVelocity().y <= 0)

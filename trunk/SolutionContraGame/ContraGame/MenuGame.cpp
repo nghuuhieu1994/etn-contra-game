@@ -4,6 +4,8 @@
 
 void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
+	SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_them_menu)->Repeat();
+
 	m_MenuBG = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG));
 	m_Icon = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON));
 
@@ -42,6 +44,7 @@ void MenuGame::HandleInput()
 		{
 			if(m_IconPosition.y == 140)
 			{
+				SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::s_them_menu)->Stop();
 				SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::INTRO, 1));
 				PlayScene::setScore(0);
 			}

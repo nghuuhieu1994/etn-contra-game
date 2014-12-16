@@ -43,6 +43,7 @@ void RapidFire::UpdateCollision(Object* checkingObject)
 			}
 			
 			case eObjectID::TILE_BASE:
+			case eObjectID::BRIDGE:
 				if (collideDirection == IDDirection::DIR_TOP)
 				{
 					if (getPhysic()->getVelocity().y <= 0)
