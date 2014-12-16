@@ -22,6 +22,9 @@ class PlayScene :
 	static int m_score;
 	static int					m_RamboLife;
 	static eIDSkillBullet		m_RamboBullet;
+	bool isWin;
+	int nextStage;
+	float m_timeChangeStage;
 public:
 	PlayScene(eIDSceneGame ID, int _mapIndex);
 	virtual ~PlayScene();
@@ -31,6 +34,7 @@ public:
 	void InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice);
 	void HandleInput();
 	void Update();
+	void ChangeStateBossDie(int _nextStage);
 	void Render(LPD3DXSPRITE _lpDSpriteHandle);
 	void Pause();
 	void Resume();

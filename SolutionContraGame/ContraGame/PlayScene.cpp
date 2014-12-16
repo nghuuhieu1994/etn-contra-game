@@ -1,11 +1,18 @@
 #include "PlayScene.h"
-int PlayScene::m_RamboLife = 10;
+#include "LoseState.h"
+
+int PlayScene::m_RamboLife = 1;
 int PlayScene::m_score = 0;
 eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
 
+
+
 PlayScene::PlayScene(eIDSceneGame ID, int _mapIndex) : GameScene(ID)
 {
+	m_timeChangeStage = 0;
 	m_mapIndex = _mapIndex;
+	isWin = false;
+	nextStage = 0;
 }
 
 void PlayScene::SaveHighScore()
@@ -58,7 +65,7 @@ void PlayScene::Update()
 {
 	if (m_Rambo->getRamboLife() == 0)
 	{
-		SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::INTRO, 0));
+		SceneManagerDx9::getInstance()->ReplaceBy(new LoseState(eIDSceneGame::INTRO, m_mapIndex));
 		SaveHighScore();
 	}
 
@@ -97,7 +104,6 @@ void PlayScene::Update()
 		m_Quadtree->UpdateAnimation();
 		m_Quadtree->UpdateMovement();
 
-
 #pragma endregion
 
 		for (int i = 0; i < (int) m_Quadtree->mListObjectCollisionInView.size(); ++i)
@@ -127,32 +133,65 @@ void PlayScene::Update()
 			BulletPoolManager::getInstance()->UpdateCollision(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]);
 			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_BOSS_1)
 			{
-				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BEFORE_DEATH)
 				{
-					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
-					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
-					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 2));
-					SaveHighScore();
+					for(int j = 0; j < (int)m_Quadtree->mListObjectCollisionInView.size(); ++j)
+					{
+						if(IsMovementObject(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getID()) == true && 
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BEFORE_DEATH
+							&& m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BOSS_DEATH)
+						{
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
+						}
+					}
+				}
+				else if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					//ChangeStateBossDie(2);
+					isWin = true;
+					nextStage = 2;
 				}
 			}
 			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::ROSHAN)
 			{
-				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BEFORE_DEATH)
 				{
-					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
-					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
-					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, 3));
-					SaveHighScore();
+					for(int j = 0; j < (int)m_Quadtree->mListObjectCollisionInView.size(); ++j)
+					{
+						if(IsMovementObject(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getID()) == true && 
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BEFORE_DEATH
+							&& m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BOSS_DEATH)
+						{
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
+						}
+					}
+				}
+				else if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					//ChangeStateBossDie(2);
+					isWin = true;
+					nextStage = 3;
 				}
 			}
 			if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getID() == eObjectID::BIG_CAPSULE_BOSS)
 			{
-				if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				if((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BEFORE_DEATH)
 				{
-					PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
-					PlayScene::m_RamboLife = m_Rambo->getRamboLife();
-					SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, -1));
-					SaveHighScore();
+					for(int j = 0; j < (int)m_Quadtree->mListObjectCollisionInView.size(); ++j)
+					{
+						if(IsMovementObject(m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getID()) == true && 
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BEFORE_DEATH
+							&& m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->getObjectState() != eObjectState::STATE_BOSS_DEATH)
+						{
+							m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[j]]->setObjectState(eObjectState::STATE_BEFORE_DEATH);
+						}
+					}
+				}
+				else if ((*m_Quadtree->mMapObjectCollisionInGame[m_Quadtree->mListObjectCollisionInView[i]]).getObjectState() == eObjectState::STATE_BOSS_DEATH)
+				{
+					//ChangeStateBossDie(2);
+					isWin = true;
+					nextStage = -1;
 				}
 			}
 		}
@@ -177,6 +216,23 @@ void PlayScene::Update()
 		WeaponryManager::getInstance()->UpdateCollision(m_Rambo);
 		m_Rambo->UpdatePreviousIgnoreList();
 		m_backgroundEffect.UpdateAnimation(); 
+	}
+	if (isWin)
+	{
+		ChangeStateBossDie(nextStage);
+	}
+}
+
+void PlayScene::ChangeStateBossDie(int _nextStage)
+{
+	m_timeChangeStage += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+	PlayScene::m_RamboBullet = m_Rambo->getSkillBullet();
+	PlayScene::m_RamboLife = m_Rambo->getRamboLife();
+	SaveHighScore();
+	if (m_timeChangeStage > 2000)
+	{
+		m_timeChangeStage = 0;
+		SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, _nextStage)); 
 	}
 }
 

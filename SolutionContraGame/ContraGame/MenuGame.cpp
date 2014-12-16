@@ -4,8 +4,8 @@
 
 void MenuGame::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
-	m_MenuBG = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG);
-	m_Icon = SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON);
+	m_MenuBG = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_MENUBG));
+	m_Icon = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_ICON));
 
 	m_MenuPosition.x = (float)(SCREEN_WIDTH/2 + m_MenuBG->getMyTexture()->m_Width / 2);
 
@@ -58,7 +58,7 @@ void MenuGame::Update()
 		m_IconPosition.x --;
 	}
 	else
-		if(m_MenuPosition.x == 0)
+		if(m_MenuPosition.x <= 0)
 		{
 			m_IsDone = true;
 		}

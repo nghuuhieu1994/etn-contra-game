@@ -1,5 +1,6 @@
 #include "CGame.h"
 #include <time.h>
+#include "LoseState.h"
 
 CGame::CGame() :
 	m_handleWindow(0),
@@ -190,7 +191,7 @@ bool CGame::Initialize(HINSTANCE hInstance, bool isWindowed)
 
 	SceneManagerDx9::getInstance()->setDirectDevice(m_lpDirect3DDevice);
 
-	SceneManagerDx9::getInstance()->AddElement(new PlayScene(eIDSceneGame::DEMO, 3));
+	SceneManagerDx9::getInstance()->AddElement(new LoseState(eIDSceneGame::DEMO, 1));
 	return true;
 }
 
