@@ -33,10 +33,14 @@ void EnemyBigGunShooting::UpdateAnimation()
 	{
 	case STATE_ALIVE_IDLE:
 		m_Sprite->getAnimationAction()->setCurrentFrame(0);
-		m_Sprite->UpdateAnimation(10000);
+		m_Sprite->UpdateAnimation(5000);
 		break;
 	case STATE_BEFORE_DEATH: 
-		m_Sprite = sprite_dead;
+		if (isDead == false)
+		{
+			m_Sprite = sprite_dead;
+			isDead = true;
+		}
 		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_SHOOTING:
@@ -91,6 +95,7 @@ void EnemyBigGunShooting::UpdateCollision(Object* checkingObject)
 				if (m_AttackCounter <= 0)
 				{
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					m_TimeChangeState = 0;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
 				checkingObject->setObjectState(eObjectState::STATE_DEATH);
@@ -130,11 +135,14 @@ void EnemyBigGunShooting::Update()
 			}
 			break;
 		case STATE_BEFORE_DEATH:
-			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 3000)
+			if (isDead)
 			{
-				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_DEATH;
+				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+				if (m_TimeChangeState > 1500)
+				{
+					m_TimeChangeState = 0;
+					m_ObjectState = eObjectState::STATE_DEATH;
+				}
 			}
 			break;
 		case STATE_DEATH:
@@ -162,10 +170,16 @@ void EnemyBigGunShooting::Render(SPRITEHANDLE spriteHandle)
 void EnemyBigGunShooting::Release()
 {
 	m_Sprite = 0;
-	sprite_dead->Release();
-	sprite_main->Release();
-	SAFE_DELETE(sprite_dead);
-	SAFE_DELETE(sprite_main);
+	if (sprite_dead)
+	{
+		sprite_dead->Release();
+		SAFE_DELETE(sprite_dead);
+	}
+	if (sprite_main)
+	{
+		sprite_main->Release();
+		SAFE_DELETE(sprite_main);
+	}
 }
 EnemyBigGunShooting::~EnemyBigGunShooting()
 {

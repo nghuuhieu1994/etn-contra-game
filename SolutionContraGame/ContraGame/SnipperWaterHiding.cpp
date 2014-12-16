@@ -45,8 +45,8 @@ void SnipperWaterHiding::UpdateAnimation()
 		{
 			isDead = true;
 			m_Sprite = sprite_dead;
-			m_Sprite->UpdateAnimation(250);
 		}
+		m_Sprite->UpdateAnimation(250);
 		break;
 	case STATE_DEATH:
 		this->Release();
@@ -59,7 +59,7 @@ void SnipperWaterHiding::UpdateAnimation()
 
 void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 {
-	if (isDead != true)
+	/*if (isDead != true)
 	{
 		if(checkingObject->getID() == eObjectID::BULLET_RAMBO)
 		{
@@ -83,7 +83,7 @@ void SnipperWaterHiding::UpdateCollision(Object* checkingObject)
 				}
 			}
 		}
-	}
+	}*/
 }
 
 void SnipperWaterHiding:: UpdateMovement()
@@ -183,18 +183,24 @@ void SnipperWaterHiding::Release()
 {
 	if (m_ListBullet.empty() == false)
 	{
-		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end(); i++)
+		for (list<BulletSnipperWaterHiding*>::iterator i = m_ListBullet.begin(); i != m_ListBullet.end();)
 		{
 			(*i)->Release();
 			SAFE_DELETE((*i));
+			i = m_ListBullet.erase(i);
 		}
-		m_ListBullet.clear();
 	}
 	m_Sprite = 0;
-	sprite_alive_hiding->Release();
-	sprite_dead->Release();
-	SAFE_DELETE(sprite_alive_hiding);
-	SAFE_DELETE(sprite_dead);
+	if (sprite_alive_hiding)
+	{
+		sprite_alive_hiding->Release();
+		SAFE_DELETE(sprite_alive_hiding);
+	}
+	if (sprite_dead)
+	{
+		sprite_dead->Release();
+		SAFE_DELETE(sprite_dead);
+	}
 }
 
 SnipperWaterHiding::~SnipperWaterHiding()

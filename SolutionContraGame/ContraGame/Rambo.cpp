@@ -1630,6 +1630,26 @@ void Rambo::UpdateCollision(Object* checkingObject)
 			SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
 		}
 	}
+	else if (checkingObject->getID() == eObjectID::BIG_CAPSULE_BOSS)
+	{
+		BigCapsuleBoss* bigCapsule = (BigCapsuleBoss*) checkingObject;
+		if (bigCapsule->m_ListEnemy.empty() != true)
+		{
+			for (list<CapsuleBoss*>::iterator i = bigCapsule->m_ListEnemy.begin();
+				i != bigCapsule->m_ListEnemy.end(); i++)
+			{
+				UpdateCollision((*i));
+			}
+		}
+		if (bigCapsule->m_ListBullet.empty() != true)
+		{
+			for (list<BossBullet*>::iterator i = bigCapsule->m_ListBullet.begin();
+				i != bigCapsule->m_ListBullet.end(); i++)
+			{
+				UpdateCollision((*i));
+			}
+		}
+	}
 	else
 	{
 		if (checkingObject->getObjectState() != eObjectState::STATE_BEFORE_DEATH && checkingObject->getObjectState() != eObjectState::STATE_DEATH)
@@ -1746,27 +1766,27 @@ void Rambo::UpdateCollision(Object* checkingObject)
 													 }
 						   }
 							   break;
-						   case eObjectID::BIG_CAPSULE_BOSS:
-						   {
-															   BigCapsuleBoss* bigCapsule = (BigCapsuleBoss*) checkingObject;
-															   if (bigCapsule->m_ListEnemy.empty() != true)
-															   {
-																   for (list<CapsuleBoss*>::iterator i = bigCapsule->m_ListEnemy.begin();
-																	   i != bigCapsule->m_ListEnemy.end(); i++)
-																   {
-																	   UpdateCollision((*i));
-																   }
-															   }
-															   if (bigCapsule->m_ListBullet.empty() != true)
-															   {
-																   for (list<BossBullet*>::iterator i = bigCapsule->m_ListBullet.begin();
-																	   i != bigCapsule->m_ListBullet.end(); i++)
-																   {
-																	   UpdateCollision((*i));
-																   }
-															   }
-						   }
-							   break;
+						   //case eObjectID::BIG_CAPSULE_BOSS:
+						   //{
+									//						   BigCapsuleBoss* bigCapsule = (BigCapsuleBoss*) checkingObject;
+									//						   if (bigCapsule->m_ListEnemy.empty() != true)
+									//						   {
+									//							   for (list<CapsuleBoss*>::iterator i = bigCapsule->m_ListEnemy.begin();
+									//								   i != bigCapsule->m_ListEnemy.end(); i++)
+									//							   {
+									//								   UpdateCollision((*i));
+									//							   }
+									//						   }
+									//						   if (bigCapsule->m_ListBullet.empty() != true)
+									//						   {
+									//							   for (list<BossBullet*>::iterator i = bigCapsule->m_ListBullet.begin();
+									//								   i != bigCapsule->m_ListBullet.end(); i++)
+									//							   {
+									//								   UpdateCollision((*i));
+									//							   }
+									//						   }
+						   //}
+							  // break;
 						   case eObjectID::ROSHAN_HEAD:
 						   case eObjectID::ROSHAN_PUNCH:
 						   case eObjectID::ENEMY_RUN:

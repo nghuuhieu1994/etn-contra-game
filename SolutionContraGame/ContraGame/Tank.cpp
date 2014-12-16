@@ -139,7 +139,7 @@ void Tank::UpdateAnimation()
 	case STATE_SHOOTING:
 		m_isShoot = true;
 		break;
-	case STATE_BEFORE_DEATH: 
+	case STATE_BEFORE_DEATH:
 		m_Sprite = sprite_dead;
 		m_Sprite->UpdateAnimation(250);
 		break;
@@ -233,6 +233,7 @@ void Tank::UpdateCollision(Object* checkingObject)
 				if (m_AttackCounter <= 0)
 				{
 					m_ObjectState = eObjectState::STATE_BEFORE_DEATH;
+					m_TimeChangeState = 0;
 					isDead = true;
 					SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::enemy_dead_sfx)->Play();
 				}
