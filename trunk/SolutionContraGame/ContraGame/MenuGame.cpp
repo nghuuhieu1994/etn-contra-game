@@ -51,10 +51,20 @@ void MenuGame::HandleInput()
 		}
 
 	}
+	else
+	{
+		if (CInputDx9::getInstance()->IsKeyPress(DIK_RETURN))
+		{
+			m_IsDone = true;
+			m_MenuPosition.x = 0;
+			m_IconPosition.x = 88;
+		}
+	}
 }
 
 void MenuGame::Update()
 {
+	Camera::getInstance()->Reset();
 	if(m_MenuPosition.x > 0)
 	{
 		m_MenuPosition.x --;
