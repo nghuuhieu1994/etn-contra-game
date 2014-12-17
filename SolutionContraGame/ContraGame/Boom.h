@@ -10,6 +10,7 @@ private:
 	CSpriteDx9* sprite_exploision;
 	float rotate;
 	bool isPlaySound;
+	D3DXVECTOR3 m_StartPosition;
 public:
 	Boom();
 	Boom(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID);

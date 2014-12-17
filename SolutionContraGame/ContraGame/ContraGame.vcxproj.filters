@@ -248,8 +248,8 @@
     <ClCompile Include="WinGameScene.cpp">
       <Filter>GameScene\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="LoseState.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSpriteDx9.h">
@@ -548,8 +548,8 @@
     <ClInclude Include="WinGameScene.h">
       <Filter>GameScene\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="PlayScene.h" />
     <ClInclude Include="LoseState.h" />
+    <ClInclude Include="PlayScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\gamelog.log" />

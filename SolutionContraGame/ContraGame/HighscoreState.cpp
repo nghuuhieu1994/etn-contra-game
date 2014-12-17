@@ -112,9 +112,9 @@ void HighScoreState::Render(LPD3DXSPRITE _lpDSpriteHandle)
 		rect.right = 400;
 		rect.bottom = 300;
 		m_Font->DrawTextA(_lpDSpriteHandle, "STAGE 3", -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
-		rect.left = 100;
+		rect.left = 160;
 		rect.top = 250;
-		rect.right = 400;
+		rect.right = 370;
 		rect.bottom = 350;
 		m_Font->DrawTextA(_lpDSpriteHandle, "SNOW FIELD", -1, &rect, D3DFMT_UNKNOWN, D3DCOLOR_XRGB(255, 255, 255));
 	}

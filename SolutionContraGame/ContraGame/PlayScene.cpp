@@ -3,7 +3,7 @@
 
 int PlayScene::m_RamboLife = 100;
 int PlayScene::m_score = 0;
-eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::DEFAULT_SKILL_BULLET;
+eIDSkillBullet PlayScene::m_RamboBullet = eIDSkillBullet::S_SKILL_BULLET;
 
 
 

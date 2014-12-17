@@ -61,8 +61,9 @@ void BigStone::UpdateCollision(Object* checkingObject)
 		{
 			switch (checkingObject->getID())
 			{
-			case eObjectID::RAMBO:
-				checkingObject->setObjectState(eObjectState::STATE_DEATH);
+			//case eObjectID::RAMBO:
+			//	//checkingObject->setObjectState(eObjectState::STATE_DEATH);
+			//	break;
 			case eObjectID::BULLET_RAMBO:
 				{
 				Bullet* tempBullet = (Bullet*) (checkingObject);
@@ -136,8 +137,8 @@ void BigStone::UpdateCollision(Object* checkingObject)
 void BigStone::UpdateMovement()
 {
 	_distanceX = (int)(m_Position.y - CGlobal::Rambo_Y);
-	if(_distanceX < 130)
-	{
+	//if(_distanceX < 130)
+	//{
 		switch (m_ObjectState)
 		{
 		case STATE_ALIVE_IDLE:
@@ -171,7 +172,7 @@ void BigStone::UpdateMovement()
 		default:
 			break;
 		}
-	}
+	//}
 }
 
 void BigStone::Update()

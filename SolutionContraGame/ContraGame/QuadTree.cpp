@@ -74,8 +74,12 @@ void QuadTree::Release(Node* node)
 	}
 	else // neu khong con node con, thi tien hanh release cac object
 	{
-		node->mListObjectCollision.clear();
-		node->mListObjectCollision.clear();
+		if(node->mListObject.empty() != true)
+			node->mListObject.clear();
+
+		if(node->mListObjectCollision.empty() != true)
+			node->mListObjectCollision.clear();
+
 		delete node;
 		node = NULL;
 	}

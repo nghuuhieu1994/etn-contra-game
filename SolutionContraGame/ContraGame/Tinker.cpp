@@ -109,7 +109,8 @@ void Tinker::UpdateMovement(){}
 
 void Tinker::Update()
 {
-
+	if(abs(m_Position.x - CGlobal::Rambo_X) < 397)
+	{
 	switch (this->m_ObjectState)
 	{
 	case STATE_ALIVE_IDLE:
@@ -143,6 +144,7 @@ void Tinker::Update()
 		break;
 	default:
 		break;
+	}
 	}
 }
 
