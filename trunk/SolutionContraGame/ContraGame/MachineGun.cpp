@@ -24,7 +24,7 @@ void MachineGun::UpdateAnimation()
 
 void MachineGun::UpdateCollision(Object* checkingObject)
 {
-	if (!isDead)
+	if (!isDead && checkingObject->getID() != eObjectID::ENEMY_RUN)
 	{
 		IDDirection collideDirection = this->m_Collision->CheckCollision(this, checkingObject);
 		if (collideDirection != IDDirection::DIR_NONE)

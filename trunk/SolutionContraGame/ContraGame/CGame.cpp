@@ -8,7 +8,7 @@ CGame::CGame() :
 	m_lpDirect3DDevice(0),
 	m_lpSpriteDirect3DHandle(0)
 {
-	srand((unsigned int)time(0));
+	srand(time(0));
 }
 
 CGame::CGame(HINSTANCE hInstance, int scrWidth, int scrHeight, bool WndMode)

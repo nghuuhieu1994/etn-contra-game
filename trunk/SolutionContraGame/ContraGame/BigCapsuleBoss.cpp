@@ -14,17 +14,17 @@ BigCapsuleBoss::BigCapsuleBoss(D3DXVECTOR3 _position, eDirection _direction, eOb
 	mOpacity = 1.0f;
 
 	listPosition[0] = _position;
-	listPosition[1].x = _position.x - 30;
-	listPosition[1].y = _position.y + 30;
+	listPosition[1].x = _position.x - 50;
+	listPosition[1].y = _position.y + 50;
 	listPosition[1].z = _position.z;
-	listPosition[2].x = _position.x - 30;
-	listPosition[2].y = _position.y - 30;
+	listPosition[2].x = _position.x - 50;
+	listPosition[2].y = _position.y - 50;
 	listPosition[2].z = _position.z;
-	listPosition[3].x = _position.x + 30;
-	listPosition[3].y = _position.y + 30;
+	listPosition[3].x = _position.x + 50;
+	listPosition[3].y = _position.y + 50;
 	listPosition[3].z = _position.z;
-	listPosition[4].x = _position.x + 30;
-	listPosition[4].y = _position.y - 30;
+	listPosition[4].x = _position.x + 50;
+	listPosition[4].y = _position.y - 50;
 	listPosition[4].z = _position.z;
 }
 
