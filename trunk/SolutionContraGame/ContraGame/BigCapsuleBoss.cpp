@@ -177,6 +177,8 @@ void BigCapsuleBoss::UpdateMovement()
 
 void BigCapsuleBoss::Update()
 {
+	if(m_Position.x - CGlobal::Rambo_X < 397)
+	{
 	if (m_ListEnemy.empty() == false)
 	{
 		for (list<CapsuleBoss*>::iterator i = m_ListEnemy.begin(); i != m_ListEnemy.end(); )
@@ -278,6 +280,7 @@ void BigCapsuleBoss::Update()
 		break;
 	default:
 		break;
+	}
 	}
 }
 

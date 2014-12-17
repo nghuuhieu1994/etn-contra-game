@@ -12,6 +12,7 @@ LoseState::LoseState(eIDSceneGame _ID, int _currentStage) : GameScene(_ID)
 	m_IconPosition.x = 110;
 	m_IconPosition.y = 184;
 	m_IconPosition.z = 1;
+	Camera::getInstance()->Reset();
 }
 
 void LoseState::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
@@ -27,6 +28,7 @@ void LoseState::HandleInput()
 
 void LoseState::Update()
 {
+	Camera::getInstance()->Reset();
 	if(CInputDx9::getInstance()->IsKeyPress(DIK_DOWN))
 	{
 		if(m_IconPosition.y == 184)

@@ -92,7 +92,7 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
-	if (abs(m_Position.y - CGlobal::Rambo_Y) < 200)
+	if (abs(m_Position.y - CGlobal::Rambo_Y) < 150)
 	{
 		if (mRightHand)
 		{

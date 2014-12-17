@@ -25,7 +25,7 @@ Rambo::Rambo(D3DXVECTOR3 _position, eDirection _direction, eObjectID _objectID)
 	m_timeAddBullet				= 1000;
 	m_DirectAttack				= eDirectAttack::AD_RIGHT;
 	m_timeDelayRunAndShootRun	= 0;
-	m_SkillBullet				= eIDSkillBullet::DEFAULT_SKILL_BULLET;
+	m_SkillBullet				= eIDSkillBullet::S_SKILL_BULLET;
 	isSetVelocityDeathState		= false;
 	m_life						= 10;
 	m_timeDeath					= 0;
@@ -1887,7 +1887,6 @@ void Rambo::UpdateCollision(Object* checkingObject)
 							   break;
 						   case eObjectID::CAPSULE_BOSS:
 						   case eObjectID::BULLET_ENEMY:
-						   case eObjectID::STONE:
 						   case eObjectID::FIRE:
 							   if (isInvulnerable)
 							   {
@@ -1917,6 +1916,10 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 
 							   break;
+							case eObjectID::STONE:
+								m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
+								SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
+								break;
 						   default:
 							   break;
 						   }

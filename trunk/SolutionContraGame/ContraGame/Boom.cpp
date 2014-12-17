@@ -23,6 +23,7 @@ void Boom::Initialize()
 	this->m_Physic->setAccelerate(D3DXVECTOR2(0, -0.01f));
 	m_TimeChangeState = 0;
 	isPlaySound = false;
+	this->m_StartPosition = m_Position;
 }
 
 void Boom::UpdateAnimation()
@@ -104,7 +105,11 @@ void Boom::Update()
 			if (m_TimeChangeState > 700)
 			{
 				m_TimeChangeState = 0;
-				m_ObjectState = eObjectState::STATE_DEATH;
+				//m_ObjectState = eObjectState::STATE_DEATH;
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+				m_Position = this->m_StartPosition;
+				m_Sprite = sprite_main;
+				isDead = false;
 			}
 			break;
 		case STATE_DEATH:
