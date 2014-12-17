@@ -1,5 +1,5 @@
 #include "WinGameScene.h"
-#include "DemoState.h"
+#include "PlayScene.h"
 
 void WinGameScene::InitializeState(LPDIRECT3DDEVICE9 _lpDirectDevice)
 {
@@ -24,7 +24,7 @@ void WinGameScene::HandleInput()
 		}
 		if(CInputDx9::getInstance()->IsKeyPress(DIK_RETURN))
 		{
-			SceneManagerDx9::getInstance()->ReplaceBy(new DemoState(eIDSceneGame::DEMO, 1));
+			SceneManagerDx9::getInstance()->ReplaceBy(new PlayScene(eIDSceneGame::DEMO, 1));
 		}
 
 	}
@@ -32,6 +32,7 @@ void WinGameScene::HandleInput()
 
 void WinGameScene::Update()
 {
+	Camera::getInstance()->Reset();
 	if(m_WinScenePosition.x >= 0 && m_WinScenePosition.x < SCREEN_WIDTH / 2)
 	{
 		m_WinScenePosition.x ++;

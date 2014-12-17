@@ -45,7 +45,7 @@ int Rambo::CheckOutBottomCamera()
 	{
 		if (m_ObjectState != eObjectState::STATE_RAMBO_BEFORE_DEAD && m_ObjectState != eObjectState::STATE_RAMBO_DEAD)
 		{
-			m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD; 
+			m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 		}
 		isFall = false;
 		m_timeBeforeDeadBottom += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
@@ -1902,6 +1902,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 						   case eObjectID::BULLET_BOSS1:
 						   case eObjectID::TANK:
 						   case eObjectID::BOOM:
+						   case eObjectID::STONE:
 							   if (isInvulnerable)
 							   {
 								   break;
@@ -1916,10 +1917,10 @@ void Rambo::UpdateCollision(Object* checkingObject)
 
 
 							   break;
-							case eObjectID::STONE:
+							/*case eObjectID::STONE:
 								m_ObjectState = eObjectState::STATE_RAMBO_BEFORE_DEAD;
 								SoundManagerDx9::getInstance()->getSoundBuffer(eSoundID::rambo_dead_sfx)->Play();
-								break;
+								break;*/
 						   default:
 							   break;
 						   }

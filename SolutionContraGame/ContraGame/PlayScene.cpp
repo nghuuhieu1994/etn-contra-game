@@ -1,5 +1,6 @@
 #include "PlayScene.h"
 #include "LoseState.h"
+#include "WinGameScene.h"
 
 int PlayScene::m_RamboLife = 100;
 int PlayScene::m_score = 0;
@@ -254,7 +255,14 @@ void PlayScene::ChangeStateBossDie(int _nextStage)
 		m_timeChangeStage = 0;
 		
 		m_SoundBackGround->Stop();
-		SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, _nextStage)); 
+		if (nextStage != -1)
+		{
+			SceneManagerDx9::getInstance()->ReplaceBy(new HighScoreState(eIDSceneGame::DEMO, _nextStage));
+		}
+		else
+		{
+			SceneManagerDx9::getInstance()->ReplaceBy(new WinGameScene(eIDSceneGame::DEMO));
+		}
 	}
 }
 
