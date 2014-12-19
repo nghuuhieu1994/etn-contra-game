@@ -1957,7 +1957,13 @@ void Rambo::UpdateMovement()
 		m_Position.x = Camera::getInstance()->getBound().left + 1 + m_RamboSprite->GetFrameSize().x/2;
 		m_Physic->setVelocityX(0.0f);
 	}
-	
+
+	if(Camera::getInstance()->getBound().right < this->m_Position.x + m_RamboSprite->GetFrameSize().x/2)
+	{
+		m_Position.x = Camera::getInstance()->getBound().right - 1 - m_RamboSprite->GetFrameSize().x/2;
+		m_Physic->setVelocityX(0.0f);
+	}
+
 	this->m_Physic->UpdateMovement(&m_Position);
 
 	if (m_ObjectState == STATE_RAMBO_JUMP || m_ObjectState == STATE_RAMBO_BEFORE_DEAD)
