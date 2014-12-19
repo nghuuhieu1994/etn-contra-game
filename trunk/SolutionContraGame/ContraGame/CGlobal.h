@@ -12,6 +12,7 @@ public:
 	static bool IsWindowMode;
 	static int	Rambo_X;
 	static int	Rambo_Y;
+	static int	MapName;
 };
 
 bool IsMovementObject(eObjectID type);

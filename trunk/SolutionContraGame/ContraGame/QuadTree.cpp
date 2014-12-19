@@ -83,6 +83,12 @@ void QuadTree::Release(Node* node)
 		delete node;
 		node = NULL;
 	}
+
+	if(this->mMapObjectInGame.size() > 0)
+		this->mMapObjectInGame.clear();
+
+	if(this->mMapObjectCollisionInGame.size() > 0)
+		this->mMapObjectCollisionInGame.clear();
 }
 
 void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_map)
@@ -91,7 +97,9 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 	{
 		CMarkup xml;
 		xml.Load(content);
-		xml.FindElem("Map");
+		
+		if(xml.FindElem("Map"))
+		CGlobal::MapName = atoi(xml.GetAttrib("Name").c_str());
 		xml.IntoElem();
 		xml.FindElem("Node");
 		xml.FindElem();
@@ -237,14 +245,28 @@ void QuadTree::BuildQuadtree(const char* content, Node*& node, eSpriteID _tile_m
 							int tempId = atoi(xml.GetAttrib("Id").c_str());
 							xml.FindElem("Object");
 							int temp = atoi(xml.GetAttrib("Id").c_str());
-							mMapObjectCollisionInGame[tempIndex] = new WeaponCapsule(D3DXVECTOR3(
-								tempPositionX,
-								tempPositionY,
-								1.0f),
-								eDirection::LEFT,
-								(eObjectID)tempId,
-								(eObjectID)temp);
-							mMapObjectCollisionInGame[tempIndex]->Initialize();
+							if(CGlobal::MapName != 2)
+							{
+								mMapObjectCollisionInGame[tempIndex] = new WeaponCapsule(D3DXVECTOR3(
+									tempPositionX,
+									tempPositionY,
+									1.0f),
+									eDirection::LEFT,
+									(eObjectID)tempId,
+									(eObjectID)temp);
+								mMapObjectCollisionInGame[tempIndex]->Initialize();
+							}
+							else
+							{
+								mMapObjectCollisionInGame[tempIndex] = new WeaponCapsuleVer2(D3DXVECTOR3(
+									tempPositionX,
+									tempPositionY,
+									1.0f),
+									eDirection::LEFT,
+									(eObjectID)tempId,
+									(eObjectID)temp);
+								mMapObjectCollisionInGame[tempIndex]->Initialize();
+							}
 						}
 						else if(atoi(xml.GetAttrib("Type").c_str()) == 4 && atoi(xml.GetAttrib("Id").c_str()) == (int)eObjectID::WEAPON_SENSOR)
 						{
