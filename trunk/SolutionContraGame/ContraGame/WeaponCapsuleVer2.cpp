@@ -16,8 +16,8 @@ void WeaponCapsuleVer2::Initialize()
 	m_Position.z = 1.0f;
 	m_Sprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_WEAPON_CAPSULE));
 	m_deadSprite = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_EXPLOISION));
-	m_Physic->setVelocity(D3DXVECTOR2(1.0f, 2.0f));
-	m_Physic->setAccelerate(D3DXVECTOR2(0.0f, 0.08f));
+	m_Physic->setVelocity(D3DXVECTOR2(2.0f, 1.5f));
+	m_Physic->setAccelerate(D3DXVECTOR2(0.08f, 0.0f));
 	m_ObjectState = STATE_ALIVE_MOVE;
 }
 
