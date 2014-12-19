@@ -27,6 +27,7 @@
 #include "EnemyRunShooting.h"
 #include "RoShan.h"
 #include "EnemyBigGunShooting.h"
+#include "WeaponCapsuleVer2.h"
 
 class Node
 {
