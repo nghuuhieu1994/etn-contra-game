@@ -1619,6 +1619,15 @@ int Rambo::UpdateCollisionTileBase(IDDirection collideDirection, Object* checkin
 
 void Rambo::UpdateCollision(Object* checkingObject)
 {
+	if(m_ObjectState == eObjectState::STATE_RAMBO_BEFORE_DEAD)
+	{
+		CGlobal::LiveOfRambo = true;
+	}
+	else
+	{
+		CGlobal::LiveOfRambo = false;
+	}
+
 	if (checkingObject->getID() == eObjectID::FIRE_BRIDGE)
 	{
 		FireBridge* fireBridge = (FireBridge*) checkingObject;
@@ -1766,6 +1775,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 													 }
 						   }
 							   break;
+
 						   //case eObjectID::BIG_CAPSULE_BOSS:
 						   //{
 									//						   BigCapsuleBoss* bigCapsule = (BigCapsuleBoss*) checkingObject;
@@ -1787,6 +1797,7 @@ void Rambo::UpdateCollision(Object* checkingObject)
 									//						   }
 						   //}
 							  // break;
+
 						   case eObjectID::ROSHAN_HEAD:
 						   case eObjectID::ROSHAN_PUNCH:
 						   case eObjectID::ENEMY_RUN:

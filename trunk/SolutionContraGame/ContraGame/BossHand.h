@@ -13,6 +13,7 @@ private:
 	bool	isPopupDone;
 	int		m_CountRotation;
 	float	m_AngleOfTarget;
+	int		m_CountLineStatus;
 public:
 	list<BossBullet*> mListRoshanBullet;
 	BossPunch*	mPunch;

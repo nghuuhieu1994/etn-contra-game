@@ -23,6 +23,7 @@ void BossHand::Initialize()
 	isPopupDone = false;
 	this->m_CountRotation = 0;
 	this->m_AngleOfTarget = 0.0f;
+	this->m_CountLineStatus = 0;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -57,7 +58,7 @@ void BossHand::Initialize()
 	mPunch->Initialize();
 	mPunch->setAngleVeclocity(-40.0f);
 	*/
-	//#pragma endregion
+
 }
 
 /*
@@ -90,6 +91,7 @@ void BossHand::UpdateAnimation()
 		break;
 	case STATE_ALIVE_MOVE:
 	case STATE_ALIVE_MOVE_A_LINE:
+
 		/*if (mPunch->getObjectState() == STATE_BEFORE_DEATH)
 		{
 			for (int i = 0; i < 4; i++)
@@ -98,6 +100,7 @@ void BossHand::UpdateAnimation()
 			}
 			m_ObjectState = STATE_BEFORE_DEATH;
 		}*/
+
 		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead == false)
@@ -261,7 +264,15 @@ void BossHand::UpdateMovement()
 		break;
 	case eObjectState::STATE_ALIVE_MOVE_A_LINE:
 
-		m_AngleOfTarget = (float)(atan2(CGlobal::Rambo_Y - m_Position.y, CGlobal::Rambo_X - m_Position.x) * 180 / PI);
+		if(CGlobal::LiveOfRambo == false)
+		{
+		float tempY = CGlobal::Rambo_Y - m_Position.y;
+		float tempX = CGlobal::Rambo_X - m_Position.x;
+
+		if(tempY > 0)
+			tempY = -tempY;
+
+		m_AngleOfTarget = (float)(atan2(tempY, tempX) * 180 / PI);
 
 		if (mArm[1]->getAngle() > m_AngleOfTarget)
 		{
@@ -295,9 +306,38 @@ void BossHand::UpdateMovement()
 		mPunch->setAngle(mArm[3]->getAngle());
 		mPunch->UpdateMovement();
 
-		if ((int) mArm[1]->getAngle() <= m_AngleOfTarget + 5 && (int) mArm[1]->getAngle() >= m_AngleOfTarget - 5)
+		if ((int) mArm[1]->getAngle() <= m_AngleOfTarget + 5 && (int) mArm[1]->getAngle() >= m_AngleOfTarget - 5 && CGlobal::LiveOfRambo == false && CGlobal::Rambo_Y < m_Position.y)
 		{
+			++this->m_CountLineStatus;
 			m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
+		}
+
+		if(CGlobal::LiveOfRambo == true)
+		{
+			m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			this->m_CountLineStatus = 0;
+		}
+		}
+		else
+		{
+			m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			this->m_CountLineStatus = 0;
+			this->m_CountRotation = 0;
+			m_TimeChangeState = 0.0f;
+			if(m_Direction == eDirection::RIGHT)
+			{
+				mArm[1]->setAngleVeclocity(4.0f);
+				mArm[2]->setAngleVeclocity(-40.0f);
+				mArm[3]->setAngleVeclocity(-50.0f);
+				mPunch->setAngleVeclocity(-50.0f);
+			}
+			else
+			{
+				mArm[1]->setAngleVeclocity(-4.0f);
+				mArm[2]->setAngleVeclocity(40.0f);
+				mArm[3]->setAngleVeclocity(50.0f);
+				mPunch->setAngleVeclocity(50.0f);
+			}
 		}
 
 		break;
@@ -359,9 +399,48 @@ void BossHand::Update()
 		}
 
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-		if(m_TimeChangeState > 3000)
+		if(CGlobal::LiveOfRambo == true)
 		{
 			m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			m_TimeChangeState = 0.0f;
+			m_CountRotation = 0;
+			m_CountLineStatus = 0;
+			if(m_Direction == eDirection::RIGHT)
+			{
+				mArm[1]->setAngleVeclocity(4.0f);
+				mArm[2]->setAngleVeclocity(-40.0f);
+				mArm[3]->setAngleVeclocity(-50.0f);
+				mPunch->setAngleVeclocity(-50.0f);
+			}
+			else
+			{
+				mArm[1]->setAngleVeclocity(-4.0f);
+				mArm[2]->setAngleVeclocity(40.0f);
+				mArm[3]->setAngleVeclocity(50.0f);
+				mPunch->setAngleVeclocity(50.0f);
+			}
+		}
+		else
+		{
+		if(m_TimeChangeState > 1000)
+		{
+			if(this->m_CountLineStatus < 3 && CGlobal::LiveOfRambo == false)
+			{
+				++this->m_CountLineStatus;
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE_A_LINE;
+			}
+			else
+			{
+				this->m_CountLineStatus = 0;
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			}
+
+			if(CGlobal::LiveOfRambo == true)
+			{
+				this->m_CountLineStatus = 0;
+				m_ObjectState = eObjectState::STATE_ALIVE_MOVE;
+			}
+
 			m_TimeChangeState = 0;
 			m_CountRotation = 0;
 
@@ -380,6 +459,8 @@ void BossHand::Update()
 				mPunch->setAngleVeclocity(50.0f);
 			}
 		}
+		}
+		break;
 	case STATE_BEFORE_DEATH:
 		if (isDead)
 		{

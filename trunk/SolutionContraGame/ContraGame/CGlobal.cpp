@@ -7,6 +7,7 @@ bool CGlobal::IsMute		= false;
 int CGlobal::Rambo_X		= 0;
 int CGlobal::Rambo_Y		= 0;
 int CGlobal::MapName		= 0;
+bool CGlobal::LiveOfRambo   = false;
 
 bool IsMovementObject(eObjectID id)
 {
