@@ -65,34 +65,34 @@ D3DXVECTOR3 GunRotating::GetStartPositionOfBullet()
 		return D3DXVECTOR3(m_Position.x , m_Position.y + 27, 0); 
 		break;
 	case ONE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 23, m_Position.y + 20, 0);
+		return D3DXVECTOR3(m_Position.x + 20, m_Position.y + 20, 0);
 		break;
 	case TWO_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 20, m_Position.y + 18, 0);
+		return D3DXVECTOR3(m_Position.x + 23, m_Position.y + 18, 0);
 		break;
 	case THREE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 27, m_Position.y , 0);
+		return D3DXVECTOR3(m_Position.x + 28, m_Position.y , 0);
 		break;
 	case FOUR_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 10, m_Position.y - 7 , 0); 
+		return D3DXVECTOR3(m_Position.x + 23, m_Position.y - 16 , 0); 
 		break;
 	case FIVE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x + 10 , m_Position.y - 10 , 0); 
+		return D3DXVECTOR3(m_Position.x + 17 , m_Position.y - 24 , 0); 
 		break;
 	case SIX_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x , m_Position.y - 27, 0); 
 		break;
 	case SEVEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x  - 20, m_Position.y - 10 , 0); 
+		return D3DXVECTOR3(m_Position.x  - 17, m_Position.y - 24 , 0); 
 		break;
 	case EIGHT_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 20, m_Position.y - 7  , 0); 
+		return D3DXVECTOR3(m_Position.x - 23, m_Position.y - 16  , 0); 
 		break;
 	case NINE_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 27 , m_Position.y , 0); 
+		return D3DXVECTOR3(m_Position.x - 28 , m_Position.y , 0); 
 		break;
 	case TEN_CLOCK_DIRECTION:
-		return D3DXVECTOR3(m_Position.x - 20, m_Position.y + 18, 0);
+		return D3DXVECTOR3(m_Position.x - 25, m_Position.y + 18, 0);
 		break;
 	case ELEVEN_CLOCK_DIRECTION:
 		return D3DXVECTOR3(m_Position.x - 23, m_Position.y + 20, 0);

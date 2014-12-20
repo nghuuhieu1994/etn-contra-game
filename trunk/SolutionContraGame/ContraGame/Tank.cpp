@@ -274,7 +274,7 @@ void Tank::Update()
 		{
 		case STATE_ALIVE_MOVE:
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-			if (m_TimeChangeState > 3000)
+			if (m_TimeChangeState > 2000)
 			{
 				m_TimeChangeState = 0;
 				m_isShoot = true;
@@ -285,7 +285,7 @@ void Tank::Update()
 			if(m_isShoot == true)
 			{
 				m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
-				if (m_TimeChangeState > 2000)
+				if (m_TimeChangeState > 3000)
 				{
 					m_TimeToShoot = 1000;
 					Shoot();
