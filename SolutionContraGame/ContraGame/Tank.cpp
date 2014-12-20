@@ -260,7 +260,7 @@ void Tank::UpdateMovement()
 		m_Physic->setVelocityX(-0.2f);
 		break;
 	case STATE_SHOOTING:
-		m_Physic->setVelocityX(0);
+		m_Physic->setVelocityX(0.0f);
 		break;
 	default:
 		break;
@@ -273,6 +273,13 @@ void Tank::Update()
 	switch (m_ObjectState)
 		{
 		case STATE_ALIVE_MOVE:
+			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
+			if (m_TimeChangeState > 3000)
+			{
+				m_TimeChangeState = 0;
+				m_isShoot = true;
+				m_ObjectState= eObjectState::STATE_SHOOTING;
+			}
 			break;
 		case STATE_SHOOTING:
 			if(m_isShoot == true)
@@ -283,13 +290,15 @@ void Tank::Update()
 					m_TimeToShoot = 1000;
 					Shoot();
 					m_TimeChangeState = 0;
+					m_ObjectState= eObjectState::STATE_ALIVE_MOVE;
 				}
 			}
 			m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds();
 			if (m_TimeChangeState > 3000)
 			{
 				m_TimeChangeState = 0;
-				m_isShoot = true;
+				m_isShoot = false;
+				m_ObjectState= eObjectState::STATE_ALIVE_MOVE;
 			}
 			break;
 		case STATE_BEFORE_DEATH:

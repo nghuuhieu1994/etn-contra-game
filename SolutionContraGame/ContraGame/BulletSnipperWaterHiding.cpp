@@ -17,7 +17,7 @@ void BulletSnipperWaterHiding::Initialize()
 	this->m_spite_dead = new CSpriteDx9(*SpriteManager::getInstance()->getSprite(eSpriteID::SPRITE_BOOM_EXPLOISION));
 	this->m_sprite_main->setScale(0.7f);
 	this->m_Position.z = 1.0f;
-	this->m_Physic->setVelocityY(1.0f);
+	this->m_Physic->setVelocityY(2.0f);
 	this->m_DirectAttack = eDirectAttack::AD_TOP;
 	m_Sprite = m_sprite_main;
 	m_ObjectState = eObjectState::STATE_ALIVE_IDLE;
@@ -58,7 +58,7 @@ void BulletSnipperWaterHiding::Update()
 	{
 	case STATE_ALIVE_IDLE:
 		m_TimeChangeState += CGameTimeDx9::getInstance()->getElapsedGameTime().getMilliseconds(); 
-		if(m_TimeChangeState > 4000)
+		if(m_TimeChangeState > 2000)
 		{
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, D3DXVECTOR3(m_Position.x + 30, m_Position.y + 50, 1), D3DXVECTOR2(0.3f, -0.5f),-5.76f);
 			BulletPoolManager::getInstance()->addBulletIntoList(eIDTypeBullet::BULLET_OF_BOSS1, D3DXVECTOR3(m_Position.x, m_Position.y + 50, 1), D3DXVECTOR2(-0.1f, -0.5f),-11.4f);

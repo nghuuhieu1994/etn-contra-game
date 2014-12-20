@@ -13,6 +13,7 @@ public:
 	static int	Rambo_X;
 	static int	Rambo_Y;
 	static int	MapName;
+	static bool LiveOfRambo;
 };
 
 bool IsMovementObject(eObjectID type);

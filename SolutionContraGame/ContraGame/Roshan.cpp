@@ -92,17 +92,34 @@ void Roshan::UpdateCollision(Object* checkingObject)
 
 void Roshan::UpdateMovement()
 {
-	if (abs(m_Position.y - CGlobal::Rambo_Y) < 150)
+	//if(CGlobal::LiveOfRambo == false)
+	//{
+		//if ((abs(m_Position.y - CGlobal::Rambo_Y) < 150))
+		//{
+	if(Camera::getInstance()->getBound().top > m_Position.y + 50)
 	{
-		if (mRightHand)
-		{
-			mRightHand->UpdateMovement();
-		}
-		if (mLeftHand)
-		{
-			mLeftHand->UpdateMovement();
-		}
+			if (mRightHand)
+			{
+				mRightHand->UpdateMovement();
+			}
+			if (mLeftHand)
+			{
+				mLeftHand->UpdateMovement();
+			}
 	}
+		//}
+	//}
+	//else
+	//{
+	//	if (mRightHand)
+	//	{
+	//		mRightHand->UpdateMovement();
+	//	}
+	//	if (mLeftHand)
+	//	{
+	//		mLeftHand->UpdateMovement();
+	//	}
+	////}
 }
 
 void Roshan::Update()
